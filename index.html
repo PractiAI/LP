@@ -317,6 +317,8 @@
             height: 340px;
             perspective: 1000px;
             cursor: pointer;
+            /* מונע סימון טקסט בטעות במובייל */
+            -webkit-tap-highlight-color: transparent;
         }
 
         .flip-card-inner {
@@ -329,9 +331,11 @@
             border-radius: 20px;
         }
 
-        /* Hover works on Desktop */
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
+        /* IMPORTANT: Hover works ONLY on Desktop */
+        @media (hover: hover) {
+            .flip-card:hover .flip-card-inner {
+                transform: rotateY(180deg);
+            }
         }
 
         /* JS toggled class for mobile click or auto-flip */
@@ -901,7 +905,7 @@
                         <div class="del-item"><i class="fa-solid fa-shield-halved"></i> <strong>בטיחות ופרטיות בשימוש</strong></div>
                     </div>
                     
-                    <a href="https://wa.me/972506915269?text=היי טל, אשמח לקבל את הסילבוס לסדנת Essentials" class="btn btn-outline" style="width:100%">שלחו לי את הסילבוס המלא</a>
+                    <a href="https://wa.me/972506915269?text=היי טל, אני מעוניין לבחון את המוצר: GenAI Essentials" target="_blank" class="btn btn-outline" style="width:100%">שלחו לי את הסילבוס המלא</a>
                 </div>
 
                 <!-- Pro Builder -->
@@ -923,7 +927,7 @@
                         <div class="del-item"><i class="fa-solid fa-robot"></i> הקמת "עוזרים אישיים" (Custom GPTs)</div>
                     </div>
                     
-                    <a href="https://wa.me/972506915269?text=היי טל, אשמח לתאם בדיקת התאמה למסלול Pro Builder" class="btn btn-primary" style="width:100%">בדיקת התאמה לצוות שלך</a>
+                    <a href="https://wa.me/972506915269?text=היי טל, אני מעוניין לבחון את המוצר: Pro Builder" target="_blank" class="btn btn-primary" style="width:100%">בדיקת התאמה לצוות שלך</a>
                 </div>
 
                 <!-- Enterprise Transformation -->
@@ -944,7 +948,7 @@
                         <div class="del-item"><i class="fa-solid fa-users-gear"></i> ליווי מתמשך והכשרת מובילי שינוי</div>
                     </div>
                     
-                    <a href="https://wa.me/972506915269?text=היי טל, אשמח לתאם שיחת אסטרטגיה למסלול Enterprise" class="btn btn-outline" style="width:100%">תיאום שיחת אסטרטגיה</a>
+                    <a href="https://wa.me/972506915269?text=היי טל, אני מעוניין לבחון את המוצר: Enterprise Transformation" target="_blank" class="btn btn-outline" style="width:100%">תיאום שיחת אסטרטגיה</a>
                 </div>
 
             </div>
