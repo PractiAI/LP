@@ -13,6 +13,15 @@
     <!-- אייקונים -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Gemini API Import -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+
     <style>
         :root {
             --bg-color: #0a0a0a;
@@ -194,6 +203,98 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+        }
+
+        /* --- AI DEMO SECTION --- */
+        .ai-demo-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+            border-bottom: 1px solid #222;
+        }
+
+        .demo-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .demo-input {
+            flex: 1;
+            min-width: 250px;
+            background: #111;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Heebo', sans-serif;
+            transition: 0.3s;
+        }
+
+        .demo-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(222, 255, 154, 0.1);
+        }
+
+        .ai-result {
+            margin-top: 30px;
+            padding: 25px;
+            background: #111;
+            border-radius: 16px;
+            border: 1px solid var(--accent);
+            text-align: right;
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .ai-result h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .markdown-content ul {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+        
+        .markdown-content li {
+            margin-bottom: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* --- PRICING --- */
@@ -453,7 +554,31 @@
                 <div class="feature-card">
                     <div class="icon-box"><i class="fa-solid fa-trophy"></i></div>
                     <h3>מוכח בשטח</h3>
-                    <p>השיטה פותחה ע"י טל חקוקי, ראש תחום GenAI במרכז כנרת, נוסתה ושופרה מול מאות ארגונים מהמגזר הפרטי והציבורי.</p>
+                    <p>השיטה פותחה ע"י טל חקוקי, מומחה להובלת טרנספורמציה דיגיטלית והטמעת בינה מלאכותית בארגונים, נוסתה ושופרה מול מאות ארגונים מהמגזר הפרטי והציבורי.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI DEMO SECTION -->
+    <section class="ai-demo-section" id="demo">
+        <div class="container">
+            <h2 class="text-center">נסה את זה עכשיו: <span class="highlight">ייעול משימה בשידור חי</span> ✨</h2>
+            <p class="text-center subtitle">קבל טעימה מהיכולות. ספר לנו מה התפקיד שלך ואיזו משימה גוזלת ממך זמן, וה-AI יציע פתרון מיידי.</p>
+            
+            <div class="demo-card">
+                <div class="input-group">
+                    <input type="text" id="userRole" placeholder="מה התפקיד שלך? (למשל: מנהל שיווק)" class="demo-input">
+                    <input type="text" id="userTask" placeholder="משימה שחוזרת על עצמה (למשל: כתיבת דוחות חודשיים)" class="demo-input">
+                </div>
+                <button id="generateBtn" class="btn btn-primary" style="width: 100%;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    הצע לי תהליך עבודה חכם
+                </button>
+                
+                <div id="aiResult" class="ai-result">
+                    <h4><i class="fa-solid fa-robot"></i> ההצעה של PractiAI:</h4>
+                    <div id="resultText" class="markdown-content"></div>
                 </div>
             </div>
         </div>
@@ -575,6 +700,67 @@
             </p>
         </div>
     </footer>
+
+    <!-- JS Logic for AI Demo -->
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+
+        // IMPORTANT: For production/GitHub Pages, you must insert your API key here or use a proxy.
+        // In the Canvas preview, this works automatically.
+        const apiKey = ""; 
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
+
+        const generateBtn = document.getElementById('generateBtn');
+        const userRoleInput = document.getElementById('userRole');
+        const userTaskInput = document.getElementById('userTask');
+        const resultDiv = document.getElementById('aiResult');
+        const resultText = document.getElementById('resultText');
+
+        generateBtn.addEventListener('click', async () => {
+            const role = userRoleInput.value.trim();
+            const task = userTaskInput.value.trim();
+
+            if (!role || !task) {
+                alert('אנא מלא את כל השדות כדי שנוכל לייצר לך פתרון!');
+                return;
+            }
+
+            // UI Loading State
+            generateBtn.innerHTML = '<div class="loading-spinner"></div> מעבד נתונים...';
+            generateBtn.disabled = true;
+            resultDiv.style.display = 'none';
+
+            try {
+                const prompt = `
+                    You are an expert AI consultant for businesses. 
+                    The user has the role: "${role}" and wants to optimize this repetitive task: "${task}".
+                    
+                    Suggest a concise, 3-step workflow using Generative AI tools (like ChatGPT/Claude) to automate or optimize this task.
+                    Focus on practical value and time saving.
+                    
+                    Output in Hebrew. Use bullet points. Keep it professional and inspiring.
+                `;
+
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                const text = response.text();
+
+                // Simple markdown parsing for bullets
+                const htmlText = text.replace(/\*/g, '').replace(/-/g, '•').split('\n').map(line => line.trim() ? `<p>${line}</p>` : '').join('');
+
+                resultText.innerHTML = htmlText;
+                resultDiv.style.display = 'block';
+                
+            } catch (error) {
+                console.error("Error generating AI content:", error);
+                alert("אופס! הייתה שגיאה בתקשורת עם ה-AI. נסה שוב מאוחר יותר.");
+            } finally {
+                generateBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> הצע לי תהליך עבודה חכם';
+                generateBtn.disabled = false;
+            }
+        });
+    </script>
 
 </body>
 </html>
