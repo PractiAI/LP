@@ -36,6 +36,7 @@
             --accent-dim: rgba(222, 255, 154, 0.1);
             --text-main: #ffffff;
             --text-muted: #b0b0b0;
+            --danger: #ff5555;
         }
 
         * {
@@ -299,95 +300,107 @@
 
         .proof-item span { color: #ccc; }
 
-        /* --- COMPARISON SECTION (FLIP CARDS) --- */
+        /* --- COMPARISON SECTION (TRANSFORMATION CARDS - NEW!) --- */
         .comparison {
             padding: 120px 0;
             background: var(--bg-card);
         }
 
-        .flip-grid {
+        .trans-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
 
-        .flip-card {
-            background-color: transparent;
-            height: 340px;
-            perspective: 1000px;
-            cursor: pointer;
-            /* מונע סימון טקסט בטעות במובייל */
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-            transform-style: preserve-3d;
+        .trans-card {
+            background: #161616;
             border-radius: 20px;
-        }
-
-        /* IMPORTANT: Hover works ONLY on Desktop */
-        @media (hover: hover) {
-            .flip-card:hover .flip-card-inner {
-                transform: rotateY(180deg);
-            }
-        }
-
-        /* JS toggled class for mobile click or auto-flip */
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 20px;
-            padding: 30px;
+            border: 1px solid #333;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
         }
 
-        .flip-card-front {
-            background: linear-gradient(145deg, #161616, #0d0d0d);
+        .trans-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-dim);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
-        .flip-card-front h3 { color: #ff5555; font-size: 1.4rem; margin-bottom: 15px; font-weight: 800; }
-        .flip-card-front i { font-size: 3.5rem; color: #ff5555; margin-bottom: 25px; opacity: 0.8; }
-        .flip-card-front p { color: #888; font-size: 1.1rem; line-height: 1.4; }
-
-        .flip-card-back {
-            background: linear-gradient(145deg, #0d1f05, #000); /* Dark green tint */
-            border: 1px solid var(--accent);
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-back h3 { color: var(--accent); font-size: 1.4rem; margin-bottom: 15px; font-weight: 800; }
-        .flip-card-back i { font-size: 3.5rem; color: var(--accent); margin-bottom: 25px; text-shadow: 0 0 20px rgba(222, 255, 154, 0.4); }
-        .flip-card-back p { color: #eee; font-size: 1.1rem; line-height: 1.4; }
-
-        .flip-hint {
+        /* Top Part - The Problem */
+        .problem-side {
+            background: rgba(255, 50, 50, 0.05);
+            padding: 25px;
             text-align: center;
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            animation: pulse 2s infinite;
+            border-bottom: 1px solid #333;
+            position: relative;
+        }
+
+        .problem-side h4 {
+            color: var(--danger);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .problem-side p {
+            color: #888;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Divider Arrow */
+        .trans-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            border: 1px solid #444;
+            color: #666;
+            z-index: 2;
         }
+
+        /* Bottom Part - The Solution */
+        .solution-side {
+            background: linear-gradient(180deg, #161616 0%, rgba(222, 255, 154, 0.05) 100%);
+            padding: 40px 25px 30px; /* Top padding clears the arrow */
+            text-align: center;
+        }
+
+        .solution-side h3 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .solution-side p {
+            color: #ccc;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .solution-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        /* Highlight effect on hover */
+        .trans-card:hover .solution-side h3 { color: var(--accent); }
+        .trans-card:hover .trans-arrow { border-color: var(--accent); color: var(--accent); }
+
 
         /* --- METHODOLOGY (NEW GLOWING CARDS) --- */
         .methodology { padding: 120px 0; background-color: #080808; position: relative; }
@@ -731,78 +744,67 @@
         </div>
     </section>
 
-    <!-- PROBLEM VS SOLUTION (FLIP CARDS) -->
+    <!-- PROBLEM VS SOLUTION (NEW TRANSFORMATION CARDS) -->
     <section class="comparison">
         <div class="container">
             <h2 class="section-title reveal">למה הכשרות רגילות לא עובדות?</h2>
             <p class="section-subtitle reveal">רוב ההדרכות נשארות בשלב ההתלהבות. אנחנו מתמקדים בערך.</p>
             
-            <!-- Updated Hint Text -->
-            <div class="flip-hint reveal"><i class="fa-solid fa-hand-pointer"></i> המתינו 5 שניות או לחצו על הכרטיס כדי לגלות את הפתרון</div>
-
-            <div class="flip-grid">
+            <div class="trans-grid">
                 
-                <!-- Card 1: Methodology -->
-                <div class="flip-card reveal delay-100">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fa-solid fa-person-chalkboard"></i>
-                            <h3>הרצאות תיאורטיות</h3>
-                            <p>"וואו, תראו מה זה עושה" (אבל איך משתמשים בזה מחר בבוקר?)</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <i class="fa-solid fa-laptop-code"></i>
-                            <h3>לומדים תוך כדי עשייה</h3>
-                            <p>עבודה מעשית על המיילים, הדוחות והקבצים האמיתיים שלכם בזמן אמת.</p>
-                        </div>
+                <!-- Transformation 1 -->
+                <div class="trans-card reveal delay-100">
+                    <div class="problem-side">
+                        <h4>העולם הישן</h4>
+                        <p>הרצאות השראה: "וואו, תראו מה זה עושה" (אבל איך משתמשים בזה?)</p>
+                    </div>
+                    <div class="trans-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="solution-side">
+                        <i class="fa-solid fa-laptop-code solution-icon"></i>
+                        <h3>לומדים תוך כדי עשייה</h3>
+                        <p>עבודה מעשית על המיילים, הדוחות והקבצים האמיתיים שלכם בזמן אמת.</p>
                     </div>
                 </div>
 
-                <!-- Card 2: Relevance -->
-                <div class="flip-card reveal delay-200">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fa-solid fa-layer-group"></i>
-                            <h3>דוגמאות כלליות</h3>
-                            <p>דוגמאות גנריות שלא קשורות לתפקיד או לעולם התוכן של הארגון.</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <i class="fa-solid fa-fingerprint"></i>
-                            <h3>התאמה אישית מלאה</h3>
-                            <p>בניית "פרופיל עבודה" אישי לכל עובד, מותאם לתפקיד ולסגנון שלו.</p>
-                        </div>
+                <!-- Transformation 2 -->
+                <div class="trans-card reveal delay-200">
+                    <div class="problem-side">
+                        <h4>העולם הישן</h4>
+                        <p>דוגמאות גנריות שלא קשורות לתפקיד או לעולם התוכן של הארגון.</p>
+                    </div>
+                    <div class="trans-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="solution-side">
+                        <i class="fa-solid fa-fingerprint solution-icon"></i>
+                        <h3>התאמה אישית מלאה</h3>
+                        <p>בניית "פרופיל עבודה" אישי לכל עובד, מותאם לתפקיד ולסגנון שלו.</p>
                     </div>
                 </div>
 
-                <!-- Card 3: Security -->
-                <div class="flip-card reveal delay-300">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fa-solid fa-user-shield"></i>
-                            <h3>פחד וחסימה</h3>
-                            <p>חשש כבד מאבטחת מידע שגורם לעובדים לפחד להשתמש בכלים.</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <i class="fa-solid fa-check-double"></i>
-                            <h3>עבודה בטוחה (Governance)</h3>
-                            <p>קבלת נהלי עבודה ברורים: מה מותר, מה אסור ואיך שומרים על המידע.</p>
-                        </div>
+                <!-- Transformation 3 -->
+                <div class="trans-card reveal delay-300">
+                    <div class="problem-side">
+                        <h4>העולם הישן</h4>
+                        <p>חשש כבד מאבטחת מידע שגורם לעובדים לפחד להשתמש בכלים.</p>
+                    </div>
+                    <div class="trans-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="solution-side">
+                        <i class="fa-solid fa-shield-halved solution-icon"></i>
+                        <h3>עבודה בטוחה (Governance)</h3>
+                        <p>קבלת נהלי עבודה ברורים: מה מותר, מה אסור ואיך שומרים על המידע.</p>
                     </div>
                 </div>
 
-                <!-- Card 4: Impact -->
-                <div class="flip-card reveal delay-100">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <i class="fa-solid fa-hourglass-end"></i>
-                            <h3>הידע מתפוגג</h3>
-                            <p>יום אחרי הסדנה: ההתלהבות יורדת וחוזרים לעבוד בשיטות הישנות.</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <i class="fa-solid fa-rocket"></i>
-                            <h3>תוצרים שנשארים</h3>
-                            <p>יוצאים עם בוטים, תבניות ותהליכים מוכנים שממשיכים לעבוד בשבילכם.</p>
-                        </div>
+                <!-- Transformation 4 -->
+                <div class="trans-card reveal delay-100">
+                    <div class="problem-side">
+                        <h4>העולם הישן</h4>
+                        <p>יום אחרי הסדנה: ההתלהבות יורדת וחוזרים לעבוד בשיטות הישנות.</p>
+                    </div>
+                    <div class="trans-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="solution-side">
+                        <i class="fa-solid fa-rocket solution-icon"></i>
+                        <h3>תוצרים שנשארים</h3>
+                        <p>יוצאים עם בוטים, תבניות ותהליכים מוכנים שממשיכים לעבוד בשבילכם.</p>
                     </div>
                 </div>
 
@@ -1056,12 +1058,6 @@
                     
                     // Special logic for Mobile Scroll Interaction
                     if (isTouchDevice) {
-                        if (entry.target.classList.contains('flip-card')) {
-                            // Delay flip slightly so they see the red side first
-                            entry.target.flipTimeout = setTimeout(() => {
-                                entry.target.classList.add('flipped');
-                            }, 5000); // 5 seconds delay
-                        }
                         if (entry.target.classList.contains('method-card')) {
                             entry.target.classList.add('active-mobile');
                         }
@@ -1070,19 +1066,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal, .flip-card, .method-card').forEach(el => observer.observe(el));
-        
-        // Click listener to toggle flip manually on all devices
-        document.querySelectorAll('.flip-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.classList.toggle('flipped');
-                // If user manually flips, clear the auto-flip timeout if it hasn't fired yet
-                if (this.flipTimeout) {
-                    clearTimeout(this.flipTimeout);
-                    this.flipTimeout = null;
-                }
-            });
-        });
+        document.querySelectorAll('.reveal, .trans-card, .method-card').forEach(el => observer.observe(el));
     </script>
 
 </body>
