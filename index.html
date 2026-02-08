@@ -3,41 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PractiAI | טל חקוקי - הכשרות GenAI לארגונים</title>
+    <title>PractiAI | טל חקוקי - הכשרות AI לארגונים</title>
     
-    <!-- SEO & Social Media Meta Tags -->
-    <meta name="description" content="הפוך את העובדים לצוות-על שחוסך 30% מזמן העבודה בעזרת כלי AI. סדנאות והכשרות מעשיות לארגונים.">
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="הכשרות AI פרקטיות לארגונים בהובלת טל חקוקי. חוסכים זמן, משפרים תהליכים ובונים יכולות פנימיות. מתאים למנהלים, צוותים ומגזר ציבורי.">
     
-    <!-- Open Graph / Facebook & WhatsApp -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hakokit.github.io/PractiAI/">
-    <meta property="og:title" content="PractiAI | הפוך את הארגון ל-AI First">
-    <meta property="og:description" content="השיטה שהוטמעה ב-200+ ארגונים. הכשרות GenAI מעשיות שחוסכות זמן וכסף מהיום הראשון.">
+    <meta property="og:title" content="PractiAI | עושים סדר בבינה המלאכותית">
+    <meta property="og:description" content="לא עוד הרצאות תיאורטיות. הכשרות מעשיות שמייצרות ערך עסקי מהיום הראשון.">
     <meta property="og:image" content="https://hakokit.github.io/PractiAI/og-image.png">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://hakokit.github.io/PractiAI/">
-    <meta property="twitter:title" content="PractiAI | טל חקוקי - הכשרות GenAI">
-    <meta property="twitter:description" content="הפוך את העובדים לצוות-על שחוסך 30% מזמן העבודה.">
-    <meta property="twitter:image" content="https://hakokit.github.io/PractiAI/og-image.png">
-
-    <!-- גופנים -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
-    <!-- אייקונים -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #161616;
+            --bg-dark: #050505;
+            --bg-card: #121212;
             --accent: #deff9a; /* ירוק ניאון */
-            --accent-glow: rgba(222, 255, 154, 0.4);
+            --accent-dim: rgba(222, 255, 154, 0.1);
             --text-main: #ffffff;
-            --text-muted: #a0a0a0;
+            --text-muted: #b0b0b0;
         }
 
         * {
@@ -51,38 +42,85 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Heebo', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3 { line-height: 1.1; margin-bottom: 1rem; }
-        .highlight { color: var(--accent); }
-        .text-center { text-align: center; }
-        
-        /* --- UTILS --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Scroll Reveal Class - JS will add 'active' */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered delays for children */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        /* --- TYPOGRAPHY & UTILS --- */
+        h1, h2, h3, h4 { line-height: 1.1; margin-bottom: 1rem; color: #fff; }
+        .highlight { color: var(--accent); }
+        .text-center { text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        /* --- BUTTONS --- */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 18px 40px;
-            font-size: 1.2rem;
-            font-weight: 900;
+            padding: 16px 36px;
+            font-size: 1.1rem;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 50px; /* מעוגל יותר */
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
         }
@@ -90,335 +128,382 @@
         .btn-primary {
             background-color: var(--accent);
             color: #000;
-            box-shadow: 0 0 20px rgba(222, 255, 154, 0.2);
+            box-shadow: 0 4px 20px rgba(222, 255, 154, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 40px var(--accent-glow);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(222, 255, 154, 0.6);
         }
 
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-        
-        .btn-outline:hover {
-            background: rgba(222, 255, 154, 0.1);
+            border: 1px solid rgba(255,255,255,0.3);
             color: #fff;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(222, 255, 154, 0.05);
         }
 
         /* --- HERO SECTION --- */
         header {
-            padding: 80px 0;
-            text-align: center;
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            background: radial-gradient(circle at center, #1f1f1f 0%, #0a0a0a 70%);
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(transparent, rgba(0,0,0,0.8));
-            pointer-events: none;
-        }
-
-        .badge {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--accent);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 25px;
-            border: 1px solid rgba(222, 255, 154, 0.2);
-            backdrop-filter: blur(5px);
-        }
-
-        h1 {
-            font-size: 3.8rem;
-            font-weight: 900;
-            max-width: 950px;
-            margin: 0 auto 20px;
-            letter-spacing: -1px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            max-width: 800px;
-            margin: 0 auto 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* --- FEATURES SECTION --- */
-        .features {
-            padding: 100px 0;
-            background-color: #0f0f0f;
-            border-top: 1px solid #222;
-            border-bottom: 1px solid #222;
-        }
-
-        /* השינוי כאן: מעבר מ-Grid ל-Flexbox כדי לאפשר מירכוז */
-        .features-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid #222;
-            transition: 0.3s;
-            height: 100%;
-            
-            /* הגדרות גודל חדשות */
-            flex: 1 1 300px; /* מינימום 300 פיקסל, גדל אם יש מקום */
-            max-width: 380px; /* מניעת מתיחה מוגזמת כשיש כרטיס בודד */
-        }
-
-        .feature-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
-            background: linear-gradient(180deg, #1a1a1a 0%, #161616 100%);
-        }
-
-        .icon-box {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 25px;
-            background: rgba(222, 255, 154, 0.1);
-            width: 70px;
-            height: 70px;
+            min-height: 95vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-        }
-
-        /* --- PRICING --- */
-        .pricing {
-            padding: 100px 0;
             position: relative;
+            text-align: center;
+            padding: 100px 20px;
+            overflow: hidden;
+            /* רקע אנימטיבי */
+            background: linear-gradient(-45deg, #050505, #0f1505, #050505, #0a0a0a);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
         }
 
-        .pricing-wrapper {
+        /* אלמנטים מרחפים ברקע */
+        header::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(222, 255, 154, 0.03) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(222, 255, 154, 0.03) 0%, transparent 70%);
+            bottom: 50px;
+            right: -50px;
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-badge {
+            background: rgba(222, 255, 154, 0.1);
+            color: var(--accent);
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 25px;
+            border: 1px solid rgba(222, 255, 154, 0.3);
+            backdrop-filter: blur(5px);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            max-width: 1000px;
+            margin: 0 auto 20px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .hero-sub {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        /* --- SOCIAL PROOF BAR --- */
+        .proof-bar {
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 30px 0;
+            background: #080808;
+        }
+        
+        .proof-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            opacity: 0.8;
+            align-items: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .proof-item span { color: #ccc; }
+
+        /* --- COMPARISON SECTION --- */
+        .comparison {
+            padding: 120px 0;
+            background: var(--bg-card);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .comp-card {
+            padding: 40px;
+            border-radius: 20px;
+            height: 100%;
+            transition: transform 0.4s ease;
+        }
+
+        .comp-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .comp-bad {
+            background: rgba(255, 50, 50, 0.03);
+            border: 1px solid rgba(255, 50, 50, 0.1);
+        }
+
+        .comp-good {
+            background: rgba(222, 255, 154, 0.03);
+            border: 1px solid var(--accent);
+            position: relative;
+            box-shadow: 0 0 30px rgba(222, 255, 154, 0.05);
+        }
+
+        .comp-good::before {
+            content: 'השיטה של PractiAI';
+            position: absolute;
+            top: -12px;
+            right: 30px;
+            background: var(--accent);
+            color: #000;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .check-list { list-style: none; margin-top: 25px; }
+        .check-list li { margin-bottom: 20px; display: flex; gap: 15px; font-size: 1.1rem; align-items: flex-start; }
+        .comp-bad i { color: #ff4444; margin-top: 5px; flex-shrink: 0; }
+        .comp-good i { color: var(--accent); margin-top: 5px; flex-shrink: 0; }
+
+        /* --- METHODOLOGY --- */
+        .methodology { padding: 120px 0; }
+        
+        .method-wrapper {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
-            align-items: stretch;
             margin-top: 60px;
         }
 
+        .method-card {
+            background: #0f0f0f;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #222;
+            transition: all 0.4s ease;
+            flex: 1 1 300px; 
+            max-width: 380px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .method-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .method-card:hover .method-icon {
+            transform: scale(1.1) rotate(5deg);
+            color: var(--accent);
+        }
+
+        .method-icon {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+
+        /* --- TARGET AUDIENCE --- */
+        .audience { padding: 100px 0; background: #0f0f0f; border-top: 1px solid #222; }
+        .audience-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 40px; }
+        .tag { 
+            background: #1a1a1a; 
+            padding: 12px 25px; 
+            border-radius: 50px; 
+            color: #ccc; 
+            border: 1px solid #333; 
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .tag:hover { 
+            border-color: var(--accent); 
+            color: var(--accent); 
+            background: rgba(222, 255, 154, 0.05); 
+            transform: scale(1.05);
+        }
+
+        /* --- PRICING --- */
+        .pricing { padding: 120px 0; }
+        .pricing-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; align-items: stretch; margin-top: 60px; }
+        
         .price-card {
-            background: var(--card-bg);
+            background: var(--bg-card);
             border-radius: 24px;
             padding: 40px;
             border: 1px solid #333;
-            position: relative;
+            flex: 1 1 320px;
+            max-width: 380px;
             display: flex;
             flex-direction: column;
-            flex: 1 1 300px;
-            max-width: 380px;
-            transition: transform 0.3s ease;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .price-card:hover {
+            border-color: #444;
+            transform: translateY(-5px);
         }
 
         .price-card.featured {
             border: 2px solid var(--accent);
-            background: #121212;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            z-index: 2;
+            background: #151515;
             transform: scale(1.05);
+            z-index: 2;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .card-tag {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: #000;
-            padding: 5px 25px;
-            font-weight: 800;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        .price-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
         }
 
-        .price {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--text-main);
-            margin: 20px 0 10px;
-            line-height: 1;
-        }
-
-        .price span {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            display: block;
-            margin-top: 5px;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin: 30px 0 40px;
-            flex-grow: 1;
-        }
-
-        .feature-list li {
-            margin-bottom: 18px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: #ddd;
-            font-size: 1.05rem;
-        }
-
-        .feature-list i {
-            color: var(--accent);
-            margin-top: 5px;
-            font-size: 1.1rem;
-        }
-
-        /* --- FAQ SECTION --- */
-        .faq-section {
-            padding: 80px 0;
-            background-color: #0e0e0e;
-        }
+        .price-header { margin-bottom: 25px; border-bottom: 1px solid #222; padding-bottom: 25px; }
+        .price-num { font-size: 3rem; font-weight: 900; color: #fff; line-height: 1; }
+        .price-sub { font-size: 1rem; color: #888; margin-top: 5px; display: block; }
         
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .deliverables { margin: 25px 0; flex-grow: 1; }
+        .deliverables h4 { font-size: 0.9rem; text-transform: uppercase; color: #666; margin-bottom: 15px; letter-spacing: 1px; }
+        .del-item { display: flex; gap: 12px; margin-bottom: 15px; font-size: 1rem; color: #ddd; align-items: center; }
+        .del-item i { color: var(--accent); font-size: 1.1rem; }
+
+        /* --- ABOUT --- */
+        .about {
+            padding: 120px 0;
+            background: linear-gradient(90deg, #0a0a0a 0%, #111 100%);
+            border-top: 1px solid #222;
         }
 
-        details {
-            background: #1a1a1a;
-            margin-bottom: 15px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #333;
-        }
-
-        summary {
-            padding: 20px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1.1rem;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
             align-items: center;
         }
 
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::after {
-            content: '+';
-            color: var(--accent);
-            font-size: 1.5rem;
-            font-weight: 900;
-        }
-
-        details[open] summary::after {
-            content: '-';
-        }
-
-        details[open] {
-            border-color: var(--accent);
-        }
-
-        .faq-content {
-            padding: 0 20px 20px;
-            color: #ccc;
-            line-height: 1.6;
-        }
-
-        /* --- CONTACT SECTION --- */
-        .contact-section {
-            padding: 100px 0 60px;
-            text-align: center;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-        }
-
-        .contact-grid {
+        /* תיקון התמונה: עגולה, ממוקדת וממורכזת */
+        .about-img-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            background: #222;
-            padding: 20px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #fff;
-            display: flex;
             align-items: center;
-            gap: 15px;
-            transition: 0.3s;
-            border: 1px solid #333;
         }
 
-        .contact-item:hover {
-            border-color: var(--accent);
-            background: #2a2a2a;
+        .about-img {
+            width: 320px;
+            height: 320px;
+            background-color: #222;
+            border-radius: 50%; /* הופך לעיגול מושלם */
+            overflow: hidden;
+            border: 3px solid var(--accent); /* מסגרת דקה ויוקרתית */
+            box-shadow: 0 0 40px rgba(222, 255, 154, 0.15); /* הילה זוהרת */
+            background-image: url('https://res.cloudinary.com/dhzuwoech/image/upload/v1770577527/unnamed_hmkldf.jpg');
+            background-size: cover;
+            background-position: center 20%; /* מיקוד על הפנים (חיתוך מלמעלה) */
+            transition: transform 0.5s ease;
         }
 
-        .contact-item i {
-            font-size: 1.5rem;
+        .about-img:hover {
+            transform: scale(1.02);
+        }
+
+        .about-role {
             color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: inline-block;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #555;
-            font-size: 0.9rem;
-            border-top: 1px solid #222;
-            background: #0a0a0a;
+        /* --- FAQ --- */
+        .faq { padding: 100px 0; background: #080808; }
+        details { 
+            background: #151515; 
+            margin-bottom: 20px; 
+            border-radius: 12px; 
+            border: 1px solid #333; 
+            transition: all 0.3s ease;
         }
+        
+        details:hover { border-color: #555; }
+        
+        summary { 
+            padding: 25px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            font-size: 1.1rem;
+            list-style: none; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+        
+        summary::after { 
+            content: '+'; 
+            color: var(--accent); 
+            font-weight: 900; 
+            font-size: 1.5rem; 
+            transition: transform 0.3s;
+        }
+        
+        details[open] summary::after { 
+            content: '-'; 
+            transform: rotate(180deg);
+        }
+        
+        .faq-body { padding: 0 25px 25px; color: #ccc; line-height: 1.7; }
 
-        /* --- MOBILE --- */
-        @media (max-width: 768px) {
-            header { padding: 60px 0; }
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid #222; color: #666; background: #050505; }
+
+        @media (max-width: 900px) {
             h1 { font-size: 2.5rem; }
-            .subtitle { font-size: 1.1rem; }
-            
-            .price-card.featured { transform: scale(1); margin: 20px 0; order: -1; }
-            
-            .pricing-wrapper { display: flex; flex-direction: column; align-items: center; }
-            .price-card { width: 100%; max-width: 100%; }
-            
-            /* התאמת רספונסיביות גם ליתרונות */
-            .features-wrapper { display: flex; flex-direction: column; align-items: center; }
-            .feature-card { width: 100%; max-width: 100%; }
-
-            .contact-grid { flex-direction: column; }
-            .btn { width: 100%; }
+            .comparison-grid, .about-grid { grid-template-columns: 1fr; }
+            .about-img-container { margin-bottom: 30px; }
+            .price-card.featured { transform: scale(1); margin: 20px 0; }
+            header { padding: 60px 20px; }
+            .about-img { width: 250px; height: 250px; }
         }
     </style>
 </head>
@@ -426,52 +511,113 @@
 
     <!-- HERO SECTION -->
     <header>
-        <div class="container">
-            <div class="badge"><i class="fa-solid fa-star"></i> השיטה שהוטמעה ב-200+ ארגונים</div>
+        <div class="container hero-content reveal active">
+            <div class="hero-badge">🚀 100% פרקטיקה עסקית</div>
             <h1>
-                הפוך את העובדים ל"צוות-על"<br>
-                שחוסך <span class="highlight">30% מזמן העבודה</span>
+                הפכו את הבינה המלאכותית<br>
+                <span class="highlight">מ"משחק נחמד" למנוע צמיחה בארגון</span>
             </h1>
-            <p class="subtitle">
-                בלי תיאוריות, בלי בזבוז זמן, ועם תהליך עבודה (Workflow) שלם שכל עובד בונה ומיישם כבר בסוף יום ההכשרה.
+            <p class="hero-sub delay-100 reveal active">
+                שלום, אני טל חקוקי. אני מלמד ארגונים איך לעבוד חכם יותר.
+                בלי סיסמאות ובלי תיאוריות מורכבות - נלמד איך להטמיע כלי AI מתקדמים שיחסכו לכם שעות עבודה, ישפרו את איכות התוצרים וייצרו סטנדרט עבודה חדש בארגון.
             </p>
-            <div style="margin-top: 30px;">
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;" class="delay-200 reveal active">
                 <a href="#pricing" class="btn btn-primary">
-                    <i class="fa-solid fa-rocket"></i>
-                    אני רוצה לראות את המסלולים
+                    <i class="fa-solid fa-bolt"></i> מה כוללת ההכשרה?
+                </a>
+                <a href="#about" class="btn btn-outline">
+                    קצת עליי
                 </a>
             </div>
-            <p style="margin-top: 20px; font-size: 0.9rem; color: #777;">
-                <i class="fa-solid fa-check" style="color: var(--accent);"></i> מתאים לכל רמות העובדים &nbsp;|&nbsp; 
-                <i class="fa-solid fa-check" style="color: var(--accent);"></i> יישום מיידי וללא התקנות
-            </p>
         </div>
     </header>
 
-    <!-- 3 BENEFITS -->
-    <section class="features">
+    <!-- SOCIAL PROOF -->
+    <section class="proof-bar">
         <div class="container">
-            <h2 class="text-center" style="margin-bottom: 60px;">3 דברים שאתם מקבלים <span class="highlight">(ולמה זה עובד)</span></h2>
-            <!-- Wrapper מעודכן ל-Flexbox -->
-            <div class="features-wrapper">
-                <!-- Feature 1 -->
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>תוצאה מיידית</h3>
-                    <p>כל עובד יוצא מההדרכה עם תהליך עבודה (Workflow) אחד שלם מקצה לקצה – בנוי, מוכן ופועל, שחוסך לו שעות של אדמיניסטרציה.</p>
+            <div class="proof-grid reveal">
+                <div class="proof-item">200+ <span>ארגונים</span></div>
+                <div class="proof-item">Head of <span>GenAI @ KIC</span></div>
+                <div class="proof-item">1000+ <span>בוגרים</span></div>
+                <div class="proof-item">מומחה <span>טרנספורמציה דיגיטלית</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM VS SOLUTION -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title reveal">למה הכשרות רגילות לא עובדות?</h2>
+            <p class="section-subtitle reveal">רוב ההדרכות נשארות בשלב ההתלהבות. כדי לייצר ערך אמיתי, צריך לעבוד אחרת.</p>
+            
+            <div class="comparison-grid">
+                <!-- Old Way -->
+                <div class="comp-card comp-bad reveal delay-100">
+                    <h3>❌ הדרך הישנה (תיאורטית)</h3>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-xmark"></i> הרצאות השראה: "וואו, תראו מה זה עושה" (אבל איך משתמשים בזה?)</li>
+                        <li><i class="fa-solid fa-xmark"></i> דוגמאות כלליות שלא קשורות לעבודה שלכם</li>
+                        <li><i class="fa-solid fa-xmark"></i> פחד מאבטחת מידע שגורם לעובדים לא להשתמש בכלים</li>
+                        <li><i class="fa-solid fa-xmark"></i> יום אחרי הסדנה: חוזרים לעבוד בשיטות הישנות</li>
+                    </ul>
                 </div>
-                <!-- Feature 2 -->
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3>אפס סיכון וטעויות</h3>
-                    <p>במקום שעובדים יעשו ניסויים מסוכנים במידע ארגוני, הם מקבלים תבניות בטיחות מוכנות ומדיניות ברורה השומרת על המידע שלכם.</p>
+
+                <!-- New Way -->
+                <div class="comp-card comp-good reveal delay-200">
+                    <h3>✅ הדרך של PractiAI (תכלס)</h3>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-check"></i> <strong>לומדים תוך כדי עשייה:</strong> עובדים על המיילים והדוחות האמיתיים שלכם</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>התאמה אישית:</strong> בונים פרופיל עבודה אישי לכל עובד ותפקיד</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>בטוח לשימוש:</strong> מקבלים נהלי עבודה ברורים לשמירה על המידע</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>תוצרים ביד:</strong> יוצאים עם בוטים, תבניות ותהליכים עובדים</li>
+                    </ul>
                 </div>
-                <!-- Feature 3 -->
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-trophy"></i></div>
-                    <h3>מוכח בשטח</h3>
-                    <p>השיטה פותחה ע"י טל חקוקי, מומחה להובלת טרנספורמציה דיגיטלית והטמעת בינה מלאכותית בארגונים, נוסתה ושופרה מול מאות ארגונים מהמגזר הפרטי והציבורי.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY -->
+    <section class="methodology">
+        <div class="container">
+            <h2 class="section-title reveal">איך זה עובד?</h2>
+            <p class="section-subtitle reveal">שיטה סדורה להטמעה שמחזיקה מעמד לאורך זמן.</p>
+            
+            <div class="method-wrapper">
+                <div class="method-card reveal delay-100">
+                    <div class="method-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3>1. מיפוי והבנה</h3>
+                    <p>אנחנו לא יורים באפלה. קודם כל מבינים איפה הכאבים שלכם: איפה מבזבזים זמן? איפה יש טעויות? ומתאימים את הכלים בדיוק לשם.</p>
                 </div>
+                <div class="method-card reveal delay-200">
+                    <div class="method-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3>2. תרגול "על רטוב"</h3>
+                    <p>לא מדברים על - עושים את. העובדים פותחים את הכלים (ChatGPT, Claude וכו') ומבצעים את משימות היום-יום שלהם, עם הנחיה צמודה.</p>
+                </div>
+                <div class="method-card reveal delay-300">
+                    <div class="method-icon"><i class="fa-solid fa-sitemap"></i></div>
+                    <h3>3. הטמעה ונהלים</h3>
+                    <p>כדי שזה לא יישאר ידע של עובד בודד, אנחנו יוצרים "זיכרון ארגוני": ספריית פרומפטים, נהלי עבודה מסודרים ותהליכים שניתן לשכפל.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TARGET AUDIENCE -->
+    <section class="audience">
+        <div class="container text-center">
+            <h3 class="reveal">בונים את ההכשרה המדוייקת לצרכים שלכם</h3>
+            <p class="section-subtitle reveal" style="margin-top:10px;">לכל תפקיד יש כלי AI שמתאים לו. אנחנו יודעים לחבר ביניהם.</p>
+            <div class="audience-tags reveal delay-100">
+                <div class="tag">הנהלות ומנכ"לים</div>
+                <div class="tag">מנהלות כוח אדם ורווחה</div>
+                <div class="tag">צוותי שיווק וסושיאל</div>
+                <div class="tag">מחלקות כספים וגזברות</div>
+                <div class="tag">מגזר ציבורי ורשויות מקומיות</div>
+                <div class="tag">אנשי מכירות ופיתוח עסקי</div>
+                <div class="tag">צוותי מחקר ופיתוח (R&D)</div>
+                <div class="tag">אדמיניסטרציה ותפעול</div>
+                <div class="tag">יזמים וסטארטאפים</div>
             </div>
         </div>
     </section>
@@ -479,119 +625,180 @@
     <!-- PRICING -->
     <section class="pricing" id="pricing">
         <div class="container">
-            <h2 class="text-center">בחרו את רמת היישום המתאימה</h2>
-            <p class="text-center subtitle">שקיפות מלאה. אין אותיות קטנות.</p>
+            <h2 class="section-title reveal">מסלולי ההכשרה</h2>
+            <p class="section-subtitle reveal">השקעה ברורה ומשתלמת בפרודוקטיביות של הארגון.</p>
             
             <div class="pricing-wrapper">
                 
-                <!-- Plan 1 -->
-                <div class="price-card">
-                    <h3>GenAI Essentials</h3>
-                    <p style="color: #888;">הזינוק המהיר לצוותים</p>
-                    <div class="price">7,000₪<span>+ מע"מ</span></div>
-                    <ul class="feature-list">
-                        <li><i class="fa-solid fa-clock"></i> חצי יום (3 שעות)</li>
-                        <li><i class="fa-solid fa-users"></i> עד 30 עובדים</li>
-                        <li><i class="fa-solid fa-check"></i> יישור קו והיכרות עם הכלים</li>
-                        <li><i class="fa-solid fa-check"></i> פרומפטינג ואבטחת מידע</li>
-                    </ul>
-                    <a href="https://wa.me/972506915269?text=היי טל, אשמח לשמוע פרטים על סדנת Essentials" target="_blank" class="btn btn-outline">זה מעניין אותי</a>
+                <!-- Essentials -->
+                <div class="price-card reveal delay-100">
+                    <div class="price-header">
+                        <h3>GenAI Essentials</h3>
+                        <p style="color: #666;">סדנת יישור קו והתנעה</p>
+                    </div>
+                    <div class="price-num">7,000₪</div>
+                    <span class="price-sub">+ מע"מ</span>
+                    
+                    <div class="deliverables">
+                        <h4>מה מקבלים:</h4>
+                        <div class="del-item"><i class="fa-solid fa-clock"></i> מפגש ממוקד (כ-4 שעות)</div>
+                        <div class="del-item"><i class="fa-solid fa-users"></i> עד 30 משתתפים</div>
+                        <div class="del-item"><i class="fa-solid fa-check"></i> היכרות מעשית עם הכלים המובילים</div>
+                        <div class="del-item"><i class="fa-solid fa-check"></i> איך כותבים הנחיה (Prompt) שעובדת</div>
+                        <div class="del-item"><i class="fa-solid fa-shield-halved"></i> <strong>בטיחות ופרטיות בשימוש</strong></div>
+                    </div>
+                    
+                    <a href="https://wa.me/972506915269?text=היי טל, מעוניין לשמוע על סדנת Essentials" class="btn btn-outline" style="width:100%">לפרטים נוספים</a>
                 </div>
 
-                <!-- Plan 2 (Featured) -->
-                <div class="price-card featured">
-                    <div class="card-tag">הכי נמכר 🔥</div>
-                    <h3>Pro Builder Workshop</h3>
-                    <p style="color: #ccc;">המסלול השלם לשינוי אמיתי</p>
-                    <div class="price">9,500₪<span>+ מע"מ</span></div>
-                    <ul class="feature-list">
-                        <li><i class="fa-solid fa-clock"></i> <strong>יום מלא (5 שעות)</strong></li>
-                        <li><i class="fa-solid fa-plus"></i> כל תכני ה-Essentials</li>
-                        <li><i class="fa-solid fa-wand-magic-sparkles"></i> <strong>בניית Workflow מלא לכל עובד</strong></li>
-                        <li><i class="fa-solid fa-puzzle-piece"></i> פירוק משימות והרכבה עם AI</li>
-                        <li><i class="fa-solid fa-rocket"></i> יישום פרקטי בזמן אמת</li>
-                    </ul>
-                    <a href="https://wa.me/972506915269?text=היי טל, אשמח לשמוע פרטים על סדנת Pro Builder" target="_blank" class="btn btn-primary">בוא נשריין תאריך</a>
+                <!-- Pro Builder -->
+                <div class="price-card featured reveal delay-200">
+                    <div style="position: absolute; top:0; left:0; right:0; background:var(--accent); color:black; text-align:center; font-weight:bold; font-size:0.8rem; padding:5px; border-radius: 18px 18px 0 0;">הכי מומלץ לארגונים</div>
+                    <div class="price-header" style="margin-top: 15px;">
+                        <h3>Pro Builder</h3>
+                        <p style="color: #ccc;">בונים יכולות ותוצרים בפועל</p>
+                    </div>
+                    <div class="price-num" style="color: var(--accent);">9,500₪</div>
+                    <span class="price-sub">+ מע"מ</span>
+                    
+                    <div class="deliverables">
+                        <h4>החבילה המלאה:</h4>
+                        <div class="del-item"><i class="fa-solid fa-clock"></i> <strong>יום הכשרה מלא (5 שעות)</strong></div>
+                        <div class="del-item"><i class="fa-solid fa-plus"></i> כל התכנים של סדנת הבסיס</div>
+                        <div class="del-item"><i class="fa-solid fa-wand-magic-sparkles"></i> <strong>בניית תהליכי עבודה אישיים</strong></div>
+                        <div class="del-item"><i class="fa-solid fa-file-contract"></i> תרגול על קבצי הארגון (Excel/PDF)</div>
+                        <div class="del-item"><i class="fa-solid fa-robot"></i> הקמת "עוזרים אישיים" (Custom GPTs)</div>
+                    </div>
+                    
+                    <a href="https://wa.me/972506915269?text=היי טל, בוא נשריין תאריך ל-Pro Builder" class="btn btn-primary" style="width:100%">שריינו תאריך</a>
                 </div>
 
-                <!-- Plan 3 -->
-                <div class="price-card">
-                    <h3>Strategic Impact</h3>
-                    <p style="color: #888;">מעטפת אסטרטגית להנהלה</p>
-                    <div class="price">12,500₪<span>+ מע"מ</span></div>
-                    <ul class="feature-list">
-                        <li><i class="fa-solid fa-check"></i> סדנת Essentials לעובדים</li>
-                        <li><i class="fa-solid fa-video"></i> <strong>5 מפגשי ייעוץ (זום)</strong></li>
-                        <li><i class="fa-solid fa-map"></i> מפת הזדמנויות ארגונית</li>
-                        <li><i class="fa-solid fa-file-shield"></i> בניית מסמך מדיניות AI</li>
-                        <li><i class="fa-solid fa-user-tie"></i> ליווי מנהלים ומובילי שינוי</li>
-                    </ul>
-                    <a href="https://wa.me/972506915269?text=היי טל, אשמח לשמוע פרטים על מסלול Strategic Impact" target="_blank" class="btn btn-outline">לפרטים נוספים</a>
+                <!-- Strategic -->
+                <div class="price-card reveal delay-300">
+                    <div class="price-header">
+                        <h3>Strategic Impact</h3>
+                        <p style="color: #666;">הטמעה וליווי הנהלה</p>
+                    </div>
+                    <div class="price-num">12,500₪</div>
+                    <span class="price-sub">+ מע"מ</span>
+                    
+                    <div class="deliverables">
+                        <h4>מעטפת מלאה:</h4>
+                        <div class="del-item"><i class="fa-solid fa-chalkboard-user"></i> סדנת Essentials לעובדים</div>
+                        <div class="del-item"><i class="fa-solid fa-video"></i> <strong>5 מפגשי ייעוץ אישיים (זום)</strong></div>
+                        <div class="del-item"><i class="fa-solid fa-map-location-dot"></i> מיפוי הזדמנויות עסקיות בארגון</div>
+                        <div class="del-item"><i class="fa-solid fa-scale-balanced"></i> עזרה בבניית מדיניות AI פנימית</div>
+                        <div class="del-item"><i class="fa-solid fa-user-tie"></i> ליווי מנהלים ומובילי שינוי</div>
+                    </div>
+                    
+                    <a href="https://wa.me/972506915269?text=היי טל, מעוניין בחבילה האסטרטגית" class="btn btn-outline" style="width:100%">דברו איתי</a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- FAQ SECTION (HANDLING OBJECTIONS) -->
-    <section class="faq-section">
+    <!-- ABOUT TAL -->
+    <section class="about" id="about">
         <div class="container">
-            <h2 class="text-center" style="margin-bottom: 40px;">שאלות נפוצות</h2>
-            <div class="faq-container">
+            <div class="about-grid">
+                <!-- Image Container with new Styling -->
+                <div class="about-img-container reveal">
+                    <div class="about-img"></div>
+                </div>
+                
+                <div class="reveal delay-100">
+                    <div class="about-role">המומחה שמוביל אתכם</div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">נעים להכיר, טל חקוקי</h2>
+                    <p style="font-size: 1.1rem; color: #ccc; margin-bottom: 20px;">
+                        אני מומחה להטמעת כלי בינה מלאכותית בארגונים ומוביל תהליכי טרנספורמציה דיגיטלית במגזר העסקי והציבורי.
+                    </p>
+                    <p style="color: #aaa; margin-bottom: 20px;">
+                        הגישה שלי פשוטה: טכנולוגיה חייבת לשרת את העסק, ולא להפך. 
+                        בשנים האחרונות ליוויתי מאות גופים – מחברות גלובליות ועד רשויות מקומיות – ועזרתי להם לעבור לעבודה חכמה, יעילה ומדידה.
+                        בנוסף לפעילותי העצמאית, אני מכהן כ-Head of GenAI במרכז כנרת לחדשנות (KIC).
+                    </p>
+                    <p style="color: #aaa;">
+                        המטרה שלי היא לתת לכם ולעובדים שלכם את הביטחון להשתמש בכלים האלו כבר מחר בבוקר, ולראות תוצאות בעיניים.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title reveal">שאלות נפוצות</h2>
+            
+            <div class="reveal delay-100">
                 <details>
                     <summary>האם העובדים צריכים ידע טכני מוקדם?</summary>
-                    <div class="faq-content">
-                        ממש לא. השיטה בנויה כך שכל עובד, גם ללא רקע טכנולוגי, יוכל להבין וליישם את הכלים. אנחנו מתחילים מהבסיס ומגיעים לתוצרים מתקדמים בשפה פשוטה וברורה.
+                    <div class="faq-body">
+                        ממש לא. הסדנאות מועברות בשפה עסקית וניהולית ברורה. אנחנו עובדים עם אנשי כספים, משאבי אנוש, שיווק ומנהלה. לא צריך לדעת לכתוב קוד כדי להצטיין ב-AI.
                     </div>
                 </details>
+                
                 <details>
-                    <summary>האם זה בטוח להשתמש במידע ארגוני?</summary>
-                    <div class="faq-content">
-                        חד משמעית - כחלק מההדרכה אנחנו שמים דגש עצום על אבטחת מידע, פרטיות, ושימוש במודלים שאינם "לומדים" מהמידע שלכם (בהתאם לכלים שנבחרו בארגון). תקבלו נהלים ברורים מה מותר ומה אסור.
+                    <summary>אנחנו חוששים מאוד מאבטחת מידע. איך מתמודדים?</summary>
+                    <div class="faq-body">
+                        בצדק. זה הנושא הראשון שאנחנו נוגעים בו. נלמד בדיוק מה מותר ומה אסור להעלות, איך מגדירים את הכלים כדי שהמידע שלכם יישאר פרטי, ואיך מייצרים נהלי עבודה בטוחים.
                     </div>
                 </details>
+                
                 <details>
-                    <summary>מה ההבדל בין סדנת חצי יום ליום מלא?</summary>
-                    <div class="faq-content">
-                        בסדנת חצי יום לומדים "איך להשתמש". בסדנת יום מלא לומדים "איך לבנות". ביום המלא אנחנו מקדישים זמן לתרגול מעמיק שבו כל עובד בונה תהליך עבודה אמיתי שרלוונטי לתפקיד שלו, ויוצא עם תוצר מוכן.
+                    <summary>האם זה מתאים למגזר הציבורי / רשויות מקומיות?</summary>
+                    <div class="faq-body">
+                        בהחלט. יש לי ניסיון רב בעבודה מול רשויות, גזברים ומגזר ציבורי. התכנים מותאמים לרגולציה, לצרכים הייחודיים של המגזר ולתהליכי העבודה שלכם.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>איך נדע שזה עבד? מה יוצא לנו מזה?</summary>
+                    <div class="faq-body">
+                        המטרה היא לא "לדעת", אלא "לעשות". בסדנאות המתקדמות נגדיר יעדים: קיצור זמן כתיבת דוח מ-3 שעות ל-20 דקות, מענה אוטומטי למיילים ועוד. אתם תרגישו את החיסכון בזמן באופן מיידי.
                     </div>
                 </details>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT / CTA -->
-    <section class="contact-section">
-        <div class="container">
-            <h2>המהלך הבא שלך</h2>
-            <p class="subtitle">אל תבזבז זמן על התלבטויות. בוא נבדוק ב-15 דקות אם אנחנו מתאימים.</p>
-            
-            <a href="https://wa.me/972506915269?text=היי טל, הגעתי דרך דף הנחיתה ואשמח לתאם שיחה" target="_blank" class="btn btn-primary" style="font-size: 1.5rem;">
-                <i class="fa-brands fa-whatsapp"></i>
-                תיאום שיחת התאמה בווטסאפ
-            </a>
-
-            <div class="contact-grid">
-                <a href="tel:0506915269" class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    050-6915269
-                </a>
-                <a href="mailto:hakokit@gmail.com" class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    hakokit@gmail.com
-                </a>
-            </div>
-        </div>
-    </section>
-
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p>
-                <strong>PractiAI</strong> &copy; 2026 טל חקוקי - בינה מלאכותית לארגונים<br>
-                כל הזכויות שמורות.
-            </p>
+            <h3 style="color: #fff; margin-bottom: 20px;">PractiAI | טל חקוקי</h3>
+            <p style="margin-bottom: 20px;">מומחה להטמעת AI בארגונים</p>
+            <div style="margin-bottom: 30px;">
+                <a href="mailto:hakokit@gmail.com" style="color: #888; text-decoration: none; margin: 0 10px;">hakokit@gmail.com</a> |
+                <span style="color: #888; margin: 0 10px;">050-6915269</span>
+            </div>
+            
+            <a href="https://wa.me/972506915269?text=היי טל, אשמח לתאם שיחה" class="btn btn-primary">
+                <i class="fa-brands fa-whatsapp"></i> דברו איתי בווטסאפ
+            </a>
+            
+            <p style="margin-top: 40px; font-size: 0.8rem;">&copy; 2026 טל חקוקי - PractiAI. כל הזכויות שמורות.</p>
         </div>
     </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
