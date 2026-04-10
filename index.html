@@ -216,6 +216,67 @@
         [data-fs-success] { display: none; }
         [data-fs-error] { display: none; color: #ff6b6b; margin-top: 15px; font-size: 1rem; text-align: center; background: rgba(255, 107, 107, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 107, 107, 0.3); }
 
+        /* --- WHATSAPP STYLES --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 65px;
+            height: 65px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            color: #fff;
+            background-color: #20b858;
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
+        }
+        .btn-whatsapp:hover {
+            background-color: #20b858;
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        }
+        .form-separator {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+        .form-separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            z-index: 1;
+        }
+        .form-separator span {
+            background: var(--bg-card);
+            padding: 0 20px;
+            color: #aaa;
+            position: relative;
+            z-index: 2;
+            font-size: 0.95rem;
+        }
+
         /* --- FOOTER --- */
         footer { padding: 60px 0; border-top: 1px solid var(--border); background: #000; }
         .footer-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -633,21 +694,9 @@
                         </div>
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0 20px;">
-                        <div class="form-group">
-                            <label>תפקיד / מחלקה</label>
-                            <input type="text" name="role" class="form-control" required placeholder="מנכ״ל, משאבי אנוש..." data-fs-field>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>מספר משתתפים צפוי</label>
-                            <select name="team_size" class="form-control" required data-fs-field>
-                                <option value="">בחרו טווח</option>
-                                <option value="1-10">1-10 עובדים (צוות ספציפי)</option>
-                                <option value="11-50">11-50 עובדים (מחלקה)</option>
-                                <option value="50+">50+ עובדים (רוחב ארגוני)</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label>תפקיד / מחלקה</label>
+                        <input type="text" name="role" class="form-control" required placeholder="מנכ״ל, משאבי אנוש..." data-fs-field>
                     </div>
                     
                     <div class="form-group">
@@ -660,6 +709,12 @@
                     <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px; padding: 20px; font-size: 1.2rem;" data-fs-submit-btn>
                         שליחת פנייה לשיחת אפיון
                     </button>
+                    
+                    <div class="form-separator"><span>או לחלופין</span></div>
+                    
+                    <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מהאתר%20בנוגע%20להטמעת%20בינה%20מלאכותית%20בארגון" target="_blank" class="btn btn-whatsapp" style="width: 100%; padding: 20px; font-size: 1.2rem;">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> שליחת הודעה מהירה בוואטסאפ
+                    </a>
                     
                 </form>
             </div>
@@ -683,6 +738,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מהאתר%20בנוגע%20להטמעת%20בינה%20מלאכותית%20בארגון" target="_blank" class="whatsapp-float gsap-reveal" aria-label="שלח הודעת וואטסאפ">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <!-- SCRIPTS -->
     <script>
