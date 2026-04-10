@@ -49,6 +49,7 @@
             width: 100%;
             max-width: 100vw;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         /* הגנת רוחב גלובלית לתמונות ואלמנטים */
@@ -56,8 +57,10 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
         .section-padding { padding: 120px 0; }
-        .section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 1rem; word-wrap: break-word; }
-        .section-subtitle { font-size: clamp(1rem, 3vw, 1.2rem); color: var(--text-muted); margin-bottom: 3rem; max-width: 700px; }
+        
+        /* טיפול עקבי בכותרות ממורכזות (רוב האתר) */
+        .section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 1rem; word-wrap: break-word; text-align: center; }
+        .section-subtitle { font-size: clamp(1rem, 3vw, 1.2rem); color: var(--text-muted); margin-bottom: 3rem; max-width: 700px; margin-inline: auto; text-align: center; }
         
         /* Background Canvas */
         #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.2; pointer-events: none; }
@@ -73,39 +76,47 @@
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 30px rgba(222, 255, 154, 0.3); }
         .btn-outline { background: transparent; border: 1px solid var(--border); color: #fff; }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+        
+        .flex-wrap { flex-wrap: wrap; }
+        .gap-4 { gap: 1rem; }
 
         /* --- HERO --- */
-        .hero { min-height: 90vh; display: flex; align-items: center; position: relative; padding-top: 80px; }
-        .hero h1 { font-size: clamp(2.2rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 24px; max-width: 900px; word-wrap: break-word; }
-        .hero-sub { font-size: clamp(1rem, 2.5vw, 1.4rem); color: var(--text-muted); max-width: 700px; margin-bottom: 40px; }
-        .trust-badge { display: inline-block; border: 1px solid var(--accent); color: var(--accent); padding: 6px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; background: rgba(222, 255, 154, 0.05); }
+        .hero { 
+            min-height: 90vh; display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; position: relative; padding-top: 80px; text-align: center; 
+        }
+        .hero .container { display: flex; flex-direction: column; align-items: center; }
+        .hero h1 { font-size: clamp(2.2rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 24px; max-width: 900px; word-wrap: break-word; text-align: center; }
+        .hero-sub { font-size: clamp(1rem, 2.5vw, 1.4rem); color: var(--text-muted); max-width: 700px; margin-bottom: 40px; text-align: center; }
+        .trust-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--accent); color: var(--accent); padding: 6px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; background: rgba(222, 255, 154, 0.05); }
+        
+        .hero .flex { display: flex; justify-content: center; } /* מירכוז כפתורים בדסקטופ */
 
         /* --- LOGO STRIP --- */
         .logo-strip { border-y: 1px solid var(--border); padding: 30px 0; background: rgba(255,255,255,0.02); }
-        .logo-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; opacity: 0.8; font-weight: 700; letter-spacing: 1px; font-size: 0.9rem; align-items: center; }
+        .logo-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; opacity: 0.8; font-weight: 700; letter-spacing: 1px; font-size: 0.9rem; align-items: center; }
         .logo-item { display: flex; align-items: center; gap: 8px; }
         .logo-item i { color: var(--accent); }
 
         /* --- THE ARCHITECT (About) --- */
         .architect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .architect-grid .section-title, .architect-grid .section-subtitle { text-align: right; margin-inline: 0; max-width: 100%; } /* בחלק הזה אנחנו רוצים יישור לימין */
         .bullet-point { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; }
         .bullet-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--accent-dim); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
         .bullet-content h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
         .bullet-content p { color: var(--text-muted); font-size: 1rem; }
         .architect-image { border-radius: 16px; border: 1px solid var(--border); overflow: hidden; position: relative; width: 100%; }
-        .architect-image img { width: 100%; height: auto; display: block; }
+        .architect-image img { width: 100%; height: auto; display: block; object-fit: cover; }
 
         /* --- USE CASES (DYNAMIC TABS) --- */
         .use-cases-section { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .tabs-header { display: flex; gap: 10px; margin-bottom: 40px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; width: 100%; }
-        .tabs-header::-webkit-scrollbar { display: none; }
+        .tabs-header { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
         .tab-btn { background: transparent; border: 1px solid var(--border); color: #fff; padding: 12px 24px; border-radius: 100px; cursor: pointer; transition: 0.3s; font-weight: 500; font-family: inherit; font-size: 1rem; white-space: nowrap; flex-shrink: 0; }
         .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
         .tab-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
         
         .tab-content { display: none; opacity: 0; transform: translateY(20px); transition: all 0.4s ease; }
-        /* Fix for mobile grid overflow: using min(100%, 280px) */
-        .tab-content.active { display: grid; opacity: 1; transform: translateY(0); grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; }
+        .tab-content.active { display: grid; opacity: 1; transform: translateY(0); grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px; }
         
         .uc-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 30px; border-radius: 12px; transition: 0.3s; width: 100%; box-sizing: border-box; }
         .uc-card:hover { border-color: var(--accent); background: rgba(222, 255, 154, 0.02); }
@@ -130,12 +141,27 @@
         .module-features li { display: flex; gap: 10px; margin-bottom: 12px; color: #ddd; font-size: 0.95rem; }
         .module-features i { color: var(--accent); margin-top: 4px; flex-shrink: 0; }
 
-        /* --- TESTIMONIALS (Horizontal) --- */
-        .testimonials { overflow: hidden; background: #050505; width: 100vw; }
-        .pin-wrap { height: 100vh; display: flex; align-items: center; overflow: hidden; width: 100%; }
-        .scroll-title { position: absolute; top: 10%; left: 0; width: 100%; text-align: center; z-index: 10; padding: 0 20px; box-sizing: border-box; }
-        .horizontal-scroll-container { display: flex; gap: 30px; padding: 0 5vw; width: max-content; }
-        .review-card { width: 450px; background: #111; border: 1px solid var(--border); padding: 40px; border-radius: 16px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; white-space: normal; }
+        /* --- TESTIMONIALS (Native CSS Scroll) --- */
+        .testimonials { background: #050505; padding: 100px 0; width: 100vw; overflow: hidden; }
+        
+        .horizontal-scroll-container { 
+            display: flex; 
+            gap: 20px; 
+            padding: 20px 5vw; 
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory; 
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        .horizontal-scroll-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        
+        .review-card { 
+            width: 400px; max-width: 85vw;
+            background: #111; border: 1px solid var(--border); padding: 40px; border-radius: 16px; 
+            flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; 
+            box-sizing: border-box; white-space: normal;
+            scroll-snap-align: center;
+        }
         .review-card p { font-size: 1.1rem; color: #ccc; margin-bottom: 30px; font-style: italic; }
         .reviewer-info { display: flex; align-items: center; gap: 15px; }
         .r-avatar { width: 50px; height: 50px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--accent); flex-shrink: 0; }
@@ -163,40 +189,23 @@
             .container { padding: 0 16px; }
             .section-padding { padding: 80px 0; }
             .architect-grid { grid-template-columns: 1fr; gap: 40px; }
+            .architect-grid .section-title, .architect-grid .section-subtitle { text-align: right; }
             
             /* Typography adjustments for mobile */
             .section-title { font-size: 2.2rem; }
-            .hero-sub { margin-bottom: 30px; }
             
             /* Buttons adjustment */
             .hero .flex { flex-direction: column; width: 100%; }
             .hero .flex .btn { width: 100%; }
             
             /* Logo strip */
-            .logo-grid { gap: 15px; justify-content: space-around; }
+            .logo-grid { gap: 20px; justify-content: space-around; }
             
             /* Security Banner */
             .security-banner { padding: 25px 20px; margin: 40px 0; }
             
-            /* Testimonials Mobile - Standard horizontal scroll instead of GSAP pinning */
-            .pin-wrap { height: auto; display: block; padding: 40px 0; }
-            .scroll-title { position: static; margin-bottom: 30px; transform: none; text-align: right; }
-            .scroll-title .section-title, .scroll-title .section-subtitle { text-align: right; }
-            
-            .horizontal-scroll-container { 
-                overflow-x: auto; 
-                scroll-snap-type: x mandatory; 
-                padding: 10px 0 30px 0; 
-                gap: 15px; 
-                width: 100%;
-                -webkit-overflow-scrolling: touch;
-            }
-            .review-card { 
-                width: min(85vw, 350px); 
-                scroll-snap-align: center; 
-                padding: 30px 20px;
-                white-space: normal;
-            }
+            /* Tabs */
+            .tabs-header { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 10px; }
             
             /* Form Mobile */
             .form-container { padding: 30px 20px; border-radius: 12px; }
@@ -258,8 +267,8 @@
                         </div>
                     </div>
 
-                    <h3 class="section-title" style="text-align: right; font-size: clamp(1.8rem, 4vw, 2.2rem);">למה ארגונים בוחרים לעבוד איתי?</h3>
-                    <p class="section-subtitle" style="text-align: right;">הגישה שלי פשוטה: טכנולוגיה משרתת ביזנס, לא להיפך.</p>
+                    <h3 class="section-title">למה ארגונים בוחרים לעבוד איתי?</h3>
+                    <p class="section-subtitle">הגישה שלי פשוטה: טכנולוגיה משרתת ביזנס, לא להיפך.</p>
                     
                     <div class="mt-8">
                         <div class="bullet-point">
@@ -464,72 +473,70 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS (MINI CASE STUDIES) -->
+    <!-- TESTIMONIALS (MINI CASE STUDIES) - Fixed Scroll -->
     <section class="testimonials">
-        <div class="pin-wrap">
-            <div class="scroll-title container">
-                <h2 class="section-title">תוצאות מהשטח</h2>
-                <p class="section-subtitle" style="margin: 0 auto;">לא רק "הרצאה טובה", אלא אימפקט ארגוני.</p>
+        <div class="container">
+            <h2 class="section-title" style="color: #fff;">תוצאות מהשטח</h2>
+            <p class="section-subtitle">לא רק "הרצאה טובה", אלא אימפקט ארגוני.</p>
+        </div>
+        
+        <div class="horizontal-scroll-container">
+            <!-- CS 1 -->
+            <div class="review-card">
+                <div>
+                    <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Global Tech Company</div>
+                    <p>"הייתה לנו סדנה עם 70 עובדים מכל העולם. רמת הרלוונטיות הייתה הכי גבוהה שראיתי. המשתתפים התנסו בכלים תוך כדי וטל חשף אותנו לפונקציות משמעותיות שלא לומדים בכל סדנה."</p>
+                </div>
+                <div class="reviewer-info">
+                    <div class="r-avatar">L</div>
+                    <div class="r-details">
+                        <h4>Liri Mor</h4>
+                        <span>HR / L&D</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CS 2 -->
+            <div class="review-card">
+                <div>
+                    <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Enterprise HR Dept</div>
+                    <p>"טל הגיע למספר פעמים לסדנת עשירת כלים וידע פרקטי. בכל סדנא מתחדשים עוד ועוד כלים אשר העובדים מאמצים כדי לייעל את עבודתם. אישית, אני חוסכת שעות עבודה בעזרת הכלים שלמדתי."</p>
+                </div>
+                <div class="reviewer-info">
+                    <div class="r-avatar">A</div>
+                    <div class="r-details">
+                        <h4>Adi Pinto</h4>
+                        <span>HR Manager</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CS 3 -->
+            <div class="review-card">
+                <div>
+                    <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Management Training</div>
+                    <p>"השתתפתי בסדנת למנהלים. מופת של ידע, יכולת דידקטית, ואכפתיות אמיתית. להיות תלמיד של טל - שילוב של כיף והרחבת הידע המקצועי שמביא תוצאות."</p>
+                </div>
+                <div class="reviewer-info">
+                    <div class="r-avatar">A</div>
+                    <div class="r-details">
+                        <h4>Aharon B.</h4>
+                        <span>Executive</span>
+                    </div>
+                </div>
             </div>
             
-            <div class="horizontal-scroll-container">
-                <!-- CS 1 -->
-                <div class="review-card">
-                    <div>
-                        <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Global Tech Company</div>
-                        <p>"הייתה לנו סדנה עם 70 עובדים מכל העולם. רמת הרלוונטיות הייתה הכי גבוהה שראיתי. המשתתפים התנסו בכלים תוך כדי וטל חשף אותנו לפונקציות משמעותיות שלא לומדים בכל סדנה."</p>
-                    </div>
-                    <div class="reviewer-info">
-                        <div class="r-avatar">L</div>
-                        <div class="r-details">
-                            <h4>Liri Mor</h4>
-                            <span>HR / L&D</span>
-                        </div>
-                    </div>
+             <!-- CS 4 -->
+            <div class="review-card">
+                <div>
+                    <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Public / Corporate</div>
+                    <p>"חלק מתהליך פיתוח והטמעת AI בחברה. ההדרכה היתה ברמה גבוהה, מעשית וברורה. חברי ההנהלה ציינו כי זו היתה מההדרכות הטובות שעברו — מדויקת ומותאמת לצרכי הארגון."</p>
                 </div>
-
-                <!-- CS 2 -->
-                <div class="review-card">
-                    <div>
-                        <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Enterprise HR Dept</div>
-                        <p>"טל הגיע למספר פעמים לסדנת עשירת כלים וידע פרקטי. בכל סדנא מתחדשים עוד ועוד כלים אשר העובדים מאמצים כדי לייעל את עבודתם. אישית, אני חוסכת שעות עבודה בעזרת הכלים שלמדתי."</p>
-                    </div>
-                    <div class="reviewer-info">
-                        <div class="r-avatar">A</div>
-                        <div class="r-details">
-                            <h4>Adi Pinto</h4>
-                            <span>HR Manager</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CS 3 -->
-                <div class="review-card">
-                    <div>
-                        <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Management Training</div>
-                        <p>"השתתפתי בסדנת למנהלים. מופת של ידע, יכולת דידקטית, ואכפתיות אמיתית. להיות תלמיד של טל - שילוב של כיף והרחבת הידע המקצועי שמביא תוצאות."</p>
-                    </div>
-                    <div class="reviewer-info">
-                        <div class="r-avatar">A</div>
-                        <div class="r-details">
-                            <h4>Aharon B.</h4>
-                            <span>Executive</span>
-                        </div>
-                    </div>
-                </div>
-                
-                 <!-- CS 4 -->
-                <div class="review-card">
-                    <div>
-                        <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Public / Corporate</div>
-                        <p>"חלק מתהליך פיתוח והטמעת AI בחברה. ההדרכה היתה ברמה גבוהה, מעשית וברורה. חברי ההנהלה ציינו כי זו היתה מההדרכות הטובות שעברו — מדויקת ומותאמת לצרכי הארגון."</p>
-                    </div>
-                    <div class="reviewer-info">
-                        <div class="r-avatar">N</div>
-                        <div class="r-details">
-                            <h4>נתן דקלה</h4>
-                            <span>תמוז</span>
-                        </div>
+                <div class="reviewer-info">
+                    <div class="r-avatar">N</div>
+                    <div class="r-details">
+                        <h4>נתן דקלה</h4>
+                        <span>תמוז</span>
                     </div>
                 </div>
             </div>
@@ -539,8 +546,8 @@
     <!-- B2B LEAD GEN FORM (FORMSPREE AJAX) -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: center;">בואו נדבר על הארגון שלכם</h2>
-            <p class="section-subtitle" style="text-align: center; margin: 0 auto 40px auto;">מלאו את הפרטים ונחזור אליכם לשיחת אפיון קצרה והתאמת התהליך הנכון עבורכם.</p>
+            <h2 class="section-title">בואו נדבר על הארגון שלכם</h2>
+            <p class="section-subtitle">מלאו את הפרטים ונחזור אליכם לשיחת אפיון קצרה והתאמת התהליך הנכון עבורכם.</p>
             
             <div class="form-container gsap-reveal">
                 
@@ -564,7 +571,6 @@
                         <input type="email" name="email" class="form-control" required placeholder="name@company.com" data-fs-field>
                     </div>
 
-                    <!-- הוספת שדה טלפון כאן, כרשות -->
                     <div class="form-group">
                         <label>מספר טלפון (אופציונלי)</label>
                         <input type="tel" name="phone" class="form-control" placeholder="050-0000000" data-fs-field>
@@ -657,30 +663,9 @@
                 });
             });
 
-            // 3. Horizontal Scroll Testimonials (Desktop Only)
-            if (window.innerWidth > 900) {
-                const scrollContainer = document.querySelector(".horizontal-scroll-container");
-                const pinWrap = document.querySelector(".pin-wrap");
-                
-                if(scrollContainer && pinWrap) {
-                    const scrollWidth = scrollContainer.scrollWidth;
-                    const windowWidth = window.innerWidth;
-                    // For RTL logic in flex-container, we push the container to the right
-                    const xTo = (scrollWidth - windowWidth);
-
-                    gsap.to(scrollContainer, {
-                        x: xTo, 
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: ".testimonials",
-                            pin: true,
-                            scrub: 1,
-                            end: () => "+=" + (scrollWidth),
-                            invalidateOnRefresh: true
-                        }
-                    });
-                }
-            }
+            // Note: Horizontal Scroll GSAP code was removed to provide 
+            // a much smoother, bug-free native CSS scrolling experience 
+            // that fully supports RTL screens on both mobile and desktop.
 
             // 4. Subtle Network Background (Optimized)
             const canvas = document.getElementById('network-canvas');
