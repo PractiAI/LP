@@ -7,7 +7,7 @@
     
     <meta name="description" content="הטמעת AI בארגון — בצורה פרקטית, בטוחה ומדידה. סדנאות ותהליכי הטמעה לארגונים שרוצים להפוך AI לכלי עבודה אמיתי.">
     
-    <!-- Open Graph / Social Media Meta Tags (WhatsApp, Facebook, LinkedIn) -->
+    <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="he_IL">
     <meta property="og:title" content="PractiAI | טל חקוקי - הובלת AI בארגונים">
@@ -31,12 +31,13 @@
     <style>
         :root {
             --bg-dark: #030303;
-            --bg-card: #0c0c0c;
+            --bg-card: rgba(20, 20, 20, 0.6); /* Glassmorphism base */
             --accent: #deff9a;
             --accent-dim: rgba(222, 255, 154, 0.1);
             --text-main: #ffffff;
-            --text-muted: #9ca3af;
-            --border: rgba(255,255,255,0.1);
+            --text-muted: #a1a1aa;
+            --border: rgba(255, 255, 255, 0.08);
+            --glow: 0 0 20px rgba(222, 255, 154, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,167 +53,204 @@
             scroll-behavior: smooth;
         }
 
-        /* הגנת רוחב גלובלית לתמונות ואלמנטים */
         img, video, canvas { max-width: 100%; height: auto; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
-        .section-padding { padding: 120px 0; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; width: 100%; }
+        .section-padding { padding: 140px 0; }
         
-        /* טיפול עקבי בכותרות ממורכזות (רוב האתר) */
-        .section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 1rem; word-wrap: break-word; text-align: center; }
-        .section-subtitle { font-size: clamp(1rem, 3vw, 1.2rem); color: var(--text-muted); margin-bottom: 3rem; max-width: 700px; margin-inline: auto; text-align: center; }
-        
+        /* Typography */
+        .section-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; margin-bottom: 1.2rem; word-wrap: break-word; text-align: center; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: clamp(1.1rem, 3vw, 1.3rem); color: var(--text-muted); margin-bottom: 4rem; max-width: 750px; margin-inline: auto; text-align: center; font-weight: 400; }
+        .highlight { color: var(--accent); }
+
         /* Background Canvas */
-        #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.2; pointer-events: none; }
+        #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
 
         /* --- BUTTONS --- */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-            padding: 16px 36px; font-size: 1.1rem; font-weight: 700; text-decoration: none;
-            border-radius: 8px; transition: all 0.3s ease; cursor: pointer; border: none;
+            padding: 16px 40px; font-size: 1.15rem; font-weight: 700; text-decoration: none;
+            border-radius: 12px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border: none;
             text-align: center;
         }
-        .btn-primary { background-color: var(--accent); color: #000; box-shadow: 0 0 20px rgba(222, 255, 154, 0.1); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 30px rgba(222, 255, 154, 0.3); }
-        .btn-outline { background: transparent; border: 1px solid var(--border); color: #fff; }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-primary { background-color: var(--accent); color: #000; box-shadow: var(--glow); }
+        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(222, 255, 154, 0.4); }
+        .btn-outline { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); color: #fff; backdrop-filter: blur(10px); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(222, 255, 154, 0.05); transform: translateY(-4px); }
         
-        .flex-wrap { flex-wrap: wrap; }
-        .gap-4 { gap: 1rem; }
-
         /* --- HERO --- */
         .hero { 
-            min-height: 90vh; display: flex; flex-direction: column; justify-content: center; 
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; position: relative; padding-top: 80px; text-align: center; 
+            background: radial-gradient(circle at 50% 0%, rgba(222, 255, 154, 0.05) 0%, transparent 70%);
         }
-        .hero .container { display: flex; flex-direction: column; align-items: center; }
-        .hero h1 { font-size: clamp(2.2rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 24px; max-width: 900px; word-wrap: break-word; text-align: center; }
-        .hero-sub { font-size: clamp(1rem, 2.5vw, 1.4rem); color: var(--text-muted); max-width: 700px; margin-bottom: 40px; text-align: center; }
-        .trust-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--accent); color: var(--accent); padding: 6px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; background: rgba(222, 255, 154, 0.05); }
+        .hero .container { display: flex; flex-direction: column; align-items: center; z-index: 2; }
+        .hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 24px; max-width: 1000px; text-align: center; letter-spacing: -1px; }
+        .hero-sub { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--text-muted); max-width: 750px; margin-bottom: 48px; text-align: center; font-weight: 300; }
         
-        .hero .flex { display: flex; justify-content: center; } /* מירכוז כפתורים בדסקטופ */
+        .trust-badge { 
+            display: inline-flex; align-items: center; gap: 10px; 
+            border: 1px solid rgba(222, 255, 154, 0.3); color: var(--accent); 
+            padding: 8px 20px; border-radius: 100px; font-size: 0.9rem; font-weight: 700; 
+            margin-bottom: 30px; background: rgba(222, 255, 154, 0.05); backdrop-filter: blur(5px);
+        }
+        
+        .hero-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; } 
 
         /* --- LOGO STRIP --- */
-        .logo-strip { border-y: 1px solid var(--border); padding: 30px 0; background: rgba(255,255,255,0.02); }
-        .logo-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; opacity: 0.8; font-weight: 700; letter-spacing: 1px; font-size: 0.9rem; align-items: center; }
-        .logo-item { display: flex; align-items: center; gap: 8px; }
-        .logo-item i { color: var(--accent); }
+        .logo-strip { border-y: 1px solid var(--border); padding: 40px 0; background: rgba(255,255,255,0.01); backdrop-filter: blur(10px); }
+        .logo-grid { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; opacity: 0.7; font-weight: 500; letter-spacing: 1px; font-size: 1rem; align-items: center; }
+        .logo-item { display: flex; align-items: center; gap: 10px; }
+        .logo-item i { color: var(--accent); font-size: 1.2rem; }
 
-        /* --- THE ARCHITECT (About) --- */
-        .architect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .architect-grid .section-title, .architect-grid .section-subtitle { text-align: right; margin-inline: 0; max-width: 100%; } /* בחלק הזה אנחנו רוצים יישור לימין */
-        .bullet-point { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px; }
-        .bullet-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--accent-dim); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
-        .bullet-content h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
-        .bullet-content p { color: var(--text-muted); font-size: 1rem; }
-        .architect-image { border-radius: 16px; border: 1px solid var(--border); overflow: hidden; position: relative; width: 100%; }
-        .architect-image img { width: 100%; height: auto; display: block; object-fit: cover; }
+        /* --- THE ARCHITECT (About) - FIXED LAYOUT --- */
+        .architect-section { background: linear-gradient(180deg, transparent 0%, rgba(20,20,20,0.3) 100%); }
+        .architect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        
+        .architect-text { text-align: right; }
+        
+        .architect-profile { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid var(--border); }
+        .architect-profile img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; box-shadow: var(--glow); }
+        .architect-profile-info h2 { font-size: 2rem; font-weight: 900; line-height: 1.1; margin-bottom: 5px; }
+        .architect-profile-info p { color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+        
+        .architect-text h3 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; margin-bottom: 15px; }
+        .architect-text > p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 40px; }
+
+        .bullet-point { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 30px; }
+        .bullet-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-dim); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem; border: 1px solid rgba(222, 255, 154, 0.2); }
+        .bullet-content h4 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        .bullet-content p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.5; }
+        
+        .architect-image-wrapper { position: relative; border-radius: 24px; padding: 1px; background: linear-gradient(135deg, rgba(222,255,154,0.4) 0%, transparent 100%); }
+        .architect-image { border-radius: 23px; overflow: hidden; position: relative; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .architect-image img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.7s ease; }
+        .architect-image-wrapper:hover img { transform: scale(1.03); }
 
         /* --- USE CASES (DYNAMIC TABS) --- */
-        .use-cases-section { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .tabs-header { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-        .tab-btn { background: transparent; border: 1px solid var(--border); color: #fff; padding: 12px 24px; border-radius: 100px; cursor: pointer; transition: 0.3s; font-weight: 500; font-family: inherit; font-size: 1rem; white-space: nowrap; flex-shrink: 0; }
-        .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .tab-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
+        .use-cases-section { position: relative; z-index: 2; }
+        .tabs-header { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 60px; }
+        .tab-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--text-muted); padding: 14px 30px; border-radius: 100px; cursor: pointer; transition: 0.3s; font-weight: 500; font-family: inherit; font-size: 1.05rem; backdrop-filter: blur(10px); }
+        .tab-btn:hover { border-color: rgba(222, 255, 154, 0.5); color: #fff; }
+        .tab-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; box-shadow: var(--glow); }
         
         .tab-content { display: none; opacity: 0; transform: translateY(20px); transition: all 0.4s ease; }
-        .tab-content.active { display: grid; opacity: 1; transform: translateY(0); grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px; }
+        .tab-content.active { display: grid; opacity: 1; transform: translateY(0); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        .uc-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 30px; border-radius: 12px; transition: 0.3s; width: 100%; box-sizing: border-box; }
-        .uc-card:hover { border-color: var(--accent); background: rgba(222, 255, 154, 0.02); }
-        .uc-icon { color: var(--accent); font-size: 2rem; margin-bottom: 20px; }
-        .uc-card h4 { font-size: 1.3rem; margin-bottom: 10px; line-height: 1.3; }
-        .uc-card p { color: var(--text-muted); font-size: 0.95rem; }
+        .uc-card { background: var(--bg-card); border: 1px solid var(--border); padding: 40px 30px; border-radius: 20px; transition: 0.4s; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .uc-card:hover { border-color: rgba(222, 255, 154, 0.4); transform: translateY(-5px); background: rgba(25, 25, 25, 0.8); }
+        .uc-icon { color: var(--accent); font-size: 2.5rem; margin-bottom: 25px; display: inline-block; }
+        .uc-card h4 { font-size: 1.4rem; margin-bottom: 15px; font-weight: 700; }
+        .uc-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
 
         /* --- SECURITY BANNER --- */
-        .security-banner { background: linear-gradient(90deg, rgba(222, 255, 154, 0.1) 0%, transparent 100%); border-right: 4px solid var(--accent); padding: 40px; border-radius: 8px; margin: 60px 0; }
-        .security-banner h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin-bottom: 10px; display: flex; align-items: center; gap: 15px; }
-        .security-banner p { color: var(--text-muted); max-width: 800px; }
+        .security-banner { background: linear-gradient(90deg, rgba(222, 255, 154, 0.08) 0%, rgba(20,20,20,0.6) 100%); border-right: 4px solid var(--accent); padding: 50px; border-radius: 20px; margin: 80px 0; border-left: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .security-banner h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: 900; }
+        .security-banner p { color: var(--text-muted); max-width: 900px; font-size: 1.1rem; line-height: 1.7; }
 
         /* --- MODULES (Pricing) --- */
-        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 30px; }
-        .module-card { background: var(--bg-card); border: 1px solid var(--border); padding: 40px; border-radius: 16px; display: flex; flex-direction: column; transition: 0.3s; width: 100%; box-sizing: border-box; }
-        .module-card:hover { transform: translateY(-5px); border-color: #555; }
-        .module-card.featured { border-color: var(--accent); position: relative; background: #0a0a0a; }
-        .featured-tag { position: absolute; top: -12px; right: 20px; background: var(--accent); color: #000; font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 100px; z-index: 2; }
-        .module-header h3 { font-size: clamp(1.5rem, 4vw, 1.8rem); margin-bottom: 5px; }
-        .module-header p { color: var(--text-muted); font-size: 0.9rem; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 20px; }
-        .module-features { margin-bottom: 30px; flex-grow: 1; }
-        .module-features li { display: flex; gap: 10px; margin-bottom: 12px; color: #ddd; font-size: 0.95rem; }
-        .module-features i { color: var(--accent); margin-top: 4px; flex-shrink: 0; }
-
-        /* --- TESTIMONIALS (Native CSS Scroll) --- */
-        .testimonials { background: #050505; padding: 100px 0; width: 100vw; overflow: hidden; }
+        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .module-card { background: var(--bg-card); border: 1px solid var(--border); padding: 50px 40px; border-radius: 24px; display: flex; flex-direction: column; transition: 0.4s; backdrop-filter: blur(10px); }
+        .module-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .module-card.featured { border-color: var(--accent); background: rgba(10, 10, 10, 0.8); box-shadow: 0 0 30px rgba(222, 255, 154, 0.05); position: relative; }
+        .module-card.featured:hover { box-shadow: 0 20px 50px rgba(222, 255, 154, 0.15); border-color: var(--accent); }
         
-        .horizontal-scroll-container { 
-            display: flex; 
-            gap: 20px; 
-            padding: 20px 5vw; 
-            overflow-x: auto; 
-            scroll-snap-type: x mandatory; 
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
+        .featured-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; font-size: 0.85rem; font-weight: 900; padding: 6px 20px; border-radius: 100px; z-index: 2; box-shadow: var(--glow); letter-spacing: 0.5px; }
+        
+        .module-header { margin-bottom: 30px; }
+        .module-header h3 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 10px; font-weight: 900; }
+        .module-header p { color: var(--text-muted); font-size: 1.05rem; border-bottom: 1px solid var(--border); padding-bottom: 25px; line-height: 1.5; }
+        
+        .module-features { margin-bottom: 40px; flex-grow: 1; list-style: none; }
+        .module-features li { display: flex; gap: 15px; margin-bottom: 16px; color: #e4e4e7; font-size: 1.05rem; align-items: flex-start; }
+        .module-features i { color: var(--accent); margin-top: 5px; flex-shrink: 0; font-size: 1.1rem; }
+        
+        .module-result { margin-top: auto; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 12px; font-size: 0.95rem; color: #aaa; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
+        .module-result strong { color: #fff; display: block; margin-bottom: 5px; }
+
+        /* --- TESTIMONIALS (Responsive CSS Grid - FIXED) --- */
+        .testimonials { padding: 120px 0; background: linear-gradient(180deg, var(--bg-dark) 0%, #070707 100%); position: relative; }
+        .testimonials::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+        
+        .testimonials-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 24px; 
+            margin-top: 60px;
         }
-        .horizontal-scroll-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
         
         .review-card { 
-            width: 400px; max-width: 85vw;
-            background: #111; border: 1px solid var(--border); padding: 40px; border-radius: 16px; 
-            flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; 
-            box-sizing: border-box; white-space: normal;
-            scroll-snap-align: center;
+            background: var(--bg-card); border: 1px solid var(--border); padding: 40px; border-radius: 20px; 
+            display: flex; flex-direction: column; justify-content: space-between; 
+            backdrop-filter: blur(10px); transition: 0.3s;
         }
-        .review-card p { font-size: 1.1rem; color: #ccc; margin-bottom: 30px; font-style: italic; }
-        .reviewer-info { display: flex; align-items: center; gap: 15px; }
-        .r-avatar { width: 50px; height: 50px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--accent); flex-shrink: 0; }
-        .r-details h4 { margin: 0; font-size: 1.1rem; }
-        .r-details span { font-size: 0.85rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+        .review-card:hover { border-color: rgba(222, 255, 154, 0.3); transform: translateY(-5px); }
+        .review-company { color: var(--accent); font-size: 0.8rem; font-weight: 900; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .review-card p { font-size: 1.1rem; color: #d4d4d8; margin-bottom: 30px; font-style: italic; line-height: 1.6; }
+        .reviewer-info { display: flex; align-items: center; gap: 15px; margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .r-avatar { width: 45px; height: 45px; background: rgba(222, 255, 154, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: var(--accent); flex-shrink: 0; font-size: 1.2rem; border: 1px solid rgba(222, 255, 154, 0.2); }
+        .r-details h4 { margin: 0; font-size: 1.1rem; font-weight: 700; color: #fff; }
+        .r-details span { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* --- B2B CONTACT FORM --- */
-        .contact-section { padding: 120px 0; background: var(--bg-card); border-top: 1px solid var(--border); width: 100%; }
-        .form-container { max-width: 600px; margin: 0 auto; background: #050505; padding: 50px; border-radius: 16px; border: 1px solid var(--border); width: 100%; box-sizing: border-box; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; color: #aaa; font-size: 0.9rem; }
-        .form-control { width: 100%; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: #fff; border-radius: 8px; font-family: inherit; font-size: 1rem; transition: 0.3s; box-sizing: border-box; }
-        .form-control:focus { outline: none; border-color: var(--accent); background: rgba(222, 255, 154, 0.02); }
-        textarea.form-control { resize: vertical; min-height: 120px; }
+        .contact-section { padding: 140px 0; background: var(--bg-dark); position: relative; }
+        .form-container { 
+            max-width: 700px; margin: 0 auto; 
+            background: var(--bg-card); padding: 60px; 
+            border-radius: 24px; border: 1px solid var(--border); 
+            backdrop-filter: blur(15px); box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
         
-        /* Formspree Elements */
+        .form-group { margin-bottom: 24px; }
+        .form-group label { display: block; margin-bottom: 10px; color: #e4e4e7; font-size: 1rem; font-weight: 500; }
+        .form-control { 
+            width: 100%; padding: 18px 20px; 
+            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15); 
+            color: #fff; border-radius: 12px; font-family: inherit; font-size: 1.05rem; 
+            transition: all 0.3s ease; 
+        }
+        .form-control::placeholder { color: #555; }
+        .form-control:focus { outline: none; border-color: var(--accent); background: rgba(222, 255, 154, 0.03); box-shadow: 0 0 0 4px rgba(222, 255, 154, 0.1); }
+        textarea.form-control { resize: vertical; min-height: 140px; }
+        
         [data-fs-success] { display: none; }
-        [data-fs-error] { display: none; color: #ff5555; margin-top: 10px; font-size: 0.9rem; text-align: center; }
+        [data-fs-error] { display: none; color: #ff6b6b; margin-top: 15px; font-size: 1rem; text-align: center; background: rgba(255, 107, 107, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 107, 107, 0.3); }
+
+        /* --- FOOTER --- */
+        footer { padding: 60px 0; border-top: 1px solid var(--border); background: #000; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .footer-brand { font-size: 1.8rem; font-weight: 900; color: #fff; margin-bottom: 10px; }
+        .footer-tagline { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
+        .footer-links { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; font-size: 1.1rem; font-weight: 500; }
+        .footer-links a { color: #ddd; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy { margin-top: 50px; font-size: 0.9rem; color: #555; }
 
         /* --- UTILS --- */
-        .gsap-reveal { opacity: 0; transform: translateY(30px); }
+        .gsap-reveal { opacity: 0; transform: translateY(40px); }
 
         /* --- MOBILE ADJUSTMENTS --- */
-        @media (max-width: 900px) {
-            .container { padding: 0 16px; }
-            .section-padding { padding: 80px 0; }
-            .architect-grid { grid-template-columns: 1fr; gap: 40px; }
-            .architect-grid .section-title, .architect-grid .section-subtitle { text-align: right; }
+        @media (max-width: 992px) {
+            .architect-grid { grid-template-columns: 1fr; gap: 50px; }
+            .architect-text { text-align: center; }
+            .architect-profile { flex-direction: column; text-align: center; border-bottom: none; padding-bottom: 0; }
+            .bullet-point { flex-direction: column; align-items: center; text-align: center; background: rgba(255,255,255,0.02); padding: 30px; border-radius: 16px; border: 1px solid var(--border); }
             
-            /* Typography adjustments for mobile */
-            .section-title { font-size: 2.2rem; }
+            .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+            .section-padding { padding: 90px 0; }
             
-            /* Buttons adjustment */
-            .hero .flex { flex-direction: column; width: 100%; }
-            .hero .flex .btn { width: 100%; }
+            .logo-grid { gap: 25px; }
+            .security-banner { padding: 30px 20px; }
+            .security-banner h3 { flex-direction: column; text-align: center; }
             
-            /* Logo strip */
-            .logo-grid { gap: 20px; justify-content: space-around; }
+            .tabs-header { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 15px; -webkit-overflow-scrolling: touch; }
+            .tabs-header::-webkit-scrollbar { display: none; }
+            .tab-btn { flex-shrink: 0; }
             
-            /* Security Banner */
-            .security-banner { padding: 25px 20px; margin: 40px 0; }
+            .form-container { padding: 40px 20px; }
             
-            /* Tabs */
-            .tabs-header { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; padding-bottom: 10px; }
-            
-            /* Form Mobile */
-            .form-container { padding: 30px 20px; border-radius: 12px; }
-            
-            /* Modules Mobile */
-            .modules-grid { grid-template-columns: 1fr; }
-            .module-card { padding: 30px 20px; }
+            .hero-buttons { flex-direction: column; width: 100%; max-width: 350px; }
+            .hero-buttons .btn { width: 100%; }
         }
     </style>
 </head>
@@ -228,14 +266,14 @@
                 <i class="fa-solid fa-shield-check"></i> Enterprise Ready
             </div>
             <h1 class="gsap-reveal">
-                הטמעת AI בארגון — בצורה פרקטית, בטוחה ומדידה.
+                הטמעת AI בארגון —<br>בצורה פרקטית, בטוחה ומדידה.
             </h1>
             <p class="hero-sub gsap-reveal">
-                סדנאות ותהליכי הטמעה לארגונים שרוצים לקצר זמני עבודה, לשפר איכות תוצרים, לבנות נהלי עבודה חכמים ולהפוך AI לכלי עבודה אמיתי — לא לעוד הרצאה מעוררת השראה.
+                סדנאות ותהליכי הטמעה לארגונים שרוצים לקצר זמני עבודה, לשפר איכות תוצרים, לבנות נהלי עבודה חכמים ולהפוך את ה-AI לכלי עבודה יומיומי.
             </p>
-            <div class="flex flex-wrap gap-4 gsap-reveal">
+            <div class="hero-buttons gsap-reveal">
                 <a href="#contact" class="btn btn-primary">קביעת שיחת התאמה</a>
-                <a href="#usecases" class="btn btn-outline">צפו בתוצאות ודוגמאות</a>
+                <a href="#usecases" class="btn btn-outline">צפו בתוצאות מהשטח</a>
             </div>
         </div>
     </section>
@@ -252,23 +290,24 @@
         </div>
     </div>
 
-    <!-- THE ARCHITECT (Why Me) -->
-    <section class="section-padding">
+    <!-- THE ARCHITECT (About) - REDESIGNED GRID -->
+    <section class="section-padding architect-section">
         <div class="container">
             <div class="architect-grid">
-                <div class="gsap-reveal">
+                
+                <!-- Text / Profile Column -->
+                <div class="architect-text gsap-reveal">
                     
-                    <!-- Avatar & Title Combo -->
-                    <div class="flex items-center gap-5 mb-8">
-                        <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770577527/unnamed_hmkldf.jpg" alt="Tal Hakoki" class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[var(--accent)] object-cover shadow-[0_0_15px_rgba(222,255,154,0.2)]">
-                        <div>
-                            <h2 class="text-2xl md:text-3xl font-bold" style="margin: 0; line-height: 1;">נעים להכיר, טל חקוקי</h2>
-                            <p style="color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.85rem; letter-spacing: 1px; margin-top: 6px; text-transform: uppercase;">Head of GenAI @ KIC</p>
+                    <div class="architect-profile">
+                        <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770577527/unnamed_hmkldf.jpg" alt="Tal Hakoki">
+                        <div class="architect-profile-info">
+                            <h2>נעים להכיר, טל חקוקי</h2>
+                            <p>Head of GenAI @ KIC</p>
                         </div>
                     </div>
 
-                    <h3 class="section-title">למה ארגונים בוחרים לעבוד איתי?</h3>
-                    <p class="section-subtitle">הגישה שלי פשוטה: טכנולוגיה משרתת ביזנס, לא להיפך.</p>
+                    <h3>למה ארגונים בוחרים לעבוד איתי?</h3>
+                    <p>הגישה שלי פשוטה: טכנולוגיה משרתת ביזנס, לא להיפך.</p>
                     
                     <div class="mt-8">
                         <div class="bullet-point">
@@ -282,14 +321,14 @@
                             <div class="bullet-icon"><i class="fa-solid fa-gears"></i></div>
                             <div class="bullet-content">
                                 <h4>ארכיטקטורה מקצה לקצה</h4>
-                                <p>חיבור הדוק בין הדרכה לעובדים, הטמעת נהלים, בניית אוטומציות ויצירת תוצרים שנשארים.</p>
+                                <p>חיבור הדוק בין הדרכה לעובדים, הטמעת נהלים, בניית אוטומציות ויצירת תוצרים שנשארים בחברה.</p>
                             </div>
                         </div>
                         <div class="bullet-point">
                             <div class="bullet-icon"><i class="fa-solid fa-comments-dollar"></i></div>
                             <div class="bullet-content">
                                 <h4>שפה ניהולית-עסקית</h4>
-                                <p>הדרכות בגובה העיניים שמדברות במונחים של ROI, ייעול משאבים, וחיסכון בזמן (ולא רק בקוד).</p>
+                                <p>הדרכות בגובה העיניים שמדברות במונחים של ROI, ייעול משאבים, וחיסכון ממשי בזמן.</p>
                             </div>
                         </div>
                         <div class="bullet-point">
@@ -302,10 +341,13 @@
                     </div>
                 </div>
                 
-                <div class="architect-image gsap-reveal">
-                    <!-- Colored Stage Photo -->
-                    <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770584538/580669370_10239655425541264_8727551209985263451_n_ttstau.jpg" alt="Tal Hakoki Stage">
+                <!-- Image Column -->
+                <div class="architect-image-wrapper gsap-reveal">
+                    <div class="architect-image">
+                        <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770584538/580669370_10239655425541264_8727551209985263451_n_ttstau.jpg" alt="Tal Hakoki On Stage">
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -313,8 +355,8 @@
     <!-- TANGIBLE USE CASES (Interactive Tabs) -->
     <section id="usecases" class="section-padding use-cases-section">
         <div class="container">
-            <h2 class="section-title">איך זה נראה בפועל בארגון?</h2>
-            <p class="section-subtitle">בחר את המחלקה שלך וגלה אילו יכולות נוכל לבנות יחד.</p>
+            <h2 class="section-title">איך זה נראה <span class="highlight">בפועל</span> בארגון?</h2>
+            <p class="section-subtitle">בחר את המחלקה הרלוונטית וגלה אילו יכולות נוכל לבנות יחד.</p>
 
             <!-- TABS NAVIGATION -->
             <div class="tabs-header gsap-reveal">
@@ -328,7 +370,7 @@
             <div id="tab-management" class="tab-content active">
                 <div class="uc-card">
                     <i class="fa-solid fa-file-contract uc-icon"></i>
-                    <h4>עיבוד נתונים ומסמכים מורכבים</h4>
+                    <h4>עיבוד נתונים מורכבים</h4>
                     <p>סיכום אוטומטי של פגישות דירקטוריון, ניתוח דוחות כספיים (PDF/Excel) ושליפת תובנות עסקיות בתוך שניות במקום שעות.</p>
                 </div>
                 <div class="uc-card">
@@ -338,8 +380,8 @@
                 </div>
                 <div class="uc-card">
                     <i class="fa-solid fa-envelope-open-text uc-icon"></i>
-                    <h4>אוטומציית מיילים ותכתובות</h4>
-                    <p>ניסוח תגובות מורכבות למכרזים, משקיעים או לקוחות אסטרטגיים, תוך שמירה על Tone of Voice מדויק של המנכ"ל.</p>
+                    <h4>אוטומציית תכתובות</h4>
+                    <p>ניסוח תגובות מורכבות למכרזים, משקיעים או לקוחות אסטרטגיים, תוך שמירה על Tone of Voice מדויק של הנהלת החברה.</p>
                 </div>
             </div>
 
@@ -358,7 +400,7 @@
                 <div class="uc-card">
                     <i class="fa-solid fa-language uc-icon"></i>
                     <h4>לוקליזציה ופרסונליזציה</h4>
-                    <p>התאמה של מסר שיווקי יחיד ל-10 שווקים שונים, כולל תרגום קונטקסטואלי, התאמת סלנג, ויצירת וריאציות ל-A/B Testing.</p>
+                    <p>התאמה של מסר שיווקי יחיד לשווקים שונים, כולל תרגום קונטקסטואלי, התאמת סלנג, ויצירת וריאציות ל-A/B Testing.</p>
                 </div>
             </div>
 
@@ -367,7 +409,7 @@
                 <div class="uc-card">
                     <i class="fa-solid fa-users-viewfinder uc-icon"></i>
                     <h4>סינון וניתוח קורות חיים</h4>
-                    <p>יצירת פרומפטים מובנים לסריקת עשרות קורות חיים, מציאת מילות המפתח הרלוונטיות, ודירוג התאמה למשרה בצורה אובייקטיבית.</p>
+                    <p>יצירת פרומפטים מובנים לסריקת עשרות קורות חיים, מציאת מילות מפתח, ודירוג התאמה למשרה בצורה אובייקטיבית.</p>
                 </div>
                 <div class="uc-card">
                     <i class="fa-solid fa-handshake-angle uc-icon"></i>
@@ -385,12 +427,12 @@
             <div id="tab-public" class="tab-content">
                 <div class="uc-card">
                     <i class="fa-solid fa-scale-balanced uc-icon"></i>
-                    <h4>ניסוח מכרזים (RFP) ומענים</h4>
+                    <h4>ניסוח מכרזים (RFP)</h4>
                     <p>קיצור זמן ניסוח כתיבת מכרזים מסורבלים תוך שמירה על שפה משפטית/פורמלית תקינה והתבססות על מכרזי עבר.</p>
                 </div>
                 <div class="uc-card">
                     <i class="fa-solid fa-file-shield uc-icon"></i>
-                    <h4>התממה (אנונימיזציה) של דאטה</h4>
+                    <h4>התממה (אנונימיזציה)</h4>
                     <p>שימוש בכלים בטוחים לסריקת מסמכים רגישים (רווחה, חינוך) והוצאת פרטים מזהים לפני עיבוד או שיתוף עם גורמים חיצוניים.</p>
                 </div>
                 <div class="uc-card">
@@ -413,7 +455,7 @@
     <!-- MODULES (B2B Pricing) -->
     <section class="section-padding">
         <div class="container">
-            <h2 class="section-title">ארכיטקטורת הפתרונות שלנו</h2>
+            <h2 class="section-title">ארכיטקטורת הפתרונות</h2>
             <p class="section-subtitle">בחר את המסלול המתאים לשלב שבו הארגון שלך נמצא.</p>
             
             <div class="modules-grid gsap-reveal">
@@ -430,15 +472,17 @@
                         <li><i class="fa-solid fa-check"></i> עקרונות כתיבת Prompts יעילים</li>
                         <li><i class="fa-solid fa-check"></i> סדנת בטיחות ואבטחת מידע בסיסית</li>
                     </ul>
-                    <div class="mt-4 text-sm text-gray-500 mb-6"><strong>התוצאה:</strong> צוות שמפסיק לפחד מ-AI ומתחיל להשתמש בו ביומיום בצורה בטוחה.</div>
+                    <div class="module-result">
+                        <strong>התוצאה:</strong> צוות שמפסיק לפחד מ-AI ומתחיל להשתמש בו ביומיום בצורה בטוחה.
+                    </div>
                     <a href="#contact" class="btn btn-outline" style="width: 100%;">פרטים נוספים</a>
                 </div>
 
                 <!-- Workflow Builder -->
                 <div class="module-card featured">
-                    <div class="featured-tag">הנפוץ ביותר</div>
+                    <div class="featured-tag">המסלול הנפוץ ביותר</div>
                     <div class="module-header">
-                        <h3 class="text-accent">Workflow Builder</h3>
+                        <h3 class="highlight">Workflow Builder</h3>
                         <p>למחלקות שרוצות להחליף עבודה ידנית באוטומציה.</p>
                     </div>
                     <ul class="module-features">
@@ -448,24 +492,28 @@
                         <li><i class="fa-solid fa-check"></i> הקמת Custom GPTs ייעודיים לצוות</li>
                         <li><i class="fa-solid fa-check"></i> יצירת ספריית פרומפטים שיתופית</li>
                     </ul>
-                    <div class="mt-4 text-sm text-gray-400 mb-6"><strong>התוצאה:</strong> חיסכון מדיד של שעות עבודה שבועיות למחלקה ותוצרים מוכנים לשימוש.</div>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%;">בדיקת התאמה</a>
+                    <div class="module-result">
+                        <strong style="color: var(--accent);">התוצאה:</strong> חיסכון מדיד של שעות עבודה שבועיות למחלקה ותוצרים מוכנים לשימוש.
+                    </div>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">בדיקת התאמה לארגון</a>
                 </div>
 
                 <!-- Enterprise Enablement -->
                 <div class="module-card">
                     <div class="module-header">
-                        <h3>Enterprise Enablement</h3>
+                        <h3>Enterprise</h3>
                         <p>טרנספורמציה אסטרטגית מקיפה להנהלות.</p>
                     </div>
                     <ul class="module-features">
                         <li><i class="fa-solid fa-check"></i> מיפוי אסטרטגי ואפיון צרכים חוצה ארגון</li>
                         <li><i class="fa-solid fa-check"></i> בניית מדיניות AI חברה (Governance)</li>
                         <li><i class="fa-solid fa-check"></i> הטמעה מודולרית במחלקות השונות</li>
-                        <li><i class="fa-solid fa-check"></i> הכשרת "מובילי חדשנות" פנימיים (Champions)</li>
+                        <li><i class="fa-solid fa-check"></i> הכשרת "מובילי חדשנות" (Champions)</li>
                         <li><i class="fa-solid fa-check"></i> ליווי ובקרה ארוכי טווח</li>
                     </ul>
-                    <div class="mt-4 text-sm text-gray-500 mb-6"><strong>התוצאה:</strong> ארגון שעבר טרנספורמציה דיגיטלית מלאה עם תרבות עבודה מבוססת AI.</div>
+                    <div class="module-result">
+                        <strong>התוצאה:</strong> ארגון שעבר טרנספורמציה דיגיטלית מלאה עם תרבות עבודה מבוססת AI.
+                    </div>
                     <a href="#contact" class="btn btn-outline" style="width: 100%;">קביעת שיחת ייעוץ</a>
                 </div>
 
@@ -473,70 +521,70 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS (MINI CASE STUDIES) - Fixed Scroll -->
+    <!-- TESTIMONIALS (GRID LAYOUT - BUG FREE) -->
     <section class="testimonials">
         <div class="container">
-            <h2 class="section-title" style="color: #fff;">תוצאות מהשטח</h2>
+            <h2 class="section-title">תוצאות מהשטח</h2>
             <p class="section-subtitle">לא רק "הרצאה טובה", אלא אימפקט ארגוני.</p>
-        </div>
-        
-        <div class="horizontal-scroll-container">
-            <!-- CS 1 -->
-            <div class="review-card">
-                <div>
-                    <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Global Tech Company</div>
-                    <p>"הייתה לנו סדנה עם 70 עובדים מכל העולם. רמת הרלוונטיות הייתה הכי גבוהה שראיתי. המשתתפים התנסו בכלים תוך כדי וטל חשף אותנו לפונקציות משמעותיות שלא לומדים בכל סדנה."</p>
-                </div>
-                <div class="reviewer-info">
-                    <div class="r-avatar">L</div>
-                    <div class="r-details">
-                        <h4>Liri Mor</h4>
-                        <span>HR / L&D</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CS 2 -->
-            <div class="review-card">
-                <div>
-                    <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Enterprise HR Dept</div>
-                    <p>"טל הגיע למספר פעמים לסדנת עשירת כלים וידע פרקטי. בכל סדנא מתחדשים עוד ועוד כלים אשר העובדים מאמצים כדי לייעל את עבודתם. אישית, אני חוסכת שעות עבודה בעזרת הכלים שלמדתי."</p>
-                </div>
-                <div class="reviewer-info">
-                    <div class="r-avatar">A</div>
-                    <div class="r-details">
-                        <h4>Adi Pinto</h4>
-                        <span>HR Manager</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CS 3 -->
-            <div class="review-card">
-                <div>
-                    <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Management Training</div>
-                    <p>"השתתפתי בסדנת למנהלים. מופת של ידע, יכולת דידקטית, ואכפתיות אמיתית. להיות תלמיד של טל - שילוב של כיף והרחבת הידע המקצועי שמביא תוצאות."</p>
-                </div>
-                <div class="reviewer-info">
-                    <div class="r-avatar">A</div>
-                    <div class="r-details">
-                        <h4>Aharon B.</h4>
-                        <span>Executive</span>
-                    </div>
-                </div>
-            </div>
             
-             <!-- CS 4 -->
-            <div class="review-card">
-                <div>
-                    <div class="text-accent text-xs font-bold mb-2 uppercase tracking-widest">Public / Corporate</div>
-                    <p>"חלק מתהליך פיתוח והטמעת AI בחברה. ההדרכה היתה ברמה גבוהה, מעשית וברורה. חברי ההנהלה ציינו כי זו היתה מההדרכות הטובות שעברו — מדויקת ומותאמת לצרכי הארגון."</p>
+            <div class="testimonials-grid gsap-reveal">
+                <!-- CS 1 -->
+                <div class="review-card">
+                    <div>
+                        <div class="review-company">Global Tech Company</div>
+                        <p>"הייתה לנו סדנה עם 70 עובדים מכל העולם. רמת הרלוונטיות הייתה הכי גבוהה שראיתי. המשתתפים התנסו בכלים תוך כדי וטל חשף אותנו לפונקציות משמעותיות שלא לומדים בכל סדנה."</p>
+                    </div>
+                    <div class="reviewer-info">
+                        <div class="r-avatar">L</div>
+                        <div class="r-details">
+                            <h4>Liri Mor</h4>
+                            <span>HR / L&D</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="reviewer-info">
-                    <div class="r-avatar">N</div>
-                    <div class="r-details">
-                        <h4>נתן דקלה</h4>
-                        <span>תמוז</span>
+
+                <!-- CS 2 -->
+                <div class="review-card">
+                    <div>
+                        <div class="review-company">Enterprise HR Dept</div>
+                        <p>"טל הגיע למספר פעמים לסדנת עשירת כלים וידע פרקטי. בכל סדנא מתחדשים עוד ועוד כלים אשר העובדים מאמצים כדי לייעל את עבודתם. אישית, אני חוסכת שעות עבודה בעזרת הכלים שלמדתי."</p>
+                    </div>
+                    <div class="reviewer-info">
+                        <div class="r-avatar">A</div>
+                        <div class="r-details">
+                            <h4>Adi Pinto</h4>
+                            <span>HR Manager</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CS 3 -->
+                <div class="review-card">
+                    <div>
+                        <div class="review-company">Management Training</div>
+                        <p>"השתתפתי בסדנת למנהלים. מופת של ידע, יכולת דידקטית, ואכפתיות אמיתית. להיות תלמיד של טל - שילוב של כיף והרחבת הידע המקצועי שמביא תוצאות מהירות."</p>
+                    </div>
+                    <div class="reviewer-info">
+                        <div class="r-avatar">A</div>
+                        <div class="r-details">
+                            <h4>Aharon B.</h4>
+                            <span>Executive</span>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- CS 4 -->
+                <div class="review-card">
+                    <div>
+                        <div class="review-company">Public / Corporate</div>
+                        <p>"חלק מתהליך פיתוח והטמעת AI בחברה. ההדרכה היתה ברמה גבוהה, מעשית וברורה. חברי ההנהלה ציינו כי זו היתה מההדרכות הטובות שעברו — מדויקת ומותאמת לצרכי הארגון."</p>
+                    </div>
+                    <div class="reviewer-info">
+                        <div class="r-avatar">N</div>
+                        <div class="r-details">
+                            <h4>נתן דקלה</h4>
+                            <span>תמוז</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -561,55 +609,58 @@
                 <!-- Contact Form connected to Formspree -->
                 <form id="my-form" action="https://formspree.io/f/xqegvdke" method="POST">
                     
-                    <div class="form-group">
-                        <label>שם מלא</label>
-                        <input type="text" name="name" class="form-control" required placeholder="ישראל ישראלי" data-fs-field>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>אימייל ליצירת קשר</label>
-                        <input type="email" name="email" class="form-control" required placeholder="name@company.com" data-fs-field>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0 20px;">
+                        <div class="form-group">
+                            <label>שם מלא</label>
+                            <input type="text" name="name" class="form-control" required placeholder="ישראל ישראלי" data-fs-field>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>אימייל ליצירת קשר</label>
+                            <input type="email" name="email" class="form-control" required placeholder="name@company.com" data-fs-field>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>מספר טלפון (אופציונלי)</label>
-                        <input type="tel" name="phone" class="form-control" placeholder="050-0000000" data-fs-field>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0 20px;">
+                        <div class="form-group">
+                            <label>שם הארגון</label>
+                            <input type="text" name="company" class="form-control" required placeholder="חברת הייטק / רשות מקומית" data-fs-field>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>מספר טלפון (אופציונלי)</label>
+                            <input type="tel" name="phone" class="form-control" placeholder="050-0000000" data-fs-field>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>שם הארגון</label>
-                        <input type="text" name="company" class="form-control" required placeholder="חברת הייטק / רשות מקומית" data-fs-field>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>תפקיד / מחלקה</label>
-                        <input type="text" name="role" class="form-control" required placeholder="מנכ״ל, מנהלת משאבי אנוש, סמנכ״ל כספים..." data-fs-field>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>מספר משתתפים צפוי (הערכה)</label>
-                        <select name="team_size" class="form-control" required data-fs-field>
-                            <option value="">בחרו טווח</option>
-                            <option value="1-10">1-10 עובדים (צוות ספציפי)</option>
-                            <option value="11-50">11-50 עובדים (מחלקה)</option>
-                            <option value="50+">50+ עובדים (רוחב ארגוני)</option>
-                        </select>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0 20px;">
+                        <div class="form-group">
+                            <label>תפקיד / מחלקה</label>
+                            <input type="text" name="role" class="form-control" required placeholder="מנכ״ל, משאבי אנוש..." data-fs-field>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>מספר משתתפים צפוי</label>
+                            <select name="team_size" class="form-control" required data-fs-field>
+                                <option value="">בחרו טווח</option>
+                                <option value="1-10">1-10 עובדים (צוות ספציפי)</option>
+                                <option value="11-50">11-50 עובדים (מחלקה)</option>
+                                <option value="50+">50+ עובדים (רוחב ארגוני)</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label>מה האתגר המרכזי שתרצו לפתור בעזרת AI?</label>
-                        <textarea name="challenge" class="form-control" placeholder="לדוגמה: אנחנו מבזבזים שעות על כתיבת דוחות, רוצים לייעל תהליכי שירות לקוחות, עובדים חוששים להשתמש בכלים..." data-fs-field></textarea>
+                        <textarea name="challenge" class="form-control" placeholder="לדוגמה: אנחנו מבזבזים שעות על כתיבת דוחות, רוצים לייעל תהליכי שירות לקוחות..." data-fs-field></textarea>
                     </div>
                     
                     <div data-fs-error style="display: none;">אופס, אירעה שגיאה בשליחת הטופס. אנא נסו שוב או פנו אלינו בוואטסאפ.</div>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-fs-submit-btn>
-                        בקשת שיחת ייעוץ והתאמה
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px; padding: 20px; font-size: 1.2rem;" data-fs-submit-btn>
+                        שליחת פנייה לשיחת אפיון
                     </button>
                     
-                    <p style="text-align: center; font-size: 0.8rem; color: #666; margin-top: 15px;">
-                        אפשר גם <a href="https://wa.me/972506915269" style="color:var(--accent);">לשלוח לי הודעה בווטסאפ</a>
-                    </p>
                 </form>
             </div>
         </div>
@@ -617,15 +668,19 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="container" style="text-align: center;">
-            <h3 style="color: #fff; margin-bottom: 5px; font-size: 1.5rem;">PractiAI | Tal Hakoki</h3>
-            <p style="margin-bottom: 20px; font-size: 0.9rem;">שותף אסטרטגי להטמעת AI בארגונים</p>
-            <div style="margin-bottom: 30px; font-weight: bold; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <a href="mailto:hakokit@gmail.com" style="color: #ccc; text-decoration: none;">hakokit@gmail.com</a>
-                <span style="color: #ccc;" class="hidden md:inline">|</span>
-                <span style="color: #ccc;">050-6915269</span>
+        <div class="container footer-content">
+            <div class="footer-brand">PractiAI</div>
+            <div class="footer-tagline">שותף אסטרטגי להטמעת AI בארגונים | טל חקוקי</div>
+            
+            <div class="footer-links">
+                <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope"></i> hakokit@gmail.com</a>
+                <a href="https://wa.me/972506915269" target="_blank"><i class="fa-brands fa-whatsapp"></i> 050-6915269</a>
+                <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
             </div>
-            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Tal Hakoki - PractiAI. All Rights Reserved.</p>
+            
+            <div class="footer-copy">
+                &copy; 2026 Tal Hakoki - PractiAI. All Rights Reserved.
+            </div>
         </div>
     </footer>
 
@@ -638,11 +693,14 @@
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // 1. Basic Reveal
+            // 1. Refined Basic Reveal
             gsap.utils.toArray('.gsap-reveal').forEach(elem => {
                 gsap.fromTo(elem, 
-                    { opacity: 0, y: 30 },
-                    { opacity: 1, y: 0, duration: 1, ease: 'power3.out', scrollTrigger: elem }
+                    { opacity: 0, y: 50 },
+                    { opacity: 1, y: 0, duration: 1.2, ease: 'power4.out', scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%"
+                    }}
                 );
             });
 
@@ -663,11 +721,7 @@
                 });
             });
 
-            // Note: Horizontal Scroll GSAP code was removed to provide 
-            // a much smoother, bug-free native CSS scrolling experience 
-            // that fully supports RTL screens on both mobile and desktop.
-
-            // 4. Subtle Network Background (Optimized)
+            // 3. Subtle Network Background (Optimized)
             const canvas = document.getElementById('network-canvas');
             const ctx = canvas.getContext('2d');
             let width, height;
@@ -681,14 +735,14 @@
             resize();
 
             // Reduce particle count on mobile to save battery
-            const particleCount = window.innerWidth < 768 ? 20 : 50;
+            const particleCount = window.innerWidth < 768 ? 20 : 40;
 
             class Particle {
                 constructor() {
                     this.x = Math.random() * width;
                     this.y = Math.random() * height;
-                    this.vx = (Math.random() - 0.5) * 0.3;
-                    this.vy = (Math.random() - 0.5) * 0.3;
+                    this.vx = (Math.random() - 0.5) * 0.2;
+                    this.vy = (Math.random() - 0.5) * 0.2;
                 }
                 update() {
                     this.x += this.vx;
@@ -698,8 +752,8 @@
                 }
                 draw() {
                     ctx.beginPath();
-                    ctx.arc(this.x, this.y, 1, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(222, 255, 154, 0.3)';
+                    ctx.arc(this.x, this.y, 1.5, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(222, 255, 154, 0.4)';
                     ctx.fill();
                 }
             }
@@ -717,9 +771,9 @@
                         const dx = p.x - p2.x;
                         const dy = p.y - p2.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < 120) {
+                        if (distance < 150) {
                             ctx.beginPath();
-                            ctx.strokeStyle = `rgba(222, 255, 154, ${0.1 - distance/1200})`;
+                            ctx.strokeStyle = `rgba(222, 255, 154, ${0.15 - distance/1000})`;
                             ctx.lineWidth = 0.5;
                             ctx.moveTo(p.x, p.y);
                             ctx.lineTo(p2.x, p2.y);
