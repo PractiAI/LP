@@ -18,26 +18,30 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Formspree Ajax SDK -->
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-
     <style>
         :root {
+            /* Color Palette & Effects */
             --bg-dark: #030303;
-            --bg-card: rgba(20, 20, 20, 0.6); /* Glassmorphism base */
+            --bg-card: rgba(20, 20, 20, 0.7);
+            --bg-card-strong: rgba(24, 24, 24, 0.9);
             --accent: #deff9a;
             --accent-dim: rgba(222, 255, 154, 0.1);
             --text-main: #ffffff;
             --text-muted: #a1a1aa;
             --border: rgba(255, 255, 255, 0.08);
             --glow: 0 0 20px rgba(222, 255, 154, 0.15);
+            --shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+            
+            /* Sizing */
+            --header-h: 78px;
+            --container: 1240px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,689 +57,893 @@
             scroll-behavior: smooth;
         }
 
-        img, video, canvas { max-width: 100%; height: auto; }
+        img, video, canvas { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+        button, input, select, textarea { font: inherit; }
 
-        .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; width: 100%; }
-        .section-padding { padding: 140px 0; }
-        
-        /* Typography */
-        .section-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; margin-bottom: 1.2rem; word-wrap: break-word; text-align: center; letter-spacing: -0.5px; }
-        .section-subtitle { font-size: clamp(1.1rem, 3vw, 1.3rem); color: var(--text-muted); margin-bottom: 4rem; max-width: 750px; margin-inline: auto; text-align: center; font-weight: 400; }
+        /* Typography - Premium Scale */
+        .section-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; margin-bottom: 1.2rem; word-wrap: break-word; letter-spacing: -0.5px; line-height: 1.1; }
+        .section-subtitle { font-size: clamp(1.1rem, 3vw, 1.3rem); color: var(--text-muted); margin-bottom: 4rem; max-width: 750px; font-weight: 400; }
         .highlight { color: var(--accent); }
+        .text-center { text-align: center; }
+        .mx-auto { margin-inline: auto; }
 
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; width: 100%; }
+        .section-padding { padding: 120px 0; }
+        .section-padding-sm { padding: 80px 0; }
+        
         /* Background Canvas */
         #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.15; pointer-events: none; }
 
         /* --- BUTTONS --- */
+        .btn-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-            padding: 16px 40px; font-size: 1.15rem; font-weight: 700; text-decoration: none;
-            border-radius: 12px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border: none;
-            text-align: center;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 16px 32px; font-size: 1.1rem; font-weight: 800; text-decoration: none;
+            border-radius: 12px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border: none;
+            text-align: center; min-height: 54px;
         }
         .btn-primary { background-color: var(--accent); color: #000; box-shadow: var(--glow); }
         .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(222, 255, 154, 0.4); }
         .btn-outline { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); color: #fff; backdrop-filter: blur(10px); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(222, 255, 154, 0.05); transform: translateY(-4px); }
         
+        /* --- HEADER --- */
+        .site-header { position: sticky; top: 0; z-index: 50; height: var(--header-h); border-bottom: 1px solid var(--border); background: rgba(5, 5, 5, 0.78); backdrop-filter: blur(18px); }
+        .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand-mark { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(222,255,154,0.18), rgba(222,255,154,0.05)); border: 1px solid rgba(222, 255, 154, 0.24); color: var(--accent); }
+        .brand-text { display: flex; flex-direction: column; }
+        .brand-title { font-size: 1.1rem; font-weight: 900; line-height: 1; }
+        .brand-subtitle { font-size: 0.8rem; color: var(--text-muted); }
+        .header-actions { display: flex; align-items: center; gap: 20px; }
+        .header-link { color: var(--text-muted); font-size: 1rem; font-weight: 700; transition: 0.2s; }
+        .header-link:hover { color: var(--text-main); }
+        
         /* --- HERO --- */
-        .hero { 
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; 
-            align-items: center; position: relative; padding-top: 80px; text-align: center; 
-            background: radial-gradient(circle at 50% 0%, rgba(222, 255, 154, 0.05) 0%, transparent 70%);
-        }
-        .hero .container { display: flex; flex-direction: column; align-items: center; z-index: 2; }
-        .hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 24px; max-width: 1000px; text-align: center; letter-spacing: -1px; }
-        .hero-sub { font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--text-muted); max-width: 750px; margin-bottom: 48px; text-align: center; font-weight: 300; }
+        .hero { min-height: calc(100vh - var(--header-h)); display: flex; align-items: center; padding-top: 40px; padding-bottom: 60px; background: radial-gradient(circle at 50% 0%, rgba(222, 255, 154, 0.03) 0%, transparent 70%); }
+        .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+        .hero-content { max-width: 760px; }
         
-        .trust-badge { 
-            display: inline-flex; align-items: center; gap: 10px; 
-            border: 1px solid rgba(222, 255, 154, 0.3); color: var(--accent); 
-            padding: 8px 20px; border-radius: 100px; font-size: 0.9rem; font-weight: 700; 
-            margin-bottom: 30px; background: rgba(222, 255, 154, 0.05); backdrop-filter: blur(5px);
-        }
+        .eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(222, 255, 154, 0.3); background: rgba(222, 255, 154, 0.05); color: var(--accent); font-size: 0.95rem; font-weight: 800; letter-spacing: 0.2px; margin-bottom: 20px; backdrop-filter: blur(5px); }
         
-        .hero-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; } 
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05; letter-spacing: -1px; font-weight: 900; margin-bottom: 24px; }
+        .hero p { font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text-muted); max-width: 690px; margin-bottom: 35px; font-weight: 300; }
+        
+        .hero-proof { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin-top: 40px; }
+        .proof-card { padding: 20px 15px; border-radius: 18px; background: var(--bg-card); border: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .proof-num { font-size: 1.8rem; font-weight: 900; color: var(--accent); margin-bottom: 5px; line-height: 1; }
+        .proof-text { color: #dfdfe4; font-size: 0.95rem; }
+        
+        .hero-panel { background: linear-gradient(180deg, rgba(20,20,20,0.92), rgba(10,10,10,0.92)); border: 1px solid var(--border); border-radius: 26px; padding: 35px; box-shadow: var(--shadow); position: relative; overflow: hidden; backdrop-filter: blur(15px); }
+        .hero-panel::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top left, rgba(222,255,154,0.1), transparent 40%); pointer-events: none; }
+        .panel-label { font-size: 0.85rem; color: var(--accent); font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; }
+        .panel-title { font-size: 1.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 15px; }
+        .panel-copy { color: var(--text-muted); margin-bottom: 25px; }
+        .panel-stack { display: grid; gap: 15px; }
+        .stack-item { display: flex; gap: 15px; align-items: flex-start; padding: 15px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
+        .stack-item i { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-dim); color: var(--accent); flex-shrink: 0; font-size: 1.1rem; }
+        .stack-item strong { display: block; font-size: 1.05rem; margin-bottom: 3px; color: #fff; }
+        .stack-item span { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* --- LOGO STRIP --- */
-        .logo-strip { border-y: 1px solid var(--border); padding: 40px 0; background: rgba(255,255,255,0.01); backdrop-filter: blur(10px); }
-        .logo-grid { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; opacity: 0.7; font-weight: 500; letter-spacing: 1px; font-size: 1rem; align-items: center; }
-        .logo-item { display: flex; align-items: center; gap: 10px; }
-        .logo-item i { color: var(--accent); font-size: 1.2rem; }
+        /* --- TRUST STRIP --- */
+        .trust-strip { padding: 35px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.015); backdrop-filter: blur(10px); }
+        .trust-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+        .trust-item { padding: 20px; border-radius: 18px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); text-align: center; }
+        .trust-item i { color: var(--accent); margin-bottom: 12px; font-size: 1.3rem; }
+        .trust-item strong { display: block; font-size: 1.1rem; font-weight: 900; margin-bottom: 5px; }
+        .trust-item span { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* --- THE ARCHITECT (About) - FIXED LAYOUT --- */
-        .architect-section { background: linear-gradient(180deg, transparent 0%, rgba(20,20,20,0.3) 100%); }
-        .architect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        /* --- THE ARCHITECT (About) --- */
+        .about-section { background: linear-gradient(180deg, transparent 0%, rgba(20,20,20,0.3) 100%); }
+        .about-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 60px; align-items: center; }
         
-        .architect-text { text-align: right; }
+        .about-media { position: relative; }
+        .about-media-frame { border-radius: 28px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); background: #111; position: relative; }
+        .about-media-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(222,255,154,0.1) 0%, transparent 100%); pointer-events: none; }
+        .about-media img { width: 100%; min-height: 400px; object-fit: cover; transition: transform 0.7s ease; }
+        .about-media:hover img { transform: scale(1.03); }
         
-        .architect-profile { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid var(--border); }
-        .architect-profile img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; box-shadow: var(--glow); }
-        .architect-profile-info h2 { font-size: 2rem; font-weight: 900; line-height: 1.1; margin-bottom: 5px; }
-        .architect-profile-info p { color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
-        
-        .architect-text h3 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 900; margin-bottom: 15px; }
-        .architect-text > p { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 40px; }
+        .about-card { position: absolute; left: -20px; bottom: 30px; max-width: 320px; padding: 25px; border-radius: 20px; background: var(--bg-card-strong); border: 1px solid var(--border); backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); z-index: 2; }
+        .about-card strong { display: block; font-size: 1.1rem; font-weight: 900; margin-bottom: 8px; color: #fff; }
+        .about-card span { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; display: block; }
 
-        .bullet-point { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 30px; }
-        .bullet-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-dim); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem; border: 1px solid rgba(222, 255, 154, 0.2); }
-        .bullet-content h4 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
-        .bullet-content p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.5; }
-        
-        .architect-image-wrapper { position: relative; border-radius: 24px; padding: 1px; background: linear-gradient(135deg, rgba(222,255,154,0.4) 0%, transparent 100%); }
-        .architect-image { border-radius: 23px; overflow: hidden; position: relative; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .architect-image img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.7s ease; }
-        .architect-image-wrapper:hover img { transform: scale(1.03); }
+        .about-profile { display: flex; align-items: center; gap: 16px; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid var(--border); }
+        .about-avatar { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent); flex-shrink: 0; box-shadow: var(--glow); }
+        .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .about-profile strong { display: block; font-size: 1.8rem; font-weight: 900; margin-bottom: 2px; }
+        .about-profile span { color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- USE CASES (DYNAMIC TABS) --- */
-        .use-cases-section { position: relative; z-index: 2; }
-        .tabs-header { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 60px; }
-        .tab-btn { background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--text-muted); padding: 14px 30px; border-radius: 100px; cursor: pointer; transition: 0.3s; font-weight: 500; font-family: inherit; font-size: 1.05rem; backdrop-filter: blur(10px); }
-        .tab-btn:hover { border-color: rgba(222, 255, 154, 0.5); color: #fff; }
-        .tab-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; box-shadow: var(--glow); }
-        
-        .tab-content { display: none; opacity: 0; transform: translateY(20px); transition: all 0.4s ease; }
-        .tab-content.active { display: grid; opacity: 1; transform: translateY(0); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        
-        .uc-card { background: var(--bg-card); border: 1px solid var(--border); padding: 40px 30px; border-radius: 20px; transition: 0.4s; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .uc-card:hover { border-color: rgba(222, 255, 154, 0.4); transform: translateY(-5px); background: rgba(25, 25, 25, 0.8); }
-        .uc-icon { color: var(--accent); font-size: 2.5rem; margin-bottom: 25px; display: inline-block; }
-        .uc-card h4 { font-size: 1.4rem; margin-bottom: 15px; font-weight: 700; }
-        .uc-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        .bullet-list { display: grid; gap: 20px; margin-top: 30px; }
+        .bullet-item { display: grid; grid-template-columns: 50px 1fr; gap: 18px; align-items: start; padding: 20px; border-radius: 18px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
+        .bullet-item i { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; background: var(--accent-dim); color: var(--accent); font-size: 1.2rem; }
+        .bullet-item strong { display: block; font-size: 1.15rem; font-weight: 800; margin-bottom: 5px; color: #fff; }
+        .bullet-item span { color: var(--text-muted); font-size: 1rem; line-height: 1.5; }
 
-        /* --- SECURITY BANNER --- */
-        .security-banner { background: linear-gradient(90deg, rgba(222, 255, 154, 0.08) 0%, rgba(20,20,20,0.6) 100%); border-right: 4px solid var(--accent); padding: 50px; border-radius: 20px; margin: 80px 0; border-left: 1px solid var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); }
-        .security-banner h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: 900; }
-        .security-banner p { color: var(--text-muted); max-width: 900px; font-size: 1.1rem; line-height: 1.7; }
+        /* --- PROCESS --- */
+        .process-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+        .process-card { position: relative; padding: 30px 25px; border-radius: 22px; background: var(--bg-card); border: 1px solid var(--border); box-shadow: var(--shadow); backdrop-filter: blur(10px); transition: transform 0.3s; }
+        .process-card:hover { transform: translateY(-5px); border-color: rgba(222,255,154,0.3); }
+        .process-step { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--accent); color: #000; font-weight: 900; font-size: 1.2rem; margin-bottom: 20px; box-shadow: var(--glow); }
+        .process-card h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 10px; color: #fff; }
+        .process-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.5; }
 
-        /* --- MODULES (Pricing) --- */
-        .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .module-card { background: var(--bg-card); border: 1px solid var(--border); padding: 50px 40px; border-radius: 24px; display: flex; flex-direction: column; transition: 0.4s; backdrop-filter: blur(10px); }
-        .module-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .module-card.featured { border-color: var(--accent); background: rgba(10, 10, 10, 0.8); box-shadow: 0 0 30px rgba(222, 255, 154, 0.05); position: relative; }
-        .module-card.featured:hover { box-shadow: 0 20px 50px rgba(222, 255, 154, 0.15); border-color: var(--accent); }
+        /* --- USE CASES (TABS) --- */
+        .use-case-shell { border-radius: 28px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(18,18,18,0.8), rgba(10,10,10,0.9)); padding: 40px; box-shadow: var(--shadow); backdrop-filter: blur(15px); }
+        .tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; }
+        .tab-btn { min-height: 50px; padding: 12px 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: var(--text-muted); font-weight: 700; cursor: pointer; transition: 0.3s ease; font-size: 1.05rem; }
+        .tab-btn:hover, .tab-btn.active { color: #000; background: var(--accent); border-color: var(--accent); box-shadow: var(--glow); }
         
-        .featured-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; font-size: 0.85rem; font-weight: 900; padding: 6px 20px; border-radius: 100px; z-index: 2; box-shadow: var(--glow); letter-spacing: 0.5px; }
+        .tab-panel { display: none; animation: fadeIn 0.5s ease; }
+        .tab-panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .module-header { margin-bottom: 30px; }
-        .module-header h3 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 10px; font-weight: 900; }
-        .module-header p { color: var(--text-muted); font-size: 1.05rem; border-bottom: 1px solid var(--border); padding-bottom: 25px; line-height: 1.5; }
-        
-        .module-features { margin-bottom: 40px; flex-grow: 1; list-style: none; }
-        .module-features li { display: flex; gap: 15px; margin-bottom: 16px; color: #e4e4e7; font-size: 1.05rem; align-items: flex-start; }
-        .module-features i { color: var(--accent); margin-top: 5px; flex-shrink: 0; font-size: 1.1rem; }
-        
-        .module-result { margin-top: auto; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 12px; font-size: 0.95rem; color: #aaa; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
-        .module-result strong { color: #fff; display: block; margin-bottom: 5px; }
+        .use-case-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+        .use-card { padding: 30px; border-radius: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .use-card:hover { background: rgba(255,255,255,0.04); border-color: rgba(222,255,154,0.3); transform: translateY(-3px); }
+        .use-card i { font-size: 2rem; color: var(--accent); margin-bottom: 20px; display: block; }
+        .use-card h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; color: #fff; }
+        .use-card p { color: var(--text-muted); font-size: 1rem; }
 
-        /* --- TESTIMONIALS (Responsive CSS Grid - FIXED) --- */
-        .testimonials { padding: 120px 0; background: linear-gradient(180deg, var(--bg-dark) 0%, #070707 100%); position: relative; }
+        /* --- DELIVERABLES & SECURITY --- */
+        .deliverables-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+        .deliverable-card { padding: 30px 25px; border-radius: 22px; background: var(--bg-card); border: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .deliverable-card i { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 14px; background: var(--accent-dim); color: var(--accent); margin-bottom: 20px; font-size: 1.4rem; }
+        .deliverable-card h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 10px; }
+        .deliverable-card p { color: var(--text-muted); font-size: 1rem; }
+
+        .security-wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 25px; align-items: stretch; margin-top: 40px; }
+        .security-main, .security-side { border-radius: 26px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(18,18,18,0.8), rgba(10,10,10,0.9)); box-shadow: var(--shadow); backdrop-filter: blur(10px); }
+        .security-main { padding: 40px; border-right: 4px solid var(--accent); }
+        .security-main h3 { display: flex; align-items: center; gap: 15px; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; margin-bottom: 20px; }
+        .security-main p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 25px; }
+        .security-list { display: grid; gap: 15px; list-style: none; }
+        .security-list li { display: flex; gap: 15px; color: #ececf1; font-size: 1.05rem; }
+        .security-list i { color: var(--accent); margin-top: 5px; }
+        
+        .security-side { padding: 40px; }
+        .security-side h4 { font-size: 1.3rem; font-weight: 900; margin-bottom: 20px; }
+        .mini-card { padding: 20px; border-radius: 18px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 15px; }
+        .mini-card strong { display: block; margin-bottom: 5px; color: #fff; font-size: 1.1rem; font-weight: 800; }
+        .mini-card span { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- SOLUTIONS (Pricing) --- */
+        .solutions-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px; }
+        .solution-card { position: relative; display: flex; flex-direction: column; padding: 40px 30px; border-radius: 24px; background: var(--bg-card); border: 1px solid var(--border); box-shadow: var(--shadow); backdrop-filter: blur(10px); transition: 0.3s; }
+        .solution-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); }
+        .solution-card.featured { border-color: var(--accent); background: rgba(10,10,10,0.9); }
+        .solution-card.featured:hover { box-shadow: 0 20px 50px rgba(222, 255, 154, 0.15); }
+        
+        .solution-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 0.85rem; font-weight: 900; color: #000; background: var(--accent); border-radius: 999px; padding: 6px 20px; box-shadow: var(--glow); letter-spacing: 0.5px; }
+        
+        .solution-card h3 { font-size: 2rem; font-weight: 900; margin-bottom: 10px; margin-top: 10px; }
+        .solution-card .sub { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+        .solution-card .fit { font-size: 1rem; color: #fff; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; margin-bottom: 25px; }
+        
+        .solution-list { list-style: none; display: grid; gap: 15px; margin-bottom: 30px; flex: 1; }
+        .solution-list li { display: flex; gap: 15px; color: #ececf1; font-size: 1.05rem; align-items: start; }
+        .solution-list i { color: var(--accent); margin-top: 5px; }
+        
+        .solution-result { padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); color: var(--text-muted); margin-bottom: 25px; font-size: 0.95rem; }
+        .solution-result strong { display: block; color: #fff; margin-bottom: 5px; font-size: 1.05rem; }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials { background: linear-gradient(180deg, var(--bg-dark) 0%, #070707 100%); position: relative; }
         .testimonials::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
-        
-        .testimonials-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 24px; 
-            margin-top: 60px;
-        }
-        
-        .review-card { 
-            background: var(--bg-card); border: 1px solid var(--border); padding: 40px; border-radius: 20px; 
-            display: flex; flex-direction: column; justify-content: space-between; 
-            backdrop-filter: blur(10px); transition: 0.3s;
-        }
-        .review-card:hover { border-color: rgba(222, 255, 154, 0.3); transform: translateY(-5px); }
-        .review-company { color: var(--accent); font-size: 0.8rem; font-weight: 900; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1.5px; }
-        .review-card p { font-size: 1.1rem; color: #d4d4d8; margin-bottom: 30px; font-style: italic; line-height: 1.6; }
-        .reviewer-info { display: flex; align-items: center; gap: 15px; margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .r-avatar { width: 45px; height: 45px; background: rgba(222, 255, 154, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: var(--accent); flex-shrink: 0; font-size: 1.2rem; border: 1px solid rgba(222, 255, 154, 0.2); }
-        .r-details h4 { margin: 0; font-size: 1.1rem; font-weight: 700; color: #fff; }
-        .r-details span { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+        .quote-card { padding: 35px 30px; border-radius: 24px; background: var(--bg-card); border: 1px solid var(--border); display: flex; flex-direction: column; backdrop-filter: blur(10px); transition: 0.3s; }
+        .quote-card:hover { border-color: rgba(222,255,154,0.3); transform: translateY(-5px); }
+        .quote-company { display: inline-flex; padding: 6px 15px; border-radius: 999px; background: var(--accent-dim); border: 1px solid rgba(222,255,154,0.2); color: var(--accent); font-size: 0.8rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .quote-text { color: #d4d4d8; font-size: 1.05rem; margin-bottom: 30px; flex: 1; font-style: italic; line-height: 1.6; }
+        .quote-meta { padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 15px; }
+        .quote-avatar { width: 45px; height: 45px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-dim); border: 1px solid rgba(222,255,154,0.2); color: var(--accent); font-weight: 900; font-size: 1.2rem; flex-shrink: 0; }
+        .quote-meta strong { display: block; font-size: 1.1rem; color: #fff; }
+        .quote-meta span { color: #888; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* --- B2B CONTACT FORM --- */
-        .contact-section { padding: 140px 0; background: var(--bg-dark); position: relative; }
-        .form-container { 
-            max-width: 700px; margin: 0 auto; 
-            background: var(--bg-card); padding: 60px; 
-            border-radius: 24px; border: 1px solid var(--border); 
-            backdrop-filter: blur(15px); box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-        
-        .form-group { margin-bottom: 24px; }
-        .form-group label { display: block; margin-bottom: 10px; color: #e4e4e7; font-size: 1rem; font-weight: 500; }
-        .form-control { 
-            width: 100%; padding: 18px 20px; 
-            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15); 
-            color: #fff; border-radius: 12px; font-family: inherit; font-size: 1.05rem; 
-            transition: all 0.3s ease; 
-        }
-        .form-control::placeholder { color: #555; }
-        .form-control:focus { outline: none; border-color: var(--accent); background: rgba(222, 255, 154, 0.03); box-shadow: 0 0 0 4px rgba(222, 255, 154, 0.1); }
-        textarea.form-control { resize: vertical; min-height: 140px; }
-        
-        [data-fs-success] { display: none; }
-        [data-fs-error] { display: none; color: #ff6b6b; margin-top: 15px; font-size: 1rem; text-align: center; background: rgba(255, 107, 107, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 107, 107, 0.3); }
+        /* --- FAQ --- */
+        .faq-wrap { max-width: 900px; margin-inline: auto; display: grid; gap: 16px; }
+        .faq-item { border-radius: 20px; border: 1px solid var(--border); background: var(--bg-card); overflow: hidden; backdrop-filter: blur(10px); transition: 0.3s; }
+        .faq-item:hover { border-color: rgba(255,255,255,0.2); }
+        .faq-question { width: 100%; border: 0; background: transparent; color: var(--text-main); text-align: right; padding: 25px 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 1.15rem; font-weight: 800; cursor: pointer; }
+        .faq-question i { color: var(--accent); transition: transform 0.3s ease; font-size: 1.2rem; }
+        .faq-item.open .faq-question i { transform: rotate(45deg); }
+        .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
+        .faq-item.open .faq-answer { grid-template-rows: 1fr; }
+        .faq-answer-inner { overflow: hidden; }
+        .faq-answer p { padding: 0 30px 25px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; }
 
-        /* --- WHATSAPP STYLES --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 65px;
-            height: 65px;
-            background-color: #25d366;
-            color: #fff;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 35px;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1) translateY(-5px);
-            color: #fff;
-            background-color: #20b858;
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
-        }
-        .btn-whatsapp {
-            background-color: #25d366;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
-        }
-        .btn-whatsapp:hover {
-            background-color: #20b858;
-            color: #fff;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-        }
-        .form-separator {
-            text-align: center;
-            margin: 25px 0;
-            position: relative;
-        }
-        .form-separator::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            z-index: 1;
-        }
-        .form-separator span {
-            background: var(--bg-card);
-            padding: 0 20px;
-            color: #aaa;
-            position: relative;
-            z-index: 2;
-            font-size: 0.95rem;
-        }
+        /* --- CONTACT & FORM --- */
+        .contact-wrap { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px; align-items: start; }
+        .contact-side, .form-wrap { border-radius: 26px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(18,18,18,0.8), rgba(10,10,10,0.9)); box-shadow: var(--shadow); backdrop-filter: blur(15px); }
+        
+        .contact-side { padding: 40px; position: sticky; top: calc(var(--header-h) + 30px); }
+        .contact-side h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: 15px; }
+        .contact-side p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+        .contact-side ul { list-style: none; display: grid; gap: 15px; margin-bottom: 35px; }
+        .contact-side li { display: flex; gap: 12px; color: #ececf1; font-size: 1.05rem; }
+        .contact-side li i { color: var(--accent); margin-top: 5px; }
+        
+        .contact-direct { display: grid; gap: 15px; }
+        .contact-link { display: flex; align-items: center; gap: 15px; padding: 18px 20px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); transition: 0.3s ease; font-size: 1.05rem; font-weight: 700; }
+        .contact-link:hover { border-color: rgba(222,255,154,0.3); color: var(--accent); background: rgba(255,255,255,0.05); }
+        .contact-link i { color: var(--accent); font-size: 1.3rem; width: 24px; text-align: center; }
+
+        .form-wrap { padding: 50px; }
+        .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+        .field { margin-bottom: 20px; }
+        .field.full { grid-column: 1 / -1; }
+        
+        label { display: block; margin-bottom: 10px; font-weight: 700; color: #ececf1; font-size: 1.05rem; }
+        .control { width: 100%; min-height: 56px; padding: 16px 20px; border-radius: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15); color: var(--text-main); font-size: 1.05rem; transition: all 0.3s ease; }
+        .control::placeholder { color: #666; }
+        .control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(222,255,154,0.1); background: rgba(222,255,154,0.02); }
+        textarea.control { min-height: 150px; resize: vertical; }
+
+        .form-note { color: var(--text-muted); font-size: 1rem; margin-bottom: 25px; }
+        
+        .success-box, .error-box { display: none; padding: 20px; border-radius: 16px; margin-bottom: 25px; text-align: center; }
+        .success-box { border: 1px solid rgba(68, 255, 142, 0.3); background: rgba(68, 255, 142, 0.1); color: #eafff0; }
+        .success-box strong { display: block; font-size: 1.2rem; margin-bottom: 5px; }
+        .error-box { border: 1px solid rgba(255, 107, 107, 0.3); background: rgba(255, 107, 107, 0.1); color: #ffd5d5; }
+
+        .form-separator { text-align: center; margin: 30px 0; position: relative; }
+        .form-separator::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.1); z-index: 1; }
+        .form-separator span { background: #131313; padding: 0 20px; color: #aaa; position: relative; z-index: 2; font-size: 1rem; font-weight: 500; }
+        
+        .btn-whatsapp { background-color: #25d366; color: #fff; box-shadow: 0 0 20px rgba(37, 211, 102, 0.2); }
+        .btn-whatsapp:hover { background-color: #20b858; color: #fff; transform: translateY(-4px); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4); }
 
         /* --- FOOTER --- */
-        footer { padding: 60px 0; border-top: 1px solid var(--border); background: #000; }
-        .footer-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .footer-brand { font-size: 1.8rem; font-weight: 900; color: #fff; margin-bottom: 10px; }
-        .footer-tagline { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
-        .footer-links { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; font-size: 1.1rem; font-weight: 500; }
-        .footer-links a { color: #ddd; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-copy { margin-top: 50px; font-size: 0.9rem; color: #555; }
+        .footer { padding: 50px 0; border-top: 1px solid var(--border); background: #000; }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+        .footer-brand strong { display: block; font-size: 1.4rem; font-weight: 900; margin-bottom: 5px; }
+        .footer-brand span, .footer-copy { color: var(--text-muted); font-size: 1rem; }
+        .footer-links { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .footer-links a { padding: 12px 18px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: #e8e8ed; font-size: 1rem; font-weight: 700; transition: 0.3s ease; display: flex; align-items: center; gap: 8px; }
+        .footer-links a:hover { color: var(--accent); border-color: rgba(222,255,154,0.3); }
+
+        /* --- WHATSAPP FLOAT --- */
+        .whatsapp-float { position: fixed; bottom: 30px; left: 30px; width: 65px; height: 65px; background-color: #25d366; color: #fff; border-radius: 50px; text-align: center; font-size: 35px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 100; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1) translateY(-5px); color: #fff; background-color: #20b858; box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5); }
 
         /* --- UTILS --- */
         .gsap-reveal { opacity: 0; transform: translateY(40px); }
 
-        /* --- MOBILE ADJUSTMENTS --- */
-        @media (max-width: 992px) {
-            .architect-grid { grid-template-columns: 1fr; gap: 50px; }
-            .architect-text { text-align: center; }
-            .architect-profile { flex-direction: column; text-align: center; border-bottom: none; padding-bottom: 0; }
-            .bullet-point { flex-direction: column; align-items: center; text-align: center; background: rgba(255,255,255,0.02); padding: 30px; border-radius: 16px; border: 1px solid var(--border); }
-            
-            .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
-            .section-padding { padding: 90px 0; }
-            
-            .logo-grid { gap: 25px; }
-            .security-banner { padding: 30px 20px; }
-            .security-banner h3 { flex-direction: column; text-align: center; }
-            
-            .tabs-header { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 15px; -webkit-overflow-scrolling: touch; }
-            .tabs-header::-webkit-scrollbar { display: none; }
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1100px) {
+            .hero-grid, .about-grid, .security-wrap, .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+            .trust-grid, .process-grid, .deliverables-grid, .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .use-case-grid, .solutions-grid { grid-template-columns: 1fr; }
+            .contact-side { position: static; }
+            .about-card { position: static; max-width: 100%; margin-top: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --header-h: 70px; }
+            .section-title { font-size: clamp(2rem, 8vw, 2.5rem); }
+            .header-link { display: none; }
+            .hero { padding-top: 30px; }
+            .hero-proof, .trust-grid, .process-grid, .deliverables-grid, .testimonials-grid, .form-grid { grid-template-columns: 1fr; }
+            .btn-row { flex-direction: column; align-items: stretch; }
+            .btn { width: 100%; }
+            .tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 10px; -webkit-overflow-scrolling: touch; }
+            .tabs::-webkit-scrollbar { display: none; }
             .tab-btn { flex-shrink: 0; }
-            
-            .form-container { padding: 40px 20px; }
-            
-            .hero-buttons { flex-direction: column; width: 100%; max-width: 350px; }
-            .hero-buttons .btn { width: 100%; }
+            .form-wrap, .contact-side, .hero-panel, .security-main, .security-side, .use-case-shell { padding: 25px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; text-align: right; }
+            .whatsapp-float { bottom: 20px; left: 20px; width: 55px; height: 55px; font-size: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Animation Canvas -->
+    <!-- Background Canvas -->
     <canvas id="network-canvas"></canvas>
 
-    <!-- HEADER / HERO -->
-    <section class="hero">
-        <div class="container">
-            <div class="gsap-reveal trust-badge">
-                <i class="fa-solid fa-shield-check"></i> Enterprise Ready
-            </div>
-            <h1 class="gsap-reveal">
-                הטמעת AI בארגון —<br>בצורה פרקטית, בטוחה ומדידה.
-            </h1>
-            <p class="hero-sub gsap-reveal">
-                סדנאות ותהליכי הטמעה לארגונים שרוצים לקצר זמני עבודה, לשפר איכות תוצרים, לבנות נהלי עבודה חכמים ולהפוך את ה-AI לכלי עבודה יומיומי.
-            </p>
-            <div class="hero-buttons gsap-reveal">
-                <a href="#contact" class="btn btn-primary">קביעת שיחת התאמה</a>
-                <a href="#usecases" class="btn btn-outline">צפו בתוצאות מהשטח</a>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#top" aria-label="PractiAI - חזרה לראש העמוד">
+                <span class="brand-mark"><i class="fa-solid fa-sparkles"></i></span>
+                <span class="brand-text">
+                    <span class="brand-title">PractiAI</span>
+                    <span class="brand-subtitle">טל חקוקי | הובלת AI בארגונים</span>
+                </span>
+            </a>
+
+            <div class="header-actions">
+                <a class="header-link" href="#process">איך זה עובד</a>
+                <a class="header-link" href="#solutions">מסלולים</a>
+                <a class="header-link" href="#faq">שאלות נפוצות</a>
+                <a class="btn btn-primary" style="min-height: 44px; padding: 10px 24px; font-size: 1rem;" href="#contact">יצירת קשר</a>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- TRUST STRIP -->
-    <div class="logo-strip">
-        <div class="container">
-            <div class="logo-grid gsap-reveal">
-                <div class="logo-item"><i class="fa-solid fa-building"></i> 200+ ארגונים</div>
-                <div class="logo-item"><i class="fa-solid fa-user-graduate"></i> 1000+ בוגרים</div>
-                <div class="logo-item"><i class="fa-solid fa-briefcase"></i> HEAD OF GENAI @ KIC</div>
-                <div class="logo-item"><i class="fa-solid fa-shield"></i> אבטחת מידע בארגונים</div>
+    <main id="top">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content gsap-reveal">
+                    <span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> הטמעה פרקטית, בטוחה ומדידה</span>
+                    <h1>הטמעת AI בארגון —<br>לא כהרצאה, אלא ככלי עבודה אמיתי.</h1>
+                    <p>
+                        סדנאות ותהליכי הטמעה לארגונים שרוצים לקצר זמני עבודה, לשפר איכות תוצרים, לבנות נהלי עבודה חכמים ולהפוך את ה-AI ליומיומי.
+                    </p>
+                    <div class="btn-row">
+                        <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-calendar-check"></i> קביעת שיחת התאמה</a>
+                        <a class="btn btn-outline" href="#usecases"><i class="fa-solid fa-diagram-project"></i> התוצאות בשטח</a>
+                    </div>
+
+                    <div class="hero-proof">
+                        <article class="proof-card">
+                            <div class="proof-num">200+</div>
+                            <div class="proof-text">ארגונים שעברו הכשרות והטמעה</div>
+                        </article>
+                        <article class="proof-card">
+                            <div class="proof-num">1000+</div>
+                            <div class="proof-text">משתתפים עם כלים מעשיים</div>
+                        </article>
+                        <article class="proof-card">
+                            <div class="proof-num">KIC</div>
+                            <div class="proof-text">Head of GenAI במרכז חדשנות כנרת</div>
+                        </article>
+                    </div>
+                </div>
+
+                <aside class="hero-panel gsap-reveal" aria-label="עקרונות העבודה של PractiAI">
+                    <div class="panel-label">Enterprise AI Enablement</div>
+                    <h2 class="panel-title">ארגונים לא צריכים עוד הדגמה מרשימה. הם צריכים תהליך שאפשר להפעיל ביום שאחרי.</h2>
+                    <p class="panel-copy">
+                        לכן העבודה משלבת בין תכל'ס, תהליכים, תוצרים, והגדרות עבודה בטוחות.
+                    </p>
+
+                    <div class="panel-stack">
+                        <div class="stack-item">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <div>
+                                <strong>שפה עסקית וניהולית</strong>
+                                <span>מיקוד ביעילות, עומסים, איכות תוצרים ו-ROI.</span>
+                            </div>
+                        </div>
+                        <div class="stack-item">
+                            <i class="fa-solid fa-gears"></i>
+                            <div>
+                                <strong>עבודה על משימות אמיתיות</strong>
+                                <span>תהליכים, קבצים ואתגרים שהצוות פוגש בפועל.</span>
+                            </div>
+                        </div>
+                        <div class="stack-item">
+                            <i class="fa-solid fa-file-shield"></i>
+                            <div>
+                                <strong>Governance ואבטחת מידע</strong>
+                                <span>הגדרת גבולות גזרה, התאמה לרגולציה ופרטיות.</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- THE ARCHITECT (About) - REDESIGNED GRID -->
-    <section class="section-padding architect-section">
-        <div class="container">
-            <div class="architect-grid">
+        <!-- TRUST STRIP -->
+        <section class="trust-strip">
+            <div class="container trust-grid gsap-reveal">
+                <div class="trust-item">
+                    <i class="fa-solid fa-building"></i>
+                    <strong>200+ ארגונים</strong>
+                    <span>מגזר עסקי, ציבורי וגלובלי</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <strong>1000+ משתתפים</strong>
+                    <span>הכשרות ותהליכים פרקטיים</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <strong>Head of GenAI @ KIC</strong>
+                    <span>חדשנות, הטמעה וחשיבה ארגונית</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fa-solid fa-shield"></i>
+                    <strong>Security First</strong>
+                    <span>דגש על פרטיות ושימוש אחראי</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section-padding about-section" id="about">
+            <div class="container about-grid">
+                <div class="about-media gsap-reveal">
+                    <div class="about-media-frame">
+                        <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770584538/580669370_10239655425541264_8727551209985263451_n_ttstau.jpg" alt="טל חקוקי מרצה על בינה מלאכותית" />
+                    </div>
+                    <div class="about-card">
+                        <strong>מיקוד ארגוני, לא רק הדרכתי</strong>
+                        <span>המטרה היא לא רק ללמד כלי AI, אלא לבנות שימוש בפועל, תוצרים ודרך עבודה שנשארת בארגון.</span>
+                    </div>
+                </div>
+
+                <div class="about-text gsap-reveal">
+                    <div class="about-profile">
+                        <div class="about-avatar">
+                            <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770577527/unnamed_hmkldf.jpg" alt="טל חקוקי" />
+                        </div>
+                        <div>
+                            <strong>טל חקוקי</strong>
+                            <span>Head of GenAI @ KIC</span>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title" style="text-align: right;">למה ארגונים בוחרים לעבוד איתי?</h2>
+                    <p style="color: var(--text-muted); font-size: 1.15rem; margin-bottom: 30px;">
+                        הגישה שלי פשוטה: טכנולוגיה משרתת ביזנס, לא להיפך. הפוקוס הוא על תרגום ה-AI לצרכים ניהוליים וארגוניים.
+                    </p>
+
+                    <div class="bullet-list">
+                        <article class="bullet-item">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <div>
+                                <strong>ניסיון רוחבי מוכח</strong>
+                                <span>עבודה מול הנהלות, HR, שיווק ורשויות במגזרים מורכבים.</span>
+                            </div>
+                        </article>
+                        <article class="bullet-item">
+                            <i class="fa-solid fa-gears"></i>
+                            <div>
+                                <strong>ארכיטקטורה מקצה לקצה</strong>
+                                <span>חיבור בין הדרכה לבניית אוטומציות, נהלים ותוצרים שנשארים.</span>
+                            </div>
+                        </article>
+                        <article class="bullet-item">
+                            <i class="fa-solid fa-comments-dollar"></i>
+                            <div>
+                                <strong>שפה ניהולית-עסקית</strong>
+                                <span>הדרכות בגובה העיניים שמדברות במונחים של חיסכון ו-ROI.</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section class="section-padding-sm" id="process">
+            <div class="container">
+                <div class="text-center gsap-reveal">
+                    <span class="eyebrow mx-auto"><i class="fa-solid fa-route"></i> מתודולוגיית עבודה</span>
+                    <h2 class="section-title">איך נראה תהליך הטמעה נכון?</h2>
+                    <p class="section-subtitle mx-auto">במקום לקפוץ ישר לכלים, בונים מסלול שמחבר בין צרכים, בטיחות, עבודה מעשית ויישום ביום שאחרי.</p>
+                </div>
+
+                <div class="process-grid">
+                    <article class="process-card gsap-reveal">
+                        <div class="process-step">1</div>
+                        <h3>שיחת אפיון</h3>
+                        <p>מזהים מטרות, מגבלות ארגוניות ואזורי עומס שבהם ל-AI יש ערך אמיתי.</p>
+                    </article>
+                    <article class="process-card gsap-reveal">
+                        <div class="process-step">2</div>
+                        <h3>מיפוי תהליכים</h3>
+                        <p>בוחרים Use Cases רלוונטיים ומתרגמים אותם למשימות ביומיום.</p>
+                    </article>
+                    <article class="process-card gsap-reveal">
+                        <div class="process-step">3</div>
+                        <h3>עבודה מעשית (Hands-On)</h3>
+                        <p>עובדים עם הקבצים, הפרומפטים והאתגרים של הצוות, לא עם דוגמאות גנריות.</p>
+                    </article>
+                    <article class="process-card gsap-reveal">
+                        <div class="process-step">4</div>
+                        <h3>הטמעה ונהלים</h3>
+                        <p>מגדירים גבולות שימוש בטוח ומוודאים שיש לצוות תוצרים לעבוד איתם הלאה.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- USE CASES (TABS) -->
+        <section class="section-padding" id="usecases">
+            <div class="container">
+                <div class="text-center gsap-reveal">
+                    <span class="eyebrow mx-auto"><i class="fa-solid fa-diagram-project"></i> שימושים במחלקות</span>
+                    <h2 class="section-title">איך זה נראה <span class="highlight">בפועל</span> בארגון?</h2>
+                    <p class="section-subtitle mx-auto">בחרו את המחלקה וגלו אילו יכולות תוכלו לבנות יחד.</p>
+                </div>
+
+                <div class="use-case-shell gsap-reveal">
+                    <div class="tabs" role="tablist">
+                        <button class="tab-btn active" role="tab" data-tab="tab-management">הנהלה ואופרציה</button>
+                        <button class="tab-btn" role="tab" data-tab="tab-marketing">שיווק ומכירות</button>
+                        <button class="tab-btn" role="tab" data-tab="tab-hr">משאבי אנוש וגיוס</button>
+                        <button class="tab-btn" role="tab" data-tab="tab-public">מגזר ציבורי ורשויות</button>
+                    </div>
+
+                    <div class="tab-panel active" id="tab-management" role="tabpanel">
+                        <div class="use-case-grid">
+                            <article class="use-card">
+                                <i class="fa-solid fa-file-contract"></i>
+                                <h3>עיבוד מסמכים מורכבים</h3>
+                                <p>סיכום אוטומטי של פגישות דירקטוריון, ניתוח דוחות (PDF/Excel) ושליפת תובנות עסקיות בשניות.</p>
+                            </article>
+                            <article class="use-card">
+                                <i class="fa-solid fa-robot"></i>
+                                <h3>Custom GPTs למנהלים</h3>
+                                <p>יצירת "עוזר דיגיטלי" אישי שמכיר את נהלי החברה והאסטרטגיה ומסייע בהחלטות.</p>
+                            </article>
+                            <article class="use-card">
+                                <i class="fa-solid fa-envelope-open-text"></i>
+                                <h3>אוטומציית תכתובות</h3>
+                                <p>ניסוח תגובות מהירות למשקיעים ולקוחות אסטרטגיים, בשמירה על Tone of Voice של ההנהלה.</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="tab-marketing" role="tabpanel">
+                        <div class="use-case-grid">
+                            <article class="use-card">
+                                <i class="fa-solid fa-pen-nib"></i>
+                                <h3>מפעל תוכן סקיילבילי</h3>
+                                <p>בוטים שכותבים מאמרים, פוסטים וניוזלטרים המבוססים בדיוק על שפת המותג שלכם.</p>
+                            </article>
+                            <article class="use-card">
+                                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                                <h3>מחקר שוק ומתחרים</h3>
+                                <p>איסוף, ניתוח מילות מפתח והשוואת מסרים לקבלת החלטות שיווקיות חכמות.</p>
+                            </article>
+                            <article class="use-card">
+                                <i class="fa-solid fa-language"></i>
+                                <h3>לוקליזציה ופרסונליזציה</h3>
+                                <p>התאמת מסר שיווקי אחד לשווקים שונים, תרגום מדויק וייצור A/B Testing בקלות.</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="tab-hr" role="tabpanel">
+                        <div class="use-case-grid">
+                            <article class="use-card">
+                                <i class="fa-solid fa-users-viewfinder"></i>
+                                <h3>הורדת עומס בגיוס</h3>
+                                <p>סריקת עשרות קורות חיים, מציאת מילות מפתח וסינון מועמדים בצורה אובייקטיבית ומהירה.</p>
+                            </article>
+                            <article class="use-card">
+                                <i class="fa-solid fa-handshake-angle"></i>
+                                <h3>Onboarding אוטומטי</h3>
+                                <p>בניית בוט HR פנימי שעונה 24/7 לשאלות עובדים חדשים על נהלים, פנסיה וחופשות.</p>
+                            </article>
+                            <article class="use-card">
+                                <i class="fa-solid fa-file-signature"></i>
+                                <h3>ניסוח מסמכי HR</h3>
+                                <p>כתיבת תיאורי משרה (JD) מושכים ומיילים לדחיית מועמדים בצורה אמפתית ומהירה.</p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="tab-public" role="tabpanel">
+                        <div class="use-case-grid">
+                            <article class="use-card">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                                <h3>ניסוח מכרזים (RFP)</h3>
+                                <p>קיצור כתיבת מכרזים סבוכים תוך שמירה על שפה משפטית/פורמלית מדויקת.</p>
+                            </article>
+                            <article class="use-card">
+                                <i class="fa-solid fa-file-shield"></i>
+                                <h3>התממה (אנונימיזציה)</h3>
+                                <p>הוצאת פרטים מזהים ממסמכים רגישים (רווחה, חינוך) לפני שיתוף ועיבוד.</p>
+                            </article>
+                            <article class="use-card">
+                                <i class="fa-solid fa-landmark"></i>
+                                <h3>הנגשת שירות לתושב</h3>
+                                <p>עיבוד מסמכי רגולציה וחוקי עזר לתשובות קצרות וברורות עבור מוקד השירות לתושב.</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DELIVERABLES & SECURITY -->
+        <section class="section-padding-sm">
+            <div class="container">
+                <div class="text-center gsap-reveal">
+                    <span class="eyebrow mx-auto"><i class="fa-solid fa-box-open"></i> הערך המוסף</span>
+                    <h2 class="section-title">לא רק ידע, אלא <span class="highlight">תוצרים</span> שנשארים</h2>
+                    <p class="section-subtitle mx-auto">המטרה היא לייצר לארגון בסיס עבודה ממשי ולא רק השראה חולפת.</p>
+                </div>
+
+                <div class="deliverables-grid gsap-reveal">
+                    <article class="deliverable-card">
+                        <i class="fa-solid fa-list-check"></i>
+                        <h3>ספריות פרומפטים</h3>
+                        <p>ניסוחים מוכנים שמאפשרים לצוות לעבוד יעיל גם אחרי הסדנה.</p>
+                    </article>
+                    <article class="deliverable-card">
+                        <i class="fa-solid fa-robot"></i>
+                        <h3>עוזרי AI ייעודיים</h3>
+                        <p>בניית בוטים אישיים (Custom GPTs) שמחוברים לצרכי המחלקה.</p>
+                    </article>
+                    <article class="deliverable-card">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                        <h3>תבניות עבודה</h3>
+                        <p>מסגרות לכתיבת דוחות, מיילים ותהליכים פנימיים חוזרים.</p>
+                    </article>
+                    <article class="deliverable-card">
+                        <i class="fa-solid fa-shield-heart"></i>
+                        <h3>עקרונות Governance</h3>
+                        <p>הכוונה ברורה לעבודה מאובטחת ושמירה על פרטיות המידע הארגוני.</p>
+                    </article>
+                </div>
+
+                <div class="security-wrap gsap-reveal">
+                    <div class="security-main">
+                        <h3><i class="fa-solid fa-shield-halved"></i> Security & Governance First</h3>
+                        <p>התהליך שלנו כולל הגדרת גבולות גזרה ברורים: מה מותר להעלות למודלים ציבוריים, איך מגדירים פרטיות בכלים השונים, והתאמה למדיניות ה-CISO.</p>
+                        <ul class="security-list">
+                            <li><i class="fa-solid fa-check"></i><span>הגדרת שימוש אחראי להפחתת סיכונים וטעויות.</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>התאמה למגבלות ארגוניות ורגישויות של מידע עסקי/ציבורי.</span></li>
+                        </ul>
+                    </div>
+                    <aside class="security-side">
+                        <h4>רלוונטי במיוחד עבור:</h4>
+                        <div class="mini-card">
+                            <strong>ארגונים עם מידע רגיש</strong>
+                            <span>מחלקות עם נהלים פנימיים ונתוני לקוחות.</span>
+                        </div>
+                        <div class="mini-card">
+                            <strong>מגזר ציבורי ורשויות</strong>
+                            <span>סביבות בהן הגנת מידע ורגולציה הן חובה.</span>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOLUTIONS -->
+        <section class="section-padding" id="solutions">
+            <div class="container">
+                <div class="text-center gsap-reveal">
+                    <span class="eyebrow mx-auto"><i class="fa-solid fa-layer-group"></i> ארכיטקטורת פתרונות</span>
+                    <h2 class="section-title">המסלול תלוי בשלב של הארגון</h2>
+                    <p class="section-subtitle mx-auto">ממפגש חשיפה ראשוני ועד לטרנספורמציה אסטרטגית מלאה להנהלה.</p>
+                </div>
+
+                <div class="solutions-grid gsap-reveal">
+                    <article class="solution-card">
+                        <div class="solution-header">
+                            <h3>AI Kickstart</h3>
+                            <p class="sub">יישור קו והזנקה לצוותים שמתחילים מאפס.</p>
+                        </div>
+                        <div class="fit"><strong>מתאים ל:</strong> היכרות פרקטית, מסודרת ובטוחה עם הכלים.</div>
+                        <ul class="solution-list">
+                            <li><i class="fa-solid fa-check"></i><span>מפגש מרוכז על הכלים המרכזיים בשוק.</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>עקרונות כתיבת פרומפטים מדויקים.</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>בטיחות ואבטחת מידע למתחילים.</span></li>
+                        </ul>
+                        <div class="solution-result">
+                            <strong>התוצאה:</strong> צוות שמפסיק לפחד מ-AI ומתחיל לעבוד.
+                        </div>
+                        <a href="#contact" class="btn btn-outline" style="width: 100%;">פרטים נוספים</a>
+                    </article>
+
+                    <article class="solution-card featured">
+                        <div class="solution-badge">הנפוץ ביותר</div>
+                        <div class="solution-header">
+                            <h3 class="highlight">Workflow Builder</h3>
+                            <p class="sub">להחליף עבודה ידנית באוטומציה של AI.</p>
+                        </div>
+                        <div class="fit"><strong>מתאים ל:</strong> צוותי שיווק, HR, אופרציה הפוגשים אתגרים אמיתיים.</div>
+                        <ul class="solution-list">
+                            <li><i class="fa-solid fa-check"></i><span>מיפוי תהליכים לפני יום ההדרכה.</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>עבודה Hands-On על משימות הצוות.</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>הקמת Custom GPTs וספריות לפרומפטים.</span></li>
+                        </ul>
+                        <div class="solution-result">
+                            <strong style="color: var(--accent);">התוצאה:</strong> חיסכון מדיד בשעות עבודה.
+                        </div>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">בדיקת התאמה לארגון</a>
+                    </article>
+
+                    <article class="solution-card">
+                        <div class="solution-header">
+                            <h3>Enterprise Enablement</h3>
+                            <p class="sub">טרנספורמציה מקיפה להנהלות וארגונים.</p>
+                        </div>
+                        <div class="fit"><strong>מתאים ל:</strong> אסטרטגיה, מדיניות מודולרית ו-Governance.</div>
+                        <ul class="solution-list">
+                            <li><i class="fa-solid fa-check"></i><span>מיפוי אסטרטגי ואפיון צרכים חוצה ארגון.</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>הטמעה מדורגת והכשרת מובילי חדשנות.</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>ליווי ובקרה ארוכי טווח להבטחת אימוץ.</span></li>
+                        </ul>
+                        <div class="solution-result">
+                            <strong>התוצאה:</strong> תרבות ארגונית מבוססת AI.
+                        </div>
+                        <a href="#contact" class="btn btn-outline" style="width: 100%;">קביעת שיחת ייעוץ</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section-padding testimonials">
+            <div class="container">
+                <div class="text-center gsap-reveal">
+                    <span class="eyebrow mx-auto"><i class="fa-solid fa-comments"></i> תוצאות מהשטח</span>
+                    <h2 class="section-title">לא רק "הרצאה טובה", אלא אימפקט ארגוני</h2>
+                </div>
                 
-                <!-- Text / Profile Column -->
-                <div class="architect-text gsap-reveal">
-                    
-                    <div class="architect-profile">
-                        <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770577527/unnamed_hmkldf.jpg" alt="Tal Hakoki">
-                        <div class="architect-profile-info">
-                            <h2>נעים להכיר, טל חקוקי</h2>
-                            <p>Head of GenAI @ KIC</p>
+                <div class="testimonials-grid gsap-reveal" style="margin-top: 50px;">
+                    <article class="quote-card">
+                        <div class="quote-company">Global Tech Company</div>
+                        <p class="quote-text">"סדנה עם 70 עובדים מהעולם. רמת הרלוונטיות הכי גבוהה שראיתי. המשתתפים התנסו וטל חשף פונקציות משמעותיות שלא לומדים בשום מקום."</p>
+                        <div class="quote-meta">
+                            <div class="quote-avatar">L</div>
+                            <div><strong>Liri Mor</strong><span>HR / L&D</span></div>
                         </div>
-                    </div>
-
-                    <h3>למה ארגונים בוחרים לעבוד איתי?</h3>
-                    <p>הגישה שלי פשוטה: טכנולוגיה משרתת ביזנס, לא להיפך.</p>
-                    
-                    <div class="mt-8">
-                        <div class="bullet-point">
-                            <div class="bullet-icon"><i class="fa-solid fa-chart-line"></i></div>
-                            <div class="bullet-content">
-                                <h4>ניסיון רוחבי מוכח</h4>
-                                <p>הובלת תהליכי AI בארגונים מורכבים במגזר העסקי והציבורי (רשויות, גלובל, פיננסים).</p>
-                            </div>
+                    </article>
+                    <article class="quote-card">
+                        <div class="quote-company">Enterprise HR Dept</div>
+                        <p class="quote-text">"בכל סדנא מתחדשים כלים שהעובדים מאמצים כדי לייעל את עבודתם. אישית, אני חוסכת שעות עבודה בעזרת הכלים שלמדתי אצל טל."</p>
+                        <div class="quote-meta">
+                            <div class="quote-avatar">A</div>
+                            <div><strong>Adi Pinto</strong><span>HR Manager</span></div>
                         </div>
-                        <div class="bullet-point">
-                            <div class="bullet-icon"><i class="fa-solid fa-gears"></i></div>
-                            <div class="bullet-content">
-                                <h4>ארכיטקטורה מקצה לקצה</h4>
-                                <p>חיבור הדוק בין הדרכה לעובדים, הטמעת נהלים, בניית אוטומציות ויצירת תוצרים שנשארים בחברה.</p>
-                            </div>
+                    </article>
+                    <article class="quote-card">
+                        <div class="quote-company">Management Training</div>
+                        <p class="quote-text">"מופת של ידע, דידקטיות ואכפתיות. להיות תלמיד של טל - שילוב של כיף והרחבת הידע המקצועי שמביא תוצאות מהירות בארגון."</p>
+                        <div class="quote-meta">
+                            <div class="quote-avatar">A</div>
+                            <div><strong>Aharon B.</strong><span>Executive</span></div>
                         </div>
-                        <div class="bullet-point">
-                            <div class="bullet-icon"><i class="fa-solid fa-comments-dollar"></i></div>
-                            <div class="bullet-content">
-                                <h4>שפה ניהולית-עסקית</h4>
-                                <p>הדרכות בגובה העיניים שמדברות במונחים של ROI, ייעול משאבים, וחיסכון ממשי בזמן.</p>
-                            </div>
+                    </article>
+                    <article class="quote-card">
+                        <div class="quote-company">Public / Corporate</div>
+                        <p class="quote-text">"הדרכה ברמה גבוהה, מעשית וברורה. חברי ההנהלה ציינו כי זו היתה מההדרכות הטובות שעברו — מדויקת ומותאמת לצרכים שלנו."</p>
+                        <div class="quote-meta">
+                            <div class="quote-avatar">N</div>
+                            <div><strong>נתן דקלה</strong><span>תמוז</span></div>
                         </div>
-                        <div class="bullet-point">
-                            <div class="bullet-icon"><i class="fa-solid fa-lock"></i></div>
-                            <div class="bullet-content">
-                                <h4>Security & Governance</h4>
-                                <p>התאמה מלאה לתפקידי מפתח בארגון ולהיבטי אבטחת מידע, רגולציה ופרטיות (Data Privacy).</p>
-                            </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section-padding-sm" id="faq">
+            <div class="container">
+                <div class="text-center gsap-reveal">
+                    <span class="eyebrow mx-auto"><i class="fa-solid fa-circle-question"></i> שאלות נפוצות</span>
+                    <h2 class="section-title">שאלות שארגונים שואלים לפני שמתחילים</h2>
+                </div>
+
+                <div class="faq-wrap gsap-reveal" style="margin-top: 50px;">
+                    <article class="faq-item open">
+                        <button class="faq-question" type="button">
+                            <span>האם זה מתאים גם לארגון שרק מתחיל להכיר את העולם?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner"><p>כן. אפשר להתחיל מתהליך בסיסי ומדויק יותר, שנועד לייצר היכרות בטוחה, ורק אז להרחיב.</p></div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Image Column -->
-                <div class="architect-image-wrapper gsap-reveal">
-                    <div class="architect-image">
-                        <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770584538/580669370_10239655425541264_8727551209985263451_n_ttstau.jpg" alt="Tal Hakoki On Stage">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- TANGIBLE USE CASES (Interactive Tabs) -->
-    <section id="usecases" class="section-padding use-cases-section">
-        <div class="container">
-            <h2 class="section-title">איך זה נראה <span class="highlight">בפועל</span> בארגון?</h2>
-            <p class="section-subtitle">בחר את המחלקה הרלוונטית וגלה אילו יכולות נוכל לבנות יחד.</p>
-
-            <!-- TABS NAVIGATION -->
-            <div class="tabs-header gsap-reveal">
-                <button class="tab-btn active" data-tab="tab-management">הנהלה ואופרציה</button>
-                <button class="tab-btn" data-tab="tab-marketing">שיווק ומכירות</button>
-                <button class="tab-btn" data-tab="tab-hr">משאבי אנוש וגיוס</button>
-                <button class="tab-btn" data-tab="tab-public">מגזר ציבורי ורשויות</button>
-            </div>
-
-            <!-- TAB CONTENT: Management -->
-            <div id="tab-management" class="tab-content active">
-                <div class="uc-card">
-                    <i class="fa-solid fa-file-contract uc-icon"></i>
-                    <h4>עיבוד נתונים מורכבים</h4>
-                    <p>סיכום אוטומטי של פגישות דירקטוריון, ניתוח דוחות כספיים (PDF/Excel) ושליפת תובנות עסקיות בתוך שניות במקום שעות.</p>
-                </div>
-                <div class="uc-card">
-                    <i class="fa-solid fa-robot uc-icon"></i>
-                    <h4>Custom GPTs למנהלים</h4>
-                    <p>יצירת "עוזר דיגיטלי" פרטי שמכיר את נהלי החברה, ההיסטוריה העסקית והאסטרטגיה, ומסייע בקבלת החלטות מהירה.</p>
-                </div>
-                <div class="uc-card">
-                    <i class="fa-solid fa-envelope-open-text uc-icon"></i>
-                    <h4>אוטומציית תכתובות</h4>
-                    <p>ניסוח תגובות מורכבות למכרזים, משקיעים או לקוחות אסטרטגיים, תוך שמירה על Tone of Voice מדויק של הנהלת החברה.</p>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>האם התהליך מותאם למחלקות שונות ולא רק להנהלה?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner"><p>בוודאי. העבודה מותאמת לשיווק, HR, אופרציה ורשויות — בהתאם לצרכים, למשימות ולבשלות של הקהל.</p></div>
+                        </div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>מה לגבי אבטחת מידע ופרטיות?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner"><p>זה חלק בלתי נפרד. העבודה כוללת עקרונות שימוש אחראי, הגדרות פרטיות בסיסיות למערכות השונות ויצירת מסלול עבודה בטוח.</p></div>
+                        </div>
+                    </article>
+                    <article class="faq-item">
+                        <button class="faq-question" type="button">
+                            <span>אפשר לקיים גם סדנה חד-פעמית וגם תהליך רחב?</span>
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner"><p>כן, ההחלטה היא שלכם. ההיקף נתפר למידות הארגון באותו הרגע.</p></div>
+                        </div>
+                    </article>
                 </div>
             </div>
+        </section>
 
-            <!-- TAB CONTENT: Marketing -->
-            <div id="tab-marketing" class="tab-content">
-                <div class="uc-card">
-                    <i class="fa-solid fa-pen-nib uc-icon"></i>
-                    <h4>מפעל תוכן סקיילבילי</h4>
-                    <p>בניית בוטים שכותבים פוסטים, מאמרים, וניוזלטרים המבוססים בדיוק על חומרי הגלם והשפה המותגית שלכם.</p>
-                </div>
-                <div class="uc-card">
-                    <i class="fa-solid fa-magnifying-glass-chart uc-icon"></i>
-                    <h4>מחקר שוק ומתחרים</h4>
-                    <p>איסוף, ניתוח והשוואה של קמפיינים, מילות מפתח, ומחירונים של מתחרים בזמן אמת לקבלת החלטות קמפיין חכמות.</p>
-                </div>
-                <div class="uc-card">
-                    <i class="fa-solid fa-language uc-icon"></i>
-                    <h4>לוקליזציה ופרסונליזציה</h4>
-                    <p>התאמה של מסר שיווקי יחיד לשווקים שונים, כולל תרגום קונטקסטואלי, התאמת סלנג, ויצירת וריאציות ל-A/B Testing.</p>
-                </div>
-            </div>
-
-            <!-- TAB CONTENT: HR -->
-            <div id="tab-hr" class="tab-content">
-                <div class="uc-card">
-                    <i class="fa-solid fa-users-viewfinder uc-icon"></i>
-                    <h4>סינון וניתוח קורות חיים</h4>
-                    <p>יצירת פרומפטים מובנים לסריקת עשרות קורות חיים, מציאת מילות מפתח, ודירוג התאמה למשרה בצורה אובייקטיבית.</p>
-                </div>
-                <div class="uc-card">
-                    <i class="fa-solid fa-handshake-angle uc-icon"></i>
-                    <h4>Onboarding אוטומטי</h4>
-                    <p>בניית בוט HR פנימי (על בסיס המידע הארגוני) שעונה לשאלות עובדים חדשים 24/7 (ימי חופשה, פנסיה, נהלים).</p>
-                </div>
-                <div class="uc-card">
-                    <i class="fa-solid fa-file-signature uc-icon"></i>
-                    <h4>ניסוח תיאורי משרה (JD)</h4>
-                    <p>יצירה מהירה של תיאורי משרה מושכים ומדויקים, פוסטים ללינקדאין לעידוד גיוס, ומיילים לדחיית מועמדים בצורה אמפתית.</p>
-                </div>
-            </div>
-
-            <!-- TAB CONTENT: Public Sector -->
-            <div id="tab-public" class="tab-content">
-                <div class="uc-card">
-                    <i class="fa-solid fa-scale-balanced uc-icon"></i>
-                    <h4>ניסוח מכרזים (RFP)</h4>
-                    <p>קיצור זמן ניסוח כתיבת מכרזים מסורבלים תוך שמירה על שפה משפטית/פורמלית תקינה והתבססות על מכרזי עבר.</p>
-                </div>
-                <div class="uc-card">
-                    <i class="fa-solid fa-file-shield uc-icon"></i>
-                    <h4>התממה (אנונימיזציה)</h4>
-                    <p>שימוש בכלים בטוחים לסריקת מסמכים רגישים (רווחה, חינוך) והוצאת פרטים מזהים לפני עיבוד או שיתוף עם גורמים חיצוניים.</p>
-                </div>
-                <div class="uc-card">
-                    <i class="fa-solid fa-landmark uc-icon"></i>
-                    <h4>שירות ומידע לתושב</h4>
-                    <p>עיבוד מסמכי רגולציה וחוקי עזר עירוניים ארוכים לכדי תשובות פשוטות, קצרות וברורות שניתן למסור לתושבים במוקד.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECURITY GUARANTEE -->
-    <section class="container gsap-reveal">
-        <div class="security-banner">
-            <h3><i class="fa-solid fa-shield-halved text-accent"></i> Governance & Security First</h3>
-            <p>לפני שכותבים פרומפט אחד, אנחנו בונים תשתית בטוחה. התהליך שלנו כולל הגדרת גבולות גזרה ברורים לעובדים, למידה מה מותר ומה אסור להעלות למודלים ציבוריים, הגדרות פרטיות מחמירות בכלים השונים, והתאמה למדיניות מערכות המידע (CISO) של הארגון שלכם. אפס סיכונים מיותרים.</p>
-        </div>
-    </section>
-
-    <!-- MODULES (B2B Pricing) -->
-    <section class="section-padding">
-        <div class="container">
-            <h2 class="section-title">ארכיטקטורת הפתרונות</h2>
-            <p class="section-subtitle">בחר את המסלול המתאים לשלב שבו הארגון שלך נמצא.</p>
-            
-            <div class="modules-grid gsap-reveal">
-                
-                <!-- Kickstart -->
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3>Kickstart</h3>
-                        <p>יישור קו והזנקה לצוותים שמתחילים מאפס.</p>
-                    </div>
-                    <ul class="module-features">
-                        <li><i class="fa-solid fa-check"></i> מפגש מרוכז (כ-4 שעות)</li>
-                        <li><i class="fa-solid fa-check"></i> היכרות עם הכלים המובילים בשוק</li>
-                        <li><i class="fa-solid fa-check"></i> עקרונות כתיבת Prompts יעילים</li>
-                        <li><i class="fa-solid fa-check"></i> סדנת בטיחות ואבטחת מידע בסיסית</li>
+        <!-- CONTACT FORM -->
+        <section class="section-padding" id="contact">
+            <div class="container contact-wrap">
+                <aside class="contact-side gsap-reveal">
+                    <span class="eyebrow"><i class="fa-solid fa-paper-plane"></i> שיחת אפיון קצרה</span>
+                    <h3>בואו נבין מה נכון לארגון שלכם עכשיו</h3>
+                    <p>המטרה היא להבין איפה ה-AI באמת יכול לייצר אצלכם ערך ממשי, ומהי נקודת ההתחלה הנכונה.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i><span>מיקוד באתגרי עבודה ועומסים אמיתיים.</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>הכוונה למסלול מתאים (סדנה / יום עבודה / ייעוץ).</span></li>
                     </ul>
-                    <div class="module-result">
-                        <strong>התוצאה:</strong> צוות שמפסיק לפחד מ-AI ומתחיל להשתמש בו ביומיום בצורה בטוחה.
+                    <div class="contact-direct">
+                        <a class="contact-link" href="mailto:hakokit@gmail.com">
+                            <i class="fa-regular fa-envelope"></i><span>hakokit@gmail.com</span>
+                        </a>
+                        <a class="contact-link" href="https://wa.me/972506915269" target="_blank">
+                            <i class="fa-brands fa-whatsapp"></i><span>050-6915269</span>
+                        </a>
+                        <a class="contact-link" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank">
+                            <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
+                        </a>
                     </div>
-                    <a href="#contact" class="btn btn-outline" style="width: 100%;">פרטים נוספים</a>
-                </div>
+                </aside>
 
-                <!-- Workflow Builder -->
-                <div class="module-card featured">
-                    <div class="featured-tag">המסלול הנפוץ ביותר</div>
-                    <div class="module-header">
-                        <h3 class="highlight">Workflow Builder</h3>
-                        <p>למחלקות שרוצות להחליף עבודה ידנית באוטומציה.</p>
+                <div class="form-wrap gsap-reveal">
+                    <div class="success-box" id="form-success" data-fs-success>
+                        <strong>פנייתך התקבלה בהצלחה!</strong>
+                        <span>נחזור אליך בהקדם לקביעת שיחת התאמה.</span>
                     </div>
-                    <ul class="module-features">
-                        <li><i class="fa-solid fa-check"></i> יום הדרכה מלא (Hands-On)</li>
-                        <li><i class="fa-solid fa-check"></i> מיפוי תהליכים לפני הסדנה</li>
-                        <li><i class="fa-solid fa-check"></i> עבודה על קבצים ומשימות בזמן אמת</li>
-                        <li><i class="fa-solid fa-check"></i> הקמת Custom GPTs ייעודיים לצוות</li>
-                        <li><i class="fa-solid fa-check"></i> יצירת ספריית פרומפטים שיתופית</li>
-                    </ul>
-                    <div class="module-result">
-                        <strong style="color: var(--accent);">התוצאה:</strong> חיסכון מדיד של שעות עבודה שבועיות למחלקה ותוצרים מוכנים לשימוש.
-                    </div>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%;">בדיקת התאמה לארגון</a>
-                </div>
 
-                <!-- Enterprise Enablement -->
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3>Enterprise</h3>
-                        <p>טרנספורמציה אסטרטגית מקיפה להנהלות.</p>
-                    </div>
-                    <ul class="module-features">
-                        <li><i class="fa-solid fa-check"></i> מיפוי אסטרטגי ואפיון צרכים חוצה ארגון</li>
-                        <li><i class="fa-solid fa-check"></i> בניית מדיניות AI חברה (Governance)</li>
-                        <li><i class="fa-solid fa-check"></i> הטמעה מודולרית במחלקות השונות</li>
-                        <li><i class="fa-solid fa-check"></i> הכשרת "מובילי חדשנות" (Champions)</li>
-                        <li><i class="fa-solid fa-check"></i> ליווי ובקרה ארוכי טווח</li>
-                    </ul>
-                    <div class="module-result">
-                        <strong>התוצאה:</strong> ארגון שעבר טרנספורמציה דיגיטלית מלאה עם תרבות עבודה מבוססת AI.
-                    </div>
-                    <a href="#contact" class="btn btn-outline" style="width: 100%;">קביעת שיחת ייעוץ</a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS (GRID LAYOUT - BUG FREE) -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">תוצאות מהשטח</h2>
-            <p class="section-subtitle">לא רק "הרצאה טובה", אלא אימפקט ארגוני.</p>
-            
-            <div class="testimonials-grid gsap-reveal">
-                <!-- CS 1 -->
-                <div class="review-card">
-                    <div>
-                        <div class="review-company">Global Tech Company</div>
-                        <p>"הייתה לנו סדנה עם 70 עובדים מכל העולם. רמת הרלוונטיות הייתה הכי גבוהה שראיתי. המשתתפים התנסו בכלים תוך כדי וטל חשף אותנו לפונקציות משמעותיות שלא לומדים בכל סדנה."</p>
-                    </div>
-                    <div class="reviewer-info">
-                        <div class="r-avatar">L</div>
-                        <div class="r-details">
-                            <h4>Liri Mor</h4>
-                            <span>HR / L&D</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CS 2 -->
-                <div class="review-card">
-                    <div>
-                        <div class="review-company">Enterprise HR Dept</div>
-                        <p>"טל הגיע למספר פעמים לסדנת עשירת כלים וידע פרקטי. בכל סדנא מתחדשים עוד ועוד כלים אשר העובדים מאמצים כדי לייעל את עבודתם. אישית, אני חוסכת שעות עבודה בעזרת הכלים שלמדתי."</p>
-                    </div>
-                    <div class="reviewer-info">
-                        <div class="r-avatar">A</div>
-                        <div class="r-details">
-                            <h4>Adi Pinto</h4>
-                            <span>HR Manager</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CS 3 -->
-                <div class="review-card">
-                    <div>
-                        <div class="review-company">Management Training</div>
-                        <p>"השתתפתי בסדנת למנהלים. מופת של ידע, יכולת דידקטית, ואכפתיות אמיתית. להיות תלמיד של טל - שילוב של כיף והרחבת הידע המקצועי שמביא תוצאות מהירות."</p>
-                    </div>
-                    <div class="reviewer-info">
-                        <div class="r-avatar">A</div>
-                        <div class="r-details">
-                            <h4>Aharon B.</h4>
-                            <span>Executive</span>
-                        </div>
-                    </div>
-                </div>
-                
-                 <!-- CS 4 -->
-                <div class="review-card">
-                    <div>
-                        <div class="review-company">Public / Corporate</div>
-                        <p>"חלק מתהליך פיתוח והטמעת AI בחברה. ההדרכה היתה ברמה גבוהה, מעשית וברורה. חברי ההנהלה ציינו כי זו היתה מההדרכות הטובות שעברו — מדויקת ומותאמת לצרכי הארגון."</p>
-                    </div>
-                    <div class="reviewer-info">
-                        <div class="r-avatar">N</div>
-                        <div class="r-details">
-                            <h4>נתן דקלה</h4>
-                            <span>תמוז</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- B2B LEAD GEN FORM (FORMSPREE AJAX) -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title">בואו נדבר על הארגון שלכם</h2>
-            <p class="section-subtitle">מלאו את הפרטים ונחזור אליכם לשיחת אפיון קצרה והתאמת התהליך הנכון עבורכם.</p>
-            
-            <div class="form-container gsap-reveal">
-                
-                <!-- Formspree Success Message -->
-                <div data-fs-success class="bg-green-900/30 border border-green-500/50 rounded-xl p-8 text-center" style="display: none;">
-                    <i class="fa-solid fa-circle-check text-4xl text-green-400 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-white mb-2">פנייתך התקבלה בהצלחה!</h3>
-                    <p class="text-gray-300">תודה רבה. נחזור אליך בהקדם לקביעת שיחת התאמה לארגון.</p>
-                </div>
-
-                <!-- Contact Form connected to Formspree -->
-                <form id="my-form" action="https://formspree.io/f/xqegvdke" method="POST">
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0 20px;">
-                        <div class="form-group">
-                            <label>שם מלא</label>
-                            <input type="text" name="name" class="form-control" required placeholder="ישראל ישראלי" data-fs-field>
-                        </div>
+                    <form id="my-form" action="https://formspree.io/f/xqegvdke" method="POST">
+                        <p class="form-note">מילוי הטופס יעזור להבין מי פונה, באיזה הקשר, ומה הכיוון הנכון להמשך.</p>
                         
-                        <div class="form-group">
-                            <label>אימייל ליצירת קשר</label>
-                            <input type="email" name="email" class="form-control" required placeholder="name@company.com" data-fs-field>
+                        <div class="form-grid">
+                            <div class="field">
+                                <label>שם מלא</label>
+                                <input class="control" type="text" name="name" required placeholder="ישראל ישראלי" data-fs-field>
+                            </div>
+                            <div class="field">
+                                <label>אימייל ליצירת קשר</label>
+                                <input class="control" type="email" name="email" required placeholder="name@company.com" data-fs-field>
+                            </div>
+                            <div class="field">
+                                <label>שם הארגון</label>
+                                <input class="control" type="text" name="company" required placeholder="חברת הייטק / רשות מקומית" data-fs-field>
+                            </div>
+                            <div class="field">
+                                <label>מספר טלפון (אופציונלי)</label>
+                                <input class="control" type="tel" name="phone" placeholder="050-0000000" data-fs-field>
+                            </div>
+                            <div class="field full">
+                                <label>תפקיד / מחלקה</label>
+                                <input class="control" type="text" name="role" required placeholder="מנכ״ל, משאבי אנוש, שיווק..." data-fs-field>
+                            </div>
+                            <div class="field full">
+                                <label>מה האתגר המרכזי שתרצו לפתור בעזרת AI?</label>
+                                <textarea class="control" name="challenge" placeholder="לדוגמה: עומס בכתיבת דוחות, התייעלות צוות, הטמעה ארגונית..." required data-fs-field></textarea>
+                            </div>
                         </div>
-                    </div>
 
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0 20px;">
-                        <div class="form-group">
-                            <label>שם הארגון</label>
-                            <input type="text" name="company" class="form-control" required placeholder="חברת הייטק / רשות מקומית" data-fs-field>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>מספר טלפון (אופציונלי)</label>
-                            <input type="tel" name="phone" class="form-control" placeholder="050-0000000" data-fs-field>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>תפקיד / מחלקה</label>
-                        <input type="text" name="role" class="form-control" required placeholder="מנכ״ל, משאבי אנוש..." data-fs-field>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>מה האתגר המרכזי שתרצו לפתור בעזרת AI?</label>
-                        <textarea name="challenge" class="form-control" placeholder="לדוגמה: אנחנו מבזבזים שעות על כתיבת דוחות, רוצים לייעל תהליכי שירות לקוחות..." data-fs-field></textarea>
-                    </div>
-                    
-                    <div data-fs-error style="display: none;">אופס, אירעה שגיאה בשליחת הטופס. אנא נסו שוב או פנו אלינו בוואטסאפ.</div>
+                        <div class="error-box" id="form-error" data-fs-error>אופס, אירעה שגיאה. אנא נסו שוב או פנו אלינו בוואטסאפ.</div>
+                        <button class="btn btn-primary" type="submit" style="width: 100%; margin-top: 10px;" data-fs-submit-btn>
+                            <i class="fa-solid fa-paper-plane"></i> שליחת פנייה לשיחת אפיון
+                        </button>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px; padding: 20px; font-size: 1.2rem;" data-fs-submit-btn>
-                        שליחת פנייה לשיחת אפיון
-                    </button>
-                    
-                    <div class="form-separator"><span>או לחלופין</span></div>
-                    
-                    <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מהאתר%20בנוגע%20להטמעת%20בינה%20מלאכותית%20בארגון" target="_blank" class="btn btn-whatsapp" style="width: 100%; padding: 20px; font-size: 1.2rem;">
-                        <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> שליחת הודעה מהירה בוואטסאפ
-                    </a>
-                    
-                </form>
+                        <div class="form-separator"><span>או לחלופין</span></div>
+                        <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מהאתר%20בנוגע%20להטמעת%20בינה%20מלאכותית%20בארגון" target="_blank" class="btn btn-whatsapp" style="width: 100%;">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> שליחת הודעה מהירה בוואטסאפ
+                        </a>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-brand">PractiAI</div>
-            <div class="footer-tagline">שותף אסטרטגי להטמעת AI בארגונים | טל חקוקי</div>
-            
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <strong>PractiAI</strong>
+                <span>טל חקוקי | הובלת AI בארגונים</span>
+            </div>
             <div class="footer-links">
-                <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope"></i> hakokit@gmail.com</a>
+                <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope"></i> אימייל</a>
                 <a href="https://wa.me/972506915269" target="_blank"><i class="fa-brands fa-whatsapp"></i> 050-6915269</a>
                 <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
             </div>
-            
-            <div class="footer-copy">
-                &copy; 2026 Tal Hakoki - PractiAI. All Rights Reserved.
-            </div>
+            <div class="footer-copy">© 2026 PractiAI. All Rights Reserved.</div>
         </div>
     </footer>
 
@@ -746,46 +954,52 @@
 
     <!-- SCRIPTS -->
     <script>
-        // Init Formspree using AJAX
+        // Init Formspree (Keep AJAX robust handling)
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
         formspree('initForm', { formElement: '#my-form', formId: 'xqegvdke' });
 
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // 1. Refined Basic Reveal
+            // GSAP Animations
             gsap.utils.toArray('.gsap-reveal').forEach(elem => {
                 gsap.fromTo(elem, 
-                    { opacity: 0, y: 50 },
-                    { opacity: 1, y: 0, duration: 1.2, ease: 'power4.out', scrollTrigger: {
+                    { opacity: 0, y: 40 },
+                    { opacity: 1, y: 0, duration: 1, ease: 'power3.out', scrollTrigger: {
                         trigger: elem,
                         start: "top 85%"
                     }}
                 );
             });
 
-            // 2. Tabs Logic
+            // Tabs Logic
             const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
+            const tabContents = document.querySelectorAll('.tab-panel');
 
             tabBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // Remove active from all
                     tabBtns.forEach(b => b.classList.remove('active'));
                     tabContents.forEach(c => c.classList.remove('active'));
                     
-                    // Add active to clicked
                     btn.classList.add('active');
                     const targetId = btn.getAttribute('data-tab');
                     document.getElementById(targetId).classList.add('active');
                 });
             });
 
-            // 3. Subtle Network Background (Optimized)
+            // FAQ Logic
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const btn = item.querySelector('.faq-question');
+                btn.addEventListener('click', () => {
+                    item.classList.toggle('open');
+                });
+            });
+
+            // Interactive Background Canvas
             const canvas = document.getElementById('network-canvas');
             const ctx = canvas.getContext('2d');
-            let width, height;
-            let particles = [];
+            let width, height, particles = [];
 
             function resize() {
                 width = canvas.width = window.innerWidth;
@@ -794,7 +1008,6 @@
             window.addEventListener('resize', resize);
             resize();
 
-            // Reduce particle count on mobile to save battery
             const particleCount = window.innerWidth < 768 ? 20 : 40;
 
             class Particle {
@@ -805,8 +1018,7 @@
                     this.vy = (Math.random() - 0.5) * 0.2;
                 }
                 update() {
-                    this.x += this.vx;
-                    this.y += this.vy;
+                    this.x += this.vx; this.y += this.vy;
                     if (this.x < 0 || this.x > width) this.vx *= -1;
                     if (this.y < 0 || this.y > height) this.vy *= -1;
                 }
@@ -823,17 +1035,13 @@
             function animate() {
                 ctx.clearRect(0, 0, width, height);
                 particles.forEach((p, index) => {
-                    p.update();
-                    p.draw();
-                    // Check connections only with subsequent particles to save calculations
+                    p.update(); p.draw();
                     for (let j = index + 1; j < particles.length; j++) {
                         const p2 = particles[j];
-                        const dx = p.x - p2.x;
-                        const dy = p.y - p2.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        if (distance < 150) {
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 150) {
                             ctx.beginPath();
-                            ctx.strokeStyle = `rgba(222, 255, 154, ${0.15 - distance/1000})`;
+                            ctx.strokeStyle = `rgba(222, 255, 154, ${0.15 - dist/1000})`;
                             ctx.lineWidth = 0.5;
                             ctx.moveTo(p.x, p.y);
                             ctx.lineTo(p2.x, p2.y);
