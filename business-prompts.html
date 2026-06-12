@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ספריית פרומפטים לבעלי עסקים ויוצרי תוכן | PractiAI - טל חקוקי</title>
+    <meta name="description" content="ספריית פרומפטים חינמית לבעלי עסקים ויוצרי תוכן. תבניות AI חכמות לאסטרטגיה, שיווק, כתיבת תוכן, מכירות והתייעלות.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:title" content="ספריית פרומפטים לבעלי עסקים ויוצרי תוכן | PractiAI">
+    <meta property="og:description" content="לעבוד חכם יותר, לשווק מדויק יותר ולבנות עסק יציב בעזרת תבניות AI מוכנות לעבודה.">
+    <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
+    <meta property="og:url" content="https://practiai.github.io/LP/business-prompts.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --bg: #06060e;
+            --bg-card: rgba(12, 14, 24, 0.65);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.14);
+            --cyan: #00d4ff;
+            --violet: #8b5cf6;
+            --rose: #f43f5e;
+            --grad: linear-gradient(135deg, var(--violet), var(--rose)); /* Adjusted for creators */
+            --grad-full: linear-gradient(135deg, var(--cyan), var(--violet), var(--rose));
+            --text: #f1f5f9;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --r-sm: 12px; --r-md: 20px; --r-lg: 28px; --r-xl: 36px;
+            --header-h: 80px;
+            --container: 1280px;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:clip}
+        body{background:var(--bg);color:var(--text);font-family:'Heebo',sans-serif;line-height:1.7;overflow-x:clip;-webkit-font-smoothing:antialiased}
+        ::selection{background:rgba(244,63,94,.4);color:#fff}
+        ::-webkit-scrollbar{width:5px}
+        ::-webkit-scrollbar-track{background:var(--bg)}
+        ::-webkit-scrollbar-thumb{background:rgba(244,63,94,.4);border-radius:99px}
+        img,video{max-width:100%;display:block}
+        a{color:inherit;text-decoration:none}
+        button,input,select,textarea{font:inherit}
+
+        .container{max-width:var(--container);margin:0 auto;padding:0 28px;width:100%}
+        .text-center{text-align:center}
+        .mx-auto{margin-inline:auto}
+        .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+        .sec-label{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:999px;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);font-size:.9rem;font-weight:700;color:var(--rose);margin-bottom:20px}
+        .sec-heading{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:1.2rem}
+        .sec-desc{font-size:clamp(1.05rem,2vw,1.25rem);color:var(--text2);max-width:700px;font-weight:400}
+
+        /* ===== NEURAL CANVAS ===== */
+        #neuralCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;will-change:transform}
+
+        /* ===== BUTTONS ===== */
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 36px;font-size:1.05rem;font-weight:700;border-radius:var(--r-sm);border:none;cursor:pointer;transition:all .4s cubic-bezier(.19,1,.22,1);position:relative;overflow:hidden;text-align:center}
+        .btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 25px rgba(244,63,94,.2)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 35px rgba(244,63,94,.35)}
+        .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(12px)}
+        .btn-ghost:hover{border-color:var(--rose);color:var(--rose);transform:translateY(-3px)}
+        .btn-wa{background:#25d366;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.25)}
+        .btn-wa:hover{background:#20b858;transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,.4)}
+        
+        /* ===== HEADER ===== */
+        .site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);transition:all .4s ease; background:rgba(6,6,14,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border)}
+        .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+        .brand{display:flex;align-items:center;gap:14px}
+        .brand-icon{width:44px;height:44px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--grad);color:#fff;font-size:1.1rem}
+        .brand-name{font-size:1.2rem;font-weight:900;letter-spacing:-.5px}
+        .brand-sub{font-size:.78rem;color:var(--text3);font-weight:500}
+        .nav-links{display:flex;align-items:center;gap:8px}
+        .nav-link{padding:10px 18px;border-radius:10px;color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s}
+        .nav-link:hover{color:#fff;background:rgba(255,255,255,.04)}
+        .nav-cta{padding:10px 24px;border-radius:10px;background:var(--grad);color:#fff;font-weight:700;font-size:.95rem;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(244,63,94,.3)}
+
+        /* ===== HERO FOR PROMPTS ===== */
+        .page-hero { padding: calc(var(--header-h) + 60px) 0 60px; position: relative; text-align: center; border-bottom: 1px solid var(--border); background: radial-gradient(circle at top, rgba(244,63,94,0.08) 0%, transparent 60%);}
+        .page-hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+        .page-hero p { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--text2); max-width: 650px; margin: 0 auto; }
+
+        /* ===== PROMPT LIBRARY LAYOUT ===== */
+        .library-wrap { padding: 60px 0; }
+        .library-grid { display: grid; grid-template-columns: 280px 1fr; gap: 50px; align-items: start; }
+        
+        /* SIDEBAR NAV */
+        .lib-sidebar { position: -webkit-sticky; position: sticky; top: calc(var(--header-h) + 30px); max-height: calc(100vh - var(--header-h) - 60px); overflow-y: auto; padding-left: 10px; }
+        .lib-sidebar::-webkit-scrollbar { width: 3px; }
+        .lib-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+        .sidebar-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; color: var(--text); display: flex; align-items: center; gap: 10px;}
+        .sidebar-title i { color: var(--rose); }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+        .sidebar-link { padding: 10px 16px; border-radius: 8px; color: var(--text2); font-size: 0.95rem; font-weight: 500; transition: all 0.3s; border: 1px solid transparent; }
+        .sidebar-link:hover, .sidebar-link.active { background: rgba(244,63,94,.08); color: #fff; border-color: rgba(244,63,94,.2); font-weight: 600;}
+
+        /* CONTENT AREA */
+        .lib-content { display: flex; flex-direction: column; gap: 60px; }
+        
+        /* Info Box */
+        .info-box { background: linear-gradient(135deg, rgba(139,92,246,.05), rgba(244,63,94,.05)); border: 1px solid rgba(244,63,94,.2); border-radius: var(--r-lg); padding: 30px; }
+        .info-box h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: var(--rose); }
+        .info-box p { color: var(--text2); margin-bottom: 15px; font-size: 1.05rem; }
+        .info-box ul { list-style: none; display: grid; gap: 10px; margin-bottom: 20px;}
+        .info-box ul li { display: flex; gap: 10px; align-items: center; }
+        .info-box ul li i { color: var(--violet); }
+        .info-alert { background: rgba(244, 63, 94, 0.1); border-right: 3px solid var(--rose); padding: 15px 20px; border-radius: 8px; color: #fff; font-size: 0.95rem; }
+
+        /* Prompt Categories */
+        .prompt-category { scroll-margin-top: calc(var(--header-h) + 40px); }
+        .prompt-category h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px;}
+        .prompt-category h2 i { color: var(--rose); margin-left: 10px; }
+        .prompts-grid { display: grid; gap: 24px; }
+
+        /* Individual Prompt Card */
+        .prompt-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 24px; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .prompt-card:hover { border-color: rgba(244,63,94,0.3); transform: translateY(-3px); }
+        .prompt-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; gap: 10px; flex-wrap: wrap;}
+        .prompt-card h3 { font-size: 1.25rem; font-weight: 700; color: #fff; margin: 0;}
+        .prompt-card p.goal { color: var(--text2); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; border-right: 2px solid rgba(244,63,94,0.3); padding-right: 12px;}
+        
+        .prompt-box-wrap { position: relative; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden; margin-bottom: 16px;}
+        .prompt-header { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 8px 16px; }
+        .prompt-badge { font-size: 0.8rem; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .copy-btn { background: rgba(255,255,255,0.08); border: 1px solid transparent; color: var(--text); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .copy-btn:hover { background: rgba(244,63,94,0.2); border-color: rgba(244,63,94,0.4); color: #fff; }
+        .copy-btn.success { background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); color: #10b981; }
+        
+        .prompt-text { padding: 20px; font-size: 1.05rem; line-height: 1.8; color: #e2e8f0; white-space: pre-wrap; }
+        .prompt-text .var { display: inline-block; color: var(--rose); background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 4px; padding: 0 6px; font-weight: 700; margin: 0 2px; }
+
+        .follow-up-qs { background: rgba(255,255,255,0.02); border-radius: 8px; padding: 16px; margin-top: 16px; border: 1px solid rgba(255,255,255,0.05);}
+        .follow-up-qs strong { display: block; font-size: 0.9rem; color: var(--violet); margin-bottom: 8px; font-weight: 600;}
+        .follow-up-qs ul { list-style: none; padding-right: 0;}
+        .follow-up-qs ul li { font-size: 0.9rem; color: var(--text2); margin-bottom: 4px; position: relative; padding-right: 14px;}
+        .follow-up-qs ul li::before { content: '•'; position: absolute; right: 0; color: var(--rose); }
+
+        /* The Golden Rule */
+        .golden-rule { background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(244,63,94,0.1)); border: 1px solid rgba(244,63,94,0.2); border-radius: var(--r-xl); padding: 40px; text-align: center; margin-top: 40px; }
+        .golden-rule i { font-size: 3rem; color: var(--rose); margin-bottom: 20px; }
+        .golden-rule h2 { font-size: 2rem; font-weight: 900; margin-bottom: 20px; }
+        .golden-rule p { font-size: 1.15rem; color: var(--text); margin-bottom: 15px; font-weight: 500;}
+        .golden-rule .highlight { color: var(--rose); font-weight: 800; }
+        .rule-list { text-align: right; max-width: 500px; margin: 20px auto; background: rgba(0,0,0,0.3); padding: 20px 30px; border-radius: var(--r-md); border-right: 3px solid var(--violet);}
+        .rule-list p { font-size: 1.05rem; color: var(--text2); margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px;}
+
+        /* Workshop CTA */
+        .cta-section { padding: 80px 0; text-align: center; border-top: 1px solid var(--border); background: linear-gradient(0deg, rgba(6,6,14,1) 0%, rgba(12,14,24,0) 100%);}
+        .cta-box { max-width: 700px; margin: 0 auto; }
+
+        /* ===== FOOTER & WA FLOAT ===== */
+        .site-footer{padding:50px 0;border-top:1px solid var(--border);background:rgba(0,0,0,.5)}
+        .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+        .footer-brand strong{display:block;font-size:1.3rem;font-weight:900;margin-bottom:4px}
+        .footer-brand span{color:var(--text3);font-size:.95rem}
+        .footer-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+        .footer-links a{padding:12px 20px;border-radius:var(--r-sm);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s;display:flex;align-items:center;gap:8px}
+        .footer-links a:hover{color:var(--rose);border-color:rgba(244,63,94,.2)}
+        .footer-copy{color:var(--text3);font-size:.9rem}
+        .wa-float{position:fixed;bottom:30px;left:30px;z-index:90;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:30px;box-shadow:0 8px 25px rgba(37,211,102,.4);transition:all .3s}
+        .wa-float:hover{transform:scale(1.1) translateY(-4px);box-shadow:0 12px 35px rgba(37,211,102,.5);color:#fff}
+        .wa-float::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,.4);animation:waPulse 2s ease-in-out infinite}
+        @keyframes waPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.2);opacity:0}}
+
+        /* Responsive */
+        @media(max-width: 992px) {
+            .library-grid { grid-template-columns: 1fr; gap: 30px;}
+            .lib-sidebar { position: static; max-height: none; overflow-x: auto; white-space: nowrap; padding-bottom: 15px; }
+            .sidebar-nav { flex-direction: row; }
+            .sidebar-link { flex-shrink: 0; }
+        }
+        @media(max-width:768px){
+            :root{--header-h:70px}
+            .page-hero h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+            .nav-links{display:none}
+            .btn-row { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="neuralCanvas" aria-hidden="true"></canvas>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+        <a class="brand" href="index.html">
+            <span class="brand-icon" style="background: var(--grad);"><i class="fa-solid fa-bolt-lightning"></i></span>
+            <div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי | חזרה לעמוד הראשי</div></div>
+        </a>
+        <nav class="nav-links">
+            <a class="nav-link" href="index.html#process">תהליך עבודה</a>
+            <a class="nav-link" href="index.html#solutions">הכשרות והטמעות</a>
+            <a class="nav-cta" href="#contact-bottom">יצירת קשר</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="sec-label mx-auto"><i class="fa-solid fa-rocket"></i> ארגז כלים לעצמאים</span>
+            <h1>ספריית פרומפטים <span class="grad-text">לבעלי עסקים ויוצרי תוכן</span></h1>
+            <p>לעבוד חכם יותר, לשווק מדויק יותר ולבנות עסק יציב בעזרת תבניות AI מוכנות לפעולה.</p>
+        </div>
+    </section>
+
+    <section class="library-wrap">
+        <div class="container library-grid">
+            
+            <!-- SIDEBAR -->
+            <aside class="lib-sidebar">
+                <div class="sidebar-title"><i class="fa-solid fa-list-ul"></i> קטגוריות</div>
+                <nav class="sidebar-nav">
+                    <a href="#how-to" class="sidebar-link active">איך משתמשים?</a>
+                    <a href="#sec-strategy" class="sidebar-link">אסטרטגיה ובידול עסקי</a>
+                    <a href="#sec-marketing" class="sidebar-link">שיווק, תוכן ומיתוג</a>
+                    <a href="#sec-creators" class="sidebar-link">ליוצרי תוכן (Creators)</a>
+                    <a href="#sec-sales" class="sidebar-link">מכירות ושירות לקוחות</a>
+                    <a href="#sec-management" class="sidebar-link">תפעול, נתונים ותכנון</a>
+                    <a href="#sec-efficiency" class="sidebar-link">התייעלות ושימור ידע</a>
+                    <a href="#golden-rule" class="sidebar-link" style="color: var(--rose);">כלל הזהב</a>
+                </nav>
+            </aside>
+
+            <!-- CONTENT -->
+            <div class="lib-content">
+                
+                <!-- HOW TO USE -->
+                <div id="how-to" class="info-box prompt-category">
+                    <h3>איך להשתמש בפרומפטים?</h3>
+                    <p>בכל פרומפט שתעתיקו מפה, החליפו את הסוגריים המרובעים בפרטים הספציפיים שלכם. ככל שתספקו הקשר מדויק יותר, ה-AI יעבוד עבורכם טוב יותר:</p>
+                    <ul>
+                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[סוג העסק]</span> | <span class="var">[קהל היעד]</span> | <span class="var">[המוצר/השירות]</span></li>
+                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[המטרה]</span> | <span class="var">[הבעיה]</span> | <span class="var">[הסגנון]</span></li>
+                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[הפלטפורמה]</span> | <span class="var">[המחיר]</span> | <span class="var">[השלב העסקי]</span></li>
+                    </ul>
+                    <div class="info-alert" style="margin-top: 20px;">
+                        <strong><i class="fa-solid fa-shield-halved"></i> דיסקרטיות עסקית:</strong> אין להזין מידע רגיש, סודי, פרטים אישיים של לקוחות או נתונים פיננסיים רגישים שלא נכון לשתף עם מודלי שפה.
+                    </div>
+                </div>
+
+                <!-- STRATEGY & DIFFERENTIATION -->
+                <section id="sec-strategy" class="prompt-category">
+                    <h2><i class="fa-solid fa-chess"></i> אסטרטגיה ובידול עסקי</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>מפת הזדמנויות לשימוש ב-AI בעסק</h3>
+                            </div>
+                            <p class="goal">לזהות איפה AI יכול לחסוך זמן, לשפר שיווק, להגדיל מכירות ולייעל תפעול.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני בעל/ת עסק בתחום [תחום העסק]. העסק שלי מציע [מוצרים/שירותים] לקהל יעד של [קהל יעד]. המשימות המרכזיות שלי בעסק הן [לפרט], והאתגרים המרכזיים שלי כרגע הם [לפרט]. צור עבורי מפת הזדמנויות לשימוש ב-AI בעסק. חלק את ההזדמנויות לשיווק, מכירות, שירות לקוחות, יצירת תוכן, תפעול, ניהול ידע, פיתוח מוצרים ושיפור קבלת החלטות. עבור כל הזדמנות כתוב דוגמה מעשית, רמת קושי, ערך עסקי צפוי וצעד ראשון ליישום.">אני בעל/ת עסק בתחום <span class="var">[תחום העסק]</span>. העסק שלי מציע <span class="var">[מוצרים/שירותים]</span> לקהל יעד של <span class="var">[קהל יעד]</span>. המשימות המרכזיות שלי בעסק הן <span class="var">[לפרט]</span>, והאתגרים המרכזיים שלי כרגע הם <span class="var">[לפרט]</span>. צור עבורי מפת הזדמנויות לשימוש ב-AI בעסק. חלק את ההזדמנויות לשיווק, מכירות, שירות לקוחות, יצירת תוכן, תפעול, ניהול ידע, פיתוח מוצרים ושיפור קבלת החלטות. עבור כל הזדמנות כתוב דוגמה מעשית, רמת קושי, ערך עסקי צפוי וצעד ראשון ליישום.</div>
+                            </div>
+                            <div class="follow-up-qs">
+                                <strong>שאלות המשך מומלצות:</strong>
+                                <ul>
+                                    <li>בחר את 5 השימושים שהכי כדאי לי להתחיל מהם.</li>
+                                    <li>בנה לי תוכנית AI עסקית ל-30 יום.</li>
+                                    <li>הצע אילו משימות כדאי לי להפוך לתבניות קבועות.</li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>חידוד בידול עסקי</h3>
+                            </div>
+                            <p class="goal">להבין מה מייחד את העסק ולנסח מסר ברור.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני בעל/ת עסק בתחום [תחום]. אני מציע/ה [מוצר/שירות] ל[קהל יעד]. המתחרים שלי הם בעיקר [לתאר], והלקוחות בוחרים בי בגלל [לפרט אם ידוע]. עזור לי לחדד את הבידול העסקי שלי. כתוב מה הערך המרכזי שאני מביא/ה, מה מייחד אותי, איזה כאב אני פותר/ת, למה שלקוחות יבחרו בי, ואיך לנסח את זה במשפט שיווקי קצר וברור.">אני בעל/ת עסק בתחום <span class="var">[תחום]</span>. אני מציע/ה <span class="var">[מוצר/שירות]</span> ל<span class="var">[קהל יעד]</span>. המתחרים שלי הם בעיקר <span class="var">[לתאר]</span>, והלקוחות בוחרים בי בגלל <span class="var">[לפרט אם ידוע]</span>. עזור לי לחדד את הבידול העסקי שלי. כתוב מה הערך המרכזי שאני מביא/ה, מה מייחד אותי, איזה כאב אני פותר/ת, למה שלקוחות יבחרו בי, ואיך לנסח את זה במשפט שיווקי קצר וברור.</div>
+                            </div>
+                            <div class="follow-up-qs">
+                                <strong>שאלות המשך מומלצות:</strong>
+                                <ul>
+                                    <li>צור 5 ניסוחים שונים לבידול שלי.</li>
+                                    <li>הפוך את הבידול לטקסט לעמוד הבית.</li>
+                                    <li>צור גרסה קצרה שמתאימה לביו באינסטגרם או לינקדאין.</li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>הגדרת קהל יעד מדויק</h3>
+                            </div>
+                            <p class="goal">לעבור מ"כולם יכולים להיות לקוחות שלי" לקהל יעד ממוקד וברור.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="העסק שלי הוא [תיאור העסק]. אני מציע/ה [מוצר/שירות]. עזור לי להגדיר את קהלי היעד המדויקים ביותר עבור העסק. עבור כל קהל יעד כתוב מי הוא, מה הבעיה או הרצון שלו, מה חשוב לו, מה מונע ממנו לקנות, איזה מסר ידבר אליו, ואיזה מוצר או שירות שלי הכי מתאים לו.">העסק שלי הוא <span class="var">[תיאור העסק]</span>. אני מציע/ה <span class="var">[מוצר/שירות]</span>. עזור לי להגדיר את קהלי היעד המדויקים ביותר עבור העסק. עבור כל קהל יעד כתוב מי הוא, מה הבעיה או הרצון שלו, מה חשוב לו, מה מונע ממנו לקנות, איזה מסר ידבר אליו, ואיזה מוצר או שירות שלי הכי מתאים לו.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>פיתוח הצעת ערך למוצר או שירות</h3>
+                            </div>
+                            <p class="goal">להפוך שירות או מוצר להצעה ברורה ומשכנעת.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני מוכר/ת [מוצר/שירות] לקהל יעד של [קהל יעד]. הבעיה שהמוצר/שירות פותר היא [בעיה]. עזור לי לנסח הצעת ערך ברורה ומשכנעת. כלול את הכאב של הלקוח, הפתרון שאני מציע/ה, התוצאה שהלקוח יקבל, הסיבה להאמין לי, ומה הופך את ההצעה לכדאית.">אני מוכר/ת <span class="var">[מוצר/שירות]</span> לקהל יעד של <span class="var">[קהל יעד]</span>. הבעיה שהמוצר/שירות פותר היא <span class="var">[בעיה]</span>. עזור לי לנסח הצעת ערך ברורה ומשכנעת. כלול את הכאב של הלקוח, הפתרון שאני מציע/ה, התוצאה שהלקוח יקבל, הסיבה להאמין לי, ומה הופך את ההצעה לכדאית.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>בניית חבילות שירות</h3>
+                            </div>
+                            <p class="goal">לארוז שירותים בצורה ברורה שקל ללקוח להבין ולקנות.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני נותן/ת שירות בתחום [תחום]. השירותים שאני מציע/ה כיום הם [לפרט]. עזור לי לבנות 3 חבילות שירות: בסיסית, מתקדמת ופרימיום. עבור כל חבילה כתוב למי היא מתאימה, מה היא כוללת, מה הערך המרכזי שלה, איך להציג אותה ללקוח, ואילו תוספות אפשר להציע.">אני נותן/ת שירות בתחום <span class="var">[תחום]</span>. השירותים שאני מציע/ה כיום הם <span class="var">[לפרט]</span>. עזור לי לבנות 3 חבילות שירות: בסיסית, מתקדמת ופרימיום. עבור כל חבילה כתוב למי היא מתאימה, מה היא כוללת, מה הערך המרכזי שלה, איך להציג אותה ללקוח, ואילו תוספות אפשר להציע.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- MARKETING, CONTENT & BRANDING -->
+                <section id="sec-marketing" class="prompt-category">
+                    <h2><i class="fa-solid fa-bullhorn"></i> שיווק, תוכן ומיתוג</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>תוכנית שיווק חודשית</h3>
+                            </div>
+                            <p class="goal">לבנות תוכנית שיווק פרקטית ולא אקראית לשוטף.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני בעל/ת עסק בתחום [תחום העסק]. קהל היעד שלי הוא [קהל יעד]. המטרה שלי החודש היא [יותר לידים / יותר מכירות / חשיפה / השקת מוצר / חיזוק מותג]. צור עבורי תוכנית שיווק חודשית הכוללת נושאי תוכן, פעולות שיווקיות, מסרים מרכזיים, הצעות מכירה, ערוצים מומלצים, תדירות פרסום, ורעיונות לפעולות פשוטות שאוכל לבצע בכל שבוע.">אני בעל/ת עסק בתחום <span class="var">[תחום העסק]</span>. קהל היעד שלי הוא <span class="var">[קהל יעד]</span>. המטרה שלי החודש היא <span class="var">[המטרה]</span>. צור עבורי תוכנית שיווק חודשית הכוללת נושאי תוכן, פעולות שיווקיות, מסרים מרכזיים, הצעות מכירה, ערוצים מומלצים, תדירות פרסום, ורעיונות לפעולות פשוטות שאוכל לבצע בכל שבוע.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>רעיונות לפוסטים לעסק</h3>
+                            </div>
+                            <p class="goal">ליצור בנק רעיונות לפרסום שוטף במקום לשבור את הראש.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני בעל/ת עסק בתחום [תחום]. קהל היעד שלי הוא [קהל יעד]. אני רוצה ליצור תוכן שיעזור לי לבנות אמון, להראות מקצועיות, לתת ערך ולייצר פניות. צור לי 30 רעיונות לפוסטים. חלק אותם לקטגוריות: ערך מקצועי, מאחורי הקלעים, סיפורי לקוח, טעויות נפוצות, מיתוסים, שאלות ותשובות, מכירה רכה, והיכרות אישית.">אני בעל/ת עסק בתחום <span class="var">[תחום]</span>. קהל היעד שלי הוא <span class="var">[קהל יעד]</span>. אני רוצה ליצור תוכן שיעזור לי לבנות אמון, להראות מקצועיות, לתת ערך ולייצר פניות. צור לי 30 רעיונות לפוסטים. חלק אותם לקטגוריות: ערך מקצועי, מאחורי הקלעים, סיפורי לקוח, טעויות נפוצות, מיתוסים, שאלות ותשובות, מכירה רכה, והיכרות אישית.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>כתיבת פוסט מקצועי</h3>
+                            </div>
+                            <p class="goal">ליצור פוסט איכותי שמביא ערך, מייצר אמון ולא נשמע רובוטי.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="כתוב לי פוסט מקצועי בנושא [נושא] עבור קהל יעד של [קהל יעד]. מטרת הפוסט היא [לתת ערך / ליצור אמון / להניע לפנייה / להסביר טעות נפוצה / להציג תובנה]. הפוסט צריך להיות ברור, מעניין, לא מכירתי מדי, עם פתיחה חזקה, גוף שנותן ערך, וסיום עם שאלה או קריאה לפעולה.">כתוב לי פוסט מקצועי בנושא <span class="var">[נושא]</span> עבור קהל יעד של <span class="var">[קהל יעד]</span>. מטרת הפוסט היא <span class="var">[המטרה]</span>. הפוסט צריך להיות ברור, מעניין, לא מכירתי מדי, עם פתיחה חזקה, גוף שנותן ערך, וסיום עם שאלה או קריאה לפעולה.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>הפיכת רעיון אחד לחבילת תוכן (מיחזור)</h3>
+                            </div>
+                            <p class="goal">להוציא הרבה יותר תוכן מכל רעיון בודד.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="יש לי רעיון תוכן בנושא [נושא]. הפוך אותו לחבילת תוכן מלאה הכוללת: פוסט לינקדאין, פוסט אינסטגרם, סטורי קצר, תסריט לריל/סרטון קצר, ניוזלטר קצר, הודעת וואטסאפ ללקוחות, ו-5 כותרות אפשריות. שמור על מסר אחיד אבל התאם את הסגנון לכל פורמט.">יש לי רעיון תוכן בנושא <span class="var">[נושא]</span>. הפוך אותו לחבילת תוכן מלאה הכוללת: פוסט לינקדאין, פוסט אינסטגרם, סטורי קצר, תסריט לריל/סרטון קצר, ניוזלטר קצר, הודעת וואטסאפ ללקוחות, ו-5 כותרות אפשריות. שמור על מסר אחיד אבל התאם את הסגנון לכל פורמט.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- FOR CONTENT CREATORS -->
+                <section id="sec-creators" class="prompt-category">
+                    <h2><i class="fa-solid fa-video"></i> ליוצרי תוכן (Creators)</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>בניית עמודי תוכן (Content Pillars)</h3>
+                            </div>
+                            <p class="goal">לבנות אסטרטגיית תוכן סביב נושאים קבועים המזוהים איתכם.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני יוצר/ת תוכן בתחום [תחום]. הקהל שלי הוא [קהל יעד]. המטרה שלי היא [לגדול בקהל / לבנות סמכות / למכור מוצר / לחזק קהילה]. צור עבורי עמודי תוכן מרכזיים. עבור כל עמוד תוכן כתוב מה הנושא, למה הוא חשוב לקהל שלי, אילו סוגי פוסטים אפשר ליצור סביבו, אילו שאלות הקהל שואל, ואילו תכנים יכולים להוביל למכירה או לפנייה.">אני יוצר/ת תוכן בתחום <span class="var">[תחום]</span>. הקהל שלי הוא <span class="var">[קהל יעד]</span>. המטרה שלי היא <span class="var">[המטרה]</span>. צור עבורי עמודי תוכן מרכזיים (Pillars). עבור כל עמוד תוכן כתוב מה הנושא, למה הוא חשוב לקהל שלי, אילו סוגי פוסטים אפשר ליצור סביבו, אילו שאלות הקהל שואל, ואילו תכנים יכולים להוביל למכירה או לפנייה.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>תסריט לסרטון קצר (Reel / TikTok / Shorts)</h3>
+                            </div>
+                            <p class="goal">ליצור סרטונים קצרים עם Hook חזק ופתיחה שעוצרת את הגלילה.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור לי תסריט לסרטון קצר של עד [30/60/90] שניות בנושא [נושא]. הקהל הוא [קהל יעד]. מטרת הסרטון היא [לתת ערך / לעורר הזדהות / למכור / להסביר / לשבור מיתוס]. התסריט צריך לכלול הוק חזק ב-3 השניות הראשונות, גוף קצר וברור, דוגמה או המחשה, וסיום עם קריאה לפעולה.">צור לי תסריט לסרטון קצר של עד <span class="var">[30/60/90]</span> שניות בנושא <span class="var">[נושא]</span>. הקהל הוא <span class="var">[קהל יעד]</span>. מטרת הסרטון היא <span class="var">[המטרה]</span>. התסריט צריך לכלול הוק חזק ב-3 השניות הראשונות, גוף קצר וברור, דוגמה או המחשה, וסיום עם קריאה לפעולה.</div>
+                            </div>
+                            <div class="follow-up-qs">
+                                <strong>שאלות המשך מומלצות:</strong>
+                                <ul>
+                                    <li>צור 5 הוקים חלופיים ועוצמתיים יותר.</li>
+                                    <li>הפוך את התסריט ליותר קליל וטבעי לדבר מול מצלמה.</li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>סדרת תוכן (Content Series)</h3>
+                            </div>
+                            <p class="goal">לבנות רצף תוכן שמחזיק קהל לאורך זמן ומייצר ציפייה.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני רוצה ליצור סדרת תוכן בנושא [נושא מרכזי] עבור [קהל יעד]. צור סדרה של [מספר] פרקים/פוסטים. לכל פרק כתוב כותרת, רעיון מרכזי, מה הערך לקהל, פתיחה חזקה, נקודות מרכזיות, וסיום שמזמין להמשיך לפרק הבא.">אני רוצה ליצור סדרת תוכן בנושא <span class="var">[נושא מרכזי]</span> עבור <span class="var">[קהל יעד]</span>. צור סדרה של <span class="var">[מספר]</span> פרקים/פוסטים. לכל פרק כתוב כותרת, רעיון מרכזי, מה הערך לקהל, פתיחה חזקה, נקודות מרכזיות, וסיום שמזמין להמשיך לפרק הבא.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>פיצוח קול מותג (Brand Voice)</h3>
+                            </div>
+                            <p class="goal">לשמור על סגנון כתיבה עקבי ואותנטי בכל פלטפורמה.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני רוצה לפצח את קול המותג שלי כיוצר/ת תוכן. העסק/המותג שלי עוסק ב[תחום], הקהל שלי הוא [קהל], והסגנון שאני רוצה לשדר הוא [מקצועי / אישי / מצחיק / מעצים / חד / רגוע / יוקרתי]. עזור לי להגדיר את קול המותג: מילים שמתאימות לי, מילים שכדאי להימנע מהן, טון כתיבה, סוגי פתיחות, סוגי סיומים, דוגמאות לפוסטים, וכללים שיעזרו לשמור על אחידות.">אני רוצה לפצח את קול המותג שלי כיוצר/ת תוכן. העסק/המותג שלי עוסק ב<span class="var">[תחום]</span>, הקהל שלי הוא <span class="var">[קהל]</span>, והסגנון שאני רוצה לשדר הוא <span class="var">[מקצועי / אישי / מצחיק / חד...]</span>. עזור לי להגדיר את קול המותג: מילים שמתאימות לי, מילים שכדאי להימנע מהן, טון כתיבה, סוגי פתיחות, סוגי סיומים, דוגמאות לפוסטים, וכללים שיעזרו לשמור על אחידות.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- SALES & CUSTOMER SERVICE -->
+                <section id="sec-sales" class="prompt-category">
+                    <h2><i class="fa-solid fa-comments-dollar"></i> מכירות ושירות לקוחות</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>שיפור הצעת מחיר</h3>
+                            </div>
+                            <p class="goal">להפוך הצעת מחיר פשוטה למסמך שמוכר את הערך שלך.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני צריך/ה להכין הצעת מחיר עבור [סוג לקוח] בנושא [שירות/פרויקט]. פרטי ההצעה הם: [לפרט]. עזור לי לבנות הצעת מחיר מקצועית הכוללת רקע קצר, הבנת הצורך, מטרות, תכולת העבודה, שלבי ביצוע, תוצרים, לוחות זמנים, מחיר, תנאים, ולמה כדאי לעבוד דווקא איתי.">אני צריך/ה להכין הצעת מחיר עבור <span class="var">[סוג לקוח]</span> בנושא <span class="var">[שירות/פרויקט]</span>. פרטי ההצעה הם: <span class="var">[לפרט]</span>. עזור לי לבנות הצעת מחיר מקצועית הכוללת רקע קצר, הבנת הצורך, מטרות, תכולת העבודה, שלבי ביצוע, תוצרים, לוחות זמנים, מחיר, תנאים, ולמה כדאי לעבוד דווקא איתי.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>כתיבת עמוד נחיתה / עמוד מכירה</h3>
+                            </div>
+                            <p class="goal">להפוך מוצר או שירות לעמוד שמסביר, משכנע ומניע לפעולה.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני רוצה ליצור עמוד נחיתה עבור [מוצר/שירות]. קהל היעד הוא [קהל יעד]. הבעיה המרכזית שלהם היא [בעיה], והתוצאה שהם רוצים להשיג היא [תוצאה]. צור מבנה מלא לעמוד נחיתה הכולל כותרת ראשית, כותרת משנה, תיאור הבעיה, הצגת הפתרון, יתרונות מרכזיים, למי זה מתאים, מה מקבלים, הוכחות או אמון, שאלות נפוצות, וסיום עם קריאה לפעולה.">אני רוצה ליצור עמוד נחיתה עבור <span class="var">[מוצר/שירות]</span>. קהל היעד הוא <span class="var">[קהל יעד]</span>. הבעיה המרכזית שלהם היא <span class="var">[בעיה]</span>, והתוצאה שהם רוצים להשיג היא <span class="var">[תוצאה]</span>. צור מבנה מלא לעמוד נחיתה הכולל כותרת ראשית, כותרת משנה, תיאור הבעיה, הצגת הפתרון, יתרונות מרכזיים, למי זה מתאים, מה מקבלים, הוכחות אמון, שאלות נפוצות, וסיום עם קריאה לפעולה.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>בניית מגנט לידים (Lead Magnet)</h3>
+                            </div>
+                            <p class="goal">ליצור הצעה חינמית שמושכת מתעניינים רלוונטיים ומחממת אותם.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני בעל/ת עסק בתחום [תחום] ומוכר/ת [מוצר/שירות]. קהל היעד שלי הוא [קהל יעד]. הצע לי 10 רעיונות למגנט לידים שיכול למשוך לקוחות פוטנציאליים איכותיים. עבור כל רעיון כתוב מה התוצר, למה הוא מעניין את הקהל, איך הוא מחבר למכירה, ומה הכותרת השיווקית שלו.">אני בעל/ת עסק בתחום <span class="var">[תחום]</span> ומוכר/ת <span class="var">[מוצר/שירות]</span>. קהל היעד שלי הוא <span class="var">[קהל יעד]</span>. הצע לי 10 רעיונות למגנט לידים שיכול למשוך לקוחות פוטנציאליים איכותיים. עבור כל רעיון כתוב מה התוצר, למה הוא מעניין את הקהל, איך הוא מחבר למכירה, ומה הכותרת השיווקית שלו.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>מענה להתנגדויות ושיחת מכירה</h3>
+                            </div>
+                            <p class="goal">להתכונן לשיחות מכירה בצורה מקצועית, ולהגיב להתלבטויות בלי להישמע לוחץ.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני מוכר/ת [מוצר/שירות] לקהל יעד של [קהל יעד]. לקוחות לפעמים מתלבטים בגלל [מחיר / זמן / אמון / חוסר דחיפות / לא מבינים את הערך]. צור רשימת התנגדויות נפוצות שיכולות לעלות, וכתוב לכל התנגדות תשובה מקצועית, אמפתית ומשכנעת שלא נשמעת אגרסיבית.">אני מוכר/ת <span class="var">[מוצר/שירות]</span> לקהל יעד של <span class="var">[קהל יעד]</span>. לקוחות לפעמים מתלבטים בגלל <span class="var">[מחיר / זמן / חוסר דחיפות...]</span>. צור רשימת התנגדויות נפוצות שיכולות לעלות, וכתוב לכל התנגדות תשובה מקצועית, אמפתית ומשכנעת שלא נשמעת אגרסיבית.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>שירות לקוחות ומענה לפנייה מורכבת</h3>
+                            </div>
+                            <p class="goal">לענות ללקוחות בצורה מקצועית ששומרת על מערכת יחסים טובה.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="קיבלתי פנייה מלקוח בנושא [נושא]. תוכן הפנייה הוא: [לתאר בלי פרטים מזהים]. עזור לי לנסח תשובה מקצועית, נעימה וברורה. התשובה צריכה לכלול התייחסות לפנייה, הסבר, פתרון או צעד הבא, וטון שמחזק אמון ושומר על מערכת יחסים טובה עם הלקוח.">קיבלתי פנייה מלקוח בנושא <span class="var">[נושא]</span>. תוכן הפנייה הוא: <span class="var">[לתאר בלי פרטים מזהים]</span>. עזור לי לנסח תשובה מקצועית, נעימה וברורה. התשובה צריכה לכלול התייחסות לפנייה, הסבר, פתרון או צעד הבא, וטון שמחזק אמון ושומר על מערכת יחסים טובה עם הלקוח.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- MANAGEMENT, OPS & PLANNING -->
+                <section id="sec-management" class="prompt-category">
+                    <h2><i class="fa-solid fa-chart-line"></i> תפעול, נתונים ותכנון</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>שיפור תהליך עבודה בעסק</h3>
+                            </div>
+                            <p class="goal">לזהות בלגן, כפילויות וצווארי בקבוק בתפעול העסק.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="יש לי תהליך בעסק שאני רוצה לשפר: [לתאר את התהליך]. כיום הוא עובד כך: [לפרט שלבים]. הבעיות המרכזיות הן [לפרט]. נתח את התהליך והצע דרך פשוטה ויעילה יותר לבצע אותו. כלול שלבים חדשים, מה אפשר לאוטומט, מה אפשר להעביר לתבנית, איפה AI יכול לעזור, ואילו מדדים יראו שהתהליך השתפר.">יש לי תהליך בעסק שאני רוצה לשפר: <span class="var">[לתאר את התהליך]</span>. כיום הוא עובד כך: <span class="var">[לפרט שלבים]</span>. הבעיות המרכזיות הן <span class="var">[לפרט]</span>. נתח את התהליך והצע דרך פשוטה ויעילה יותר לבצע אותו. כלול שלבים חדשים, מה אפשר לאוטומט, מה אפשר להעביר לתבנית, איפה AI יכול לעזור, ואילו מדדים יראו שהתהליך השתפר.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>בניית נוהל עסקי / מדריך לפרילנסר</h3>
+                            </div>
+                            <p class="goal">לשמר ידע ולהפוך משימה להוראות ברורות שאפשר להאציל לאחרים.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="עזור לי לכתוב נוהל עבודה לעסק בנושא [נושא הנוהל]. הנוהל מיועד ל[אני / עובד / ספק / פרילנסר]. כלול מטרת הנוהל, מתי משתמשים בו, שלבי עבודה, דגשים חשובים, טעויות נפוצות, תוצר סופי, ובדיקות שצריך לבצע לפני סיום.">עזור לי לכתוב נוהל עבודה לעסק בנושא <span class="var">[נושא הנוהל]</span>. הנוהל מיועד ל<span class="var">[אני / עובד / ספק / פרילנסר]</span>. כלול מטרת הנוהל, מתי משתמשים בו, שלבי עבודה, דגשים חשובים, טעויות נפוצות, תוצר סופי, ובדיקות שצריך לבצע לפני סיום.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>ניתוח נתונים עסקיים פשוט</h3>
+                            </div>
+                            <p class="goal">להבין מה קורה בעסק מתוך מספרים ולגזור משמעויות קדימה.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="הנה נתונים כלליים על העסק שלי: [להכניס נתונים כמו הכנסות, הוצאות, לידים, מכירות, קמפיינים וכו']. נתח את הנתונים והצג תובנות מרכזיות, מגמות, בעיות אפשריות, שאלות שכדאי לבדוק, והמלצות מעשיות לשיפור. אם אין מספיק מידע למסקנה חד־משמעית, ציין זאת.">הנה נתונים כלליים על העסק שלי: <span class="var">[להכניס נתונים כמו לידים, מכירות, קמפיינים...]</span>. נתח את הנתונים והצג תובנות מרכזיות, מגמות, בעיות אפשריות, שאלות שכדאי לבדוק, והמלצות מעשיות לשיפור. אם אין מספיק מידע למסקנה חד־משמעית, ציין זאת.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>תכנון יעדים חודשיים</h3>
+                            </div>
+                            <p class="goal">להפוך שאיפות עסקיות ליעדים, משימות ולו"ז עבודה.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני רוצה לתכנן את החודש הקרוב בעסק. המטרה המרכזית שלי היא [מטרה]. המצב הנוכחי הוא [לתאר]. צור לי תוכנית חודשית הכוללת 3 יעדים מרכזיים, פעולות שבועיות, מדדי הצלחה, משימות שיווק, משימות מכירה, משימות תפעול, וסיכונים שעלולים למנוע ממני להתקדם.">אני רוצה לתכנן את החודש הקרוב בעסק. המטרה המרכזית שלי היא <span class="var">[מטרה]</span>. המצב הנוכחי הוא <span class="var">[לתאר]</span>. צור לי תוכנית חודשית הכוללת 3 יעדים מרכזיים, פעולות שבועיות, מדדי הצלחה, משימות שיווק, משימות מכירה, משימות תפעול, וסיכונים שעלולים למנוע ממני להתקדם.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- EFFICIENCY & SAVING KNOWLEDGE -->
+                <section id="sec-efficiency" class="prompt-category">
+                    <h2><i class="fa-solid fa-microchip"></i> התייעלות ושימור ידע</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>בניית עוזר AI אישי לבעל עסק (Custom GPT)</h3>
+                            </div>
+                            <p class="goal">ליצור עוזר קבוע למשימות שחוזרות בעסק בהגדרות המערכת.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="בנה עבורי הנחיות לעוזר AI אישי לעסק שלי. העסק הוא [תחום העסק], קהל היעד הוא [קהל יעד], השירותים/מוצרים הם [לפרט], והמשימות שבהן אני רוצה עזרה הן [שיווק / תוכן / מכירות / תפעול]. העוזר צריך להבין את העסק, לשאול שאלות הבהרה כשחסר מידע, להציע תוצרים פרקטיים, לשמור על סגנון כתיבה של [סגנון], ולהימנע מהמצאת מידע.">בנה עבורי הנחיות לעוזר AI אישי לעסק שלי. העסק הוא <span class="var">[תחום העסק]</span>, קהל היעד הוא <span class="var">[קהל יעד]</span>, השירותים/מוצרים הם <span class="var">[לפרט]</span>, והמשימות שבהן אני רוצה עזרה הן <span class="var">[שיווק / תוכן / מכירות...]</span>. העוזר צריך להבין את העסק, לשאול שאלות הבהרה כשחסר מידע, להציע תוצרים פרקטיים, לשמור על סגנון כתיבה של <span class="var">[סגנון]</span>, ולהימנע מהמצאת מידע.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>"לפצח ולשמור" לבעלי עסקים</h3>
+                            </div>
+                            <p class="goal">להפוך תהליך יצירה שעבד טוב לפרומפט חוזר.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="התוצר האחרון שיצרנו מתאים מאוד לעסק שלי. עבור על השיחה שלנו ונתח מה הוביל לתוצאה טובה. צור עבורי פרומפט תבנית שאוכל להשתמש בו בעתיד כדי להגיע לתוצר דומה בלי להתחיל מהתחלה. הפרומפט צריך לכלול הגדרת תפקיד ל-AI, הקשר על העסק, קהל יעד, מטרת העבודה, סוג התוצר, מבנה התוצר, סגנון כתיבה, דגשים חשובים, ושאלות הבהרה שכדאי לשאול אותי אם חסר מידע.">התוצר האחרון שיצרנו מתאים מאוד לעסק שלי. עבור על השיחה שלנו ונתח מה הוביל לתוצאה טובה. צור עבורי פרומפט תבנית שאוכל להשתמש בו בעתיד כדי להגיע לתוצר דומה בלי להתחיל מהתחלה. הפרומפט צריך לכלול הגדרת תפקיד ל-AI, הקשר על העסק, קהל יעד, מטרת העבודה, סוג התוצר, מבנה התוצר, סגנון כתיבה, דגשים חשובים, ושאלות הבהרה שכדאי לשאול אותי אם חסר מידע.</div>
+                            </div>
+                        </article>
+
+                        <article class="prompt-card">
+                            <div class="prompt-card-header">
+                                <h3>תוכנית פעולה אישית לשימוש ב-AI בעסק</h3>
+                            </div>
+                            <p class="goal">לצאת עם משימות ליישום ברור ולא רק להישאר עם רעיונות תיאורטיים.</p>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="בהתבסס על העסק שלי בתחום [תחום], קהל היעד שלי [קהל], והמשימות שאני מבצע/ת ביום־יום [לפרט], צור עבורי תוכנית פעולה לשימוש ב-AI בשבוע הקרוב. כלול שלוש משימות אמיתיות שאבצע בעזרת AI, פרומפט מתאים לכל משימה, מה ייחשב תוצאה טובה, איך אדע שזה חסך לי זמן או שיפר לי את העסק, והרגל עבודה קבוע שכדאי לי לאמץ.">בהתבסס על העסק שלי בתחום <span class="var">[תחום]</span>, קהל היעד שלי <span class="var">[קהל]</span>, והמשימות שאני מבצע/ת ביום־יום <span class="var">[לפרט]</span>, צור עבורי תוכנית פעולה לשימוש ב-AI בשבוע הקרוב. כלול שלוש משימות אמיתיות שאבצע בעזרת AI, פרומפט מתאים לכל משימה, מה ייחשב תוצאה טובה, איך אדע שזה חסך לי זמן או שיפר לי את העסק, והרגל עבודה קבוע שכדאי לי לאמץ.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- THE GOLDEN RULE -->
+                <div id="golden-rule" class="golden-rule prompt-category">
+                    <i class="fa-solid fa-crown"></i>
+                    <h2>כלל הזהב לבעלי עסקים ויוצרים</h2>
+                    <p>פרומפט טוב לא מבקש רק "תכתוב לי פוסט" או "תכין לי הצעה". <strong>הוא מתחיל בהקשר.</strong></p>
+                    
+                    <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin: 30px 0;">
+                        <div style="background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.3); padding:20px; border-radius:12px; max-width:350px;">
+                            <h4 style="color:var(--rose); margin-bottom:10px;"><i class="fa-solid fa-xmark"></i> במקום לכתוב:</h4>
+                            <p style="font-style:italic; color:var(--text2);">"תכתוב לי פוסט על המוצר החדש שלי"</p>
+                        </div>
+                        
+                        <div style="background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.3); padding:20px; border-radius:12px; max-width:400px; text-align:right;">
+                            <h4 style="color:var(--violet); margin-bottom:10px;"><i class="fa-solid fa-check"></i> עדיף להסביר:</h4>
+                            <p style="color:var(--text2);">מה העסק שלי, מי הלקוח שלי, מה הלקוח צריך להרגיש או להבין בסוף הקריאה, מה המטרה העסקית, ואיזה סגנון מתאים למותג שלי.</p>
+                        </div>
+                    </div>
+
+                    <div class="rule-list" style="margin-top: 40px; border-color: var(--rose);">
+                        <p style="color:#fff; font-weight:700; margin-bottom:15px;"><i class="fa-solid fa-bolt" style="color:var(--rose);"></i> הערך האמיתי של AI לבעלי עסקים הוא לא רק לכתוב מהר יותר. הערך הוא לבנות שיטה:</p>
+                        <p><i class="fa-solid fa-angle-left"></i> לחשוב ברור ומדויק יותר</p>
+                        <p><i class="fa-solid fa-angle-left"></i> לשווק ללקוחות הנכונים</p>
+                        <p><i class="fa-solid fa-angle-left"></i> לשפר תהליכים ולמכור יותר</p>
+                        <p><i class="fa-solid fa-angle-left"></i> ולשמר הצלחות לשימוש חוזר</p>
+                    </div>
+                </div>
+
+            </div> <!-- /lib-content -->
+        </div> <!-- /library-grid -->
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="cta-section" id="contact-bottom">
+        <div class="container">
+            <div class="cta-box">
+                <h2 class="sec-heading">רוצים להעביר את העסק או הארגון <span class="grad-text">לשלב הבא?</span></h2>
+                <p class="sec-desc mx-auto" style="margin-bottom: 30px;">סדנאות מעשיות, ייעוץ אישי והטמעת AI שמחוברת ישירות למטרות שלכם — בלי תיאוריות, נטו פרקטיקה.</p>
+                <div class="btn-row" style="justify-content:center">
+                    <a class="btn btn-primary" href="index.html#contact"><i class="fa-solid fa-paper-plane"></i> קביעת שיחת התאמה</a>
+                    <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מספריית%20הפרומפטים%20לעסקים%20ואשמח%20לשמוע%20פרטים%20על%20סדנאות%20וייעוץ" target="_blank" rel="noopener" class="btn btn-wa"><i class="fa-brands fa-whatsapp" style="font-size:1.2rem"></i> שלחו לי וואטסאפ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
+        <div class="footer-links">
+            <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope"></i> אימייל</a>
+            <a href="https://wa.me/972506915269" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> 050-6915269</a>
+            <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 PractiAI. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מספריית%20הפרומפטים%20לעסקים%20ואשמח%20לשמוע%20פרטים%20על%20סדנאות%20וייעוץ" target="_blank" rel="noopener" class="wa-float" aria-label="וואטסאפ"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+"use strict";
+
+/* ============================
+   COPY TO CLIPBOARD
+   ============================ */
+function copyPrompt(btn) {
+    const container = btn.closest('.prompt-box-wrap');
+    const textElement = container.querySelector('.prompt-text');
+    const textToCopy = textElement.getAttribute('data-raw');
+
+    const tempInput = document.createElement("textarea");
+    tempInput.value = textToCopy;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    
+    try {
+        document.execCommand("copy");
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> הועתק!';
+        btn.classList.add('success');
+        
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('success');
+        }, 2000);
+    } catch (err) {
+        console.error('Failed to copy', err);
+        alert('לא ניתן היה להעתיק, אנא נסו להעתיק ידנית.');
+    }
+    
+    document.body.removeChild(tempInput);
+}
+
+(function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ============================
+       SCROLL SPY FOR SIDEBAR
+       ============================ */
+    const sections = document.querySelectorAll('.prompt-category');
+    const navLinks = document.querySelectorAll('.sidebar-link');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(sec => {
+            const sectionTop = sec.offsetTop;
+            const sectionHeight = sec.clientHeight;
+            if (scrollY >= (sectionTop - 150)) {
+                current = sec.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    /* ============================
+       NEURAL NETWORK CANVAS (Light version for Creators page)
+       ============================ */
+    const canvas = document.getElementById('neuralCanvas');
+    const ctx = canvas.getContext('2d');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Creators palette (Violet + Rose)
+    const COLORS = { violet: [139, 92, 246], rose: [244, 63, 94] };
+    const COLOR_LIST = [COLORS.violet, COLORS.rose];
+
+    let nodes = [], edges = [];
+    let W, H, dpr;
+    let isVisible = true;
+
+    function resizeCanvas() {
+        dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        W = window.innerWidth;
+        H = window.innerHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    let seed = 142; // Different seed to make layout unique
+    function srand() { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; }
+
+    function generateNetwork() {
+        nodes = []; edges = []; seed = 142;
+        const count = window.innerWidth > 768 ? 40 : 20;
+        
+        for (let i = 0; i < count; i++) {
+            nodes.push({
+                x: srand() * 1.2 - 0.1, 
+                y: srand() * 1.2 - 0.1,
+                z: srand(),
+                r: 1.5 + srand() * 2,
+                color: COLOR_LIST[Math.floor(srand() * 2)],
+                phase: srand() * Math.PI * 2
+            });
+        }
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                if (dx*dx + dy*dy < 0.08) {
+                    edges.push({ a: i, b: j, flow: srand(), speed: 0.002 + srand() * 0.003 });
+                }
+            }
+        }
+    }
+
+    function render() {
+        if (!isVisible) { requestAnimationFrame(render); return; }
+        ctx.clearRect(0, 0, W, H);
+        
+        const scrollY = window.scrollY || 0;
+        const totalH = document.body.scrollHeight - H;
+        const prog = totalH > 0 ? scrollY / totalH : 0;
+
+        // Render Edges
+        for (let i = 0; i < edges.length; i++) {
+            const e = edges[i];
+            const na = nodes[e.a], nb = nodes[e.b];
+            
+            const nax = na.x * W; const nay = (na.y - prog * na.z * 0.5) * H * 1.5;
+            const nbx = nb.x * W; const nby = (nb.y - prog * nb.z * 0.5) * H * 1.5;
+
+            if (nay < -100 && nby < -100) continue;
+            if (nay > H + 100 && nby > H + 100) continue;
+
+            ctx.beginPath();
+            ctx.moveTo(nax, nay);
+            ctx.lineTo(nbx, nby);
+            ctx.strokeStyle = `rgba(244,63,94,0.1)`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            if (!reducedMotion) {
+                e.flow = (e.flow + e.speed) % 1;
+                const px = nax + (nbx - nax) * e.flow;
+                const py = nay + (nby - nay) * e.flow;
+                ctx.beginPath();
+                ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(139,92,246,0.4)`;
+                ctx.fill();
+            }
+        }
+
+        // Render Nodes
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            const nx = n.x * W + (reducedMotion ? 0 : Math.sin(Date.now() * 0.001 + n.phase) * 10 * n.z);
+            const ny = (n.y - prog * n.z * 0.5) * H * 1.5;
+            
+            if (ny < -50 || ny > H + 50) continue;
+
+            ctx.beginPath();
+            ctx.arc(nx, ny, n.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${n.color[0]},${n.color[1]},${n.color[2]},0.4)`;
+            ctx.fill();
+        }
+        requestAnimationFrame(render);
+    }
+
+    window.addEventListener('resize', () => { resizeCanvas(); generateNetwork(); });
+    document.addEventListener('visibilitychange', () => { isVisible = !document.hidden; });
+
+    resizeCanvas();
+    generateNetwork();
+    requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>
