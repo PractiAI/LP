@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ספריית פרומפטים למורים | PractiAI - טל חקוקי</title>
+    <meta name="description" content="ספריית פרומפטים חינמית למורים ואנשי חינוך. תבניות עבודה חכמות עם בינה מלאכותית לתכנון שיעורים, יצירת חומרי למידה, הערכה ועוד.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:title" content="ספריית פרומפטים למורים | PractiAI">
+    <meta property="og:description" content="תבניות עבודה חכמות עם בינה מלאכותית שיחסכו לכם שעות של עבודה.">
+    <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
+    <!-- שים לב: עדכן את ה-URL לכתובת המדויקת בגיטהאב -->
+    <meta property="og:url" content="https://practiai.github.io/LP/prompts.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --bg: #06060e;
+            --bg-card: rgba(12, 14, 24, 0.65);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.14);
+            --cyan: #00d4ff;
+            --violet: #8b5cf6;
+            --rose: #f43f5e;
+            --grad: linear-gradient(135deg, var(--cyan), var(--violet));
+            --grad-full: linear-gradient(135deg, var(--cyan), var(--violet), var(--rose));
+            --text: #f1f5f9;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --r-sm: 12px; --r-md: 20px; --r-lg: 28px; --r-xl: 36px;
+            --header-h: 80px;
+            --container: 1280px;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:hidden}
+        body{background:var(--bg);color:var(--text);font-family:'Heebo',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        ::selection{background:rgba(139,92,246,.4);color:#fff}
+        ::-webkit-scrollbar{width:5px}
+        ::-webkit-scrollbar-track{background:var(--bg)}
+        ::-webkit-scrollbar-thumb{background:rgba(139,92,246,.4);border-radius:99px}
+        img,video{max-width:100%;display:block}
+        a{color:inherit;text-decoration:none}
+        button,input,select,textarea{font:inherit}
+
+        .container{max-width:var(--container);margin:0 auto;padding:0 28px;width:100%}
+        .text-center{text-align:center}
+        .mx-auto{margin-inline:auto}
+        .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+        .sec-label{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:999px;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);font-size:.9rem;font-weight:700;color:var(--violet);margin-bottom:20px}
+        .sec-heading{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:1.2rem}
+        .sec-desc{font-size:clamp(1.05rem,2vw,1.25rem);color:var(--text2);max-width:700px;font-weight:400}
+
+        /* ===== NEURAL CANVAS ===== */
+        #neuralCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;will-change:transform}
+
+        /* ===== BUTTONS ===== */
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 36px;font-size:1.05rem;font-weight:700;border-radius:var(--r-sm);border:none;cursor:pointer;transition:all .4s cubic-bezier(.19,1,.22,1);position:relative;overflow:hidden;text-align:center}
+        .btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 25px rgba(0,212,255,.2)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 35px rgba(0,212,255,.35)}
+        .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(12px)}
+        .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px)}
+        .btn-wa{background:#25d366;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.25)}
+        .btn-wa:hover{background:#20b858;transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,.4)}
+        
+        /* ===== HEADER ===== */
+        .site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);transition:all .4s ease; background:rgba(6,6,14,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border)}
+        .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+        .brand{display:flex;align-items:center;gap:14px}
+        .brand-icon{width:44px;height:44px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--grad);color:#fff;font-size:1.1rem}
+        .brand-name{font-size:1.2rem;font-weight:900;letter-spacing:-.5px}
+        .brand-sub{font-size:.78rem;color:var(--text3);font-weight:500}
+        .nav-links{display:flex;align-items:center;gap:8px}
+        .nav-link{padding:10px 18px;border-radius:10px;color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s}
+        .nav-link:hover{color:#fff;background:rgba(255,255,255,.04)}
+        .nav-cta{padding:10px 24px;border-radius:10px;background:var(--grad);color:#fff;font-weight:700;font-size:.95rem;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(0,212,255,.3)}
+
+        /* ===== HERO FOR PROMPTS ===== */
+        .page-hero { padding: calc(var(--header-h) + 60px) 0 60px; position: relative; text-align: center; border-bottom: 1px solid var(--border); background: radial-gradient(circle at top, rgba(139,92,246,0.1) 0%, transparent 60%);}
+        .page-hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+        .page-hero p { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--text2); max-width: 600px; margin: 0 auto; }
+
+        /* ===== PROMPT LIBRARY LAYOUT ===== */
+        .library-wrap { padding: 60px 0; }
+        .library-grid { display: grid; grid-template-columns: 280px 1fr; gap: 50px; align-items: start; }
+        
+        /* SIDEBAR NAV */
+        .lib-sidebar { position: sticky; top: calc(var(--header-h) + 30px); max-height: calc(100vh - var(--header-h) - 60px); overflow-y: auto; padding-left: 10px; }
+        .lib-sidebar::-webkit-scrollbar { width: 3px; }
+        .lib-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+        .sidebar-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; color: var(--text); display: flex; align-items: center; gap: 10px;}
+        .sidebar-title i { color: var(--cyan); }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+        .sidebar-link { padding: 10px 16px; border-radius: 8px; color: var(--text2); font-size: 0.95rem; font-weight: 500; transition: all 0.3s; border: 1px solid transparent; }
+        .sidebar-link:hover, .sidebar-link.active { background: rgba(139,92,246,.08); color: #fff; border-color: rgba(139,92,246,.2); font-weight: 600;}
+
+        /* CONTENT AREA */
+        .lib-content { display: flex; flex-direction: column; gap: 60px; }
+        
+        /* Info Box */
+        .info-box { background: linear-gradient(135deg, rgba(0,212,255,.05), rgba(139,92,246,.05)); border: 1px solid rgba(139,92,246,.2); border-radius: var(--r-lg); padding: 30px; }
+        .info-box h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: var(--cyan); }
+        .info-box p { color: var(--text2); margin-bottom: 15px; font-size: 1.05rem; }
+        .info-box ul { list-style: none; display: grid; gap: 10px; margin-bottom: 20px;}
+        .info-box ul li { display: flex; gap: 10px; align-items: center; }
+        .info-box ul li i { color: var(--violet); }
+        .info-alert { background: rgba(244, 63, 94, 0.1); border-right: 3px solid var(--rose); padding: 15px 20px; border-radius: 8px; color: #fff; font-size: 0.95rem; }
+
+        /* Prompt Categories */
+        .prompt-category { scroll-margin-top: calc(var(--header-h) + 40px); }
+        .prompt-category h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px;}
+        .prompt-category h2 span.num { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-family: 'Space Grotesk'; }
+        .prompts-grid { display: grid; gap: 24px; }
+
+        /* Individual Prompt Card */
+        .prompt-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 24px; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .prompt-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-3px); }
+        .prompt-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: #fff; }
+        .prompt-card p.desc { color: var(--text2); font-size: 0.95rem; margin-bottom: 16px; }
+        
+        .prompt-box-wrap { position: relative; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden; }
+        .prompt-header { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 8px 16px; }
+        .prompt-badge { font-size: 0.8rem; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .copy-btn { background: rgba(255,255,255,0.08); border: 1px solid transparent; color: var(--text); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .copy-btn:hover { background: rgba(139,92,246,0.2); border-color: rgba(139,92,246,0.4); color: #fff; }
+        .copy-btn.success { background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); color: #10b981; }
+        
+        .prompt-text { padding: 20px; font-size: 1.05rem; line-height: 1.8; color: #e2e8f0; white-space: pre-wrap; }
+        .prompt-text .var { display: inline-block; color: var(--cyan); background: rgba(0, 212, 255, 0.08); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 4px; padding: 0 6px; font-weight: 700; margin: 0 2px; }
+
+        /* The Golden Rule */
+        .golden-rule { background: linear-gradient(135deg, rgba(244,63,94,0.1), rgba(139,92,246,0.1)); border: 1px solid rgba(244,63,94,0.2); border-radius: var(--r-xl); padding: 40px; text-align: center; margin-top: 40px; }
+        .golden-rule i { font-size: 3rem; color: var(--rose); margin-bottom: 20px; }
+        .golden-rule h2 { font-size: 2rem; font-weight: 900; margin-bottom: 20px; }
+        .golden-rule p { font-size: 1.2rem; color: var(--text); margin-bottom: 10px; font-weight: 500;}
+        .golden-rule .highlight { color: var(--rose); font-weight: 800; }
+        .rule-list { text-align: right; max-width: 400px; margin: 20px auto; background: rgba(0,0,0,0.3); padding: 20px 30px; border-radius: var(--r-md); }
+        .rule-list p { font-size: 1.05rem; color: var(--text2); margin-bottom: 8px; display: flex; align-items: center; gap: 10px;}
+        .rule-list p::before { content: '✓'; color: var(--cyan); font-weight: bold; }
+
+        /* Workshop CTA inside prompts page */
+        .cta-section { padding: 80px 0; text-align: center; border-top: 1px solid var(--border); background: linear-gradient(0deg, rgba(6,6,14,1) 0%, rgba(12,14,24,0) 100%);}
+        .cta-box { max-width: 700px; margin: 0 auto; }
+
+        /* ===== FOOTER & WA FLOAT (From original) ===== */
+        .site-footer{padding:50px 0;border-top:1px solid var(--border);background:rgba(0,0,0,.5)}
+        .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+        .footer-brand strong{display:block;font-size:1.3rem;font-weight:900;margin-bottom:4px}
+        .footer-brand span{color:var(--text3);font-size:.95rem}
+        .footer-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+        .footer-links a{padding:12px 20px;border-radius:var(--r-sm);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s;display:flex;align-items:center;gap:8px}
+        .footer-links a:hover{color:var(--cyan);border-color:rgba(0,212,255,.2)}
+        .footer-copy{color:var(--text3);font-size:.9rem}
+        .wa-float{position:fixed;bottom:30px;left:30px;z-index:90;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:30px;box-shadow:0 8px 25px rgba(37,211,102,.4);transition:all .3s}
+        .wa-float:hover{transform:scale(1.1) translateY(-4px);box-shadow:0 12px 35px rgba(37,211,102,.5);color:#fff}
+        .wa-float::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,.4);animation:waPulse 2s ease-in-out infinite}
+        @keyframes waPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.2);opacity:0}}
+
+        /* Responsive */
+        @media(max-width: 992px) {
+            .library-grid { grid-template-columns: 1fr; gap: 30px;}
+            .lib-sidebar { position: static; max-height: none; overflow-x: auto; white-space: nowrap; padding-bottom: 15px; }
+            .sidebar-nav { flex-direction: row; }
+            .sidebar-link { flex-shrink: 0; }
+        }
+        @media(max-width:768px){
+            :root{--header-h:70px}
+            .page-hero h1 { font-size: clamp(2rem, 8vw, 2.5rem); }
+            .nav-links{display:none}
+            .btn-row { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="neuralCanvas" aria-hidden="true"></canvas>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+        <a class="brand" href="index.html">
+            <span class="brand-icon"><i class="fa-solid fa-bolt-lightning"></i></span>
+            <div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי | חזרה לעמוד הראשי</div></div>
+        </a>
+        <nav class="nav-links">
+            <a class="nav-link" href="index.html#process">תהליך עבודה</a>
+            <a class="nav-link" href="index.html#solutions">סדנאות</a>
+            <a class="nav-cta" href="#contact-bottom">יצירת קשר</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="sec-label mx-auto"><i class="fa-solid fa-book-bookmark"></i> מדריך פרקטי</span>
+            <h1>ספריית פרומפטים <span class="grad-text">למורים</span></h1>
+            <p>תבניות עבודה חכמות עם בינה מלאכותית שיחסכו לכם שעות של עבודה. העתיקו, שנו את הסוגריים, וקבלו תוצאות מדויקות לכיתה שלכם.</p>
+        </div>
+    </section>
+
+    <section class="library-wrap">
+        <div class="container library-grid">
+            
+            <!-- SIDEBAR -->
+            <aside class="lib-sidebar">
+                <div class="sidebar-title"><i class="fa-solid fa-list"></i> תוכן עניינים</div>
+                <nav class="sidebar-nav">
+                    <a href="#how-to" class="sidebar-link active">איך משתמשים?</a>
+                    <a href="#sec-1" class="sidebar-link">1. פרומפט בסיס</a>
+                    <a href="#sec-2" class="sidebar-link">2. תכנון שיעורים</a>
+                    <a href="#sec-3" class="sidebar-link">3. יצירת חומרי למידה</a>
+                    <a href="#sec-4" class="sidebar-link">4. התאמה לרמות שונות</a>
+                    <a href="#sec-5" class="sidebar-link">5. הערכה ובדיקת הבנה</a>
+                    <a href="#sec-6" class="sidebar-link">6. פעילויות וניסויים</a>
+                    <a href="#sec-7" class="sidebar-link">7. עבודה עם מקורות</a>
+                    <a href="#sec-8" class="sidebar-link">8. יצירתיות וסקרנות</a>
+                    <a href="#sec-9" class="sidebar-link">9. ייעול עבודה יומיומית</a>
+                    <a href="#sec-10" class="sidebar-link">10. בניית עוזרי AI אישיים</a>
+                    <a href="#sec-11" class="sidebar-link">11. לפצח ולשמור (תבניות)</a>
+                    <a href="#sec-12" class="sidebar-link">12. פרומפטים קצרים</a>
+                    <a href="#golden-rule" class="sidebar-link" style="color: var(--rose);">כלל הזהב</a>
+                </nav>
+            </aside>
+
+            <!-- CONTENT -->
+            <div class="lib-content">
+                
+                <!-- HOW TO USE -->
+                <div id="how-to" class="info-box prompt-category">
+                    <h3>איך להשתמש בפרומפטים?</h3>
+                    <p>בכל פרומפט שתעתיקו מפה, החליפו את הסוגריים המרובעים בפרטים הספציפיים שלכם, לדוגמה:</p>
+                    <ul>
+                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[תחום הדעת]</span> ← היסטוריה / מדעים / מתמטיקה</li>
+                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[שכבת גיל]</span> ← כיתה ח' / תלמידי תיכון</li>
+                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[משך השיעור]</span> ← 45 דקות / שיעור כפול</li>
+                    </ul>
+                    <div class="info-alert">
+                        <strong><i class="fa-solid fa-triangle-exclamation"></i> חשוב מאוד:</strong> אין להזין מידע אישי או מזהה על תלמידים. במקום זאת, השתמשו בתיאור כללי כמו “כיתה הטרוגנית”, “תלמידים מתקשים”, או “קבוצה מתקדמת”.
+                    </div>
+                </div>
+
+                <!-- 1. BASE PROMPT -->
+                <section id="sec-1" class="prompt-category">
+                    <h2><span class="num">01.</span> פרומפט בסיס: להפוך את ה-AI לעוזר הוראה אישי</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>פרומפט התאמה אישית למורה</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">הגדרת תפקיד</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני מורה ל[תחום דעת] בכיתות [שכבות גיל]. סגנון ההוראה שלי הוא [לדוגמה: חווייתי / מבוסס חקר / מובנה / דיאלוגי / יצירתי]. חשוב לי שהתוצרים יהיו מותאמים לגיל התלמידים, ברורים, פרקטיים לשימוש בכיתה, וכוללים דוגמאות מחיי היום־יום. מעכשיו, בכל משימה חינוכית שאבקש, התייחס להקשר הזה והצע תוצרים שניתן להשתמש בהם בפועל בהוראה.">אני מורה ל<span class="var">[תחום דעת]</span> בכיתות <span class="var">[שכבות גיל]</span>. סגנון ההוראה שלי הוא <span class="var">[לדוגמה: חווייתי / מבוסס חקר / מובנה...]</span>. חשוב לי שהתוצרים יהיו מותאמים לגיל התלמידים, ברורים, פרקטיים לשימוש בכיתה, וכוללים דוגמאות מחיי היום־יום. מעכשיו, בכל משימה חינוכית שאבקש, התייחס להקשר הזה והצע תוצרים שניתן להשתמש בהם בפועל בהוראה.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>פרומפט אפיון כיתה</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">אפיון קהל יעד</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="אני מלמד/ת [תחום דעת] בכיתה [שכבה]. הכיתה כוללת [תיאור כללי של הרכב הכיתה: רמות שונות / תלמידים מתקשים / תלמידים חזקים / צורך בהמחשה / קושי במוטיבציה]. הנושא הקרוב הוא [נושא]. עזור לי לחשוב איך ללמד את הנושא בצורה שתתאים לכיתה הזו, כולל דגשים פדגוגיים, קשיים צפויים ודרכי הוראה מומלצות.">אני מלמד/ת <span class="var">[תחום דעת]</span> בכיתה <span class="var">[שכבה]</span>. הכיתה כוללת <span class="var">[תיאור כללי של הרכב הכיתה]</span>. הנושא הקרוב הוא <span class="var">[נושא]</span>. עזור לי לחשוב איך ללמד את הנושא בצורה שתתאים לכיתה הזו, כולל דגשים פדגוגיים, קשיים צפויים ודרכי הוראה מומלצות.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>פרומפט שאלות הבהרה לפני יצירת תוצר</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">טיוב תוצאות</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="לפני שאתה יוצר עבורי את התוצר, שאל אותי עד 5 שאלות קצרות שיעזרו לך לדייק אותו: מטרת הלמידה, שכבת גיל, רמת התלמידים, משך הזמן, סגנון הפעילות והתוצר הסופי הרצוי.">לפני שאתה יוצר עבורי את התוצר, שאל אותי עד 5 שאלות קצרות שיעזרו לך לדייק אותו: מטרת הלמידה, שכבת גיל, רמת התלמידים, משך הזמן, סגנון הפעילות והתוצר הסופי הרצוי.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 2. LESSON PLANNING -->
+                <section id="sec-2" class="prompt-category">
+                    <h2><span class="num">02.</span> תכנון שיעורים</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>מערך שיעור מלא</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">תכנון מלא</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור מערך שיעור בנושא [נושא] עבור תלמידי [שכבת גיל] ב[תחום דעת]. משך השיעור הוא [משך]. מטרת השיעור היא [מטרה]. כלול פתיח מסקרן, הסבר מרכזי, פעילות לתלמידים, שאלות הבנה, שאלות חשיבה, סיכום קצר והצעה למשימת המשך.">צור מערך שיעור בנושא <span class="var">[נושא]</span> עבור תלמידי <span class="var">[שכבת גיל]</span> ב<span class="var">[תחום דעת]</span>. משך השיעור הוא <span class="var">[משך]</span>. מטרת השיעור היא <span class="var">[מטרה]</span>. כלול פתיח מסקרן, הסבר מרכזי, פעילות לתלמידים, שאלות הבנה, שאלות חשיבה, סיכום קצר והצעה למשימת המשך.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>שיעור חווייתי</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">מעורבות תלמידים</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="תכנן שיעור חווייתי בנושא [נושא] לכיתה [שכבה]. אני רוצה שהתלמידים יהיו פעילים ולא רק יקשיבו. הצע מהלך שיעור הכולל פתיחה מסקרנת, פעילות קבוצתית, דיון כיתתי ותוצר שהתלמידים יוצרים בעצמם.">תכנן שיעור חווייתי בנושא <span class="var">[נושא]</span> לכיתה <span class="var">[שכבה]</span>. אני רוצה שהתלמידים יהיו פעילים ולא רק יקשיבו. הצע מהלך שיעור הכולל פתיחה מסקרנת, פעילות קבוצתית, דיון כיתתי ותוצר שהתלמידים יוצרים בעצמם.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>שיעור מבוסס חקר</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">למידת חקר</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="בנה שיעור מבוסס חקר בנושא [נושא]. השיעור צריך להתחיל בשאלה מסקרנת, להוביל את התלמידים להעלאת השערות, לכלול פעילות חקר או ניתוח מידע, ולהסתיים במסקנות שהתלמידים מנסחים בעצמם.">בנה שיעור מבוסס חקר בנושא <span class="var">[נושא]</span>. השיעור צריך להתחיל בשאלה מסקרנת, להוביל את התלמידים להעלאת השערות, לכלול פעילות חקר או ניתוח מידע, ולהסתיים במסקנות שהתלמידים מנסחים בעצמם.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>שיעור קצר למילוי מקום או זמן מוגבל</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">שליפה מהירה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור פעילות קצרה של [10/15/20] דקות בנושא [נושא] לכיתה [שכבה]. הפעילות צריכה להיות פשוטה להפעלה, ללא הכנה מורכבת, ולכלול מטרה ברורה, הנחיות לתלמידים ושאלת סיכום.">צור פעילות קצרה של <span class="var">[10/15/20]</span> דקות בנושא <span class="var">[נושא]</span> לכיתה <span class="var">[שכבה]</span>. הפעילות צריכה להיות פשוטה להפעלה, ללא הכנה מורכבת, ולכלול מטרה ברורה, הנחיות לתלמידים ושאלת סיכום.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 3. MATERIALS -->
+                <section id="sec-3" class="prompt-category">
+                    <h2><span class="num">03.</span> יצירת חומרי למידה</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>דף עבודה בשלוש רמות (דיפרנציאלי)</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">התאמה אישית</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור דף עבודה בנושא [נושא] בשלוש רמות: בסיסית, בינונית ומתקדמת. שמור על אותה מטרת למידה, אך התאם את עומק השאלות, רמת הניסוח ורמת העצמאות הנדרשת בכל רמה.">צור דף עבודה בנושא <span class="var">[נושא]</span> בשלוש רמות: בסיסית, בינונית ומתקדמת. שמור על אותה מטרת למידה, אך התאם את עומק השאלות, רמת הניסוח ורמת העצמאות הנדרשת בכל רמה.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>הכנה למצגת</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">סטרוקטורה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="בנה מבנה למצגת בנושא [נושא] לכיתה [שכבה]. המצגת צריכה לכלול [מספר] שקפים. עבור כל שקף כתוב כותרת, רעיון מרכזי, הסבר קצר, הצעה לדימוי ויזואלי ושאלה שאפשר לשאול את התלמידים.">בנה מבנה למצגת בנושא <span class="var">[נושא]</span> לכיתה <span class="var">[שכבה]</span>. המצגת צריכה לכלול <span class="var">[מספר]</span> שקפים. עבור כל שקף כתוב כותרת, רעיון מרכזי, הסבר קצר, הצעה לדימוי ויזואלי ושאלה שאפשר לשאול את התלמידים.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>כרטיסיות תרגול</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">תרגול</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור 12 כרטיסיות תרגול בנושא [נושא]. בכל כרטיסייה תהיה שאלה קצרה, רמז במקרה הצורך ותשובה מצופה. סדר את הכרטיסיות מהקל אל המורכב.">צור 12 כרטיסיות תרגול בנושא <span class="var">[נושא]</span>. בכל כרטיסייה תהיה שאלה קצרה, רמז במקרה הצורך ותשובה מצופה. סדר את הכרטיסיות מהקל אל המורכב.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 4. DIFFERENTIATION -->
+                <section id="sec-4" class="prompt-category">
+                    <h2><span class="num">04.</span> התאמה לרמות שונות בכיתה</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>הסבר פשוט לנושא מורכב</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">הנגשה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="הסבר את הנושא [נושא] לתלמידי [שכבה] בשפה פשוטה, ברורה ולא ילדותית. השתמש בדוגמה מחיי היום־יום, באנלוגיה אחת ובשאלת הבנה בסוף.">הסבר את הנושא <span class="var">[נושא]</span> לתלמידי <span class="var">[שכבה]</span> בשפה פשוטה, ברורה ולא ילדותית. השתמש בדוגמה מחיי היום־יום, באנלוגיה אחת ובשאלת הבנה בסוף.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>תמיכה בתלמידים מתקשים</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">פירוק לגורמים</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור גרסה נגישה יותר להסבר בנושא [נושא] עבור תלמידים שמתקשים להבין את החומר. כלול פירוק לשלבים, מילון מושגים קצר, דוגמה פשוטה ושאלות בדיקה הדרגתיות.">צור גרסה נגישה יותר להסבר בנושא <span class="var">[נושא]</span> עבור תלמידים שמתקשים להבין את החומר. כלול פירוק לשלבים, מילון מושגים קצר, דוגמה פשוטה ושאלות בדיקה הדרגתיות.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>העמקה לתלמידים מתקדמים</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">אתגר</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור משימת העמקה בנושא [נושא] לתלמידים מתקדמים. המשימה צריכה לכלול אתגר חשיבה, חיבור לנושא רחב יותר, שאלה פתוחה ותוצר שהתלמידים צריכים להגיש.">צור משימת העמקה בנושא <span class="var">[נושא]</span> לתלמידים מתקדמים. המשימה צריכה לכלול אתגר חשיבה, חיבור לנושא רחב יותר, שאלה פתוחה ותוצר שהתלמידים צריכים להגיש.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 5. ASSESSMENT -->
+                <section id="sec-5" class="prompt-category">
+                    <h2><span class="num">05.</span> שאלות, הערכה ובדיקת הבנה</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>מחוון הערכה (רובריקה)</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">הערכה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור מחוון הערכה למשימה בנושא [נושא]. המחוון צריך לכלול 4 קריטריונים מרכזיים, 4 רמות ביצוע לכל קריטריון ותיאור ברור של מה נחשב ביצוע מצוין, טוב, חלקי או חסר.">צור מחוון הערכה למשימה בנושא <span class="var">[נושא]</span>. המחוון צריך לכלול 4 קריטריונים מרכזיים, 4 רמות ביצוע לכל קריטריון ותיאור ברור של מה נחשב ביצוע מצוין, טוב, חלקי או חסר.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>בדיקת תפיסות שגויות</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">מניעה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="מהן תפיסות שגויות נפוצות שתלמידים עשויים לפתח בנושא [נושא]? הצג לפחות 5 תפיסות שגויות, הסבר למה הן קורות, והצע דרך פשוטה לתקן כל אחת מהן בכיתה.">מהן תפיסות שגויות נפוצות שתלמידים עשויים לפתח בנושא <span class="var">[נושא]</span>? הצג לפחות 5 תפיסות שגויות, הסבר למה הן קורות, והצע דרך פשוטה לתקן כל אחת מהן בכיתה.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>משוב לתלמידים</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">משוב בונה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="כתוב משוב בונה לתלמיד/ה על עבודה בנושא [נושא]. המשוב צריך להיות מעודד, ברור, להתייחס לנקודות חוזקה, להצביע על נקודה אחת לשיפור ולהציע צעד מעשי להמשך.">כתוב משוב בונה לתלמיד/ה על עבודה בנושא <span class="var">[נושא]</span>. המשוב צריך להיות מעודד, ברור, להתייחס לנקודות חוזקה, להצביע על נקודה אחת לשיפור ולהציע צעד מעשי להמשך.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 6. ACTIVITIES -->
+                <section id="sec-6" class="prompt-category">
+                    <h2><span class="num">06.</span> פעילויות, ניסויים ולמידה פעילה</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>למידה דרך בעיה (PBL)</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">PBL</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור תרחיש בעיה מחיי היום־יום שמדגים את הנושא [נושא]. התלמידים צריכים לנתח את הבעיה, להציע פתרונות ולהסביר את החשיבה שלהם באמצעות מושגים מהחומר.">צור תרחיש בעיה מחיי היום־יום שמדגים את הנושא <span class="var">[נושא]</span>. התלמידים צריכים לנתח את הבעיה, להציע פתרונות ולהסביר את החשיבה שלהם באמצעות מושגים מהחומר.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>ניסוי בטוח ופשוט</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">המחשה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="הצע ניסוי פשוט ובטוח להמחשת הנושא [נושא] לתלמידי [שכבה]. כלול חומרים זמינים, שלבי ביצוע, כללי בטיחות, שאלות לפני הניסוי, שאלות במהלך הניסוי ושאלות סיכום.">הצע ניסוי פשוט ובטוח להמחשת הנושא <span class="var">[נושא]</span> לתלמידי <span class="var">[שכבה]</span>. כלול חומרים זמינים, שלבי ביצוע, כללי בטיחות, שאלות לפני הניסוי, שאלות במהלך הניסוי ושאלות סיכום.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 7. SOURCES -->
+                <section id="sec-7" class="prompt-category">
+                    <h2><span class="num">07.</span> עבודה עם מקורות, מסמכים וחומר קיים</h2>
+                    <p class="desc" style="color:var(--text2); margin-bottom:20px;">יש להדביק את הטקסט או המקור שלכם יחד עם הפרומפט.</p>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>הפיכת חומר קיים לשיעור</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">עיבוד תוכן</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="קח את הטקסט הבא והפוך אותו למערך שיעור לכיתה [שכבה]. כלול מטרות למידה, הסבר פשוט, פעילות לתלמידים, שאלות הבנה, שאלות חשיבה וסיכום.
+[הדבק טקסט כאן]">קח את הטקסט הבא והפוך אותו למערך שיעור לכיתה <span class="var">[שכבה]</span>. כלול מטרות למידה, הסבר פשוט, פעילות לתלמידים, שאלות הבנה, שאלות חשיבה וסיכום.
+<span class="var">[הדבק טקסט כאן]</span></div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>חילוץ מושגים מרכזיים</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">ניתוח</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="נתח את הטקסט הבא וחלץ ממנו את המושגים המרכזיים שהתלמידים צריכים להכיר. עבור כל מושג כתוב הגדרה פשוטה, דוגמה ושאלה קצרה לתרגול.
+[הדבק טקסט כאן]">נתח את הטקסט הבא וחלץ ממנו את המושגים המרכזיים שהתלמידים צריכים להכיר. עבור כל מושג כתוב הגדרה פשוטה, דוגמה ושאלה קצרה לתרגול.
+<span class="var">[הדבק טקסט כאן]</span></div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 8. CREATIVITY -->
+                <section id="sec-8" class="prompt-category">
+                    <h2><span class="num">08.</span> יצירתיות, סקרנות ומעורבות תלמידים</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>חיבור לחיי היום־יום</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">רלוונטיות</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="מצא 7 דוגמאות מחיי היום־יום שממחישות את הנושא [נושא]. עבור כל דוגמה הסבר איך להשתמש בה בכיתה ואיזו שאלה אפשר לשאול את התלמידים.">מצא 7 דוגמאות מחיי היום־יום שממחישות את הנושא <span class="var">[נושא]</span>. עבור כל דוגמה הסבר איך להשתמש בה בכיתה ואיזו שאלה אפשר לשאול את התלמידים.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>משחק לימודי</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">משחוק (Gamification)</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור משחק קצר ללימוד או חזרה על הנושא [נושא]. המשחק צריך להתאים לכיתה [שכבה], להיות פשוט להפעלה, לכלול חוקים ברורים, מטרת למידה ושאלות או משימות לתלמידים.">צור משחק קצר ללימוד או חזרה על הנושא <span class="var">[נושא]</span>. המשחק צריך להתאים לכיתה <span class="var">[שכבה]</span>, להיות פשוט להפעלה, לכלול חוקים ברורים, מטרת למידה ושאלות או משימות לתלמידים.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>למידה דרך דילמה</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">פיתוח עמדה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור דילמה הקשורה לנושא [נושא]. הדילמה צריכה לעודד תלמידים לחשוב, לנמק עמדה, להקשיב לאחרים ולהשתמש בידע מהשיעור.">צור דילמה הקשורה לנושא <span class="var">[נושא]</span>. הדילמה צריכה לעודד תלמידים לחשוב, לנמק עמדה, להקשיב לאחרים ולהשתמש בידע מהשיעור.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 9. DAILY EFFICIENCY -->
+                <section id="sec-9" class="prompt-category">
+                    <h2><span class="num">09.</span> פרומפטים לייעול העבודה היומיומית של המורה</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>תכנון שבועי</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">אופרציה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="עזור לי לבנות תכנון שבועי להוראת [נושא/יחידה] בכיתה [שכבה]. יש לי [מספר] שיעורים, כל שיעור באורך [משך]. חלק את הנושא לרצף הגיוני, הצע מטרה לכל שיעור, פעילות מרכזית ותוצר לתלמידים.">עזור לי לבנות תכנון שבועי להוראת <span class="var">[נושא/יחידה]</span> בכיתה <span class="var">[שכבה]</span>. יש לי <span class="var">[מספר]</span> שיעורים, כל שיעור באורך <span class="var">[משך]</span>. חלק את הנושא לרצף הגיוני, הצע מטרה לכל שיעור, פעילות מרכזית ותוצר לתלמידים.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>הכנה מהירה לשיעור מחר (SOS)</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">חירום</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="יש לי מחר שיעור בנושא [נושא] לכיתה [שכבה]. צור לי תכנון מהיר הכולל פתיחה, הסבר קצר, פעילות, שאלות וסיכום. התוצר צריך להיות פשוט להפעלה וללא הכנה מורכבת.">יש לי מחר שיעור בנושא <span class="var">[נושא]</span> לכיתה <span class="var">[שכבה]</span>. צור לי תכנון מהיר הכולל פתיחה, הסבר קצר, פעילות, שאלות וסיכום. התוצר צריך להיות פשוט להפעלה וללא הכנה מורכבת.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>ניסוח הודעה להורים או תלמידים</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">תקשורת</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="עזור לי לנסח הודעה קצרה וברורה ל[הורים/תלמידים] בנושא [נושא]. ההודעה צריכה להיות מקצועית, נעימה, ברורה ולא ארוכה מדי.">עזור לי לנסח הודעה קצרה וברורה ל<span class="var">[הורים/תלמידים]</span> בנושא <span class="var">[נושא]</span>. ההודעה צריכה להיות מקצועית, נעימה, ברורה ולא ארוכה מדי.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 10. AI ASSISTANTS -->
+                <section id="sec-10" class="prompt-category">
+                    <h2><span class="num">10.</span> בניית עוזרי AI אישיים למורים (Custom GPTs)</h2>
+                    <p class="desc" style="color:var(--text2); margin-bottom:20px;">השתמשו בפרומפטים האלו באזור ההגדרות (Instructions) של יצירת GPT מותאם אישית.</p>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>עוזר לבניית מערכי שיעור</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">System Prompt</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="בנה עבורי הנחיות לעוזר AI אישי שתפקידו ליצור מערכי שיעור עבור מורה ל[תחום דעת]. העוזר צריך לשאול שאלות מקדימות על שכבת גיל, משך שיעור, רמת הכיתה ומטרות למידה. בכל מערך עליו לכלול פתיח, הקניה, פעילות, בדיקת הבנה, סיכום והתאמות לרמות שונות.">בנה עבורי הנחיות לעוזר AI אישי שתפקידו ליצור מערכי שיעור עבור מורה ל<span class="var">[תחום דעת]</span>. העוזר צריך לשאול שאלות מקדימות על שכבת גיל, משך שיעור, רמת הכיתה ומטרות למידה. בכל מערך עליו לכלול פתיח, הקניה, פעילות, בדיקת הבנה, סיכום והתאמות לרמות שונות.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>עוזר להערכה ומשוב</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">System Prompt</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="בנה עבורי הנחיות לעוזר AI אישי שתפקידו לעזור למורה ליצור שאלות, מבחנים, מחוונים ומשובים. העוזר צריך להקפיד על ניסוח ברור, התאמה לרמת התלמידים, מגוון סוגי שאלות ומתן תשובות מצופות למורה.">בנה עבורי הנחיות לעוזר AI אישי שתפקידו לעזור למורה ליצור שאלות, מבחנים, מחוונים ומשובים. העוזר צריך להקפיד על ניסוח ברור, התאמה לרמת התלמידים, מגוון סוגי שאלות ומתן תשובות מצופות למורה.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 11. CRACK AND SAVE -->
+                <section id="sec-11" class="prompt-category">
+                    <h2><span class="num">11.</span> "לפצח ולשמור" — להפוך הצלחה לתבנית חוזרת</h2>
+                    <div class="prompts-grid">
+                        <article class="prompt-card">
+                            <h3>הפיכת שיחה מוצלחת לפרומפט קבוע</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">Reverse Engineering</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="נתח את השיחה האחרונה שלנו ואת התוצר שיצרנו. זהה מה היו המרכיבים שהובילו לתוצאה טובה, והפוך אותם לפרומפט קבוע שאוכל להשתמש בו בעתיד ליצירת תוצרים דומים. כתוב את הפרומפט בצורה כללית עם מקומות להשלמה.">נתח את השיחה האחרונה שלנו ואת התוצר שיצרנו. זהה מה היו המרכיבים שהובילו לתוצאה טובה, והפוך אותם לפרומפט קבוע שאוכל להשתמש בו בעתיד ליצירת תוצרים דומים. כתוב את הפרומפט בצורה כללית עם מקומות להשלמה.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>יצירת בנק פרומפטים אישי</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><span class="prompt-badge">התייעלות</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="על בסיס המשימות שאני מבצע/ת כמורה ל[תחום דעת], צור לי בנק של 10 פרומפטים אישיים לשימוש חוזר. התמקד במשימות שחוזרות על עצמן וחוסכות זמן אמיתי בעבודה היומיומית.">על בסיס המשימות שאני מבצע/ת כמורה ל<span class="var">[תחום דעת]</span>, צור לי בנק של 10 פרומפטים אישיים לשימוש חוזר. התמקד במשימות שחוזרות על עצמן וחוסכות זמן אמיתי בעבודה היומיומית.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 12. QUICK PROMPTS -->
+                <section id="sec-12" class="prompt-category">
+                    <h2><span class="num">12.</span> פרומפטים קצרים לשימוש מיידי</h2>
+                    <div class="prompts-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                        <article class="prompt-card">
+                            <h3>הסבר פשוט</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="הסבר את [מושג] לתלמידי [שכבה] בצורה פשוטה, עם דוגמה מחיי היום־יום.">הסבר את <span class="var">[מושג]</span> לתלמידי <span class="var">[שכבה]</span> בצורה פשוטה, עם דוגמה מחיי היום־יום.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>שאלות חזרה</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור 10 שאלות חזרה בנושא [נושא], כולל תשובות קצרות.">צור 10 שאלות חזרה בנושא <span class="var">[נושא]</span>, כולל תשובות קצרות.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>משימת סיכום</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="צור משימת סיכום קצרה לנושא [נושא] שתעזור לי לבדוק הבנה.">צור משימת סיכום קצרה לנושא <span class="var">[נושא]</span> שתעזור לי לבדוק הבנה.</div>
+                            </div>
+                        </article>
+                        <article class="prompt-card">
+                            <h3>הפיכת טקסט לפעילות</h3>
+                            <div class="prompt-box-wrap">
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-text" data-raw="הפוך את הטקסט הבא לפעילות כיתתית קצרה: [הדבקת הטקסט].">הפוך את הטקסט הבא לפעילות כיתתית קצרה: <span class="var">[הדבקת הטקסט]</span>.</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- THE GOLDEN RULE -->
+                <div id="golden-rule" class="golden-rule prompt-category">
+                    <i class="fa-solid fa-crown"></i>
+                    <h2>כלל הזהב</h2>
+                    <p>הפרומפט הכי טוב הוא לא זה שמבקש "תכין לי משהו".</p>
+                    <p>הפרומפט הכי טוב הוא זה שמסביר ל-AI את התמונה המלאה:</p>
+                    <div class="rule-list">
+                        <p>מי אני כמורה</p>
+                        <p>למי מיועד התוצר</p>
+                        <p>מה מטרת הלמידה</p>
+                        <p>איזה תוצר אני צריך</p>
+                        <p>מה חשוב לי שיקרה בכיתה</p>
+                        <p>ואיך אדע שהתוצר באמת טוב</p>
+                    </div>
+                    <p class="highlight" style="margin-top:30px;">בינה מלאכותית לא מחליפה את שיקול הדעת של המורה. היא מאפשרת למורה לעבוד בצורה מדויקת, יצירתית ואפקטיבית יותר.</p>
+                </div>
+
+            </div> <!-- /lib-content -->
+        </div> <!-- /library-grid -->
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="cta-section" id="contact-bottom">
+        <div class="container">
+            <div class="cta-box">
+                <h2 class="sec-heading">רוצים להעביר את הארגון או הצוות <span class="grad-text">לשלב הבא?</span></h2>
+                <p class="sec-desc mx-auto" style="margin-bottom: 30px;">סדנאות מעשיות, תהליכי הטמעה, ובניית פתרונות AI מותאמים אישית לצוותי חינוך וארגונים.</p>
+                <div class="btn-row" style="justify-content:center">
+                    <a class="btn btn-primary" href="index.html#contact"><i class="fa-solid fa-paper-plane"></i> לפרטים וקביעת שיחה</a>
+                    <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מספריית%20הפרומפטים%20ואשמח%20לשמוע%20פרטים%20על%20הטמעת%20AI" target="_blank" rel="noopener" class="btn btn-wa"><i class="fa-brands fa-whatsapp" style="font-size:1.2rem"></i> שלחו לי וואטסאפ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
+        <div class="footer-links">
+            <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope"></i> אימייל</a>
+            <a href="https://wa.me/972506915269" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> 050-6915269</a>
+            <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 PractiAI. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מספריית%20הפרומפטים%20ואשמח%20לשמוע%20פרטים%20על%20הטמעת%20AI" target="_blank" rel="noopener" class="wa-float" aria-label="וואטסאפ"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+"use strict";
+
+/* ============================
+   COPY TO CLIPBOARD
+   ============================ */
+function copyPrompt(btn) {
+    // מצא את האלמנט שמכיל את הטקסט המקורי ללא ה-HTML של העיצוב
+    const container = btn.closest('.prompt-box-wrap');
+    const textElement = container.querySelector('.prompt-text');
+    const textToCopy = textElement.getAttribute('data-raw');
+
+    // יצירת אלמנט זמני להעתקה
+    const tempInput = document.createElement("textarea");
+    tempInput.value = textToCopy;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    
+    try {
+        document.execCommand("copy");
+        // שינוי עיצוב הכפתור להצלחה
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> הועתק!';
+        btn.classList.add('success');
+        
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('success');
+        }, 2000);
+    } catch (err) {
+        console.error('Failed to copy', err);
+        alert('לא ניתן היה להעתיק, אנא נסו להעתיק ידנית.');
+    }
+    
+    document.body.removeChild(tempInput);
+}
+
+(function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ============================
+       SCROLL SPY FOR SIDEBAR
+       ============================ */
+    const sections = document.querySelectorAll('.prompt-category');
+    const navLinks = document.querySelectorAll('.sidebar-link');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(sec => {
+            const sectionTop = sec.offsetTop;
+            const sectionHeight = sec.clientHeight;
+            if (scrollY >= (sectionTop - 150)) {
+                current = sec.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    /* ============================
+       NEURAL NETWORK CANVAS (Light version for performance)
+       ============================ */
+    const canvas = document.getElementById('neuralCanvas');
+    const ctx = canvas.getContext('2d');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const COLORS = { cyan: [0, 212, 255], violet: [139, 92, 246] };
+    const COLOR_LIST = [COLORS.cyan, COLORS.violet];
+
+    let nodes = [], edges = [];
+    let W, H, dpr;
+    let isVisible = true;
+
+    function resizeCanvas() {
+        dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        W = window.innerWidth;
+        H = window.innerHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    let seed = 42;
+    function srand() { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; }
+
+    function generateNetwork() {
+        nodes = []; edges = []; seed = 42;
+        const count = window.innerWidth > 768 ? 40 : 20;
+        
+        for (let i = 0; i < count; i++) {
+            nodes.push({
+                x: srand() * 1.2 - 0.1, 
+                y: srand() * 1.2 - 0.1,
+                z: srand(),
+                r: 1.5 + srand() * 2,
+                color: COLOR_LIST[Math.floor(srand() * 2)],
+                phase: srand() * Math.PI * 2
+            });
+        }
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                if (dx*dx + dy*dy < 0.08) {
+                    edges.push({ a: i, b: j, flow: srand(), speed: 0.002 + srand() * 0.003 });
+                }
+            }
+        }
+    }
+
+    function render() {
+        if (!isVisible) { requestAnimationFrame(render); return; }
+        ctx.clearRect(0, 0, W, H);
+        
+        const scrollY = window.scrollY || 0;
+        const totalH = document.body.scrollHeight - H;
+        const prog = totalH > 0 ? scrollY / totalH : 0;
+
+        // Render Edges
+        for (let i = 0; i < edges.length; i++) {
+            const e = edges[i];
+            const na = nodes[e.a], nb = nodes[e.b];
+            
+            const nax = na.x * W; const nay = (na.y - prog * na.z * 0.5) * H * 1.5;
+            const nbx = nb.x * W; const nby = (nb.y - prog * nb.z * 0.5) * H * 1.5;
+
+            // Simple culling
+            if (nay < -100 && nby < -100) continue;
+            if (nay > H + 100 && nby > H + 100) continue;
+
+            ctx.beginPath();
+            ctx.moveTo(nax, nay);
+            ctx.lineTo(nbx, nby);
+            ctx.strokeStyle = `rgba(139,92,246,0.15)`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            if (!reducedMotion) {
+                e.flow = (e.flow + e.speed) % 1;
+                const px = nax + (nbx - nax) * e.flow;
+                const py = nay + (nby - nay) * e.flow;
+                ctx.beginPath();
+                ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0,212,255,0.4)`;
+                ctx.fill();
+            }
+        }
+
+        // Render Nodes
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            const nx = n.x * W + (reducedMotion ? 0 : Math.sin(Date.now() * 0.001 + n.phase) * 10 * n.z);
+            const ny = (n.y - prog * n.z * 0.5) * H * 1.5;
+            
+            if (ny < -50 || ny > H + 50) continue;
+
+            ctx.beginPath();
+            ctx.arc(nx, ny, n.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${n.color[0]},${n.color[1]},${n.color[2]},0.4)`;
+            ctx.fill();
+        }
+        requestAnimationFrame(render);
+    }
+
+    window.addEventListener('resize', () => { resizeCanvas(); generateNetwork(); });
+    document.addEventListener('visibilitychange', () => { isVisible = !document.hidden; });
+
+    resizeCanvas();
+    generateNetwork();
+    requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>
