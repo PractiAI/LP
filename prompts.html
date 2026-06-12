@@ -37,8 +37,8 @@
             --container: 1280px;
         }
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth;overflow-x:hidden}
-        body{background:var(--bg);color:var(--text);font-family:'Heebo',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        html{scroll-behavior:smooth;overflow-x:clip}
+        body{background:var(--bg);color:var(--text);font-family:'Heebo',sans-serif;line-height:1.7;overflow-x:clip;-webkit-font-smoothing:antialiased}
         ::selection{background:rgba(139,92,246,.4);color:#fff}
         ::-webkit-scrollbar{width:5px}
         ::-webkit-scrollbar-track{background:var(--bg)}
@@ -91,7 +91,7 @@
         .library-grid { display: grid; grid-template-columns: 280px 1fr; gap: 50px; align-items: start; }
         
         /* SIDEBAR NAV */
-        .lib-sidebar { position: sticky; top: calc(var(--header-h) + 30px); max-height: calc(100vh - var(--header-h) - 60px); overflow-y: auto; padding-left: 10px; }
+        .lib-sidebar { position: -webkit-sticky; position: sticky; top: calc(var(--header-h) + 30px); max-height: calc(100vh - var(--header-h) - 60px); overflow-y: auto; padding-left: 10px; }
         .lib-sidebar::-webkit-scrollbar { width: 3px; }
         .lib-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
         .sidebar-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; color: var(--text); display: flex; align-items: center; gap: 10px;}
