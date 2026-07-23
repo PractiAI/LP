@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>PractiAI | מדריך ופרומפטים ל-Microsoft Copilot</title>
+    <meta name="description" content="דף ליווי וספריית פרומפטים למשתתפי סדנאות Microsoft Copilot של טל חקוקי. מדריך מעשי לעבודה חכמה, מדויקת וישימה עם AI בארגון.">
+    
+    <!-- SEO & AIO (AI Search Optimization) Keywords & Meta -->
+    <meta name="keywords" content="פרומפטים לקופיילוט, Microsoft Copilot בעברית, מדריך Copilot, טל חקוקי סדנאות, AI Microsoft 365, כתיבת פרומפטים, Copilot Basic, Copilot Premium, בינה מלאכותית לארגונים">
+    <meta name="author" content="טל חקוקי">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+    
+    <!-- Open Graph (Social Sharing) -->
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:title" content="המדריך המלא ל-Microsoft Copilot | טל חקוקי">
+    <meta property="og:description" content="מאגר פרומפטים, עקרונות עבודה וצ'קליסטים לשימוש פרקטי ויעיל ב-Microsoft Copilot בארגונים.">
+    <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
+    
+    <!-- Schema.org JSON-LD for AI Search Engines (Positioning this as a HowTo/Article Guide) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "https://practiai.github.io/LP/copilot.html#article",
+          "headline": "דף ליווי למשתתפי סדנת Microsoft Copilot",
+          "description": "מדריך מעשי, עקרונות עבודה וספריית פרומפטים לשימוש נכון ב-Microsoft Copilot.",
+          "author": {
+            "@type": "Person",
+            "name": "טל חקוקי",
+            "url": "https://practiai.github.io/LP/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "PractiAI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://practiai.github.io/LP/og-image.png"
+            }
+          },
+          "keywords": ["Microsoft Copilot", "Prompts", "פרומפטים", "בינה מלאכותית", "AI"]
+        },
+        {
+          "@type": "HowTo",
+          "name": "איך לכתוב פרומפט טוב ל-Copilot",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "name": "מטרה",
+              "text": "הגדר מה רוצים ש־Copilot יעשה (למשל: סכם את המסמך והצג את 5 הנקודות המרכזיות)."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "הקשר",
+              "text": "הסבר למה המשימה נדרשת, מי קהל היעד ומה הרקע."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "מקור",
+              "text": "ציין על איזה מידע להתבסס, כגון מסמך מצורף או נתונים ספציפיים."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "ציפיות",
+              "text": "הגדר כיצד התוצאה צריכה להיראות (טבלה, אורך, סגנון שפה)."
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --bg: #06060e;
+            --bg-card: rgba(12, 14, 24, 0.65);
+            --bg-prompt: #0f111a;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.14);
+            --cyan: #00d4ff;
+            --violet: #8b5cf6;
+            --rose: #f43f5e;
+            --grad: linear-gradient(135deg, var(--cyan), var(--violet));
+            --grad-full: linear-gradient(135deg, var(--cyan), var(--violet), var(--rose));
+            --text: #f1f5f9;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --r-sm: 12px; --r-md: 20px; --r-lg: 28px; --r-xl: 36px;
+            --header-h: 80px;
+            --container: 1000px; /* צר יותר לקריאה נוחה */
+            --base-font-size: 100%;
+        }
+
+        /* High Contrast Mode Variables */
+        body.high-contrast {
+            --bg: #000; --bg-card: #000; --bg-prompt: #111;
+            --border: #ff0; --border-hover: #fff;
+            --cyan: #ff0; --violet: #ff0; --rose: #ff0;
+            --grad: linear-gradient(135deg, #ff0, #ff0);
+            --grad-full: linear-gradient(135deg, #ff0, #ff0, #ff0);
+            --text: #fff; --text2: #ff0; --text3: #ccc;
+        }
+
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:hidden; font-size: var(--base-font-size); transition: font-size 0.3s;}
+        body{background:var(--bg);color:var(--text);font-family:'Heebo',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased; transition: background-color 0.3s, color 0.3s;}
+        
+        body.no-motion *, body.no-motion *::before, body.no-motion *::after { animation: none !important; transition: none !important; }
+
+        ::selection{background:rgba(139,92,246,.4);color:#fff}
+        body.high-contrast ::selection { background:#ff0; color:#000; }
+        
+        ::-webkit-scrollbar{width:5px}
+        ::-webkit-scrollbar-track{background:var(--bg)}
+        ::-webkit-scrollbar-thumb{background:rgba(139,92,246,.4);border-radius:99px}
+        img,video{max-width:100%;display:block}
+        a{color:inherit;text-decoration:none; transition: color 0.2s;}
+        
+        /* Accessibility Tools */
+        .skip-link { position: absolute; top: -50px; left: 0; background: var(--violet); color: white; padding: 8px 16px; z-index: 9999; transition: top 0.3s; border-radius: 0 0 8px 0; font-weight: bold; }
+        .skip-link:focus { top: 0; }
+        :focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+
+        .container{max-width:var(--container);margin:0 auto;padding:0 28px;width:100%}
+        .text-center{text-align:center}
+        .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+        /* ===== NEURAL CANVAS ===== */
+        #neuralCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;will-change:transform}
+
+        /* ===== HEADER & NAV ===== */
+        .site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);transition:all .4s ease}
+        .site-header.scrolled{background:rgba(6,6,14,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border)}
+        .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+        .brand{display:flex;align-items:center;gap:14px}
+        .brand-icon{width:44px;height:44px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--grad);color:#fff;font-size:1.1rem}
+        body.high-contrast .brand-icon { background: #ff0; color: #000; }
+        .brand-name{font-size:1.2rem;font-weight:900;letter-spacing:-.5px}
+        .brand-sub{font-size:.78rem;color:var(--text3);font-weight:500}
+        
+        .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text2); font-size: 0.95rem; font-weight: 600; transition: all 0.3s; border: 1px solid transparent; }
+        .back-link:hover { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.3); transform: translateX(-3px); }
+
+        /* ===== TYPOGRAPHY & CONTENT STYLING ===== */
+        .hero{padding:calc(var(--header-h) + 60px) 0 40px; text-align: center; border-bottom: 1px solid var(--border); margin-bottom: 40px;}
+        .hero-label{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:999px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--cyan);font-size:.9rem;font-weight:700;margin-bottom:20px;}
+        .hero h1{font-size:clamp(2rem, 5vw, 3.5rem);font-weight:900;line-height:1.2;letter-spacing:-1px;margin-bottom:20px}
+        .hero p{font-size:1.15rem; color:var(--text2); max-width:700px; margin:0 auto; line-height: 1.6;}
+
+        .content-section { margin-bottom: 60px; scroll-margin-top: calc(var(--header-h) + 20px); }
+        .content-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 24px; color: #fff; display: flex; align-items: center; gap: 12px; }
+        .content-section h2 i { color: var(--violet); font-size: 1.5rem; }
+        body.high-contrast .content-section h2 i { color: #ff0; }
+        
+        .content-section h3 { font-size: 1.35rem; font-weight: 700; margin: 30px 0 15px; color: var(--cyan); }
+        .content-section p { margin-bottom: 16px; font-size: 1.05rem; color: var(--text2); line-height: 1.7; }
+        .content-section strong { color: #fff; font-weight: 700; }
+        body.high-contrast .content-section strong { color: #ff0; }
+        
+        .content-section ul { list-style: none; margin-bottom: 24px; display: grid; gap: 12px; }
+        .content-section ul li { display: flex; gap: 12px; align-items: flex-start; font-size: 1.05rem; color: var(--text2); }
+        .content-section ul li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--violet); margin-top: 4px; font-size: 0.9rem; }
+        body.high-contrast .content-section ul li::before { color: #ff0; }
+
+        .info-box { background: rgba(139,92,246,0.05); border-right: 4px solid var(--violet); padding: 20px; border-radius: 8px 0 0 8px; margin-bottom: 24px; }
+        .info-box p { margin-bottom: 0; color: var(--text); }
+
+        /* ===== PROMPT BOXES ===== */
+        .prompt-wrapper { margin: 24px 0; border-radius: var(--r-md); background: var(--bg-prompt); border: 1px solid var(--border); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s; }
+        .prompt-wrapper:hover { border-color: rgba(0,212,255,0.3); box-shadow: 0 15px 40px rgba(0,212,255,0.1); }
+        
+        .prompt-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border); }
+        .prompt-title { font-weight: 700; font-size: 0.95rem; color: var(--text2); display: flex; align-items: center; gap: 8px; }
+        .prompt-title i { color: var(--cyan); }
+        
+        .copy-btn { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: var(--cyan); padding: 6px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
+        .copy-btn:hover { background: var(--cyan); color: #000; }
+        .copy-btn.copied { background: #10b981; color: #fff; border-color: #10b981; }
+        body.high-contrast .copy-btn { background: #000; border-color: #ff0; color: #ff0; }
+        body.high-contrast .copy-btn:hover { background: #ff0; color: #000; }
+        body.high-contrast .copy-btn.copied { background: #ff0; color: #000; }
+        
+        .prompt-body { padding: 24px; }
+        .prompt-text { font-family: 'JetBrains Mono', 'Heebo', monospace; font-size: 1rem; line-height: 1.8; color: #fff; white-space: pre-wrap; direction: rtl; }
+        .prompt-text .variable { color: var(--cyan); font-weight: bold; background: rgba(0,212,255,0.1); padding: 0 4px; border-radius: 4px; }
+        body.high-contrast .prompt-text .variable { color: #ff0; background: rgba(255,255,0,0.2); }
+
+        /* Document Grid for Comparison/Structure */
+        .doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+        .doc-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 20px; border-radius: var(--r-sm); }
+        .doc-card h4 { color: var(--rose); margin-bottom: 10px; font-size: 1.1rem; }
+        .doc-card.good h4 { color: #10b981; }
+
+        /* ===== FOOTER ===== */
+        .site-footer{padding:50px 0;border-top:1px solid var(--border);background:rgba(0,0,0,.5); margin-top: 60px;}
+        body.high-contrast .site-footer { background: #000; }
+        .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+        .footer-brand strong{display:block;font-size:1.3rem;font-weight:900;margin-bottom:4px}
+        .footer-brand span{color:var(--text3);font-size:.95rem}
+        .footer-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+        .footer-links a{padding:12px 20px;border-radius:var(--r-sm);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s;display:flex;align-items:center;gap:8px; cursor: pointer;}
+        .footer-links a:hover{color:var(--cyan);border-color:rgba(0,212,255,.2)}
+        .footer-copy{color:var(--text3);font-size:.9rem}
+
+        /* ===== ACCESSIBILITY WIDGET ===== */
+        .a11y-widget { position: fixed; bottom: 30px; right: 30px; z-index: 95; }
+        .a11y-btn-main { width: 50px; height: 50px; border-radius: 50%; background: var(--violet); color: #fff; border: none; font-size: 24px; display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 15px rgba(139,92,246,.4); transition: all .3s; }
+        .a11y-btn-main:hover { transform: scale(1.05); }
+        .a11y-panel { position: absolute; bottom: 60px; right: 0; width: 260px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); backdrop-filter: blur(20px); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; }
+        .a11y-panel.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .a11y-panel-header { font-weight: 800; font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; color: var(--text); }
+        .a11y-close { background: none; border: none; color: var(--text2); cursor: pointer; font-size: 1.2rem; }
+        .a11y-option { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-bottom: 8px; transition: all 0.2s; text-align: right; }
+        .a11y-option:hover { border-color: var(--cyan); background: rgba(0,212,255,0.05); }
+        .a11y-option.active-toggle { background: var(--cyan); color: #000; border-color: var(--cyan); }
+        
+        body.high-contrast .a11y-btn-main { background: #ff0; color: #000; }
+        body.high-contrast .a11y-panel { background: #000; border-color: #ff0; }
+        body.high-contrast .a11y-option { background: #000; border-color: #ff0; color: #ff0; }
+        body.high-contrast .a11y-option.active-toggle { background: #ff0; color: #000; }
+
+        /* Modals */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 1000; display: none; place-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: grid; opacity: 1; }
+        .modal-content { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-md); padding: 40px; max-width: 600px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto; }
+        body.high-contrast .modal-content { background: #000; border-color: #ff0; }
+        .modal-close { position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.05); border: none; color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; transition: all 0.3s; }
+        .modal-close:hover { background: var(--rose); color: white; }
+        body.high-contrast .modal-close { border: 1px solid #ff0; }
+        .modal-content h2 { font-size: 1.8rem; margin-bottom: 20px; color: var(--cyan); }
+        .modal-content p { color: var(--text2); margin-bottom: 15px; }
+
+        @media(max-width:768px){
+            :root{--header-h:70px}
+            .hero h1{font-size:clamp(1.8rem, 8vw, 2.5rem);}
+            .doc-grid { grid-template-columns: 1fr; }
+            .a11y-widget { bottom: 20px; right: 20px; }
+            .a11y-btn-main { width: 44px; height: 44px; font-size: 20px; }
+            .prompt-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .copy-btn { width: 100%; justify-content: center; }
+            .footer-inner{flex-direction:column;align-items:flex-start;}
+        }
+    </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">דילוג לתוכן המרכזי</a>
+<canvas id="neuralCanvas" aria-hidden="true"></canvas>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="חזרה לדף הבית">
+            <span class="brand-icon"><i class="fa-solid fa-bolt-lightning"></i></span>
+            <div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי</div></div>
+        </a>
+        <nav>
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-right"></i> חזרה לאתר הראשי</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-label"><i class="fa-brands fa-microsoft"></i> מדריך Copilot למשתתפי הסדנאות</div>
+        <h1>
+            <span class="line">ממשחק חובבני</span>
+            <span class="line grad-text">לעבודה חכמה ומדויקת</span>
+        </h1>
+        <p>מטרת הדף היא לאפשר לכם לחזור על העקרונות שנלמדו בסדנה, לתרגל באופן עצמאי ולבנות בהדרגה שיטות עבודה קבועות עם Microsoft Copilot.</p>
+    </div>
+</section>
+
+<div class="container">
+    
+    <!-- Section 1 -->
+    <section class="content-section" id="what-is">
+        <h2><i class="fa-solid fa-robot"></i> 1. מהו Microsoft Copilot?</h2>
+        <p>Copilot הוא עוזר מבוסס בינה מלאכותית שיכול לסייע בכתיבה, סיכום, חשיבה, ניתוח מידע, תכנון, יצירת תוצרים ושיפור תהליכי עבודה. לצורך דף זה נבחין בין שתי סביבות עבודה:</p>
+        
+        <div class="doc-grid">
+            <div class="doc-card">
+                <h4 style="color:var(--cyan);"><i class="fa-regular fa-comments"></i> Copilot Basic (צ'אט)</h4>
+                <p>סביבת הצ׳אט העצמאית מתאימה בין היתר ל:</p>
+                <ul>
+                    <li>ניסוח ושיפור טקסטים.</li>
+                    <li>סיכום מידע וחשיבה.</li>
+                    <li>בניית תוכניות עבודה וניתוח קבצים.</li>
+                    <li>הכנת טיוטות, שאלות ורעיונות.</li>
+                    <li>בניית פרומפטים לתהליכי עבודה.</li>
+                </ul>
+                <p style="font-size:0.9rem; margin-top:10px;">נשען על מידע שנמסר בשיחה, קבצים מצורפים ומקורות אינטרנט. בחשבונות ארגוניים מחובר למידע הארגוני (תלוי רישיון).</p>
+            </div>
+            <div class="doc-card">
+                <h4 style="color:var(--violet);"><i class="fa-brands fa-microsoft"></i> Copilot Premium (M365)</h4>
+                <p>כאשר קיים רישיון מתאים, משתלב ישירות באפליקציות:</p>
+                <ul>
+                    <li><strong>Word:</strong> כתיבה, עריכה, שכתוב וסיכום מסמכים.</li>
+                    <li><strong>Excel:</strong> ניתוח נתונים, תרשימים ונוסחאות.</li>
+                    <li><strong>PowerPoint:</strong> יצירה ושיפור של מצגות.</li>
+                    <li><strong>Outlook:</strong> סיכום שרשורים וניסוח מיילים.</li>
+                    <li><strong>Teams:</strong> סיכום פגישות, החלטות ומשימות.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="content-section" id="framework">
+        <h2><i class="fa-solid fa-puzzle-piece"></i> 2. ארבעת המרכיבים של פרומפט טוב</h2>
+        <p>Microsoft ממליצה לבנות פרומפט סביב ארבעה מרכיבים מרכזיים כדי לקבל תוצאות מדויקות:</p>
+        
+        <div class="info-box">
+            <p><strong>1. מטרה –</strong> מה רוצים ש־Copilot יעשה? (במקום "תעזור לי עם המסמך", כתבו: "סכם את המסמך והצג את חמש הנקודות המרכזיות").</p>
+            <p><strong>2. הקשר –</strong> למה המשימה נדרשת? ("הסיכום מיועד למנהל שלא השתתף בפגישה וצריך להבין במהירות מה הוחלט").</p>
+            <p><strong>3. מקור –</strong> על איזה מידע להתבסס? ("התבסס רק על המסמך המצורף. אל תוסיף מידע ממקורות אחרים").</p>
+            <p><strong>4. ציפיות –</strong> כיצד התוצאה צריכה להיראות? ("הצג כטבלה הכוללת נושא, החלטה, אחראי ומועד. בעברית קצרה וברורה").</p>
+        </div>
+
+        <h3>תבנית כללית לשימוש (העתק/הדבק)</h3>
+        <div class="prompt-wrapper">
+            <div class="prompt-header">
+                <div class="prompt-title"><i class="fa-solid fa-terminal"></i> תבנית בסיס לבניית פרומפט</div>
+                <button class="copy-btn" aria-label="העתק פרומפט"><i class="fa-regular fa-copy"></i> העתק</button>
+            </div>
+            <div class="prompt-body">
+                <div class="prompt-text">אני רוצה שתעזור לי ב־<span class="variable">[המשימה]</span>.
+
+ההקשר הוא <span class="variable">[רקע, קהל יעד ומטרה]</span>.
+
+התבסס על <span class="variable">[מסמך, טקסט, קובץ או מידע שנמסר]</span>.
+
+הצג את התוצאה כ־<span class="variable">[מבנה רצוי]</span>, באורך <span class="variable">[אורך]</span> ובסגנון <span class="variable">[סגנון]</span>.
+
+חשוב להקפיד על <span class="variable">[מגבלות, כללים או נקודות לבדיקה]</span>.
+
+אם חסר מידע מהותי, שאל אותי שאלות לפני יצירת התוצר.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3 & 4 -->
+    <section class="content-section" id="principles">
+        <h2><i class="fa-solid fa-lightbulb"></i> 3. עקרונות לעבודה טובה עם Copilot</h2>
+        <ul>
+            <li><strong>התחילו בתוצאה הרצויה:</strong> אל תתחילו ממה שהכלי יכול לעשות. התחילו מהשאלה "איזו תוצאה אני רוצה לקבל?".</li>
+            <li><strong>ספקו הקשר מקצועי:</strong> ה-AI אינו מכיר אוטומטית את התפקיד, הארגון או הסטנדרטים שלכם.</li>
+            <li><strong>עבודה בשלבים:</strong> בירור מידע &larr; יצירת טיוטה &larr; ביקורת &larr; שיפור &larr; גרסה סופית.</li>
+            <li><strong>המשיכו את השיחה:</strong> בקשו לקצר, לתת דוגמה, להציג חלופות או לשאול "מה חסר בתוצאה?".</li>
+            <li><strong>בקשו שאלות לפני תשובה:</strong> "לפני שתענה, שאל אותי עד 5 שאלות שיעזרו לך להבין את המשימה".</li>
+            <li><strong>שמרו על בקרה אנושית:</strong> חובה לבדוק עובדות, נתונים, שמות ומסקנות לפני שימוש.</li>
+        </ul>
+
+        <h2 style="margin-top: 60px;"><i class="fa-solid fa-map-location-dot"></i> 4. תרגיל: מפת ההזדמנויות האישית שלי</h2>
+        <p>הפרומפט הבא נועד לזהות היכן Copilot יכול לסייע באופן מעשי בעבודה שלכם.</p>
+        
+        <div class="prompt-wrapper">
+            <div class="prompt-header">
+                <div class="prompt-title"><i class="fa-solid fa-terminal"></i> מיפוי הזדמנויות לתפקיד</div>
+                <button class="copy-btn" aria-label="העתק פרומפט"><i class="fa-regular fa-copy"></i> העתק</button>
+            </div>
+            <div class="prompt-body">
+                <div class="prompt-text">אני רוצה לבנות מפת הזדמנויות אישית לשימוש ב־Microsoft Copilot במסגרת התפקיד שלי.
+התפקיד שלי הוא: <span class="variable">[תפקיד]</span>
+
+תחומי האחריות המרכזיים שלי הם: <span class="variable">[תחומי אחריות]</span>
+
+משימות שחוזרות על עצמן בעבודה שלי: <span class="variable">[משימות]</span>
+
+תוצרים שאני מכין באופן קבוע: <span class="variable">[מיילים, דוחות, מצגות, טבלאות, סיכומים וכדומה]</span>
+
+האתגרים המרכזיים שלי כיום הם: <span class="variable">[אתגרים]</span>
+
+נתח את המידע ובנה עבורי מפת הזדמנויות הכוללת:
+1. עשר משימות שבהן Copilot יכול לסייע לי.
+2. הערך האפשרי בכל משימה.
+3. מה אצטרך לספק ל־Copilot כדי לקבל תוצאה טובה.
+4. באיזו סביבת עבודה כדאי לבצע אותה: Copilot Chat, Word, Excel, PowerPoint, Outlook או Teams.
+5. רמת הקושי ביישום: התחלה מהירה, בינונית או מתקדמת.
+6. שלוש משימות שכדאי לי להתחיל לנסות כבר השבוע.
+
+הצג את התוצאה בטבלה. אל תניח הנחות שאינן מבוססות על המידע שסיפקתי. אם חסר מידע, שאל אותי לפני הניתוח.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="automation">
+        <h2><i class="fa-solid fa-rotate"></i> 5. הפיכת משימה חוזרת לתהליך עבודה</h2>
+        
+        <div class="prompt-wrapper">
+            <div class="prompt-header">
+                <div class="prompt-title"><i class="fa-solid fa-terminal"></i> בניית מדריך למשימה חוזרת</div>
+                <button class="copy-btn" aria-label="העתק פרומפט"><i class="fa-regular fa-copy"></i> העתק</button>
+            </div>
+            <div class="prompt-body">
+                <div class="prompt-text">אחת המשימות המרכזיות שחוזרות על עצמן בעבודה שלי היא:
+<span class="variable">[תיאור המשימה]</span>
+
+כיום אני מבצע אותה כך:
+<span class="variable">[השלבים הקיימים]</span>
+
+בנה עבורי מדריך מסודר לביצוע המשימה בעזרת Copilot.
+המדריך צריך לכלול:
+1. אילו שלבים כדאי לבצע בעצמי ואילו אפשר לבצע בעזרת Copilot.
+2. איזה מידע צריך להכין מראש.
+3. פרומפט מומלץ לכל שלב.
+4. כיצד לבדוק את איכות התוצאה.
+5. אילו סיכונים או טעויות חשוב למנוע.
+6. תהליך עבודה קצר שאוכל לשמור וליישם בכל פעם שהמשימה חוזרת.
+
+לפני יצירת המדריך, שאל אותי שאלות ממוקדות על המשימה ועל התוצאה הרצויה.</div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 60px;"><i class="fa-solid fa-unlock-keyhole"></i> 6. "לפצח ולשמור" תוצאה מוצלחת</h2>
+        <p>כאשר קיבלתם תוצר טוב, אל תסתפקו בשמירת התוצאה. בקשו מה-AI "לפצח" את השיחה ולהכין לכם תבנית לפעם הבאה.</p>
+
+        <div class="prompt-wrapper">
+            <div class="prompt-header">
+                <div class="prompt-title"><i class="fa-solid fa-terminal"></i> פרומפט לפיצוח השיחה ויצירת תבנית</div>
+                <button class="copy-btn" aria-label="העתק פרומפט"><i class="fa-regular fa-copy"></i> העתק</button>
+            </div>
+            <div class="prompt-body">
+                <div class="prompt-text">התוצאה האחרונה שיצרת עבורי טובה ומתאימה לצרכים שלי.
+נתח את השיחה שהובילה לתוצאה והסבר:
+- איזה מידע והקשר שסיפקתי תרמו במיוחד לאיכות התוצאה.
+- אילו הוראות היו החשובות ביותר.
+- אילו החלטות, תיקונים או שלבי ביניים שיפרו את התוצר.
+- מה אפשר היה להגדיר בצורה מדויקת יותר כבר בתחילת השיחה.
+
+לאחר מכן צור עבורי פרומפט־אב לשימוש חוזר, שיאפשר לי להגיע לתוצאה דומה במשימות עתידיות.
+בפרומפט השאר שדות ברורים להחלפה בתוך סוגריים מרובעים, לדוגמה:
+[קהל יעד], [מטרת התוצר], [מידע שעליו צריך להתבסס], [אורך], [סגנון].
+
+בסיום הוסף:
+1. שאלות מקדימות שכדאי לשאול לפני הפעלת הפרומפט.
+2. רשימת בדיקות לבקרת איכות.
+3. גרסה קצרה ומהירה של הפרומפט.
+4. שם ברור שאוכל לתת לפרומפט בספריית הפרומפטים שלי.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="chat-prompts">
+        <h2><i class="fa-solid fa-messages"></i> 8. פרומפטים שימושיים ב־Copilot Chat</h2>
+        
+        <div class="prompt-wrapper">
+            <div class="prompt-header">
+                <div class="prompt-title"><i class="fa-solid fa-file-lines"></i> סיכום מידע והפקת משימות</div>
+                <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+            </div>
+            <div class="prompt-body">
+                <div class="prompt-text">סכם את הטקסט הבא עבור מי שלא מכיר את הנושא.
+הצג:
+- תקציר מנהלים קצר.
+- הנקודות המרכזיות.
+- החלטות שהתקבלו.
+- משימות לביצוע.
+- אחראים ומועדים, אם צוינו.
+- שאלות או נושאים שנותרו פתוחים.
+
+התבסס רק על הטקסט שסיפקתי ואל תשלים מידע חסר.
+
+<span class="variable">[הדבק טקסט כאן]</span></div>
+            </div>
+        </div>
+
+        <div class="prompt-wrapper">
+            <div class="prompt-header">
+                <div class="prompt-title"><i class="fa-solid fa-handshake"></i> הכנה לפגישה</div>
+                <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+            </div>
+            <div class="prompt-body">
+                <div class="prompt-text">עזור לי להתכונן לפגישה בנושא <span class="variable">[נושא]</span> עם <span class="variable">[משתתפים]</span>.
+מטרת הפגישה היא <span class="variable">[מטרה]</span>.
+המידע הקיים הוא <span class="variable">[רקע]</span>.
+
+הכן עבורי:
+1. שלוש מטרות ברורות לפגישה.
+2. סדר יום מוצע.
+3. שאלות שכדאי לשאול.
+4. התנגדויות או קשיים שעשויים לעלות.
+5. מידע שחסר לי לפני הפגישה.
+6. תבנית קצרה לסיכום הפגישה לאחר סיומה.</div>
+            </div>
+        </div>
+
+        <div class="prompt-wrapper">
+            <div class="prompt-header">
+                <div class="prompt-title"><i class="fa-solid fa-envelope"></i> ניסוח מייל מקצועי</div>
+                <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+            </div>
+            <div class="prompt-body">
+                <div class="prompt-text">נסח מייל בנושא <span class="variable">[נושא]</span> עבור <span class="variable">[נמען וקשר מקצועי]</span>.
+מטרת המייל: <span class="variable">[מטרה]</span>
+המידע שחייב להופיע: <span class="variable">[נקודות]</span>
+הטון הרצוי: <span class="variable">[מקצועי, ידידותי, אסרטיבי וכדומה]</span>
+
+כתוב נוסח ברור וקצר, עם שורת נושא וקריאה ברורה לפעולה.
+הצע גם גרסה קצרה יותר וגרסה מעט חמה ואישית יותר.</div>
+            </div>
+        </div>
+        
+        <div class="prompt-wrapper">
+            <div class="prompt-header">
+                <div class="prompt-title"><i class="fa-solid fa-magnifying-glass"></i> ביקורת ושיפור תוצר</div>
+                <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+            </div>
+            <div class="prompt-body">
+                <div class="prompt-text">בחן את התוצר הבא כמבקר מקצועי.
+בדוק:
+- האם המטרה ברורה.
+- האם המבנה הגיוני.
+- האם קיימות חזרות או נקודות חסרות.
+- אילו טענות דורשות ביסוס.
+- האם השפה מתאימה לקהל היעד.
+- מה עלול להיות מובן בצורה שגויה.
+
+אל תכתוב מיד גרסה חדשה. תחילה הצג את הממצאים והצע סדר עדיפויות לשיפור.
+
+<span class="variable">[הדבק את התוצר כאן]</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="premium">
+        <h2><i class="fa-brands fa-microsoft"></i> 10. פרומפטים ל-Microsoft 365 (Premium)</h2>
+        
+        <div class="doc-grid">
+            <div class="doc-card">
+                <h4 style="color:#2b579a;"><i class="fa-solid fa-file-word"></i> Word – יצירת טיוטה</h4>
+                <p>צור טיוטה למסמך בנושא [נושא] עבור [קהל יעד]. מטרת המסמך היא [מטרה]. השתמש במבנה הבא: פתיחה קצרה, רקע, נקודות מרכזיות, המלצות. כתוב בסגנון [סגנון] ובאורך של עד [אורך].</p>
+            </div>
+            <div class="doc-card">
+                <h4 style="color:#217346;"><i class="fa-solid fa-file-excel"></i> Excel – ניתוח נתונים</h4>
+                <p>נתח את הנתונים בחוברת. זהה: מגמות מרכזיות, חריגות, פערים בין קבוצות, נתונים חסרים, ו-3 מדדים למעקב. הצע תרשים מתאים לכל תובנה.</p>
+            </div>
+            <div class="doc-card">
+                <h4 style="color:#b7472a;"><i class="fa-solid fa-file-powerpoint"></i> PowerPoint – מצגת</h4>
+                <p>צור מצגת בנושא [נושא] לקהל [קהל]. המטרה [מטרה] ומשך ההצגה [משך]. בנה סיפור: אתגר, 3-5 נקודות, דוגמאות, מסקנות ושקף סיום. מעט טקסט בשקף + הערות מרצה.</p>
+            </div>
+            <div class="doc-card">
+                <h4 style="color:#464eb8;"><i class="fa-brands fa-microsoft"></i> Teams – סיכום פגישה</h4>
+                <p>סכם את הפגישה והפרד בין: נושאים שנדונו, החלטות, משימות, אחראים, מועדים ונושאים פתוחים. הכן הודעת סיכום קצרה לשליחה למשתתפים.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="checklists">
+        <h2><i class="fa-solid fa-list-check"></i> צ'קליסטים לעבודה בטוחה</h2>
+        
+        <div class="info-box" style="border-color: var(--cyan); background: rgba(0,212,255,0.05);">
+            <h3 style="margin-top: 0;">לפני הלחיצה על שליחה (Send)</h3>
+            <ul>
+                <li>האם הגדרתי מה אני רוצה לקבל?</li>
+                <li>האם סיפקתי מספיק הקשר?</li>
+                <li>האם ציינתי על איזה מקור להתבסס?</li>
+                <li>האם ביקשתי מבנה ברור, אורך וסגנון?</li>
+                <li>האם עדיף לבקש שאלות הבהרה לפני התשובה?</li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="border-color: var(--rose); background: rgba(244,63,94,0.05);">
+            <h3 style="margin-top: 0; color: var(--rose);">לפני שימוש בתוצר (Review)</h3>
+            <ul>
+                <li>האם העובדות, המספרים והשמות נכונים?</li>
+                <li>האם המסקנות באמת נתמכות במקור?</li>
+                <li>האם הוזן מידע סודי שלא היה צריך להיחשף?</li>
+                <li>האם ברור לארגון מה נוצר על ידי AI ומה נבדק על ידי אדם?</li>
+            </ul>
+        </div>
+        
+        <p style="text-align: center; margin-top: 40px; font-size: 1.2rem;">
+            <strong>זכרו:</strong> Copilot אינו מחליף את הידע המקצועי שלכם.<br>
+            הערך האמיתי נוצר כשמשלבים: <strong>הגדרה מדויקת &larr; הקשר &larr; בקרה אנושית.</strong>
+        </p>
+    </section>
+
+</div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
+        <div class="footer-links">
+            <a href="index.html"><i class="fa-solid fa-home" aria-hidden="true"></i> חזרה לאתר</a>
+            <a class="modal-trigger" data-modal="privacyModal"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> מדיניות פרטיות</a>
+            <a class="modal-trigger" data-modal="a11yModal"><i class="fa-solid fa-universal-access" aria-hidden="true"></i> הצהרת נגישות</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 PractiAI. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<!-- Accessibility Native Widget -->
+<div class="a11y-widget">
+    <button class="a11y-btn-main" id="a11yMainBtn" aria-label="פתיחת תפריט נגישות" aria-expanded="false"><i class="fa-solid fa-universal-access"></i></button>
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות">
+        <div class="a11y-panel-header">
+            <span>התאמות נגישות</span>
+            <button class="a11y-close" id="a11yCloseBtn" aria-label="סגור תפריט נגישות"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <button class="a11y-option" id="toggleContrast"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
+        <button class="a11y-option" id="toggleFontSize"><i class="fa-solid fa-magnifying-glass-plus"></i> הגדלת טקסט</button>
+        <button class="a11y-option" id="toggleMotion"><i class="fa-solid fa-pause"></i> עצירת אנימציות</button>
+        <button class="a11y-option modal-trigger" data-modal="a11yModal" style="margin-top: 10px; border-color: var(--violet); justify-content: center;"><i class="fa-solid fa-file-lines"></i> הצהרת נגישות</button>
+    </div>
+</div>
+
+<!-- Modals -->
+<div id="privacyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="סגור חלונית"><i class="fa-solid fa-xmark"></i></button>
+        <h2 id="privacyTitle">מדיניות פרטיות</h2>
+        <p>אנו ב-PractiAI מייחסים חשיבות רבה לפרטיותכם. הגלישה בדף זה היא אנונימית, איננו שומרים מידע מזהה על המשתמשים ואיננו אוספים נתונים אודות השימוש בפרומפטים שבדף זה.</p>
+    </div>
+</div>
+
+<div id="a11yModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="a11yTitle">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="סגור חלונית"><i class="fa-solid fa-xmark"></i></button>
+        <h2 id="a11yTitle">הצהרת נגישות</h2>
+        <p>אנו רואים חשיבות רבה במתן שירות שוויוני. אתר זה הותאם לדרישות הנגישות בהתאם לתקן ת"י 5568 ברמת AA. האתר מותאם לניווט מקלדת, תומך בקוראי מסך, ומאפשר שליטה בניגודיות ואנימציות דרך כפתור הנגישות.</p>
+    </div>
+</div>
+
+<script>
+"use strict";
+(function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ============================
+       COPY TO CLIPBOARD LOGIC
+       ============================ */
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const box = btn.closest('.prompt-wrapper');
+            const textToCopy = box.querySelector('.prompt-text').innerText;
+            
+            try {
+                // Modern Clipboard API
+                await navigator.clipboard.writeText(textToCopy);
+            } catch (err) {
+                // Fallback for older browsers or strict iframes
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                textarea.style.position = 'fixed';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (ex) {
+                    console.warn('Copy failed', ex);
+                }
+                document.body.removeChild(textarea);
+            }
+
+            // UI Feedback
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> הועתק!';
+            btn.classList.add('copied');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHtml;
+                btn.classList.remove('copied');
+            }, 2500);
+        });
+    });
+
+    /* ============================
+       ACCESSIBILITY (A11Y) WIDGET LOGIC
+       ============================ */
+    const a11yMainBtn = document.getElementById('a11yMainBtn');
+    const a11yPanel = document.getElementById('a11yPanel');
+    const a11yCloseBtn = document.getElementById('a11yCloseBtn');
+    const btnContrast = document.getElementById('toggleContrast');
+    const btnFontSize = document.getElementById('toggleFontSize');
+    const btnMotion = document.getElementById('toggleMotion');
+    
+    let isA11yOpen = false;
+    let isHighContrast = false;
+    let isLargeText = false;
+    let isMotionStopped = false;
+
+    function toggleA11yPanel() {
+        isA11yOpen = !isA11yOpen;
+        a11yMainBtn.setAttribute('aria-expanded', isA11yOpen);
+        if(isA11yOpen) {
+            a11yPanel.classList.add('active');
+            btnContrast.focus();
+        } else {
+            a11yPanel.classList.remove('active');
+            a11yMainBtn.focus();
+        }
+    }
+    a11yMainBtn.addEventListener('click', toggleA11yPanel);
+    a11yCloseBtn.addEventListener('click', toggleA11yPanel);
+
+    btnContrast.addEventListener('click', () => {
+        isHighContrast = !isHighContrast;
+        document.body.classList.toggle('high-contrast', isHighContrast);
+        btnContrast.classList.toggle('active-toggle', isHighContrast);
+    });
+
+    btnFontSize.addEventListener('click', () => {
+        isLargeText = !isLargeText;
+        document.documentElement.style.setProperty('--base-font-size', isLargeText ? '115%' : '100%');
+        btnFontSize.classList.toggle('active-toggle', isLargeText);
+        setTimeout(() => ScrollTrigger.refresh(), 300);
+    });
+
+    btnMotion.addEventListener('click', () => {
+        isMotionStopped = !isMotionStopped;
+        document.body.classList.toggle('no-motion', isMotionStopped);
+        btnMotion.classList.toggle('active-toggle', isMotionStopped);
+        if(isMotionStopped) { gsap.globalTimeline.pause(); } 
+        else { gsap.globalTimeline.play(); }
+    });
+
+    /* ============================
+       NEURAL NETWORK CANVAS
+       ============================ */
+    const canvas = document.getElementById('neuralCanvas');
+    const ctx = canvas.getContext('2d');
+    const userPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const COLORS = { cyan: [0, 212, 255], violet: [139, 92, 246], rose: [244, 63, 94] };
+    const COLOR_LIST = [COLORS.cyan, COLORS.violet, COLORS.rose];
+
+    function getConfig() {
+        const w = window.innerWidth;
+        if (w > 1100) return { nodes: 60, perCluster: 6, transit: 3, knn: 2, dprCap: 2 }; // Reduced density for long text page
+        if (w > 768)  return { nodes: 30, perCluster: 3, transit: 2, knn: 2, dprCap: 1.5 };
+        return                { nodes: 15, perCluster: 2, transit: 1, knn: 1, dprCap: 1.5 };
+    }
+
+    let nodes = [], edges = [], clusters = {};
+    let W, H, dpr;
+    const camera = { progress: 0 };
+    let isVisible = true;
+    let time = 0;
+
+    function resizeCanvas() {
+        const cfg = getConfig();
+        dpr = Math.min(window.devicePixelRatio || 1, cfg.dprCap);
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    let seed = 42;
+    function srand() { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; }
+    function gaussRand() {
+        let u = 0, v = 0;
+        while (u === 0) u = srand(); while (v === 0) v = srand();
+        return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    }
+
+    function generateNetwork() {
+        const cfg = getConfig();
+        nodes = []; edges = []; clusters = {}; seed = 42;
+        const sections = document.querySelectorAll('.content-section');
+        const docH = document.body.scrollHeight || 1000;
+        const sectionData = [];
+
+        sections.forEach((sec, index) => {
+            const name = sec.id || 'sec' + index;
+            sec.dataset.section = name; // For scrolltrigger
+            const top = sec.offsetTop / docH;
+            const h = sec.offsetHeight / docH;
+            sectionData.push({ name, cy: top + h / 2, top, h });
+            clusters[name] = { activation: 0, nodes: [] };
+        });
+
+        sectionData.forEach(sd => {
+            for (let i = 0; i < cfg.perCluster; i++) {
+                nodes.push({
+                    bx: 0.15 + srand() * 0.7, by: sd.cy + gaussRand() * sd.h * 0.25,
+                    z: srand(), baseR: 2 + srand() * 3, color: COLOR_LIST[Math.floor(srand() * 3)],
+                    cluster: sd.name, glow: 0, phase: srand() * Math.PI * 2, rx: 0, ry: 0, r: 0, opacity: 0
+                });
+                clusters[sd.name].nodes.push(nodes.length - 1);
+            }
+        });
+
+        for (let i = 0; i < sectionData.length - 1; i++) {
+            const y1 = sectionData[i].cy + sectionData[i].h * 0.3;
+            const y2 = sectionData[i + 1].cy - sectionData[i + 1].h * 0.3;
+            for (let t = 0; t < cfg.transit; t++) {
+                const frac = (t + 1) / (cfg.transit + 1);
+                nodes.push({
+                    bx: 0.1 + srand() * 0.8, by: y1 + (y2 - y1) * frac + gaussRand() * 0.01,
+                    z: srand(), baseR: 1.5 + srand() * 2, color: COLOR_LIST[Math.floor(srand() * 3)],
+                    cluster: null, glow: 0, phase: srand() * Math.PI * 2, rx: 0, ry: 0, r: 0, opacity: 0
+                });
+            }
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+            const dists = [];
+            for (let j = 0; j < nodes.length; j++) {
+                if (i === j) continue;
+                dists.push({ j, d: Math.pow(nodes[i].bx - nodes[j].bx, 2) + Math.pow((nodes[i].by - nodes[j].by) * 5, 2) });
+            }
+            dists.sort((a, b) => a.d - b.d);
+            for (let n = 0; n < Math.min(cfg.knn, dists.length); n++) {
+                const j = dists[n].j;
+                if (!edges.some(e => (e.a === i && e.b === j) || (e.a === j && e.b === i))) {
+                    edges.push({ a: i, b: j, flow: srand(), speed: 0.002 + srand() * 0.003 });
+                }
+            }
+        }
+    }
+
+    function updateNodes() {
+        const prog = camera.progress; const totalTravel = document.body.scrollHeight; const sigma = H * 0.4;
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i]; const parallax = 0.3 + n.z * 1.7;
+            const docY = n.by * totalTravel; const scrollY = prog * (totalTravel - H);
+            let screenY = docY - scrollY * parallax;
+            const range = totalTravel * 0.6;
+            if (screenY < -200) screenY += range; if (screenY > H + 200) screenY -= range * 0.3;
+            const proximity = Math.exp(-Math.pow(screenY - H * 0.5, 2) / (2 * sigma * sigma));
+            const motionActive = !userPrefersReducedMotion && !isMotionStopped;
+            const drift = motionActive ? Math.sin((time * 0.5) + prog * Math.PI * 3 + n.phase) * 25 * n.z : 0;
+            n.rx = n.bx * W + drift; n.ry = screenY; n.r = n.baseR * (0.4 + proximity * 0.3); n.opacity = 0.1 + proximity * 0.25;
+            if (n.cluster && clusters[n.cluster]) {
+                const act = clusters[n.cluster].activation; n.glow = act; n.opacity += act * 0.15;
+            }
+        }
+    }
+
+    function render() {
+        if (!isVisible) { requestAnimationFrame(render); return; }
+        const motionActive = !userPrefersReducedMotion && !isMotionStopped;
+        if (motionActive) time += 0.016;
+        ctx.clearRect(0, 0, W, H);
+        updateNodes();
+        for (let i = 0; i < edges.length; i++) {
+            const e = edges[i]; const na = nodes[e.a], nb = nodes[e.b];
+            if (na.ry < -100 && nb.ry < -100) continue; if (na.ry > H + 100 && nb.ry > H + 100) continue;
+            const avgGlow = Math.max(na.glow, nb.glow); const avgOp = (na.opacity + nb.opacity) * 0.5;
+            const lineOp = avgOp * 0.3 + avgGlow * 0.2;
+            if (lineOp < 0.01) continue;
+            ctx.beginPath(); ctx.moveTo(na.rx, na.ry); ctx.lineTo(nb.rx, nb.ry);
+            ctx.strokeStyle = isHighContrast ? `rgba(255,255,0,${Math.min(lineOp, 0.5)})` : `rgba(139,92,246,${Math.min(lineOp, 0.35)})`;
+            ctx.lineWidth = 0.5 + avgGlow * 1; ctx.stroke();
+            if (motionActive) {
+                e.flow = (e.flow + e.speed + avgGlow * 0.008) % 1;
+                ctx.beginPath();
+                ctx.arc(na.rx + (nb.rx - na.rx) * e.flow, na.ry + (nb.ry - na.ry) * e.flow, 1 + avgGlow * 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = isHighContrast ? `rgba(255,255,0,${0.15 + avgGlow * 0.55})` : `rgba(0,212,255,${0.15 + avgGlow * 0.55})`;
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            if (n.ry < -50 || n.ry > H + 50 || n.opacity < 0.02) continue;
+            ctx.beginPath(); ctx.arc(n.rx, n.ry, n.r, 0, Math.PI * 2);
+            ctx.fillStyle = isHighContrast ? `rgba(255,255,0,${Math.min(n.opacity, 0.7)})` : `rgba(${n.color[0]},${n.color[1]},${n.color[2]},${Math.min(n.opacity, 0.5)})`;
+            ctx.fill();
+        }
+        requestAnimationFrame(render);
+    }
+
+    function setupTriggers() {
+        ScrollTrigger.create({ trigger: 'main', start: 'top top', end: 'bottom bottom', scrub: 0.5, onUpdate: self => { camera.progress = self.progress; } });
+        document.querySelectorAll('.content-section').forEach(sec => {
+            const name = sec.dataset.section;
+            if (!clusters[name]) return;
+            ScrollTrigger.create({ trigger: sec, start: 'top 85%', end: 'bottom 15%', scrub: 0.3, onUpdate: self => { clusters[name].activation = Math.sin(self.progress * Math.PI); } });
+        });
+    }
+
+    function initNeural() { resizeCanvas(); generateNetwork(); setupTriggers(); requestAnimationFrame(render); }
+    let resizeTimer; window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { resizeCanvas(); generateNetwork(); ScrollTrigger.refresh(); }, 250); });
+    document.addEventListener('visibilitychange', () => { isVisible = !document.hidden; });
+    
+    // Initial Setup
+    initNeural();
+
+    /* ============================
+       MODALS & HEADER LOGIC
+       ============================ */
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 60), {passive:true});
+
+    const modalTriggers = document.querySelectorAll('.modal-trigger');
+    const modals = document.querySelectorAll('.modal-overlay');
+    const closeBtns = document.querySelectorAll('.modal-close');
+
+    function openModal(modalId) { const m = document.getElementById(modalId); if(m) { m.classList.add('active'); document.body.style.overflow='hidden'; m.querySelector('.modal-close').focus(); } }
+    function closeModal() { modals.forEach(m => m.classList.remove('active')); document.body.style.overflow=''; }
+    modalTriggers.forEach(t => t.addEventListener('click', e => { e.preventDefault(); if(isA11yOpen) toggleA11yPanel(); openModal(t.dataset.modal); }));
+    closeBtns.forEach(b => b.addEventListener('click', closeModal));
+    modals.forEach(m => m.addEventListener('click', e => { if (e.target === m) closeModal(); }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+})();
+</script>
+</body>
+</html>
