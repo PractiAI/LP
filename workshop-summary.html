@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>PractiAI | עובדים חכם יותר עם בינה מלאכותית - סיכום סדנה</title>
+    <meta name="description" content="העקרונות, הפרומפטים וכלי העבודה המרכזיים מסדנת הבינה המלאכותית עם טל חקוקי. מדריך מעשי להפיכת AI לכלי עבודה בטוח ויעיל.">
+    
+    <!-- SEO & AIO (AI Search Optimization) Keywords & Meta -->
+    <meta name="keywords" content="סדנת בינה מלאכותית, מדריך פרומפטים, טל חקוקי, קורס AI לארגונים, כתיבת פרומפטים, פרומפטים לניהול, בינה מלאכותית בעבודה, שילוב AI בארגון, ChatGPT, Microsoft Copilot">
+    <meta name="author" content="טל חקוקי">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (Social Sharing) -->
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:title" content="עובדים חכם יותר עם בינה מלאכותית | PractiAI">
+    <meta property="og:description" content="מאגר פרומפטים, עקרונות עבודה וצ'קליסטים לשימוש פרקטי ויעיל ב-AI, מתוך סדנת הדגל של טל חקוקי.">
+    <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
+    
+    <!-- Schema.org JSON-LD for AI Search Engines (Positioning this as a Guide/Course Material) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "https://practiai.github.io/LP/workshop-summary.html#article",
+          "headline": "סיכום סדנת בינה מלאכותית - עובדים חכם יותר",
+          "description": "העקרונות, הפרומפטים וכלי העבודה המרכזיים לשימוש מעשי ובטוח בבינה מלאכותית בארגון.",
+          "author": {
+            "@type": "Person",
+            "name": "טל חקוקי",
+            "url": "https://practiai.github.io/LP/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "PractiAI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://practiai.github.io/LP/og-image.png"
+            }
+          },
+          "keywords": ["Prompts", "פרומפטים", "בינה מלאכותית", "AI", "סדנה"]
+        },
+        {
+          "@type": "HowTo",
+          "name": "נוסחה פשוטה לפרומפט טוב",
+          "step": [
+            { "@type": "HowToStep", "name": "תפקיד", "text": "איזו מומחיות או נקודת מבט המודל צריך לאמץ?" },
+            { "@type": "HowToStep", "name": "הקשר", "text": "מה חשוב לדעת עליכם, על הארגון ועל קהל היעד?" },
+            { "@type": "HowToStep", "name": "משימה", "text": "מה בדיוק צריך לבצע, ובאילו שלבים?" },
+            { "@type": "HowToStep", "name": "מגבלות וכללים", "text": "מה אסור להניח וממה צריך להימנע?" },
+            { "@type": "HowToStep", "name": "מבנה התוצאה", "text": "כיצד התוצאה צריכה להיראות (טבלה, מסמך, רשימה)?" },
+            { "@type": "HowToStep", "name": "דוגמאות", "text": "הצגת דוגמה לתוצאה טובה." }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --bg: #06060e;
+            --bg-card: rgba(12, 14, 24, 0.65);
+            --bg-prompt: #0f111a;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.14);
+            --cyan: #00d4ff;
+            --violet: #8b5cf6;
+            --rose: #f43f5e;
+            --grad: linear-gradient(135deg, var(--cyan), var(--violet));
+            --grad-full: linear-gradient(135deg, var(--cyan), var(--violet), var(--rose));
+            --text: #f1f5f9;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --r-sm: 12px; --r-md: 20px; --r-lg: 28px; --r-xl: 36px;
+            --header-h: 80px;
+            --container: 1000px; /* צר יותר לקריאה נוחה */
+            --base-font-size: 100%;
+        }
+
+        /* High Contrast Mode Variables */
+        body.high-contrast {
+            --bg: #000; --bg-card: #000; --bg-prompt: #111;
+            --border: #ff0; --border-hover: #fff;
+            --cyan: #ff0; --violet: #ff0; --rose: #ff0;
+            --grad: linear-gradient(135deg, #ff0, #ff0);
+            --grad-full: linear-gradient(135deg, #ff0, #ff0, #ff0);
+            --text: #fff; --text2: #ff0; --text3: #ccc;
+        }
+
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:hidden; font-size: var(--base-font-size); transition: font-size 0.3s;}
+        body{background:var(--bg);color:var(--text);font-family:'Heebo',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased; transition: background-color 0.3s, color 0.3s;}
+        
+        body.no-motion *, body.no-motion *::before, body.no-motion *::after { animation: none !important; transition: none !important; }
+
+        ::selection{background:rgba(139,92,246,.4);color:#fff}
+        body.high-contrast ::selection { background:#ff0; color:#000; }
+        
+        ::-webkit-scrollbar{width:5px}
+        ::-webkit-scrollbar-track{background:var(--bg)}
+        ::-webkit-scrollbar-thumb{background:rgba(139,92,246,.4);border-radius:99px}
+        img,video{max-width:100%;display:block}
+        a{color:inherit;text-decoration:none; transition: color 0.2s;}
+        
+        /* Accessibility Tools */
+        .skip-link { position: absolute; top: -50px; left: 0; background: var(--violet); color: white; padding: 8px 16px; z-index: 9999; transition: top 0.3s; border-radius: 0 0 8px 0; font-weight: bold; }
+        .skip-link:focus { top: 0; }
+        :focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+
+        .container{max-width:var(--container);margin:0 auto;padding:0 28px;width:100%}
+        .text-center{text-align:center}
+        .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+        /* ===== NEURAL CANVAS ===== */
+        #neuralCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;will-change:transform}
+
+        /* ===== HEADER & NAV ===== */
+        .site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);transition:all .4s ease}
+        .site-header.scrolled{background:rgba(6,6,14,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border)}
+        .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+        .brand{display:flex;align-items:center;gap:14px}
+        .brand-icon{width:44px;height:44px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--grad);color:#fff;font-size:1.1rem}
+        body.high-contrast .brand-icon { background: #ff0; color: #000; }
+        .brand-name{font-size:1.2rem;font-weight:900;letter-spacing:-.5px}
+        .brand-sub{font-size:.78rem;color:var(--text3);font-weight:500}
+        
+        .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text2); font-size: 0.95rem; font-weight: 600; transition: all 0.3s; border: 1px solid transparent; }
+        .back-link:hover { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.3); transform: translateX(-3px); }
+
+        /* ===== BUTTONS ===== */
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 30px;font-size:1rem;font-weight:700;border-radius:var(--r-sm);border:none;cursor:pointer;transition:all .4s cubic-bezier(.19,1,.22,1);text-align:center}
+        .btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 25px rgba(0,212,255,.2)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 35px rgba(0,212,255,.35)}
+        .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(12px)}
+        .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px)}
+        body.high-contrast .btn-primary { background: #ff0; color: #000; box-shadow: none; }
+
+        /* ===== HERO ===== */
+        .hero{padding:calc(var(--header-h) + 60px) 0 40px; text-align: center; border-bottom: 1px solid var(--border); margin-bottom: 60px; position: relative;}
+        .hero-label{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:999px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--cyan);font-size:.9rem;font-weight:700;margin-bottom:20px;}
+        .hero h1{font-size:clamp(2rem, 5vw, 4rem);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:20px}
+        .hero p{font-size:1.15rem; color:var(--text2); max-width:700px; margin:0 auto 30px; line-height: 1.6;}
+        .hero-meta { display: inline-block; padding: 6px 16px; background: rgba(255,255,255,0.03); border-radius: 8px; color: var(--text3); font-size: 0.9rem; margin-top: 30px; border: 1px solid var(--border); }
+
+        /* ===== CONTENT SECTIONS ===== */
+        .content-section { margin-bottom: 80px; scroll-margin-top: calc(var(--header-h) + 20px); }
+        .sec-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 30px; color: #fff; display: flex; align-items: center; gap: 12px; }
+        .sec-title i { color: var(--violet); font-size: 1.8rem; }
+        body.high-contrast .sec-title i { color: #ff0; }
+        
+        .content-section p { margin-bottom: 16px; font-size: 1.05rem; color: var(--text2); line-height: 1.7; }
+        .content-section strong { color: #fff; font-weight: 700; }
+        body.high-contrast .content-section strong { color: #ff0; }
+
+        /* Principles Grid */
+        .principles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .principle-card { background: var(--bg-card); border: 1px solid var(--border); padding: 30px; border-radius: var(--r-md); backdrop-filter: blur(10px); transition: transform 0.3s; }
+        .principle-card:hover { transform: translateY(-5px); border-color: rgba(139,92,246,0.3); }
+        .p-num { width: 40px; height: 40px; border-radius: 10px; background: rgba(139,92,246,0.1); color: var(--violet); display: grid; place-items: center; font-weight: 900; font-size: 1.2rem; margin-bottom: 16px; }
+        .principle-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 12px; }
+        .principle-card p { font-size: 0.95rem; margin-bottom: 0; }
+
+        /* Prompt Structure Horizontal Flow */
+        .structure-flow { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 40px 0; }
+        .flow-item { display: flex; align-items: center; gap: 15px; }
+        .flow-box { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.2); padding: 16px 20px; border-radius: var(--r-sm); text-align: center; width: 140px; }
+        .flow-box strong { display: block; color: var(--cyan); margin-bottom: 6px; font-size: 1.1rem; }
+        .flow-box span { font-size: 0.85rem; color: var(--text2); display: block; line-height: 1.3; }
+        .flow-arrow { color: var(--text3); font-size: 1.2rem; }
+        body.high-contrast .flow-box { background: #000; border-color: #ff0; }
+        body.high-contrast .flow-box strong { color: #ff0; }
+
+        /* Accordion for Prompts */
+        .accordion { display: flex; flex-direction: column; gap: 16px; margin-top: 30px; }
+        .acc-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; }
+        .acc-header { width: 100%; text-align: right; background: transparent; border: none; padding: 20px 24px; color: var(--text); font-size: 1.15rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.3s; }
+        .acc-header:hover { background: rgba(255,255,255,0.02); }
+        .acc-icon { color: var(--cyan); transition: transform 0.3s; }
+        .acc-item.open .acc-header { border-bottom: 1px solid var(--border); background: rgba(0,212,255,0.03); }
+        .acc-item.open .acc-icon { transform: rotate(180deg); }
+        .acc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
+        .acc-item.open .acc-body { grid-template-rows: 1fr; }
+        .acc-content { overflow: hidden; }
+        .acc-content-inner { padding: 24px; }
+        .acc-desc { font-size: 0.95rem; color: var(--text2); margin-bottom: 20px; }
+        
+        /* Prompt Code Box */
+        .prompt-box { position: relative; background: var(--bg-prompt); border: 1px solid var(--border); border-radius: var(--r-sm); }
+        .prompt-top { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02); }
+        .prompt-top span { font-size: 0.85rem; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .copy-btn { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); color: var(--violet); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
+        .copy-btn:hover { background: var(--violet); color: #fff; }
+        .copy-btn.copied { background: #10b981; color: #fff; border-color: #10b981; }
+        .prompt-text { padding: 20px; font-family: 'Heebo', sans-serif; font-size: 1.05rem; line-height: 1.8; color: #fff; white-space: pre-wrap; }
+        .prompt-text .var { color: var(--cyan); font-weight: bold; background: rgba(0,212,255,0.1); padding: 0 4px; border-radius: 4px; border-bottom: 1px dashed var(--cyan); }
+        
+        body.high-contrast .copy-btn { background: #000; border-color: #ff0; color: #ff0; }
+        body.high-contrast .copy-btn:hover { background: #ff0; color: #000; }
+        body.high-contrast .prompt-text .var { color: #000; background: #ff0; border: none; }
+
+        /* Safety Checklist */
+        .safety-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+        .safe-card { background: rgba(244,63,94,0.04); border: 1px solid rgba(244,63,94,0.2); padding: 24px; border-radius: var(--r-md); border-right: 4px solid var(--rose); }
+        .safe-card h4 { color: var(--rose); font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .safe-card p { font-size: 0.95rem; margin-bottom: 0; }
+        body.high-contrast .safe-card { border-color: #ff0; border-right-color: #ff0; background: #000; }
+        body.high-contrast .safe-card h4 { color: #ff0; }
+
+        /* Evolution Steps */
+        .evo-steps { display: flex; flex-direction: column; gap: 20px; margin-top: 30px; }
+        .evo-item { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: center; background: rgba(255,255,255,0.02); padding: 20px; border-radius: var(--r-sm); border: 1px solid var(--border); }
+        .evo-label { font-weight: 800; color: var(--violet); font-size: 1.1rem; }
+        .evo-item p { margin: 0; }
+        .evo-item p em { color: #fff; font-style: normal; display: block; margin-bottom: 4px; }
+
+        /* Worksheet Box */
+        .worksheet-box { background: linear-gradient(180deg, rgba(12,14,24,0.8), rgba(6,6,14,0.9)); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 40px; margin-top: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .worksheet-list { list-style: none; margin-top: 20px; }
+        .worksheet-list li { padding: 15px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 15px; font-size: 1.05rem; }
+        .worksheet-list li:last-child { border-bottom: none; }
+        .worksheet-list li i { color: var(--cyan); }
+
+        /* Profile Block */
+        .profile-block { display: flex; align-items: center; gap: 30px; background: var(--bg-card); padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--border); margin-top: 40px; }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid transparent; background-origin: border-box; background-clip: padding-box, border-box; background-image: linear-gradient(var(--bg-card),var(--bg-card)), var(--grad); }
+        .profile-info h3 { font-size: 1.6rem; margin-bottom: 4px; }
+        .profile-info span { color: var(--cyan); font-weight: 600; font-family: 'Space Grotesk', sans-serif; display: block; margin-bottom: 12px; }
+        .profile-info p { font-size: 0.95rem; margin-bottom: 0; }
+
+        /* CTA Block */
+        .cta-block { text-align: center; padding: 60px; background: rgba(139,92,246,0.05); border: 1px solid rgba(139,92,246,0.2); border-radius: var(--r-xl); margin-top: 60px; }
+        .cta-block h2 { font-size: 2rem; font-weight: 900; margin-bottom: 16px; }
+        .cta-list { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; list-style: none; }
+        .cta-list li { background: rgba(0,0,0,0.5); padding: 8px 16px; border-radius: 8px; font-size: 0.95rem; border: 1px solid var(--border); }
+        
+        /* Quote */
+        .quote-block { text-align: center; padding: 80px 20px; }
+        .quote-block h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 300; line-height: 1.4; color: #fff; margin-bottom: 20px; }
+        .quote-block p { color: var(--text3); font-size: 1.1rem; }
+
+        /* Share Button */
+        .share-btn { display: inline-flex; align-items: center; gap: 10px; background: #25d366; color: #fff; padding: 12px 24px; border-radius: 999px; font-weight: 700; font-size: 1rem; margin-top: 20px; transition: all 0.3s; }
+        .share-btn:hover { background: #20b858; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37,211,102,0.3); }
+
+        /* ===== FOOTER ===== */
+        .site-footer{padding:50px 0;border-top:1px solid var(--border);background:rgba(0,0,0,.5); margin-top: 40px;}
+        body.high-contrast .site-footer { background: #000; }
+        .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+        .footer-brand strong{display:block;font-size:1.3rem;font-weight:900;margin-bottom:4px}
+        .footer-brand span{color:var(--text3);font-size:.95rem}
+        .footer-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+        .footer-links a{padding:12px 20px;border-radius:var(--r-sm);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s;display:flex;align-items:center;gap:8px; cursor: pointer;}
+        .footer-links a:hover{color:var(--cyan);border-color:rgba(0,212,255,.2)}
+        .footer-copy{color:var(--text3);font-size:.9rem}
+
+        /* ===== ACCESSIBILITY WIDGET & MODALS (Reused) ===== */
+        .a11y-widget { position: fixed; bottom: 30px; right: 30px; z-index: 95; }
+        .a11y-btn-main { width: 50px; height: 50px; border-radius: 50%; background: var(--violet); color: #fff; border: none; font-size: 24px; display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 15px rgba(139,92,246,.4); transition: all .3s; }
+        .a11y-btn-main:hover { transform: scale(1.05); }
+        .a11y-panel { position: absolute; bottom: 60px; right: 0; width: 260px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); backdrop-filter: blur(20px); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; }
+        .a11y-panel.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .a11y-panel-header { font-weight: 800; font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; color: var(--text); }
+        .a11y-close { background: none; border: none; color: var(--text2); cursor: pointer; font-size: 1.2rem; }
+        .a11y-option { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-bottom: 8px; transition: all 0.2s; text-align: right; }
+        .a11y-option:hover { border-color: var(--cyan); background: rgba(0,212,255,0.05); }
+        .a11y-option.active-toggle { background: var(--cyan); color: #000; border-color: var(--cyan); }
+        .a11y-option i { width: 20px; text-align: center; }
+        
+        body.high-contrast .a11y-btn-main { background: #ff0; color: #000; }
+        body.high-contrast .a11y-panel { background: #000; border-color: #ff0; }
+        body.high-contrast .a11y-option { background: #000; border-color: #ff0; color: #ff0; }
+        body.high-contrast .a11y-option.active-toggle { background: #ff0; color: #000; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 1000; display: none; place-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: grid; opacity: 1; }
+        .modal-content { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-md); padding: 40px; max-width: 600px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        body.high-contrast .modal-content { background: #000; border-color: #ff0; }
+        .modal-close { position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.05); border: none; color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; transition: all 0.3s; }
+        .modal-close:hover { background: var(--rose); color: white; }
+        body.high-contrast .modal-close { border: 1px solid #ff0; }
+        .modal-content h2 { font-size: 1.8rem; margin-bottom: 20px; color: var(--cyan); }
+        .modal-content p { color: var(--text2); margin-bottom: 15px; font-size: 1rem; line-height: 1.6; }
+        .modal-content ul { color: var(--text2); margin-right: 20px; margin-bottom: 15px; }
+
+        .reveal { opacity: 0; transform: translateY(30px); }
+
+        @media(max-width:768px){
+            :root{--header-h:70px}
+            .hero h1{font-size:clamp(1.8rem, 8vw, 2.5rem);}
+            .btn-row { flex-direction: column; align-items: stretch; }
+            .structure-flow { flex-direction: column; align-items: center; }
+            .flow-arrow { transform: rotate(90deg); margin: 5px 0; }
+            .flow-box { width: 100%; max-width: 250px; }
+            .safety-grid { grid-template-columns: 1fr; }
+            .evo-item { grid-template-columns: 1fr; gap: 10px; }
+            .profile-block { flex-direction: column; text-align: center; }
+            .cta-block { padding: 40px 20px; }
+            .a11y-widget { bottom: 20px; right: 20px; }
+            .a11y-btn-main { width: 44px; height: 44px; font-size: 20px; }
+            .footer-inner{flex-direction:column;align-items:flex-start;}
+        }
+    </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">דילוג לתוכן המרכזי</a>
+<canvas id="neuralCanvas" aria-hidden="true"></canvas>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="חזרה לדף הבית">
+            <span class="brand-icon"><i class="fa-solid fa-bolt-lightning"></i></span>
+            <div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי</div></div>
+        </a>
+        <nav>
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-right"></i> חזרה לאתר הראשי</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+
+<!-- ===== 1. HERO ===== -->
+<section class="hero" id="top">
+    <div class="container">
+        <div class="reveal">
+            <div class="hero-label"><i class="fa-solid fa-book-open"></i> דף ליווי למשתתפי הסדנה</div>
+            <h1>
+                <span class="line">עובדים חכם יותר</span>
+                <span class="line grad-text">עם בינה מלאכותית</span>
+            </h1>
+            <p>העקרונות, הפרומפטים וכלי העבודה המרכזיים מסדנת הבינה המלאכותית. העמוד הזה נועד לעזור לכם להפוך את התובנות מהסדנה לדרך עבודה מעשית.</p>
+            <p style="font-size: 1rem;">אין צורך לזכור כל כלי, פיצ׳ר או הדגמה שראינו. התחילו ממשימה אמיתית אחת, ספקו ל-AI הקשר מדויק, שפרו את התוצאה בהדרגה ובדקו את המידע לפני השימוש בו.</p>
+            
+            <div class="btn-row" style="justify-content:center; margin-top: 30px;">
+                <a class="btn btn-primary" href="#prompts"><i class="fa-solid fa-terminal"></i> לפרומפטים המרכזיים</a>
+                <a class="btn btn-ghost" href="#experiment"><i class="fa-solid fa-flask"></i> לבחירת הניסוי הראשון שלי</a>
+            </div>
+            
+            <div class="hero-meta">
+                <i class="fa-regular fa-calendar-check"></i> סיכום סדנה מותאם אישית
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    
+    <!-- ===== 2. PRINCIPLES ===== -->
+    <section class="content-section" id="principles">
+        <h2 class="sec-title"><i class="fa-solid fa-star"></i> חמשת הדברים שכדאי לקחת מהסדנה</h2>
+        
+        <div class="principles-grid reveal">
+            <article class="principle-card">
+                <div class="p-num">01</div>
+                <h3>פרומפט טוב הוא בריף עבודה</h3>
+                <p>ככל שהמטרה, ההקשר, המגבלות ומבנה התוצאה ברורים יותר, כך עולה הסיכוי לקבל תוצאה מדויקת ושימושית.</p>
+            </article>
+            <article class="principle-card">
+                <div class="p-num">02</div>
+                <h3>התוצאה הראשונה היא נקודת התחלה</h3>
+                <p>עבודה טובה עם AI אינה פקודה חד־פעמית. מקבלים טיוטה, מבקרים אותה, מוסיפים מידע, משפרים ומאמתים.</p>
+            </article>
+            <article class="principle-card">
+                <div class="p-num">03</div>
+                <h3>פרסונליזציה משנה את התוצאה</h3>
+                <p>כאשר המודל מכיר את התפקיד, תחומי האחריות והידע שלנו, הוא עובר מתשובות כלליות לעזרה מותאמת אישית.</p>
+            </article>
+            <article class="principle-card">
+                <div class="p-num">04</div>
+                <h3>יותר מידע =/=> תשובה טובה יותר</h3>
+                <p>יש לבחור מקורות רלוונטיים, להגדיר מה מחפשים ולבקש מהמודל לבסס את המסקנות רק על החומר שסופק.</p>
+            </article>
+            <article class="principle-card" style="border-color: rgba(0,212,255,0.3); background: rgba(0,212,255,0.02);">
+                <div class="p-num" style="background: var(--grad); color: #fff;">05</div>
+                <h3>הערך נוצר בתוך תהליך עבודה</h3>
+                <p>השינוי המשמעותי אינו רק ביצירת מייל מהר יותר, אלא בבניית דרך עבודה קבועה שמשלבת AI לאורך התהליך.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- ===== 3. STRUCTURE ===== -->
+    <section class="content-section" id="structure">
+        <h2 class="sec-title"><i class="fa-solid fa-layer-group"></i> נוסחה פשוטה לפרומפט טוב יותר</h2>
+        
+        <div class="structure-flow reveal">
+            <div class="flow-item">
+                <div class="flow-box"><strong>תפקיד</strong><span>איזו מומחיות המודל צריך לאמץ?</span></div>
+                <i class="fa-solid fa-chevron-left flow-arrow"></i>
+            </div>
+            <div class="flow-item">
+                <div class="flow-box"><strong>הקשר</strong><span>מה חשוב לדעת עליכם ועל קהל היעד?</span></div>
+                <i class="fa-solid fa-chevron-left flow-arrow"></i>
+            </div>
+            <div class="flow-item">
+                <div class="flow-box"><strong>משימה</strong><span>מה בדיוק צריך לבצע ובאילו שלבים?</span></div>
+                <i class="fa-solid fa-chevron-left flow-arrow"></i>
+            </div>
+            <div class="flow-item">
+                <div class="flow-box"><strong>מגבלות</strong><span>מה אסור להניח וממה צריך להימנע?</span></div>
+                <i class="fa-solid fa-chevron-left flow-arrow"></i>
+            </div>
+            <div class="flow-item">
+                <div class="flow-box"><strong>תוצאה</strong><span>איך זה צריך להיראות (טבלה/מסמך)?</span></div>
+                <i class="fa-solid fa-chevron-left flow-arrow"></i>
+            </div>
+            <div class="flow-item">
+                <div class="flow-box"><strong>דוגמאות</strong><span>הצגת דוגמה לתוצר איכותי בעיניכם.</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4. PROMPTS ACCORDION ===== -->
+    <section class="content-section" id="prompts">
+        <h2 class="sec-title"><i class="fa-solid fa-copy"></i> פרומפטים להעתקה ולהתאמה</h2>
+        <p style="background: rgba(244,63,94,0.1); padding: 10px 15px; border-radius: 8px; border-right: 3px solid var(--rose); color: #fff;">
+            <strong>חשוב:</strong> אל תעתיקו את הפרומפטים באופן אוטומטי. השלימו את המקומות החסרים המסומנים, מחקו סעיפים שאינם רלוונטיים והוסיפו מידע מהעבודה שלכם.
+        </p>
+
+        <div class="accordion reveal">
+            
+            <!-- Prompt 1 -->
+            <div class="acc-item">
+                <button class="acc-header" aria-expanded="false">
+                    <span>פרומפט 1 — עזרו ל־AI להכיר אתכם</span>
+                    <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-content">
+                        <div class="acc-content-inner">
+                            <p class="acc-desc">השתמשו בפרומפט כזיכרון, כהוראות קבועות מראש או כהנחיות בתחילת סביבת פרויקט, בהתאם ליכולות הפלטפורמה שבה אתם עובדים.</p>
+                            <div class="prompt-box">
+                                <div class="prompt-top">
+                                    <span>הכרות ופרסונליזציה</span>
+                                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                                </div>
+                                <div class="prompt-text">זכור לשיחות העתידיות שלנו שהתפקיד שלי הוא <span class="var">[תפקיד]</span>.
+תחומי האחריות המרכזיים שלי הם <span class="var">[תחומי אחריות]</span>.
+המשימות שאני מבצע בתדירות גבוהה הן <span class="var">[משימות נפוצות]</span>.
+קהל היעד או הגורמים שאני עובד איתם הם <span class="var">[קהל יעד / קולגות]</span>.
+
+אני מעדיף שתענה לי בצורה מדויקת, ממוקדת ומקצועית.
+כאשר דרך החשיבה שלי אינה מדויקת מספיק, הצג ביקורת בריאה, הצבע על הנחות שדורשות בדיקה והצע חלופות.
+הימנע מ־<span class="var">[דברים שאינך רוצה בתשובה, למשל: הקדמות ארוכות, סלנג]</span>.
+חשוב לי שהתוצרים שלך יהיו בדרך כלל בפורמט של <span class="var">[טבלאות / נקודות קצרות]</span>.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt 2 -->
+            <div class="acc-item">
+                <button class="acc-header" aria-expanded="false">
+                    <span>פרומפט 2 — הפכו משימה לתוכנית עבודה</span>
+                    <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-content">
+                        <div class="acc-content-inner">
+                            <p class="acc-desc">השתמשו בפרומפט זה כאשר אתם מקבלים פרויקט חדש ורוצים שה-AI יעזור לכם לתכנן אותו מקצה לקצה לפני שמתחילים לבצע.</p>
+                            <div class="prompt-box">
+                                <div class="prompt-top">
+                                    <span>תכנון פרויקט</span>
+                                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                                </div>
+                                <div class="prompt-text">יש לי משימה או פרויקט שצריך לבצע: <span class="var">[שם הפרויקט]</span>
+מטרת המשימה היא: <span class="var">[המטרה העסקית]</span>
+הדגשים החשובים שצריך לקחת בחשבון הם: <span class="var">[דגשים ומגבלות]</span>
+הגורמים המעורבים הם: <span class="var">[צוותים / לקוחות]</span>
+לוח הזמנים הוא: <span class="var">[דדליין]</span>
+
+צור סקירת פרויקט מקיפה שתעזור לי לקחת בחשבון את כל מה שרלוונטי לקראת קידום המשימה.
+כלול בתוצאה:
+- הגדרת המטרה והתוצאה הרצויה.
+- מידע שחסר וצריך להשלים.
+- חלוקה לשלבים ולמשימות.
+- בעלי תפקידים וגורמים מעורבים.
+- סיכונים, חסמים ותלויות.
+- מדדי הצלחה.
+- לוח זמנים ראשוני.
+- שלוש הפעולות הראשונות שכדאי לבצע.
+
+אל תניח עובדות שלא סיפקתי. כאשר חסר מידע, שאל אותי שאלות ממוקדות לפני יצירת התוכנית הסופית.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt 3 -->
+            <div class="acc-item">
+                <button class="acc-header" aria-expanded="false">
+                    <span>פרומפט 3 — צרו מפת הזדמנויות אישית</span>
+                    <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-content">
+                        <div class="acc-content-inner">
+                            <p class="acc-desc">גלו היכן הבינה המלאכותית יכולה לעזור לכם ביומיום בצורה הכי משמעותית, מותאם אישית לתפקיד שלכם.</p>
+                            <div class="prompt-box">
+                                <div class="prompt-top">
+                                    <span>מפת הזדמנויות</span>
+                                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                                </div>
+                                <div class="prompt-text">על סמך מה שאתה יודע עליי, על התפקיד שלי ועל המשימות שאני מבצע, צור עבורי מפת הזדמנויות אישית לשילוב בינה מלאכותית בעבודה.
+אם חסר לך מידע, שאל אותי עד חמש שאלות קצרות לפני שתתחיל.
+
+זהה הזדמנויות בתחומים הבאים:
+- משימות חוזרות שגוזלות זמן.
+- כתיבה, ניסוח ותקשורת.
+- עבודה עם מסמכים ומידע.
+- ניתוח נתונים וקבלת החלטות.
+- תכנון וניהול פרויקטים.
+- יצירת תוצרים ומצגות.
+- ניהול ידע ושיתוף פעולה.
+- תהליכים שניתן לייעל או להפוך לחצי־אוטומטיים.
+
+הצג את ההזדמנויות בטבלה הכוללת:
+1. המשימה או התהליך.
+2. האתגר הקיים כיום.
+3. כיצד AI יכול לסייע.
+4. המידע שאצטרך לספק.
+5. הסיכון או המגבלה שצריך לקחת בחשבון.
+6. פוטנציאל הערך או החיסכון בזמן.
+7. ניסוי ראשון שאפשר לבצע כבר השבוע.
+
+בסיום, בחר את שלוש ההזדמנויות בעלות היחס הטוב ביותר בין ערך, קלות יישום ורמת סיכון.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt 4 -->
+            <div class="acc-item">
+                <button class="acc-header" aria-expanded="false">
+                    <span>פרומפט 4 — עבדו בצורה אמינה עם קובץ</span>
+                    <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-content">
+                        <div class="acc-content-inner">
+                            <p class="acc-desc">שיטה להורדת הזיות (Hallucinations) כשמבקשים מהמודל לעבוד על מסמך ארוך.</p>
+                            <div class="prompt-box">
+                                <div class="prompt-top">
+                                    <span>ניתוח מסמכים מבוקר</span>
+                                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                                </div>
+                                <div class="prompt-text">נתח את הקובץ המצורף לצורך <span class="var">[מטרת הניתוח, למשל: הכנת תקציר להנהלה]</span>.
+קהל היעד של התוצאה הוא <span class="var">[קהל יעד]</span>.
+
+תחילה, הסבר בקצרה:
+1. מה ניתן להסיק מהקובץ.
+2. מה לא ניתן להסיק ממנו.
+3. איזה מידע חסר לצורך השלמת המשימה.
+
+לאחר מכן, ענה על השאלות הבאות:
+- <span class="var">[שאלה 1 שחשובה לכם מהקובץ]</span>
+- <span class="var">[שאלה 2]</span>
+עבור כל טענה מרכזית, ציין את העמוד, הפרק, הכותרת או החלק בקובץ שעליו היא מבוססת, ככל שניתן.
+
+לבסוף, צור על סמך המידע בקובץ:
+התוצר צריך להיות באורך <span class="var">[אורך]</span>, בסגנון <span class="var">[סגנון]</span> ובמבנה של <span class="var">[טבלה / רשימה / מסמך]</span>.
+
+אל תוסיף מידע שאינו מופיע בקובץ. כאשר נדרש מידע חיצוני או כאשר קיימת אי־ודאות, ציין זאת במפורש.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt 5 -->
+            <div class="acc-item">
+                <button class="acc-header" aria-expanded="false">
+                    <span>פרומפט 5 — זהו עוזר AI שכדאי לכם לבנות</span>
+                    <i class="fa-solid fa-chevron-down acc-icon"></i>
+                </button>
+                <div class="acc-body">
+                    <div class="acc-content">
+                        <div class="acc-content-inner">
+                            <p class="acc-desc">היעזרו ב-AI כדי לאפיין סוכן, Custom GPT או תהליך אוטומטי שייקח מכם משימות שחורות.</p>
+                            <div class="prompt-box">
+                                <div class="prompt-top">
+                                    <span>אפיון עוזר דיגיטלי (Agent/GPT)</span>
+                                    <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                                </div>
+                                <div class="prompt-text">על סמך מה שאתה יודע עליי, על התפקיד שלי, המשימות שלי והאתגרים שלי, המלץ לי על עוזר AI מותאם אישית שכדאי לי לבנות.
+לפני מתן ההמלצה, שאל אותי עד שתי שאלות שיעזרו לך לזהות צורך מדויק ובעל ערך.
+העדף עוזר שמטפל במשימה שחוזרת על עצמה ושיכול לשפר את מהירות העבודה, איכות התוצאה או קבלת ההחלטות.
+
+הצג:
+- שם מוצע לעוזר.
+- הבעיה שהוא פותר.
+- המשימות המרכזיות שהוא יבצע.
+- המידע שאספק לו בכל שימוש.
+- תהליך העבודה שלו.
+- התוצרים שהוא ייצור.
+- מקורות הידע שכדאי לצרף אליו כקובץ בסיס.
+- הסיכונים והמגבלות שצריך להגדיר לו בהוראות.
+- דוגמה למשימה אמיתית שאוכל להעביר אליו.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== 5. SAFETY ===== -->
+    <section class="content-section" id="safety">
+        <h2 class="sec-title"><i class="fa-solid fa-shield-halved"></i> לפני שמעלים מידע: עוצרים ובודקים</h2>
+        <p>לא כל מידע שניתן להעלות — נכון או מותר להעלות. הקפידו על הכללים הבאים:</p>
+        
+        <div class="safety-grid reveal">
+            <div class="safe-card">
+                <h4><i class="fa-solid fa-lock"></i> האם מותר להעלות?</h4>
+                <p>בדקו האם המידע כולל מידע אישי, סודי, מסחרי, משפטי, רפואי או מידע שאינו מיועד לחשיפה בשום צורה.</p>
+            </div>
+            <div class="safe-card">
+                <h4><i class="fa-solid fa-eraser"></i> האם באמת צריך הכל?</h4>
+                <p>הסירו שמות, מספרים, פרטים מזהים וחלקים במסמך שאינם נחוצים למודל לצורך ביצוע המשימה.</p>
+            </div>
+            <div class="safe-card">
+                <h4><i class="fa-solid fa-building-shield"></i> סביבה ארגונית?</h4>
+                <p>יש הבדל עצום בין חשבון פרטי לחשבון ארגוני מנוהל (Enterprise). ודאו שאתם משתמשים בכלי שאושר.</p>
+            </div>
+            <div class="safe-card">
+                <h4><i class="fa-solid fa-user-check"></i> מי מאמת את התוצאה?</h4>
+                <p>המודל יכול לטעות, להשמיט פרטים או לחרטט בביטחון מלא (הזיות). האחריות על התוצר נשארת אצלכם.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6. EVOLUTION ===== -->
+    <section class="content-section" id="evolution">
+        <h2 class="sec-title"><i class="fa-solid fa-stairs"></i> מכלי נקודתי לדרך עבודה</h2>
+        <p>הערך הגדול ביותר נוצר כאשר AI משתלב בתהליך — ולא רק מספק תשובה אחת מהירה.</p>
+
+        <div class="evo-steps reveal">
+            <div class="evo-item">
+                <div class="evo-label">משימה נקודתית</div>
+                <p><em>“כתוב לי מייל בנושא X.”</em> תוצאה מהירה, אך לרוב כללית, גנרית וללא המשכיות אמיתית.</p>
+            </div>
+            <div class="evo-item" style="border-color: rgba(139,92,246,0.3);">
+                <div class="evo-label" style="color: var(--cyan);">תהליך עבודה</div>
+                <p><em>“נתח את החומר, זהה את המסר, צור טיוטה, התאם אותה לקהל.”</em> התוצאה עוברת מספר שלבים של שיפור.</p>
+            </div>
+            <div class="evo-item" style="border-color: rgba(0,212,255,0.4); background: rgba(0,212,255,0.05);">
+                <div class="evo-label" style="background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">דרך עבודה קבועה</div>
+                <p><em>“בצע תהליך זה בכל פעם שיש משימה מסוג זה.”</em> בניית פרויקט קבוע, סוכן מותאם (GPT/Agent) המשולב בארגון.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 7. FIRST EXPERIMENT ===== -->
+    <section class="content-section" id="experiment">
+        <h2 class="sec-title"><i class="fa-solid fa-flask"></i> בחרו משימה אחת לשבוע הקרוב</h2>
+        <p>אל תנסו לשנות את כל דרך העבודה ביום אחד. התחילו ממשימה אחת אמיתית, מדדו את הערך, ורק לאחר מכן הרחיבו את השימוש.</p>
+
+        <div class="worksheet-box reveal">
+            <h3 style="color: var(--cyan); margin-bottom: 20px; font-size: 1.4rem;">הניסוי הראשון שלי</h3>
+            <ul class="worksheet-list">
+                <li><i class="fa-regular fa-square"></i> המשימה שאבחר לבצע:</li>
+                <li><i class="fa-regular fa-square"></i> הכלי או היכולת שבהם אשתמש:</li>
+                <li><i class="fa-regular fa-square"></i> המידע או ההכנה שאצטרך להכין מראש:</li>
+                <li><i class="fa-regular fa-square"></i> כיצד אדע שהניסוי הצליח?</li>
+            </ul>
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed var(--border);">
+                <strong style="color: var(--violet); display: block; margin-bottom: 10px;">שאלות מדידה לאחר הביצוע:</strong>
+                <p style="font-size: 0.95rem; color: var(--text2); margin: 0;">האם חסכתי זמן? האם איכות התוצאה השתפרה? האם התהליך קל מספיק כדי לחזור עליו? מה כדאי לשפר בפרומפט הבא?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 8. SHARE ===== -->
+    <section class="content-section text-center" id="share" style="border-top: 1px solid var(--border); padding-top: 60px;">
+        <h2 style="justify-content: center; font-size: 1.8rem; margin-bottom: 15px;">מכירים מישהו שהעמוד יכול לעזור לו?</h2>
+        <p style="max-width: 600px; margin: 0 auto 20px;">העקרונות והפרומפטים מתאימים לכל מי שרוצה לעבור משימוש מזדמן לדרך עבודה מדויקת. שלחו את העמוד לקולגה או לצוות.</p>
+        <a href="https://api.whatsapp.com/send?text=%D7%94%D7%A9%D7%AA%D7%AA%D7%A4%D7%AA%D7%99%20%D7%91%D7%A1%D7%93%D7%A0%D7%94%20%D7%A4%D7%A8%D7%A7%D7%98%D7%99%D7%AA%20%D7%A2%D7%9C%20%D7%A9%D7%99%D7%9C%D7%95%D7%91%20%D7%91%D7%99%D7%A0%D7%94%20%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA%20%D7%91%D7%A2%D7%91%D7%95%D7%93%D7%94.%20%D7%91%D7%A2%D7%9E%D7%95%D7%93%20%D7%94%D7%96%D7%94%20%D7%99%D7%A9%20%D7%A1%D7%99%D7%9B%D7%95%D7%9D%20%D7%A7%D7%A6%D7%A8%2C%20%D7%A4%D7%A8%D7%95%D7%9E%D7%A4%D7%98%D7%99%D7%9D%20%D7%A9%D7%99%D7%9E%D7%95%D7%A9%D7%99%D7%99%D7%9D%20%D7%95%D7%9B%D7%9C%D7%9C%D7%99%D7%9D%20%D7%9C%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%91%D7%98%D7%95%D7%97%D7%94%20%D7%A2%D7%9D%20AI.%20%D7%97%D7%A9%D7%91%D7%AA%D7%99%20%D7%A9%D7%96%D7%94%20%D7%99%D7%9B%D7%95%D7%9C%20%D7%9C%D7%94%D7%99%D7%95%D7%AA%20%D7%A9%D7%99%D7%9E%D7%95%D7%A9%D7%99%20%D7%92%D7%9D%20%D7%9C%D7%9A%3A%20https%3A%2F%2Fpractiai.github.io%2FLP%2Fworkshop-summary.html" target="_blank" rel="noopener" class="share-btn reveal">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> שיתוף העמוד בוואטסאפ
+        </a>
+    </section>
+
+    <!-- ===== 9. ABOUT ===== -->
+    <section class="content-section profile-block reveal" id="about">
+        <img src="https://res.cloudinary.com/dhzuwoech/image/upload/v1770577527/unnamed_hmkldf.jpg" alt="טל חקוקי - מרצה לבינה מלאכותית" class="profile-img">
+        <div class="profile-info">
+            <h3>טל חקוקי</h3>
+            <span>GenAI Lead | מומחה לאימוץ והטמעת בינה מלאכותית</span>
+            <p>עובד עם הנהלות, צוותים ועובדים על חיבור בין יכולות AI מתקדמות לבין משימות, תהליכים ואתגרים אמיתיים מהעבודה. במהלך השנים ליווה מאות ארגונים והכשיר אלפי משתתפים, תוך התמקדות בשימוש פרקטי, פרסונליזציה, עבודה עם מידע ובניית תהליכי עבודה חדשים.</p>
+        </div>
+    </section>
+
+    <!-- ===== 10. CTA ===== -->
+    <section class="content-section cta-block reveal" id="cta">
+        <h2>רוצים להביא את דרך העבודה הזו לארגון שלכם?</h2>
+        <p style="max-width: 600px; margin: 0 auto;">ניתן להזמין סדנאות, הכשרות ותהליכי הטמעה מעשיים המותאמים לצוותים, למנהלים וליחידות מקצועיות.</p>
+        
+        <ul class="cta-list">
+            <li><i class="fa-solid fa-check" style="color:var(--cyan); margin-left:6px;"></i> סקר צרכים מקדים</li>
+            <li><i class="fa-solid fa-check" style="color:var(--cyan); margin-left:6px;"></i> התאמה לפלטפורמה הארגונית</li>
+            <li><i class="fa-solid fa-check" style="color:var(--cyan); margin-left:6px;"></i> תרגול על משימות אמיתיות</li>
+            <li><i class="fa-solid fa-check" style="color:var(--cyan); margin-left:6px;"></i> פיתוח עוזרים מותאמים</li>
+        </ul>
+        
+        <div class="btn-row" style="justify-content:center;">
+            <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מעמוד%20סיכום%20הסדנה%20ואני%20אשמח%20לשמוע%20פרטים%20על%20תהליך%20לארגון" target="_blank" rel="noopener" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> תיאום שיחה על סדנה או תהליך</a>
+            <a href="index.html" class="btn btn-ghost"><i class="fa-solid fa-globe"></i> לצפייה בשירותים וסדנאות נוספות</a>
+        </div>
+    </section>
+
+    <!-- ===== 11. QUOTE ===== -->
+    <section class="quote-block reveal">
+        <h2>"מעולם לא הייתה לאדם יחיד יכולת לעשות כל כך הרבה, בזמן קצר כל כך ובאמצעים מעטים כל כך."</h2>
+        <p>זו אינה רק התפתחות טכנולוגית — זו הזדמנות לשנות את הדרך שבה אנחנו עובדים.</p>
+        <div style="margin-top: 30px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; color: var(--cyan);">טל חקוקי | GenAI Lead</div>
+    </section>
+
+</div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
+        <div class="footer-links">
+            <a href="index.html"><i class="fa-solid fa-home" aria-hidden="true"></i> חזרה לאתר הראשי</a>
+            <a class="modal-trigger" data-modal="privacyModal"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> מדיניות פרטיות</a>
+            <a class="modal-trigger" data-modal="a11yModal"><i class="fa-solid fa-universal-access" aria-hidden="true"></i> הצהרת נגישות</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 PractiAI. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<!-- Accessibility Native Widget -->
+<div class="a11y-widget">
+    <button class="a11y-btn-main" id="a11yMainBtn" aria-label="פתיחת תפריט נגישות" aria-expanded="false"><i class="fa-solid fa-universal-access"></i></button>
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות">
+        <div class="a11y-panel-header">
+            <span>התאמות נגישות</span>
+            <button class="a11y-close" id="a11yCloseBtn" aria-label="סגור תפריט נגישות"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <button class="a11y-option" id="toggleContrast"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
+        <button class="a11y-option" id="toggleFontSize"><i class="fa-solid fa-magnifying-glass-plus"></i> הגדלת טקסט</button>
+        <button class="a11y-option" id="toggleMotion"><i class="fa-solid fa-pause"></i> עצירת אנימציות</button>
+        <button class="a11y-option modal-trigger" data-modal="a11yModal" style="margin-top: 10px; border-color: var(--violet); justify-content: center;"><i class="fa-solid fa-file-lines"></i> הצהרת נגישות</button>
+    </div>
+</div>
+
+<!-- Modals -->
+<div id="privacyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="סגור חלונית"><i class="fa-solid fa-xmark"></i></button>
+        <h2 id="privacyTitle">מדיניות פרטיות</h2>
+        <p>הגלישה בעמוד זה היא אנונימית. איננו שומרים מידע מזהה על המשתמשים ואיננו אוספים נתונים אודות השימוש בפרומפטים. בעת לחיצה על קישורי צד שלישי (כגון וואטסאפ), המידע כפוף למדיניות הפרטיות של אותן פלטפורמות.</p>
+    </div>
+</div>
+
+<div id="a11yModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="a11yTitle">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="סגור חלונית"><i class="fa-solid fa-xmark"></i></button>
+        <h2 id="a11yTitle">הצהרת נגישות</h2>
+        <p>אנו רואים חשיבות רבה במתן שירות שוויוני לכלל הגולשים. אתר זה הותאם לדרישות הנגישות, תוך השקעת מאמצים לספק חווית גלישה נוחה ונגישה, לרבות תמיכה בניווט מקלדת, קוראי מסך ואפשרות להפסקת אנימציות. במידה ונתקלתם בבעיה, נשמח אם תפנו אלינו דרך האתר הראשי.</p>
+    </div>
+</div>
+
+<script>
+"use strict";
+(function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ============================
+       COPY TO CLIPBOARD
+       ============================ */
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const box = btn.closest('.prompt-box');
+            // Extract text but remove the span tags visually, getting pure text
+            const textElement = box.querySelector('.prompt-text');
+            const textToCopy = textElement.innerText;
+            
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+            } catch (err) {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                textarea.style.position = 'fixed';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try { document.execCommand('copy'); } catch (ex) {}
+                document.body.removeChild(textarea);
+            }
+
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> הועתק';
+            btn.classList.add('copied');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHtml;
+                btn.classList.remove('copied');
+            }, 2500);
+        });
+    });
+
+    /* ============================
+       ACCORDION LOGIC
+       ============================ */
+    document.querySelectorAll('.acc-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const item = header.parentElement;
+            const isOpen = item.classList.contains('open');
+            
+            // Close all other accordions (Optional - remove if you want multiple open)
+            document.querySelectorAll('.acc-item').forEach(otherItem => {
+                otherItem.classList.remove('open');
+                otherItem.querySelector('.acc-header').setAttribute('aria-expanded', 'false');
+            });
+            
+            if (!isOpen) {
+                item.classList.add('open');
+                header.setAttribute('aria-expanded', 'true');
+            }
+            
+            // Refresh ScrollTrigger after animation finishes to adjust page height
+            setTimeout(() => ScrollTrigger.refresh(), 450);
+        });
+    });
+
+    /* ============================
+       ACCESSIBILITY WIDGET
+       ============================ */
+    const a11yMainBtn = document.getElementById('a11yMainBtn');
+    const a11yPanel = document.getElementById('a11yPanel');
+    const a11yCloseBtn = document.getElementById('a11yCloseBtn');
+    const btnContrast = document.getElementById('toggleContrast');
+    const btnFontSize = document.getElementById('toggleFontSize');
+    const btnMotion = document.getElementById('toggleMotion');
+    
+    let isA11yOpen = false;
+    let isHighContrast = false;
+    let isLargeText = false;
+    let isMotionStopped = false;
+
+    function toggleA11yPanel() {
+        isA11yOpen = !isA11yOpen;
+        a11yMainBtn.setAttribute('aria-expanded', isA11yOpen);
+        if(isA11yOpen) {
+            a11yPanel.classList.add('active');
+            btnContrast.focus();
+        } else {
+            a11yPanel.classList.remove('active');
+            a11yMainBtn.focus();
+        }
+    }
+    a11yMainBtn.addEventListener('click', toggleA11yPanel);
+    a11yCloseBtn.addEventListener('click', toggleA11yPanel);
+
+    btnContrast.addEventListener('click', () => {
+        isHighContrast = !isHighContrast;
+        document.body.classList.toggle('high-contrast', isHighContrast);
+        btnContrast.classList.toggle('active-toggle', isHighContrast);
+    });
+
+    btnFontSize.addEventListener('click', () => {
+        isLargeText = !isLargeText;
+        document.documentElement.style.setProperty('--base-font-size', isLargeText ? '115%' : '100%');
+        btnFontSize.classList.toggle('active-toggle', isLargeText);
+        setTimeout(() => ScrollTrigger.refresh(), 300);
+    });
+
+    btnMotion.addEventListener('click', () => {
+        isMotionStopped = !isMotionStopped;
+        document.body.classList.toggle('no-motion', isMotionStopped);
+        btnMotion.classList.toggle('active-toggle', isMotionStopped);
+        if(isMotionStopped) { gsap.globalTimeline.pause(); } else { gsap.globalTimeline.play(); }
+    });
+
+    /* ============================
+       MODALS
+       ============================ */
+    const modalTriggers = document.querySelectorAll('.modal-trigger');
+    const modals = document.querySelectorAll('.modal-overlay');
+    const closeBtns = document.querySelectorAll('.modal-close');
+
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            modal.querySelector('.modal-close').focus();
+        }
+    }
+    function closeModal() {
+        modals.forEach(m => m.classList.remove('active'));
+        document.body.style.overflow = '';
+    }
+
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            if(isA11yOpen) toggleA11yPanel();
+            openModal(trigger.dataset.modal || trigger.getAttribute('href').substring(1));
+        });
+    });
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+    modals.forEach(modal => { modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); }); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    /* ============================
+       NEURAL NETWORK CANVAS
+       ============================ */
+    const canvas = document.getElementById('neuralCanvas');
+    const ctx = canvas.getContext('2d');
+    const userPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const COLORS = { cyan: [0, 212, 255], violet: [139, 92, 246], rose: [244, 63, 94] };
+    const COLOR_LIST = [COLORS.cyan, COLORS.violet, COLORS.rose];
+
+    function getConfig() {
+        const w = window.innerWidth;
+        if (w > 1100) return { nodes: 60, perCluster: 6, transit: 3, knn: 2, dprCap: 2 }; // Less dense for content page
+        if (w > 768)  return { nodes: 30, perCluster: 3, transit: 2, knn: 2, dprCap: 1.5 };
+        return                { nodes: 15, perCluster: 2, transit: 1, knn: 1, dprCap: 1.5 };
+    }
+
+    let nodes = [], edges = [], clusters = {};
+    let W, H, dpr;
+    const camera = { progress: 0 };
+    let isVisible = true;
+    let time = 0;
+
+    function resizeCanvas() {
+        const cfg = getConfig();
+        dpr = Math.min(window.devicePixelRatio || 1, cfg.dprCap);
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    let seed = 42;
+    function srand() { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; }
+    function gaussRand() {
+        let u = 0, v = 0;
+        while (u === 0) u = srand(); while (v === 0) v = srand();
+        return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    }
+
+    function generateNetwork() {
+        const cfg = getConfig();
+        nodes = []; edges = []; clusters = {}; seed = 42;
+        const sections = document.querySelectorAll('.content-section');
+        const docH = document.body.scrollHeight || 1000;
+        const sectionData = [];
+
+        sections.forEach((sec, i) => {
+            const name = sec.id || 'sec'+i;
+            const top = sec.offsetTop / docH;
+            const h = sec.offsetHeight / docH;
+            sectionData.push({ name, cy: top + h / 2, top, h });
+            clusters[name] = { activation: 0, nodes: [] };
+        });
+
+        sectionData.forEach(sd => {
+            for (let i = 0; i < cfg.perCluster; i++) {
+                nodes.push({ bx: 0.15 + srand() * 0.7, by: sd.cy + gaussRand() * sd.h * 0.25, z: srand(), baseR: 2 + srand() * 3, color: COLOR_LIST[Math.floor(srand() * 3)], cluster: sd.name, glow: 0, phase: srand() * Math.PI * 2, rx: 0, ry: 0, r: 0, opacity: 0 });
+                clusters[sd.name].nodes.push(nodes.length - 1);
+            }
+        });
+
+        for (let i = 0; i < sectionData.length - 1; i++) {
+            const y1 = sectionData[i].cy + sectionData[i].h * 0.3;
+            const y2 = sectionData[i + 1].cy - sectionData[i + 1].h * 0.3;
+            for (let t = 0; t < cfg.transit; t++) {
+                const frac = (t + 1) / (cfg.transit + 1);
+                nodes.push({ bx: 0.1 + srand() * 0.8, by: y1 + (y2 - y1) * frac + gaussRand() * 0.01, z: srand(), baseR: 1.5 + srand() * 2, color: COLOR_LIST[Math.floor(srand() * 3)], cluster: null, glow: 0, phase: srand() * Math.PI * 2, rx: 0, ry: 0, r: 0, opacity: 0 });
+            }
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+            const dists = [];
+            for (let j = 0; j < nodes.length; j++) {
+                if (i === j) continue;
+                dists.push({ j, d: Math.pow(nodes[i].bx - nodes[j].bx, 2) + Math.pow((nodes[i].by - nodes[j].by) * 5, 2) });
+            }
+            dists.sort((a, b) => a.d - b.d);
+            for (let n = 0; n < Math.min(cfg.knn, dists.length); n++) {
+                const j = dists[n].j;
+                if (!edges.some(e => (e.a === i && e.b === j) || (e.a === j && e.b === i))) {
+                    edges.push({ a: i, b: j, flow: srand(), speed: 0.002 + srand() * 0.003 });
+                }
+            }
+        }
+    }
+
+    function updateNodes() {
+        const prog = camera.progress; const totalTravel = document.body.scrollHeight; const sigma = H * 0.4;
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i]; const parallax = 0.3 + n.z * 1.7;
+            const docY = n.by * totalTravel; const scrollY = prog * (totalTravel - H);
+            let screenY = docY - scrollY * parallax;
+            const range = totalTravel * 0.6;
+            if (screenY < -200) screenY += range; if (screenY > H + 200) screenY -= range * 0.3;
+            const proximity = Math.exp(-Math.pow(screenY - H * 0.5, 2) / (2 * sigma * sigma));
+            const motionActive = !userPrefersReducedMotion && !isMotionStopped;
+            const drift = motionActive ? Math.sin((time * 0.5) + prog * Math.PI * 3 + n.phase) * 25 * n.z : 0;
+            
+            n.rx = n.bx * W + drift; n.ry = screenY; n.r = n.baseR * (0.4 + proximity * 0.3); n.opacity = 0.1 + proximity * 0.25;
+            if (n.cluster && clusters[n.cluster]) { const act = clusters[n.cluster].activation; n.glow = act; n.opacity += act * 0.15; }
+        }
+    }
+
+    function render() {
+        if (!isVisible) { requestAnimationFrame(render); return; }
+        const motionActive = !userPrefersReducedMotion && !isMotionStopped;
+        if (motionActive) time += 0.016;
+        ctx.clearRect(0, 0, W, H);
+        updateNodes();
+        
+        for (let i = 0; i < edges.length; i++) {
+            const e = edges[i]; const na = nodes[e.a], nb = nodes[e.b];
+            if (na.ry < -100 && nb.ry < -100) continue; if (na.ry > H + 100 && nb.ry > H + 100) continue;
+            const avgGlow = Math.max(na.glow, nb.glow); const avgOp = (na.opacity + nb.opacity) * 0.5;
+            const lineOp = avgOp * 0.3 + avgGlow * 0.2;
+            if (lineOp < 0.01) continue;
+            
+            ctx.beginPath(); ctx.moveTo(na.rx, na.ry); ctx.lineTo(nb.rx, nb.ry);
+            ctx.strokeStyle = isHighContrast ? `rgba(255,255,0,${Math.min(lineOp, 0.5)})` : `rgba(139,92,246,${Math.min(lineOp, 0.35)})`;
+            ctx.lineWidth = 0.5 + avgGlow * 1; ctx.stroke();
+            
+            if (motionActive) {
+                e.flow = (e.flow + e.speed + avgGlow * 0.008) % 1;
+                ctx.beginPath(); ctx.arc(na.rx + (nb.rx - na.rx) * e.flow, na.ry + (nb.ry - na.ry) * e.flow, 1 + avgGlow * 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = isHighContrast ? `rgba(255,255,0,${0.15 + avgGlow * 0.55})` : `rgba(0,212,255,${0.15 + avgGlow * 0.55})`;
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            if (n.ry < -50 || n.ry > H + 50 || n.opacity < 0.02) continue;
+            ctx.beginPath(); ctx.arc(n.rx, n.ry, n.r, 0, Math.PI * 2);
+            ctx.fillStyle = isHighContrast ? `rgba(255,255,0,${Math.min(n.opacity, 0.7)})` : `rgba(${n.color[0]},${n.color[1]},${n.color[2]},${Math.min(n.opacity, 0.5)})`;
+            ctx.fill();
+        }
+        requestAnimationFrame(render);
+    }
+
+    function setupTriggers() {
+        ScrollTrigger.create({ trigger: 'main', start: 'top top', end: 'bottom bottom', scrub: 0.5, onUpdate: self => { camera.progress = self.progress; } });
+        document.querySelectorAll('.content-section').forEach(sec => {
+            const name = sec.id;
+            if (!name || !clusters[name]) return;
+            ScrollTrigger.create({ trigger: sec, start: 'top 85%', end: 'bottom 15%', scrub: 0.3, onUpdate: self => { clusters[name].activation = Math.sin(self.progress * Math.PI); } });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 60), {passive:true});
+        
+        // Simple reveals
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' }});
+        });
+    }
+
+    function initNeural() { resizeCanvas(); generateNetwork(); setupTriggers(); requestAnimationFrame(render); }
+    let resizeTimer; window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { resizeCanvas(); generateNetwork(); ScrollTrigger.refresh(); }, 250); });
+    document.addEventListener('visibilitychange', () => { isVisible = !document.hidden; });
+    
+    initNeural();
+})();
+</script>
+</body>
+</html>
