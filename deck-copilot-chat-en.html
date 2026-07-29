@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Microsoft 365 Copilot Chat — Secure &amp; Practical AI at Work | PractiAI - Tal Hakoki</title>
-    <meta name="description" content="Microsoft 365 Copilot Chat workshop by Tal Hakoki (PractiAI): enterprise data protection, safe-use habits, personalization, custom instructions and prompt engineering. Full deck available online.">
+    <title>Microsoft 365 Copilot — Secure &amp; Practical AI at Work | PractiAI - Tal Hakoki</title>
+    <meta name="description" content="Microsoft 365 Copilot workshop by Tal Hakoki (PractiAI): enterprise data protection, safe-use habits, personalization, custom instructions, prompt engineering and Copilot inside Excel, PowerPoint and Word. Full deck available online.">
     <meta name="author" content="Tal Hakoki">
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://practiai.github.io/LP/deck-copilot-chat-en.html">
 
     <meta property="og:type" content="article">
     <meta property="og:locale" content="en_US">
-    <meta property="og:title" content="Microsoft 365 Copilot Chat — Secure &amp; Practical AI at Work | PractiAI">
-    <meta property="og:description" content="Microsoft 365 Copilot Chat workshop by Tal Hakoki (PractiAI): enterprise data protection, safe-use habits, personalization, custom instructions and prompt engineering. Full deck available online.">
+    <meta property="og:title" content="Microsoft 365 Copilot — Secure &amp; Practical AI at Work | PractiAI">
+    <meta property="og:description" content="Microsoft 365 Copilot workshop by Tal Hakoki (PractiAI): enterprise data protection, safe-use habits, personalization, custom instructions, prompt engineering and Copilot inside Excel, PowerPoint and Word. Full deck available online.">
     <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
     <meta property="og:url" content="https://practiai.github.io/LP/deck-copilot-chat-en.html">
 
@@ -193,6 +193,8 @@
         .tip-list li::before{counter-increment:tip;content:counter(tip,decimal-leading-zero);flex-shrink:0;font-family:'Space Grotesk',monospace;font-size:.82rem;font-weight:700;color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.14);border-radius:7px;padding:2px 8px;margin-top:2px}
         .tip-foot{margin-top:20px;padding:14px 18px;border-radius:var(--r-sm);background:rgba(244,63,94,.05);border:1px solid rgba(244,63,94,.14);color:var(--text2);font-size:.93rem;font-weight:600;display:flex;align-items:flex-start;gap:10px}
         .tip-foot i{color:var(--rose);margin-top:.35em}
+        .tip-foot.info{background:rgba(0,212,255,.05);border-color:rgba(0,212,255,.14)}
+        .tip-foot.info i{color:var(--cyan)}
 
         .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
         .next-card{display:flex;align-items:center;gap:16px;padding:22px;border-radius:var(--r-md);background:rgba(255,255,255,.02);border:1px solid var(--border);transition:all .35s}
@@ -274,7 +276,7 @@
 <a href="#deck-main" class="skip-link">Skip to main content</a>
 
 <div class="print-note">
-    <strong>Microsoft 365 Copilot Chat — Secure &amp; Practical AI at Work</strong><br>
+    <strong>Microsoft 365 Copilot — Secure &amp; Practical AI at Work</strong><br>
     This deck is available for online viewing only at<br>
     https://practiai.github.io/LP/deck-copilot-chat-en.html<br><br>
     © PractiAI | Tal Hakoki — All rights reserved
@@ -302,13 +304,13 @@
     <div class="container">
         <div class="deck-crumb">
             <a href="index.html">PractiAI — Home</a><i class="fa-solid fa-angle-right" aria-hidden="true"></i>
-            <span>Copilot Chat (Basic)</span>
+            <span>Copilot (Basic)</span>
         </div>
         <div class="deck-label"><i class="fa-solid fa-chalkboard-user"></i> 2-hour practical workshop</div>
         <h1>Secure, personalized,<br><span class="accent">practical AI for everyday work</span></h1>
-        <p class="lead">The full workshop deck, available to view online. Part I covers how to use AI without losing control of your information — enterprise data protection, shared responsibility and safe-use habits. Part II turns a general AI tool into a relevant work partner through memory, custom instructions, response modes and prompt engineering. Every section is paired with a hands-on exercise on a real task.</p>
+        <p class="lead">The full workshop deck, available to view online. Part I covers how to use AI without losing control of your information — enterprise data protection, shared responsibility and safe-use habits. Part II turns a general AI tool into a relevant work partner through memory, custom instructions, response modes and prompt engineering — and then follows Copilot out of the chat window and into Excel, PowerPoint, Word and Outlook, where the work already lives. Every section is paired with a hands-on exercise on a real task.</p>
         <div class="deck-meta">
-            <span><i class="fa-regular fa-images"></i> 30 slides</span>
+            <span><i class="fa-regular fa-images"></i> 34 slides</span>
             <span><i class="fa-solid fa-building-columns"></i> Corporate workshop</span>
             <span><i class="fa-solid fa-eye"></i> Online viewing</span>
         </div>
@@ -329,7 +331,7 @@
             </div>
 
             <div class="stage-bar">
-                <div class="counter" aria-live="polite"><b id="cur">1</b> / <span id="total">30</span></div>
+                <div class="counter" aria-live="polite"><b id="cur">1</b> / <span id="total">34</span></div>
                 <div class="progress" role="progressbar" aria-label="Deck progress"><span id="bar"></span></div>
                 <button class="tool-btn" id="btnGrid" aria-label="All slides" title="All slides"><i class="fa-solid fa-table-cells-large"></i></button>
                 <button class="tool-btn" id="btnFs" aria-label="Fullscreen" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
@@ -365,18 +367,18 @@
             </article>
             <article class="hl-card">
                 <i class="ico fa-solid fa-layer-group" aria-hidden="true"></i>
-                <h3>Four context layers</h3>
-                <p>Saved memory, chat history, custom instructions and Temporary Chat — each kind of information belongs in a different place. Memory stores stable facts about you; custom instructions define how Copilot should respond.</p>
-            </article>
-            <article class="hl-card">
-                <i class="ico fa-solid fa-sliders" aria-hidden="true"></i>
-                <h3>Custom instructions &amp; memory</h3>
-                <p>A copy-ready foundation for how you want Copilot to work with you, and how to build memory from stable, non-sensitive context about your role and organization.</p>
+                <h3>Memory &amp; custom instructions</h3>
+                <p>Saved memory, chat history, custom instructions and Temporary Chat — each kind of information belongs in a different place. Memory stores stable facts about you; custom instructions define how Copilot should respond. Includes a copy-ready foundation to start from.</p>
             </article>
             <article class="hl-card">
                 <i class="ico fa-solid fa-pen-ruler" aria-hidden="true"></i>
                 <h3>Prompts &amp; response modes</h3>
                 <p>A strong prompt is a clear work brief: role, context, task, constraints. Plus when to use Auto, Quick Response or Think Deeper — and how to work the Prompt Gallery.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-table-columns" aria-hidden="true"></i>
+                <h3>Copilot across Microsoft 365</h3>
+                <p>Copilot is not only a separate chat. Live demos in Excel — from a table to a business dashboard — and in PowerPoint, from source material to a first draft, plus what it does in Word, Outlook and Teams.</p>
             </article>
             <article class="hl-card">
                 <i class="ico fa-solid fa-floppy-disk" aria-hidden="true"></i>
@@ -426,6 +428,20 @@
                 </ol>
                 <div class="tip-foot"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>If you are unsure whether information is allowed, stop and ask the responsible manager, privacy lead or IT team.</span></div>
             </article>
+            <article class="tip-card">
+                <div class="tip-head">
+                    <span class="ico"><i class="fa-solid fa-table-columns" aria-hidden="true"></i></span>
+                    <h3>Find Copilot in the apps you already use</h3>
+                </div>
+                <p class="note">Look for the Copilot icon in the ribbon, the chat pane or the lower-right corner. In any app, ask: &quot;What can Copilot help me do in this application?&quot;</p>
+                <ol class="tip-list">
+                    <li>Excel — explore data, create formulas, identify trends, build charts and turn a table into a visual business view.</li>
+                    <li>PowerPoint — create a draft presentation, improve structure, rewrite slides, add visuals and adapt content to an audience.</li>
+                    <li>Word — draft, rewrite, summarize and transform source material into structured documents.</li>
+                    <li>Outlook, Teams and more — summarize permitted content, prepare communication and identify actions without changing environments.</li>
+                </ol>
+                <div class="tip-foot info"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span>The best place to use Copilot is often inside the application where the source information and final output already belong.</span></div>
+            </article>
         </div>
     </div>
 </section>
@@ -450,8 +466,8 @@
             <h2>Want this workshop <span class="grad-text">at your organization?</span></h2>
             <p>Every session is rebuilt around the actual roles, tasks and tools of the organization — so what people learn goes into their work the very next day, safely and measurably.</p>
             <div class="btn-row">
-                <a class="btn btn-primary" href="mailto:hakokit@gmail.com?subject=Workshop%20enquiry%20%E2%80%94%20Microsoft%20365%20Copilot%20Chat%20%E2%80%94%20Secure%20%26%20Practical%20AI%20at%20Work"><i class="fa-regular fa-envelope"></i> Email me</a>
-                <a class="btn btn-wa" href="https://wa.me/972506915269?text=Hi%20Tal%2C%20I%20viewed%20the%20%22Microsoft%20365%20Copilot%20Chat%20%E2%80%94%20Secure%20%26%20Practical%20AI%20at%20Work%22%20deck%20on%20your%20site%20and%20would%20like%20to%20hear%20about%20a%20workshop%20for%20my%20organization" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> Message on WhatsApp</a>
+                <a class="btn btn-primary" href="mailto:hakokit@gmail.com?subject=Workshop%20enquiry%20%E2%80%94%20Microsoft%20365%20Copilot%20%E2%80%94%20Secure%20%26%20Practical%20AI%20at%20Work"><i class="fa-regular fa-envelope"></i> Email me</a>
+                <a class="btn btn-wa" href="https://wa.me/972506915269?text=Hi%20Tal%2C%20I%20viewed%20the%20%22Microsoft%20365%20Copilot%20%E2%80%94%20Secure%20%26%20Practical%20AI%20at%20Work%22%20deck%20on%20your%20site%20and%20would%20like%20to%20hear%20about%20a%20workshop%20for%20my%20organization" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> Message on WhatsApp</a>
                 <a class="btn btn-ghost" href="index.html"><i class="fa-solid fa-arrow-right"></i> Visit the main site</a>
             </div>
         </div>
@@ -463,7 +479,7 @@
 <!-- ===== OVERVIEW ===== -->
 <div class="overview" id="overview" role="dialog" aria-modal="true" aria-label="All slides">
     <div class="ov-head">
-        <h2>All slides <span style="color:var(--text3);font-weight:600;font-size:1rem">(30)</span></h2>
+        <h2>All slides <span style="color:var(--text3);font-weight:600;font-size:1rem">(34)</span></h2>
         <button class="tool-btn" id="ovClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="ov-grid" id="ovGrid"></div>
@@ -492,7 +508,7 @@
     </div>
 </div>
 
-<a href="https://wa.me/972506915269?text=Hi%20Tal%2C%20I%20viewed%20the%20%22Microsoft%20365%20Copilot%20Chat%20%E2%80%94%20Secure%20%26%20Practical%20AI%20at%20Work%22%20deck%20on%20your%20site%20and%20would%20like%20to%20hear%20about%20a%20workshop%20for%20my%20organization" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="https://wa.me/972506915269?text=Hi%20Tal%2C%20I%20viewed%20the%20%22Microsoft%20365%20Copilot%20%E2%80%94%20Secure%20%26%20Practical%20AI%20at%20Work%22%20deck%20on%20your%20site%20and%20would%20like%20to%20hear%20about%20a%20workshop%20for%20my%20organization" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
 (function(){
@@ -502,8 +518,8 @@
     var DECK = {
         path: 'slides/copilot-chat-en/',
         thumbPath: 'slides/copilot-chat-en/thumbs/',
-        count: 30,
-        titles: ["שקף 1: 2-HOUR PRACTICAL WORKSHOP Microsoft 365 Copilot Chat (Basic) Secure, personalized and practical AI for everyday work Tal","שקף 2: PART I Use AI without losing control of your information Security is not a single product feature. It is the combination","שקף 3: ENTERPRISE DATA PROTECTION Why Copilot Chat is the approved AI environment Two protections make Copilot Chat a safer org","שקף 4: SHARED RESPONSIBILITY Protection works only when every layer does its job Microsoft Where is the interaction processed? ","שקף 5: SAFE-USE HABITS Eight habits for safer everyday AI use APPLIES TO EVERY AI TOOL 01 Use the approved organizational accou","שקף 6: 30-SECOND CHECK Before you paste, attach or share 01 Am I using the approved work account and the protected organization","שקף 7: PART II Turn a general AI tool into a relevant work partner Personalization reduces repeated explanations, improves cons","שקף 8: WHY PERSONALIZE? Better context creates more useful work Less repetition Your role, recurring responsibilities and stabl","שקף 9: FOUR CONTEXT LAYERS Put each kind of information in the right place Saved memory What should Copilot know about me? Role","שקף 10: LIVE DEMO Where Copilot Memory lives Open Copilot Chat with the work account, enter Settings, select Personalization, an","שקף 11: HANDS-ON 1 Introduce your role to Copilot SAVED MEMORY Copy, complete and submit the following prompt using only non-sen","שקף 12: BUILD USEFUL MEMORY What else is worth remembering? Useful stable context Professional role, areas of responsibility, re","שקף 13: HANDS-ON 2 Teach Copilot about your organization—using public information WEB RESEARCH + CONFIRMATION Replace the placeh","שקף 14: COPY-READY FOUNDATION Recommended Custom Instructions for everyday work HOW TO WORK WITH ME 01 Start with the conclusion","שקף 15: HANDS-ON 3 Ask Copilot to design your Custom Instructions PERSONALIZED RECOMMENDATION Use what Copilot already knows—but","שקף 16: LIVE DEMO Choose the response mode for the job Use Auto for most work, Quick Response for routine requests, and Think De","שקף 17: PROMPT ENGINEERING A strong prompt is a clear work brief 01 Role Which expertise, professional perspective or responsibi","שקף 18: HANDS-ON 4 Develop a real project with Think Deeper COMPLEX REASONING Select Think Deeper / GPT Thinking, then complete ","שקף 19: LIVE DEMO Microsoft Copilot Prompt Gallery Discover, adapt, save and share prompts. Treat every example as a starting po","שקף 20: HANDS-ON 5 Build your personal Copilot opportunity map ROLE-BASED DISCOVERY Use the context already collected in memory ","שקף 21: FROM CHAT TO WORK PRODUCT Move the useful response into Pages or Excel The exact button can vary by tenant and rollout. ","שקף 22: DAILY WORKFLOW 1 One task. One conversation. Several useful outputs. SAME CHAT 8-10 MINUTES 01 Start with the real task ","שקף 23: DAILY WORKFLOW 2 Turn a vague work request into a clear plan REQUEST → CLARITY → ACTION Paste a permitted request, messa","שקף 24: YOUR METHOD Crack & Save: solve it once, make it reusable A successful AI conversation contains valuable learning. Do no","שקף 25: CRACK & SAVE Turn this successful conversation into a reusable prompt COPY-READY PROMPT Use this only after the task has","שקף 26: OPTIONAL LAB A Analyze a document without overclaiming FILE + EVIDENCE Attach a permitted fi le and replace the placehol","שקף 27: OPTIONAL LAB B Turn permitted meeting notes into action NOTES → PAGE / EXCEL Paste only meeting notes that are approved ","שקף 28: OPTIONAL LAB C Create a decision brief—not just a list of pros and cons STRUCTURED DECISION Use Think Deeper when the ch","שקף 29: 10-MINUTE MINI-SPRINT One task. One conversation. Four improvements. SAME CHAT 10-12 MINUTES 01 Choose Based on what you","שקף 30: Start with one real task. Use the approved environment. Measure the value. Keep a human in control. Secure use, useful c"]
+        count: 34,
+        titles: ["שקף 1: 2-HOUR PRACTICAL WORKSHOP Microsoft 365 Copilot (Basic) Secure, personalized and practical AI for everyday work Tal hako","שקף 2: PART I Use AI without losing control of your information Security is not a single product feature. It is the combination","שקף 3: ENTERPRISE DATA PROTECTION Why Copilot Chat is the approved AI environment Two protections make Copilot Chat a safer org","שקף 4: SHARED RESPONSIBILITY Protection works only when every layer does its job Microsoft Where is the interaction processed? ","שקף 5: SAFE-USE HABITS Eight habits for safer everyday AI use APPLIES TO EVERY AI TOOL 01 Use the approved organizational accou","שקף 6: 30-SECOND CHECK Before you paste, attach or share 01 Am I using the approved work account and the protected organization","שקף 7: PART II Turn a general AI tool into a relevant work partner Personalization reduces repeated explanations, improves cons","שקף 8: WHY PERSONALIZE? Better context creates more useful work Less repetition Your role, recurring responsibilities and stabl","שקף 9: FOUR CONTEXT LAYERS Put each kind of information in the right place Saved memory What should Copilot know about me? Role","שקף 10: LIVE DEMO Where Copilot Memory lives Open Copilot Chat with the work account, enter Settings, select Personalization, an","שקף 11: HANDS-ON 1 Introduce your role to Copilot SAVED MEMORY Copy, complete and submit the following prompt using only non-sen","שקף 12: BUILD USEFUL MEMORY What else is worth remembering? Useful stable context Professional role, areas of responsibility, re","שקף 13: HANDS-ON 2 Teach Copilot about your organization—using public information WEB RESEARCH + CONFIRMATION Replace the placeh","שקף 14: COPY-READY FOUNDATION Recommended Custom Instructions for everyday work HOW TO WORK WITH ME 01 Start with the conclusion","שקף 15: HANDS-ON 3 Ask Copilot to design your Custom Instructions PERSONALIZED RECOMMENDATION Use what Copilot already knows—but","שקף 16: LIVE DEMO Choose the response mode for the job Use Auto for most work, Quick Response for routine requests, and Think De","שקף 17: PROMPT ENGINEERING A strong prompt is a clear work brief 01 Role Which expertise, professional perspective or responsibi","שקף 18: HANDS-ON 4 Develop a real project with Think Deeper COMPLEX REASONING Select Think Deeper / GPT Thinking, then complete ","שקף 19: LIVE DEMO Microsoft Copilot Prompt Gallery Discover, adapt, save and share prompts. Treat every example as a starting po","שקף 20: HANDS-ON 5 Build your personal Copilot opportunity map ROLE-BASED DISCOVERY Use the context already collected in memory ","שקף 21: MICROSOFT 365 ECOSYSTEM Copilot works where the work already lives Copilot is not only a separate chat. In the organizat","שקף 22: LIVE DEMO · EXCEL Open Excel. Find Copilot. Build a business dashboard. DATA → INSIGHT → VISUAL Open a permitted workboo","שקף 23: LIVE DEMO · POWERPOINT Open PowerPoint. Find Copilot. Create the fi rst draft. SOURCE → STORY → SLIDES Start with a blan","שקף 24: 2-MINUTE DISCOVERY Find Copilot inside the Microsoft apps you already use Open your everyday applications and look for t","שקף 25: FROM CHAT TO WORK PRODUCT Move the useful response into Pages or Excel The exact button can vary by tenant and rollout. ","שקף 26: DAILY WORKFLOW 1 One task. One conversation. Several useful outputs. SAME CHAT 8-10 MINUTES 01 Start with the real task ","שקף 27: DAILY WORKFLOW 2 Turn a vague work request into a clear plan REQUEST → CLARITY → ACTION Paste a permitted request, messa","שקף 28: YOUR METHOD Crack & Save: solve it once, make it reusable A successful AI conversation contains valuable learning. Do no","שקף 29: CRACK & SAVE Turn this successful conversation into a reusable prompt COPY-READY PROMPT Use this only after the task has","שקף 30: OPTIONAL LAB A Analyze a document without overclaiming FILE + EVIDENCE Attach a permitted fi le and replace the placehol","שקף 31: OPTIONAL LAB B Turn permitted meeting notes into action NOTES → PAGE / EXCEL Paste only meeting notes that are approved ","שקף 32: OPTIONAL LAB C Create a decision brief—not just a list of pros and cons STRUCTURED DECISION Use Think Deeper when the ch","שקף 33: 10-MINUTE MINI-SPRINT One task. One conversation. Four improvements. SAME CHAT 10-12 MINUTES 01 Choose Based on what you","שקף 34: Start with one real task. Use the approved environment. Measure the value. Keep a human in control. Secure use, useful c"]
     };
 
     var pad = function(n){ return (n < 10 ? '0' : '') + n; };
