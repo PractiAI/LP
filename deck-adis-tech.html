@@ -16,6 +16,10 @@
     <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
     <meta property="og:url" content="https://practiai.github.io/LP/deck-adis-tech.html">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -90,7 +94,8 @@
         .lockup{display:flex;align-items:center;gap:16px}
         .lk-brand{display:flex;align-items:center;gap:11px}
         .lk-logo{width:42px;height:42px;flex-shrink:0;object-fit:contain}
-        .lk-icon{width:42px;height:42px;flex-shrink:0;border-radius:11px;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:1.05rem}
+        .lk-icon{width:42px;height:42px;flex-shrink:0;border-radius:11px;display:grid;place-items:center;background:#fff;padding:4px;overflow:hidden}
+        .lk-icon img{width:100%;height:100%;object-fit:contain}
         .lk-name{font-size:1.08rem;font-weight:900;letter-spacing:-.4px;line-height:1.15}
         .lk-sub{font-size:.72rem;color:var(--text3);font-weight:600;letter-spacing:.2px}
         .lk-x{width:1px;height:38px;background:var(--border)}
@@ -212,7 +217,8 @@
         .duo-card:hover{border-color:rgba(27,181,184,.3);transform:translateY(-4px)}
         .duo-head{display:flex;align-items:center;gap:15px;margin-bottom:8px}
         .duo-logo{width:56px;height:56px;flex-shrink:0;object-fit:contain}
-        .duo-icon{width:56px;height:56px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:1.35rem}
+        .duo-icon{width:56px;height:56px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;background:#fff;padding:5px;overflow:hidden}
+        .duo-icon img{width:100%;height:100%;object-fit:contain}
         .duo-name{font-size:1.28rem;font-weight:900;letter-spacing:-.4px;line-height:1.2}
         .duo-sub{font-size:.85rem;color:var(--text3);font-weight:600}
         .duo-role{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:5px 14px;border-radius:999px;background:rgba(27,181,184,.09);border:1px solid rgba(27,181,184,.2);color:var(--cyan);font-size:.8rem;font-weight:700;margin-bottom:14px}
@@ -228,7 +234,8 @@
         .ct-card{padding:30px 28px;border-radius:var(--r-lg);background:var(--bg-card);border:1px solid var(--border);backdrop-filter:blur(15px)}
         .ct-card h3{display:flex;align-items:center;gap:12px;font-size:1.15rem;font-weight:800;margin-bottom:6px}
         .ct-card h3 img{width:30px;height:30px;object-fit:contain}
-        .ct-card h3 .mini{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:.8rem}
+        .ct-card h3 .mini{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#fff;padding:2px;overflow:hidden}
+        .ct-card h3 .mini img{width:100%;height:100%;object-fit:contain}
         .ct-card > span{display:block;color:var(--text3);font-size:.88rem;margin-bottom:18px}
         .ct-links{display:flex;flex-direction:column;gap:9px}
         .ct-links a,.ct-links div{display:flex;align-items:center;gap:11px;padding:12px 16px;border-radius:var(--r-sm);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s}
@@ -328,7 +335,7 @@
             </a>
             <span class="lk-x" aria-hidden="true"></span>
             <a class="lk-brand" href="index.html" aria-label="PractiAI — מעבר לעמוד הבית">
-                <span class="lk-icon"><i class="fa-solid fa-bolt-lightning"></i></span>
+                <span class="lk-icon"><img src="assets/practiai-mark.png" alt="PractiAI" width="42" height="42"></span>
                 <div><div class="lk-name">PractiAI</div><div class="lk-sub">טל חקוקי | הובלת AI</div></div>
             </a>
         </div>
@@ -468,7 +475,7 @@
 
             <article class="duo-card">
                 <div class="duo-head">
-                    <span class="duo-icon"><i class="fa-solid fa-bolt-lightning"></i></span>
+                    <span class="duo-icon"><img src="assets/practiai-mark.png" alt="PractiAI" width="56" height="56"></span>
                     <div><div class="duo-name">PractiAI</div><div class="duo-sub">טל חקוקי | הובלת AI בארגונים</div></div>
                 </div>
                 <span class="duo-role"><i class="fa-solid fa-chalkboard-user"></i> הובלת ההכשרה</span>
@@ -502,7 +509,7 @@
                 </div>
             </div>
             <div class="ct-card">
-                <h3><span class="mini"><i class="fa-solid fa-bolt-lightning"></i></span> PractiAI</h3>
+                <h3><span class="mini"><img src="assets/practiai-mark.png" alt="" width="30" height="30"></span> PractiAI</h3>
                 <span>טל חקוקי | הובלת AI בארגונים</span>
                 <div class="ct-links">
                     <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope"></i> hakokit@gmail.com</a>
@@ -549,7 +556,7 @@
             </a>
             <span class="lk-x" aria-hidden="true"></span>
             <a class="lk-brand" href="index.html">
-                <span class="lk-icon"><i class="fa-solid fa-bolt-lightning"></i></span>
+                <span class="lk-icon"><img src="assets/practiai-mark.png" alt="PractiAI" width="42" height="42"></span>
                 <div><div class="lk-name">PractiAI</div><div class="lk-sub">טל חקוקי | הובלת AI</div></div>
             </a>
         </div>

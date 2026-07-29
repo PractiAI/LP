@@ -11,6 +11,10 @@
     <meta property="og:description" content="לעבוד חכם יותר, לשווק מדויק יותר ולבנות עסק יציב בעזרת תבניות AI מוכנות לעבודה.">
     <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
     <meta property="og:url" content="https://practiai.github.io/LP/business-prompts.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -71,7 +75,8 @@
         .site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);transition:all .4s ease; background:rgba(6,6,14,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border)}
         .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
         .brand{display:flex;align-items:center;gap:14px}
-        .brand-icon{width:44px;height:44px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--grad);color:#fff;font-size:1.1rem}
+        .brand-icon{width:44px;height:44px;flex-shrink:0;border-radius:var(--r-sm);display:grid;place-items:center;background:#fff;padding:4px;overflow:hidden}
+        .brand-icon img{width:100%;height:100%;object-fit:contain}
         .brand-name{font-size:1.2rem;font-weight:900;letter-spacing:-.5px}
         .brand-sub{font-size:.78rem;color:var(--text3);font-weight:500}
         .nav-links{display:flex;align-items:center;gap:8px}
@@ -191,7 +196,7 @@
 <header class="site-header" id="siteHeader">
     <div class="container header-inner">
         <a class="brand" href="index.html">
-            <span class="brand-icon" style="background: var(--grad);"><i class="fa-solid fa-bolt-lightning"></i></span>
+            <span class="brand-icon"><img src="assets/practiai-mark.png" alt="PractiAI" width="44" height="44"></span>
             <div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי | חזרה לעמוד הראשי</div></div>
         </a>
         <nav class="nav-links">
