@@ -202,6 +202,48 @@
         .tip-foot.info{background:rgba(0,212,255,.05);border-color:rgba(0,212,255,.14)}
         .tip-foot.info i{color:var(--cyan)}
 
+        /* ===== PROMPT LIBRARY ===== */
+        .pl-tools{display:flex;align-items:center;gap:14px;margin-top:26px;flex-wrap:wrap}
+        .pl-toggle-all{padding:9px 18px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text2);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .3s}
+        .pl-toggle-all:hover{color:var(--cyan);border-color:rgba(0,212,255,.3)}
+        .pl-count{color:var(--text3);font-size:.86rem;font-weight:600}
+        .pl-groups{margin-top:18px;display:flex;flex-direction:column;gap:34px}
+        .pl-group-title{display:flex;align-items:center;gap:11px;font-size:1.02rem;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+        .pl-group-title i{color:var(--cyan);font-size:.95rem}
+
+        .pl-item{border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg-card);margin-bottom:10px;overflow:hidden;transition:border-color .3s}
+        .pl-item[open]{border-color:rgba(0,212,255,.28)}
+        .pl-item summary{display:flex;align-items:center;gap:14px;padding:17px 22px;cursor:pointer;list-style:none;font-weight:700;transition:background .25s}
+        .pl-item summary::-webkit-details-marker{display:none}
+        .pl-item summary:hover{background:rgba(255,255,255,.02)}
+        .pl-num{flex-shrink:0;font-family:'Space Grotesk',monospace;font-size:.8rem;font-weight:700;color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.14);border-radius:7px;padding:3px 9px}
+        .pl-title{flex:1;font-size:1.02rem;line-height:1.4}
+        .pl-tag{flex-shrink:0;font-size:.72rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);border-radius:6px;padding:3px 9px}
+        .pl-chev{flex-shrink:0;color:var(--text3);font-size:.82rem;transition:transform .3s}
+        .pl-item[open] .pl-chev{transform:rotate(180deg);color:var(--cyan)}
+
+        .pl-body{padding:0 22px 22px}
+        .pl-intro{color:var(--text2);font-size:.94rem;margin-bottom:14px}
+        .pl-box{position:relative;border:1px solid var(--border);border-radius:var(--r-sm);background:rgba(0,0,0,.28)}
+        .pl-box pre{margin:0;padding:22px 22px 22px;font-family:'Space Grotesk','Heebo',monospace;font-size:.92rem;line-height:1.75;color:var(--text);white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;-webkit-user-select:text;user-select:text}
+        .pl-copy{position:absolute;top:10px;right:10px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:9px;border:1px solid var(--border);background:rgba(12,14,24,.92);color:var(--text2);font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s}
+        .pl-copy:hover{color:var(--cyan);border-color:rgba(0,212,255,.35)}
+        .pl-copy.done{background:var(--grad);color:#fff;border-color:transparent}
+        .pl-box pre{padding-top:52px}
+        .pl-follow,.pl-note{display:flex;align-items:flex-start;gap:10px;margin-top:14px;font-size:.9rem;line-height:1.6}
+        .pl-follow{color:var(--text2)}
+        .pl-follow i{color:var(--cyan);margin-top:.3em}
+        .pl-note{color:var(--text3)}
+        .pl-note i{color:var(--rose);margin-top:.3em}
+        body.high-contrast .pl-copy.done{background:#ffff00;color:#000}
+
+        @media(max-width:640px){
+            .pl-item summary{padding:15px 16px;gap:10px;flex-wrap:wrap}
+            .pl-tag{order:3;width:100%;margin-inline-start:44px}
+            .pl-body{padding:0 16px 18px}
+            .pl-box pre{padding:52px 16px 18px;font-size:.87rem}
+        }
+
         .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
         .next-card{display:flex;align-items:center;gap:16px;padding:22px;border-radius:var(--r-md);background:rgba(255,255,255,.02);border:1px solid var(--border);transition:all .35s}
         .next-card:hover{border-color:rgba(0,212,255,.28);background:rgba(0,212,255,.03);transform:translateY(-4px)}
@@ -296,6 +338,7 @@
             <a class="nav-link" href="#deck-main">Slides</a>
             <a class="nav-link" href="#takeaways">Takeaways</a>
             <a class="nav-link" href="#quickref">Quick reference</a>
+            <a class="nav-link" href="#prompts">Prompts</a>
             <a class="nav-cta" href="#contact">Contact</a>
         </nav>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
@@ -448,6 +491,415 @@
                 </ol>
                 <div class="tip-foot info"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span>The best place to use Copilot is often inside the application where the source information and final output already belong.</span></div>
             </article>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROMPT LIBRARY ===== -->
+<section class="sec" id="prompts" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt library</div>
+        <h2 class="sec-heading">Every prompt from the workshop,<br>ready to copy</h2>
+        <p class="sec-desc">All sixteen copy-ready prompts from the deck, grouped by stage. Open one, press Copy, and paste it straight into Copilot. Replace anything in [BRACKETS] with your own details — and use permitted information only.</p>
+        <div class="pl-tools">
+            <button class="pl-toggle-all" type="button" id="plToggleAll">Expand all</button>
+            <span class="pl-count">16 prompts</span>
+        </div>
+        <div class="pl-groups">
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-user-gear" aria-hidden="true"></i> Set Copilot up for you</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">01</span>
+                        <span class="pl-title">Introduce your role to Copilot</span>
+                        <span class="pl-tag">Saved memory</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Copy, complete and submit the following prompt using only non-sensitive information.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-1" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-1">From now on, remember for future conversations that my role is [ROLE] at [ORGANIZATION / ORGANIZATION TYPE].
+
+My core responsibilities are [RESPONSIBILITIES]. Tasks I perform frequently include [RECURRING TASKS].
+
+I usually work with [STAKEHOLDERS / AUDIENCES]. The outcomes I am responsible for include [OUTCOMES].
+
+Before saving anything, list the details you intend to remember and ask me to confirm. Do not store confidential, personal, client, legal, HR, security or commercially sensitive information.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>After Copilot confirms, ask: &quot;What do you remember about me, and what important non-sensitive context is still missing?&quot;</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Keep working style and response rules for Custom Instructions — not as approximate memories.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">02</span>
+                        <span class="pl-title">Teach Copilot about your organization</span>
+                        <span class="pl-tag">Web research</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Replace the placeholders. Use only publicly available information, and ask Copilot to verify before it proposes anything for memory.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-2" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-2">Research [ORGANIZATION] using the public web. Prioritize its official website and recent trustworthy sources.
+
+Summarize its mission, main activities, audiences, products or services, public priorities and communication style.
+
+Cite links and publication dates. Separate verified facts, reasonable inferences and open questions. Flag conflicting or outdated information.
+
+Ask me to correct the summary. Only after I confirm it, propose up to five non-sensitive facts that may be useful to remember. Do not save anything until I explicitly approve.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Finish by asking: &quot;Which of these facts is stable enough for memory, and which should remain only in this conversation?&quot;</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Public does not automatically mean accurate, current or appropriate for permanent memory.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">03</span>
+                        <span class="pl-title">Recommended Custom Instructions for everyday work</span>
+                        <span class="pl-tag">Copy-ready</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Custom Instructions answer &quot;How should you work with me?&quot; — while memory answers &quot;What stable, non-sensitive facts should you know about me?&quot; Paste this into Copilot settings as your starting point.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-3" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-3">01 Start with the conclusion, recommendation or requested result. Then provide the reasoning and practical next steps.
+
+02 When essential information is missing, ask focused clarification questions instead of inventing facts.
+
+03 Clearly separate verified facts, assumptions, interpretations and recommendations.
+
+04 For external or time-sensitive claims, cite reliable sources and state when the information was checked.
+
+05 Challenge weak assumptions, identify risks and offer alternatives instead of agreeing automatically.
+
+06 Use clear, professional and direct English. Adapt terminology and depth to the stated audience.
+
+07 Flag anything that requires human judgment, verification, privacy review or managerial approval.
+
+08 Prefer copy-ready outputs: a concise message, structured table, checklist, decision brief or action plan.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Review these instructions and adapt them to your role, organization and approved AI policy.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">04</span>
+                        <span class="pl-title">Ask Copilot to design your Custom Instructions</span>
+                        <span class="pl-tag">Personalized</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Use what Copilot already knows — but require a short discovery step before it writes the final instructions.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-4" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-4">Based on our conversations and saved memories, ask me three focused questions about how I want you to communicate, challenge my thinking and structure outputs.
+
+Then recommend custom instructions under five headings: response style, structure, reliability, critical thinking and privacy boundaries.
+
+Provide one concise version that I can paste directly into Copilot settings. Keep it specific, practical and free of generic slogans.
+
+Do not include sensitive organizational facts. Highlight any instruction that could create a risk or reduce flexibility, and ask for my approval before finalizing.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>After saving, test the instructions with one familiar task and compare the result with an earlier answer.</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Custom Instructions are a default — not a substitute for the context and requirements of the current task.</span></p>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Work a real task</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">05</span>
+                        <span class="pl-title">Develop a real project with Think Deeper</span>
+                        <span class="pl-tag">Think Deeper</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Select Think Deeper / GPT Thinking, then complete the placeholders.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-5" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-5">I need to advance [PROJECT / TASK]. The current situation is [CONTEXT]. The desired outcome is [GOAL].
+
+Stakeholders are [PEOPLE]. The target date is [DATE]. Constraints, dependencies and available resources include [DETAILS].
+
+First ask up to five focused questions. Do not assume facts I have not provided. Clearly label assumptions and decisions that require approval.
+
+Provide an executive summary, workstreams, milestones, owners, dependencies, risks, success measures, open questions and the next three actions.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>After the first draft, ask: &quot;Critique this plan as a skeptical sponsor. What is unrealistic, missing or insufficiently evidenced?&quot;</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Use permitted project information only. Replace sensitive names, figures and identifiers with safe placeholders.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">06</span>
+                        <span class="pl-title">Turn a vague work request into a clear plan</span>
+                        <span class="pl-tag">Request → action</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Paste a permitted request, message or assignment, then use this prompt.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-6" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-6">Explain in one paragraph what is being requested, the desired outcome, the likely audience and any explicit constraints.
+
+Identify ambiguities, missing information, hidden assumptions, dependencies and decisions that require clarification.
+
+Draft up to five concise questions I should ask before starting. Prioritize questions that could materially change the work.
+
+After I answer, create a practical action plan and a short reply confirming the scope, responsibilities, timeline and next action.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Follow-up: &quot;What could I misunderstand if I begin the task without answering these questions?&quot;</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Copilot should help clarify the task before it helps complete the task.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">07</span>
+                        <span class="pl-title">One task. One conversation. Several useful outputs.</span>
+                        <span class="pl-tag">Same chat · 8–10 min</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Four steps in a single conversation. Send them one after another without starting a new chat.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-7" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-7">01 START WITH THE REAL TASK
+I need to complete [TASK]. The context is [CONTEXT], the audience is [AUDIENCE], and a good result should achieve [OUTCOME]. Ask me up to four questions, then create a first draft.
+
+02 CHALLENGE AND IMPROVE
+Review the draft critically. What is missing, unclear, unsupported or unlikely to work? Ask for any essential information and then revise it.
+
+03 CREATE A COMMUNICATION OUTPUT
+Using the same context, create a concise email for [MANAGER / COLLEAGUES / PARTICIPANTS]. Start with the key message and end with a clear requested action.
+
+04 CREATE A MANAGEMENT OUTPUT
+Convert the final plan into an Excel-ready action table with task, owner, due date, dependency, status and success measure. Do not invent missing owners or dates.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Do not restart the chat between steps. Each follow-up should reuse the context, decisions and corrections already collected.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">08</span>
+                        <span class="pl-title">Build your personal Copilot opportunity map</span>
+                        <span class="pl-tag">Role-based discovery</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Use the context already collected in memory and ask Copilot to prioritize value, feasibility and risk.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-8" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-8">Based on what you know about my role and responsibilities, ask me up to five questions that will help identify valuable Copilot use cases.
+
+Then list, for each opportunity: task, current friction, how Copilot can help, required input, expected output, frequency, estimated time saving and main risk.
+
+Score each opportunity from 1-5 for value, ease of implementation and risk. Explain the scoring and select the top three.
+
+For the two best opportunities, provide a step-by-step pilot I can run this week, including a safe input, prompt, quality check and success measure.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Do not recommend automation before the manual Copilot-assisted process has been tested and reviewed.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">09</span>
+                        <span class="pl-title">10-minute mini-sprint</span>
+                        <span class="pl-tag">Same chat · 10–12 min</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">One task, one conversation, four improvements. Keep the same chat throughout.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-9" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-9">01 CHOOSE
+Based on what you know about my role, suggest three low-risk recurring tasks where Copilot could save time this week. Recommend one and explain why.
+
+02 CLARIFY
+Before solving it, ask me three focused questions about the goal, audience, available information and quality standard.
+
+03 CREATE
+Produce the first usable output. Include a short checklist I can use to verify accuracy, completeness and privacy.
+
+04 IMPROVE AND TRANSFER
+Critique the output, revise it, and convert the final result into either a Page-ready document or an Excel-ready table.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Success = a real output, a clear quality check and one next step you can repeat after the workshop.</span></p>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-table-columns" aria-hidden="true"></i> Inside the Microsoft 365 apps</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">10</span>
+                        <span class="pl-title">Build a business dashboard in Excel</span>
+                        <span class="pl-tag">Excel</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Open a permitted workbook, select the Copilot icon in the lower-right corner or ribbon, and use this prompt.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-10" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-10">Review the data structure, column meanings and data quality. Identify missing values, duplicates, inconsistent dates or fields that may prevent reliable analysis.
+
+Create a business dashboard on a new worksheet for [AUDIENCE]. The purpose is to understand [BUSINESS QUESTION].
+
+Include KPI cards for [KPIs], a trend chart over time, a comparison by [CATEGORY], top and bottom performers, and useful filters or slicers.
+
+Do not invent missing data. Explain each metric and formula, compare the dashboard totals with the source table, and flag anything that requires human review.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Follow-up: &quot;What are the three most important insights in this dashboard, and which business question should we investigate next?&quot;</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>A beautiful dashboard is not useful unless its metrics, formulas and source data have been verified.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">11</span>
+                        <span class="pl-title">Create a first-draft presentation in PowerPoint</span>
+                        <span class="pl-tag">PowerPoint</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Start with a blank presentation or the approved organizational template, open Copilot, and complete this prompt.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-11" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-11">Create a [NUMBER]-slide presentation about [TOPIC] for [AUDIENCE]. The desired outcome is [DECISION / UNDERSTANDING / ACTION].
+
+Use [PERMITTED FILE / OUTLINE / NOTES] as the source. Do not add unsupported facts, and clearly mark information that requires verification.
+
+Build a clear flow: context, problem, key insight, recommendation, implementation steps and final call to action.
+
+Use one main idea per slide, concise text, meaningful headings, suggested visuals and speaker notes. Follow the existing template and brand style.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Follow-up: &quot;Review the presentation as a skeptical audience member. Which slides are unclear, repetitive or insufficiently supported?&quot;</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Copilot creates a draft. The presenter remains responsible for the message, evidence, design and final delivery.</span></p>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-repeat" aria-hidden="true"></i> Make it reusable</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">12</span>
+                        <span class="pl-title">Crack &amp; Save: turn a good conversation into a reusable prompt</span>
+                        <span class="pl-tag">Copy-ready</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Use this only after the task has been completed and the result is genuinely good.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-12" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-12">Review our full conversation and identify the context, questions, instructions, corrections, decisions and quality checks that led to the final result.
+
+Create one reusable prompt that includes role, required inputs, task steps, constraints, output structure and questions to ask when information is missing.
+
+Remove sensitive or one-time details. Replace names, dates, figures and organization-specific facts with clear placeholders.
+
+Provide a short version and a detailed version, a suggested Prompt Gallery name, usage instructions and a checklist for testing the prompt next time.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Before saving, test the new prompt in a fresh chat and compare the result with the successful original conversation.</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Do not save a prompt because it sounds good — save it because it reproduced a good result.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">13</span>
+                        <span class="pl-title">Design one Copilot Agent you can actually build</span>
+                        <span class="pl-tag">One agent</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Use what Copilot already knows about you. Ask for exactly one lightweight agent that fits the Basic experience.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-13" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-13">Based on what you know about my role, responsibilities, recurring tasks and preferences, recommend exactly one Copilot Agent I can build in Microsoft 365 Copilot Agent Builder. If essential information is missing, ask me up to three focused questions first.
+
+Choose a frequent, low-risk and repeatable process. Do not recommend advanced automation, unavailable organizational connectors or actions that require Copilot Studio.
+
+Provide copy-ready text under these headings: agent name, short description, purpose, intended user, instructions, required user inputs, workflow steps, output format, boundaries and human-review rules.
+
+Add permitted knowledge sources, three conversation starters, one realistic test task, success criteria and any assumption or feature that may require admin approval, Copilot Credits, pay-as-you-go or a different license.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>One agent only. Make it copy-ready, then test it on a real, permitted task before sharing.</span></p>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-flask" aria-hidden="true"></i> Optional labs</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">14</span>
+                        <span class="pl-title">Analyze a document without overclaiming</span>
+                        <span class="pl-tag">File + evidence</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Attach a permitted file and replace the placeholders.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-14" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-14">Analyze the attached file for [PURPOSE] and for an audience of [AUDIENCE].
+
+First state what can be concluded, what cannot be concluded and which information is missing. Do not add external facts unless I explicitly request them.
+
+Extract the main points, decisions, commitments, dates, owners, risks, contradictions and open questions.
+
+For each important claim, cite the page, section or heading. Finish with an action table and a list of items that require human verification.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Follow-up: &quot;Which three claims in your answer are most important to verify in the original document, and why?&quot;</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>A confident answer without a traceable source is not a verified answer.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">15</span>
+                        <span class="pl-title">Turn permitted meeting notes into action</span>
+                        <span class="pl-tag">Notes → Page / Excel</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Paste only meeting notes that are approved for use.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-15" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-15">Identify decisions, action items, owners, due dates, dependencies, open questions and unresolved disagreements.
+
+Do not guess missing owners or dates. Mark them as TBD and list the clarification required.
+
+Draft a concise follow-up email and an Excel-ready action table with columns: action, owner, due date, status, dependency and source note.
+
+Compare both outputs with the original notes and flag anything that may have changed meaning.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Then move the narrative summary to Pages and the action tracker to the Excel Agent.</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Never paste restricted meeting content into an environment that is not approved for that information.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">16</span>
+                        <span class="pl-title">Create a decision brief — not just a list of pros and cons</span>
+                        <span class="pl-tag">Structured decision</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Use Think Deeper when the choice has several criteria, trade-offs or stakeholders.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-16" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-16">I need to choose between [OPTION A], [OPTION B] and [OPTION C] for [DECISION].
+
+Evaluate cost, time, impact, feasibility, risk, stakeholder fit and [OTHER CRITERIA]. Ask questions before scoring.
+
+Create a weighted comparison table. Show evidence, assumptions, uncertainty and the sensitivity of the result to different weights.
+
+Recommend one option, explain the trade-off, present the strongest case against your recommendation and identify the required human approvals.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Follow-up: &quot;What new evidence would be most likely to change the recommendation?&quot;</span></p>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Copilot can structure the decision. Accountability for the decision remains human.</span></p>
+                    </div>
+                </details>
+            </section>
         </div>
     </div>
 </section>
@@ -735,6 +1187,75 @@
     applyPref('pa_font', '', 'toggleFontSize', function(v){
         document.documentElement.style.setProperty('--base-font-size', v ? '115%' : '100%');
     });
+
+    /* ===== prompt library: copy + expand all ===== */
+    (function(){
+        var COPIED = 'Copied', EXPAND = 'Expand all', COLLAPSE = 'Collapse all';
+        var items = document.querySelectorAll('.pl-item');
+        if (!items.length) return;
+
+        function writeText(text){
+            if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+            // נפילה לאחור לדפדפנים ישנים או להקשר לא מאובטח
+            return new Promise(function(resolve, reject){
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.cssText = 'position:absolute;left:-9999px;top:0';
+                document.body.appendChild(ta);
+                ta.select();
+                var ok = false;
+                try { ok = document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(ta);
+                ok ? resolve() : reject();
+            });
+        }
+
+        document.querySelectorAll('.pl-copy').forEach(function(btn){
+            btn.addEventListener('click', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var pre = document.getElementById(btn.dataset.target);
+                if (!pre) return;
+                var label = btn.querySelector('span');
+                var original = label.textContent;
+                writeText(pre.textContent).then(function(){
+                    btn.classList.add('done');
+                    label.textContent = COPIED;
+                    setTimeout(function(){ btn.classList.remove('done'); label.textContent = original; }, 1800);
+                }).catch(function(){
+                    // אם ההעתקה נחסמה — מסמנים את הטקסט ומיידעים שצריך להעתיק ידנית
+                    var r = document.createRange();
+                    r.selectNodeContents(pre);
+                    var s = window.getSelection();
+                    s.removeAllRanges();
+                    s.addRange(r);
+                    label.textContent = 'Selected — press Ctrl+C';
+                    setTimeout(function(){ label.textContent = original; }, 2600);
+                });
+            });
+        });
+
+        var toggle = document.getElementById('plToggleAll');
+        if (toggle) {
+            toggle.addEventListener('click', function(){
+                var open = toggle.dataset.open === '1';
+                items.forEach(function(d){ d.open = !open; });
+                toggle.dataset.open = open ? '0' : '1';
+                toggle.textContent = open ? EXPAND : COLLAPSE;
+            });
+        }
+
+        // כניסה ישירה לפרומפט לפי כתובת, למשל ‎#pl-7
+        var h = (location.hash || '').replace('#','');
+        if (/^pl-\d+$/.test(h)) {
+            var pre = document.getElementById(h);
+            if (pre) {
+                var det = pre.closest('.pl-item');
+                if (det) { det.open = true; setTimeout(function(){ det.scrollIntoView({ block:'center' }); }, 60); }
+            }
+        }
+    })();
 
     /* boot */
     var start = parseInt((location.hash || '').replace('#',''), 10);
