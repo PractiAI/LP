@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Gemini כסביבת עבודה — מפגש 1 | PractiAI - טל חקוקי</title>
-    <meta name="description" content="מצגת סדנת Gemini של טל חקוקי — PractiAI. פרסונליזציה, הנדסת פרומפטים, Canvas, Gems ועבודה עם Google Workspace. צפייה מקוונת מלאה.">
+    <title>AI בסביבת העבודה של Google — סיכום הסדנה | PractiAI - טל חקוקי</title>
+    <meta name="description" content="סיכום סדנת AI בסביבת העבודה של Google בהובלת טל חקוקי — PractiAI. מצגת מלאה, ספריית פרומפטים ומדריכים קצרים ל-Gemini, NotebookLM, Slides, Sheets וסוכני AI.">
     <meta name="author" content="טל חקוקי">
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://practiai.github.io/LP/deck-gemini.html">
 
     <meta property="og:type" content="article">
     <meta property="og:locale" content="he_IL">
-    <meta property="og:title" content="Gemini כסביבת עבודה — מפגש 1 | PractiAI">
-    <meta property="og:description" content="מצגת סדנת Gemini של טל חקוקי — PractiAI. פרסונליזציה, הנדסת פרומפטים, Canvas, Gems ועבודה עם Google Workspace. צפייה מקוונת מלאה.">
+    <meta property="og:title" content="AI בסביבת העבודה של Google — סיכום הסדנה | PractiAI">
+    <meta property="og:description" content="סיכום סדנת AI בסביבת העבודה של Google בהובלת טל חקוקי — PractiAI. מצגת מלאה, ספריית פרומפטים ומדריכים קצרים ל-Gemini, NotebookLM, Slides, Sheets וסוכני AI.">
     <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
     <meta property="og:url" content="https://practiai.github.io/LP/deck-gemini.html">
 
@@ -202,6 +202,52 @@
         .tip-foot.info{background:rgba(0,212,255,.05);border-color:rgba(0,212,255,.14)}
         .tip-foot.info i{color:var(--cyan)}
 
+        /* ===== ספריית פרומפטים ומדריכים ===== */
+        .pl-tools{display:flex;align-items:center;gap:14px;margin-top:26px;flex-wrap:wrap}
+        .pl-toggle-all{padding:9px 18px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text2);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .3s}
+        .pl-toggle-all:hover{color:var(--cyan);border-color:rgba(0,212,255,.3)}
+        .pl-count{color:var(--text3);font-size:.86rem;font-weight:600}
+        .pl-groups{margin-top:18px;display:flex;flex-direction:column;gap:34px}
+        .pl-group-title{display:flex;align-items:center;gap:11px;font-size:1.05rem;font-weight:800;color:var(--text2);letter-spacing:.2px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+        .pl-group-title i{color:var(--cyan);font-size:.95rem}
+
+        .pl-item{border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg-card);margin-bottom:10px;overflow:hidden;transition:border-color .3s}
+        .pl-item[open]{border-color:rgba(0,212,255,.28)}
+        .pl-item summary{display:flex;align-items:center;gap:14px;padding:17px 22px;cursor:pointer;list-style:none;font-weight:700;transition:background .25s}
+        .pl-item summary::-webkit-details-marker{display:none}
+        .pl-item summary:hover{background:rgba(255,255,255,.02)}
+        .pl-num{flex-shrink:0;min-width:34px;text-align:center;font-family:'Space Grotesk',monospace;font-size:.8rem;font-weight:700;color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.14);border-radius:7px;padding:3px 9px}
+        .pl-item.is-guide .pl-num{color:var(--violet);background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.18)}
+        .pl-title{flex:1;font-size:1.02rem;line-height:1.45}
+        .pl-tag{flex-shrink:0;font-size:.74rem;font-weight:700;letter-spacing:.2px;color:var(--text3);border:1px solid var(--border);border-radius:6px;padding:3px 9px}
+        .pl-chev{flex-shrink:0;color:var(--text3);font-size:.82rem;transition:transform .3s}
+        .pl-item[open] .pl-chev{transform:rotate(180deg);color:var(--cyan)}
+
+        .pl-body{padding:0 22px 22px}
+        .pl-intro{color:var(--text2);font-size:.96rem;margin-bottom:14px;line-height:1.7}
+        .pl-steps{list-style:none;counter-reset:plstep;display:flex;flex-direction:column;gap:11px;margin:0}
+        .pl-steps li{display:flex;align-items:flex-start;gap:12px;color:var(--text2);font-size:.97rem;line-height:1.7}
+        .pl-steps li::before{counter-increment:plstep;content:counter(plstep);flex-shrink:0;width:24px;height:24px;display:grid;place-items:center;font-family:'Space Grotesk',monospace;font-size:.76rem;font-weight:700;color:var(--violet);background:rgba(139,92,246,.09);border:1px solid rgba(139,92,246,.18);border-radius:7px;margin-top:.15em}
+        .pl-box{position:relative;border:1px solid var(--border);border-radius:var(--r-sm);background:rgba(0,0,0,.28)}
+        .pl-box-sub{margin-top:16px}
+        .pl-box pre{margin:0;padding:52px 22px 22px;font-family:'Heebo',sans-serif;font-size:.95rem;line-height:1.85;color:var(--text);white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;-webkit-user-select:text;user-select:text}
+        .pl-copy{position:absolute;top:10px;inset-inline-end:10px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:9px;border:1px solid var(--border);background:rgba(12,14,24,.92);color:var(--text2);font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s}
+        .pl-copy:hover{color:var(--cyan);border-color:rgba(0,212,255,.35)}
+        .pl-copy.done{background:var(--grad);color:#fff;border-color:transparent}
+        .pl-follow,.pl-note{display:flex;align-items:flex-start;gap:10px;margin-top:14px;font-size:.92rem;line-height:1.7}
+        .pl-follow{color:var(--text2)}
+        .pl-follow i{color:var(--cyan);margin-top:.3em}
+        .pl-note{color:var(--text3)}
+        .pl-note i{color:var(--rose);margin-top:.3em}
+        body.high-contrast .pl-copy.done{background:#ffff00;color:#000}
+
+        @media(max-width:640px){
+            .pl-item summary{padding:15px 16px;gap:10px;flex-wrap:wrap}
+            .pl-tag{order:3;width:100%;margin-inline-start:44px}
+            .pl-body{padding:0 16px 18px}
+            .pl-box pre{padding:52px 16px 18px;font-size:.9rem}
+        }
+
         .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
         .next-card{display:flex;align-items:center;gap:16px;padding:22px;border-radius:var(--r-md);background:rgba(255,255,255,.02);border:1px solid var(--border);transition:all .35s}
         .next-card:hover{border-color:rgba(0,212,255,.28);background:rgba(0,212,255,.03);transform:translateY(-4px)}
@@ -280,7 +326,7 @@
 <a href="#deck-main" class="skip-link">דילוג לתוכן המרכזי</a>
 
 <div class="print-note">
-    <strong>Gemini כסביבת עבודה — מפגש 1</strong><br>
+    <strong>AI בסביבת העבודה של Google — סיכום הסדנה</strong><br>
     המצגת זמינה לצפייה מקוונת בלבד בכתובת<br>
     https://practiai.github.io/LP/deck-gemini.html<br><br>
     © PractiAI | טל חקוקי — כל הזכויות שמורות
@@ -291,10 +337,9 @@
     <div class="container header-inner">
         <a class="brand" href="index.html" aria-label="חזרה לעמוד הבית"><span class="brand-icon"><img src="assets/practiai-mark.png" alt="PractiAI" width="44" height="44"></span><div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי | הובלת AI בארגונים</div></div></a>
         <nav class="nav-links" id="navLinks" aria-label="תפריט ניווט מרכזי">
-            <a class="nav-link" href="index.html#about">מי אני</a>
-            <a class="nav-link" href="index.html#process">תהליך עבודה</a>
+            <a class="nav-link" href="#quickref">כללי עבודה</a>
+            <a class="nav-link" href="#prompts">פרומפטים ומדריכים</a>
             <a class="nav-link" href="index.html#solutions">מסלולים</a>
-            <a class="nav-link" href="index.html#usecases">תוצאות בשטח</a>
             <a class="nav-cta" href="index.html#contact">יצירת קשר</a>
         </nav>
         <button class="mobile-toggle" id="mobileToggle" aria-label="פתיחת תפריט מובייל" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
@@ -309,15 +354,14 @@
     <div class="container">
         <div class="deck-crumb">
             <a href="index.html">PractiAI — עמוד הבית</a><i class="fa-solid fa-angle-left" aria-hidden="true"></i>
-            <span>Gemini — מפגש 1</span>
+            <span>AI בסביבת Google</span>
         </div>
-        <div class="deck-label"><i class="fa-solid fa-chalkboard-user"></i> סדנת AI | שירות התעסוקה</div>
-        <h1>Gemini כסביבת עבודה<br><span class="accent">מצגת המפגש הראשון</span></h1>
-        <p class="lead">מהיכרות עם הכלי ועד לשיחה שמכירה את ההקשר שלכם: פרסונליזציה, הנדסת פרומפטים, יצירת תוצרים חזותיים ועבודה בתוך Google Workspace — בדיוק כפי שעברנו בסדנה.</p>
+        <div class="deck-label"><i class="fa-solid fa-chalkboard-user"></i> סדנת AI מעשית | סביבת Google</div>
+        <h1>מכלי בודד<br><span class="accent">לסביבת עבודה שלמה</span></h1>
+        <p class="lead">סיכום שני המפגשים במקום אחד: המצגת המלאה לצפייה, כללי העבודה שחוזרים לאורך הסדנה, וספרייה של פרומפטים ומדריכים קצרים לכל יכולת שהדגמנו — מפרסונליזציה והנדסת פרומפטים, דרך יצירת תמונות וסרטונים, NotebookLM ו-Google Workspace, ועד היכרות ראשונה עם סוכני AI.</p>
         <div class="deck-meta">
             <span><i class="fa-regular fa-images"></i> 30 שקפים</span>
-            <span><i class="fa-regular fa-calendar"></i> יולי 2026</span>
-            <span><i class="fa-solid fa-building-columns"></i> שירות התעסוקה</span>
+            <span><i class="fa-solid fa-building-columns"></i> סדנה ארגונית</span>
             <span><i class="fa-solid fa-eye"></i> צפייה מקוונת</span>
         </div>
     </div>
@@ -357,9 +401,9 @@
 <!-- ===== HIGHLIGHTS ===== -->
 <section class="sec">
     <div class="container">
-        <div class="sec-label"><i class="fa-solid fa-list-check"></i> מה עברנו בסדנה</div>
-        <h2 class="sec-heading">העקרונות המרכזיים<br>שנשארים איתכם אחרי המפגש</h2>
-        <p class="sec-desc">כל שקף במצגת מלווה בתרגול ובדוגמה מהעבודה היומיומית. אלה הצירים שחוזרים לאורך כל המפגש.</p>
+        <div class="sec-label"><i class="fa-solid fa-list-check"></i> מה עברנו בשני המפגשים</div>
+        <h2 class="sec-heading">מהיכרות עם הכלי<br>ועד תהליך עבודה שלם</h2>
+        <p class="sec-desc">המפגש הראשון הניח את הבסיס — הקשר, פרסונליזציה ופרומפטים. השני עבר ליכולות מתקדמות ולמעבר משימוש נקודתי בכלי AI לתהליך עבודה מלא בתוך סביבת Google.</p>
         <div class="hl-grid">
             <article class="hl-card">
                 <i class="ico fa-solid fa-user-gear" aria-hidden="true"></i>
@@ -369,32 +413,352 @@
             <article class="hl-card">
                 <i class="ico fa-solid fa-pen-ruler" aria-hidden="true"></i>
                 <h3>פרומפט הוא בריף עבודה</h3>
-                <p>שישה מרכיבים שהופכים בקשה כללית לבריף ברור: תפקיד, הקשר, משימה, מגבלות, מבנה התוצאה ודוגמה.</p>
-            </article>
-            <article class="hl-card">
-                <i class="ico fa-solid fa-comments" aria-hidden="true"></i>
-                <h3>שיחה מתפתחת</h3>
-                <p>אותו פרויקט, ארבעה פרומפטים, ארבעה תוצרים — עבודה רציפה באותה שיחה במקום להתחיל כל פעם מאפס.</p>
+                <p>שישה מרכיבים שהופכים בקשה כללית לבריף ברור: תפקיד, הקשר, משימה, מגבלות, מבנה התוצאה ודוגמה — ושיחה מתפתחת במקום פרומפט מושלם אחד.</p>
             </article>
             <article class="hl-card">
                 <i class="ico fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                <h3>מרעיון לתוצר חזותי</h3>
-                <p>יצירת תמונות לאירועים ולתקשורת פנים-ארגונית, קליפ וידאו ב-Flow ואווטאר אישי — עם תכנון סצנה, לא רק פרומפט.</p>
+                <h3>תמונות וסרטונים מותאמים אישית</h3>
+                <p>שילוב דמות או תמונה אישית בתוך תמונה חדשה באמצעות Gemini, והפיכת התמונה לסרטון קצר — עם תכנון סצנה ולא רק פרומפט.</p>
             </article>
             <article class="hl-card">
-                <i class="ico fa-solid fa-cubes" aria-hidden="true"></i>
-                <h3>Canvas ו-Gems</h3>
-                <p>מאפיון קצר לדף נחיתה או אפליקציה, ומדרך עבודה טובה לעוזר קבוע שאפשר להפעיל שוב בכל פעם שהמשימה חוזרת.</p>
+                <i class="ico fa-solid fa-book-open-reader" aria-hidden="true"></i>
+                <h3>עבודה מתקדמת עם NotebookLM</h3>
+                <p>סביבת עבודה מבוססת מקורות: התאמת הצ'אט, הנחיות ליצירת תוצרים ב-Studio, שמירת תובנות, ייצוא ל-Docs ושיתוף צ'אט מבוסס מקורות עם עמיתים.</p>
             </article>
             <article class="hl-card">
                 <i class="ico fa-brands fa-google" aria-hidden="true"></i>
-                <h3>Gemini בתוך Workspace</h3>
-                <p>מהשיחה אל כלי העבודה עצמם — מצגת ב-Slides, ניתוח נתונים ודשבורד ב-Sheets, ותוצרים שאפשר להמשיך לערוך.</p>
+                <h3>Gemini בתוך Google Workspace</h3>
+                <p>יצירת מצגת ישירות ב-Slides על בסיס נושא או מסמך, וסיוע תוך כדי עבודה ב-Sheets וב-Docs — בלי לעבור בין מערכות. חלק מהיכולות דורש רישוי מתאים.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-robot" aria-hidden="true"></i>
+                <h3>היכרות עם סוכני AI</h3>
+                <p>ההבדל בין צ'אט רגיל לסוכן שמקבל משימה מורכבת, מתכנן שלבים ומבצע חלקים באופן עצמאי — עם הדגמות של Codex ו-Claude Code כהכנה למה שמגיע גם ל-Gemini.</p>
             </article>
         </div>
     </div>
 </section>
 
+
+<!-- ===== QUICK REFERENCE ===== -->
+<section class="sec" id="quickref" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-compass"></i> כללי עבודה</div>
+        <h2 class="sec-heading">תהליך העבודה שתרגלנו<br>ומה כדאי לזכור לפני שמתחילים</h2>
+        <p class="sec-desc">העיקרון המרכזי: אין צורך לנסח מראש בקשה אחת ארוכה ומושלמת. מתחילים מהמשימה, מנהלים שיחה עם הכלי, מחדדים את הצורך בהדרגה ומתקדמים בכל שלב לתוצר הבא.</p>
+        <div class="tips-grid">
+            <article class="tip-card">
+                <div class="tip-head">
+                    <span class="ico"><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span>
+                    <h3>חמישה שלבים ממשימה לתוצר</h3>
+                </div>
+                <p class="note">אותה שיחה לאורך כל הדרך — כל שלב נשען על מה שכבר נאסף.</p>
+                <ol class="tip-list">
+                    <li>להציג לכלי את המשימה ולשאול כיצד הוא יכול לסייע.</li>
+                    <li>לבקש ממנו להציע תהליך עבודה, שלבים או כיווני פעולה.</li>
+                    <li>לבחור סעיף מסוים ולבקש להעמיק בו ולהוסיף דוגמאות מעשיות.</li>
+                    <li>להפוך חלק מהתהליך לתוצר — מצגת, טבלה או מסמך.</li>
+                    <li>לבקש מחקר על נושא שדורש מידע נוסף, כולל המקורות שעליהם הכלי הסתמך.</li>
+                </ol>
+                <div class="tip-foot info"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span>אל תפתחו שיחה חדשה בין השלבים. הערך נבנה דווקא מההקשר שמצטבר לאורך השיחה.</span></div>
+            </article>
+            <article class="tip-card">
+                <div class="tip-head">
+                    <span class="ico"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>
+                    <h3>לפני שמתחילים</h3>
+                </div>
+                <p class="note">שלוש נקודות שחוזרות כמעט בכל יכולת שהדגמנו.</p>
+                <ol class="tip-list">
+                    <li>זמינות היכולות משתנה לפי סוג החשבון, הרישוי וההרשאות בארגון — לא כל מה שמוצג יופיע אצל כולם.</li>
+                    <li>מידע רגיש, אישי או מסחרי לא נכנס לכלי לפני שווידאתם שהסביבה מאושרת לכך בארגון.</li>
+                    <li>כל תוצר עובר בדיקה אנושית לפני שימוש בהחלטה, במסמך או בתקשורת החוצה.</li>
+                </ol>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROMPT LIBRARY ===== -->
+<section class="sec" id="prompts" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-wand-magic-sparkles"></i> ספריית פרומפטים ומדריכים</div>
+        <h2 class="sec-heading">בוחרים נושא,<br>מקבלים פרומפט מוכן או מדריך קצר</h2>
+        <p class="sec-desc">כל היכולות שהדגמנו בשני המפגשים, מסודרות לפי נושא. לחיצה על כותרת פותחת פרומפט מוכן להעתקה או מדריך קצר בשלבים. את מה שמופיע ב[סוגריים] יש להחליף בפרטים שלכם.</p>
+        <div class="pl-tools">
+            <button class="pl-toggle-all" type="button" id="plToggleAll">פתיחת הכול</button>
+            <span class="pl-count">13 פרומפטים ומדריכים</span>
+        </div>
+        <div class="pl-groups">
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-list-ol" aria-hidden="true"></i> תהליך העבודה — ממשימה לתוצר</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">01</span>
+                        <span class="pl-title">פתיחה: הצגת המשימה לכלי</span>
+                        <span class="pl-tag">שלב 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">נקודת ההתחלה. במקום לנסח בקשה מושלמת, מתארים את המשימה ושואלים איך הכלי יכול לעזור.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-1" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-1">יש לי משימה מסוג [תיאור המשימה] בתפקידי כ[תפקיד] ב[ארגון / סוג ארגון].
+
+המטרה היא [מטרה], קהל היעד הוא [קהל היעד], ותוצאה טובה בעיניי היא [איך נראית הצלחה].
+
+כיצד תוכל לסייע לי במשימה הזו? אם חסר לך מידע חיוני, שאל אותי עד חמש שאלות ממוקדות לפני שתענה.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">02</span>
+                        <span class="pl-title">בקשת תהליך עבודה ושלבים</span>
+                        <span class="pl-tag">שלב 2</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">אחרי שהכלי הבין את המשימה, מבקשים ממנו לפרק אותה לשלבים.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-2" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-2">הצע לי תהליך עבודה מסודר למשימה הזו.
+
+חלק אותו לשלבים ממוספרים, וציין בכל שלב: מה עושים, מה נדרש כקלט, מה התוצר, וכמה זמן זה אמור לקחת בערך.
+
+סמן אילו שלבים אני יכול לבצע בעזרתך ואילו דורשים החלטה או אישור אנושי.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">03</span>
+                        <span class="pl-title">העמקה בסעיף מסוים</span>
+                        <span class="pl-tag">שלב 3</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">בוחרים סעיף אחד מהתהליך שהוצע ומבקשים להרחיב אותו.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-3" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-3">הרחב את סעיף [מספר הסעיף] והוסף דוגמאות מעשיות שרלוונטיות ל[התחום או הארגון שלי].
+
+הצג את ההרחבה כרשימת פעולות שאפשר לבצע, ולא כתיאור כללי.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">04</span>
+                        <span class="pl-title">הפיכת שלב לתוצר</span>
+                        <span class="pl-tag">שלב 4</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">מכאן עוברים מתכנון לתוצר אמיתי — מצגת, טבלה או מסמך.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-4" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-4">צור מצגת המבוססת על סעיף [מספר הסעיף].
+
+המצגת מיועדת ל[קהל היעד], באורך [מספר] שקפים, ומטרתה [החלטה / הבנה / פעולה].
+
+רעיון מרכזי אחד בכל שקף, כותרות ברורות, טקסט תמציתי והצעה לתמונה או תרשים בכל שקף.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>אפשר להחליף &quot;מצגת&quot; בטבלה, במסמך או בתוכנית עבודה — אותו עיקרון בדיוק.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">05</span>
+                        <span class="pl-title">מחקר עם מקורות</span>
+                        <span class="pl-tag">שלב 5</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">לנושאים שדורשים מידע חיצוני ולא רק ניסוח מחדש של מה שכבר בשיחה.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-5" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-5">בצע מחקר הבוחן את הנושא המופיע בסעיף [מספר הסעיף], והצג את המקורות שעליהם הסתמכת.
+
+ציין לכל ממצא את הקישור ואת תאריך הפרסום. הפרד בין עובדות מאומתות, הסקות סבירות ושאלות פתוחות, וסמן מידע סותר או מיושן.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>מידע שמופיע ברשת אינו בהכרח מדויק או עדכני. את הממצאים המהותיים כדאי לאמת במקור עצמו.</span></p>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i> NotebookLM — עבודה עם מקורות</h3>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">התאמת אופן הפעולה של הצ'אט</span>
+                        <span class="pl-tag">מדריך</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">ברירת המחדל של הצ'אט היא מענה כללי על המקורות. אפשר להגדיר לו תפקיד וסגנון שיתאימו לצורך שלכם.</p>
+                        <ol class="pl-steps">
+                            <li>פתחו את המחברת ועברו לחלונית הצ'אט.</li>
+                            <li>היכנסו להגדרות הצ'אט ובחרו את אופן המענה — למשל מומחה בתחום מסוים, מנחה שמסביר בפשטות, או מבקר שמאתגר את המסקנות.</li>
+                            <li>הגדירו את אורך התשובות ואת רמת הפירוט הרצויה.</li>
+                            <li>בדקו עם שאלה אחת מוכרת והשוו את התשובה לזו שהתקבלה לפני השינוי.</li>
+                        </ol>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>שמות התפריטים והאפשרויות משתנים בין גרסאות וסוגי חשבון.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">הנחיות מותאמות ליצירת תוצרים ב-Studio</span>
+                        <span class="pl-tag">מדריך</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">התוצרים ב-Studio נוצרים כברירת מחדל בסגנון כללי. הנחיה מותאמת היא ההבדל בין תוצר גנרי לתוצר שאפשר להשתמש בו.</p>
+                        <ol class="pl-steps">
+                            <li>בחרו את סוג התוצר הרצוי בחלונית Studio.</li>
+                            <li>לפני היצירה, הוסיפו הנחיה שמגדירה קהל יעד, מטרה, סגנון ומה להדגיש.</li>
+                            <li>ציינו במפורש מה להשמיט — נושאים שאינם רלוונטיים או חלקים שכבר מוכרים לקהל.</li>
+                            <li>צרו, בדקו את התוצאה, ואם צריך חדדו את ההנחיה וצרו שוב.</li>
+                        </ol>
+                        <div class="pl-box pl-box-sub">
+                            <button class="pl-copy" type="button" data-target="pl-7" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-7">צור [סוג התוצר] על בסיס המקורות במחברת.
+
+קהל היעד: [קהל היעד]. המטרה: [מטרה]. הדגש במיוחד את [נושאים מרכזיים], והשמט את [מה לא רלוונטי].
+
+הסתמך אך ורק על המקורות שבמחברת. אם נושא אינו מכוסה בהם, ציין זאת במפורש במקום להשלים מידע.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">שמירת תובנות והערות מתוך העבודה</span>
+                        <span class="pl-tag">מדריך</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">תשובה טובה שלא נשמרת הולכת לאיבוד כשסוגרים את החלון. ההערות הן הזיכרון של המחברת.</p>
+                        <ol class="pl-steps">
+                            <li>כשמתקבלת תשובה שימושית בצ'אט, שמרו אותה כהערה במחברת.</li>
+                            <li>הוסיפו כותרת קצרה שמסבירה למה שמרתם אותה — זה מה שיעזור לכם למצוא אותה בהמשך.</li>
+                            <li>אפשר גם לכתוב הערות משלכם ידנית, לצד התוצרים שנוצרו אוטומטית.</li>
+                            <li>ההערות מצטברות במחברת ואפשר להשתמש בהן כבסיס לתוצר מסכם.</li>
+                        </ol>
+                    </div>
+                </details>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">ייצוא התוצרים ל-Google Docs</span>
+                        <span class="pl-tag">מדריך</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">כשהתוצר מוכן, מעבירים אותו לסביבה שבה באמת עורכים ומשתפים.</p>
+                        <ol class="pl-steps">
+                            <li>פתחו את ההערה או התוצר שברצונכם לייצא.</li>
+                            <li>בחרו בפעולת הייצוא או ההעתקה אל Google Docs.</li>
+                            <li>במסמך שנוצר סדרו כותרות ועיצוב לפי הצורך — הייצוא מעביר תוכן, לא עיצוב סופי.</li>
+                            <li>שתפו את המסמך בהרשאות המתאימות לקהל היעד.</li>
+                        </ol>
+                    </div>
+                </details>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">יצירת צ'אט מבוסס מקורות ושיתופו</span>
+                        <span class="pl-tag">מדריך</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">היכולת שהכי קל לתרגם לערך ארגוני: במקום לענות שוב ושוב על אותן שאלות, בונים צ'אט שעונה מתוך מקורות מאושרים בלבד.</p>
+                        <ol class="pl-steps">
+                            <li>צרו מחברת חדשה והעלו אליה רק את המקורות שמאושרים לשיתוף.</li>
+                            <li>הגדירו את אופן המענה של הצ'אט בהתאם לקהל שישתמש בו.</li>
+                            <li>בדקו את הצ'אט עם חמש שאלות אמיתיות שהקהל צפוי לשאול, וודאו שהתשובות נשענות על המקורות.</li>
+                            <li>שתפו את המחברת עם העמיתים או קהל היעד, בהרשאות המתאימות.</li>
+                        </ol>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>מה שנכנס למחברת משותפת נגיש לכל מי שקיבל הרשאה. יש לוודא שכל מקור מאושר לשיתוף לפני ההעלאה.</span></p>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-image" aria-hidden="true"></i> תמונות, וידאו ומצגות</h3>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">שילוב תמונה אישית ביצירת תמונה חדשה</span>
+                        <span class="pl-tag">מדריך + פרומפט</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">העלאת דמות או תמונה קיימת והפיכתה לחלק מסצנה חדשה, ואז לסרטון קצר.</p>
+                        <ol class="pl-steps">
+                            <li>העלו ל-Gemini את התמונה שממנה רוצים לקחת את הדמות או האובייקט.</li>
+                            <li>תארו את הסצנה החדשה: מיקום, פעולה, תאורה, סגנון ופורמט.</li>
+                            <li>בקשו גרסאות אחדות, בחרו את הקרובה ביותר ובקשו לשפר אותה נקודתית.</li>
+                            <li>כשהתמונה מוכנה, בקשו להפוך אותה לסרטון קצר ותארו את התנועה הרצויה.</li>
+                        </ol>
+                        <div class="pl-box pl-box-sub">
+                            <button class="pl-copy" type="button" data-target="pl-11" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-11">קח את הדמות מהתמונה שצירפתי ושלב אותה בסצנה חדשה.
+
+הסצנה: [תיאור המקום והפעולה]. סגנון: [ריאליסטי / מאויר / אחר]. תאורה ואווירה: [תיאור]. פורמט: [מרובע / לרוחב / לאורך].
+
+שמור על מראה הדמות כפי שהוא בתמונה המקורית. הצג שלוש גרסאות ואסביר לי במה הן נבדלות זו מזו.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>שימוש בדמות של אדם מחייב את הסכמתו. אין להעלות תמונות של אנשים ללא אישור.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">יצירת מצגת ב-Google Slides באמצעות Gemini</span>
+                        <span class="pl-tag">מדריך + פרומפט</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">מנושא, מתוכן או ממסמך קיים — למצגת ראשונית ב-Slides שאפשר להמשיך לערוך.</p>
+                        <ol class="pl-steps">
+                            <li>החליטו מה מקור התוכן: נושא כללי, טקסט שכתבתם או מסמך קיים.</li>
+                            <li>בקשו מ-Gemini ליצור מצגת ב-Google Slides, וציינו קהל יעד, מספר שקפים ומטרה.</li>
+                            <li>פתחו את המצגת שנוצרה ב-Slides ועברו עליה שקף אחר שקף.</li>
+                            <li>ערכו, החליפו תמונות והתאימו לתבנית ולשפה הגרפית של הארגון.</li>
+                        </ol>
+                        <div class="pl-box pl-box-sub">
+                            <button class="pl-copy" type="button" data-target="pl-12" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-12">צור מצגת ב-Google Slides בנושא [נושא], על בסיס [המסמך המצורף / התוכן שכתבתי / הידע שלך].
+
+קהל היעד: [קהל היעד]. מספר שקפים: [מספר]. המטרה: [החלטה / הבנה / פעולה].
+
+מבנה: פתיחה שמסבירה למה זה חשוב, גוף שמתקדם בהיגיון, וסיום עם צעדים מעשיים. רעיון מרכזי אחד בכל שקף, כותרת ברורה, טקסט תמציתי והצעה לתמונה או תרשים.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>היכולת ליצור מצגת ישירות ב-Slides תלויה בסוג החשבון וברישוי הזמין בארגון.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">Gemini בתוך Sheets ו-Docs</span>
+                        <span class="pl-tag">מדריך</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">עבודה עם Gemini בתוך הכלי עצמו, בלי לעבור בין מערכות ובלי להעתיק נתונים החוצה.</p>
+                        <ol class="pl-steps">
+                            <li>פתחו את הקובץ ב-Sheets או ב-Docs וחפשו את הכניסה ל-Gemini בממשק.</li>
+                            <li>בקשו סיוע על התוכן שכבר נמצא בקובץ — ניתוח, סיכום, ניסוח מחדש או הצעת נוסחאות.</li>
+                            <li>בדקו כל תוצר מול הנתונים המקוריים לפני שמסתמכים עליו.</li>
+                            <li>שמרו את מה שעבד כדי לחזור על אותו סוג בקשה בפעם הבאה.</li>
+                        </ol>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>חלק מהיכולות בתוך כלי Workspace דורש רישוי מתאים ואינו זמין בכל חשבון.</span></p>
+                    </div>
+                </details>
+            </section>
+        </div>
+    </div>
+</section>
 
 <!-- ===== NEXT STEPS ===== -->
 <section class="sec" style="padding-top:0">
@@ -416,7 +780,7 @@
             <h2>רוצים סדנה כזו <span class="grad-text">בארגון שלכם?</span></h2>
             <p>אני בונה כל סדנה מחדש סביב התפקידים, המשימות והכלים של הארגון — כדי שמה שנלמד ייכנס לעבודה כבר למחרת.</p>
             <div class="btn-row">
-                <a class="btn btn-wa" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22Gemini%20%D7%9B%D7%A1%D7%91%D7%99%D7%91%D7%AA%20%D7%A2%D7%91%D7%95%D7%93%D7%94%20%E2%80%94%20%D7%9E%D7%A4%D7%92%D7%A9%201%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> דברו איתי בוואטסאפ</a>
+                <a class="btn btn-wa" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20%D7%91%D7%A1%D7%91%D7%99%D7%91%D7%AA%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A9%D7%9C%20Google%20%E2%80%94%20%D7%A1%D7%99%D7%9B%D7%95%D7%9D%20%D7%94%D7%A1%D7%93%D7%A0%D7%94%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> דברו איתי בוואטסאפ</a>
                 <a class="btn btn-primary" href="index.html#contact"><i class="fa-solid fa-calendar-check"></i> קביעת שיחת התאמה</a>
                 <a class="btn btn-ghost" href="index.html#usecases"><i class="fa-solid fa-diagram-project"></i> תוצאות בשטח</a>
             </div>
@@ -458,7 +822,7 @@
     </div>
 </div>
 
-<a href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22Gemini%20%D7%9B%D7%A1%D7%91%D7%99%D7%91%D7%AA%20%D7%A2%D7%91%D7%95%D7%93%D7%94%20%E2%80%94%20%D7%9E%D7%A4%D7%92%D7%A9%201%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" class="wa-float" aria-label="פניה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20%D7%91%D7%A1%D7%91%D7%99%D7%91%D7%AA%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A9%D7%9C%20Google%20%E2%80%94%20%D7%A1%D7%99%D7%9B%D7%95%D7%9D%20%D7%94%D7%A1%D7%93%D7%A0%D7%94%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" class="wa-float" aria-label="פניה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
 (function(){
@@ -679,6 +1043,72 @@
     applyPref('pa_font', '', 'toggleFontSize', function(v){
         document.documentElement.style.setProperty('--base-font-size', v ? '115%' : '100%');
     });
+
+    /* ===== ספריית פרומפטים: העתקה ופתיחת הכול ===== */
+    (function(){
+        var COPIED = 'הועתק', EXPAND = 'פתיחת הכול', COLLAPSE = 'סגירת הכול';
+        var items = document.querySelectorAll('.pl-item');
+        if (!items.length) return;
+
+        function writeText(text){
+            if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+            return new Promise(function(resolve, reject){
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.cssText = 'position:absolute;left:-9999px;top:0';
+                document.body.appendChild(ta);
+                ta.select();
+                var ok = false;
+                try { ok = document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(ta);
+                ok ? resolve() : reject();
+            });
+        }
+
+        document.querySelectorAll('.pl-copy').forEach(function(btn){
+            btn.addEventListener('click', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var pre = document.getElementById(btn.dataset.target);
+                if (!pre) return;
+                var label = btn.querySelector('span');
+                var original = label.textContent;
+                writeText(pre.textContent).then(function(){
+                    btn.classList.add('done');
+                    label.textContent = COPIED;
+                    setTimeout(function(){ btn.classList.remove('done'); label.textContent = original; }, 1800);
+                }).catch(function(){
+                    var r = document.createRange();
+                    r.selectNodeContents(pre);
+                    var s = window.getSelection();
+                    s.removeAllRanges();
+                    s.addRange(r);
+                    label.textContent = 'מסומן — Ctrl+C';
+                    setTimeout(function(){ label.textContent = original; }, 2600);
+                });
+            });
+        });
+
+        var toggle = document.getElementById('plToggleAll');
+        if (toggle) {
+            toggle.addEventListener('click', function(){
+                var open = toggle.dataset.open === '1';
+                items.forEach(function(d){ d.open = !open; });
+                toggle.dataset.open = open ? '0' : '1';
+                toggle.textContent = open ? EXPAND : COLLAPSE;
+            });
+        }
+
+        var h = (location.hash || '').replace('#','');
+        if (/^pl-\d+$/.test(h)) {
+            var pre = document.getElementById(h);
+            if (pre) {
+                var det = pre.closest('.pl-item');
+                if (det) { det.open = true; setTimeout(function(){ det.scrollIntoView({ block:'center' }); }, 60); }
+            }
+        }
+    })();
 
     /* boot */
     var start = parseInt((location.hash || '').replace('#',''), 10);
