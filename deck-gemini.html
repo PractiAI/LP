@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>AI בסביבת העבודה של Google — סיכום הסדנה | PractiAI - טל חקוקי</title>
     <meta name="description" content="סיכום סדנת AI בסביבת העבודה של Google בהובלת טל חקוקי — PractiAI. מצגת מלאה, ספריית פרומפטים ומדריכים קצרים ל-Gemini, NotebookLM, Slides, Sheets וסוכני AI.">
     <meta name="author" content="טל חקוקי">
-    <meta name="robots" content="noindex, follow">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <link rel="canonical" href="https://practiai.github.io/LP/deck-gemini.html">
 
     <meta property="og:type" content="article">
@@ -19,11 +19,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/vendor/fonts/google-fonts.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
 
     <style>
         :root {
@@ -342,7 +339,7 @@
             <a class="nav-link" href="index.html#solutions">מסלולים</a>
             <a class="nav-cta" href="index.html#contact">יצירת קשר</a>
         </nav>
-        <button class="mobile-toggle" id="mobileToggle" aria-label="פתיחת תפריט מובייל" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="פתיחת תפריט מובייל" aria-expanded="false"><i aria-hidden="true" class="fa-solid fa-bars"></i></button>
     </div>
 </header>
 
@@ -356,13 +353,13 @@
             <a href="index.html">PractiAI — עמוד הבית</a><i class="fa-solid fa-angle-left" aria-hidden="true"></i>
             <span>AI בסביבת Google</span>
         </div>
-        <div class="deck-label"><i class="fa-solid fa-chalkboard-user"></i> סדנת AI מעשית | סביבת Google</div>
+        <div class="deck-label"><i aria-hidden="true" class="fa-solid fa-chalkboard-user"></i> סדנת AI מעשית | סביבת Google</div>
         <h1>מכלי בודד<br><span class="accent">לסביבת עבודה שלמה</span></h1>
         <p class="lead">סיכום שני המפגשים במקום אחד: המצגת המלאה לצפייה, כללי העבודה שחוזרים לאורך הסדנה, וספרייה של פרומפטים ומדריכים קצרים לכל יכולת שהדגמנו — מפרסונליזציה והנדסת פרומפטים, דרך יצירת תמונות וסרטונים, NotebookLM ו-Google Workspace, ועד היכרות ראשונה עם סוכני AI.</p>
         <div class="deck-meta">
-            <span><i class="fa-regular fa-images"></i> 30 שקפים</span>
-            <span><i class="fa-solid fa-building-columns"></i> סדנה ארגונית</span>
-            <span><i class="fa-solid fa-eye"></i> צפייה מקוונת</span>
+            <span><i aria-hidden="true" class="fa-regular fa-images"></i> 30 שקפים</span>
+            <span><i aria-hidden="true" class="fa-solid fa-building-columns"></i> סדנה ארגונית</span>
+            <span><i aria-hidden="true" class="fa-solid fa-eye"></i> צפייה מקוונת</span>
         </div>
     </div>
 </section>
@@ -375,24 +372,24 @@
                 <div class="slide-layer" id="layerA" role="img" aria-live="polite" aria-label="שקף 1"></div>
                 <div class="slide-layer is-hidden" id="layerB" role="presentation"></div>
                 <div class="stage-guard" id="guard"></div>
-                <div class="stage-load" id="loader" aria-hidden="true"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
-                <button class="nav-btn prev" id="btnPrev" aria-label="השקף הקודם"><i class="fa-solid fa-chevron-right"></i></button>
-                <button class="nav-btn next" id="btnNext" aria-label="השקף הבא"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="stage-load" id="loader" aria-hidden="true"><i aria-hidden="true" class="fa-solid fa-circle-notch fa-spin"></i></div>
+                <button class="nav-btn prev" id="btnPrev" aria-label="השקף הקודם"><i aria-hidden="true" class="fa-solid fa-chevron-right"></i></button>
+                <button class="nav-btn next" id="btnNext" aria-label="השקף הבא"><i aria-hidden="true" class="fa-solid fa-chevron-left"></i></button>
             </div>
 
             <div class="stage-bar">
                 <div class="counter" aria-live="polite"><b id="cur">1</b> / <span id="total">30</span></div>
                 <div class="progress" role="progressbar" aria-label="התקדמות במצגת"><span id="bar"></span></div>
-                <button class="tool-btn" id="btnGrid" aria-label="תצוגת כל השקפים" title="כל השקפים"><i class="fa-solid fa-table-cells-large"></i></button>
-                <button class="tool-btn" id="btnFs" aria-label="מסך מלא" title="מסך מלא"><i class="fa-solid fa-expand"></i></button>
+                <button class="tool-btn" id="btnGrid" aria-label="תצוגת כל השקפים" title="כל השקפים"><i aria-hidden="true" class="fa-solid fa-table-cells-large"></i></button>
+                <button class="tool-btn" id="btnFs" aria-label="מסך מלא" title="מסך מלא"><i aria-hidden="true" class="fa-solid fa-expand"></i></button>
             </div>
 
             <div class="thumbs" id="thumbs" aria-label="ניווט מהיר בין שקפים"></div>
 
             <div class="deck-hint">
-                <span><i class="fa-regular fa-keyboard"></i> ניווט:</span>
+                <span><i aria-hidden="true" class="fa-regular fa-keyboard"></i> ניווט:</span>
                 <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים
-                <span style="margin-inline-start:auto"><i class="fa-solid fa-lock"></i> צפייה בלבד — המצגת אינה ניתנת להורדה</span>
+                <span style="margin-inline-start:auto"><i aria-hidden="true" class="fa-solid fa-lock"></i> צפייה בלבד — המצגת אינה ניתנת להורדה</span>
             </div>
         </div>
     </div>
@@ -401,7 +398,7 @@
 <!-- ===== HIGHLIGHTS ===== -->
 <section class="sec">
     <div class="container">
-        <div class="sec-label"><i class="fa-solid fa-list-check"></i> מה עברנו בשני המפגשים</div>
+        <div class="sec-label"><i aria-hidden="true" class="fa-solid fa-list-check"></i> מה עברנו בשני המפגשים</div>
         <h2 class="sec-heading">מהיכרות עם הכלי<br>ועד תהליך עבודה שלם</h2>
         <p class="sec-desc">המפגש הראשון הניח את הבסיס — הקשר, פרסונליזציה ופרומפטים. השני עבר ליכולות מתקדמות ולמעבר משימוש נקודתי בכלי AI לתהליך עבודה מלא בתוך סביבת Google.</p>
         <div class="hl-grid">
@@ -443,7 +440,7 @@
 <!-- ===== QUICK REFERENCE ===== -->
 <section class="sec" id="quickref" style="padding-top:0">
     <div class="container">
-        <div class="sec-label"><i class="fa-solid fa-compass"></i> כללי עבודה</div>
+        <div class="sec-label"><i aria-hidden="true" class="fa-solid fa-compass"></i> כללי עבודה</div>
         <h2 class="sec-heading">תהליך העבודה שתרגלנו<br>ומה כדאי לזכור לפני שמתחילים</h2>
         <p class="sec-desc">העיקרון המרכזי: אין צורך לנסח מראש בקשה אחת ארוכה ומושלמת. מתחילים מהמשימה, מנהלים שיחה עם הכלי, מחדדים את הצורך בהדרגה ומתקדמים בכל שלב לתוצר הבא.</p>
         <div class="tips-grid">
@@ -481,7 +478,7 @@
 <!-- ===== PROMPT LIBRARY ===== -->
 <section class="sec" id="prompts" style="padding-top:0">
     <div class="container">
-        <div class="sec-label"><i class="fa-solid fa-wand-magic-sparkles"></i> ספריית פרומפטים ומדריכים</div>
+        <div class="sec-label"><i aria-hidden="true" class="fa-solid fa-wand-magic-sparkles"></i> ספריית פרומפטים ומדריכים</div>
         <h2 class="sec-heading">בוחרים נושא,<br>מקבלים פרומפט מוכן או מדריך קצר</h2>
         <p class="sec-desc">כל היכולות שהדגמנו בשני המפגשים, מסודרות לפי נושא. לחיצה על כותרת פותחת פרומפט מוכן להעתקה או מדריך קצר בשלבים. את מה שמופיע ב[סוגריים] יש להחליף בפרטים שלכם.</p>
         <div class="pl-tools">
@@ -763,12 +760,12 @@
 <!-- ===== NEXT STEPS ===== -->
 <section class="sec" style="padding-top:0">
     <div class="container">
-        <div class="sec-label"><i class="fa-solid fa-forward"></i> להמשך העבודה</div>
+        <div class="sec-label"><i aria-hidden="true" class="fa-solid fa-forward"></i> להמשך העבודה</div>
         <h2 class="sec-heading">חומרים משלימים</h2>
         <div class="next-grid">
-            <a class="next-card" href="corporate-prompts.html"><span class="ico"><i class="fa-solid fa-layer-group"></i></span><span><strong>ספריית פרומפטים לארגונים</strong><span>תבניות מוכנות לכתיבה, ניתוח וניהול</span></span></a>
-            <a class="next-card" href="workshop-summary.html"><span class="ico"><i class="fa-solid fa-file-lines"></i></span><span><strong>סיכום סדנה מלא</strong><span>העקרונות והכלים המרכזיים בעמוד אחד</span></span></a>
-            <a class="next-card" href="index.html#solutions"><span class="ico"><i class="fa-solid fa-diagram-project"></i></span><span><strong>מסלולי העבודה שלי</strong><span>סדנאות, ליווי והטמעת AI בארגון</span></span></a>
+            <a class="next-card" href="corporate-prompts.html"><span class="ico"><i aria-hidden="true" class="fa-solid fa-layer-group"></i></span><span><strong>ספריית פרומפטים לארגונים</strong><span>תבניות מוכנות לכתיבה, ניתוח וניהול</span></span></a>
+            <a class="next-card" href="workshop-summary.html"><span class="ico"><i aria-hidden="true" class="fa-solid fa-file-lines"></i></span><span><strong>סיכום סדנה מלא</strong><span>העקרונות והכלים המרכזיים בעמוד אחד</span></span></a>
+            <a class="next-card" href="index.html#solutions"><span class="ico"><i aria-hidden="true" class="fa-solid fa-diagram-project"></i></span><span><strong>מסלולי העבודה שלי</strong><span>סדנאות, ליווי והטמעת AI בארגון</span></span></a>
         </div>
     </div>
 </section>
@@ -780,9 +777,9 @@
             <h2>רוצים סדנה כזו <span class="grad-text">בארגון שלכם?</span></h2>
             <p>אני בונה כל סדנה מחדש סביב התפקידים, המשימות והכלים של הארגון — כדי שמה שנלמד ייכנס לעבודה כבר למחרת.</p>
             <div class="btn-row">
-                <a class="btn btn-wa" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20%D7%91%D7%A1%D7%91%D7%99%D7%91%D7%AA%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A9%D7%9C%20Google%20%E2%80%94%20%D7%A1%D7%99%D7%9B%D7%95%D7%9D%20%D7%94%D7%A1%D7%93%D7%A0%D7%94%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> דברו איתי בוואטסאפ</a>
-                <a class="btn btn-primary" href="index.html#contact"><i class="fa-solid fa-calendar-check"></i> קביעת שיחת התאמה</a>
-                <a class="btn btn-ghost" href="index.html#usecases"><i class="fa-solid fa-diagram-project"></i> תוצאות בשטח</a>
+                <a class="btn btn-wa" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20%D7%91%D7%A1%D7%91%D7%99%D7%91%D7%AA%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A9%D7%9C%20Google%20%E2%80%94%20%D7%A1%D7%99%D7%9B%D7%95%D7%9D%20%D7%94%D7%A1%D7%93%D7%A0%D7%94%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> דברו איתי בוואטסאפ</a>
+                <a class="btn btn-primary" href="index.html#contact"><i aria-hidden="true" class="fa-solid fa-calendar-check"></i> קביעת שיחת התאמה</a>
+                <a class="btn btn-ghost" href="index.html#usecases"><i aria-hidden="true" class="fa-solid fa-diagram-project"></i> תוצאות בשטח</a>
             </div>
         </div>
     </div>
@@ -794,7 +791,7 @@
 <div class="overview" id="overview" role="dialog" aria-modal="true" aria-label="כל השקפים">
     <div class="ov-head">
         <h2>כל השקפים <span style="color:var(--text3);font-weight:600;font-size:1rem">(30)</span></h2>
-        <button class="tool-btn" id="ovClose" aria-label="סגירת תצוגת השקפים"><i class="fa-solid fa-xmark"></i></button>
+        <button class="tool-btn" id="ovClose" aria-label="סגירת תצוגת השקפים"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="ov-grid" id="ovGrid"></div>
 </div>
@@ -804,8 +801,8 @@
         <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
         <div class="footer-links">
             <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> אימייל</a>
-            <a href="https://wa.me/972506915269" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> 050-6915269</a>
-            <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+            <a href="https://wa.me/972506915269" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> 050-6915269</a>
+            <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
             <a href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> עמוד הבית</a>
         </div>
         <div class="footer-copy">&copy; 2026 PractiAI. All Rights Reserved.</div>
@@ -813,16 +810,16 @@
 </footer>
 
 <div class="a11y-widget">
-    <button class="a11y-btn-main" id="a11yMainBtn" aria-label="פתיחת תפריט נגישות" aria-expanded="false"><i class="fa-solid fa-universal-access"></i></button>
+    <button class="a11y-btn-main" id="a11yMainBtn" aria-label="פתיחת תפריט נגישות" aria-expanded="false"><i aria-hidden="true" class="fa-solid fa-universal-access"></i></button>
     <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות">
-        <div class="a11y-panel-header"><span>התאמות נגישות</span><button class="a11y-close" id="a11yCloseBtn" aria-label="סגור תפריט נגישות"><i class="fa-solid fa-xmark"></i></button></div>
-        <button class="a11y-option" id="toggleContrast"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
-        <button class="a11y-option" id="toggleFontSize"><i class="fa-solid fa-magnifying-glass-plus"></i> הגדלת טקסט</button>
-        <button class="a11y-option" id="toggleMotion"><i class="fa-solid fa-pause"></i> עצירת אנימציות</button>
+        <div class="a11y-panel-header"><span>התאמות נגישות</span><button class="a11y-close" id="a11yCloseBtn" aria-label="סגור תפריט נגישות"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button></div>
+        <button class="a11y-option" id="toggleContrast"><i aria-hidden="true" class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
+        <button class="a11y-option" id="toggleFontSize"><i aria-hidden="true" class="fa-solid fa-magnifying-glass-plus"></i> הגדלת טקסט</button>
+        <button class="a11y-option" id="toggleMotion"><i aria-hidden="true" class="fa-solid fa-pause"></i> עצירת אנימציות</button>
     </div>
 </div>
 
-<a href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20%D7%91%D7%A1%D7%91%D7%99%D7%91%D7%AA%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A9%D7%9C%20Google%20%E2%80%94%20%D7%A1%D7%99%D7%9B%D7%95%D7%9D%20%D7%94%D7%A1%D7%93%D7%A0%D7%94%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" class="wa-float" aria-label="פניה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20%D7%91%D7%A1%D7%91%D7%99%D7%91%D7%AA%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94%20%D7%A9%D7%9C%20Google%20%E2%80%94%20%D7%A1%D7%99%D7%9B%D7%95%D7%9D%20%D7%94%D7%A1%D7%93%D7%A0%D7%94%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="פניה בוואטסאפ"><i aria-hidden="true" class="fa-brands fa-whatsapp"></i></a>
 
 <script>
 (function(){
@@ -926,7 +923,7 @@
             t.type = 'button';
             t.dataset.src = thumbUrl(n);
             t.setAttribute('aria-label', 'מעבר לשקף ' + n);
-            t.innerHTML = '<i>' + n + '</i>';
+            t.innerHTML = '<i aria-hidden="true">' + n + '</i>';
             t.addEventListener('click', function(){ show(n); });
             if (thumbObserver) { thumbObserver.observe(t); } else { t.style.backgroundImage = 'url("' + thumbUrl(n) + '")'; }
             thumbsEl.appendChild(t);
@@ -936,7 +933,7 @@
             o.type = 'button';
             o.dataset.src = thumbUrl(n);
             o.setAttribute('aria-label', 'מעבר לשקף ' + n);
-            o.innerHTML = '<i>' + n + '</i>';
+            o.innerHTML = '<i aria-hidden="true">' + n + '</i>';
             o.addEventListener('click', function(){ closeOverview(); show(n); });
             ovGrid.appendChild(o);
         })(i);
@@ -1003,7 +1000,7 @@
     document.addEventListener('fullscreenchange', function(){
         var b = document.getElementById('btnFs');
         b.classList.toggle('on', !!document.fullscreenElement);
-        b.innerHTML = document.fullscreenElement ? '<i class="fa-solid fa-compress"></i>' : '<i class="fa-solid fa-expand"></i>';
+        b.innerHTML = document.fullscreenElement ? '<i aria-hidden="true" class="fa-solid fa-compress"></i>' : '<i aria-hidden="true" class="fa-solid fa-expand"></i>';
     });
 
     /* header + mobile menu */
@@ -1014,9 +1011,9 @@
     mt.addEventListener('click', function(){
         var open = nl.classList.toggle('open');
         mt.setAttribute('aria-expanded', open ? 'true' : 'false');
-        mt.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+        mt.innerHTML = open ? '<i aria-hidden="true" class="fa-solid fa-xmark"></i>' : '<i aria-hidden="true" class="fa-solid fa-bars"></i>';
     });
-    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ nl.classList.remove('open'); mt.innerHTML = '<i class="fa-solid fa-bars"></i>'; }); });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ nl.classList.remove('open'); mt.innerHTML = '<i aria-hidden="true" class="fa-solid fa-bars"></i>'; }); });
 
     /* accessibility widget */
     var a11yBtn = document.getElementById('a11yMainBtn');

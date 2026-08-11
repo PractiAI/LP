@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <title>ספריית פרומפטים למורים | PractiAI - טל חקוקי</title>
     <meta name="description" content="ספריית פרומפטים חינמית למורים ואנשי חינוך. תבניות עבודה חכמות עם בינה מלאכותית לתכנון שיעורים, יצירת חומרי למידה, הערכה ועוד.">
     <meta property="og:type" content="website">
@@ -15,13 +16,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="assets/vendor/fonts/google-fonts.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <script src="assets/vendor/gsap/gsap.min.js"></script>
+    <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
     <style>
         :root {
             --bg: #06060e;
@@ -206,7 +204,7 @@
     <!-- HERO -->
     <section class="page-hero">
         <div class="container">
-            <span class="sec-label mx-auto"><i class="fa-solid fa-book-bookmark"></i> מדריך פרקטי</span>
+            <span class="sec-label mx-auto"><i aria-hidden="true" class="fa-solid fa-book-bookmark"></i> מדריך פרקטי</span>
             <h1>ספריית פרומפטים <span class="grad-text">למורים</span></h1>
             <p>תבניות עבודה חכמות עם בינה מלאכותית שיחסכו לכם שעות של עבודה. העתיקו, שנו את הסוגריים, וקבלו תוצאות מדויקות לכיתה שלכם.</p>
         </div>
@@ -217,7 +215,7 @@
             
             <!-- SIDEBAR -->
             <aside class="lib-sidebar">
-                <div class="sidebar-title"><i class="fa-solid fa-list"></i> תוכן עניינים</div>
+                <div class="sidebar-title"><i aria-hidden="true" class="fa-solid fa-list"></i> תוכן עניינים</div>
                 <nav class="sidebar-nav">
                     <a href="#how-to" class="sidebar-link active">איך משתמשים?</a>
                     <a href="#sec-1" class="sidebar-link">1. פרומפט בסיס</a>
@@ -244,12 +242,12 @@
                     <h3>איך להשתמש בפרומפטים?</h3>
                     <p>בכל פרומפט שתעתיקו מפה, החליפו את הסוגריים המרובעים בפרטים הספציפיים שלכם, לדוגמה:</p>
                     <ul>
-                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[תחום הדעת]</span> ← היסטוריה / מדעים / מתמטיקה</li>
-                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[שכבת גיל]</span> ← כיתה ח' / תלמידי תיכון</li>
-                        <li><i class="fa-solid fa-arrow-left"></i> <span class="var">[משך השיעור]</span> ← 45 דקות / שיעור כפול</li>
+                        <li><i aria-hidden="true" class="fa-solid fa-arrow-left"></i> <span class="var">[תחום הדעת]</span> ← היסטוריה / מדעים / מתמטיקה</li>
+                        <li><i aria-hidden="true" class="fa-solid fa-arrow-left"></i> <span class="var">[שכבת גיל]</span> ← כיתה ח' / תלמידי תיכון</li>
+                        <li><i aria-hidden="true" class="fa-solid fa-arrow-left"></i> <span class="var">[משך השיעור]</span> ← 45 דקות / שיעור כפול</li>
                     </ul>
                     <div class="info-alert">
-                        <strong><i class="fa-solid fa-triangle-exclamation"></i> חשוב מאוד:</strong> אין להזין מידע אישי או מזהה על תלמידים. במקום זאת, השתמשו בתיאור כללי כמו “כיתה הטרוגנית”, “תלמידים מתקשים”, או “קבוצה מתקדמת”.
+                        <strong><i aria-hidden="true" class="fa-solid fa-triangle-exclamation"></i> חשוב מאוד:</strong> אין להזין מידע אישי או מזהה על תלמידים. במקום זאת, השתמשו בתיאור כללי כמו “כיתה הטרוגנית”, “תלמידים מתקשים”, או “קבוצה מתקדמת”.
                     </div>
                 </div>
 
@@ -260,21 +258,21 @@
                         <article class="prompt-card">
                             <h3>פרומפט התאמה אישית למורה</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">הגדרת תפקיד</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">הגדרת תפקיד</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="אני מורה ל[תחום דעת] בכיתות [שכבות גיל]. סגנון ההוראה שלי הוא [לדוגמה: חווייתי / מבוסס חקר / מובנה / דיאלוגי / יצירתי]. חשוב לי שהתוצרים יהיו מותאמים לגיל התלמידים, ברורים, פרקטיים לשימוש בכיתה, וכוללים דוגמאות מחיי היום־יום. מעכשיו, בכל משימה חינוכית שאבקש, התייחס להקשר הזה והצע תוצרים שניתן להשתמש בהם בפועל בהוראה.">אני מורה ל<span class="var">[תחום דעת]</span> בכיתות <span class="var">[שכבות גיל]</span>. סגנון ההוראה שלי הוא <span class="var">[לדוגמה: חווייתי / מבוסס חקר / מובנה...]</span>. חשוב לי שהתוצרים יהיו מותאמים לגיל התלמידים, ברורים, פרקטיים לשימוש בכיתה, וכוללים דוגמאות מחיי היום־יום. מעכשיו, בכל משימה חינוכית שאבקש, התייחס להקשר הזה והצע תוצרים שניתן להשתמש בהם בפועל בהוראה.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>פרומפט אפיון כיתה</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">אפיון קהל יעד</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">אפיון קהל יעד</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="אני מלמד/ת [תחום דעת] בכיתה [שכבה]. הכיתה כוללת [תיאור כללי של הרכב הכיתה: רמות שונות / תלמידים מתקשים / תלמידים חזקים / צורך בהמחשה / קושי במוטיבציה]. הנושא הקרוב הוא [נושא]. עזור לי לחשוב איך ללמד את הנושא בצורה שתתאים לכיתה הזו, כולל דגשים פדגוגיים, קשיים צפויים ודרכי הוראה מומלצות.">אני מלמד/ת <span class="var">[תחום דעת]</span> בכיתה <span class="var">[שכבה]</span>. הכיתה כוללת <span class="var">[תיאור כללי של הרכב הכיתה]</span>. הנושא הקרוב הוא <span class="var">[נושא]</span>. עזור לי לחשוב איך ללמד את הנושא בצורה שתתאים לכיתה הזו, כולל דגשים פדגוגיים, קשיים צפויים ודרכי הוראה מומלצות.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>פרומפט שאלות הבהרה לפני יצירת תוצר</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">טיוב תוצאות</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">טיוב תוצאות</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="לפני שאתה יוצר עבורי את התוצר, שאל אותי עד 5 שאלות קצרות שיעזרו לך לדייק אותו: מטרת הלמידה, שכבת גיל, רמת התלמידים, משך הזמן, סגנון הפעילות והתוצר הסופי הרצוי.">לפני שאתה יוצר עבורי את התוצר, שאל אותי עד 5 שאלות קצרות שיעזרו לך לדייק אותו: מטרת הלמידה, שכבת גיל, רמת התלמידים, משך הזמן, סגנון הפעילות והתוצר הסופי הרצוי.</div>
                             </div>
                         </article>
@@ -288,28 +286,28 @@
                         <article class="prompt-card">
                             <h3>מערך שיעור מלא</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">תכנון מלא</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">תכנון מלא</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור מערך שיעור בנושא [נושא] עבור תלמידי [שכבת גיל] ב[תחום דעת]. משך השיעור הוא [משך]. מטרת השיעור היא [מטרה]. כלול פתיח מסקרן, הסבר מרכזי, פעילות לתלמידים, שאלות הבנה, שאלות חשיבה, סיכום קצר והצעה למשימת המשך.">צור מערך שיעור בנושא <span class="var">[נושא]</span> עבור תלמידי <span class="var">[שכבת גיל]</span> ב<span class="var">[תחום דעת]</span>. משך השיעור הוא <span class="var">[משך]</span>. מטרת השיעור היא <span class="var">[מטרה]</span>. כלול פתיח מסקרן, הסבר מרכזי, פעילות לתלמידים, שאלות הבנה, שאלות חשיבה, סיכום קצר והצעה למשימת המשך.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>שיעור חווייתי</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">מעורבות תלמידים</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">מעורבות תלמידים</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="תכנן שיעור חווייתי בנושא [נושא] לכיתה [שכבה]. אני רוצה שהתלמידים יהיו פעילים ולא רק יקשיבו. הצע מהלך שיעור הכולל פתיחה מסקרנת, פעילות קבוצתית, דיון כיתתי ותוצר שהתלמידים יוצרים בעצמם.">תכנן שיעור חווייתי בנושא <span class="var">[נושא]</span> לכיתה <span class="var">[שכבה]</span>. אני רוצה שהתלמידים יהיו פעילים ולא רק יקשיבו. הצע מהלך שיעור הכולל פתיחה מסקרנת, פעילות קבוצתית, דיון כיתתי ותוצר שהתלמידים יוצרים בעצמם.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>שיעור מבוסס חקר</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">למידת חקר</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">למידת חקר</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="בנה שיעור מבוסס חקר בנושא [נושא]. השיעור צריך להתחיל בשאלה מסקרנת, להוביל את התלמידים להעלאת השערות, לכלול פעילות חקר או ניתוח מידע, ולהסתיים במסקנות שהתלמידים מנסחים בעצמם.">בנה שיעור מבוסס חקר בנושא <span class="var">[נושא]</span>. השיעור צריך להתחיל בשאלה מסקרנת, להוביל את התלמידים להעלאת השערות, לכלול פעילות חקר או ניתוח מידע, ולהסתיים במסקנות שהתלמידים מנסחים בעצמם.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>שיעור קצר למילוי מקום או זמן מוגבל</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">שליפה מהירה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">שליפה מהירה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור פעילות קצרה של [10/15/20] דקות בנושא [נושא] לכיתה [שכבה]. הפעילות צריכה להיות פשוטה להפעלה, ללא הכנה מורכבת, ולכלול מטרה ברורה, הנחיות לתלמידים ושאלת סיכום.">צור פעילות קצרה של <span class="var">[10/15/20]</span> דקות בנושא <span class="var">[נושא]</span> לכיתה <span class="var">[שכבה]</span>. הפעילות צריכה להיות פשוטה להפעלה, ללא הכנה מורכבת, ולכלול מטרה ברורה, הנחיות לתלמידים ושאלת סיכום.</div>
                             </div>
                         </article>
@@ -323,21 +321,21 @@
                         <article class="prompt-card">
                             <h3>דף עבודה בשלוש רמות (דיפרנציאלי)</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">התאמה אישית</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">התאמה אישית</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור דף עבודה בנושא [נושא] בשלוש רמות: בסיסית, בינונית ומתקדמת. שמור על אותה מטרת למידה, אך התאם את עומק השאלות, רמת הניסוח ורמת העצמאות הנדרשת בכל רמה.">צור דף עבודה בנושא <span class="var">[נושא]</span> בשלוש רמות: בסיסית, בינונית ומתקדמת. שמור על אותה מטרת למידה, אך התאם את עומק השאלות, רמת הניסוח ורמת העצמאות הנדרשת בכל רמה.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>הכנה למצגת</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">סטרוקטורה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">סטרוקטורה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="בנה מבנה למצגת בנושא [נושא] לכיתה [שכבה]. המצגת צריכה לכלול [מספר] שקפים. עבור כל שקף כתוב כותרת, רעיון מרכזי, הסבר קצר, הצעה לדימוי ויזואלי ושאלה שאפשר לשאול את התלמידים.">בנה מבנה למצגת בנושא <span class="var">[נושא]</span> לכיתה <span class="var">[שכבה]</span>. המצגת צריכה לכלול <span class="var">[מספר]</span> שקפים. עבור כל שקף כתוב כותרת, רעיון מרכזי, הסבר קצר, הצעה לדימוי ויזואלי ושאלה שאפשר לשאול את התלמידים.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>כרטיסיות תרגול</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">תרגול</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">תרגול</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור 12 כרטיסיות תרגול בנושא [נושא]. בכל כרטיסייה תהיה שאלה קצרה, רמז במקרה הצורך ותשובה מצופה. סדר את הכרטיסיות מהקל אל המורכב.">צור 12 כרטיסיות תרגול בנושא <span class="var">[נושא]</span>. בכל כרטיסייה תהיה שאלה קצרה, רמז במקרה הצורך ותשובה מצופה. סדר את הכרטיסיות מהקל אל המורכב.</div>
                             </div>
                         </article>
@@ -351,21 +349,21 @@
                         <article class="prompt-card">
                             <h3>הסבר פשוט לנושא מורכב</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">הנגשה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">הנגשה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="הסבר את הנושא [נושא] לתלמידי [שכבה] בשפה פשוטה, ברורה ולא ילדותית. השתמש בדוגמה מחיי היום־יום, באנלוגיה אחת ובשאלת הבנה בסוף.">הסבר את הנושא <span class="var">[נושא]</span> לתלמידי <span class="var">[שכבה]</span> בשפה פשוטה, ברורה ולא ילדותית. השתמש בדוגמה מחיי היום־יום, באנלוגיה אחת ובשאלת הבנה בסוף.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>תמיכה בתלמידים מתקשים</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">פירוק לגורמים</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">פירוק לגורמים</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור גרסה נגישה יותר להסבר בנושא [נושא] עבור תלמידים שמתקשים להבין את החומר. כלול פירוק לשלבים, מילון מושגים קצר, דוגמה פשוטה ושאלות בדיקה הדרגתיות.">צור גרסה נגישה יותר להסבר בנושא <span class="var">[נושא]</span> עבור תלמידים שמתקשים להבין את החומר. כלול פירוק לשלבים, מילון מושגים קצר, דוגמה פשוטה ושאלות בדיקה הדרגתיות.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>העמקה לתלמידים מתקדמים</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">אתגר</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">אתגר</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור משימת העמקה בנושא [נושא] לתלמידים מתקדמים. המשימה צריכה לכלול אתגר חשיבה, חיבור לנושא רחב יותר, שאלה פתוחה ותוצר שהתלמידים צריכים להגיש.">צור משימת העמקה בנושא <span class="var">[נושא]</span> לתלמידים מתקדמים. המשימה צריכה לכלול אתגר חשיבה, חיבור לנושא רחב יותר, שאלה פתוחה ותוצר שהתלמידים צריכים להגיש.</div>
                             </div>
                         </article>
@@ -379,21 +377,21 @@
                         <article class="prompt-card">
                             <h3>מחוון הערכה (רובריקה)</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">הערכה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">הערכה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור מחוון הערכה למשימה בנושא [נושא]. המחוון צריך לכלול 4 קריטריונים מרכזיים, 4 רמות ביצוע לכל קריטריון ותיאור ברור של מה נחשב ביצוע מצוין, טוב, חלקי או חסר.">צור מחוון הערכה למשימה בנושא <span class="var">[נושא]</span>. המחוון צריך לכלול 4 קריטריונים מרכזיים, 4 רמות ביצוע לכל קריטריון ותיאור ברור של מה נחשב ביצוע מצוין, טוב, חלקי או חסר.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>בדיקת תפיסות שגויות</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">מניעה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">מניעה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="מהן תפיסות שגויות נפוצות שתלמידים עשויים לפתח בנושא [נושא]? הצג לפחות 5 תפיסות שגויות, הסבר למה הן קורות, והצע דרך פשוטה לתקן כל אחת מהן בכיתה.">מהן תפיסות שגויות נפוצות שתלמידים עשויים לפתח בנושא <span class="var">[נושא]</span>? הצג לפחות 5 תפיסות שגויות, הסבר למה הן קורות, והצע דרך פשוטה לתקן כל אחת מהן בכיתה.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>משוב לתלמידים</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">משוב בונה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">משוב בונה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="כתוב משוב בונה לתלמיד/ה על עבודה בנושא [נושא]. המשוב צריך להיות מעודד, ברור, להתייחס לנקודות חוזקה, להצביע על נקודה אחת לשיפור ולהציע צעד מעשי להמשך.">כתוב משוב בונה לתלמיד/ה על עבודה בנושא <span class="var">[נושא]</span>. המשוב צריך להיות מעודד, ברור, להתייחס לנקודות חוזקה, להצביע על נקודה אחת לשיפור ולהציע צעד מעשי להמשך.</div>
                             </div>
                         </article>
@@ -407,14 +405,14 @@
                         <article class="prompt-card">
                             <h3>למידה דרך בעיה (PBL)</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">PBL</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">PBL</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור תרחיש בעיה מחיי היום־יום שמדגים את הנושא [נושא]. התלמידים צריכים לנתח את הבעיה, להציע פתרונות ולהסביר את החשיבה שלהם באמצעות מושגים מהחומר.">צור תרחיש בעיה מחיי היום־יום שמדגים את הנושא <span class="var">[נושא]</span>. התלמידים צריכים לנתח את הבעיה, להציע פתרונות ולהסביר את החשיבה שלהם באמצעות מושגים מהחומר.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>ניסוי בטוח ופשוט</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">המחשה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">המחשה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="הצע ניסוי פשוט ובטוח להמחשת הנושא [נושא] לתלמידי [שכבה]. כלול חומרים זמינים, שלבי ביצוע, כללי בטיחות, שאלות לפני הניסוי, שאלות במהלך הניסוי ושאלות סיכום.">הצע ניסוי פשוט ובטוח להמחשת הנושא <span class="var">[נושא]</span> לתלמידי <span class="var">[שכבה]</span>. כלול חומרים זמינים, שלבי ביצוע, כללי בטיחות, שאלות לפני הניסוי, שאלות במהלך הניסוי ושאלות סיכום.</div>
                             </div>
                         </article>
@@ -429,7 +427,7 @@
                         <article class="prompt-card">
                             <h3>הפיכת חומר קיים לשיעור</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">עיבוד תוכן</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">עיבוד תוכן</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="קח את הטקסט הבא והפוך אותו למערך שיעור לכיתה [שכבה]. כלול מטרות למידה, הסבר פשוט, פעילות לתלמידים, שאלות הבנה, שאלות חשיבה וסיכום.
 [הדבק טקסט כאן]">קח את הטקסט הבא והפוך אותו למערך שיעור לכיתה <span class="var">[שכבה]</span>. כלול מטרות למידה, הסבר פשוט, פעילות לתלמידים, שאלות הבנה, שאלות חשיבה וסיכום.
 <span class="var">[הדבק טקסט כאן]</span></div>
@@ -438,7 +436,7 @@
                         <article class="prompt-card">
                             <h3>חילוץ מושגים מרכזיים</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">ניתוח</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">ניתוח</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="נתח את הטקסט הבא וחלץ ממנו את המושגים המרכזיים שהתלמידים צריכים להכיר. עבור כל מושג כתוב הגדרה פשוטה, דוגמה ושאלה קצרה לתרגול.
 [הדבק טקסט כאן]">נתח את הטקסט הבא וחלץ ממנו את המושגים המרכזיים שהתלמידים צריכים להכיר. עבור כל מושג כתוב הגדרה פשוטה, דוגמה ושאלה קצרה לתרגול.
 <span class="var">[הדבק טקסט כאן]</span></div>
@@ -454,21 +452,21 @@
                         <article class="prompt-card">
                             <h3>חיבור לחיי היום־יום</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">רלוונטיות</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">רלוונטיות</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="מצא 7 דוגמאות מחיי היום־יום שממחישות את הנושא [נושא]. עבור כל דוגמה הסבר איך להשתמש בה בכיתה ואיזו שאלה אפשר לשאול את התלמידים.">מצא 7 דוגמאות מחיי היום־יום שממחישות את הנושא <span class="var">[נושא]</span>. עבור כל דוגמה הסבר איך להשתמש בה בכיתה ואיזו שאלה אפשר לשאול את התלמידים.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>משחק לימודי</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">משחוק (Gamification)</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">משחוק (Gamification)</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור משחק קצר ללימוד או חזרה על הנושא [נושא]. המשחק צריך להתאים לכיתה [שכבה], להיות פשוט להפעלה, לכלול חוקים ברורים, מטרת למידה ושאלות או משימות לתלמידים.">צור משחק קצר ללימוד או חזרה על הנושא <span class="var">[נושא]</span>. המשחק צריך להתאים לכיתה <span class="var">[שכבה]</span>, להיות פשוט להפעלה, לכלול חוקים ברורים, מטרת למידה ושאלות או משימות לתלמידים.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>למידה דרך דילמה</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">פיתוח עמדה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">פיתוח עמדה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור דילמה הקשורה לנושא [נושא]. הדילמה צריכה לעודד תלמידים לחשוב, לנמק עמדה, להקשיב לאחרים ולהשתמש בידע מהשיעור.">צור דילמה הקשורה לנושא <span class="var">[נושא]</span>. הדילמה צריכה לעודד תלמידים לחשוב, לנמק עמדה, להקשיב לאחרים ולהשתמש בידע מהשיעור.</div>
                             </div>
                         </article>
@@ -482,21 +480,21 @@
                         <article class="prompt-card">
                             <h3>תכנון שבועי</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">אופרציה</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">אופרציה</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="עזור לי לבנות תכנון שבועי להוראת [נושא/יחידה] בכיתה [שכבה]. יש לי [מספר] שיעורים, כל שיעור באורך [משך]. חלק את הנושא לרצף הגיוני, הצע מטרה לכל שיעור, פעילות מרכזית ותוצר לתלמידים.">עזור לי לבנות תכנון שבועי להוראת <span class="var">[נושא/יחידה]</span> בכיתה <span class="var">[שכבה]</span>. יש לי <span class="var">[מספר]</span> שיעורים, כל שיעור באורך <span class="var">[משך]</span>. חלק את הנושא לרצף הגיוני, הצע מטרה לכל שיעור, פעילות מרכזית ותוצר לתלמידים.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>הכנה מהירה לשיעור מחר (SOS)</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">חירום</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">חירום</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="יש לי מחר שיעור בנושא [נושא] לכיתה [שכבה]. צור לי תכנון מהיר הכולל פתיחה, הסבר קצר, פעילות, שאלות וסיכום. התוצר צריך להיות פשוט להפעלה וללא הכנה מורכבת.">יש לי מחר שיעור בנושא <span class="var">[נושא]</span> לכיתה <span class="var">[שכבה]</span>. צור לי תכנון מהיר הכולל פתיחה, הסבר קצר, פעילות, שאלות וסיכום. התוצר צריך להיות פשוט להפעלה וללא הכנה מורכבת.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>ניסוח הודעה להורים או תלמידים</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">תקשורת</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">תקשורת</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="עזור לי לנסח הודעה קצרה וברורה ל[הורים/תלמידים] בנושא [נושא]. ההודעה צריכה להיות מקצועית, נעימה, ברורה ולא ארוכה מדי.">עזור לי לנסח הודעה קצרה וברורה ל<span class="var">[הורים/תלמידים]</span> בנושא <span class="var">[נושא]</span>. ההודעה צריכה להיות מקצועית, נעימה, ברורה ולא ארוכה מדי.</div>
                             </div>
                         </article>
@@ -511,14 +509,14 @@
                         <article class="prompt-card">
                             <h3>עוזר לבניית מערכי שיעור</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">System Prompt</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">System Prompt</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="בנה עבורי הנחיות לעוזר AI אישי שתפקידו ליצור מערכי שיעור עבור מורה ל[תחום דעת]. העוזר צריך לשאול שאלות מקדימות על שכבת גיל, משך שיעור, רמת הכיתה ומטרות למידה. בכל מערך עליו לכלול פתיח, הקניה, פעילות, בדיקת הבנה, סיכום והתאמות לרמות שונות.">בנה עבורי הנחיות לעוזר AI אישי שתפקידו ליצור מערכי שיעור עבור מורה ל<span class="var">[תחום דעת]</span>. העוזר צריך לשאול שאלות מקדימות על שכבת גיל, משך שיעור, רמת הכיתה ומטרות למידה. בכל מערך עליו לכלול פתיח, הקניה, פעילות, בדיקת הבנה, סיכום והתאמות לרמות שונות.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>עוזר להערכה ומשוב</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">System Prompt</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">System Prompt</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="בנה עבורי הנחיות לעוזר AI אישי שתפקידו לעזור למורה ליצור שאלות, מבחנים, מחוונים ומשובים. העוזר צריך להקפיד על ניסוח ברור, התאמה לרמת התלמידים, מגוון סוגי שאלות ומתן תשובות מצופות למורה.">בנה עבורי הנחיות לעוזר AI אישי שתפקידו לעזור למורה ליצור שאלות, מבחנים, מחוונים ומשובים. העוזר צריך להקפיד על ניסוח ברור, התאמה לרמת התלמידים, מגוון סוגי שאלות ומתן תשובות מצופות למורה.</div>
                             </div>
                         </article>
@@ -532,14 +530,14 @@
                         <article class="prompt-card">
                             <h3>הפיכת שיחה מוצלחת לפרומפט קבוע</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">Reverse Engineering</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">Reverse Engineering</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="נתח את השיחה האחרונה שלנו ואת התוצר שיצרנו. זהה מה היו המרכיבים שהובילו לתוצאה טובה, והפוך אותם לפרומפט קבוע שאוכל להשתמש בו בעתיד ליצירת תוצרים דומים. כתוב את הפרומפט בצורה כללית עם מקומות להשלמה.">נתח את השיחה האחרונה שלנו ואת התוצר שיצרנו. זהה מה היו המרכיבים שהובילו לתוצאה טובה, והפוך אותם לפרומפט קבוע שאוכל להשתמש בו בעתיד ליצירת תוצרים דומים. כתוב את הפרומפט בצורה כללית עם מקומות להשלמה.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>יצירת בנק פרומפטים אישי</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><span class="prompt-badge">התייעלות</span><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><span class="prompt-badge">התייעלות</span><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="על בסיס המשימות שאני מבצע/ת כמורה ל[תחום דעת], צור לי בנק של 10 פרומפטים אישיים לשימוש חוזר. התמקד במשימות שחוזרות על עצמן וחוסכות זמן אמיתי בעבודה היומיומית.">על בסיס המשימות שאני מבצע/ת כמורה ל<span class="var">[תחום דעת]</span>, צור לי בנק של 10 פרומפטים אישיים לשימוש חוזר. התמקד במשימות שחוזרות על עצמן וחוסכות זמן אמיתי בעבודה היומיומית.</div>
                             </div>
                         </article>
@@ -553,28 +551,28 @@
                         <article class="prompt-card">
                             <h3>הסבר פשוט</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="הסבר את [מושג] לתלמידי [שכבה] בצורה פשוטה, עם דוגמה מחיי היום־יום.">הסבר את <span class="var">[מושג]</span> לתלמידי <span class="var">[שכבה]</span> בצורה פשוטה, עם דוגמה מחיי היום־יום.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>שאלות חזרה</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור 10 שאלות חזרה בנושא [נושא], כולל תשובות קצרות.">צור 10 שאלות חזרה בנושא <span class="var">[נושא]</span>, כולל תשובות קצרות.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>משימת סיכום</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="צור משימת סיכום קצרה לנושא [נושא] שתעזור לי לבדוק הבנה.">צור משימת סיכום קצרה לנושא <span class="var">[נושא]</span> שתעזור לי לבדוק הבנה.</div>
                             </div>
                         </article>
                         <article class="prompt-card">
                             <h3>הפיכת טקסט לפעילות</h3>
                             <div class="prompt-box-wrap">
-                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i class="fa-regular fa-copy"></i> העתק</button></div>
+                                <div class="prompt-header"><button class="copy-btn" onclick="copyPrompt(this)"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button></div>
                                 <div class="prompt-text" data-raw="הפוך את הטקסט הבא לפעילות כיתתית קצרה: [הדבקת הטקסט].">הפוך את הטקסט הבא לפעילות כיתתית קצרה: <span class="var">[הדבקת הטקסט]</span>.</div>
                             </div>
                         </article>
@@ -583,7 +581,7 @@
 
                 <!-- THE GOLDEN RULE -->
                 <div id="golden-rule" class="golden-rule prompt-category">
-                    <i class="fa-solid fa-crown"></i>
+                    <i aria-hidden="true" class="fa-solid fa-crown"></i>
                     <h2>כלל הזהב</h2>
                     <p>הפרומפט הכי טוב הוא לא זה שמבקש "תכין לי משהו".</p>
                     <p>הפרומפט הכי טוב הוא זה שמסביר ל-AI את התמונה המלאה:</p>
@@ -609,8 +607,8 @@
                 <h2 class="sec-heading">רוצים להעביר את הארגון או הצוות <span class="grad-text">לשלב הבא?</span></h2>
                 <p class="sec-desc mx-auto" style="margin-bottom: 30px;">סדנאות מעשיות, תהליכי הטמעה, ובניית פתרונות AI מותאמים אישית לצוותי חינוך וארגונים.</p>
                 <div class="btn-row" style="justify-content:center">
-                    <a class="btn btn-primary" href="index.html#contact"><i class="fa-solid fa-paper-plane"></i> לפרטים וקביעת שיחה</a>
-                    <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מספריית%20הפרומפטים%20ואשמח%20לשמוע%20פרטים%20על%20הטמעת%20AI" target="_blank" rel="noopener" class="btn btn-wa"><i class="fa-brands fa-whatsapp" style="font-size:1.2rem"></i> שלחו לי וואטסאפ</a>
+                    <a class="btn btn-primary" href="index.html#contact"><i aria-hidden="true" class="fa-solid fa-paper-plane"></i> לפרטים וקביעת שיחה</a>
+                    <a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מספריית%20הפרומפטים%20ואשמח%20לשמוע%20פרטים%20על%20הטמעת%20AI" target="_blank" rel="noopener noreferrer" class="btn btn-wa"><i aria-hidden="true" class="fa-brands fa-whatsapp" style="font-size:1.2rem"></i> שלחו לי וואטסאפ</a>
                 </div>
             </div>
         </div>
@@ -622,15 +620,15 @@
     <div class="container footer-inner">
         <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
         <div class="footer-links">
-            <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope"></i> אימייל</a>
-            <a href="https://wa.me/972506915269" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> 050-6915269</a>
-            <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="mailto:hakokit@gmail.com"><i aria-hidden="true" class="fa-regular fa-envelope"></i> אימייל</a>
+            <a href="https://wa.me/972506915269" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fa-brands fa-whatsapp"></i> 050-6915269</a>
+            <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fa-brands fa-linkedin"></i> LinkedIn</a>
         </div>
         <div class="footer-copy">&copy; 2026 PractiAI. All Rights Reserved.</div>
     </div>
 </footer>
 
-<a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מספריית%20הפרומפטים%20ואשמח%20לשמוע%20פרטים%20על%20הטמעת%20AI" target="_blank" rel="noopener" class="wa-float" aria-label="וואטסאפ"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="https://wa.me/972506915269?text=היי%20טל%20הגעתי%20מספריית%20הפרומפטים%20ואשמח%20לשמוע%20פרטים%20על%20הטמעת%20AI" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="וואטסאפ"><i aria-hidden="true" class="fa-brands fa-whatsapp"></i></a>
 
 <script>
 "use strict";
@@ -654,7 +652,7 @@ function copyPrompt(btn) {
         document.execCommand("copy");
         // שינוי עיצוב הכפתור להצלחה
         const originalHTML = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> הועתק!';
+        btn.innerHTML = '<i aria-hidden="true" class="fa-solid fa-check"></i> הועתק!';
         btn.classList.add('success');
         
         setTimeout(() => {

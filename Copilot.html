@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <!-- SEO & AIO (AI Search Optimization) Keywords & Meta -->
     <meta name="keywords" content="פרומפטים לקופיילוט, Microsoft Copilot בעברית, מדריך Copilot, טל חקוקי סדנאות, AI Microsoft 365, כתיבת פרומפטים, Copilot Basic, Copilot Premium, בינה מלאכותית לארגונים">
     <meta name="author" content="טל חקוקי">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     
     <!-- Open Graph (Social Sharing) -->
     <meta property="og:type" content="article">
@@ -76,13 +76,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="assets/vendor/fonts/google-fonts.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <script src="assets/vendor/gsap/gsap.min.js"></script>
+    <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
     
     <style>
         :root {
@@ -270,7 +267,7 @@
             <div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי</div></div>
         </a>
         <nav>
-            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-right"></i> חזרה לאתר הראשי</a>
+            <a href="index.html" class="back-link"><i aria-hidden="true" class="fa-solid fa-arrow-right"></i> חזרה לאתר הראשי</a>
         </nav>
     </div>
 </header>
@@ -280,7 +277,7 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
     <div class="container">
-        <div class="hero-label"><i class="fa-brands fa-microsoft"></i> מדריך Copilot למשתתפי הסדנאות</div>
+        <div class="hero-label"><i aria-hidden="true" class="fa-brands fa-microsoft"></i> מדריך Copilot למשתתפי הסדנאות</div>
         <h1>
             <span class="line">ממשחק חובבני</span>
             <span class="line grad-text">לעבודה חכמה ומדויקת</span>
@@ -293,12 +290,12 @@
     
     <!-- Section 1 -->
     <section class="content-section" id="what-is">
-        <h2><i class="fa-solid fa-robot"></i> 1. מהו Microsoft Copilot?</h2>
+        <h2><i aria-hidden="true" class="fa-solid fa-robot"></i> 1. מהו Microsoft Copilot?</h2>
         <p>Copilot הוא עוזר מבוסס בינה מלאכותית שיכול לסייע בכתיבה, סיכום, חשיבה, ניתוח מידע, תכנון, יצירת תוצרים ושיפור תהליכי עבודה. לצורך דף זה נבחין בין שתי סביבות עבודה:</p>
         
         <div class="doc-grid">
             <div class="doc-card">
-                <h4 style="color:var(--cyan);"><i class="fa-regular fa-comments"></i> Copilot Basic (צ'אט)</h4>
+                <h4 style="color:var(--cyan);"><i aria-hidden="true" class="fa-regular fa-comments"></i> Copilot Basic (צ'אט)</h4>
                 <p>סביבת הצ׳אט העצמאית מתאימה בין היתר ל:</p>
                 <ul>
                     <li>ניסוח ושיפור טקסטים.</li>
@@ -310,7 +307,7 @@
                 <p style="font-size:0.9rem; margin-top:10px;">נשען על מידע שנמסר בשיחה, קבצים מצורפים ומקורות אינטרנט. בחשבונות ארגוניים מחובר למידע הארגוני (תלוי רישיון).</p>
             </div>
             <div class="doc-card">
-                <h4 style="color:var(--violet);"><i class="fa-brands fa-microsoft"></i> Copilot Premium (M365)</h4>
+                <h4 style="color:var(--violet);"><i aria-hidden="true" class="fa-brands fa-microsoft"></i> Copilot Premium (M365)</h4>
                 <p>כאשר קיים רישיון מתאים, משתלב ישירות באפליקציות:</p>
                 <ul>
                     <li><strong>Word:</strong> כתיבה, עריכה, שכתוב וסיכום מסמכים.</li>
@@ -325,7 +322,7 @@
 
     <!-- Section 2 -->
     <section class="content-section" id="framework">
-        <h2><i class="fa-solid fa-puzzle-piece"></i> 2. ארבעת המרכיבים של פרומפט טוב</h2>
+        <h2><i aria-hidden="true" class="fa-solid fa-puzzle-piece"></i> 2. ארבעת המרכיבים של פרומפט טוב</h2>
         <p>Microsoft ממליצה לבנות פרומפט סביב ארבעה מרכיבים מרכזיים כדי לקבל תוצאות מדויקות:</p>
         
         <div class="info-box">
@@ -338,8 +335,8 @@
         <h3>תבנית כללית לשימוש (העתק/הדבק)</h3>
         <div class="prompt-wrapper">
             <div class="prompt-header">
-                <div class="prompt-title"><i class="fa-solid fa-terminal"></i> תבנית בסיס לבניית פרומפט</div>
-                <button class="copy-btn" aria-label="העתק פרומפט"><i class="fa-regular fa-copy"></i> העתק</button>
+                <div class="prompt-title"><i aria-hidden="true" class="fa-solid fa-terminal"></i> תבנית בסיס לבניית פרומפט</div>
+                <button class="copy-btn" aria-label="העתק פרומפט"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button>
             </div>
             <div class="prompt-body">
                 <div class="prompt-text">אני רוצה שתעזור לי ב־<span class="variable">[המשימה]</span>.
@@ -359,7 +356,7 @@
 
     <!-- Section 3 & 4 -->
     <section class="content-section" id="principles">
-        <h2><i class="fa-solid fa-lightbulb"></i> 3. עקרונות לעבודה טובה עם Copilot</h2>
+        <h2><i aria-hidden="true" class="fa-solid fa-lightbulb"></i> 3. עקרונות לעבודה טובה עם Copilot</h2>
         <ul>
             <li><strong>התחילו בתוצאה הרצויה:</strong> אל תתחילו ממה שהכלי יכול לעשות. התחילו מהשאלה "איזו תוצאה אני רוצה לקבל?".</li>
             <li><strong>ספקו הקשר מקצועי:</strong> ה-AI אינו מכיר אוטומטית את התפקיד, הארגון או הסטנדרטים שלכם.</li>
@@ -369,13 +366,13 @@
             <li><strong>שמרו על בקרה אנושית:</strong> חובה לבדוק עובדות, נתונים, שמות ומסקנות לפני שימוש.</li>
         </ul>
 
-        <h2 style="margin-top: 60px;"><i class="fa-solid fa-map-location-dot"></i> 4. תרגיל: מפת ההזדמנויות האישית שלי</h2>
+        <h2 style="margin-top: 60px;"><i aria-hidden="true" class="fa-solid fa-map-location-dot"></i> 4. תרגיל: מפת ההזדמנויות האישית שלי</h2>
         <p>הפרומפט הבא נועד לזהות היכן Copilot יכול לסייע באופן מעשי בעבודה שלכם.</p>
         
         <div class="prompt-wrapper">
             <div class="prompt-header">
-                <div class="prompt-title"><i class="fa-solid fa-terminal"></i> מיפוי הזדמנויות לתפקיד</div>
-                <button class="copy-btn" aria-label="העתק פרומפט"><i class="fa-regular fa-copy"></i> העתק</button>
+                <div class="prompt-title"><i aria-hidden="true" class="fa-solid fa-terminal"></i> מיפוי הזדמנויות לתפקיד</div>
+                <button class="copy-btn" aria-label="העתק פרומפט"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button>
             </div>
             <div class="prompt-body">
                 <div class="prompt-text">אני רוצה לבנות מפת הזדמנויות אישית לשימוש ב־Microsoft Copilot במסגרת התפקיד שלי.
@@ -403,12 +400,12 @@
     </section>
 
     <section class="content-section" id="automation">
-        <h2><i class="fa-solid fa-rotate"></i> 5. הפיכת משימה חוזרת לתהליך עבודה</h2>
+        <h2><i aria-hidden="true" class="fa-solid fa-rotate"></i> 5. הפיכת משימה חוזרת לתהליך עבודה</h2>
         
         <div class="prompt-wrapper">
             <div class="prompt-header">
-                <div class="prompt-title"><i class="fa-solid fa-terminal"></i> בניית מדריך למשימה חוזרת</div>
-                <button class="copy-btn" aria-label="העתק פרומפט"><i class="fa-regular fa-copy"></i> העתק</button>
+                <div class="prompt-title"><i aria-hidden="true" class="fa-solid fa-terminal"></i> בניית מדריך למשימה חוזרת</div>
+                <button class="copy-btn" aria-label="העתק פרומפט"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button>
             </div>
             <div class="prompt-body">
                 <div class="prompt-text">אחת המשימות המרכזיות שחוזרות על עצמן בעבודה שלי היא:
@@ -430,13 +427,13 @@
             </div>
         </div>
 
-        <h2 style="margin-top: 60px;"><i class="fa-solid fa-unlock-keyhole"></i> 6. "לפצח ולשמור" תוצאה מוצלחת</h2>
+        <h2 style="margin-top: 60px;"><i aria-hidden="true" class="fa-solid fa-unlock-keyhole"></i> 6. "לפצח ולשמור" תוצאה מוצלחת</h2>
         <p>כאשר קיבלתם תוצר טוב, אל תסתפקו בשמירת התוצאה. בקשו מה-AI "לפצח" את השיחה ולהכין לכם תבנית לפעם הבאה.</p>
 
         <div class="prompt-wrapper">
             <div class="prompt-header">
-                <div class="prompt-title"><i class="fa-solid fa-terminal"></i> פרומפט לפיצוח השיחה ויצירת תבנית</div>
-                <button class="copy-btn" aria-label="העתק פרומפט"><i class="fa-regular fa-copy"></i> העתק</button>
+                <div class="prompt-title"><i aria-hidden="true" class="fa-solid fa-terminal"></i> פרומפט לפיצוח השיחה ויצירת תבנית</div>
+                <button class="copy-btn" aria-label="העתק פרומפט"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button>
             </div>
             <div class="prompt-body">
                 <div class="prompt-text">התוצאה האחרונה שיצרת עבורי טובה ומתאימה לצרכים שלי.
@@ -460,12 +457,12 @@
     </section>
 
     <section class="content-section" id="chat-prompts">
-        <h2><i class="fa-solid fa-messages"></i> 8. פרומפטים שימושיים ב־Copilot Chat</h2>
+        <h2><i aria-hidden="true" class="fa-solid fa-messages"></i> 8. פרומפטים שימושיים ב־Copilot Chat</h2>
         
         <div class="prompt-wrapper">
             <div class="prompt-header">
-                <div class="prompt-title"><i class="fa-solid fa-file-lines"></i> סיכום מידע והפקת משימות</div>
-                <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                <div class="prompt-title"><i aria-hidden="true" class="fa-solid fa-file-lines"></i> סיכום מידע והפקת משימות</div>
+                <button class="copy-btn"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button>
             </div>
             <div class="prompt-body">
                 <div class="prompt-text">סכם את הטקסט הבא עבור מי שלא מכיר את הנושא.
@@ -485,8 +482,8 @@
 
         <div class="prompt-wrapper">
             <div class="prompt-header">
-                <div class="prompt-title"><i class="fa-solid fa-handshake"></i> הכנה לפגישה</div>
-                <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                <div class="prompt-title"><i aria-hidden="true" class="fa-solid fa-handshake"></i> הכנה לפגישה</div>
+                <button class="copy-btn"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button>
             </div>
             <div class="prompt-body">
                 <div class="prompt-text">עזור לי להתכונן לפגישה בנושא <span class="variable">[נושא]</span> עם <span class="variable">[משתתפים]</span>.
@@ -505,8 +502,8 @@
 
         <div class="prompt-wrapper">
             <div class="prompt-header">
-                <div class="prompt-title"><i class="fa-solid fa-envelope"></i> ניסוח מייל מקצועי</div>
-                <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                <div class="prompt-title"><i aria-hidden="true" class="fa-solid fa-envelope"></i> ניסוח מייל מקצועי</div>
+                <button class="copy-btn"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button>
             </div>
             <div class="prompt-body">
                 <div class="prompt-text">נסח מייל בנושא <span class="variable">[נושא]</span> עבור <span class="variable">[נמען וקשר מקצועי]</span>.
@@ -521,8 +518,8 @@
         
         <div class="prompt-wrapper">
             <div class="prompt-header">
-                <div class="prompt-title"><i class="fa-solid fa-magnifying-glass"></i> ביקורת ושיפור תוצר</div>
-                <button class="copy-btn"><i class="fa-regular fa-copy"></i> העתק</button>
+                <div class="prompt-title"><i aria-hidden="true" class="fa-solid fa-magnifying-glass"></i> ביקורת ושיפור תוצר</div>
+                <button class="copy-btn"><i aria-hidden="true" class="fa-regular fa-copy"></i> העתק</button>
             </div>
             <div class="prompt-body">
                 <div class="prompt-text">בחן את התוצר הבא כמבקר מקצועי.
@@ -542,30 +539,30 @@
     </section>
 
     <section class="content-section" id="premium">
-        <h2><i class="fa-brands fa-microsoft"></i> 10. פרומפטים ל-Microsoft 365 (Premium)</h2>
+        <h2><i aria-hidden="true" class="fa-brands fa-microsoft"></i> 10. פרומפטים ל-Microsoft 365 (Premium)</h2>
         
         <div class="doc-grid">
             <div class="doc-card">
-                <h4 style="color:#2b579a;"><i class="fa-solid fa-file-word"></i> Word – יצירת טיוטה</h4>
+                <h4 style="color:#2b579a;"><i aria-hidden="true" class="fa-solid fa-file-word"></i> Word – יצירת טיוטה</h4>
                 <p>צור טיוטה למסמך בנושא [נושא] עבור [קהל יעד]. מטרת המסמך היא [מטרה]. השתמש במבנה הבא: פתיחה קצרה, רקע, נקודות מרכזיות, המלצות. כתוב בסגנון [סגנון] ובאורך של עד [אורך].</p>
             </div>
             <div class="doc-card">
-                <h4 style="color:#217346;"><i class="fa-solid fa-file-excel"></i> Excel – ניתוח נתונים</h4>
+                <h4 style="color:#217346;"><i aria-hidden="true" class="fa-solid fa-file-excel"></i> Excel – ניתוח נתונים</h4>
                 <p>נתח את הנתונים בחוברת. זהה: מגמות מרכזיות, חריגות, פערים בין קבוצות, נתונים חסרים, ו-3 מדדים למעקב. הצע תרשים מתאים לכל תובנה.</p>
             </div>
             <div class="doc-card">
-                <h4 style="color:#b7472a;"><i class="fa-solid fa-file-powerpoint"></i> PowerPoint – מצגת</h4>
+                <h4 style="color:#b7472a;"><i aria-hidden="true" class="fa-solid fa-file-powerpoint"></i> PowerPoint – מצגת</h4>
                 <p>צור מצגת בנושא [נושא] לקהל [קהל]. המטרה [מטרה] ומשך ההצגה [משך]. בנה סיפור: אתגר, 3-5 נקודות, דוגמאות, מסקנות ושקף סיום. מעט טקסט בשקף + הערות מרצה.</p>
             </div>
             <div class="doc-card">
-                <h4 style="color:#464eb8;"><i class="fa-brands fa-microsoft"></i> Teams – סיכום פגישה</h4>
+                <h4 style="color:#464eb8;"><i aria-hidden="true" class="fa-brands fa-microsoft"></i> Teams – סיכום פגישה</h4>
                 <p>סכם את הפגישה והפרד בין: נושאים שנדונו, החלטות, משימות, אחראים, מועדים ונושאים פתוחים. הכן הודעת סיכום קצרה לשליחה למשתתפים.</p>
             </div>
         </div>
     </section>
 
     <section class="content-section" id="checklists">
-        <h2><i class="fa-solid fa-list-check"></i> צ'קליסטים לעבודה בטוחה</h2>
+        <h2><i aria-hidden="true" class="fa-solid fa-list-check"></i> צ'קליסטים לעבודה בטוחה</h2>
         
         <div class="info-box" style="border-color: var(--cyan); background: rgba(0,212,255,0.05);">
             <h3 style="margin-top: 0;">לפני הלחיצה על שליחה (Send)</h3>
@@ -602,8 +599,8 @@
         <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
         <div class="footer-links">
             <a href="index.html"><i class="fa-solid fa-home" aria-hidden="true"></i> חזרה לאתר</a>
-            <a class="modal-trigger" data-modal="privacyModal"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> מדיניות פרטיות</a>
-            <a class="modal-trigger" data-modal="a11yModal"><i class="fa-solid fa-universal-access" aria-hidden="true"></i> הצהרת נגישות</a>
+            <a href="privacy.html"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> מדיניות פרטיות</a>
+            <a href="accessibility.html"><i class="fa-solid fa-universal-access" aria-hidden="true"></i> הצהרת נגישות</a>
         </div>
         <div class="footer-copy">&copy; 2026 PractiAI. All Rights Reserved.</div>
     </div>
@@ -611,23 +608,23 @@
 
 <!-- Accessibility Native Widget -->
 <div class="a11y-widget">
-    <button class="a11y-btn-main" id="a11yMainBtn" aria-label="פתיחת תפריט נגישות" aria-expanded="false"><i class="fa-solid fa-universal-access"></i></button>
+    <button class="a11y-btn-main" id="a11yMainBtn" aria-label="פתיחת תפריט נגישות" aria-expanded="false"><i aria-hidden="true" class="fa-solid fa-universal-access"></i></button>
     <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות">
         <div class="a11y-panel-header">
             <span>התאמות נגישות</span>
-            <button class="a11y-close" id="a11yCloseBtn" aria-label="סגור תפריט נגישות"><i class="fa-solid fa-xmark"></i></button>
+            <button class="a11y-close" id="a11yCloseBtn" aria-label="סגור תפריט נגישות"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
         </div>
-        <button class="a11y-option" id="toggleContrast"><i class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
-        <button class="a11y-option" id="toggleFontSize"><i class="fa-solid fa-magnifying-glass-plus"></i> הגדלת טקסט</button>
-        <button class="a11y-option" id="toggleMotion"><i class="fa-solid fa-pause"></i> עצירת אנימציות</button>
-        <button class="a11y-option modal-trigger" data-modal="a11yModal" style="margin-top: 10px; border-color: var(--violet); justify-content: center;"><i class="fa-solid fa-file-lines"></i> הצהרת נגישות</button>
+        <button class="a11y-option" id="toggleContrast"><i aria-hidden="true" class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
+        <button class="a11y-option" id="toggleFontSize"><i aria-hidden="true" class="fa-solid fa-magnifying-glass-plus"></i> הגדלת טקסט</button>
+        <button class="a11y-option" id="toggleMotion"><i aria-hidden="true" class="fa-solid fa-pause"></i> עצירת אנימציות</button>
+        <button class="a11y-option modal-trigger" data-modal="a11yModal" style="margin-top: 10px; border-color: var(--violet); justify-content: center;"><i aria-hidden="true" class="fa-solid fa-file-lines"></i> הצהרת נגישות</button>
     </div>
 </div>
 
 <!-- Modals -->
 <div id="privacyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
     <div class="modal-content">
-        <button class="modal-close" aria-label="סגור חלונית"><i class="fa-solid fa-xmark"></i></button>
+        <button class="modal-close" aria-label="סגור חלונית"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
         <h2 id="privacyTitle">מדיניות פרטיות</h2>
         <p>אנו ב-PractiAI מייחסים חשיבות רבה לפרטיותכם. הגלישה בדף זה היא אנונימית, איננו שומרים מידע מזהה על המשתמשים ואיננו אוספים נתונים אודות השימוש בפרומפטים שבדף זה.</p>
     </div>
@@ -635,7 +632,7 @@
 
 <div id="a11yModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="a11yTitle">
     <div class="modal-content">
-        <button class="modal-close" aria-label="סגור חלונית"><i class="fa-solid fa-xmark"></i></button>
+        <button class="modal-close" aria-label="סגור חלונית"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
         <h2 id="a11yTitle">הצהרת נגישות</h2>
         <p>אנו רואים חשיבות רבה במתן שירות שוויוני. אתר זה הותאם לדרישות הנגישות בהתאם לתקן ת"י 5568 ברמת AA. האתר מותאם לניווט מקלדת, תומך בקוראי מסך, ומאפשר שליטה בניגודיות ואנימציות דרך כפתור הנגישות.</p>
     </div>
@@ -674,7 +671,7 @@
 
             // UI Feedback
             const originalHtml = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> הועתק!';
+            btn.innerHTML = '<i aria-hidden="true" class="fa-solid fa-check"></i> הועתק!';
             btn.classList.add('copied');
             
             setTimeout(() => {
