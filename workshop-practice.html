@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <title>תרגול מעשי עם ChatGPT ו-NotebookLM | PractiAI</title>
+  <meta name="description" content="תרגילים, פרומפטים וכללי עבודה בטוחה להמשך התנסות עם ChatGPT ו-NotebookLM לאחר הסדנה של טל חקוקי.">
+  <meta name="author" content="טל חקוקי">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:title" content="ממשיכים לתרגל | PractiAI">
+  <meta property="og:description" content="דף תרגול מעשי למשתתפי הסדנאות של טל חקוקי.">
+  <link rel="stylesheet" href="assets/vendor/fonts/google-fonts.css">
+  <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+  <style>
+    :root {
+      --bg:#06060e;
+      --surface:rgba(13,15,27,.78);
+      --surface-strong:#10131f;
+      --border:rgba(255,255,255,.09);
+      --border-strong:rgba(0,212,255,.28);
+      --text:#f5f7fb;
+      --muted:#a8b2c4;
+      --subtle:#758197;
+      --cyan:#00d4ff;
+      --violet:#8b5cf6;
+      --rose:#f43f5e;
+      --green:#2dd4a7;
+      --gradient:linear-gradient(135deg,var(--cyan),var(--violet));
+      --radius-sm:12px;
+      --radius-md:20px;
+      --radius-lg:30px;
+      --container:1080px;
+      --header:78px;
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:clip}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:'Heebo',Arial,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip}
+    body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 78% 5%,rgba(0,212,255,.13),transparent 30%),radial-gradient(circle at 15% 28%,rgba(139,92,246,.14),transparent 28%),radial-gradient(circle at 65% 90%,rgba(244,63,94,.08),transparent 30%)}
+    body::after{content:"";position:fixed;inset:0;z-index:-1;opacity:.2;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    img{max-width:100%}
+    ::selection{background:rgba(139,92,246,.45);color:#fff}
+    :focus-visible{outline:3px solid var(--cyan);outline-offset:4px;border-radius:6px}
+    .container{width:min(100% - 40px,var(--container));margin-inline:auto}
+    .skip-link{position:fixed;z-index:999;inset-inline-start:20px;top:-80px;background:var(--cyan);color:#021018;padding:10px 16px;border-radius:0 0 10px 10px;font-weight:800;transition:top .2s}
+    .skip-link:focus{top:0}
+
+    .site-header{position:fixed;inset:0 0 auto;z-index:100;height:var(--header);background:rgba(6,6,14,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+    .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{width:44px;height:44px;border-radius:12px;background:var(--gradient);padding:2px;box-shadow:0 8px 25px rgba(0,212,255,.16)}
+    .brand-mark span{width:100%;height:100%;display:grid;place-items:center;border-radius:10px;background:#090b14;font:900 1.2rem 'Heebo',sans-serif}
+    .brand-copy{display:grid;line-height:1.15}
+    .brand-copy strong{font-size:1.14rem;letter-spacing:-.02em}
+    .brand-copy small{color:var(--subtle);font-size:.78rem;margin-top:4px}
+    .home-link{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border:1px solid var(--border);border-radius:10px;color:var(--muted);font-weight:700;transition:.2s}
+    .home-link:hover{color:var(--cyan);border-color:var(--border-strong);background:rgba(0,212,255,.06)}
+
+    .hero{padding:calc(var(--header) + 74px) 0 76px;border-bottom:1px solid var(--border);text-align:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 17px;border:1px solid rgba(0,212,255,.24);border-radius:999px;background:rgba(0,212,255,.07);color:var(--cyan);font-size:.9rem;font-weight:800}
+    .hero h1{font-size:clamp(2.35rem,7vw,4.8rem);line-height:1.05;letter-spacing:-.045em;margin:24px auto 20px;max-width:900px}
+    .gradient-text{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-lead{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(1.05rem,2.2vw,1.25rem)}
+    .hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:800;border:1px solid transparent;transition:transform .2s,box-shadow .2s,border-color .2s,color .2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--gradient);color:white;box-shadow:0 10px 30px rgba(0,212,255,.18)}
+    .btn-secondary{background:rgba(255,255,255,.035);border-color:var(--border);color:var(--text)}
+    .btn-secondary:hover{border-color:var(--border-strong);color:var(--cyan)}
+    .status-note{display:flex;align-items:flex-start;gap:12px;max-width:790px;margin:36px auto 0;padding:15px 18px;border:1px solid rgba(139,92,246,.25);background:rgba(139,92,246,.07);border-radius:14px;color:var(--muted);text-align:right;font-size:.94rem}
+    .status-note i{color:var(--violet);margin-top:5px}
+
+    .quick-nav{position:sticky;top:var(--header);z-index:50;background:rgba(6,6,14,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .quick-nav-inner{display:flex;gap:8px;overflow-x:auto;padding:11px 0;scrollbar-width:none;-ms-overflow-style:none}
+    .quick-nav-inner::-webkit-scrollbar{display:none}
+    .quick-nav a{white-space:nowrap;padding:7px 13px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.88rem;font-weight:700}
+    .quick-nav a:hover{color:var(--cyan);border-color:var(--border-strong)}
+
+    main{padding:72px 0 10px}
+    .section{margin-bottom:92px;scroll-margin-top:145px}
+    .section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:28px}
+    .section-kicker{display:flex;align-items:center;gap:9px;color:var(--cyan);font-weight:800;font-size:.9rem;margin-bottom:8px}
+    .section h2{font-size:clamp(1.75rem,4vw,2.55rem);line-height:1.2;letter-spacing:-.025em;margin:0}
+    .section-intro{max-width:710px;color:var(--muted);margin:10px 0 0;font-size:1.04rem}
+    .section-count{color:var(--subtle);font:700 .86rem 'Heebo',sans-serif;padding:7px 12px;border:1px solid var(--border);border-radius:999px;white-space:nowrap;margin-top:10px}
+
+    .prep-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .prep-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:23px;min-height:228px}
+    .prep-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;color:var(--cyan);background:rgba(0,212,255,.09);border:1px solid rgba(0,212,255,.16);font-size:1.1rem}
+    .prep-card h3{font-size:1.12rem;margin:16px 0 8px}
+    .prep-card p{color:var(--muted);font-size:.94rem;margin:0}
+    .prep-card .avoid{display:block;color:#ff91a4;font-size:.82rem;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+
+    .safety-box{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;padding:30px;background:linear-gradient(135deg,rgba(244,63,94,.08),rgba(13,15,27,.8));border:1px solid rgba(244,63,94,.22);border-radius:var(--radius-lg)}
+    .safety-box h3{margin:0 0 9px;font-size:1.35rem}
+    .safety-box p{margin:0;color:var(--muted)}
+    .check-list{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+    .check-list li{display:flex;align-items:flex-start;gap:10px;color:var(--muted)}
+    .check-list i{color:var(--green);margin-top:6px}
+
+    .platform-tabs{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+    .tab-button{cursor:pointer;padding:12px 20px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.035);color:var(--muted);font-weight:800}
+    .tab-button[aria-selected="true"]{background:var(--gradient);color:#fff;border-color:transparent;box-shadow:0 8px 25px rgba(0,212,255,.15)}
+    .tab-panel[hidden]{display:none}
+    .exercise-list{display:grid;gap:15px}
+    .exercise{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;transition:border-color .2s}
+    .exercise[open]{border-color:rgba(0,212,255,.25)}
+    .exercise summary{list-style:none;cursor:pointer;padding:21px 23px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px}
+    .exercise summary::-webkit-details-marker{display:none}
+    .exercise-num{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:rgba(139,92,246,.1);color:#b99aff;font-weight:900}
+    .exercise-title strong{display:block;font-size:1.12rem}
+    .exercise-title span{display:block;color:var(--subtle);font-size:.88rem;margin-top:2px}
+    .chevron{color:var(--cyan);transition:transform .2s}
+    .exercise[open] .chevron{transform:rotate(180deg)}
+    .exercise-body{border-top:1px solid var(--border);padding:24px;display:grid;gap:21px}
+    .exercise-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .meta-card{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:12px;padding:14px}
+    .meta-card b{display:block;color:var(--cyan);font-size:.82rem;margin-bottom:4px}
+    .meta-card span{color:var(--muted);font-size:.91rem}
+    .steps{margin:0;padding-inline-start:22px;color:var(--muted)}
+    .steps li{padding:4px 5px}
+    .steps strong{color:var(--text)}
+    .prompt-box{background:#090b13;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 13px;background:rgba(255,255,255,.025);border-bottom:1px solid var(--border)}
+    .prompt-head span{color:var(--subtle);font-size:.78rem;font-weight:800;letter-spacing:.04em}
+    .copy-button{display:inline-flex;align-items:center;gap:7px;cursor:pointer;background:rgba(139,92,246,.09);border:1px solid rgba(139,92,246,.24);border-radius:8px;color:#c8b5ff;padding:6px 10px;font-size:.8rem;font-weight:800}
+    .copy-button:hover{background:var(--violet);color:#fff}
+    .copy-button.copied{background:#0f9f7c;border-color:#0f9f7c;color:#fff}
+    .prompt-text{margin:0;padding:18px;color:#edf2fa;font:400 1rem/1.85 'Heebo',sans-serif;white-space:pre-wrap}
+    .variable{color:var(--cyan);font-weight:800}
+    .quality-check{padding:15px 17px;border-inline-start:3px solid var(--green);background:rgba(45,212,167,.055);border-radius:8px;color:var(--muted)}
+    .quality-check strong{color:var(--green)}
+    .support-links{display:flex;gap:10px;flex-wrap:wrap}
+    .support-links a{display:inline-flex;align-items:center;gap:7px;color:var(--muted);border-bottom:1px solid var(--border)}
+    .support-links a:hover{color:var(--cyan);border-color:var(--cyan)}
+
+    .finish-card{padding:38px;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(0,212,255,.09),rgba(139,92,246,.1));border:1px solid rgba(0,212,255,.2);text-align:center}
+    .finish-card h2{margin:0 0 12px}
+    .finish-card p{max-width:680px;margin:0 auto 24px;color:var(--muted)}
+    .finish-options{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:right;margin-top:27px}
+    .finish-option{padding:17px;border-radius:14px;background:rgba(6,6,14,.48);border:1px solid var(--border)}
+    .finish-option strong{display:block;color:var(--cyan);margin-bottom:5px}
+    .finish-option span{color:var(--muted);font-size:.9rem}
+
+    .about{display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px;padding:30px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)}
+    .about h2{margin:0 0 7px;font-size:1.65rem}
+    .about p{margin:0;color:var(--muted);max-width:700px}
+
+    .site-footer{margin-top:90px;padding:42px 0;background:rgba(0,0,0,.34);border-top:1px solid var(--border)}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+    .footer-brand{display:grid}
+    .footer-brand span,.footer-copy{color:var(--subtle);font-size:.85rem}
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+    .footer-links a:hover{color:var(--cyan)}
+
+    .toast{position:fixed;z-index:200;left:50%;bottom:24px;translate:-50% 20px;padding:10px 16px;background:#eef6ff;color:#07111c;border-radius:10px;font-weight:800;box-shadow:0 15px 45px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.2s}
+    .toast.show{opacity:1;translate:-50% 0}
+
+    @media (max-width:900px){
+      .prep-grid{grid-template-columns:repeat(2,1fr)}
+      .safety-box{grid-template-columns:1fr}
+      .finish-options{grid-template-columns:1fr}
+    }
+    @media (max-width:680px){
+      :root{--header:70px}
+      .container{width:min(100% - 28px,var(--container))}
+      .brand-copy small{display:none}
+      .home-link span{display:none}
+      .hero{padding-top:calc(var(--header) + 55px)}
+      .hero h1{font-size:2.65rem}
+      .section{margin-bottom:72px}
+      .section-head{display:block}
+      .section-count{display:inline-block;margin-top:14px}
+      .prep-grid{grid-template-columns:1fr}
+      .prep-card{min-height:0}
+      .exercise summary{grid-template-columns:auto 1fr auto;padding:17px 15px;gap:12px}
+      .exercise-num{width:36px;height:36px}
+      .exercise-body{padding:17px}
+      .exercise-meta{grid-template-columns:1fr}
+      .about{grid-template-columns:1fr;text-align:center}
+      .about .btn{width:100%}
+      .footer-inner{display:grid;justify-items:center;text-align:center}
+      .footer-links{justify-content:center}
+    }
+    @media print{.site-header,.quick-nav,.hero-actions,.copy-button,.site-footer{display:none!important}body{background:#fff;color:#111}body::before,body::after{display:none}.hero{padding:30px 0}.section{break-inside:avoid}.exercise{background:#fff}.exercise-body{display:grid!important}}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">דילוג לתוכן המרכזי</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="PractiAI - חזרה לאתר הראשי">
+        <span class="brand-mark" aria-hidden="true"><span>AI</span></span>
+        <span class="brand-copy"><strong>PractiAI</strong><small>טל חקוקי | GenAI Lead</small></span>
+      </a>
+      <a class="home-link" href="index.html"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span>חזרה לאתר הראשי</span></a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow"><i class="fa-solid fa-flask" aria-hidden="true"></i> דף תרגול למשתתפי הסדנה</span>
+      <h1>ממשיכים לתרגל.<br><span class="gradient-text">הפעם עם העבודה שלכם.</span></h1>
+      <p class="hero-lead">בחרו משימה אמיתית, השתמשו בחומר שמותר לכם להעלות, ובנו תוצר שאפשר לקחת בחזרה לעבודה. אין כאן קבצים להורדה — התרגול מתחיל מהקבצים, ההקשר והידע שלכם.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#exercises"><i class="fa-solid fa-play" aria-hidden="true"></i> לבחירת תרגיל</a>
+        <a class="btn btn-secondary" href="#prepare"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> מה להכין מראש</a>
+      </div>
+      <div class="status-note">
+        <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+        <span><strong>עמוד מתעדכן:</strong> הממשקים והיכולות של הפלטפורמות משתנים. שמות הכפתורים עשויים להיראות מעט אחרת בחשבון שלכם. העקרונות, שלבי העבודה ובדיקות האיכות בעמוד נשארים רלוונטיים גם כשהממשק משתנה.</span>
+      </div>
+    </div>
+  </section>
+
+  <nav class="quick-nav" aria-label="ניווט מהיר">
+    <div class="container quick-nav-inner">
+      <a href="#prepare">הכנת חומר</a>
+      <a href="#safety">עבודה בטוחה</a>
+      <a href="#exercises">תרגילי ChatGPT</a>
+      <a href="#notebooklm">תרגילי NotebookLM</a>
+      <a href="#finish">משימת סיום</a>
+    </div>
+  </nav>
+
+  <main id="main-content" class="container">
+    <section class="section" id="prepare">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker"><i class="fa-solid fa-folder-tree" aria-hidden="true"></i> לפני שמתחילים</div>
+          <h2>בחרו חומר שמותר לכם לעבוד איתו</h2>
+          <p class="section-intro">אין צורך בדוגמאות מוכנות. דווקא חומר אמיתי ומותר לשימוש הופך את התרגול לרלוונטי יותר — כל עוד הוא אינו רגיש, חסוי או מוגן באופן שאינו מאפשר העלאה.</p>
+        </div>
+        <span class="section-count">4 סוגי חומר</span>
+      </div>
+      <div class="prep-grid">
+        <article class="prep-card">
+          <span class="prep-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></span>
+          <h3>מסמך שלכם</h3>
+          <p>PDF, מסמך Word, מצגת או טקסט שאתם יצרתם, קיבלתם רשות להשתמש בו, או שהוא פומבי ומותר לשימוש.</p>
+          <span class="avoid">לא להעלות: חוזה, מסמך לקוח, מידע אישי או חומר פנימי ללא אישור.</span>
+        </article>
+        <article class="prep-card">
+          <span class="prep-icon"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></span>
+          <h3>מסמכים להשוואה</h3>
+          <p>שתיים או שלוש הצעות, תוכניות או חלופות שאתם רשאים לנתח. השחירו שמות, מחירים או פרטים מזהים לפי הצורך.</p>
+          <span class="avoid">עדיף לתרגל עם מסמכים ישנים, אנונימיים או כאלה שנוצרו לצורכי התנסות.</span>
+        </article>
+        <article class="prep-card">
+          <span class="prep-icon"><i class="fa-solid fa-video" aria-hidden="true"></i></span>
+          <h3>וידאו או תמלול</h3>
+          <p>הקלטה שלכם, תמלול שיצרתם, או קישור YouTube ציבורי שאתם רשאים להשתמש בתוכנו לצורך התרגול.</p>
+          <span class="avoid">אין צורך להוריד סרטון. קישור ציבורי או תמלול מתאים בדרך כלל לעבודה.</span>
+        </article>
+        <article class="prep-card">
+          <span class="prep-icon"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i></span>
+          <h3>הקלטת אודיו</h3>
+          <p>הקלטה עצמית קצרה, סיכום קולי שלכם או שיחה שהוקלטה בהסכמת המשתתפים וללא מידע רגיש.</p>
+          <span class="avoid">מומלץ להקליט 3–8 דקות בקול ברור כדי לקבל תוצאה שקל לבדוק.</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="safety-box">
+        <div>
+          <div class="section-kicker"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> בדיקת 30 שניות</div>
+          <h3>רגע לפני ההעלאה</h3>
+          <p>אם אינכם בטוחים שמותר להעלות את החומר — אל תעלו אותו. עברו לגרסה אנונימית, צרו דוגמה משלכם או השתמשו במקור ציבורי שמותר לשימוש.</p>
+        </div>
+        <ul class="check-list">
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>יש לי זכות להשתמש בחומר ולהעלות אותו לפלטפורמה.</span></li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>אין בו מידע אישי, רפואי, פיננסי, משפטי או עסקי רגיש.</span></li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>העלאה לפלטפורמה תואמת את מדיניות הארגון שלי.</span></li>
+          <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>אבדוק את התוצאה מול המקור לפני שאשתמש בה.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="exercises">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> תרגול מודרך</div>
+          <h2>בחרו פלטפורמה ותרגיל אחד</h2>
+          <p class="section-intro">לא צריך להשלים הכול. בחרו תרגיל שמחובר למשימה אמיתית, הגיעו לתוצר ראשוני, בדקו אותו ושפרו פעם אחת לפחות.</p>
+        </div>
+        <span class="section-count">13 תרגילים</span>
+      </div>
+
+      <div class="platform-tabs" role="tablist" aria-label="בחירת פלטפורמה">
+        <button class="tab-button" id="tab-chatgpt" role="tab" aria-controls="panel-chatgpt" aria-selected="true">ChatGPT · 9 תרגילים</button>
+        <button class="tab-button" id="tab-notebooklm" role="tab" aria-controls="panel-notebooklm" aria-selected="false">NotebookLM · 4 תרגילים</button>
+      </div>
+
+      <div class="tab-panel" id="panel-chatgpt" role="tabpanel" aria-labelledby="tab-chatgpt">
+        <div class="exercise-list">
+          <details class="exercise" open>
+            <summary>
+              <span class="exercise-num">01</span>
+              <span class="exercise-title"><strong>ללמד את ChatGPT איך לעזור לכם</strong><span>זיכרון והעדפות עבודה</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לקבל תשובות מותאמות לתפקיד ולסגנון העבודה שלכם.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־7 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>תפקיד, 3 תחומי אחריות והעדפת סגנון.</span></div>
+              </div>
+              <ol class="steps">
+                <li>בדקו בהגדרות ההתאמה האישית אם זיכרון פעיל וזמין בחשבון שלכם.</li>
+                <li>התאימו ושלחו את הפרומפט.</li>
+                <li>פתחו שיחה חדשה ובקשו הצעות למשימות שבהן ChatGPT יכול לסייע.</li>
+                <li>בדקו שהזיכרון אינו כולל מידע רגיש או פרטים שאינכם רוצים לשמר.</li>
+              </ol>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לתרגול</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">זכור לשיחות עתידיות שהמקצוע או התפקיד שלי הוא <span class="variable">[התפקיד שלכם]</span>. תחומי האחריות המרכזיים שלי הם <span class="variable">[תחומי האחריות]</span>. כשאני מבקש עזרה מקצועית, אני מעדיף תשובות בסגנון <span class="variable">[קצר / מפורט / עסקי / פרקטי / אחר]</span>. אל תשמור מידע רגיש, ובכל מקרה של ספק שאל אותי לפני שמירת פרט נוסף.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> בשיחה חדשה שאלו: "בהתאם למה שאתה יודע עליי, באילו שלוש משימות מקצועיות תוכל לעזור לי כבר השבוע?"</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">02</span>
+              <span class="exercise-title"><strong>חיפוש מידע עדכני ברשת</strong><span>Search · תשובה מהירה עם מקורות</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לקבל סקירה עדכנית ולבדוק על אילו מקורות היא נשענת.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־10 דקות</span></div>
+                <div class="meta-card"><b>מתאים ל</b><span>המלצות, נתונים עדכניים, סקירה ראשונית ובדיקת עובדות.</span></div>
+              </div>
+              <ol class="steps">
+                <li>בחרו שאלה שהמידע עליה עשוי להשתנות עם הזמן.</li>
+                <li>הפעילו Search מכלי השיחה, אם נדרש בממשק שלכם.</li>
+                <li>בקשו מקורות וקראו לפחות שניים מהם.</li>
+                <li>שאלו שאלה שמכריחה את המודל לדרג או להתאים את הממצאים לצורך מוגדר.</li>
+              </ol>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לתרגול</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">מצא מידע עדכני על <span class="variable">[הנושא]</span>. הצג 5 ממצאים מרכזיים, הסבר בקצרה למה כל אחד רלוונטי ל־<span class="variable">[קהל או צורך]</span>, ציין את מועד המידע וצרף קישור ישיר למקורות אמינים. הפרד בין עובדה, פרשנות והמלצה.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> פתחו שני מקורות ובדקו שהכותרת, התאריך והטענה המרכזית אכן תואמים למה שנכתב בתשובה.</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">03</span>
+              <span class="exercise-title"><strong>מחקר מורכב ומבוסס מקורות</strong><span>Deep Research · תכנון, השוואה וסינתזה</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>להפוך שאלה מורכבת לדוח מתועד עם המלצות.</span></div>
+                <div class="meta-card"><b>זמן</b><span>20–40 דקות, בהתאם להיקף.</span></div>
+                <div class="meta-card"><b>מתאים ל</b><span>מחקר שוק, החלטה מורכבת, סקירת תחום או תכנון מסלול.</span></div>
+              </div>
+              <ol class="steps">
+                <li>הגדירו תוצאה רצויה, קהל יעד, טווח זמן וקריטריונים להחלטה.</li>
+                <li>הפעילו Deep Research ובדקו את תוכנית המחקר לפני תחילת העבודה.</li>
+                <li>צמצמו או הוסיפו מקורות ואתרים לפי הצורך.</li>
+                <li>עברו על הדוח, המקורות והפערים שהמערכת סימנה.</li>
+              </ol>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>תבנית למחקר</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">בצע מחקר מעמיק על <span class="variable">[הנושא או ההחלטה]</span> עבור <span class="variable">[קהל היעד]</span>. מטרת המחקר היא <span class="variable">[המטרה]</span>. השווה בין החלופות לפי <span class="variable">[קריטריונים]</span>, הצג ממצאים מרכזיים, יתרונות, חסרונות, סיכונים, פערי מידע והמלצה מנומקת. הסתמך על מקורות עדכניים ואמינים, צרף קישורים ישירים, ציין תאריכים והדגש היכן המידע אינו ודאי.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> האם הדוח מציג גם מידע שסותר את הכיוון הראשוני שלכם, או רק מאשר אותו?</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">04</span>
+              <span class="exercise-title"><strong>להפוך רעיון לפרויקט</strong><span>ממחשבה ראשונית לסקירת היתכנות</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לחשוף הנחות, סיכונים ושלבי ביצוע לפני שמתקדמים.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־15 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>רעיון אחד ב־2–3 משפטים.</span></div>
+              </div>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לתרגול</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">יש לי רעיון לפרויקט: <span class="variable">[תיאור קצר]</span>. צור סקירת פרויקט שתכלול: הבעיה או הצורך, קהלי יעד, ערך מרכזי, הנחות שצריך לבדוק, שלבי ביצוע, משאבים נדרשים, שותפים אפשריים, שלושת הסיכונים המרכזיים, מדדי הצלחה וצעד ראשון קטן שאפשר לבצע השבוע. אל תניח שיש תקציב, אישור או משאבים שלא ציינתי.</p>
+              </div>
+              <div class="quality-check"><strong>תרגיל המשך:</strong> בקשו ביקורת על הרעיון: "מה החולשה המרכזית בתוכנית, ואיזה ניסוי קטן יכול לבדוק אותה?"</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">05</span>
+              <span class="exercise-title"><strong>לפצח משימה אמיתית מהעבודה</strong><span>מטרה, שאלות, שלבים ותוצר</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לבנות דרך פעולה במקום להתחיל מביצוע אוטומטי.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־12 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>משימה, דדליין, קהל יעד ומגבלה אחת.</span></div>
+              </div>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לתרגול</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">קיבלתי משימה בעבודה: <span class="variable">[תיאור המשימה]</span>. התוצאה צריכה להיות מוכנה עד <span class="variable">[מועד]</span> עבור <span class="variable">[קהל היעד]</span>, והמגבלה המרכזית היא <span class="variable">[מגבלה]</span>. לפני שתציע תוכנית, שאל עד 4 שאלות שחיוניות להבנת המשימה. לאחר שאענה, בנה תוכנית פעולה הכוללת מטרה, שלבים, תוצרים, סדר עדיפויות, סיכונים, דרך להצגת התוצאה וצעד ראשון לביצוע עכשיו.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> האם התוכנית מתאימה באמת לזמן ולמשאבים שלכם, או שהיא רק נשמעת מסודרת?</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">06</span>
+              <span class="exercise-title"><strong>להפיק כמה תוצרים משיחה טובה</strong><span>פוסט, מייל, אתר והודעה מאותו הקשר</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לנצל הקשר שכבר נבנה במקום להתחיל מחדש.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־10 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>שיחה קודמת שבה פותח רעיון, פרויקט או מסר.</span></div>
+              </div>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט המשך לשיחה</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">בהתבסס על כל מה שפיתחנו בשיחה עד עכשיו, צור עבורי: פוסט קצר ללינקדאין, מייל עדכון מקצועי, פתיח לעמוד באתר והודעת WhatsApp קצרה. שמור על אותם עובדות ומסר מרכזי, אך התאם את האורך, הטון והקריאה לפעולה לכל ערוץ. אל תוסיף נתונים, הבטחות או הישגים שלא הופיעו בשיחה.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> השוו בין שני תוצרים ובדקו שהם אינם רק אותו טקסט באורך אחר, אלא מותאמים לערוץ ולקהל.</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">07</span>
+              <span class="exercise-title"><strong>לפצח ולשמור תהליך מוצלח</strong><span>להפוך שיחה טובה לתבנית חוזרת</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לקצר את הדרך בפעם הבאה בלי לאבד את האיכות.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־8 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>שיחה שהסתיימה בתוצר שאתם מרוצים ממנו.</span></div>
+              </div>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לתרגול</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">התוצר האחרון מוצלח. עבור על תהליך העבודה בשיחה וצור פרומפט תבנית שאוכל להשתמש בו בעתיד כדי להגיע לתוצר דומה. כלול תפקיד, הקשר, משימה, קלט נדרש, מגבלות, מבנה התוצאה, סגנון, קריטריונים להצלחה ושאלות הבהרה למקרה שחסר מידע. השאר משתנים ברורים בתוך סוגריים מרובעים.</p>
+              </div>
+              <div class="quality-check"><strong>תרגיל המשך:</strong> פתחו שיחה חדשה, הדביקו את התבנית עם דוגמה אחרת ובדקו האם היא באמת עומדת בפני עצמה.</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">08</span>
+              <span class="exercise-title"><strong>מפת הזדמנויות אישית לאימוץ AI</strong><span>לאתר שימושים לפי ערך, מאמץ וסיכון</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לחבר את היכולות למשימות שחוזרות אצלכם באמת.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־15 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>תפקיד, תחומי אחריות ו־5 משימות חוזרות.</span></div>
+              </div>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לתרגול</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">צור מפת הזדמנויות מעשית לשימוש ב־AI עבור התפקיד שלי: <span class="variable">[תפקיד]</span>. תחומי האחריות: <span class="variable">[תחומים]</span>. משימות חוזרות: <span class="variable">[משימות]</span>. הצג טבלה עם המשימה, דרך הסיוע האפשרית, הערך הצפוי, רמת המאמץ, סיכון או רגישות, צורך בבקרה אנושית וצעד ראשון לניסוי. בסוף בחר שלושה שימושים פשוטים ובעלי ערך שאפשר לנסות השבוע, והסבר למה.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> הסירו רעיון שנשמע מרשים אבל אינו חוסך זמן, משפר איכות או תומך בהחלטה אמיתית.</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">09</span>
+              <span class="exercise-title"><strong>תוכנית עבודה לשבוע הקרוב</strong><span>לסיים עם התחייבות קטנה ומדידה</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>להעביר את הלמידה משלב ההתנסות להרגל עבודה.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־8 דקות</span></div>
+                <div class="meta-card"><b>תוצר</b><span>שלוש התנסויות עם מדד הצלחה ברור.</span></div>
+              </div>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט סיכום</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">בהתבסס על התרגולים שביצעתי, צור תוכנית אישית לשימוש ב־ChatGPT בשבוע הקרוב. כלול שלוש משימות אמיתיות, פרומפט פתיחה לכל משימה, מה ייחשב לתוצאה טובה, איזה חלק מחייב בדיקה אנושית, איך אמדוד חיסכון בזמן או שיפור באיכות ומתי אבצע כל משימה. שמור על תוכנית מציאותית שאפשר להשלים בשבוע אחד.</p>
+              </div>
+              <div class="quality-check"><strong>צעד אחרון:</strong> קבעו ביומן מועד אחד לביצוע התרגיל הראשון. תוכנית ללא זמן מוגדר נשארת בדרך כלל על הנייר.</div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-notebooklm" role="tabpanel" aria-labelledby="tab-notebooklm" hidden>
+        <div class="exercise-list" id="notebooklm">
+          <details class="exercise" open>
+            <summary>
+              <span class="exercise-num">01</span>
+              <span class="exercise-title"><strong>ניתוח מסמך ויצירת תוצרים</strong><span>PDF, Word, מצגת או מקור טקסטואלי שלכם</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>להבין מסמך ארוך ולהפוך אותו לתובנות ותוצרים שימושיים.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־20 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>מסמך שמותר לכם להעלות ושאתם יכולים לבדוק בעצמכם.</span></div>
+              </div>
+              <ol class="steps">
+                <li>פתחו מחברת חדשה והוסיפו את המסמך כמקור.</li>
+                <li>התחילו בסיכום כללי, ואז עברו לשאלות ממוקדות.</li>
+                <li>פתחו את ההפניות בתשובות ובדקו אותן מול המקור.</li>
+                <li>ב־Studio צרו תוצר אחד: מצגת, אינפוגרפיקה, טבלה, סקירת אודיו, דוח או מפת חשיבה — לפי האפשרויות הזמינות בחשבון.</li>
+              </ol>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לניתוח</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">על בסיס המקור שהעליתי בלבד, סכם את המסמך ב־10 נקודות מרכזיות. לאחר מכן צור טבלה עם העמודות: נושא, הסבר קצר, דוגמה או ראיה מתוך המקור והפניה למיקום הרלוונטי. בסוף ציין אילו חלקים דורשים ממני בדיקה נוספת לפני שימוש בתוצאה.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> בחרו שתי טענות מהתוצר, פתחו את הציטוטים ובדקו שהן מייצגות את המקור ולא רק נשמעות סבירות.</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">02</span>
+              <span class="exercise-title"><strong>השוואה בין מסמכים או הצעות</strong><span>טבלת קריטריונים והמלצה מנומקת</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לאתר הבדלים, פערים וסיכונים מעבר לשורה התחתונה.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־25 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>2–3 מסמכים מותרים לשימוש, רצוי אנונימיים.</span></div>
+              </div>
+              <ol class="steps">
+                <li>פתחו מחברת והעלו את כל המסמכים לאותה מחברת.</li>
+                <li>ודאו שכל המקורות הרלוונטיים מסומנים.</li>
+                <li>בקשו טבלה אחידה, ואז שאלו מה חסר בכל חלופה.</li>
+                <li>הפכו את הפערים לרשימת שאלות הבהרה לפני החלטה.</li>
+              </ol>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט להשוואה</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">השווה בין כל המקורות המסומנים בטבלה אחת. כלול: שם החלופה, מחיר או עלות אם מופיעים, מה כלול, מה לא כלול, לוחות זמנים, תנאים, אחריות, חריגים, סיכונים ושאלות פתוחות. לאחר הטבלה דרג את החלופות לפי <span class="variable">[הקריטריונים החשובים לי]</span>. אל תמציא מידע חסר; סמן אותו במפורש והפנה למקור של כל טענה מהותית.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> השוו ידנית לפחות קריטריון אחד בכל המסמכים. AI מסייע בניתוח — הוא אינו מקבל את ההחלטה במקומכם.</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">03</span>
+              <span class="exercise-title"><strong>ניתוח וידאו או תמלול</strong><span>מסיכום לרגעים חשובים ולתוצר חדש</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>לחלץ רעיונות, נקודות פעולה וחומר לתקשור.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־18 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>קישור YouTube ציבורי או תמלול שמותר לכם להשתמש בו.</span></div>
+              </div>
+              <ol class="steps">
+                <li>הוסיפו קישור YouTube ציבורי או העלו תמלול כמקור.</li>
+                <li>בדקו שהסיכום הראשוני תואם את הנושא והדוברים.</li>
+                <li>בקשו לזהות רגעים, טענות ורעיונות מרכזיים.</li>
+                <li>צרו תוצר אחד לקהל מוגדר: תקציר, פוסט, מתווה מצגת או שאלות לדיון.</li>
+              </ol>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לניתוח</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">סכם את המקור ב־8 נקודות. זהה 5 רגעים, טענות או רעיונות חשובים והסבר למה כל אחד משמעותי. לאחר מכן הצע 3 תובנות מעשיות שאפשר ליישם ובנה מתווה של 5 שקפים לקהל <span class="variable">[קהל היעד]</span>. התבסס רק על המקור וסמן אי־ודאות או חלקים שלא ניתן להסיק מהם מסקנה.</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> אם קיימים סימוני זמן או הפניות, חזרו לשני רגעים מרכזיים ובדקו שהניסוח אינו מוציא את דברי הדובר מהקשרם.</div>
+            </div>
+          </details>
+
+          <details class="exercise">
+            <summary>
+              <span class="exercise-num">04</span>
+              <span class="exercise-title"><strong>ניתוח הקלטת אודיו שלכם</strong><span>מסיכום קולי לתוכנית פעולה</span></span>
+              <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+            </summary>
+            <div class="exercise-body">
+              <div class="exercise-meta">
+                <div class="meta-card"><b>מטרה</b><span>להפוך הקלטה לתובנות, החלטות ומשימות.</span></div>
+                <div class="meta-card"><b>זמן</b><span>כ־20 דקות</span></div>
+                <div class="meta-card"><b>צריך להכין</b><span>הקלטה עצמית קצרה וברורה, ללא מידע רגיש.</span></div>
+              </div>
+              <ol class="steps">
+                <li>הקליטו לעצמכם סיכום קולי של רעיון, פגישה או נושא במשך 3–8 דקות.</li>
+                <li>העלו את הקובץ כמקור והמתינו לעיבוד.</li>
+                <li>בקשו חלוקה לנושאים, החלטות, שאלות ופעולות.</li>
+                <li>השוו את הסיכום למה שהתכוונתם לומר ותקנו טעויות תמלול או פרשנות.</li>
+              </ol>
+              <div class="prompt-box">
+                <div class="prompt-head"><span>פרומפט לניתוח</span><button class="copy-button" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה</button></div>
+                <p class="prompt-text">חלק את ההקלטה לנושאים מרכזיים. תחת כל נושא הצג: הרעיון המרכזי, החלטות אם נאמרו, שאלות פתוחות ופעולות המשך. לאחר מכן צור תוכנית פעולה קצרה עם משימה, אחראי ומועד — רק כאשר פרטים אלה מופיעים במקור. אם פרט חסר, כתוב "לא צוין".</p>
+              </div>
+              <div class="quality-check"><strong>בדיקת איכות:</strong> הקלטה עם רעשי רקע או כמה דוברים במקביל מחייבת בדיקה זהירה יותר. אל תסתמכו על שמות, מספרים או משימות בלי לחזור לאודיו.</div>
+            </div>
+          </details>
+        </div>
+        <div class="support-links" style="margin-top:22px">
+          <a href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> פתיחת NotebookLM</a>
+          <a href="https://support.google.com/notebooklm/answer/16206563" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-circle-question" aria-hidden="true"></i> מדריך רשמי ליצירת מחברת</a>
+          <a href="https://support.google.com/notebooklm/answer/16215270" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-arrow-up" aria-hidden="true"></i> סוגי מקורות נתמכים</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="finish">
+      <div class="finish-card">
+        <div class="section-kicker" style="justify-content:center"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> משימת סיום</div>
+        <h2>צאו מהתרגול עם תוצר אחד שאפשר להשתמש בו</h2>
+        <p>בחרו מקור או שיחה אחת, צרו תוצר, בדקו אותו מול המקור ושפרו פעם אחת. המטרה אינה לנסות כל פיצ׳ר — אלא להוכיח לעצמכם שדרך העבודה מועילה.</p>
+        <div class="finish-options">
+          <div class="finish-option"><strong>תוצר</strong><span>מסמך, טבלה, פוסט, מצגת, מפת חשיבה או תוכנית פעולה.</span></div>
+          <div class="finish-option"><strong>בדיקה</strong><span>מה נכון? מה חסר? מה דורש מומחיות או אישור אנושי?</span></div>
+          <div class="finish-option"><strong>המשך</strong><span>איזו משימה דומה תבצעו בעזרת אותה דרך עבודה בשבוע הקרוב?</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div>
+        <div class="section-kicker"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> על המנחה</div>
+        <h2>טל חקוקי | GenAI Lead</h2>
+        <p>יועץ, מרצה ומנחה תהליכי אימוץ בינה מלאכותית וטרנספורמציה דיגיטלית. מסייע לארגונים ולאנשים להפוך יכולות AI לדרכי עבודה פרקטיות, בטוחות ואחראיות.</p>
+      </div>
+      <a class="btn btn-secondary" href="index.html"><i class="fa-solid fa-globe" aria-hidden="true"></i> לאתר PractiAI</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
+      <div class="footer-links">
+        <a href="index.html">האתר הראשי</a>
+        <a href="privacy.html">מדיניות פרטיות</a>
+        <a href="accessibility.html">הצהרת נגישות</a>
+      </div>
+      <div class="footer-copy">עודכן לאחרונה: 12.08.2026 · © 2026 PractiAI</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="copyToast" role="status" aria-live="polite">הפרומפט הועתק</div>
+
+  <script>
+    (() => {
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+
+      function activateTab(tab) {
+        tabs.forEach((item) => {
+          const selected = item === tab;
+          item.setAttribute('aria-selected', String(selected));
+          item.tabIndex = selected ? 0 : -1;
+        });
+        panels.forEach((panel) => {
+          panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+        });
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activateTab(tab));
+        tab.addEventListener('keydown', (event) => {
+          if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          let next = index;
+          if (event.key === 'ArrowRight') next = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === 'ArrowLeft') next = (index + 1) % tabs.length;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = tabs.length - 1;
+          activateTab(tabs[next]);
+          tabs[next].focus();
+        });
+      });
+
+      const notebookLink = document.querySelector('a[href="#notebooklm"]');
+      notebookLink?.addEventListener('click', () => activateTab(document.getElementById('tab-notebooklm')));
+
+      const toast = document.getElementById('copyToast');
+      let toastTimer;
+      document.querySelectorAll('.copy-button').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const text = button.closest('.prompt-box').querySelector('.prompt-text').innerText.trim();
+          try {
+            await navigator.clipboard.writeText(text);
+          } catch (_) {
+            const area = document.createElement('textarea');
+            area.value = text;
+            area.style.position = 'fixed';
+            area.style.opacity = '0';
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand('copy');
+            area.remove();
+          }
+          button.classList.add('copied');
+          button.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> הועתק';
+          toast.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toast.classList.remove('show'), 1700);
+          setTimeout(() => {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fa-regular fa-copy" aria-hidden="true"></i> העתקה';
+          }, 1900);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
