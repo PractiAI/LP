@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>AI Discovery &amp; Solution Design — סדנת עומק, יום 1 | PractiAI - טל חקוקי</title>
-    <meta name="description" content="מצגת יום 1 בסדנת העומק AI Discovery &amp; Solution Design של טל חקוקי: מתודולוגיה לזיהוי, אפיון ותכנון פתרונות AI בארגון — מפת פלטפורמות, פרסונליזציה, Skills, מעבר מפרומפט למפרט, רמות פתרון וחיבורים למערכות. צפייה מקוונת בלבד.">
+    <title>AI Discovery &amp; Solution Design — סדנת עומק, יומיים | PractiAI - טל חקוקי</title>
+    <meta name="description" content="מצגות שני ימי סדנת העומק AI Discovery &amp; Solution Design של טל חקוקי: מהבנת העבודה ואפיון הבעיה, דרך פרסונליזציה ו-Skills, ועד אפיון פתרון, MVP ובדיקות. כולל ספריית פרומפטים מלאה להעתקה. צפייה מקוונת בלבד.">
     <meta name="author" content="טל חקוקי">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <link rel="canonical" href="https://practiai.github.io/LP/deck-ai-discovery-day1.html">
 
     <meta property="og:type" content="article">
     <meta property="og:locale" content="he_IL">
-    <meta property="og:title" content="AI Discovery &amp; Solution Design — סדנת עומק, יום 1 | PractiAI">
-    <meta property="og:description" content="מצגת יום 1 בסדנת העומק AI Discovery &amp; Solution Design של טל חקוקי: מתודולוגיה לזיהוי, אפיון ותכנון פתרונות AI בארגון — מפת פלטפורמות, פרסונליזציה, Skills, מעבר מפרומפט למפרט, רמות פתרון וחיבורים למערכות. צפייה מקוונת בלבד.">
+    <meta property="og:title" content="AI Discovery &amp; Solution Design — סדנת עומק, יומיים | PractiAI">
+    <meta property="og:description" content="מצגות שני ימי סדנת העומק AI Discovery &amp; Solution Design של טל חקוקי: מהבנת העבודה ואפיון הבעיה, דרך פרסונליזציה ו-Skills, ועד אפיון פתרון, MVP ובדיקות. כולל ספריית פרומפטים מלאה להעתקה. צפייה מקוונת בלבד.">
     <meta property="og:image" content="https://practiai.github.io/LP/og-image.png">
     <meta property="og:url" content="https://practiai.github.io/LP/deck-ai-discovery-day1.html">
 
@@ -171,6 +171,20 @@
         .viewer:fullscreen{padding:20px;border-radius:0;display:flex;flex-direction:column;justify-content:center;background:#06060e;--stage-max:86vh}
         .viewer:fullscreen .thumbs,.viewer:fullscreen .deck-hint{display:none}
 
+        /* ===== MULTI-DAY TABS (אופציונלי — מוצג רק כשיש יותר מיום אחד) ===== */
+        .day-tabs{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+        .day-tab{padding:12px 22px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.03);cursor:pointer;transition:all .3s;text-align:right}
+        .day-tab strong{display:block;font-size:.98rem;font-weight:800;color:var(--text);margin-bottom:2px}
+        .day-tab span{display:block;font-size:.8rem;font-weight:600;color:var(--text3)}
+        .day-tab:hover{border-color:rgba(0,212,255,.3)}
+        .day-tab.active{border-color:transparent;background:var(--grad)}
+        .day-tab.active strong,.day-tab.active span{color:#fff}
+        body.high-contrast .day-tab.active{background:#ffff00}
+        body.high-contrast .day-tab.active strong,body.high-contrast .day-tab.active span{color:#000}
+        .day-blurb{color:var(--text2);font-size:.92rem;line-height:1.65;max-width:760px;margin-bottom:16px}
+        .day-stage-wrap[hidden]{display:none}
+        @media(max-width:640px){ .day-tab{flex:1 1 auto} }
+
         /* ===== CONTENT SECTIONS ===== */
         .sec{padding:70px 0}
         .sec-label{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:999px;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);font-size:.9rem;font-weight:700;color:var(--violet);margin-bottom:18px}
@@ -326,7 +340,7 @@
 <a href="#deck-main" class="skip-link">דילוג לתוכן המרכזי</a>
 
 <div class="print-note">
-    <strong>AI Discovery &amp; Solution Design — סדנת עומק, יום 1</strong><br>
+    <strong>AI Discovery &amp; Solution Design — סדנת עומק, יומיים</strong><br>
     המצגת זמינה לצפייה מקוונת בלבד בכתובת<br>
     https://practiai.github.io/LP/deck-ai-discovery-day1.html<br><br>
     © PractiAI | טל חקוקי — כל הזכויות שמורות
@@ -337,10 +351,9 @@
     <div class="container header-inner">
         <a class="brand" href="index.html" aria-label="חזרה לעמוד הבית"><span class="brand-icon"><img src="assets/practiai-mark.png" alt="PractiAI" width="44" height="44"></span><div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי | הובלת AI בארגונים</div></div></a>
         <nav class="nav-links" id="navLinks" aria-label="תפריט ניווט מרכזי">
-            <a class="nav-link" href="index.html#about">מי אני</a>
-            <a class="nav-link" href="index.html#process">תהליך עבודה</a>
+            <a class="nav-link" href="#quickref">כללי עבודה</a>
+            <a class="nav-link" href="#prompts">ספריית פרומפטים</a>
             <a class="nav-link" href="index.html#solutions">מסלולים</a>
-            <a class="nav-link" href="index.html#usecases">תוצאות בשטח</a>
             <a class="nav-cta" href="index.html#contact">יצירת קשר</a>
         </nav>
         <button class="mobile-toggle" id="mobileToggle" aria-label="פתיחת תפריט מובייל" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
@@ -355,15 +368,15 @@
     <div class="container">
         <div class="deck-crumb">
             <a href="index.html">PractiAI — עמוד הבית</a><i class="fa-solid fa-angle-left" aria-hidden="true"></i>
-            <span>AI Discovery &amp; Solution Design · יום 1</span>
+            <span>AI Discovery &amp; Solution Design</span>
         </div>
-        <div class="deck-label"><i class="fa-solid fa-chalkboard-user"></i> סדנת עומק | יום 1 מתוך 2</div>
-        <h1>מתחילים מהעבודה, לא מהכלי<br><span class="accent">AI Discovery &amp; Solution Design — יום 1</span></h1>
-        <p class="lead">היום הראשון של הסדנה עוסק בחלק שקל לדלג עליו — להבין את העבודה לפני שבונים פתרון. עברנו על מפת הפלטפורמות, פרסונליזציה בשכבות, המעבר מפרומפט למפרט מקצועי, חמש רמות של פתרון (מ-Prompt ועד Agent) וחיבורים למערכות — והרכבנו מהכול תהליך Discovery מסודר שמסתיים ב-AI Opportunity &amp; Solution Brief לכל צוות.</p>
+        <div class="deck-label"><i class="fa-solid fa-chalkboard-user"></i> סדנת עומק | יומיים</div>
+        <h1>מרעיון לתוצר שאפשר לבדוק<br><span class="accent">AI Discovery &amp; Solution Design</span></h1>
+        <p class="lead">שני ימי הסדנה, ברצף אחד: ביום הראשון עצרנו לפני שבנינו — הבנו את העבודה, מיפינו פלטפורמות ופרסונליזציה, וזיהינו הזדמנויות אמיתיות. ביום השני הפכנו הזדמנות אחת לאפיון מקצועי, ל-MVP קטן שמוכיח ערך, ולתוכנית להטמעה. כל השקפים כאן לצפייה חוזרת, ומתחתיהם ספריית הפרומפטים המלאה של שני הימים — מוכנה להעתקה.</p>
         <div class="deck-meta">
-            <span><i class="fa-regular fa-images"></i> 62 שקפים</span>
+            <span><i class="fa-regular fa-images"></i> 98 שקפים</span>
             <span><i class="fa-regular fa-calendar"></i> ספטמבר 2026</span>
-            <span><i class="fa-solid fa-building-columns"></i> סדנת עומק · יום 1 מתוך 2</span>
+            <span><i class="fa-solid fa-building-columns"></i> סדנת עומק · יומיים</span>
             <span><i class="fa-solid fa-eye"></i> צפייה מקוונת</span>
         </div>
     </div>
@@ -372,75 +385,701 @@
 <!-- ===== VIEWER ===== -->
 <section class="deck-section">
     <div class="container">
-        <div class="viewer" id="viewer">
-            <div class="stage" id="stage">
-                <div class="slide-layer" id="layerA" role="img" aria-live="polite" aria-label="שקף 1"></div>
-                <div class="slide-layer is-hidden" id="layerB" role="presentation"></div>
-                <div class="stage-guard" id="guard"></div>
-                <div class="stage-load" id="loader" aria-hidden="true"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
-                <button class="nav-btn prev" id="btnPrev" aria-label="השקף הקודם"><i class="fa-solid fa-chevron-right"></i></button>
-                <button class="nav-btn next" id="btnNext" aria-label="השקף הבא"><i class="fa-solid fa-chevron-left"></i></button>
-            </div>
-
-            <div class="stage-bar">
-                <div class="counter" aria-live="polite"><b id="cur">1</b> / <span id="total">62</span></div>
-                <div class="progress" role="progressbar" aria-label="התקדמות במצגת"><span id="bar"></span></div>
-                <button class="tool-btn" id="btnGrid" aria-label="תצוגת כל השקפים" title="כל השקפים"><i class="fa-solid fa-table-cells-large"></i></button>
-                <button class="tool-btn" id="btnFs" aria-label="מסך מלא" title="מסך מלא"><i class="fa-solid fa-expand"></i></button>
-            </div>
-
-            <div class="thumbs" id="thumbs" aria-label="ניווט מהיר בין שקפים"></div>
-
-            <div class="deck-hint">
-                <span><i class="fa-regular fa-keyboard"></i> ניווט:</span>
-                <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים
-                <span style="margin-inline-start:auto"><i class="fa-solid fa-lock"></i> צפייה בלבד — המצגת אינה ניתנת להורדה</span>
-            </div>
+        <div class="day-tabs" id="dayTabs" role="tablist">
+            <button class="day-tab active" type="button" data-day="0" aria-pressed="true"><strong>יום 1</strong><span>Discovery &amp; Personalization · 62 שקפים</span></button>
+            <button class="day-tab" type="button" data-day="1" aria-pressed="false"><strong>יום 2</strong><span>Solution Design &amp; MVP · 36 שקפים</span></button>
         </div>
+        <div class="viewer" id="viewer">
+            <div class="day-stage-wrap" data-day="0">
+                <p class="day-blurb">מהבנת העבודה ועד זיהוי הזדמנות: מפת הפלטפורמות, פרסונליזציה בשכבות (Memory, Instructions, Projects, Skills), Discovery ומיפוי Current State, Pain Points ו-Opportunity Map.</p>
+                <div class="stage" style="--deck-ratio:1920/1080;--deck-ar:1.7778;">
+                    <div class="slide-layer layer-a" role="img" aria-live="polite" aria-label="שקף 1"></div>
+                    <div class="slide-layer layer-b is-hidden" role="presentation"></div>
+                    <div class="stage-guard"></div>
+                    <div class="stage-load" aria-hidden="true"><i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i></div>
+                    <button class="nav-btn prev" type="button" aria-label="השקף הקודם"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                    <button class="nav-btn next" type="button" aria-label="השקף הבא"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                </div>
+                <div class="stage-bar">
+                    <div class="counter" aria-live="polite"><b class="cur">1</b> / <span class="total">62</span></div>
+                    <div class="progress" role="progressbar" aria-label="התקדמות במצגת"><span class="bar"></span></div>
+                    <button class="tool-btn btn-grid" type="button" aria-label="תצוגת כל השקפים" title="כל השקפים"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i></button>
+                    <button class="tool-btn btn-fs" type="button" aria-label="מסך מלא" title="מסך מלא"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                </div>
+                <div class="thumbs" aria-label="ניווט מהיר בין שקפים"></div>
+                <div class="deck-hint">
+                    <span><i class="fa-regular fa-keyboard" aria-hidden="true"></i> ניווט:</span>
+                    <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים
+                    <span style="margin-inline-start:auto"><i class="fa-solid fa-lock" aria-hidden="true"></i> צפייה בלבד — המצגת אינה ניתנת להורדה</span>
+                </div>
+            </div>
+            <div class="day-stage-wrap" data-day="1" hidden>
+                <p class="day-blurb">מהבעיה העסקית לאפיון פתרון מלא (AI Solution Specification), צמצום ל-MVP, תוכנית לפני בנייה, בדיקות איכות ואחריות, והכנה להדגמה ולהטמעה.</p>
+                <div class="stage" style="--deck-ratio:1920/1080;--deck-ar:1.7778;">
+                    <div class="slide-layer layer-a" role="img" aria-live="polite" aria-label="שקף 1"></div>
+                    <div class="slide-layer layer-b is-hidden" role="presentation"></div>
+                    <div class="stage-guard"></div>
+                    <div class="stage-load" aria-hidden="true"><i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i></div>
+                    <button class="nav-btn prev" type="button" aria-label="השקף הקודם"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                    <button class="nav-btn next" type="button" aria-label="השקף הבא"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                </div>
+                <div class="stage-bar">
+                    <div class="counter" aria-live="polite"><b class="cur">1</b> / <span class="total">36</span></div>
+                    <div class="progress" role="progressbar" aria-label="התקדמות במצגת"><span class="bar"></span></div>
+                    <button class="tool-btn btn-grid" type="button" aria-label="תצוגת כל השקפים" title="כל השקפים"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i></button>
+                    <button class="tool-btn btn-fs" type="button" aria-label="מסך מלא" title="מסך מלא"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                </div>
+                <div class="thumbs" aria-label="ניווט מהיר בין שקפים"></div>
+                <div class="deck-hint">
+                    <span><i class="fa-regular fa-keyboard" aria-hidden="true"></i> ניווט:</span>
+                    <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים
+                    <span style="margin-inline-start:auto"><i class="fa-solid fa-lock" aria-hidden="true"></i> צפייה בלבד — המצגת אינה ניתנת להורדה</span>
+                </div>
+            </div>        </div>
     </div>
 </section>
 
 <!-- ===== HIGHLIGHTS ===== -->
 <section class="sec">
     <div class="container">
-        <div class="sec-label"><i class="fa-solid fa-list-check"></i> מה עברנו ביום הראשון</div>
-        <h2 class="sec-heading">מהבנת העבודה<br>אל תכנון הפתרון</h2>
-        <p class="sec-desc">כל חלק במצגת מלווה בתרגול ובפרומפט מוכן. אלה העקרונות שחוזרים לאורך כל היום — ומכינים את הקרקע לבניית הפתרון ביום השני.</p>
+        <div class="sec-label"><i class="fa-solid fa-list-check"></i> מה עברנו בשני הימים</div>
+        <h2 class="sec-heading">מהבנת העבודה<br>אל תוצר שאפשר לבדוק</h2>
+        <p class="sec-desc">כל חלק במצגת מלווה בתרגול ובפרומפט מוכן להעתקה. אלה העקרונות שחוצים את שני הימים — מהגילוי ועד ההדגמה.</p>
         <div class="hl-grid">
             <article class="hl-card">
                 <i class="ico fa-solid fa-route" aria-hidden="true"></i>
                 <h3>קודם להבין, אחר כך לבנות</h3>
-                <p>מתודולוגיה בת שמונה שלבים — Understand, Discover, Map, Identify ואז Design, Build, Test, Implement. היום הראשון עוצר בהבנה ובבחירה, ומסביר למה לא מתחילים פרויקט מהשאלה עAgent.</p>
+                <p>מתודולוגיה בת שמונה שלבים — Understand, Discover, Map, Identify ואז Design, Build, Test, Implement. יום 1 עוצר בהבנה ובבחירה; יום 2 עובר לבנייה.</p>
             </article>
             <article class="hl-card">
                 <i class="ico fa-solid fa-sitemap" aria-hidden="true"></i>
                 <h3>מפת הפלטפורמות</h3>
-                <p>Claude, ChatGPT, Microsoft Copilot ו-Google Gemini — לכל אחת החוזקה שלה. בוחרים לפי מיקום המידע, אבטחה, סוג המשתמשים והרישוי הקיים — הכלי הוא תוצאה של האפיון, לא נקודת הפתיחה.</p>
+                <p>Claude, ChatGPT, Microsoft Copilot ו-Google Gemini — בוחרים לפי מיקום המידע, אבטחה, סוג המשתמשים והרישוי הקיים. הכלי הוא תוצאה של האפיון, לא נקודת הפתיחה.</p>
             </article>
             <article class="hl-card">
                 <i class="ico fa-solid fa-layer-group" aria-hidden="true"></i>
                 <h3>פרסונליזציה בשכבות</h3>
-                <p>Memory (מי אני), Global ו-Cowork Instructions (איך לעבוד איתי), Project (מי הלקוח וההקשר) ו-Skills (איך מבצעים תהליך). מה נכנס לכל שכבה — ומה לא אמור להיכנס בכלל.</p>
+                <p>Memory (מי אני), Global ו-Cowork Instructions (איך לעבוד איתי), Project (מי הלקוח וההקשר) ו-Skills (איך מבצעים תהליך) — מה נכנס לכל שכבה ומה לא.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <h3>Discovery לפני פתרון</h3>
+                <p>ראיון Discovery, מיפוי Current State, זיהוי Pain Points ותיעדוף הזדמנויות לפי ערך עסקי מול היתכנות — לפני שמדברים בכלל על טכנולוגיה.</p>
             </article>
             <article class="hl-card">
                 <i class="ico fa-solid fa-file-signature" aria-hidden="true"></i>
-                <h3>מפרומפט למפרט</h3>
-                <p>הנדסת פרומפטים מקצועית היא כתיבת מפרט עבודה: מטרה, הקשר, קלטים, תהליך, כללים, מגבלות, מקורות מידע, תוצר, בדיקות איכות ונקודות אישור אנושי.</p>
+                <h3>מהזדמנות לאפיון מלא</h3>
+                <p>AI Opportunity &amp; Solution Brief ביום 1, ו-AI Solution Specification בת 16 סעיפים ביום 2 — מהבעיה העסקית, דרך הלוגיקה, ועד קריטריוני הצלחה וגבולות.</p>
             </article>
             <article class="hl-card">
                 <i class="ico fa-solid fa-bars-staggered" aria-hidden="true"></i>
-                <h3>חמש רמות של פתרון</h3>
-                <p>Prompt, Workflow, Skill, Automation ו-Agent — ומתי כל אחת מהן נכונה. ההבדל בין Automation שמוגדרת מראש לבין Agent שמחליט את הצעד הבא, וסולם ההרשאות מ-Read ועד Execute עם Connectors ו-MCP.</p>
+                <h3>איזו רמת פתרון מתאימה</h3>
+                <p>Prompt, Workflow, Skill, Automation או Agent — ומתי כל אחת נכונה. מורכבות היא עלות, לא יעד: בוחרים את הפתרון הפשוט ביותר שמוכיח ערך.</p>
             </article>
             <article class="hl-card">
-                <i class="ico fa-solid fa-clipboard-check" aria-hidden="true"></i>
-                <h3>התוצר: Opportunity &amp; Solution Brief</h3>
-                <p>ראיון Discovery, מפת Current State, זיהוי Pain Points ו-Opportunity Map, תיעדוף לפי ערך עסקי מול היתכנות — ובחירת MVP קטן אחד שמוכיח ערך לפני שבונים.</p>
+                <i class="ico fa-solid fa-cubes-stacked" aria-hidden="true"></i>
+                <h3>מצמצמים ל-MVP</h3>
+                <p>מחלקים כל רעיון ל-Must Have, Nice to Have ו-Future, ומבקשים תוכנית מפורטת לפני שמתחילים לבנות — לא קופצים ישר למימוש.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-vial-circle-check" aria-hidden="true"></i>
+                <h3>בדיקות ואחריות</h3>
+                <p>מנסים לשבור את הפתרון לפני שמציגים אותו: מקרי קצה, מידע חסר או סותר, סיכון להמצאות ופעולות אסורות — וסולם הרשאות מ-Read ועד Execute.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-flag-checkered" aria-hidden="true"></i>
+                <h3>מ-MVP להטמעה</h3>
+                <p>תוצר ראשוני טוב עדיין אינו פתרון מוטמע. פיילוט מבוקר, הדרכת משתמשים, מדדי הצלחה ותהליך אישור — השלבים שאחרי ה-Demo.</p>
             </article>
         </div>
     </div>
 </section>
 
+
+<!-- ===== QUICK REFERENCE ===== -->
+<section class="sec" id="quickref" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-list-check"></i> לפני שממשיכים לבד</div>
+        <h2 class="sec-heading">צ׳קליסט לשבועיים שאחרי הסדנה</h2>
+        <p class="sec-desc">שני ימים נותנים כיוון ברור ו-MVP ראשוני — אבל ההטמעה האמיתית קורית אחרי הסדנה. שני הצ׳קליסטים הבאים עוזרים לשמור על המומנטום בלי לדלג על השלבים החשובים.</p>
+        <div class="tips-grid">
+            <article class="tip-card">
+                <div class="tip-head">
+                    <span class="ico"><i class="fa-solid fa-rocket" aria-hidden="true"></i></span>
+                    <h3>להפוך את התוצר לפעולה</h3>
+                </div>
+                <p class="note">תוך שבוע–שבועיים מסיום הסדנה</p>
+                <ol class="tip-list">
+                    <li>לשתף את ה-AI Opportunity &amp; Solution Brief עם מקבלי ההחלטות הרלוונטיים בארגון</li>
+                    <li>להריץ את ה-MVP מול משתמש אמיתי אחד או שניים, לא רק מול הצוות שבנה אותו</li>
+                    <li>לתעד מה עבד ומה לא — בלי לייפות את התוצאות</li>
+                    <li>לסמן מפורשות מה נשאר ב-Nice to Have וב-Future, כדי שלא ייכנס בטעות לגרסה הראשונה</li>
+                    <li>לקבוע נקודת החלטה: להמשיך לפיילוט מבוקר, לחזור לשלב האפיון, או לעצור</li>
+                </ol>
+                <div class="tip-foot"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>MVP שלא הוצג לאף משתמש אמיתי הוא עדיין רק השערה, לא תוצר מאומת.</span></div>
+            </article>
+            <article class="tip-card">
+                <div class="tip-head">
+                    <span class="ico"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+                    <h3>לפני שמטמיעים אצל לקוח אמיתי</h3>
+                </div>
+                <p class="note">לפני מעבר ממידע דמה למידע אמיתי</p>
+                <ol class="tip-list">
+                    <li>להחליף קבצי דמה ומידע אנונימי במידע אמיתי — רק אחרי אישור הרשאות</li>
+                    <li>למפות מי מאשר גישה למידע, למערכות ולחיבורים (Connectors / MCP / API)</li>
+                    <li>להגדיר בעלות: מי אחראי על התוצאה, ומה קורה כשיש טעות</li>
+                    <li>לתעד את סולם ההרשאות שהוגדר — Read / Analyze / Recommend / Draft / Write / Execute — ואיפה נדרש אישור אנושי</li>
+                    <li>לתכנן פיילוט מבוקר עם קריטריוני הצלחה ברורים ומועד להחלטה: להמשיך, לתקן או לעצור</li>
+                </ol>
+                <div class="tip-foot info"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span>ככל שההשפעה של הפעולה גדלה — כך צריך לגדול הפיקוח האנושי עליה.</span></div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROMPT LIBRARY ===== -->
+<section class="sec" id="prompts" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-wand-magic-sparkles"></i> לוקחים איתכם</div>
+        <h2 class="sec-heading">ספריית הפרומפטים של הסדנה</h2>
+        <p class="sec-desc">20 פרומפטים מוכנים להעתקה משני ימי הסדנה — מפרסונליזציה ועד לבדיקות איכות לפני הדגמה. מדביקים כמו שהם בשיחה עם Claude, ChatGPT, Copilot או Gemini, וממלאים את הפרטים הספציפיים שלכם.</p>
+        <div class="pl-tools">
+            <button class="pl-toggle-all" type="button" id="plToggleAll">פתיחת הכול</button>
+            <span class="pl-count">20 פרומפטים</span>
+        </div>
+        <div class="pl-groups">
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> פרסונליזציה: Memory ו-Instructions</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">01</span>
+                        <span class="pl-title">הוספת הפרטים המקצועיים שלך ל-Memory</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">הפרומפט הראשון שכל משתתף מריץ כדי ש-Claude יכיר אותו לשיחות עתידיות.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-1" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-1">זכור מעכשיו לשיחות עתידיות שלנו את הפרטים המקצועיים הבאים עליי:
+התפקיד שלי הוא: [השלם]
+תחומי האחריות המרכזיים שלי הם: [השלם]
+סוגי הלקוחות / הארגונים שאני עובד איתם בדרך כלל הם: [השלם]
+המשימות המרכזיות שאני מבצע בעבודה הן: [השלם]
+סוגי התוצרים שאני יוצר בדרך כלל הם: [השלם]
+הכלים והמערכות שאני עובד איתם הם: [השלם]
+כשאתה עובד איתי, חשוב לי שתפעל כך: [השלם]
+חשוב שלא תעשה את הדברים הבאים בלי לבדוק איתי: [השלם]
+סגנון התשובות שאני מעדיף הוא: [השלם]
+אל תשמור מידע רגיש, אישי מדי או מידע חסוי של לקוחות.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">02</span>
+                        <span class="pl-title">יצירת פרופיל מקצועי להעברה בין כלי AI</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">שימושי אם כבר בניתם פרופיל עבודה בכלי AI אחר (ChatGPT / Gemini / Copilot) ורוצים להעביר אותו ל-Claude בלי להתחיל מאפס.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-2" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-2">צור עבורי פרופיל מקצועי קצר ומסודר שאוכל להעביר לכלי AI אחר כדי שיכיר אותי טוב יותר. כלול רק מידע שרלוונטי לעבודה מקצועית איתי:
+1. התפקיד שלי
+2. תחומי האחריות שלי
+3. הרקע וההתמחות המקצועית שלי
+4. סוגי הלקוחות והארגונים שאני עובד איתם
+5. משימות ותהליכים שחוזרים בעבודה שלי
+6. כלים ופלטפורמות שאני משתמש בהם
+7. סוגי תוצרים שאני מבקש בדרך כלל
+8. העדפות כתיבה וסגנון
+9. עקרונות עבודה שחשובים לי
+10. דברים שחשוב לא לעשות כשעובדים איתי
+הפרד בין מידע שאתה יודע בוודאות לבין דברים שאתה מסיק או לא בטוח לגביהם. אל תכלול מידע רגיש, סיסמאות, פרטים אישיים מיותרים או מידע חסוי של לקוחות.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">03</span>
+                        <span class="pl-title">ניסוח Global Instructions (הוראות קבועות)</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">כללי עבודה קבועים לכל שיחה — לא ביוגרפיה, אלא הוראות עבודה מעשיות.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-3" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-3">על בסיס הפרופיל המקצועי שלי, עזור לי לנסח 8–12 הוראות קבועות לעבודה עם כלי AI. ההוראות צריכות להיות מעשיות ולא ביוגרפיות. התייחס ל:
+1. איך לגשת למשימות מקצועיות
+2. איך לטפל במידע חסר
+3. איך להפריד בין עובדות להנחות
+4. איך לבנות תשובות ותוצרים
+5. מתי לאתגר אותי
+6. איך לגשת לפרויקטים מורכבים
+7. איך להתייחס לאבטחת מידע ולמידע רגיש
+8. מה לא לעשות בלי אישור
+9. איך להעדיף פתרונות פשוטים וישימים
+10. איך לכתוב למנהלים ולקהלים עסקיים
+כתוב כל הוראה כמשפט קצר וברור שאפשר להכניס ל-Custom Instructions.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">04</span>
+                        <span class="pl-title">ניסוח Cowork Instructions למשימות מורכבות</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">הוראות שמכוונות איך Claude עובד במשימות סוכניות ורב-שלביות (Cowork).</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-4" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-4">עזור לי לנסח Cowork Instructions לעבודה על משימות מקצועיות מורכבות. אני רוצה שההוראות ינחו את Claude לפעול כך:
+1. להבין קודם את המטרה וההקשר
+2. לבדוק אילו קבצים, מקורות וכלים זמינים
+3. להציג תוכנית פעולה קצרה לפני ביצוע משימה מורכבת
+4. לעבוד בשלבים
+5. להפעיל Skills רלוונטיים במידת הצורך
+6. לא להמציא מידע חסר
+7. לעצור ולשאול כאשר חסר מידע קריטי
+8. להפריד בין עובדות, הנחות והמלצות
+9. להתייחס לסיכונים, הרשאות, אבטחת מידע ואישור אנושי
+10. לסיים עם תוצר ברור, שימושי ומובנה
+כתוב את ההוראות באנגלית, בצורה קצרה וברורה, כך שאוכל להדביק אותן ישירות ל-Cowork Instructions.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i> סביבת עבודה, Projects ו-Skills</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">05</span>
+                        <span class="pl-title">באיזו סביבה להשתמש — Chat / Cowork / Code</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">עוזר להחליט לכל משימה האם היא מתאימה לשיחה נקודתית, לעבודה סוכנית מורכבת או לפיתוח.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-5" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-5">עבור כל אחת מהמשימות הבאות, המלץ האם נכון לבצע אותה ב-Claude Chat, Cowork או Claude Code. הסבר כל בחירה במשפט אחד:
+1. ניתוח תמלול פגישה
+2. מחקר על חברה והכנת Brief לפגישה
+3. ניתוח 20 מסמכי לקוח והפקת דוח המלצות
+4. בניית אפליקציה פנימית קטנה
+5. מיפוי תהליך עבודה וזיהוי הזדמנויות AI
+6. חיבור API מותאם ובניית כלי אוטומטי
+7. כתיבת הצעת מחיר
+8. בניית Agent שמעדכן מערכת חיצונית
+בסיום, תן כלל פשוט שיעזור לי לבחור באיזו סביבת עבודה להשתמש.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">06</span>
+                        <span class="pl-title">יצירת Project Instructions ללקוח</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">הוראות שמגדירות איך Claude צריך לעבוד בתוך סביבת פרויקט של לקוח או תהליך הטמעה ספציפי.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-6" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-6">עזור לי ליצור Project Instructions לפרויקט ייעוץ והטמעת AI אצל לקוח. מטרת הפרויקט היא להבין את הארגון, למפות תהליכי עבודה ולזהות הזדמנויות משמעותיות להטמעת AI. ההוראות צריכות לוודא ש-Claude:
+1. מתחיל מהתהליך העסקי ולא מהפיצ׳רים של AI
+2. קורא את כל חומרי הלקוח הזמינים
+3. מפריד בין עובדות, הנחות והמלצות
+4. מזהה מידע חסר
+5. לא מציע פתרונות לפני הבנת המצב הקיים
+6. מתייחס לאנשים, תהליכים, מערכות, מידע והחלטות
+7. מעדיף פתרונות פשוטים וישימים
+8. מתייחס לאבטחת מידע, הרשאות, אימוץ משתמשים ואישור אנושי
+9. לא ממציא מידע על הלקוח
+10. מייצר תוצרים ברורים למקבלי החלטות
+כתוב את ההוראות באנגלית, קצרות וברורות, כך שאוכל להדביק אותן ישירות ל-Project Instructions.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">07</span>
+                        <span class="pl-title">Context Audit — מה יש בפרויקט ומה חסר</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">בודק שהעלאת קבצים לפרויקט באמת הפכה למידע שימושי, לפני שממשיכים הלאה.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-7" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-7">Review all files and information currently available in this project.
+Do not recommend solutions yet.
+Create a Context Audit showing:
+1. What information is available
+2. What you know for certain
+3. What you infer but cannot confirm
+4. What important information appears to be missing
+5. What questions should be answered before making recommendations
+Clearly separate: Facts / Assumptions / Missing information / Recommended next questions.
+Do not propose AI solutions yet.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">08</span>
+                        <span class="pl-title">בניית Skill ראשון — Client Discovery Starter</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">תבנית ליכולת חוזרת (Skill) שמריצים בכל פעם שמתחילים לנתח לקוח או תהליך חדש.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-8" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-8">Help me design a reusable Claude Skill called:
+Client Discovery Starter
+Use this skill whenever I need to begin analyzing a new client, organization or business process.
+The skill should:
+1. Review available client information
+2. Separate facts from assumptions
+3. Identify missing information
+4. Ask discovery questions
+5. Understand the current process before proposing solutions
+6. Identify participants, systems, data, decisions, manual work, handoffs and bottlenecks
+7. Produce a structured discovery summary
+Define: when the skill should be used / expected inputs / workflow / rules / expected output / quality checks.
+Do not include solution recommendations yet.
+Write the skill in a concise and reusable format.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">09</span>
+                        <span class="pl-title">מיפוי חיבורים למערכות ומידע (Connectors &amp; MCP)</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">קובע לכל תהליך עסקי אילו מקורות מידע צריך, ובאיזו רמת הרשאה — לפני שממליצים על אינטגרציה.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-9" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-9">For the following business process:
+[DESCRIBE PROCESS]
+Identify every information source or system the AI would need access to.
+For each one decide whether it should be accessed through:
+Project files / Existing connector / Browser or web research / API / MCP or custom connector / No integration required
+For each system also specify:
+1. Is read access needed?
+2. Is write access needed?
+3. What actions may the AI perform?
+4. Where is human approval required?
+5. What is the main security or permission concern?
+Do not recommend an integration unless it is actually needed.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-file-signature" aria-hidden="true"></i> מפרומפט למפרט (Specification)</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">10</span>
+                        <span class="pl-title">הפיכת משימה למפרט מקצועי</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">הנדסת פרומפטים מקצועית היא בעצם כתיבת מפרט עבודה — הפרומפט הגנרי הזה בונה כל מפרט משימה כזה.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-10" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-10">I want to turn the following task into a professional AI specification:
+[DESCRIBE THE TASK]
+Help me define:
+1. Goal
+2. Context
+3. Inputs
+4. Required process
+5. Business rules
+6. Constraints
+7. Tools or information sources
+8. Expected output
+9. Quality criteria
+10. Situations where human approval is required
+Do not perform the task yet. Only create the specification. If important information is missing, ask me only the questions that materially affect the specification.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">11</span>
+                        <span class="pl-title">איזו רמת פתרון מתאימה — Prompt / Workflow / Skill / Automation / Agent</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">מסווג תהליך לפי רמת המורכבות הנכונה, ומזהיר מפני קפיצה ישר ל-Agent כשלא צריך.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-11" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-11">Analyze the following process:
+[DESCRIBE PROCESS]
+Classify the best solution as one of: Prompt / Workflow / Skill / Automation / AI-assisted workflow / Agent / Custom software solution
+Explain:
+1. Why this category is appropriate
+2. Whether the steps can be predefined
+3. Where AI reasoning is required
+4. Whether the AI needs to decide what to do next
+5. Whether a trigger is needed
+6. Whether human approval is required
+7. Whether a simpler solution would be enough
+Prefer the simplest solution that can achieve the goal.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">12</span>
+                        <span class="pl-title">כתיבת AI Solution Specification מלא (16 סעיפים)</span>
+                        <span class="pl-tag">יום 2</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">המפרט המלא של יום 2 — מחבר בין הבעיה העסקית, ההתנהגות הרצויה, הפתרון והגבולות שלו.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-12" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-12">Based on everything we discovered about this business problem, help us create a professional AI Solution Specification.
+Do not build anything yet.
+Create the specification using:
+1. Business Problem
+2. Primary User
+3. Current State
+4. Desired Outcome
+5. Trigger
+6. Inputs &amp; Data
+7. Systems
+8. Business Rules
+9. AI Reasoning Required
+10. Actions
+11. Outputs
+12. Human Checkpoints
+13. Risks &amp; Constraints
+14. Proposed MVP
+15. Success Criteria
+16. Open Questions
+Separate confirmed facts from assumptions. If critical information is missing, ask us before completing the specification. Prefer the simplest solution capable of demonstrating real business value.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Discovery ומיפוי תהליך</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">13</span>
+                        <span class="pl-title">ראיון Discovery — להבין לפני שמציעים פתרון</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">הופך את Claude ליועץ Discovery שמראיין אתכם על התהליך הקיים, בלי לקפוץ לפתרונות.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-13" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-13">Act as an AI implementation discovery consultant. Your goal is to understand the CURRENT process before discussing solutions.
+Based on the information available in this project:
+1. Identify what is already known.
+2. Identify what still needs to be understood.
+3. Interview me about the current process.
+Ask only 2–3 questions at a time. Focus on: what triggers the process, who participates, what happens step by step, systems used, information required, decisions, manual work, handoffs, waiting, bottlenecks, human judgment, final output.
+Do not recommend AI solutions yet.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">14</span>
+                        <span class="pl-title">מיפוי Current State מהמידע המאומת</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">ממשיך את הראיון הקודם — מסכם את התהליך הקיים במפה מסודרת, בלי להוסיף פתרונות.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-14" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-14">Stop the discovery interview for now.
+Based only on validated information, map the CURRENT STATE process.
+Show:
+1. Trigger
+2. Participants
+3. Steps in order
+4. Systems used
+5. Information and data
+6. Decisions
+7. Manual work
+8. Handoffs
+9. Waiting or bottlenecks
+10. Human judgment
+11. Final output
+12. Missing information
+Clearly distinguish confirmed facts from assumptions.
+Do not propose solutions yet.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Pain Points, הזדמנויות ותיעדוף</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">15</span>
+                        <span class="pl-title">זיהוי Pain Points והזדמנויות שיפור</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">ממיר את מפת ה-Current State לרשימת נקודות כאב, ולכל אחת מציע כיווני שיפור אפשריים — כולל אלה שאינם AI.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-15" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-15">Based on the validated current-state process, identify the main pain points.
+For each pain point show: where it occurs, who is affected, why it creates a problem, potential business impact.
+Then identify possible improvement opportunities. For each opportunity consider separately: process improvement / standard automation / AI-assisted workflow / reusable skill / agent / custom development.
+For each opportunity evaluate: Business Value 1–5, Feasibility 1–5, Data Readiness 1–5, Complexity 1–5, Adoption Risk 1–5.
+Do not force AI into every problem.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">16</span>
+                        <span class="pl-title">תיעדוף — איזו הזדמנות לבדוק קודם</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">ממליץ על הזדמנות ראשונה אחת לבדיקה, לפי ערך עסקי מול היתכנות — לא לפי מה שהכי מרשים טכנולוגית.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-16" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-16">Based on the opportunity map, recommend the ONE opportunity that should be tested first.
+Prefer: meaningful business value, high feasibility, available data, reasonable implementation complexity, low or manageable adoption risk, ability to validate quickly.
+Explain:
+1. Why this opportunity should come first
+2. Why the other opportunities should wait
+3. What the smallest useful MVP would be
+4. What must be validated before building it
+Do not choose the most technically impressive option unless it is also the most practical first step.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">17</span>
+                        <span class="pl-title">כתיבת AI Opportunity &amp; Solution Brief</span>
+                        <span class="pl-tag">יום 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">התוצר המסכם של יום 1 — מסמך עבודה קצר שמרכז את כל שלבי ה-Discovery לכיוון אחד מומלץ לבדיקה.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-17" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-17">Create an AI Opportunity &amp; Solution Brief based only on the validated discovery work.
+Include:
+1. Client / process context
+2. Business problem
+3. Current-state process
+4. Main pain points
+5. Systems and data involved
+6. Opportunities considered
+7. Prioritization
+8. Recommended opportunity
+9. Recommended solution direction
+10. Smallest useful MVP
+11. Human checkpoints
+12. Risks and constraints
+13. Information still missing
+14. Recommended next steps
+Clearly distinguish: Facts / Assumptions / Recommendations. Write the document for a business decision-maker, not only a technical audience.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-flask-vial" aria-hidden="true"></i> מ-MVP לבנייה ולבדיקות</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">18</span>
+                        <span class="pl-title">מצמצמים את ה-MVP: Must / Nice / Future</span>
+                        <span class="pl-tag">יום 2</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">מחלק את מפרט הפתרון לשלוש שכבות, כדי לבנות היום רק את מה שבאמת חייב להוכיח ערך.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-18" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-18">We have limited time to build a working MVP today.
+Review our solution specification and divide the proposed functionality into:
+MUST HAVE
+NICE TO HAVE
+FUTURE
+The MVP should demonstrate the core business value with the minimum possible complexity. Remove anything that is not required to validate the idea.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">19</span>
+                        <span class="pl-title">תוכנית לפני מימוש — לא לקפוץ ישר לבנייה</span>
+                        <span class="pl-tag">יום 2</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">מבקש מ-Claude תוכנית מסודרת ואישור לפני שהוא מתחיל לבנות בפועל.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-19" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-19">Review the solution specification and all files in this project.
+Do not build anything yet.
+First:
+1. Explain what you understand we want to build.
+2. Identify the required inputs and outputs.
+3. Identify missing information.
+4. Propose the simplest architecture for the MVP.
+5. Create an implementation plan.
+6. Identify risks or dependencies.
+Do not begin implementation until I approve the plan.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">20</span>
+                        <span class="pl-title">בדיקות איכות ועמידות — QA / Red-team</span>
+                        <span class="pl-tag">יום 2</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">לפני שמציגים את ה-MVP, מנסים לשבור אותו: מקרי קצה, מידע חסר וסותר, וסיכון להמצאות.</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-20" aria-label="העתקה"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>העתקה</span></button>
+                            <pre id="pl-20">Act as the QA and red-team reviewer for our solution.
+Create realistic test cases covering:
+- normal use
+- missing information
+- conflicting information
+- incorrect input
+- edge cases
+- hallucination risk
+- unauthorized actions
+For each test provide: Input / Expected behavior / Actual behavior / Pass or Fail / Risk / Recommended fix.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+        </div>
+    </div>
+</section>
 
 <!-- ===== NEXT STEPS ===== -->
 <section class="sec" style="padding-top:0">
@@ -460,9 +1099,9 @@
     <div class="container">
         <div class="cta-shell">
             <h2>רוצים סדנה כזו <span class="grad-text">בארגון שלכם?</span></h2>
-            <p>אני בונה כל סדנה מחדש סביב התהליכים, המערכות והכלים של הארגון — כדי שכל צוות ייצא עם הזדמנות AI אחת ברורה לבדיקה, ולא רק עם השראה.</p>
+            <p>אני בונה כל סדנה מחדש סביב התהליכים, המערכות והכלים של הארגון — כדי שכל צוות ייצא עם MVP אחד קטן שמוכיח ערך, ולא רק עם השראה.</p>
             <div class="btn-row">
-                <a class="btn btn-wa" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20Discovery%20%26%20Solution%20Design%20%E2%80%94%20%D7%A1%D7%93%D7%A0%D7%AA%20%D7%A2%D7%95%D7%9E%D7%A7%2C%20%D7%99%D7%95%D7%9D%201%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> דברו איתי בוואטסאפ</a>
+                <a class="btn btn-wa" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20Discovery%20%26%20Solution%20Design%20%E2%80%94%20%D7%A1%D7%93%D7%A0%D7%AA%20%D7%A2%D7%95%D7%9E%D7%A7%2C%20%D7%99%D7%95%D7%9E%D7%99%D7%99%D7%9D%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> דברו איתי בוואטסאפ</a>
                 <a class="btn btn-primary" href="index.html#contact"><i class="fa-solid fa-calendar-check"></i> קביעת שיחת התאמה</a>
                 <a class="btn btn-ghost" href="index.html#usecases"><i class="fa-solid fa-diagram-project"></i> תוצאות בשטח</a>
             </div>
@@ -475,7 +1114,7 @@
 <!-- ===== OVERVIEW ===== -->
 <div class="overview" id="overview" role="dialog" aria-modal="true" aria-label="כל השקפים">
     <div class="ov-head">
-        <h2>כל השקפים <span style="color:var(--text3);font-weight:600;font-size:1rem">(62)</span></h2>
+        <h2 id="ovTitle">כל השקפים <span style="color:var(--text3);font-weight:600;font-size:1rem">(98)</span></h2>
         <button class="tool-btn" id="ovClose" aria-label="סגירת תצוגת השקפים"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="ov-grid" id="ovGrid"></div>
@@ -504,175 +1143,221 @@
     </div>
 </div>
 
-<a href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20Discovery%20%26%20Solution%20Design%20%E2%80%94%20%D7%A1%D7%93%D7%A0%D7%AA%20%D7%A2%D7%95%D7%9E%D7%A7%2C%20%D7%99%D7%95%D7%9D%201%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" class="wa-float" aria-label="פניה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%A6%D7%A4%D7%99%D7%AA%D7%99%20%D7%91%D7%9E%D7%A6%D7%92%D7%AA%20%22AI%20Discovery%20%26%20Solution%20Design%20%E2%80%94%20%D7%A1%D7%93%D7%A0%D7%AA%20%D7%A2%D7%95%D7%9E%D7%A7%2C%20%D7%99%D7%95%D7%9E%D7%99%D7%99%D7%9D%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%94%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" class="wa-float" aria-label="פניה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
 (function(){
     'use strict';
 
-    /* ===== DECK CONFIG (generated) ===== */
-    var DECK = {
-        path: 'slides/ai-discovery-day1/',
-        thumbPath: 'slides/ai-discovery-day1/thumbs/',
-        count: 62,
-        v: '1788765504743',
-        titles: ["שקף 1: D AY 0 1 סדנת עומק · יום ראשון AI Discovery & Solution Design בארגונים AI לתהליך עבודה מקצועי לזיהוי, אפיון ותכנון פתרונ","שקף 2: פתיחה מה נעשה היום? 02 6 יכולות שמחברות בין הבנת העבודה לבין תכנון פתרון התוצר שנבנה היום AI Opportunity & Solution Brie","שקף 3: פתיחה מתודולוגיית העבודה 03 01 Understand 02 Discover 03 Map 04 Identify 05 Design 06 Build 07 Test 08 Implement · להבין","שקף 4: פתיחה ?Agent למה לא מתחילים מ- 04 הטעות הנפוצה: \"Agent. , בואו נבנה AI \"יש לנו הגישה הנכונה: תחשבו על תהליך אחד אצלכם או","שקף 5: חלק א׳ · מפת הפלטפורמות מפת הפלטפורמות המרכזיות 05 מה בודקים לפני בחירה? בוחרים פלטפורמה לפי ההתאמה לארגון — לא לפי מה ש","שקף 6: חלק א׳ · מפת הפלטפורמות Claude 06 מתאים במיוחד ל: כסביבת עבודה, אבל העקרונות שנלמד אינם תלויים בכלי אחד. Claude היום נעב","שקף 7: חלק א׳ · מפת הפלטפורמות ChatGPT 07 מתאים במיוחד ל: סביבה מאוד רחבה וגמישה לעבודה יומיומית, ייעוץ, יצירה ופיתוח. AI עבודה","שקף 8: חלק א׳ · מפת הפלטפורמות Microsoft Copilot 08 מתאים במיוחד לארגונים שעובדים עמוק ב־ :Microsoft 365 חיבור טבעי לסביבת העבו","שקף 9: חלק א׳ · מפת הפלטפורמות Google Gemini 09 מתאים במיוחד לארגונים שעובדים ב־ :Google Workspace , עבודה עם מקורות, Google שי","שקף 10: חלק א׳ · מפת הפלטפורמות Discovery לא בוחרים פלטפורמה לפני 10 לפני שבוחרים כלי, שואלים: הכלי הנכון הוא תוצאה של האפיון, ל","שקף 11: חלק ב׳ · פרסונליזציה למה פרסונליזציה חשובה? 11 כללי נותן תשובות כלליות. AI מותאם יודע: AI מכלי כללי לשותף עבודה מקצועי. ","שקף 12: חלק ב׳ · פרסונליזציה שכבות הפרסונליזציה 12 Memory מי אני Instructions איך לעבוד איתי Project מי הלקוח ומה ההקשר Skill אי","שקף 13: חלק ב׳ · פרסונליזציה Memory 13 מתאים למידע קבוע יחסית Memory Memory לא מכניסים ל- התפקיד שלי תחומי אחריות סגנון עבודה הע","שקף 14: חלק ב׳ · פרסונליזציה Memory : הוספת 1 תרגול 14 מה עושים להכיר את Claude לגרום ל- המשתתף. פרומפט למשתתפים זכור מעכשיו לשי","שקף 15: חלק ב׳ · פרסונליזציה אחרת AI ייבוא מידע ממערכת 15 :ChatGPT / Gemini / Copilot אם כבר עבדתם עם לא צריך להתחיל מאפס. Claud","שקף 16: חלק ב׳ · פרסונליזציה : יצירת פרופיל להעברה 2 תרגול 16 פרומפט למודל AI שכבר עבד איתי בעבר צור עבורי פרופיל מקצועי קצר ומס","שקף 17: חלק ב׳ · פרסונליזציה Global Instructions 17 הן לא ביוגרפיה. Global Instructions הן הוראות עבודה. התחל מהצורך העסקי ולא מ","שקף 18: חלק ב׳ · פרסונליזציה Global Instructions : יצירת 3 תרגול 18 פרומפט הוראות 8–12 על בסיס הפרופיל המקצועי שלי, עזור לי לנסח","שקף 19: חלק ב׳ · פרסונליזציה Cowork Instructions 19 מתאימות לעבודה Cowork Instructions סוכנית ורב־שלבית. עובד כשאנחנו Claude כאן","שקף 20: חלק ב׳ · פרסונליזציה Cowork Instructions : 4 תרגול 20 פרומפט לעבודה על Cowork Instructions עזור לי לנסח משימות מקצועיות ","שקף 21: Claude חלק ג׳ · סביבת העבודה ב- Claude / Cowork / Claude Code 21 Cowork עוזר לבצע עבודה מורכבת שאינה בהכרח קוד. Claude C","שקף 22: Claude חלק ג׳ · סביבת העבודה ב- : באיזו סביבה להשתמש? 5 תרגול 22 פרומפט עבור כל אחת מהמשימות הבאות, המלץ האם נכון לבצע א","שקף 23: Context וניהול Projects חלק ד׳ · = סביבת עבודה ללקוח Project 23 למד להכיר אותנו. Claude עד עכשיו עכשיו אנחנו רוצים שהוא ","שקף 24: Context וניהול Projects חלק ד׳ · מבנה תיקיית לקוח 24 מבנה מומלץ: CLIENT_NAME 01_Background 02_Discovery 03_Processes 04_","שקף 25: Context וניהול Projects חלק ד׳ · Project Instructions 25 עונות על השאלה: Project Instructions צריך לעבוד בפרויקט Claude ","שקף 26: Context וניהול Projects חלק ד׳ · Project Instructions : יצירת 6 תרגול 26 פרומפט Project Instructions עזור לי ליצור אצל ל","שקף 27: Context וניהול Projects חלק ד׳ · Context Audit 27 להעלות קבצים זה לא מספיק. צריך לבדוק: 01 Inventory › 02 Facts › 03 Ass","שקף 28: Context וניהול Projects חלק ד׳ · Context Audit : 7 תרגול 28 פרומפט Review all fi les and information currently available","שקף 29: Skills חלק ה׳ · ?Skill מה זה 29 לבצע. Claude הוא דרך מקצועית שחוזרת על עצמה שאנחנו מלמדים את Skill מתאים כשיש תהליך שחוז","שקף 30: Skills חלק ה׳ · Skill ו- Instructions, Project ההבדל בין 30 Instructions איך לעבוד איתי אל תמציא מידע חסר. 01 Project מה","שקף 31: Skills חלק ה׳ · Client Discovery Starter ראשון: Skill 31 כאשר מתחילים לנתח לקוח, ארגון או תהליך עבודה. קורא את המידע הזמ","שקף 32: Skills חלק ה׳ · ראשון Skill : בניית 8 תרגול 32 פרומפט Help me design a reusable Claude Skill called: Client Discovery St","שקף 33: Prompt to Specification חלק ו׳ · מפרומפט לאפיון 33 פרומפט קצר ״נתח את הלקוח והצע יישומים של בינה מלאכותית.״ מתאים למשימה","שקף 34: Prompt to Specification חלק ו׳ · Specification : להפוך משימה ל- 9 תרגול 34 פרומפט I want to turn the following task into","שקף 35: Workflow / Automation / Agent חלק ז׳ · חמש רמות עבודה 35 פעולה נקודתית יותר עצמאות ושיקול דעת Prompt בקשה נקודתית 01 Wor","שקף 36: Workflow / Automation / Agent חלק ז׳ · Agent מול Automation 36 Automation IF X → DO Y → THEN Z השלבים והתגובות מוגדרים מ","שקף 37: Workflow / Automation / Agent חלק ז׳ · ?Agent מתי צריך 37 מתאים כשצריך החלטות דינמיות: Agent מספיקים. Automation או Work","שקף 38: Workflow / Automation / Agent חלק ז׳ · ?Agent : האם צריך 10 תרגול 38 פרומפט Analyze the following process: [DESCRIBE PRO","שקף 39: Connectors & MCP חלק ח׳ · למה בכלל צריך חיבורים? 39 ללא גישה למידע ולמערכות נשאר מוגבל. AI בארגון, המידע נמצא ב: צריך גי","שקף 40: Connectors & MCP חלק ח׳ · MCP מול Connector 40 Connector חיבור מוכן למערכת או שירות. MCP / Custom Connector מוכן או כאשר","שקף 41: Connectors & MCP חלק ח׳ · Read / Recommend / Draft / Write / Execute 41 מקבל יותר יכולת פעולה, כך נדרשים יותר פיקוח ובקר","שקף 42: Connectors & MCP חלק ח׳ · : מפת חיבורים 11 תרגול 42 פרומפט For the following business process: [DESCRIBE PROCESS] Identi","שקף 43: Discovery Methodology חלק ט׳ · עכשיו מתחילים את העבודה האמיתית 43 אחרי שראינו מה הכלים מסוגלים לעשות, אנחנו בכוונה לא מת","שקף 44: Discovery Methodology חלק ט׳ · ?Discovery מה צריך לגלות ב- 44 Trigger מה מתחיל את התהליך? 01 People מי מעורב? 02 Steps מ","שקף 45: Discovery Methodology חלק ט׳ · כלל ברזל: קודם להבין, אחר כך לפתור 45 לא מציעים פתרון לפני שמבינים את המצב הקיים Current ","שקף 46: Discovery Methodology חלק ט׳ · Discovery Interview : 12 תרגול 46 פרומפט Act as an AI implementation discovery consultant","שקף 47: Discovery Methodology חלק ט׳ · Current State Map 47 לפני פתרון צריך מפה. כולל: Current State Map Trigger משתתפים שלבי הע","שקף 48: Discovery Methodology חלק ט׳ · Current State : 13 תרגול 48 פרומפט Stop the discovery interview for now. Based only on va","שקף 49: Opportunity Mapping ו- Pain Points חלק י׳ · ?Pain Point מהו 49 הוא לא: Pain Point \"Agent. \"אין לנו הוא: Pain Point המידע","שקף 50: Opportunity Mapping ו- Pain Points חלק י׳ · סוגי פתרונות אפשריים 50 . בוחרים את רמת הפתרון לפי הצורך. AI לא כל בעיה דורש","שקף 51: Opportunity Mapping ו- Pain Points חלק י׳ · Opportunity Map 51 שאלות — כדי לעבור מרעיון לכיוון שניתן לבדוק. 12 לכל הזדמנ","שקף 52: Opportunity Mapping ו- Pain Points חלק י׳ · Pain Points + Opportunities : 14 תרגול 52 פרומפט Based on the validated curr","שקף 53: Opportunity Mapping ו- Pain Points חלק י׳ · איך בוחרים במה להתחיל? 53 לא בוחרים את מה שהכי מרשים טכנולוגית. בוחרים את מה","שקף 54: Opportunity Mapping ו- Pain Points חלק י׳ · Prioritization : 15 תרגול 54 פרומפט Based on the opportunity map, recommend ","שקף 55: AI Opportunity & Solution Brief חלק יא׳ · 1 תוצר יום 55 AI Opportunity & Solution Brief מסמך עבודה קצר שמרכז את מה שהבנו","שקף 56: AI Opportunity & Solution Brief חלק יא׳ · Brief : יצירת ה- 16 תרגול 56 פרומפט Create an AI Opportunity & Solution Brief ","שקף 57: AI Opportunity & Solution Brief חלק יא׳ · שיתוף קצר 57 כל זוג משתף: זמן מומלץ: דקות לכל זוג 2–3 מה הייתה הבעיה? 1 מה התה","שקף 58: AI Opportunity & Solution Brief חלק יא׳ · מה עשינו היום? 58 Personalize להכיר אותנו AI גרמנו ל- 01 Project פתחנו סביבת ע","שקף 59: AI Opportunity & Solution Brief חלק יא׳ · למה עדיין לא בנינו? 59 AI. כי בנייה מוקדמת מדי היא אחת הטעויות הגדולות בפרויקט","שקף 60: AI Opportunity & Solution Brief חלק יא׳ · הצצה ליום השני 60 מחר נעבור מהבנת הבעיה לתכנון הפתרון ולבניית גרסה ראשונית. 01","שקף 61: AI Opportunity & Solution Brief חלק יא׳ · סיכום 61 מוצלח בארגון לא מתחיל AI מכלי. הוא מתחיל מהבנה טובה של העבודה. אל תקפ","שקף 62: AI Opportunity & Solution Brief חלק יא׳ · 2 משימת הכנה ליום 62 עד המפגש הבא / מחר בבוקר ✓ AI Opportunity & Solution Brie"]
-    };
+    /* ===== DECK CONFIG (generated) — מערך ימים; מצגת של יום אחד מקבלת מערך באורך 1 ===== */
+    var DAYS = [{"path":"slides/ai-discovery-day1/","thumbPath":"slides/ai-discovery-day1/thumbs/","count":62,"v":"1788765504743","label":"יום 1","titles":["שקף 1: D AY 0 1 סדנת עומק · יום ראשון AI Discovery & Solution Design בארגונים AI לתהליך עבודה מקצועי לזיהוי, אפיון ותכנון פתרונ","שקף 2: פתיחה מה נעשה היום? 02 6 יכולות שמחברות בין הבנת העבודה לבין תכנון פתרון התוצר שנבנה היום AI Opportunity & Solution Brie","שקף 3: פתיחה מתודולוגיית העבודה 03 01 Understand 02 Discover 03 Map 04 Identify 05 Design 06 Build 07 Test 08 Implement · להבין","שקף 4: פתיחה ?Agent למה לא מתחילים מ- 04 הטעות הנפוצה: \"Agent. , בואו נבנה AI \"יש לנו הגישה הנכונה: תחשבו על תהליך אחד אצלכם או","שקף 5: חלק א׳ · מפת הפלטפורמות מפת הפלטפורמות המרכזיות 05 מה בודקים לפני בחירה? בוחרים פלטפורמה לפי ההתאמה לארגון — לא לפי מה ש","שקף 6: חלק א׳ · מפת הפלטפורמות Claude 06 מתאים במיוחד ל: כסביבת עבודה, אבל העקרונות שנלמד אינם תלויים בכלי אחד. Claude היום נעב","שקף 7: חלק א׳ · מפת הפלטפורמות ChatGPT 07 מתאים במיוחד ל: סביבה מאוד רחבה וגמישה לעבודה יומיומית, ייעוץ, יצירה ופיתוח. AI עבודה","שקף 8: חלק א׳ · מפת הפלטפורמות Microsoft Copilot 08 מתאים במיוחד לארגונים שעובדים עמוק ב־ :Microsoft 365 חיבור טבעי לסביבת העבו","שקף 9: חלק א׳ · מפת הפלטפורמות Google Gemini 09 מתאים במיוחד לארגונים שעובדים ב־ :Google Workspace , עבודה עם מקורות, Google שי","שקף 10: חלק א׳ · מפת הפלטפורמות Discovery לא בוחרים פלטפורמה לפני 10 לפני שבוחרים כלי, שואלים: הכלי הנכון הוא תוצאה של האפיון, ל","שקף 11: חלק ב׳ · פרסונליזציה למה פרסונליזציה חשובה? 11 כללי נותן תשובות כלליות. AI מותאם יודע: AI מכלי כללי לשותף עבודה מקצועי. ","שקף 12: חלק ב׳ · פרסונליזציה שכבות הפרסונליזציה 12 Memory מי אני Instructions איך לעבוד איתי Project מי הלקוח ומה ההקשר Skill אי","שקף 13: חלק ב׳ · פרסונליזציה Memory 13 מתאים למידע קבוע יחסית Memory Memory לא מכניסים ל- התפקיד שלי תחומי אחריות סגנון עבודה הע","שקף 14: חלק ב׳ · פרסונליזציה Memory : הוספת 1 תרגול 14 מה עושים להכיר את Claude לגרום ל- המשתתף. פרומפט למשתתפים זכור מעכשיו לשי","שקף 15: חלק ב׳ · פרסונליזציה אחרת AI ייבוא מידע ממערכת 15 :ChatGPT / Gemini / Copilot אם כבר עבדתם עם לא צריך להתחיל מאפס. Claud","שקף 16: חלק ב׳ · פרסונליזציה : יצירת פרופיל להעברה 2 תרגול 16 פרומפט למודל AI שכבר עבד איתי בעבר צור עבורי פרופיל מקצועי קצר ומס","שקף 17: חלק ב׳ · פרסונליזציה Global Instructions 17 הן לא ביוגרפיה. Global Instructions הן הוראות עבודה. התחל מהצורך העסקי ולא מ","שקף 18: חלק ב׳ · פרסונליזציה Global Instructions : יצירת 3 תרגול 18 פרומפט הוראות 8–12 על בסיס הפרופיל המקצועי שלי, עזור לי לנסח","שקף 19: חלק ב׳ · פרסונליזציה Cowork Instructions 19 מתאימות לעבודה Cowork Instructions סוכנית ורב־שלבית. עובד כשאנחנו Claude כאן","שקף 20: חלק ב׳ · פרסונליזציה Cowork Instructions : 4 תרגול 20 פרומפט לעבודה על Cowork Instructions עזור לי לנסח משימות מקצועיות ","שקף 21: Claude חלק ג׳ · סביבת העבודה ב- Claude / Cowork / Claude Code 21 Cowork עוזר לבצע עבודה מורכבת שאינה בהכרח קוד. Claude C","שקף 22: Claude חלק ג׳ · סביבת העבודה ב- : באיזו סביבה להשתמש? 5 תרגול 22 פרומפט עבור כל אחת מהמשימות הבאות, המלץ האם נכון לבצע א","שקף 23: Context וניהול Projects חלק ד׳ · = סביבת עבודה ללקוח Project 23 למד להכיר אותנו. Claude עד עכשיו עכשיו אנחנו רוצים שהוא ","שקף 24: Context וניהול Projects חלק ד׳ · מבנה תיקיית לקוח 24 מבנה מומלץ: CLIENT_NAME 01_Background 02_Discovery 03_Processes 04_","שקף 25: Context וניהול Projects חלק ד׳ · Project Instructions 25 עונות על השאלה: Project Instructions צריך לעבוד בפרויקט Claude ","שקף 26: Context וניהול Projects חלק ד׳ · Project Instructions : יצירת 6 תרגול 26 פרומפט Project Instructions עזור לי ליצור אצל ל","שקף 27: Context וניהול Projects חלק ד׳ · Context Audit 27 להעלות קבצים זה לא מספיק. צריך לבדוק: 01 Inventory › 02 Facts › 03 Ass","שקף 28: Context וניהול Projects חלק ד׳ · Context Audit : 7 תרגול 28 פרומפט Review all fi les and information currently available","שקף 29: Skills חלק ה׳ · ?Skill מה זה 29 לבצע. Claude הוא דרך מקצועית שחוזרת על עצמה שאנחנו מלמדים את Skill מתאים כשיש תהליך שחוז","שקף 30: Skills חלק ה׳ · Skill ו- Instructions, Project ההבדל בין 30 Instructions איך לעבוד איתי אל תמציא מידע חסר. 01 Project מה","שקף 31: Skills חלק ה׳ · Client Discovery Starter ראשון: Skill 31 כאשר מתחילים לנתח לקוח, ארגון או תהליך עבודה. קורא את המידע הזמ","שקף 32: Skills חלק ה׳ · ראשון Skill : בניית 8 תרגול 32 פרומפט Help me design a reusable Claude Skill called: Client Discovery St","שקף 33: Prompt to Specification חלק ו׳ · מפרומפט לאפיון 33 פרומפט קצר ״נתח את הלקוח והצע יישומים של בינה מלאכותית.״ מתאים למשימה","שקף 34: Prompt to Specification חלק ו׳ · Specification : להפוך משימה ל- 9 תרגול 34 פרומפט I want to turn the following task into","שקף 35: Workflow / Automation / Agent חלק ז׳ · חמש רמות עבודה 35 פעולה נקודתית יותר עצמאות ושיקול דעת Prompt בקשה נקודתית 01 Wor","שקף 36: Workflow / Automation / Agent חלק ז׳ · Agent מול Automation 36 Automation IF X → DO Y → THEN Z השלבים והתגובות מוגדרים מ","שקף 37: Workflow / Automation / Agent חלק ז׳ · ?Agent מתי צריך 37 מתאים כשצריך החלטות דינמיות: Agent מספיקים. Automation או Work","שקף 38: Workflow / Automation / Agent חלק ז׳ · ?Agent : האם צריך 10 תרגול 38 פרומפט Analyze the following process: [DESCRIBE PRO","שקף 39: Connectors & MCP חלק ח׳ · למה בכלל צריך חיבורים? 39 ללא גישה למידע ולמערכות נשאר מוגבל. AI בארגון, המידע נמצא ב: צריך גי","שקף 40: Connectors & MCP חלק ח׳ · MCP מול Connector 40 Connector חיבור מוכן למערכת או שירות. MCP / Custom Connector מוכן או כאשר","שקף 41: Connectors & MCP חלק ח׳ · Read / Recommend / Draft / Write / Execute 41 מקבל יותר יכולת פעולה, כך נדרשים יותר פיקוח ובקר","שקף 42: Connectors & MCP חלק ח׳ · : מפת חיבורים 11 תרגול 42 פרומפט For the following business process: [DESCRIBE PROCESS] Identi","שקף 43: Discovery Methodology חלק ט׳ · עכשיו מתחילים את העבודה האמיתית 43 אחרי שראינו מה הכלים מסוגלים לעשות, אנחנו בכוונה לא מת","שקף 44: Discovery Methodology חלק ט׳ · ?Discovery מה צריך לגלות ב- 44 Trigger מה מתחיל את התהליך? 01 People מי מעורב? 02 Steps מ","שקף 45: Discovery Methodology חלק ט׳ · כלל ברזל: קודם להבין, אחר כך לפתור 45 לא מציעים פתרון לפני שמבינים את המצב הקיים Current ","שקף 46: Discovery Methodology חלק ט׳ · Discovery Interview : 12 תרגול 46 פרומפט Act as an AI implementation discovery consultant","שקף 47: Discovery Methodology חלק ט׳ · Current State Map 47 לפני פתרון צריך מפה. כולל: Current State Map Trigger משתתפים שלבי הע","שקף 48: Discovery Methodology חלק ט׳ · Current State : 13 תרגול 48 פרומפט Stop the discovery interview for now. Based only on va","שקף 49: Opportunity Mapping ו- Pain Points חלק י׳ · ?Pain Point מהו 49 הוא לא: Pain Point \"Agent. \"אין לנו הוא: Pain Point המידע","שקף 50: Opportunity Mapping ו- Pain Points חלק י׳ · סוגי פתרונות אפשריים 50 . בוחרים את רמת הפתרון לפי הצורך. AI לא כל בעיה דורש","שקף 51: Opportunity Mapping ו- Pain Points חלק י׳ · Opportunity Map 51 שאלות — כדי לעבור מרעיון לכיוון שניתן לבדוק. 12 לכל הזדמנ","שקף 52: Opportunity Mapping ו- Pain Points חלק י׳ · Pain Points + Opportunities : 14 תרגול 52 פרומפט Based on the validated curr","שקף 53: Opportunity Mapping ו- Pain Points חלק י׳ · איך בוחרים במה להתחיל? 53 לא בוחרים את מה שהכי מרשים טכנולוגית. בוחרים את מה","שקף 54: Opportunity Mapping ו- Pain Points חלק י׳ · Prioritization : 15 תרגול 54 פרומפט Based on the opportunity map, recommend ","שקף 55: AI Opportunity & Solution Brief חלק יא׳ · 1 תוצר יום 55 AI Opportunity & Solution Brief מסמך עבודה קצר שמרכז את מה שהבנו","שקף 56: AI Opportunity & Solution Brief חלק יא׳ · Brief : יצירת ה- 16 תרגול 56 פרומפט Create an AI Opportunity & Solution Brief ","שקף 57: AI Opportunity & Solution Brief חלק יא׳ · שיתוף קצר 57 כל זוג משתף: זמן מומלץ: דקות לכל זוג 2–3 מה הייתה הבעיה? 1 מה התה","שקף 58: AI Opportunity & Solution Brief חלק יא׳ · מה עשינו היום? 58 Personalize להכיר אותנו AI גרמנו ל- 01 Project פתחנו סביבת ע","שקף 59: AI Opportunity & Solution Brief חלק יא׳ · למה עדיין לא בנינו? 59 AI. כי בנייה מוקדמת מדי היא אחת הטעויות הגדולות בפרויקט","שקף 60: AI Opportunity & Solution Brief חלק יא׳ · הצצה ליום השני 60 מחר נעבור מהבנת הבעיה לתכנון הפתרון ולבניית גרסה ראשונית. 01","שקף 61: AI Opportunity & Solution Brief חלק יא׳ · סיכום 61 מוצלח בארגון לא מתחיל AI מכלי. הוא מתחיל מהבנה טובה של העבודה. אל תקפ","שקף 62: AI Opportunity & Solution Brief חלק יא׳ · 2 משימת הכנה ליום 62 עד המפגש הבא / מחר בבוקר ✓ AI Opportunity & Solution Brie"]},{"path":"slides/ai-discovery-day2/","thumbPath":"slides/ai-discovery-day2/thumbs/","count":36,"v":"1789369369236","label":"יום 2","titles":["שקף 1: סדנת עומק · יום שני מבעיה עסקית לאפיון, למוצר ראשוני ולהטמעה לתוצר ראשוני שאפשר לבדוק, להציג ולפתח הלאה. 1 הופכים את הרע","שקף 2: פתיחה מה יוצא לנו מהיום? 02 בסוף היום כל צוות יצא עם מסלול ברור מבעיה לתוצר ולהטמעה. בעיה מוגדרת 01 מסמך אפיון ראשוני 02","שקף 3: פתיחה השאלה הטכנית משתנה 03 לא מתחילים מכאן איך נפתח את זה? ← מתחילים מכאן מה בדיוק אנחנו רוצים שיקרה? הבנייה מתחילה בהג","שקף 4: פתיחה מתארים את התוצר לפני שבונים אותו 04 ככל שהחזון ברור יותר, כך הבינה המלאכותית יכולה לעזור לנו לבנות דרך טובה יותר ל","שקף 5: פתיחה פתרונות טובים מתחילים משאלות טובות 05 בעיה · משתמש · תהליך · מידע · החלטה · הצלחה מה קורה היום? 01 מי משתמש בתהליך","שקף 6: פתיחה היום לא בונים מערכת מלאה 06 MVP בונים את הגרסה הקטנה ביותר שמסוגלת להוכיח ערך. יש כאן בעיה אמיתית יש כאן ערך ברור ","שקף 7: דיוק הבעיה כל צוות מציג את הבעיה 07 שניות 90 לצוות המטרה אינה למכור פתרון - אלא לדייק את הבעיה. מי המשתמש? 01 מה הבעיה? ","שקף 8: דיוק הבעיה לפני הפתרון: מנסחים את הבעיה 08 בעיה טובה מתארת פער בעבודה, לא שם של כלי. היא מחברת בין משתמש, תהליך, מידע, ה","שקף 9: דיוק הבעיה שם של פתרון עדיין אינו אפיון 09 Agent זהו שם של פתרון, לא ניסוח של בעיה. מתחילים מהצורך - ורק אחר כך בוחרים א","שקף 10: דיוק הבעיה מגדירים לפני שבונים 10 הבעיה Business Problem Primary User Current State Desired Outcome 01 התהליך Trigger In","שקף 11: אפיון הפתרון מבנה מסמך האפיון 11 AI Solution Speci fi cation רכיבים שמחברים בין הבעיה העסקית, הפתרון והגבולות. 16 01 Bus","שקף 12: 1 אפיון הפתרון · תרגול מנסחים אפיון מקצועי 12 Copy-ready prompt Based on everything we discovered about this business pr","שקף 13: דפוס וארכיטקטורה איזה סוג פתרון מתאים? 13 הפתרון יכול לשלב כמה דפוסים - אבל לא חייב להיות מורכב. Knowledge Assistant גיש","שקף 14: דפוס וארכיטקטורה מתאים? Agent מתי 14 מתאים כשהדרך לפתרון Agent משתנה בין מקרים ודורשת בחירה בצעד הבא. Agent לקרוא מידע ל","שקף 15: דפוס וארכיטקטורה לפעמים הפתרון הנכון פשוט יותר 15 מורכבות היא עלות — לא יעד. לא בוחרים את הפתרון המרשים ביותר - בוחרים א","שקף 16: דפוס וארכיטקטורה מפת הארכיטקטורה של הפתרון 16 משתמש מי משתמש? 01 Trigger מה מפעיל את התהליך? 02 Inputs אילו נתונים נכנסי","שקף 17: דפוס וארכיטקטורה הארכיטקטורה של היום מול הארכיטקטורה העתידית 17 היום MVP Architecture מה נבנה היום כדי לבדוק את הערך העס","שקף 18: דפוס וארכיטקטורה עובדים היום בלי להיתקע על תשתיות 18 כדי לבדוק היום כדי להטמיע בהמשך מפרידים בין הוכחת הערך לבין ההנדסה ","שקף 19: דפוס וארכיטקטורה לא שואלים מה הכלי הכי טוב 19 במקום לבחור כלי לפי מוניטין — בודקים התאמה לסביבה. בוחרים פלטפורמה לפי סבי","שקף 20: צמצום ובנייה מחלקים את הרעיון לשלוש שכבות 20 Must Have מה חייב לעבוד כדי להוכיח את הערך 01 Nice to Have מה ישפר את התוצר","שקף 21: 2 צמצום ובנייה · תרגול MVP מצמצמים את ה- 21 Copy-ready prompt We have limited time to build a working MVP today. Review ","שקף 22: צמצום ובנייה חלוקת עבודה בין אפיון לפיתוח 22 Cowork Speci fi cation → Build Claude Code אפיון ניתוח Discovery תכנון כתיב","שקף 23: צמצום ובנייה המעבר הנכון לבנייה 23 01 Speci fi cation → 02 Plan → 03 Approve → 04 Build הבינה המלאכותית מסבירה מה הבינה ","שקף 24: 3 צמצום ובנייה · תרגול מבקשים תוכנית לפני מימוש 24 Copy-ready prompt Review the solution specification and all files in ","שקף 25: צמצום ובנייה בונים את התוצר הראשוני 25 Build Lab מטרה עסקית ברורה · תוצר קטן · בדיקה מהירה כל צוות עובד על התוצר הראשוני","שקף 26: צמצום ובנייה שאלות שמחזירות את הצוות למטרה 26 עצירה קצרה, בדיקה, החלטה מה אתם בונים כרגע? 01 איזה ערך זה מוכיח? 02 מי המ","שקף 27: בדיקות ואחריות לפני שמציגים - מנסים לשבור את הפתרון 27 פתרון שלא ניסינו להכשיל — עדיין לא בדקנו באמת. מקרה רגיל 01 מידע ","שקף 28: 4 בדיקות ואחריות · תרגול בודקים איכות ועמידות 28 Copy-ready prompt Act as the QA and red-team reviewer for our solution.","שקף 29: בדיקות ואחריות סולם הפעולות וההרשאות 29 01 Read 02 Analyze 03 Recommend 04 Draft 05 Write 06 Execute 07 Approve 08 Send ","שקף 30: בדיקות ואחריות ככל שההשפעה גדלה - כך גדל הפיקוח 30 לקוח + כסף + מידע + החלטה עסקית יותר השפעה ↓ יותר פיקוח אנושי פעולה ש","שקף 31: בדיקות ואחריות צ׳קליסט לפתרון אחראי 31 הרשאות · צמצום מידע · תיעוד · אחריות · אישור אנושי איזה מידע נכנס? 01 האם הוא רגי","שקף 32: מהתוצר הראשוני להטמעה תוצר ראשוני טוב עדיין אינו פתרון מוטמע 32 MVP ≠ הטמעה מידע אמיתי 01 הרשאות 02 חיבור למערכות 03 אבט","שקף 33: מהתוצר הראשוני להטמעה מתכננים פיילוט שאפשר ללמוד ממנו 33 פיילוט בדיקה מבוקרת שמייצרת החלטה מי המשתמשים הראשונים? 01 איזה","שקף 34: מהתוצר הראשוני להטמעה מבנה ההדגמה 34 הדגמה קצרה · סיפור ברור · צעד הבא הבעיה העסקית 01 מה גילינו בשלב הגילוי 02 מה הפתרו","שקף 35: סיכום המעבר המלא שתרגלנו 35 01 Idea 02 Discovery 03 Speci fi cation 04 Solution Pattern 05 Architecture 06 MVP 07 Testin","שקף 36: סיכום החשיבה המקצועית נשארת במרכז 36 בינה מלאכותית לא מחליפה חשיבה מקצועית. היא מגבירה אותה. ככל שנשאל שאלות טובות יותר,"]}];
 
     var pad = function(n){ return (n < 10 ? '0' : '') + n; };
     // ?v=... מבטיח שדפדפן שכבר ביקר בעמוד יטען את השקפים המעודכנים ולא גרסה מהמטמון
-    var slideUrl = function(n){ return DECK.path + 'slide-' + pad(n) + '.webp?v=' + DECK.v; };
-    var thumbUrl = function(n){ return DECK.thumbPath + 'thumb-' + pad(n) + '.webp?v=' + DECK.v; };
+    var slideUrl = function(day, n){ return day.path + 'slide-' + pad(n) + '.webp?v=' + day.v; };
+    var thumbUrl = function(day, n){ return day.thumbPath + 'thumb-' + pad(n) + '.webp?v=' + day.v; };
 
-    var stage = document.getElementById('stage');
-    var layerA = document.getElementById('layerA');
-    var layerB = document.getElementById('layerB');
-    var loader = document.getElementById('loader');
-    var curEl  = document.getElementById('cur');
-    var bar    = document.getElementById('bar');
-    var thumbsEl = document.getElementById('thumbs');
-    var ovGrid = document.getElementById('ovGrid');
     var overview = document.getElementById('overview');
-    var btnPrev = document.getElementById('btnPrev');
-    var btnNext = document.getElementById('btnNext');
+    var ovGrid = document.getElementById('ovGrid');
+    var ovTitle = document.getElementById('ovTitle');
     var viewer = document.getElementById('viewer');
+    var wraps = Array.prototype.slice.call(document.querySelectorAll('.day-stage-wrap'));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.day-tab'));
+    var activeDay = 0;
 
-    var index = 1;
-    var front = layerA;
-    var back  = layerB;
-    var cache = {};
+    function buildDay(day, idx, wrap){
+        var stage = wrap.querySelector('.stage');
+        var layerA = wrap.querySelector('.layer-a');
+        var layerB = wrap.querySelector('.layer-b');
+        var loader = wrap.querySelector('.stage-load');
+        var curEl  = wrap.querySelector('.cur');
+        var bar    = wrap.querySelector('.bar');
+        var thumbsEl = wrap.querySelector('.thumbs');
+        var btnPrev = wrap.querySelector('.nav-btn.prev');
+        var btnNext = wrap.querySelector('.nav-btn.next');
 
-    function preload(n){
-        if (n < 1 || n > DECK.count || cache[n]) return;
-        var img = new Image();
-        img.src = slideUrl(n);
-        cache[n] = img;
-    }
+        var index = 1;
+        var front = layerA;
+        var back  = layerB;
+        var cache = {};
+        var booted = false;
 
-    function show(n, instant){
-        n = Math.min(Math.max(n, 1), DECK.count);
-        if (n === index && !instant) return;
-        index = n;
-
-        var url = slideUrl(n);
-        loader.classList.add('on');
-
-        var img = new Image();
-        img.onload = function(){
-            loader.classList.remove('on');
-            back.style.backgroundImage = 'url("' + url + '")';
-            back.classList.remove('is-hidden');
-            front.classList.add('is-hidden');
-            var tmp = front; front = back; back = tmp;
-            front.setAttribute('role', 'img');
-            front.setAttribute('aria-label', DECK.titles[n-1] || ('שקף ' + n));
-            back.setAttribute('role', 'presentation');
-            back.removeAttribute('aria-label');
-        };
-        img.onerror = function(){ loader.classList.remove('on'); };
-        img.src = url;
-        cache[n] = img;
-
-        curEl.textContent = n;
-        bar.style.width = (n / DECK.count * 100) + '%';
-        btnPrev.disabled = (n === 1);
-        btnNext.disabled = (n === DECK.count);
-
-        var thumbs = thumbsEl.children;
-        for (var i = 0; i < thumbs.length; i++){
-            thumbs[i].classList.toggle('active', (i + 1) === n);
-        }
-        var active = thumbs[n-1];
-        if (active && active.scrollIntoView) {
-            active.scrollIntoView({ block:'nearest', inline:'center', behavior: document.body.classList.contains('no-motion') ? 'auto' : 'smooth' });
+        function preload(n){
+            if (n < 1 || n > day.count || cache[n]) return;
+            var img = new Image();
+            img.src = slideUrl(day, n);
+            cache[n] = img;
         }
 
-        if (history.replaceState) history.replaceState(null, '', '#' + n);
-        preload(n + 1); preload(n + 2); preload(n - 1);
-    }
+        function show(n, instant){
+            n = Math.min(Math.max(n, 1), day.count);
+            if (n === index && !instant) return;
+            index = n;
 
-    /* build thumbnails + overview */
-    var thumbObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries, obs){
-        entries.forEach(function(e){
-            if (e.isIntersecting){
-                e.target.style.backgroundImage = 'url("' + e.target.dataset.src + '")';
-                obs.unobserve(e.target);
+            var url = slideUrl(day, n);
+            loader.classList.add('on');
+
+            var img = new Image();
+            img.onload = function(){
+                loader.classList.remove('on');
+                back.style.backgroundImage = 'url("' + url + '")';
+                back.classList.remove('is-hidden');
+                front.classList.add('is-hidden');
+                var tmp = front; front = back; back = tmp;
+                front.setAttribute('role', 'img');
+                front.setAttribute('aria-label', day.titles[n-1] || ('שקף ' + n));
+                back.setAttribute('role', 'presentation');
+                back.removeAttribute('aria-label');
+            };
+            img.onerror = function(){ loader.classList.remove('on'); };
+            img.src = url;
+            cache[n] = img;
+
+            curEl.textContent = n;
+            bar.style.width = (n / day.count * 100) + '%';
+            btnPrev.disabled = (n === 1);
+            btnNext.disabled = (n === day.count);
+
+            var thumbs = thumbsEl.children;
+            for (var i = 0; i < thumbs.length; i++){
+                thumbs[i].classList.toggle('active', (i + 1) === n);
             }
+            var activeThumb = thumbs[n-1];
+            if (activeThumb && activeThumb.scrollIntoView) {
+                activeThumb.scrollIntoView({ block:'nearest', inline:'center', behavior: document.body.classList.contains('no-motion') ? 'auto' : 'smooth' });
+            }
+
+            if (idx === activeDay) updateHash(idx, n);
+            preload(n + 1); preload(n + 2); preload(n - 1);
+        }
+
+        function boot(n){
+            if (booted) { if (n) show(n, true); return; }
+            booted = true;
+            show(n || 1, true);
+        }
+
+        /* thumbs — נטענים בעצלנות עם IntersectionObserver */
+        var thumbObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(e){
+                if (e.isIntersecting){
+                    e.target.style.backgroundImage = 'url("' + e.target.dataset.src + '")';
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { rootMargin: '250px' }) : null;
+
+        for (var i = 1; i <= day.count; i++){
+            (function(n){
+                var t = document.createElement('button');
+                t.className = 'thumb';
+                t.type = 'button';
+                t.dataset.src = thumbUrl(day, n);
+                t.setAttribute('aria-label', 'מעבר לשקף ' + n);
+                t.innerHTML = '<i aria-hidden="true">' + n + '</i>';
+                t.addEventListener('click', function(){ show(n); });
+                if (thumbObserver) { thumbObserver.observe(t); } else { t.style.backgroundImage = 'url("' + thumbUrl(day, n) + '")'; }
+                thumbsEl.appendChild(t);
+            })(i);
+        }
+
+        btnPrev.addEventListener('click', function(){ show(index - 1); });
+        btnNext.addEventListener('click', function(){ show(index + 1); });
+
+        var tx = 0, ty = 0;
+        stage.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY; }, { passive:true });
+        stage.addEventListener('touchend', function(e){
+            var dx = e.changedTouches[0].clientX - tx;
+            var dy = e.changedTouches[0].clientY - ty;
+            if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { show(dx > 0 ? index - 1 : index + 1); }
+        }, { passive:true });
+
+        wrap.querySelector('.stage-guard').addEventListener('click', function(e){
+            var r = stage.getBoundingClientRect();
+            var x = e.clientX - r.left;
+            if (x < r.width * 0.35) { show(index + 1); }
+            else if (x > r.width * 0.65) { show(index - 1); }
         });
-    }, { rootMargin: '250px' }) : null;
 
-    for (var i = 1; i <= DECK.count; i++){
-        (function(n){
-            var t = document.createElement('button');
-            t.className = 'thumb';
-            t.type = 'button';
-            t.dataset.src = thumbUrl(n);
-            t.setAttribute('aria-label', 'מעבר לשקף ' + n);
-            t.innerHTML = '<i>' + n + '</i>';
-            t.addEventListener('click', function(){ show(n); });
-            if (thumbObserver) { thumbObserver.observe(t); } else { t.style.backgroundImage = 'url("' + thumbUrl(n) + '")'; }
-            thumbsEl.appendChild(t);
+        wrap.querySelector('.btn-grid').addEventListener('click', function(){ openOverview(idx); });
+        wrap.querySelector('.btn-fs').addEventListener('click', toggleFs);
 
-            var o = document.createElement('button');
-            o.className = 'ov-item';
-            o.type = 'button';
-            o.dataset.src = thumbUrl(n);
-            o.setAttribute('aria-label', 'מעבר לשקף ' + n);
-            o.innerHTML = '<i>' + n + '</i>';
-            o.addEventListener('click', function(){ closeOverview(); show(n); });
-            ovGrid.appendChild(o);
-        })(i);
+        /* view-only deterrents */
+        ['contextmenu','dragstart','selectstart'].forEach(function(ev){
+            stage.addEventListener(ev, function(e){ e.preventDefault(); });
+            thumbsEl.addEventListener(ev, function(e){ e.preventDefault(); });
+        });
+
+        return { show: show, boot: boot, getIndex: function(){ return index; }, day: day };
     }
 
-    /* navigation */
-    btnPrev.addEventListener('click', function(){ show(index - 1); });
-    btnNext.addEventListener('click', function(){ show(index + 1); });
+    var decks = wraps.map(function(wrap, idx){ return buildDay(DAYS[idx], idx, wrap); });
+
+    /* מעבר בין ימים — הימים הלא-פעילים נטענים רק כשעוברים אליהם בפעם הראשונה */
+    function setActiveDay(idx, opts){
+        opts = opts || {};
+        activeDay = idx;
+        decks[idx].boot(opts.n);
+        wraps.forEach(function(w, i){ w.hidden = (i !== idx); });
+        tabs.forEach(function(t, i){
+            var on = i === idx;
+            t.classList.toggle('active', on);
+            t.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        if (!opts.silent) updateHash(idx, decks[idx].getIndex());
+    }
+
+    tabs.forEach(function(tab, idx){
+        tab.addEventListener('click', function(){ setActiveDay(idx); });
+    });
 
     document.addEventListener('keydown', function(e){
         if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+        if (overview.classList.contains('active')) { if (e.key === 'Escape') closeOverview(); return; }
         var k = e.key;
-        if (k === 'ArrowLeft' || k === 'PageDown' || k === ' ') { e.preventDefault(); show(index + 1); }
-        else if (k === 'ArrowRight' || k === 'PageUp') { e.preventDefault(); show(index - 1); }
-        else if (k === 'Home') { e.preventDefault(); show(1); }
-        else if (k === 'End') { e.preventDefault(); show(DECK.count); }
-        else if (k === 'Escape') { closeOverview(); }
+        var d = decks[activeDay];
+        if (k === 'ArrowLeft' || k === 'PageDown' || k === ' ') { e.preventDefault(); d.show(d.getIndex() + 1); }
+        else if (k === 'ArrowRight' || k === 'PageUp') { e.preventDefault(); d.show(d.getIndex() - 1); }
+        else if (k === 'Home') { e.preventDefault(); d.show(1); }
+        else if (k === 'End') { e.preventDefault(); d.show(d.day.count); }
         else if (k === 'g' || k === 'G' || k === 'ג') { toggleOverview(); }
         else if (k === 'f' || k === 'F' || k === 'כ') { toggleFs(); }
     });
 
-    /* touch swipe */
-    var tx = 0, ty = 0;
-    stage.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY; }, { passive:true });
-    stage.addEventListener('touchend', function(e){
-        var dx = e.changedTouches[0].clientX - tx;
-        var dy = e.changedTouches[0].clientY - ty;
-        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { show(dx > 0 ? index - 1 : index + 1); }
-    }, { passive:true });
-
-    /* click on stage sides */
-    document.getElementById('guard').addEventListener('click', function(e){
-        var r = stage.getBoundingClientRect();
-        var x = e.clientX - r.left;
-        if (x < r.width * 0.35) { show(index + 1); }
-        else if (x > r.width * 0.65) { show(index - 1); }
-    });
-
-    /* view-only deterrents */
+    /* overview — נבנה מחדש בכל פתיחה עבור היום הפעיל */
+    function openOverview(idx){
+        var day = DAYS[idx];
+        ovGrid.innerHTML = '';
+        ovTitle.innerHTML = (DAYS.length > 1 ? 'כל השקפים · ' + day.label : 'כל השקפים') +
+            ' <span style="color:var(--text3);font-weight:600;font-size:1rem">(' + day.count + ')</span>';
+        for (var n = 1; n <= day.count; n++){
+            (function(n){
+                var o = document.createElement('button');
+                o.className = 'ov-item';
+                o.type = 'button';
+                o.style.backgroundImage = 'url("' + thumbUrl(day, n) + '")';
+                o.setAttribute('aria-label', 'מעבר לשקף ' + n);
+                o.innerHTML = '<i aria-hidden="true">' + n + '</i>';
+                o.addEventListener('click', function(){
+                    closeOverview();
+                    if (idx !== activeDay) setActiveDay(idx);
+                    decks[idx].show(n);
+                });
+                ovGrid.appendChild(o);
+            })(n);
+        }
+        overview.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeOverview(){ overview.classList.remove('active'); document.body.style.overflow = ''; }
+    function toggleOverview(){ overview.classList.contains('active') ? closeOverview() : openOverview(activeDay); }
+    document.getElementById('ovClose').addEventListener('click', closeOverview);
+    overview.addEventListener('click', function(e){ if (e.target === overview) closeOverview(); });
     ['contextmenu','dragstart','selectstart'].forEach(function(ev){
-        stage.addEventListener(ev, function(e){ e.preventDefault(); });
-        thumbsEl.addEventListener(ev, function(e){ e.preventDefault(); });
         ovGrid.addEventListener(ev, function(e){ e.preventDefault(); });
     });
 
-    /* overview */
-    function openOverview(){ overview.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeOverview(){ overview.classList.remove('active'); document.body.style.overflow = ''; }
-    function toggleOverview(){ overview.classList.contains('active') ? closeOverview() : openOverview(); }
-    document.getElementById('btnGrid').addEventListener('click', toggleOverview);
-    document.getElementById('ovClose').addEventListener('click', closeOverview);
-    overview.addEventListener('click', function(e){ if (e.target === overview) closeOverview(); });
-
-    /* fullscreen */
+    /* fullscreen — משותף לכל הימים, פועל על מיכל ה-viewer */
     function toggleFs(){
         if (!document.fullscreenElement) {
             if (viewer.requestFullscreen) viewer.requestFullscreen();
@@ -681,12 +1366,28 @@
             if (document.exitFullscreen) document.exitFullscreen();
         }
     }
-    document.getElementById('btnFs').addEventListener('click', toggleFs);
     document.addEventListener('fullscreenchange', function(){
-        var b = document.getElementById('btnFs');
-        b.classList.toggle('on', !!document.fullscreenElement);
-        b.innerHTML = document.fullscreenElement ? '<i class="fa-solid fa-compress"></i>' : '<i class="fa-solid fa-expand"></i>';
+        var on = !!document.fullscreenElement;
+        Array.prototype.forEach.call(document.querySelectorAll('.btn-fs'), function(b){
+            b.classList.toggle('on', on);
+            b.innerHTML = on ? '<i class="fa-solid fa-compress" aria-hidden="true"></i>' : '<i class="fa-solid fa-expand" aria-hidden="true"></i>';
+        });
     });
+
+    /* קישור עמוק ל-#hash: יום ראשון/יחיד = #N (תאימות לאחור), יום נוסף = #d<מספר-יום>-<שקף> */
+    function updateHash(idx, n){
+        if (!history.replaceState) return;
+        var h = (idx === 0) ? String(n) : ('d' + (idx + 1) + '-' + n);
+        history.replaceState(null, '', '#' + h);
+    }
+    function parseHash(){
+        var h = (location.hash || '').replace('#', '');
+        var m = h.match(/^d(\d+)-(\d+)$/);
+        if (m) return { day: Math.max(0, parseInt(m[1], 10) - 1), n: parseInt(m[2], 10) };
+        var n = parseInt(h, 10);
+        if (n > 0) return { day: 0, n: n };
+        return null;
+    }
 
     /* header + mobile menu */
     var header = document.getElementById('siteHeader');
@@ -728,7 +1429,7 @@
 
     /* ===== ספריית פרומפטים: העתקה ופתיחת הכול ===== */
     (function(){
-        var COPIED = 'Copied', EXPAND = 'Expand all', COLLAPSE = 'Collapse all';
+        var COPIED = 'הועתק', EXPAND = 'פתיחת הכול', COLLAPSE = 'סגירת הכול';
         var items = document.querySelectorAll('.pl-item');
         if (!items.length) return;
 
@@ -766,7 +1467,7 @@
                     var s = window.getSelection();
                     s.removeAllRanges();
                     s.addRange(r);
-                    label.textContent = 'Selected — press Ctrl+C';
+                    label.textContent = 'הטקסט נבחר — Ctrl+C להעתקה';
                     setTimeout(function(){ label.textContent = original; }, 2600);
                 });
             });
@@ -793,11 +1494,16 @@
     })();
 
     /* boot */
-    var start = parseInt((location.hash || '').replace('#',''), 10);
-    show(start > 0 && start <= DECK.count ? start : 1, true);
+    (function(){
+        var start = parseHash();
+        var dayIdx = (start && start.day < decks.length) ? start.day : 0;
+        setActiveDay(dayIdx, { silent: true, n: start ? start.n : 1 });
+    })();
     window.addEventListener('hashchange', function(){
-        var n = parseInt((location.hash || '').replace('#',''), 10);
-        if (n > 0 && n <= DECK.count && n !== index) show(n);
+        var h = parseHash();
+        if (!h || h.day >= decks.length) return;
+        if (h.day !== activeDay) { setActiveDay(h.day, { silent: true, n: h.n }); }
+        else { decks[h.day].show(h.n); }
     });
 })();
 </script>
