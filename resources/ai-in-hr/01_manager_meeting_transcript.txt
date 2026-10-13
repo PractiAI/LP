@@ -1,0 +1,8 @@
+SYNTHETIC DEMONSTRATION MATERIAL - FICTIONAL SALES UNIT - NOT REAL DATA
+Input 1: Manager meeting transcript (approved, fictional)
+Period discussed: July-September 2026
+
+Manager (Sales Unit):
+"We've been missing our sales targets for the past few months. Deals are taking longer to close, and I'm worried we're losing momentum.
+We've hired several new salespeople, but onboarding hasn't been very consistent. Two experienced team members have also left recently.
+I think the problem might be the team's experience level, although we've also changed our pricing and had some delays between Sales and Product."

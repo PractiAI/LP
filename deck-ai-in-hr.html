@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>AI in HR: From Tools to Smarter Ways of Working | PractiAI - Tal Hakoki</title>
+    <meta name="description" content="AI in HR session by Tal Hakoki (PractiAI): connecting business and people information, analyzing and practicing difficult conversations, and building personalized AI learning companions. Full deck and copy-ready prompts.">
+    <meta name="author" content="Tal Hakoki">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://practiai.co.il/deck-ai-in-hr.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="AI in HR: From Tools to Smarter Ways of Working | PractiAI">
+    <meta property="og:description" content="AI in HR session by Tal Hakoki (PractiAI): connecting business and people information, analyzing and practicing difficult conversations, and building personalized AI learning companions. Full deck and copy-ready prompts.">
+    <meta property="og:image" content="https://practiai.co.il/slides/ai-in-hr/cover.webp">
+    <meta property="og:url" content="https://practiai.co.il/deck-ai-in-hr.html">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #06060e;
+            --bg-card: rgba(12, 14, 24, 0.65);
+            --border: rgba(255, 255, 255, 0.06);
+            --cyan: #00d4ff;
+            --violet: #8b5cf6;
+            --rose: #f43f5e;
+            --grad: linear-gradient(135deg, var(--cyan), var(--violet));
+            --grad-full: linear-gradient(135deg, var(--cyan), var(--violet), var(--rose));
+            --text: #f1f5f9;
+            --text2: #94a3b8;
+            --text3: #64748b;
+            --r-sm: 12px; --r-md: 20px; --r-lg: 28px; --r-xl: 36px;
+            --header-h: 80px;
+            --container: 1280px;
+            --base-font-size: 100%;
+            --deck-ratio: 1920/1080;
+            --deck-ar: 1.7778;
+            --stage-max: 74vh;
+        }
+
+        body.high-contrast {
+            --bg: #000000; --bg-card: #000000; --border: #ffff00;
+            --cyan: #ffff00; --violet: #ffff00; --rose: #ffff00;
+            --grad: linear-gradient(135deg, #ffff00, #ffff00);
+            --grad-full: linear-gradient(135deg, #ffff00, #ffff00, #ffff00);
+            --text: #ffffff; --text2: #ffff00; --text3: #cccccc;
+        }
+
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:hidden;font-size:var(--base-font-size);transition:font-size .3s}
+        body{background:var(--bg);color:var(--text);font-family:'Heebo',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        body.no-motion *,body.no-motion *::before,body.no-motion *::after{animation:none!important;transition:none!important}
+        ::selection{background:rgba(139,92,246,.4);color:#fff}
+        ::-webkit-scrollbar{width:5px;height:6px}
+        ::-webkit-scrollbar-track{background:var(--bg)}
+        ::-webkit-scrollbar-thumb{background:rgba(139,92,246,.4);border-radius:99px}
+        img{max-width:100%;display:block}
+        a{color:inherit;text-decoration:none}
+        button,input,select,textarea{font:inherit}
+        :focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:4px}
+        .container{max-width:var(--container);margin:0 auto;padding:0 28px;width:100%}
+        .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .skip-link{position:absolute;top:-50px;right:0;background:var(--violet);color:#fff;padding:8px 16px;z-index:9999;transition:top .3s;border-radius:0 0 0 8px;font-weight:700}
+        .skip-link:focus{top:0}
+
+        /* ===== BUTTONS ===== */
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 36px;font-size:1.05rem;font-weight:700;border-radius:var(--r-sm);border:none;cursor:pointer;transition:all .4s cubic-bezier(.19,1,.22,1);position:relative;overflow:hidden;text-align:center}
+        .btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 25px rgba(0,212,255,.2)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 35px rgba(0,212,255,.35)}
+        .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(12px)}
+        .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px)}
+        .btn-wa{background:#25d366;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.25)}
+        .btn-wa:hover{background:#20b858;transform:translateY(-3px)}
+        .btn-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+        body.high-contrast .btn-primary{background:#ffff00;color:#000;box-shadow:none}
+
+        /* ===== HEADER ===== */
+        .site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);transition:all .4s ease}
+        .site-header.scrolled{background:rgba(6,6,14,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border)}
+        .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+        .brand{display:flex;align-items:center;gap:14px}
+        .brand-icon{width:44px;height:44px;flex-shrink:0;border-radius:var(--r-sm);display:grid;place-items:center;background:#fff;padding:4px;overflow:hidden}
+        .brand-icon img{width:100%;height:100%;object-fit:contain}
+        .brand-name{font-size:1.2rem;font-weight:900;letter-spacing:-.5px}
+        .brand-sub{font-size:.78rem;color:var(--text3);font-weight:500}
+        .nav-links{display:flex;align-items:center;gap:8px}
+        .nav-link{padding:10px 18px;border-radius:10px;color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s}
+        .nav-link:hover{color:var(--text);background:rgba(255,255,255,.04)}
+        .nav-cta{padding:10px 24px;border-radius:10px;background:var(--grad);color:#fff;font-weight:700;font-size:.95rem;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(0,212,255,.3)}
+        .mobile-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:8px}
+        body.high-contrast .nav-cta{background:#ffff00;color:#000}
+        body.high-contrast .brand-icon{background:#fff}
+
+        /* ===== DECK HERO ===== */
+        .deck-hero{padding:calc(var(--header-h) + 46px) 0 22px;position:relative}
+        .deck-hero-glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:760px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.10),transparent 70%);pointer-events:none}
+        body.high-contrast .deck-hero-glow{display:none}
+        .deck-crumb{display:flex;align-items:center;gap:8px;color:var(--text3);font-size:.9rem;font-weight:600;margin-bottom:16px;flex-wrap:wrap}
+        .deck-crumb a:hover{color:var(--cyan)}
+        .deck-label{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:999px;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);font-size:.9rem;font-weight:700;color:var(--violet);margin-bottom:18px}
+        .deck-hero h1{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:900;line-height:1.12;letter-spacing:-1px;margin-bottom:12px}
+        .deck-hero h1 .accent{background:var(--grad-full);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .deck-hero p.lead{color:var(--text2);font-size:clamp(1rem,1.9vw,1.18rem);max-width:780px}
+        .deck-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+        .deck-meta span{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--text2);font-size:.88rem;font-weight:600}
+        .deck-meta i{color:var(--cyan)}
+
+        /* ===== VIEWER ===== */
+        .deck-section{padding:14px 0 40px}
+        .viewer{border-radius:var(--r-xl);border:1px solid var(--border);background:linear-gradient(180deg,rgba(12,14,24,.7),rgba(6,6,14,.9));padding:18px;backdrop-filter:blur(15px);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+        body.high-contrast .viewer{background:#000;border-color:#ffff00;box-shadow:none}
+
+        .stage{position:relative;width:min(100%, calc(var(--stage-max) * var(--deck-ar)));aspect-ratio:var(--deck-ratio);background:#0b0d16;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--border);margin-inline:auto}
+        .slide-layer{position:absolute;inset:0;background-repeat:no-repeat;background-position:center;background-size:contain;transition:opacity .28s ease}
+        body.no-motion .slide-layer{transition:none}
+        .slide-layer.is-hidden{opacity:0}
+        .stage-guard{position:absolute;inset:0;z-index:2;cursor:default;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+        .stage-load{position:absolute;inset:0;z-index:3;display:none;place-items:center;background:rgba(6,6,14,.55);color:var(--cyan);font-size:1.6rem}
+        .stage-load.on{display:grid}
+
+        .nav-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(6,6,14,.62);color:#fff;font-size:1.1rem;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(10px);transition:all .3s;opacity:.55}
+        .stage:hover .nav-btn{opacity:1}
+        .nav-btn:hover{background:var(--grad);border-color:transparent;transform:translateY(-50%) scale(1.06)}
+        .nav-btn:disabled{opacity:.15;cursor:not-allowed}
+        .nav-btn.prev{left:14px}
+        .nav-btn.next{right:14px}
+        body.high-contrast .nav-btn{background:#000;border-color:#ffff00;color:#ffff00;opacity:1}
+
+        .stage-bar{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap}
+        .counter{font-family:'Space Grotesk','Heebo',sans-serif;font-weight:700;font-size:.95rem;color:var(--text2);min-width:74px;text-align:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+        .counter b{color:var(--text)}
+        .progress{flex:1;min-width:120px;height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+        .progress span{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;transition:width .3s ease}
+        body.high-contrast .progress span{background:#ffff00}
+        .tool-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text2);cursor:pointer;transition:all .3s;display:grid;place-items:center;font-size:1rem}
+        .tool-btn:hover{color:var(--cyan);border-color:rgba(0,212,255,.3)}
+        .tool-btn.on{background:var(--grad);color:#fff;border-color:transparent}
+
+        .thumbs{display:flex;gap:10px;margin-top:16px;overflow-x:auto;padding-bottom:8px;scroll-behavior:smooth}
+        .thumbs::-webkit-scrollbar{height:5px}
+        .thumb{flex:0 0 auto;width:118px;aspect-ratio:var(--deck-ratio);border-radius:9px;border:2px solid transparent;background:#fff center/cover no-repeat;cursor:pointer;position:relative;opacity:.55;transition:all .25s;overflow:hidden}
+        .thumb:hover{opacity:1;transform:translateY(-2px)}
+        .thumb.active{opacity:1;border-color:var(--cyan);box-shadow:0 4px 18px rgba(0,212,255,.25)}
+        .thumb i{position:absolute;bottom:3px;left:5px;font-style:normal;font-size:.68rem;font-weight:800;color:#fff;background:rgba(0,0,0,.62);border-radius:5px;padding:1px 6px;font-family:'Space Grotesk',sans-serif}
+        body.high-contrast .thumb.active{border-color:#ffff00}
+
+        .deck-hint{margin-top:14px;color:var(--text3);font-size:.86rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+        .deck-hint kbd{font-family:'Space Grotesk',monospace;font-size:.78rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;padding:2px 7px;color:var(--text2)}
+
+        /* overview */
+        .overview{position:fixed;inset:0;z-index:1000;background:rgba(6,6,14,.96);backdrop-filter:blur(8px);display:none;overflow-y:auto;padding:24px}
+        .overview.active{display:block}
+        .ov-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;max-width:1280px;margin-inline:auto}
+        .ov-head h2{font-size:1.3rem;font-weight:800}
+        .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px;max-width:1280px;margin-inline:auto}
+        .ov-item{aspect-ratio:var(--deck-ratio);border-radius:12px;border:1px solid var(--border);background:#fff center/cover no-repeat;cursor:pointer;position:relative;transition:all .25s}
+        .ov-item:hover{transform:translateY(-4px);border-color:var(--cyan);box-shadow:0 10px 30px rgba(0,212,255,.2)}
+        .ov-item i{position:absolute;bottom:5px;left:7px;font-style:normal;font-size:.72rem;font-weight:800;color:#fff;background:rgba(0,0,0,.65);border-radius:6px;padding:2px 8px;font-family:'Space Grotesk',sans-serif}
+
+        /* fullscreen */
+        .viewer:fullscreen{padding:20px;border-radius:0;display:flex;flex-direction:column;justify-content:center;background:#06060e;--stage-max:86vh}
+        .viewer:fullscreen .thumbs,.viewer:fullscreen .deck-hint{display:none}
+
+        /* ===== CONTENT SECTIONS ===== */
+        .sec{padding:70px 0}
+        .sec-label{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:999px;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);font-size:.9rem;font-weight:700;color:var(--violet);margin-bottom:18px}
+        .sec-heading{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:900;line-height:1.15;letter-spacing:-1px;margin-bottom:1rem}
+        .sec-desc{font-size:clamp(1rem,2vw,1.15rem);color:var(--text2);max-width:760px}
+        .hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+        .hl-card{padding:28px 24px;border-radius:var(--r-lg);background:var(--bg-card);border:1px solid var(--border);backdrop-filter:blur(15px);transition:all .4s;position:relative;overflow:hidden}
+        .hl-card::before{content:'';position:absolute;top:0;right:0;left:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+        .hl-card:hover{border-color:rgba(139,92,246,.3);transform:translateY(-5px)}
+        .hl-card:hover::before{transform:scaleX(1)}
+        .hl-card i.ico{color:var(--cyan);font-size:1.5rem;margin-bottom:14px;display:block}
+        .hl-card h3{font-size:1.1rem;font-weight:800;margin-bottom:8px}
+        .hl-card p{color:var(--text2);font-size:.96rem;line-height:1.65}
+
+        /* ===== TIPS / QUICK REFERENCE ===== */
+        .tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;margin-top:40px}
+        .tip-card{padding:32px 28px;border-radius:var(--r-lg);background:var(--bg-card);border:1px solid var(--border);backdrop-filter:blur(15px);transition:all .4s}
+        .tip-card:hover{border-color:rgba(0,212,255,.25)}
+        .tip-head{display:flex;align-items:center;gap:13px;margin-bottom:6px}
+        .tip-head .ico{width:44px;height:44px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.16);color:var(--cyan);font-size:1.1rem}
+        .tip-head h3{font-size:1.15rem;font-weight:800;line-height:1.25}
+        .tip-card > p.note{color:var(--text3);font-size:.9rem;margin-bottom:20px}
+        .tip-list{list-style:none;counter-reset:tip;display:flex;flex-direction:column;gap:12px}
+        .tip-list li{display:flex;align-items:flex-start;gap:13px;color:var(--text2);font-size:.97rem;line-height:1.6;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.04)}
+        .tip-list li:last-child{border-bottom:none;padding-bottom:0}
+        .tip-list li::before{counter-increment:tip;content:counter(tip,decimal-leading-zero);flex-shrink:0;font-family:'Space Grotesk',monospace;font-size:.82rem;font-weight:700;color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.14);border-radius:7px;padding:2px 8px;margin-top:2px}
+        .tip-foot{margin-top:20px;padding:14px 18px;border-radius:var(--r-sm);background:rgba(244,63,94,.05);border:1px solid rgba(244,63,94,.14);color:var(--text2);font-size:.93rem;font-weight:600;display:flex;align-items:flex-start;gap:10px}
+        .tip-foot i{color:var(--rose);margin-top:.35em}
+        .tip-foot.info{background:rgba(0,212,255,.05);border-color:rgba(0,212,255,.14)}
+        .tip-foot.info i{color:var(--cyan)}
+
+        /* ===== PROMPT LIBRARY ===== */
+        .pl-tools{display:flex;align-items:center;gap:14px;margin-top:26px;flex-wrap:wrap}
+        .pl-toggle-all{padding:9px 18px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text2);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .3s}
+        .pl-toggle-all:hover{color:var(--cyan);border-color:rgba(0,212,255,.3)}
+        .pl-count{color:var(--text3);font-size:.86rem;font-weight:600}
+        .pl-groups{margin-top:18px;display:flex;flex-direction:column;gap:34px}
+        .pl-group-title{display:flex;align-items:center;gap:11px;font-size:1.02rem;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+        .pl-group-title i{color:var(--cyan);font-size:.95rem}
+
+        .pl-item{border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg-card);margin-bottom:10px;overflow:hidden;transition:border-color .3s}
+        .pl-item[open]{border-color:rgba(0,212,255,.28)}
+        .pl-item summary{display:flex;align-items:center;gap:14px;padding:17px 22px;cursor:pointer;list-style:none;font-weight:700;transition:background .25s}
+        .pl-item summary::-webkit-details-marker{display:none}
+        .pl-item summary:hover{background:rgba(255,255,255,.02)}
+        .pl-num{flex-shrink:0;font-family:'Space Grotesk',monospace;font-size:.8rem;font-weight:700;color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.14);border-radius:7px;padding:3px 9px}
+        .pl-title{flex:1;font-size:1.02rem;line-height:1.4}
+        .pl-tag{flex-shrink:0;font-size:.72rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);border-radius:6px;padding:3px 9px}
+        .pl-chev{flex-shrink:0;color:var(--text3);font-size:.82rem;transition:transform .3s}
+        .pl-item[open] .pl-chev{transform:rotate(180deg);color:var(--cyan)}
+
+        .pl-body{padding:0 22px 22px}
+        .pl-intro{color:var(--text2);font-size:.94rem;margin-bottom:14px}
+        .pl-item.is-guide .pl-num{color:var(--violet);background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.18)}
+        .pl-steps{list-style:none;counter-reset:plstep;display:flex;flex-direction:column;gap:11px;margin:0}
+        .pl-steps li{display:flex;align-items:flex-start;gap:12px;color:var(--text2);font-size:.96rem;line-height:1.7}
+        .pl-steps li::before{counter-increment:plstep;content:counter(plstep);flex-shrink:0;width:24px;height:24px;display:grid;place-items:center;font-family:'Space Grotesk',monospace;font-size:.76rem;font-weight:700;color:var(--violet);background:rgba(139,92,246,.09);border:1px solid rgba(139,92,246,.18);border-radius:7px;margin-top:.15em}
+        .pl-box-sub{margin-top:16px}
+        .pl-box{position:relative;border:1px solid var(--border);border-radius:var(--r-sm);background:rgba(0,0,0,.28)}
+        .pl-box pre{margin:0;padding:22px 22px 22px;font-family:'Space Grotesk','Heebo',monospace;font-size:.92rem;line-height:1.75;color:var(--text);white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;-webkit-user-select:text;user-select:text}
+        .pl-copy{position:absolute;top:10px;right:10px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:9px;border:1px solid var(--border);background:rgba(12,14,24,.92);color:var(--text2);font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s}
+        .pl-copy:hover{color:var(--cyan);border-color:rgba(0,212,255,.35)}
+        .pl-copy.done{background:var(--grad);color:#fff;border-color:transparent}
+        .pl-box pre{padding-top:52px}
+        .pl-follow,.pl-note{display:flex;align-items:flex-start;gap:10px;margin-top:14px;font-size:.9rem;line-height:1.6}
+        .pl-follow{color:var(--text2)}
+        .pl-follow i{color:var(--cyan);margin-top:.3em}
+        .pl-note{color:var(--text3)}
+        .pl-note i{color:var(--rose);margin-top:.3em}
+        body.high-contrast .pl-copy.done{background:#ffff00;color:#000}
+
+        @media(max-width:640px){
+            .pl-item summary{padding:15px 16px;gap:10px;flex-wrap:wrap}
+            .pl-tag{order:3;width:100%;margin-inline-start:44px}
+            .pl-body{padding:0 16px 18px}
+            .pl-box pre{padding:52px 16px 18px;font-size:.87rem}
+        }
+
+        .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+        .next-card{display:flex;align-items:center;gap:16px;padding:22px;border-radius:var(--r-md);background:rgba(255,255,255,.02);border:1px solid var(--border);transition:all .35s}
+        .next-card:hover{border-color:rgba(0,212,255,.28);background:rgba(0,212,255,.03);transform:translateY(-4px)}
+        .next-card .ico{width:46px;height:46px;flex-shrink:0;border-radius:13px;display:grid;place-items:center;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);color:var(--cyan);font-size:1.15rem}
+        .next-card strong{display:block;font-size:1.02rem;font-weight:800;margin-bottom:2px}
+        .next-card span{color:var(--text2);font-size:.9rem;line-height:1.5}
+        .next-card .tag{display:inline-block;font-size:.72rem;font-weight:700;color:var(--text3);border:1px solid var(--border);border-radius:5px;padding:0 6px;margin-inline-start:6px}
+
+        .cta-shell{border-radius:var(--r-xl);border:1px solid rgba(139,92,246,.18);background:linear-gradient(135deg,rgba(139,92,246,.07),rgba(0,212,255,.04));padding:52px 44px;text-align:center}
+        body.high-contrast .cta-shell{background:#000;border-color:#ffff00}
+        .cta-shell h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:14px}
+        .cta-shell p{color:var(--text2);max-width:640px;margin:0 auto 32px;font-size:1.06rem}
+        .cta-shell .btn-row{justify-content:center}
+
+        /* ===== FOOTER / FLOATS ===== */
+        .site-footer{padding:50px 0;border-top:1px solid var(--border);background:rgba(0,0,0,.5)}
+        .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+        .footer-brand strong{display:block;font-size:1.3rem;font-weight:900;margin-bottom:4px}
+        .footer-brand span{color:var(--text3);font-size:.95rem}
+        .footer-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+        .footer-links a{padding:12px 20px;border-radius:var(--r-sm);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s;display:flex;align-items:center;gap:8px}
+        .footer-links a:hover{color:var(--cyan);border-color:rgba(0,212,255,.2)}
+        .footer-copy{color:var(--text3);font-size:.9rem}
+        .wa-float{position:fixed;bottom:30px;right:30px;z-index:90;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:30px;box-shadow:0 8px 25px rgba(37,211,102,.4);transition:all .3s}
+        .wa-float:hover{transform:scale(1.1) translateY(-4px);color:#fff}
+        .a11y-widget{position:fixed;bottom:30px;left:30px;z-index:95}
+        .a11y-btn-main{width:50px;height:50px;border-radius:50%;background:var(--violet);color:#fff;border:none;font-size:24px;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 15px rgba(139,92,246,.4);transition:all .3s}
+        .a11y-btn-main:hover{transform:scale(1.05)}
+        .a11y-panel{position:absolute;bottom:60px;left:0;width:260px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px;box-shadow:0 10px 40px rgba(0,0,0,.5);backdrop-filter:blur(20px);opacity:0;visibility:hidden;transform:translateY(10px);transition:all .3s ease}
+        .a11y-panel.active{opacity:1;visibility:visible;transform:translateY(0)}
+        .a11y-panel-header{font-weight:800;font-size:1.1rem;margin-bottom:15px;display:flex;align-items:center;justify-content:space-between}
+        .a11y-close{background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.2rem}
+        .a11y-option{display:flex;align-items:center;gap:10px;width:100%;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;font-weight:600;cursor:pointer;margin-bottom:8px;transition:all .2s;text-align:left}
+        .a11y-option:hover{border-color:var(--cyan)}
+        .a11y-option.active-toggle{background:var(--cyan);color:#000;border-color:var(--cyan)}
+        body.high-contrast .a11y-btn-main{background:#ffff00;color:#000}
+        body.high-contrast .a11y-panel{background:#000;border-color:#ffff00}
+        body.high-contrast .a11y-option{background:#000;border-color:#ffff00;color:#ffff00}
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:1100px){
+            .hl-grid,.next-grid{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:768px){
+            :root{--header-h:70px}
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:fixed;top:var(--header-h);right:0;left:0;background:rgba(6,6,14,.97);backdrop-filter:blur(20px);padding:20px;border-bottom:1px solid var(--border);z-index:99}
+            .mobile-toggle{display:block}
+            .hl-grid,.next-grid,.tips-grid{grid-template-columns:1fr}
+            .viewer{padding:12px;border-radius:var(--r-md)}
+            .stage{width:100%;border-radius:12px}
+            .nav-btn{width:42px;height:42px;font-size:.95rem;opacity:1}
+            .nav-btn.prev{left:8px}
+            .nav-btn.next{right:8px}
+            .btn{width:100%}
+            .btn-row{flex-direction:column;align-items:stretch}
+            .cta-shell{padding:34px 20px}
+            .footer-inner{flex-direction:column;align-items:flex-start}
+            .wa-float{bottom:20px;right:20px;width:52px;height:52px;font-size:26px}
+            .a11y-widget{bottom:20px;left:20px}
+            .a11y-btn-main{width:44px;height:44px;font-size:20px}
+            .sec{padding:50px 0}
+            .tip-card{padding:26px 22px}
+        }
+        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+        /* ===== PRINT ===== */
+        @media print{
+            body *{visibility:hidden!important}
+            .print-note,.print-note *{visibility:visible!important}
+            .print-note{display:block!important;position:fixed;inset:0;padding:60px;font-size:20px;color:#000;background:#fff;text-align:center;line-height:1.9}
+        }
+        .print-note{display:none}
+    .resource-link{display:block}.resource-link span{color:var(--cyan);font-weight:700}.resource-link:hover{border-color:var(--cyan)}
+        .deck-hero-glow{max-width:100vw}.prompt-filters{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.filter-btn{width:auto!important;padding:8px 14px;height:auto!important}.filter-btn[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan)}.pl-group[hidden]{display:none}
+    </style>
+</head>
+<body>
+
+<a href="#deck-main" class="skip-link">Skip to main content</a>
+
+<div class="print-note">
+    <strong>AI in HR: From Tools to Smarter Ways of Working</strong><br>
+    This deck is available for online viewing only at<br>
+    https://practiai.co.il/deck-ai-in-hr.html<br><br>
+    © PractiAI | Tal Hakoki — All rights reserved
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="PractiAI home"><span class="brand-icon"><img src="assets/practiai-mark.png" alt="PractiAI" width="44" height="44"></span><div><div class="brand-name">PractiAI</div><div class="brand-sub">Tal Hakoki | AI adoption for organizations</div></div></a>
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+            <a class="nav-link" href="#deck-main">Slides</a>
+            <a class="nav-link" href="#practice">Practice files</a>
+            <a class="nav-link" href="#quickref">Quick reference</a>
+            <a class="nav-link" href="#prompts">Prompts</a>
+            <a class="nav-cta" href="#contact">Contact</a>
+        </nav>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </div>
+</header>
+
+<main id="deck-main">
+
+<!-- ===== DECK HERO ===== -->
+<section class="deck-hero">
+    <div class="deck-hero-glow" aria-hidden="true"></div>
+    <div class="container">
+        <div class="deck-crumb">
+            <a href="index.html">PractiAI — Home</a><i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+            <span>AI in HR</span>
+        </div>
+        <div class="deck-label"><i class="fa-solid fa-chalkboard-user"></i> Workshop resources · Kornit Global HR Team</div>
+        <h1>AI in HR: From tools<br><span class="accent">to smarter ways of working</span></h1>
+        <p class="lead">The full session deck, available to view online, together with every prompt we used and more prompts you can start using tomorrow. Three ways of working, each with a simple concept and a practical workflow: connecting information for better business insights, using AI to analyze and improve conversations, and personalizing employee learning and support.</p>
+        <div class="deck-meta">
+            <span><i class="fa-regular fa-images"></i> 10 slides</span>
+            <span><i class="fa-solid fa-building-columns"></i> Global HR team</span>
+            <span><i class="fa-solid fa-eye"></i> Online viewing</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===== VIEWER ===== -->
+<section class="deck-section">
+    <div class="container">
+        <div class="viewer" id="viewer" tabindex="0" aria-label="Slide viewer. Use arrow keys to navigate.">
+            <div class="stage" id="stage">
+                <div class="slide-layer" id="layerA" role="img" aria-live="polite" aria-label="Slide 1"></div>
+                <div class="slide-layer is-hidden" id="layerB" role="presentation"></div>
+                <div class="stage-guard" id="guard"></div>
+                <div class="stage-load" id="loader" aria-hidden="true"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
+                <button class="nav-btn prev" id="btnPrev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="nav-btn next" id="btnNext" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <div class="stage-bar">
+                <div class="counter" aria-live="polite"><b id="cur">1</b> / <span id="total">10</span></div>
+                <div class="progress" role="progressbar" aria-label="Deck progress"><span id="bar"></span></div>
+                <button class="tool-btn" id="btnGrid" aria-label="All slides" title="All slides"><i class="fa-solid fa-table-cells-large"></i></button>
+                <button class="tool-btn" id="btnFs" aria-label="Fullscreen" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
+            </div>
+
+            <div class="thumbs" id="thumbs" aria-label="Slide thumbnails"></div>
+
+            <div class="deck-hint">
+                <span><i class="fa-regular fa-keyboard"></i> Navigate:</span>
+                <kbd>→</kbd> next <kbd>←</kbd> previous <kbd>F</kbd> fullscreen <kbd>G</kbd> all slides
+                <span style="margin-inline-start:auto"><i class="fa-solid fa-lock"></i> Slides available for online viewing</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== HIGHLIGHTS ===== -->
+<section class="sec" id="takeaways">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-list-check"></i> What we covered</div>
+        <h2 class="sec-heading">Three ways of working<br>you can try tomorrow</h2>
+        <p class="sec-desc">Every topic followed the same pattern: a simple example of the opportunity, then a short workflow with a prompt you can copy and run. The method behind all three is the same: connect the right information, analyze it with AI, and act on a clear output.</p>
+        <div class="hl-grid">
+            <article class="hl-card">
+                <i class="ico fa-solid fa-diagram-project" aria-hidden="true"></i>
+                <h3>Connect, Analyze, Act</h3>
+                <p>The core method: combine data, documents and conversations, use AI to find patterns, gaps and alternatives, and turn the result into a dashboard, recommendation or practice workflow. The value is in the workflow, not the prompt.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-chart-line" aria-hidden="true"></i>
+                <h3>Business results + people insights</h3>
+                <p>Business challenges rarely have one explanation. Bringing manager conversations, business data and people data into one analysis surfaces trends, possible explanations and the information that is still missing.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-table-columns" aria-hidden="true"></i>
+                <h3>From a conversation to a dashboard</h3>
+                <p>A live demo with synthetic data: a manager's conversation plus CRM and HR data, analyzed by AI and turned into a management dashboard, with facts kept separate from hypotheses.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-comments" aria-hidden="true"></i>
+                <h3>Analyze and practice conversations</h3>
+                <p>Analyze, identify gaps, improve, practice. AI helps examine what was said and what was assumed, then becomes a role-play partner for the next conversation, without claiming to know anyone's intentions.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-user-graduate" aria-hidden="true"></i>
+                <h3>A personal AI learning companion</h3>
+                <p>Same organizational knowledge, different learning experiences. Organizational knowledge, personal preferences and ongoing practice turn one AI assistant into support adapted to each person's role, level, language and pace.</p>
+            </article>
+            <article class="hl-card">
+                <i class="ico fa-solid fa-gauge-high" aria-hidden="true"></i>
+                <h3>Measure what improves</h3>
+                <p>Problem, workflow, validate, measure. Start small, connect the right information, and measure better understanding, clearer communication and real learning progress, not just how often AI is used.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="sec" id="practice" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label">Practice materials</div>
+        <h2 class="sec-heading">Recreate the workflows<br>with the original demo files</h2>
+        <p class="sec-desc">All materials are fictional and use synthetic data. For workflow 1, attach the manager transcript and both CSV files. For workflow 2, use the practice conversation. For workflow 3, attach the sample communication guidelines before personalizing your learning companion.</p>
+        <div class="tips-grid"><a class="tip-card resource-link" href="resources/ai-in-hr/01_manager_meeting_transcript.txt" download><h3>Manager meeting transcript</h3><p>TXT · Workflow 1</p><span>Download file</span></a>
+<a class="tip-card resource-link" href="resources/ai-in-hr/02_crm_data_synthetic.csv" download><h3>CRM data</h3><p>CSV · Workflow 1</p><span>Download file</span></a>
+<a class="tip-card resource-link" href="resources/ai-in-hr/03_hr_data_aggregated_synthetic.csv" download><h3>Aggregated HR data</h3><p>CSV · Workflow 1</p><span>Download file</span></a>
+<a class="tip-card resource-link" href="resources/ai-in-hr/04_difficult_conversation.txt" download><h3>Practice conversation</h3><p>TXT · Workflow 2</p><span>Download file</span></a>
+<a class="tip-card resource-link" href="resources/ai-in-hr/05_communication_guidelines_fictional.pdf" download><h3>Communication guidelines</h3><p>PDF · Workflow 3</p><span>Download file</span></a>
+<a class="tip-card resource-link" href="resources/ai-in-hr/06_backup_dashboard_synthetic.png" download><h3>Example dashboard</h3><p>PNG · Workflow 1</p><span>Download file</span></a></div>
+    </div>
+</section>
+
+<!-- ===== QUICK REFERENCE ===== -->
+<section class="sec" id="quickref" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-compass"></i> Quick reference</div>
+        <h2 class="sec-heading">Before you start<br>and how to measure value</h2>
+        <p class="sec-desc">Three short checklists worth returning to. Unlike the slides, the text below can be selected and copied.</p>
+        <div class="tips-grid">
+            <article class="tip-card">
+                <div class="tip-head">
+                    <span class="ico"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+                    <h3>Use AI responsibly</h3>
+                </div>
+                <p class="note">Four rules that apply to every workflow from the session.</p>
+                <ol class="tip-list">
+                    <li>Work in the AI tools your organization has approved, and follow its AI policy.</li>
+                    <li>Use synthetic or anonymized data. Don't enter personal employee information unless it's explicitly approved.</li>
+                    <li>Check facts, numbers and conclusions before you share or act on them.</li>
+                    <li>AI supports the thinking. Decisions about people stay with people.</li>
+                </ol>
+                <div class="tip-foot"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>A shared trend is a reason to investigate, not proof of cause.</span></div>
+            </article>
+            <article class="tip-card">
+                <div class="tip-head">
+                    <span class="ico"><i class="fa-solid fa-route" aria-hidden="true"></i></span>
+                    <h3>From experiment to organizational value</h3>
+                </div>
+                <p class="note">Start small. Connect the right information. Measure what improves.</p>
+                <ol class="tip-list">
+                    <li>Problem: identify what needs to improve.</li>
+                    <li>Workflow: combine AI with the right inputs.</li>
+                    <li>Validate: review the output and its limitations.</li>
+                    <li>Measure: evaluate the actual impact.</li>
+                </ol>
+                <div class="tip-foot info"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span>Measure what improves, not just how often AI is used.</span></div>
+            </article>
+            <article class="tip-card">
+                <div class="tip-head">
+                    <span class="ico"><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i></span>
+                    <h3>What to measure</h3>
+                </div>
+                <p class="note">Examples from the three workflows.</p>
+                <ol class="tip-list">
+                    <li>Business insights: better understanding, faster analysis.</li>
+                    <li>Conversation coaching: clearer communication, better preparation.</li>
+                    <li>Personalized learning: relevant learning, measurable progress.</li>
+                </ol>
+                <div class="tip-foot info"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span>Define success before you start, and compare against a meaningful baseline.</span></div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROMPT LIBRARY ===== -->
+<section class="sec" id="prompts" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt library</div>
+        <h2 class="sec-heading">Every prompt from the session,<br>plus more to use tomorrow</h2>
+        <p class="sec-desc">The six prompts from the deck, the practice inputs from the demos, and more prompts for business insights, conversations and learning. Open one, press Copy, replace the [BRACKETS] with your own context, and review the result before you use it.</p>
+        <div class="pl-tools">
+            <button class="pl-toggle-all" type="button" id="plToggleAll">Expand all</button>
+            <span class="pl-count">21 prompts · 2 practice inputs</span>
+        </div>
+        <div class="prompt-filters" role="group" aria-label="Filter prompt library">
+<button class="tool-btn filter-btn" data-filter="all" aria-pressed="true">All</button>
+<button class="tool-btn filter-btn" data-filter="session" aria-pressed="false">From the session</button>
+<button class="tool-btn filter-btn" data-filter="business" aria-pressed="false">Business insights</button>
+<button class="tool-btn filter-btn" data-filter="conversations" aria-pressed="false">Conversations</button>
+<button class="tool-btn filter-btn" data-filter="learning" aria-pressed="false">Learning &amp; support</button>
+<button class="tool-btn filter-btn" data-filter="ai" aria-pressed="false">Working with AI</button>
+</div>
+<div class="pl-groups">
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> From the session: connecting information</h3>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">Practice inputs (synthetic data)</span>
+                        <span class="pl-tag">Demo data</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">The three inputs from the live demo. All data is fictional.</p>
+                        <ol class="pl-steps">
+                            <li>Manager conversation: &quot;We've been missing our sales targets for the past few months. Deals are taking longer to close, and I'm worried we're losing momentum. We've hired several new salespeople, but onboarding hasn't been very consistent. Two experienced team members have also left recently. I think the problem might be the team's experience level, although we've also changed our pricing and had some delays between Sales and Product.&quot;</li>
+                            <li>CRM data: win rate July 31%, August 29%, September 26%. Average sales cycle July 40 days, August 46 days, September 53 days.</li>
+                            <li>HR data (aggregated): team size 28, 30, 30. New hires 1, 3, 2. Voluntary leavers 0, 1, 2. Sales enablement completion 88%, 77%, 70%.</li>
+                        </ol>
+                        <div class="pl-box pl-box-sub">
+                            <button class="pl-copy" type="button" data-target="pl-1" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-1">Manager conversation:
+&quot;We've been missing our sales targets for the past few months. Deals are taking longer to close, and I'm worried we're losing momentum. We've hired several new salespeople, but onboarding hasn't been very consistent. Two experienced team members have also left recently. I think the problem might be the team's experience level, although we've also changed our pricing and had some delays between Sales and Product.&quot;
+
+CRM data:
+Month | Win rate | Average sales cycle
+July 2026 | 31% | 40 days
+August 2026 | 29% | 46 days
+September 2026 | 26% | 53 days
+
+HR data (aggregated):
+Month | Team size | New hires | Voluntary leavers | Sales enablement completion
+July 2026 | 28 | 1 | 0 | 88%
+August 2026 | 30 | 3 | 1 | 77%
+September 2026 | 30 | 2 | 2 | 70%</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">02</span>
+                        <span class="pl-title">Analyze</span>
+                        <span class="pl-tag">Prompt 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Paste or attach the three inputs, then run:</p>
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-2" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-2">Analyze the attached conversation and business data. Identify key trends, possible connections between business performance and workforce factors, and missing information. Separate facts from assumptions.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Expect key trends, facts separated from assumptions, possible explanations to investigate, and what's still missing.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">03</span>
+                        <span class="pl-title">Visualize</span>
+                        <span class="pl-tag">Prompt 2</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-3" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-3">Create a management dashboard showing the main trends, potential warning signs, and three questions leadership should investigate.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>A shared trend is a reason to investigate, not proof of cause. Validate before you act.</span></p>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-comments" aria-hidden="true"></i> From the session: analyzing and practicing conversations</h3>
+                <details class="pl-item is-guide">
+                    <summary>
+                        <span class="pl-num"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <span class="pl-title">Practice conversation (fictional)</span>
+                        <span class="pl-tag">Demo data</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <p class="pl-intro">Copy the conversation below and paste it before Prompt 1.</p>
+                        <ol class="pl-steps">
+                            <li>Manager: &quot;I need you to be more proactive. Everyone else understands what's expected.&quot;</li>
+                            <li>Employee: &quot;I thought the deadline was flexible. I didn't want to interrupt the group call.&quot;</li>
+                            <li>Manager: &quot;You didn't raise concerns, so I assumed you agreed.&quot;</li>
+                        </ol>
+                        <div class="pl-box pl-box-sub">
+                            <button class="pl-copy" type="button" data-target="pl-4" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-4">Manager: &quot;I need you to be more proactive. Everyone else understands what's expected.&quot;
+Employee: &quot;I thought the deadline was flexible. I didn't want to interrupt the group call.&quot;
+Manager: &quot;You didn't raise concerns, so I assumed you agreed.&quot;</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">05</span>
+                        <span class="pl-title">Analyze</span>
+                        <span class="pl-tag">Prompt 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-5" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-5">Analyze this conversation. Identify unclear expectations, assumptions, possible communication gaps, and questions that should have been asked. Suggest how to improve the next conversation without assuming anyone's intentions.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Try it yourself: what did the AI identify that you hadn't noticed?</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">06</span>
+                        <span class="pl-title">Simulate</span>
+                        <span class="pl-tag">Prompt 2</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-6" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-6">Let's practice this conversation. You play the employee, and I'll play the manager. Respond realistically, one message at a time. After four exchanges, give me feedback on my communication.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i> From the session: a personal learning companion</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">07</span>
+                        <span class="pl-title">Personalize</span>
+                        <span class="pl-tag">Prompt 1</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-7" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-7">Act as my personal workplace learning coach. Adapt your explanations to my role, knowledge level, preferred language, and learning pace. Ask me three questions to personalize the experience.</pre>
+                        </div>
+                        <p class="pl-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>For this demo, attach the fictional communication guidelines from Practice materials. In real work, use only approved organizational guidance.</span></p>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">08</span>
+                        <span class="pl-title">Practice</span>
+                        <span class="pl-tag">Prompt 2</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-8" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-8">Help me practice explaining a project delay in English. Play my manager, ask one question at a time, and give me short feedback after each answer.</pre>
+                        </div>
+                        <p class="pl-follow"><i class="fa-solid fa-arrow-turn-down" aria-hidden="true"></i> <span>Try it yourself: change the language, difficulty level, or learning pace. What changes?</span></p>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i> More prompts: business insights</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">09</span>
+                        <span class="pl-title">Prepare for a business leader conversation</span>
+                        <span class="pl-tag">Insights</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-9" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-9">Act as an experienced HR business partner. I'm meeting [ROLE] about [TOPIC]. Here is what I know so far: [SUMMARY OR DATA].
+
+Help me prepare: list what we know, what we're assuming, and what is missing. Then suggest five questions I should ask to understand the business problem before proposing any solution.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">10</span>
+                        <span class="pl-title">Find themes in open-ended feedback</span>
+                        <span class="pl-tag">Insights</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-10" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-10">Analyze the anonymized feedback below. Group the comments into 5–7 themes, show how many comments support each theme, and quote two short representative examples per theme. Flag comments that don't fit any theme. Don't try to infer who wrote any comment.
+
+[PASTE ANONYMIZED COMMENTS]</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">11</span>
+                        <span class="pl-title">Review a report before you share it</span>
+                        <span class="pl-tag">Insights</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-11" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-11">Review the attached report as a critical colleague. Which conclusions are well supported by the data? Which claims are weak or unsupported? What questions would a skeptical executive ask? Suggest what to add or remove before I share it.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">12</span>
+                        <span class="pl-title">Turn an analysis into a decision brief</span>
+                        <span class="pl-tag">Insights</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-12" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-12">Turn the analysis above into a one-page brief for [AUDIENCE]: the problem in two sentences, key findings, options with pros and cons, a recommended next step, and open questions. Keep it under 300 words and label assumptions clearly.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-handshake" aria-hidden="true"></i> More prompts: conversations</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">13</span>
+                        <span class="pl-title">Prepare a feedback conversation</span>
+                        <span class="pl-tag">Conversations</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-13" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-13">Help me prepare for a feedback conversation with [ROLE]. The situation: [FACTS ONLY].
+
+Separate observable facts from my interpretations. Suggest a clear and respectful opening, three open questions to understand their perspective, and a way to agree on next steps. Don't assume anything about the person's intentions or personality.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">14</span>
+                        <span class="pl-title">Make a message clear for a global team</span>
+                        <span class="pl-tag">Conversations</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-14" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-14">Rewrite the message below for colleagues in different countries who work in English as a second language. Use short sentences and plain words, put the main point first, and make the request, owner and deadline explicit. Then list anything that could still be misunderstood.
+
+[PASTE YOUR MESSAGE]</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">15</span>
+                        <span class="pl-title">Debrief a meeting</span>
+                        <span class="pl-tag">Conversations</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-15" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-15">From the meeting notes below, list the decisions made, action items with owners and dates, open questions, and points where participants may have understood things differently. If an owner or date is missing, mark it as TBD. Don't guess.
+
+[PASTE MEETING NOTES]</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">16</span>
+                        <span class="pl-title">Rehearse a challenging stakeholder</span>
+                        <span class="pl-tag">Conversations</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-16" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-16">Play a [ROLE, e.g. skeptical department head] who disagrees with my proposal to [PROPOSAL]. Push back realistically, one message at a time. After five exchanges, step out of the role and tell me which arguments worked, which didn't, and what I should prepare better.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i> More prompts: learning and support</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">17</span>
+                        <span class="pl-title">Explain it at my level</span>
+                        <span class="pl-tag">Learning</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-17" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-17">Using only the attached [POLICY OR PROCEDURE], explain [TOPIC] to someone who is [NEW TO THE ROLE / EXPERIENCED]. Start with a three-sentence summary, then give a short example from daily work. If the document doesn't cover something, say so. Don't fill the gap with assumptions.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">18</span>
+                        <span class="pl-title">Build a 30-60-90 day onboarding plan</span>
+                        <span class="pl-tag">Learning</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-18" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-18">Create a 30-60-90 day onboarding plan for a new [ROLE] in [TEAM]. For each period, include goals, key people to meet, knowledge to acquire, and a simple way to check progress. If important information is missing, ask me up to three questions first.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">19</span>
+                        <span class="pl-title">Turn a document into practice</span>
+                        <span class="pl-tag">Learning</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-19" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-19">Turn the attached document into a short learning exercise: five questions based on realistic work situations, with the correct answer and a one-line explanation for each. Base everything only on the document.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">20</span>
+                        <span class="pl-title">Create a personal learning plan</span>
+                        <span class="pl-tag">Learning</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-20" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-20">I want to improve [SKILL]. I have [TIME PER WEEK] and prefer [FORMAT, e.g. short exercises, reading, practice conversations]. Ask me three questions about my current level, then create a four-week plan with one small practice task per week and a simple way to measure progress.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+            <section class="pl-group">
+                <h3 class="pl-group-title"><i class="fa-solid fa-robot" aria-hidden="true"></i> More prompts: working well with AI</h3>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">21</span>
+                        <span class="pl-title">Ask me first</span>
+                        <span class="pl-tag">Any task</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-21" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-21">Before you answer, ask me up to five questions that would help you understand my goal, audience, context and quality standard. Wait for my answers before you start.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">22</span>
+                        <span class="pl-title">Challenge your own answer</span>
+                        <span class="pl-tag">Any task</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-22" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-22">Review your previous answer critically. What might be wrong, missing or based on assumptions? What would an expert in [FIELD] disagree with? Then give me an improved version and list what I should still verify myself.</pre>
+                        </div>
+                    </div>
+                </details>
+                <details class="pl-item">
+                    <summary>
+                        <span class="pl-num">23</span>
+                        <span class="pl-title">Save it as a reusable template</span>
+                        <span class="pl-tag">Any task</span>
+                        <i class="pl-chev fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    <div class="pl-body">
+                        <div class="pl-box">
+                            <button class="pl-copy" type="button" data-target="pl-23" aria-label="Copy"><i class="fa-regular fa-copy" aria-hidden="true"></i> <span>Copy</span></button>
+                            <pre id="pl-23">Turn the process we just went through into a reusable prompt template I can use again. Use [PLACEHOLDERS] for the parts that change each time, and add a short checklist for reviewing the output.</pre>
+                        </div>
+                    </div>
+                </details>
+            </section>
+        </div>
+    </div>
+</section>
+
+<!-- ===== NEXT STEPS ===== -->
+<section class="sec" style="padding-top:0">
+    <div class="container">
+        <div class="sec-label"><i class="fa-solid fa-forward"></i> Keep going</div>
+        <h2 class="sec-heading">More from PractiAI</h2>
+        <div class="next-grid">
+            <a class="next-card" href="index.html"><span class="ico"><i class="fa-solid fa-house"></i></span><span><strong>PractiAI main site</strong><span>Workshops, adoption programs and case studies<span class="tag">HE</span></span></span></a>
+            <a class="next-card" href="corporate-prompts.html"><span class="ico"><i class="fa-solid fa-layer-group"></i></span><span><strong>Corporate prompt library</strong><span>Ready-made templates for writing and analysis<span class="tag">HE</span></span></span></a>
+            <a class="next-card" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener"><span class="ico"><i class="fa-brands fa-linkedin"></i></span><span><strong>Connect on LinkedIn</strong><span>Practical AI notes from real organizations</span></span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="sec" id="contact" style="padding-top:0">
+    <div class="container">
+        <div class="cta-shell">
+            <h2>Want this session <span class="grad-text">for your team?</span></h2>
+            <p>Every session is rebuilt around the actual roles, tasks and tools of the organization, so what people learn becomes part of their work the next day.</p>
+            <div class="btn-row">
+                <a class="btn btn-primary" href="mailto:hakokit@gmail.com?subject=Workshop%20enquiry%20%E2%80%94%20AI%20in%20HR%3A%20From%20Tools%20to%20Smarter%20Ways%20of%20Working"><i class="fa-regular fa-envelope"></i> Email me</a>
+                <a class="btn btn-wa" href="https://wa.me/972506915269?text=Hi%20Tal%2C%20I%20viewed%20the%20%22AI%20in%20HR%3A%20From%20Tools%20to%20Smarter%20Ways%20of%20Working%22%20deck%20on%20your%20site%20and%20would%20like%20to%20hear%20about%20a%20workshop%20for%20my%20organization" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem"></i> Message on WhatsApp</a>
+                <a class="btn btn-ghost" href="index.html"><i class="fa-solid fa-arrow-right"></i> Visit the main site</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ===== OVERVIEW ===== -->
+<div class="overview" id="overview" role="dialog" aria-modal="true" aria-label="All slides">
+    <div class="ov-head">
+        <h2>All slides <span style="color:var(--text3);font-weight:600;font-size:1rem">(10)</span></h2>
+        <button class="tool-btn" id="ovClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="ov-grid" id="ovGrid"></div>
+</div>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-brand"><strong>PractiAI</strong><span>Tal Hakoki | AI adoption for organizations</span></div>
+        <div class="footer-links">
+            <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Email</a>
+            <a href="https://wa.me/972506915269" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> +972 50-691-5269</a>
+            <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+            <a href="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Main site</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 PractiAI. All Rights Reserved.</div>
+    </div>
+</footer>
+
+<div class="a11y-widget">
+    <button class="a11y-btn-main" id="a11yMainBtn" aria-label="Accessibility options" aria-expanded="false"><i class="fa-solid fa-universal-access"></i></button>
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibility options">
+        <div class="a11y-panel-header"><span>Accessibility</span><button class="a11y-close" id="a11yCloseBtn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
+        <button class="a11y-option" id="toggleContrast"><i class="fa-solid fa-circle-half-stroke"></i> High contrast</button>
+        <button class="a11y-option" id="toggleFontSize"><i class="fa-solid fa-magnifying-glass-plus"></i> Larger text</button>
+        <button class="a11y-option" id="toggleMotion"><i class="fa-solid fa-pause"></i> Reduce motion</button>
+    </div>
+</div>
+
+<a href="https://wa.me/972506915269?text=Hi%20Tal%2C%20I%20viewed%20the%20%22AI%20in%20HR%3A%20From%20Tools%20to%20Smarter%20Ways%20of%20Working%22%20deck%20on%20your%20site%20and%20would%20like%20to%20hear%20about%20a%20workshop%20for%20my%20organization" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+(function(){
+    'use strict';
+
+    /* ===== DECK CONFIG (generated) ===== */
+    var DECK = {
+        path: 'slides/ai-in-hr/',
+        thumbPath: 'slides/ai-in-hr/thumbs/',
+        count: 10,
+        v: '1791892555448',
+        titles: ["Slide 1: AI IN HR AI in HR: From Tools to Smarter Ways of Working Connecting information. Improving decisions. Personalizing the ","Slide 2: CORE METHODOLOGY The Real Opportunity: Connect, Analyze, Act CONNECT Data, documents, conversations, systems → ANALYZE P","Slide 3: CONCEPT · CONNECTING INFORMATION Connecting Business Results with People Insights SOURCES WHAT WE GE T Manager Conversat","Slide 4: HOW IT'S DONE · LIVE DEMO SYNTHETIC DATA From a Manager's Conversation to a Business Dashboard INPUT Manager Conversatio","Slide 5: CONCEPT · BETTER CONVERSATIONS Turning Conversations into Better Decisions ANALYZE → IDENTIFY GAPS → IMPROVE → PRACTICE ","Slide 6: HOW IT'S DONE FICTIONAL CONVERSATION Analyze and Practice a Difficult Conversation INPUT · THE CONVERSATION Manager: \"I ","Slide 7: CONCEPT · PERSONALIZED LEARNING A Personal AI Guide for Every Employee Same organizational knowledge Approved guidelines","Slide 8: HOW IT'S DONE PERSONAL LEARNING COMPANION Build a Personalized AI Learning Companion Organizational Knowledge + Personal","Slide 9: FROM EXPERIMENT TO VALUE From Experiment to Organizational Value 1 PROBLEM What needs to improve? → 2 WORKFLOW AI + the ","Slide 10: DISCUSSION · 15 MINUTES What Could We Do Differently Tomorrow? 01 Which workflow could we improve with AI? 02 What infor"]
+    };
+
+    var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+    // ?v=... מבטיח שדפדפן שכבר ביקר בעמוד יטען את השקפים המעודכנים ולא גרסה מהמטמון
+    var slideUrl = function(n){ return DECK.path + 'slide-' + pad(n) + '.webp?v=' + DECK.v; };
+    var thumbUrl = function(n){ return DECK.thumbPath + 'thumb-' + pad(n) + '.webp?v=' + DECK.v; };
+
+    var stage = document.getElementById('stage');
+    var layerA = document.getElementById('layerA');
+    var layerB = document.getElementById('layerB');
+    var loader = document.getElementById('loader');
+    var curEl  = document.getElementById('cur');
+    var bar    = document.getElementById('bar');
+    var thumbsEl = document.getElementById('thumbs');
+    var ovGrid = document.getElementById('ovGrid');
+    var overview = document.getElementById('overview');
+    var btnPrev = document.getElementById('btnPrev');
+    var btnNext = document.getElementById('btnNext');
+    var viewer = document.getElementById('viewer');
+
+    var index = 1;
+    var front = layerA;
+    var back  = layerB;
+    var cache = {};
+
+    function preload(n){
+        if (n < 1 || n > DECK.count || cache[n]) return;
+        var img = new Image();
+        img.src = slideUrl(n);
+        cache[n] = img;
+    }
+
+    function show(n, instant){
+        n = Math.min(Math.max(n, 1), DECK.count);
+        if (n === index && !instant) return;
+        index = n;
+
+        var url = slideUrl(n);
+        loader.classList.add('on');
+
+        var img = new Image();
+        img.onload = function(){
+            if (n !== index) return;
+            loader.classList.remove('on');
+            back.style.backgroundImage = 'url("' + url + '")';
+            back.classList.remove('is-hidden');
+            front.classList.add('is-hidden');
+            var tmp = front; front = back; back = tmp;
+            front.setAttribute('role', 'img');
+            front.setAttribute('aria-label', DECK.titles[n-1] || ('Slide ' + n));
+            back.setAttribute('role', 'presentation');
+            back.removeAttribute('aria-label');
+        };
+        img.onerror = function(){ loader.classList.remove('on'); };
+        img.src = url;
+        cache[n] = img;
+
+        curEl.textContent = n;
+        bar.style.width = (n / DECK.count * 100) + '%';
+        btnPrev.disabled = (n === 1);
+        btnNext.disabled = (n === DECK.count);
+
+        var thumbs = thumbsEl.children;
+        for (var i = 0; i < thumbs.length; i++){
+            thumbs[i].classList.toggle('active', (i + 1) === n);
+        }
+        var active = thumbs[n-1];
+        if (!instant && active && active.scrollIntoView) {
+            active.scrollIntoView({ block:'nearest', inline:'center', behavior: document.body.classList.contains('no-motion') ? 'auto' : 'smooth' });
+        }
+
+        if (!instant && history.replaceState) history.replaceState(null, '', '#' + n);
+        preload(n + 1); preload(n + 2); preload(n - 1);
+    }
+
+    /* build thumbnails + overview */
+    var thumbObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries, obs){
+        entries.forEach(function(e){
+            if (e.isIntersecting){
+                e.target.style.backgroundImage = 'url("' + e.target.dataset.src + '")';
+                obs.unobserve(e.target);
+            }
+        });
+    }, { rootMargin: '250px' }) : null;
+
+    for (var i = 1; i <= DECK.count; i++){
+        (function(n){
+            var t = document.createElement('button');
+            t.className = 'thumb';
+            t.type = 'button';
+            t.dataset.src = thumbUrl(n);
+            t.setAttribute('aria-label', 'Go to slide ' + n);
+            t.innerHTML = '<i>' + n + '</i>';
+            t.addEventListener('click', function(){ show(n); });
+            if (thumbObserver) { thumbObserver.observe(t); } else { t.style.backgroundImage = 'url("' + thumbUrl(n) + '")'; }
+            thumbsEl.appendChild(t);
+
+            var o = document.createElement('button');
+            o.className = 'ov-item';
+            o.type = 'button';
+            o.dataset.src = thumbUrl(n);
+            o.setAttribute('aria-label', 'Go to slide ' + n);
+            o.innerHTML = '<i>' + n + '</i>';
+            o.addEventListener('click', function(){ closeOverview(); show(n); });
+            o.style.backgroundImage = 'url("' + thumbUrl(n) + '")';
+            ovGrid.appendChild(o);
+        })(i);
+    }
+
+    /* navigation */
+    btnPrev.addEventListener('click', function(){ show(index - 1); });
+    btnNext.addEventListener('click', function(){ show(index + 1); });
+
+    document.addEventListener('keydown', function(e){
+        if (e.target && (e.target.closest('input,textarea,select,button,a,summary,[contenteditable]'))) return;
+        if (!viewer.contains(document.activeElement) && !document.fullscreenElement && !overview.classList.contains('active')) return;
+        var k = e.key;
+        if (k === 'ArrowRight' || k === 'PageDown' || k === ' ') { e.preventDefault(); show(index + 1); }
+        else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); show(index - 1); }
+        else if (k === 'Home') { e.preventDefault(); show(1); }
+        else if (k === 'End') { e.preventDefault(); show(DECK.count); }
+        else if (k === 'Escape') { closeOverview(); }
+        else if (k === 'g' || k === 'G') { toggleOverview(); }
+        else if (k === 'f' || k === 'F') { toggleFs(); }
+    });
+
+    /* touch swipe */
+    var tx = 0, ty = 0;
+    stage.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY; }, { passive:true });
+    stage.addEventListener('touchend', function(e){
+        var dx = e.changedTouches[0].clientX - tx;
+        var dy = e.changedTouches[0].clientY - ty;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { show(dx > 0 ? index - 1 : index + 1); }
+    }, { passive:true });
+
+    /* click on stage sides */
+    document.getElementById('guard').addEventListener('click', function(e){
+        var r = stage.getBoundingClientRect();
+        var x = e.clientX - r.left;
+        if (x > r.width * 0.65) { show(index + 1); }
+        else if (x < r.width * 0.35) { show(index - 1); }
+    });
+
+    /* view-only deterrents */
+    ['contextmenu','dragstart','selectstart'].forEach(function(ev){
+        stage.addEventListener(ev, function(e){ e.preventDefault(); });
+        thumbsEl.addEventListener(ev, function(e){ e.preventDefault(); });
+        ovGrid.addEventListener(ev, function(e){ e.preventDefault(); });
+    });
+
+    /* overview */
+    function openOverview(){ overview.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeOverview(){ overview.classList.remove('active'); document.body.style.overflow = ''; }
+    function toggleOverview(){ overview.classList.contains('active') ? closeOverview() : openOverview(); }
+    document.getElementById('btnGrid').addEventListener('click', toggleOverview);
+    document.getElementById('ovClose').addEventListener('click', closeOverview);
+    overview.addEventListener('click', function(e){ if (e.target === overview) closeOverview(); });
+
+    /* fullscreen */
+    function toggleFs(){
+        if (!document.fullscreenElement) {
+            if (viewer.requestFullscreen) viewer.requestFullscreen();
+            else if (viewer.webkitRequestFullscreen) viewer.webkitRequestFullscreen();
+        } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+        }
+    }
+    document.getElementById('btnFs').addEventListener('click', toggleFs);
+    document.addEventListener('fullscreenchange', function(){
+        var b = document.getElementById('btnFs');
+        b.classList.toggle('on', !!document.fullscreenElement);
+        b.innerHTML = document.fullscreenElement ? '<i class="fa-solid fa-compress"></i>' : '<i class="fa-solid fa-expand"></i>';
+    });
+
+    /* header + mobile menu */
+    var header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', function(){ header.classList.toggle('scrolled', window.scrollY > 40); }, { passive:true });
+    var mt = document.getElementById('mobileToggle');
+    var nl = document.getElementById('navLinks');
+    mt.addEventListener('click', function(){
+        var open = nl.classList.toggle('open');
+        mt.setAttribute('aria-expanded', open ? 'true' : 'false');
+        mt.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ nl.classList.remove('open'); mt.innerHTML = '<i class="fa-solid fa-bars"></i>'; }); });
+
+    /* accessibility widget */
+    var a11yBtn = document.getElementById('a11yMainBtn');
+    var a11yPanel = document.getElementById('a11yPanel');
+    a11yBtn.addEventListener('click', function(){
+        var on = a11yPanel.classList.toggle('active');
+        a11yBtn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    document.getElementById('a11yCloseBtn').addEventListener('click', function(){ a11yPanel.classList.remove('active'); });
+
+    function applyPref(key, cls, btnId, apply){
+        var on = localStorage.getItem(key) === '1';
+        var btn = document.getElementById(btnId);
+        var set = function(v){
+            if (apply) { apply(v); } else { document.body.classList.toggle(cls, v); }
+            btn.classList.toggle('active-toggle', v);
+            localStorage.setItem(key, v ? '1' : '0');
+        };
+        set(on);
+        btn.addEventListener('click', function(){ set(!(localStorage.getItem(key) === '1')); });
+    }
+    applyPref('pa_contrast', 'high-contrast', 'toggleContrast');
+    applyPref('pa_motion', 'no-motion', 'toggleMotion');
+    applyPref('pa_font', '', 'toggleFontSize', function(v){
+        document.documentElement.style.setProperty('--base-font-size', v ? '115%' : '100%');
+    });
+
+    /* ===== prompt library: copy + expand all ===== */
+    (function(){
+        var COPIED = 'Copied', EXPAND = 'Expand all', COLLAPSE = 'Collapse all';
+        var items = document.querySelectorAll('.pl-item');
+        if (!items.length) return;
+
+        function writeText(text){
+            if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+            // נפילה לאחור לדפדפנים ישנים או להקשר לא מאובטח
+            return new Promise(function(resolve, reject){
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.cssText = 'position:absolute;left:-9999px;top:0';
+                document.body.appendChild(ta);
+                ta.select();
+                var ok = false;
+                try { ok = document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(ta);
+                ok ? resolve() : reject();
+            });
+        }
+
+        document.querySelectorAll('.pl-copy').forEach(function(btn){
+            btn.addEventListener('click', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var pre = document.getElementById(btn.dataset.target);
+                if (!pre) return;
+                var label = btn.querySelector('span');
+                var original = label.textContent;
+                writeText(pre.textContent).then(function(){
+                    btn.classList.add('done');
+                    label.textContent = COPIED;
+                    setTimeout(function(){ btn.classList.remove('done'); label.textContent = original; }, 1800);
+                }).catch(function(){
+                    // אם ההעתקה נחסמה — מסמנים את הטקסט ומיידעים שצריך להעתיק ידנית
+                    var r = document.createRange();
+                    r.selectNodeContents(pre);
+                    var s = window.getSelection();
+                    s.removeAllRanges();
+                    s.addRange(r);
+                    label.textContent = 'Selected — press Ctrl+C';
+                    setTimeout(function(){ label.textContent = original; }, 2600);
+                });
+            });
+        });
+
+        var toggle = document.getElementById('plToggleAll');
+        if (toggle) {
+            toggle.addEventListener('click', function(){
+                var open = toggle.dataset.open === '1';
+                items.forEach(function(d){ d.open = !open; });
+                toggle.dataset.open = open ? '0' : '1';
+                toggle.textContent = open ? EXPAND : COLLAPSE;
+            });
+        }
+
+        // כניסה ישירה לפרומפט לפי כתובת, למשל ‎#pl-7
+        var h = (location.hash || '').replace('#','');
+        if (/^pl-\d+$/.test(h)) {
+            var pre = document.getElementById(h);
+            if (pre) {
+                var det = pre.closest('.pl-item');
+                if (det) { det.open = true; setTimeout(function(){ det.scrollIntoView({ block:'center' }); }, 60); }
+            }
+        }
+    })();
+
+    /* Prompt category filters */
+    var categories = ['session','session','session','business','conversations','learning','ai'];
+    var groups = document.querySelectorAll('.pl-group');
+    document.querySelectorAll('.filter-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            document.querySelectorAll('.filter-btn').forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+            groups.forEach(function(group, i){ group.hidden = btn.dataset.filter !== 'all' && categories[i] !== btn.dataset.filter; });
+        });
+    });
+    /* boot */
+    var start = parseInt((location.hash || '').replace('#',''), 10);
+    show(start > 0 && start <= DECK.count ? start : 1, true);
+    window.addEventListener('hashchange', function(){
+        var n = parseInt((location.hash || '').replace('#',''), 10);
+        if (n > 0 && n <= DECK.count && n !== index) show(n);
+    });
+})();
+</script>
+</body>
+</html>
