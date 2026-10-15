@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ערכת ה-AI של המורה | PractiAI</title>
+    <meta name="description" content="הערכה המלווה את ההרצאה &quot;בינה מלאכותית בחינוך&quot;: מצגת ההרצאה, 9 פרומפטים מוכנים להעתקה לתכנון שיעור, הוראה והערכה, ו-7 הרגלים לעבודה נכונה עם AI.">
+    <meta name="author" content="טל חקוקי">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <link rel="canonical" href="https://practiai.co.il/ai-education-kit/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:site_name" content="PractiAI">
+    <meta property="og:title" content="ערכת ה-AI של המורה | PractiAI">
+    <meta property="og:description" content="9 פרומפטים ורעיונות מעשיים שאפשר לנסות כבר בשיעור הבא.">
+    <meta property="og:image" content="https://practiai.co.il/ai-education-kit/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ערכת ה-AI של המורה · PractiAI">
+    <meta property="og:url" content="https://practiai.co.il/ai-education-kit/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../assets/vendor/fonts/google-fonts.css">
+    <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #06060e;
+            --bg-card: rgba(12, 14, 24, 0.65);
+            --border: rgba(255, 255, 255, 0.08);
+            --cyan: #00d4ff;
+            --violet: #8b5cf6;
+            --violet-text: #a78bfa;
+            --rose: #f43f5e;
+            --grad: linear-gradient(135deg, var(--cyan), var(--violet));
+            --grad-full: linear-gradient(135deg, var(--cyan), var(--violet), var(--rose));
+            --text: #f1f5f9;
+            --text2: #a3b0c2;
+            --text3: #8592a6;
+            --mark-bg: rgba(0, 212, 255, 0.13);
+            --mark-text: #8ae9ff;
+            --r-sm: 12px; --r-md: 20px; --r-lg: 28px; --r-xl: 36px;
+            --header-h: 80px;
+            --container: 1180px;
+            --base-font-size: 100%;
+        }
+
+        body.high-contrast {
+            --bg: #000000; --bg-card: #000000; --border: #ffff00;
+            --cyan: #ffff00; --violet: #ffff00; --violet-text: #ffff00; --rose: #ffff00;
+            --grad: linear-gradient(135deg, #ffff00, #ffff00);
+            --grad-full: linear-gradient(135deg, #ffff00, #ffff00, #ffff00);
+            --text: #ffffff; --text2: #ffff00; --text3: #cccccc;
+            --mark-bg: #ffff00; --mark-text: #000000;
+        }
+
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:hidden;overscroll-behavior-x:none;font-size:var(--base-font-size);transition:font-size .3s;scroll-padding-top:calc(var(--header-h) + 12px)}
+        body{background:var(--bg);color:var(--text);font-family:'Heebo',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        body.no-motion *,body.no-motion *::before,body.no-motion *::after{animation:none!important;transition:none!important}
+        body.no-motion{scroll-behavior:auto}
+        ::selection{background:rgba(139,92,246,.4);color:#fff}
+        img{max-width:100%;display:block}
+        a{color:inherit;text-decoration:none}
+        button,input,select,textarea{font:inherit}
+        :focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:4px}
+        .container{max-width:var(--container);margin:0 auto;padding:0 28px;width:100%}
+        .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+        .skip-link{position:absolute;top:-50px;right:0;background:var(--violet);color:#fff;padding:8px 16px;z-index:9999;transition:top .3s;border-radius:0 0 0 8px;font-weight:700}
+        .skip-link:focus{top:0}
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+        body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 80% 0%,rgba(0,212,255,.10),transparent 35%),radial-gradient(circle at 10% 30%,rgba(139,92,246,.10),transparent 32%)}
+        body.high-contrast::before{display:none}
+
+        /* ===== BUTTONS ===== */
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;font-size:1rem;font-weight:700;border-radius:var(--r-sm);border:none;cursor:pointer;transition:all .4s cubic-bezier(.19,1,.22,1);position:relative;overflow:hidden;text-align:center}
+        .btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 25px rgba(0,212,255,.2)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 35px rgba(0,212,255,.35)}
+        .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(12px)}
+        .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px)}
+        .btn-wa{background:#15803d;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.25)}
+        .btn-wa:hover{background:#166534;transform:translateY(-3px)}
+        .btn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+        body.high-contrast .btn-primary,body.high-contrast .btn-wa{background:#ffff00;color:#000;box-shadow:none}
+        body.high-contrast .btn-ghost{background:#000;border-color:#ffff00;color:#ffff00}
+
+        /* ===== HEADER ===== */
+        .site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);transition:all .4s ease}
+        .site-header.scrolled{background:rgba(6,6,14,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border)}
+        body.high-contrast .site-header.scrolled{background:#000}
+        .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+        .brand{display:flex;align-items:center;gap:14px}
+        .brand-icon{width:44px;height:44px;flex-shrink:0;border-radius:var(--r-sm);display:grid;place-items:center;background:#fff;padding:4px;overflow:hidden}
+        .brand-icon img{width:100%;height:100%;object-fit:contain}
+        .brand-name{font-size:1.2rem;font-weight:900;letter-spacing:-.5px}
+        .brand-sub{font-size:.78rem;color:var(--text3);font-weight:500}
+        .nav-links{display:flex;align-items:center;gap:8px}
+        .nav-link{padding:10px 18px;border-radius:10px;color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s}
+        .nav-link:hover{color:var(--text);background:rgba(255,255,255,.04)}
+        .nav-cta{padding:10px 24px;border-radius:10px;background:var(--grad);color:#fff;font-weight:700;font-size:.95rem;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(0,212,255,.3)}
+        .mobile-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:8px}
+        body.high-contrast .nav-cta{background:#ffff00;color:#000}
+
+        /* ===== HERO ===== */
+        .hero{padding:calc(var(--header-h) + 46px) 0 30px;position:relative}
+        .hero-glow{position:absolute;top:-120px;right:50%;transform:translateX(50%);width:760px;max-width:100%;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.10),transparent 70%);pointer-events:none}
+        body.high-contrast .hero-glow{display:none}
+        .crumb{display:flex;align-items:center;gap:8px;color:var(--text3);font-size:.9rem;font-weight:600;margin-bottom:16px;flex-wrap:wrap}
+        .crumb a:hover{color:var(--cyan)}
+        .label{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:999px;background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.22);font-size:.9rem;font-weight:700;color:var(--violet-text);margin-bottom:18px}
+        .hero h1{font-size:clamp(2.1rem,5.4vw,3.6rem);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:14px}
+        .hero h1 .accent{background:var(--grad-full);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero .sub{font-size:clamp(1.15rem,2.4vw,1.45rem);font-weight:700;color:var(--text);max-width:760px;margin-bottom:14px}
+        .hero .lead{color:var(--text2);font-size:clamp(1rem,1.9vw,1.12rem);max-width:760px}
+        .hero .lead p+p{margin-top:8px}
+        .quick-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+        .quick-nav a{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:var(--r-md);background:rgba(255,255,255,.03);border:1px solid var(--border);font-weight:700;font-size:.98rem;transition:all .3s}
+        .quick-nav a:hover{border-color:rgba(0,212,255,.35);transform:translateY(-3px)}
+        .quick-nav .ico{width:40px;height:40px;flex-shrink:0;border-radius:11px;display:grid;place-items:center;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.16);color:var(--cyan)}
+        .quick-nav small{display:block;color:var(--text3);font-weight:500;font-size:.82rem;line-height:1.4}
+        .hero-actions{margin-top:22px}
+        body.high-contrast .quick-nav a{background:#000;border-color:#ffff00}
+
+        /* ===== SECTIONS ===== */
+        .sec{padding:64px 0}
+        .sec-heading{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;line-height:1.15;letter-spacing:-1px;margin-bottom:.8rem}
+        .sec-desc{font-size:clamp(1rem,2vw,1.12rem);color:var(--text2);max-width:720px}
+
+        /* ===== DECK ===== */
+        .deck-shell{margin-top:26px;border-radius:var(--r-xl);border:1px solid var(--border);background:linear-gradient(180deg,rgba(12,14,24,.7),rgba(6,6,14,.9));padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+        body.high-contrast .deck-shell{background:#000;border-color:#ffff00;box-shadow:none}
+        .deck-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--border);background:#06060e}
+        .deck-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+        .deck-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px;flex-wrap:wrap}
+        .deck-hint{color:var(--text2);font-size:.92rem;display:flex;align-items:center;gap:8px}
+        .deck-hint i{color:var(--cyan)}
+        .deck-tools{display:flex;gap:10px;flex-wrap:wrap}
+        .tool-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);font-size:.92rem;font-weight:700;cursor:pointer;transition:all .3s}
+        .tool-btn:hover{color:var(--cyan);border-color:rgba(0,212,255,.35)}
+        .tool-btn i{color:var(--cyan)}
+        body.high-contrast .tool-btn{background:#000;border-color:#ffff00;color:#ffff00}
+
+        /* ===== PROMPT LIBRARY ===== */
+        .filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+        .filter-btn{padding:10px 18px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text2);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s}
+        .filter-btn:hover{color:var(--text);border-color:rgba(0,212,255,.35)}
+        .filter-btn[aria-pressed="true"]{background:var(--grad);color:#fff;border-color:transparent}
+        .filter-btn .count{font-weight:500;opacity:.85;margin-inline-start:4px}
+        body.high-contrast .filter-btn{background:#000;color:#ffff00;border-color:#ffff00}
+        body.high-contrast .filter-btn[aria-pressed="true"]{background:#ffff00;color:#000}
+        .filter-status{color:var(--text3);font-size:.88rem;margin-top:12px}
+
+        .prompt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr));gap:18px;margin-top:20px;align-items:start}
+        .p-card{border:1px solid var(--border);border-radius:var(--r-lg);background:var(--bg-card);backdrop-filter:blur(15px);overflow:hidden;transition:border-color .3s;display:flex;flex-direction:column}
+        .p-card:hover{border-color:rgba(0,212,255,.25)}
+        .p-card[hidden]{display:none}
+        body.high-contrast .p-card{background:#000;border-color:#ffff00}
+        .p-head{display:flex;align-items:flex-start;gap:14px;padding:22px 22px 0}
+        .p-num{flex-shrink:0;min-width:38px;height:38px;display:grid;place-items:center;font-family:'Space Grotesk','Heebo',sans-serif;font-size:.95rem;font-weight:700;color:var(--cyan);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.18);border-radius:10px}
+        .p-titles{flex:1;min-width:0}
+        .p-cat{display:block;font-size:.8rem;font-weight:700;color:var(--violet-text);margin-bottom:2px}
+        .p-title{font-size:1.12rem;font-weight:800;line-height:1.4}
+        .p-toggle{display:none;flex-shrink:0;width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text2);cursor:pointer;place-items:center}
+        .p-toggle i{transition:transform .3s}
+        .p-card.open .p-toggle i{transform:rotate(180deg)}
+        .p-body{padding:14px 22px 0}
+        .p-when{color:var(--text2);font-size:.97rem;line-height:1.65;margin-bottom:14px}
+        .p-when strong{color:var(--text);font-weight:700}
+        .p-box{border:1px solid var(--border);border-radius:var(--r-sm);background:rgba(255,255,255,.035)}
+        body.high-contrast .p-box{background:#000}
+        .p-box pre{margin:0;padding:18px 20px;font-family:'Heebo',sans-serif;font-size:.95rem;line-height:1.85;color:var(--text);white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;direction:rtl;text-align:right;unicode-bidi:plaintext}
+        .p-box mark{background:var(--mark-bg);color:var(--mark-text);font-weight:700;border-radius:5px;padding:0 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+        .p-foot{padding:16px 22px 22px;margin-top:auto}
+        .copy-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:11px;border:1px solid rgba(0,212,255,.35);background:rgba(0,212,255,.08);color:var(--text);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .25s;min-width:150px}
+        .copy-btn i{color:var(--cyan)}
+        .copy-btn:hover{background:rgba(0,212,255,.16)}
+        .copy-btn.done{background:#15803d;border-color:#15803d;color:#fff}
+        .copy-btn.done i{color:#fff}
+        body.high-contrast .copy-btn{background:#000;border-color:#ffff00;color:#ffff00}
+        body.high-contrast .copy-btn i{color:#ffff00}
+        body.high-contrast .copy-btn.done{background:#ffff00;color:#000}
+        body.high-contrast .copy-btn.done i{color:#000}
+
+        /* ===== HABITS ===== */
+        .habits{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px;margin-top:30px;counter-reset:habit}
+        .habit{padding:24px 22px;border-radius:var(--r-lg);background:var(--bg-card);border:1px solid var(--border);position:relative;transition:border-color .3s}
+        .habit:hover{border-color:rgba(139,92,246,.35)}
+        .habit::before{counter-increment:habit;content:counter(habit,decimal-leading-zero);display:inline-block;font-family:'Space Grotesk','Heebo',sans-serif;font-size:.85rem;font-weight:700;color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.16);border-radius:8px;padding:2px 9px;margin-bottom:12px}
+        .habit h3{font-size:1.08rem;font-weight:800;line-height:1.4;margin-bottom:6px}
+        .habit p{color:var(--text2);font-size:.97rem;line-height:1.65}
+        body.high-contrast .habit{background:#000;border-color:#ffff00}
+
+        /* ===== CHALLENGE ===== */
+        .challenge{position:relative;border-radius:var(--r-xl);padding:44px 40px;background:linear-gradient(135deg,rgba(0,212,255,.10),rgba(139,92,246,.10) 55%,rgba(244,63,94,.07));border:1px solid rgba(0,212,255,.28);overflow:hidden}
+        .challenge::after{content:"";position:absolute;inset-inline-start:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,.18),transparent 70%);pointer-events:none}
+        body.high-contrast .challenge{background:#000;border:2px solid #ffff00}
+        body.high-contrast .challenge::after{display:none}
+        .challenge .label{background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.3);color:var(--cyan)}
+        .challenge h2{font-size:clamp(1.7rem,3.8vw,2.4rem);font-weight:900;letter-spacing:-.5px;margin-bottom:16px}
+        .challenge-text{font-size:clamp(1.02rem,2vw,1.15rem);max-width:760px;display:flex;flex-direction:column;gap:6px}
+        .challenge-text p:last-child{color:var(--text2);margin-top:8px}
+
+        /* ===== CTA ===== */
+        .cta-shell{border-radius:var(--r-xl);border:1px solid rgba(139,92,246,.2);background:linear-gradient(135deg,rgba(139,92,246,.07),rgba(0,212,255,.04));padding:48px 40px;text-align:center}
+        body.high-contrast .cta-shell{background:#000;border-color:#ffff00}
+        .cta-shell h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:12px}
+        .cta-shell > p{color:var(--text2);max-width:640px;margin:0 auto 26px;font-size:1.08rem}
+        .cta-shell .btn-row{justify-content:center}
+        .contact-row{margin-top:16px}
+        .cta-sign{margin-top:28px;color:var(--text3);font-weight:700;font-size:.98rem}
+
+        /* ===== SHARE ===== */
+        .share-dialog{margin:auto;border:1px solid var(--border);border-radius:var(--r-lg);background:#0d1020;color:var(--text);padding:26px 24px;width:min(92vw,420px);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+        .share-dialog::backdrop{background:rgba(0,0,0,.65)}
+        body.high-contrast .share-dialog{background:#000;border-color:#ffff00}
+        .share-dialog h2{font-size:1.25rem;font-weight:800;margin-bottom:6px}
+        .share-dialog p{color:var(--text2);font-size:.95rem;margin-bottom:18px}
+        .share-dialog .btn{width:100%;margin-bottom:10px}
+        .share-close{position:absolute;top:12px;inset-inline-end:12px;width:36px;height:36px;border-radius:9px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer}
+        .share-url{display:block;direction:ltr;text-align:left;font-size:.85rem;color:var(--text3);word-break:break-all;margin-top:6px}
+
+        /* ===== FOOTER / FLOATS ===== */
+        .site-footer{padding:46px 0 110px;border-top:1px solid var(--border);background:rgba(0,0,0,.5)}
+        .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+        .footer-brand strong{display:block;font-size:1.3rem;font-weight:900;margin-bottom:4px}
+        .footer-brand span{color:var(--text3);font-size:.95rem}
+        .footer-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+        .footer-links a{padding:12px 20px;border-radius:var(--r-sm);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);color:var(--text2);font-size:.95rem;font-weight:600;transition:all .3s;display:flex;align-items:center;gap:8px}
+        .footer-links a:hover{color:var(--cyan);border-color:rgba(0,212,255,.2)}
+        .footer-legal{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:.9rem;color:var(--text3)}
+        .footer-legal a{text-decoration:underline;text-underline-offset:3px}
+        .footer-legal a:hover{color:var(--cyan)}
+        .wa-float{position:fixed;bottom:30px;left:30px;z-index:90;width:60px;height:60px;border-radius:50%;background:#1e9e4f;color:#fff;display:grid;place-items:center;font-size:30px;box-shadow:0 8px 25px rgba(37,211,102,.4);transition:all .3s}
+        .wa-float:hover{transform:scale(1.1) translateY(-4px);color:#fff}
+        .a11y-widget{position:fixed;bottom:30px;right:30px;z-index:95}
+        .a11y-btn-main{width:50px;height:50px;border-radius:50%;background:#7c3aed;color:#fff;border:none;font-size:24px;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 15px rgba(139,92,246,.4);transition:all .3s}
+        .a11y-btn-main:hover{transform:scale(1.05)}
+        .a11y-panel{position:absolute;bottom:60px;right:0;width:260px;background:#0d1020;border:1px solid var(--border);border-radius:var(--r-md);padding:20px;box-shadow:0 10px 40px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(10px);transition:all .3s ease}
+        .a11y-panel.active{opacity:1;visibility:visible;transform:translateY(0)}
+        .a11y-panel-header{font-weight:800;font-size:1.1rem;margin-bottom:15px;display:flex;align-items:center;justify-content:space-between}
+        .a11y-close{background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.2rem}
+        .a11y-option{display:flex;align-items:center;gap:10px;width:100%;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.95rem;font-weight:600;cursor:pointer;margin-bottom:8px;transition:all .2s;text-align:right}
+        .a11y-option:hover{border-color:var(--cyan)}
+        .a11y-option.active-toggle{background:var(--cyan);color:#000;border-color:var(--cyan)}
+        body.high-contrast .a11y-btn-main{background:#ffff00;color:#000}
+        body.high-contrast .a11y-panel{background:#000;border-color:#ffff00}
+        body.high-contrast .a11y-option{background:#000;border-color:#ffff00;color:#ffff00}
+        body.high-contrast .wa-float{background:#ffff00;color:#000}
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:960px){
+            .quick-nav{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:768px){
+            :root{--header-h:70px}
+            .container{padding:0 16px}
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;align-items:stretch;position:fixed;top:var(--header-h);right:0;left:0;background:rgba(6,6,14,.97);backdrop-filter:blur(20px);padding:20px;border-bottom:1px solid var(--border);z-index:99}
+            .mobile-toggle{display:block}
+            .hero{padding-top:calc(var(--header-h) + 26px)}
+            .quick-nav{gap:10px}
+            .quick-nav a{flex-direction:column;align-items:flex-start;gap:8px;padding:14px}
+            .quick-nav small{display:none}
+            .deck-shell{padding:10px;border-radius:var(--r-md)}
+            .deck-frame{border-radius:12px}
+            .deck-bar{flex-direction:column;align-items:stretch}
+            .deck-tools{display:grid;grid-template-columns:1fr 1fr}
+            .tool-btn{justify-content:center}
+            .sec{padding:46px 0}
+
+            /* collapsible prompt cards */
+            .p-head{padding:16px 16px 0;cursor:pointer}
+            .p-toggle{display:grid}
+            .p-card:not(.open) .p-body{display:none}
+            .p-body{padding:12px 16px 0}
+            .p-box pre{padding:14px 14px;font-size:.92rem}
+            .p-foot{padding:14px 16px 16px}
+            .copy-btn{width:100%}
+
+            .challenge{padding:30px 20px}
+            .btn{width:100%}
+            .btn-row{flex-direction:column;align-items:stretch}
+            .cta-shell{padding:32px 18px}
+            .footer-inner{flex-direction:column;align-items:flex-start}
+            .wa-float{bottom:20px;left:20px;width:52px;height:52px;font-size:26px}
+            .a11y-widget{bottom:20px;right:20px}
+            .a11y-btn-main{width:44px;height:44px;font-size:20px}
+        }
+        @media(prefers-reduced-motion:reduce){
+            html{scroll-behavior:auto}
+            *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+        }
+        @media print{
+            .site-header,.a11y-widget,.wa-float,.deck-section,.filters,.copy-btn,.p-toggle,.hero-actions{display:none!important}
+            body{background:#fff;color:#000}
+            .p-card .p-body{display:block!important}
+        }
+    </style>
+</head>
+<body>
+
+<a href="#kit-main" class="skip-link">דילוג לתוכן המרכזי</a>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+        <a class="brand" href="../index.html" aria-label="חזרה לעמוד הבית"><span class="brand-icon"><img src="../assets/practiai-mark.png" alt="PractiAI" width="44" height="44"></span><div><div class="brand-name">PractiAI</div><div class="brand-sub">טל חקוקי | הובלת AI בארגונים</div></div></a>
+        <nav class="nav-links" id="navLinks" aria-label="תפריט ניווט מרכזי">
+            <a class="nav-link" href="../index.html#about">מי אני</a>
+            <a class="nav-link" href="../index.html#process">תהליך עבודה</a>
+            <a class="nav-link" href="../index.html#solutions">מסלולים</a>
+            <a class="nav-link" href="../index.html#usecases">תוצאות בשטח</a>
+            <a class="nav-cta" href="../index.html#contact">יצירת קשר</a>
+        </nav>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="פתיחת תפריט מובייל" aria-expanded="false" aria-controls="navLinks"><i aria-hidden="true" class="fa-solid fa-bars"></i></button>
+    </div>
+</header>
+
+<main id="kit-main">
+
+<!-- ===== HERO ===== -->
+<section class="hero" aria-labelledby="kitTitle">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container">
+        <div class="crumb">
+            <a href="../index.html">PractiAI — עמוד הבית</a><i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+            <span>ערכת ה-AI של המורה</span>
+        </div>
+        <div class="label"><i aria-hidden="true" class="fa-solid fa-chalkboard-user"></i> בינה מלאכותית בחינוך</div>
+        <h1 id="kitTitle">ערכת ה-<span class="accent">AI</span> של המורה</h1>
+        <p class="sub">9 פרומפטים ורעיונות מעשיים שאפשר לנסות כבר בשיעור הבא.</p>
+        <div class="lead">
+            <p>ברוכים הבאים לערכה המלווה את ההרצאה "בינה מלאכותית בחינוך" עם קווין ליאקס.</p>
+            <p>בחרו משימה שמעסיקה אתכם, התאימו את הפרטים בתוך הסוגריים, העתיקו את הפרומפט לכלי ה-AI שאתם מורשים להשתמש בו, ובדקו כיצד תוכלו לשפר את התוצאה.</p>
+        </div>
+
+        <nav class="quick-nav" aria-label="ניווט מהיר בעמוד">
+            <a href="#deck"><span class="ico"><i aria-hidden="true" class="fa-solid fa-display"></i></span><span>מצגת ההרצאה<small>צפייה חוזרת בכל השקפים והדוגמאות.</small></span></a>
+            <a href="#prompts"><span class="ico"><i aria-hidden="true" class="fa-solid fa-wand-magic-sparkles"></i></span><span>ספריית הפרומפטים<small>9 פרומפטים מחולקים לתכנון שיעור, הוראה והערכה, עם כפתורי העתקה.</small></span></a>
+            <a href="#habits"><span class="ico"><i aria-hidden="true" class="fa-solid fa-list-check"></i></span><span>איך לעבוד נכון עם AI?<small>עקרונות פשוטים לשיפור תוצאות ולשימוש אחראי.</small></span></a>
+            <a href="#learn"><span class="ico"><i aria-hidden="true" class="fa-solid fa-graduation-cap"></i></span><span>להמשיך ללמוד עם PractiAI<small>מידע על סדנאות והכשרות מעשיות לצוותים חינוכיים ולארגונים.</small></span></a>
+        </nav>
+
+        <div class="btn-row hero-actions">
+            <button type="button" class="btn btn-ghost js-share"><i aria-hidden="true" class="fa-solid fa-share-nodes"></i> שיתוף הערכה</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== DECK ===== -->
+<section class="sec deck-section" id="deck" aria-labelledby="deckTitle" style="padding-top:20px">
+    <div class="container">
+        <h2 class="sec-heading" id="deckTitle">מצגת ההרצאה</h2>
+        <p class="sec-desc">צפייה חוזרת בכל השקפים והדוגמאות.</p>
+        <div class="deck-shell">
+            <div class="deck-frame">
+                <iframe id="deckFrame" src="deck.html" title="מצגת ההרצאה: בינה מלאכותית בחינוך" loading="lazy" allow="fullscreen" allowfullscreen></iframe>
+            </div>
+            <div class="deck-bar">
+                <p class="deck-hint"><i aria-hidden="true" class="fa-regular fa-hand-pointer"></i> לחצו על המצגת ונווטו בחיצים. בטלפון: החליקו.</p>
+                <div class="deck-tools">
+                    <button type="button" class="tool-btn" id="deckFs"><i aria-hidden="true" class="fa-solid fa-expand"></i> מסך מלא</button>
+                    <a class="tool-btn" href="deck.html" target="_blank" rel="noopener"><i aria-hidden="true" class="fa-solid fa-arrow-up-right-from-square"></i> פתיחה בלשונית חדשה<span class="sr-only"> (נפתח בלשונית חדשה)</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROMPTS ===== -->
+<section class="sec" id="prompts" aria-labelledby="promptsTitle" style="padding-top:20px">
+    <div class="container">
+        <h2 class="sec-heading" id="promptsTitle">ספריית הפרומפטים</h2>
+        <p class="sec-desc">9 פרומפטים מחולקים לתכנון שיעור, הוראה והערכה, עם כפתורי העתקה.</p>
+
+        <div class="filters" role="group" aria-label="סינון פרומפטים לפי קטגוריה">
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">הכול <span class="count">(9)</span></button>
+            <button type="button" class="filter-btn" data-filter="plan" aria-pressed="false">תכנון שיעור ויצירת עניין <span class="count">(3)</span></button>
+            <button type="button" class="filter-btn" data-filter="think" aria-pressed="false">הבנה, תרגול וחשיבה <span class="count">(3)</span></button>
+            <button type="button" class="filter-btn" data-filter="assess" aria-pressed="false">הערכה ומשוב <span class="count">(3)</span></button>
+        </div>
+        <p class="filter-status sr-only" id="filterStatus" aria-live="polite"></p>
+
+        <div class="prompt-grid" id="promptGrid">
+<!--PROMPTS:START-->
+            <article class="p-card" data-cat="plan" id="p1" aria-labelledby="prompt-1-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">1</span>
+                    <div class="p-titles"><span class="p-cat">תכנון שיעור ויצירת עניין</span><h3 class="p-title" id="prompt-1-title"><span class="sr-only">פרומפט 1: </span>משיעור רגיל לאתגר שהתלמידים רוצים לפתור</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-1-body" aria-label="הצגת הפרומפט המלא: משיעור רגיל לאתגר שהתלמידים רוצים לפתור"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-1-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשיש נושא שצריך ללמד, אבל רוצים ליצור מעורבות ולא רק להעביר תוכן.</p>
+                    <div class="p-box"><pre id="prompt-1">אתה שותף פדגוגי יצירתי. אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, והנושא הבא הוא <mark>[נושא]</mark>. מטרת הלמידה היא <mark>[מטרה]</mark>.
+הצע שלוש דרכים להפוך את הנושא לפעילות של 15–20 דקות המבוססת על אתגר, דילמה, תעלומה או קבלת החלטה.
+הפעילות צריכה לגרום לתלמידים לחשוב, לשתף פעולה ולהשתמש בידע הנלמד כדי להגיע לתוצר או להחלטה.
+בחר את הרעיון המומלץ ופרט את שלבי ההפעלה, ההוראות לתלמידים, דרכי בדיקת ההבנה והציוד הנדרש. העדף פעילות פשוטה שאפשר לבצע בכיתה רגילה.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-1" aria-label="העתק פרומפט 1: משיעור רגיל לאתגר שהתלמידים רוצים לפתור"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="plan" id="p2" aria-labelledby="prompt-2-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">2</span>
+                    <div class="p-titles"><span class="p-cat">תכנון שיעור ויצירת עניין</span><h3 class="p-title" id="prompt-2-title"><span class="sr-only">פרומפט 2: </span>חמש דקות ראשונות שיגרמו לתלמידים להסתקרן</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-2-body" aria-label="הצגת הפרומפט המלא: חמש דקות ראשונות שיגרמו לתלמידים להסתקרן"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-2-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים פתיחה אחרת לשיעור, שתעורר שאלה לפני שמציגים את התשובה.</p>
+                    <div class="p-box"><pre id="prompt-2">אני עומד ללמד בכיתה <mark>[כיתה]</mark> את הנושא <mark>[נושא]</mark>.
+הצע חמש פתיחות מפתיעות לשיעור, שכל אחת נמשכת עד חמש דקות. שלב אפשרויות כמו שאלה פרובוקטיבית, חידה, סיפור קצר, ניסוי מחשבתי או בחירה בין שתי אפשרויות.
+כל פתיחה צריכה לעורר סקרנות ולהוביל באופן טבעי למטרת הלמידה.
+לכל רעיון ציין מה המורה אומר, מה התלמידים עושים, ואיזו שאלה תעביר אותנו לחלק הבא של השיעור. הימנע מעובדות מומצאות או מטענות שאינך יכול לבסס.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-2" aria-label="העתק פרומפט 2: חמש דקות ראשונות שיגרמו לתלמידים להסתקרן"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="plan" id="p3" aria-labelledby="prompt-3-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">3</span>
+                    <div class="p-titles"><span class="p-cat">תכנון שיעור ויצירת עניין</span><h3 class="p-title" id="prompt-3-title"><span class="sr-only">פרומפט 3: </span>אותה מטרת למידה, שלוש דרכי עבודה</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-3-body" aria-label="הצגת הפרומפט המלא: אותה מטרת למידה, שלוש דרכי עבודה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-3-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשבכיתה יש פערים ברמת הידע, בקצב העבודה או במידת התמיכה הנדרשת.</p>
+                    <div class="p-box"><pre id="prompt-3">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, בנושא <mark>[נושא]</mark>.
+מטרת הלמידה המשותפת לכל התלמידים היא <mark>[מטרה]</mark>.
+צור שלוש גרסאות לפעילות של 15 דקות:
+1. גרסה עם יותר תיווך, דוגמאות והנחיות מדורגות.
+2. גרסה עצמאית ברמת הכיתה.
+3. גרסת העמקה המצריכה חשיבה ויישום נוספים.
+חשוב שכל שלוש הגרסאות יובילו לאותה מטרת למידה, בלי ליצור ציפיות נמוכות מתלמידים הזקוקים לתמיכה.
+הצג את ההוראות שאוכל לתת לתלמידים, את ההבדלים בין הגרסאות ואת הדרך לבדוק שכולם השיגו את המטרה.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-3" aria-label="העתק פרומפט 3: אותה מטרת למידה, שלוש דרכי עבודה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="think" id="p4" aria-labelledby="prompt-4-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">4</span>
+                    <div class="p-titles"><span class="p-cat">הבנה, תרגול וחשיבה</span><h3 class="p-title" id="prompt-4-title"><span class="sr-only">פרומפט 4: </span>למה התלמיד טעה? מאבחנים תפיסה שגויה</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-4-body" aria-label="הצגת הפרומפט המלא: למה התלמיד טעה? מאבחנים תפיסה שגויה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-4-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשתשובה שגויה עשויה להעיד על קושי בהבנה ולא רק על חוסר תשומת לב.</p>
+                    <div class="p-box"><pre id="prompt-4">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>.
+השאלה שנשאלה היא: <mark>[השאלה]</mark>.
+תשובה שגויה לדוגמה, ללא פרטים מזהים: <mark>[התשובה]</mark>.
+נתח עד שלוש תפיסות שגויות שעשויות להסביר את התשובה. אל תניח שאתה יודע בוודאות מה התלמיד חשב.
+עבור כל אפשרות הצע שאלה אבחונית קצרה שאוכל לשאול כדי לבדוק אם זו אכן הסיבה לטעות.
+לאחר מכן הצע הסבר חלופי, המחשה או פעילות קצרה שיעזרו לתלמיד להגיע להבנה בעצמו, בלי למסור לו מיד את הפתרון.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-4" aria-label="העתק פרומפט 4: למה התלמיד טעה? מאבחנים תפיסה שגויה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="think" id="p5" aria-labelledby="prompt-5-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">5</span>
+                    <div class="p-titles"><span class="p-cat">הבנה, תרגול וחשיבה</span><h3 class="p-title" id="prompt-5-title"><span class="sr-only">פרומפט 5: </span>חדר האימון של המורה: שיחה עם תלמיד מדומה</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-5-body" aria-label="הצגת הפרומפט המלא: חדר האימון של המורה: שיחה עם תלמיד מדומה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-5-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים להתאמן על הסברים, שאלות או תגובות לקשיים של תלמידים.</p>
+                    <div class="p-box"><pre id="prompt-5">אני רוצה להתאמן על יכולת ההוראה שלי.
+אתה תגלם תלמיד בכיתה <mark>[כיתה]</mark> הלומד את הנושא <mark>[נושא]</mark>. התרגול יתבסס על החומר הבא: <mark>[הסבר או קטע לימודי קצר]</mark>.
+בחר קושי הבנה או תפיסה שגויה סבירה, ופתח את השיחה כתלמיד שמתקשה או מסיק מסקנה לא מדויקת.
+אני אשאל אותך שאלות ואנסה להוביל אותך להבנה. השב בכל פעם במשפט אחד או שניים והמתן לתגובה שלי. אל תיתן לעצמך את הפתרון.
+אחרי כחמישה חילופי דברים, שאל אם ארצה משוב.
+במשוב נתח את בהירות ההסברים שלי, את איכות השאלות ששאלתי, ואת הדרך שבה עודדתי חשיבה עצמאית.
+זוהי סימולציה לצורך אימון, לא תחזית על התנהגות של תלמיד אמיתי.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-5" aria-label="העתק פרומפט 5: חדר האימון של המורה: שיחה עם תלמיד מדומה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="think" id="p6" aria-labelledby="prompt-6-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">6</span>
+                    <div class="p-titles"><span class="p-cat">הבנה, תרגול וחשיבה</span><h3 class="p-title" id="prompt-6-title"><span class="sr-only">פרומפט 6: </span>משאלות זיכרון לשאלות שמפעילות חשיבה</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-6-body" aria-label="הצגת הפרומפט המלא: משאלות זיכרון לשאלות שמפעילות חשיבה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-6-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים להעמיק דיון, לעודד נימוקים או להתקדם מעבר לשאלות עם תשובה אחת.</p>
+                    <div class="p-box"><pre id="prompt-6">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, בנושא <mark>[נושא]</mark>.
+התלמידים כבר נחשפו למושגים המרכזיים, ואני רוצה לגרום להם לחשוב ולהשתתף בדיון.
+הצע שש שאלות מדורגות:
+- שתי שאלות שמחייבות להסביר רעיון ולא רק לזכור אותו.
+- שתי שאלות שדורשות השוואה, יישום או ביסוס בעזרת ראיות.
+- שתי שאלות שמעלות דילמה, מחלוקת או אפשרויות שונות לפתרון.
+לכל שאלה ציין מהי מיומנות החשיבה שהיא מפעילה ושאלת המשך שאוכל לשאול אם התלמידים עונים תשובה קצרה מדי.
+הימנע משאלות פתוחות לכאורה שהתשובה להן ברורה מאליה.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-6" aria-label="העתק פרומפט 6: משאלות זיכרון לשאלות שמפעילות חשיבה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="assess" id="p7" aria-labelledby="prompt-7-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">7</span>
+                    <div class="p-titles"><span class="p-cat">הערכה ומשוב</span><h3 class="p-title" id="prompt-7-title"><span class="sr-only">פרומפט 7: </span>כרטיס יציאה בחמש דקות</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-7-body" aria-label="הצגת הפרומפט המלא: כרטיס יציאה בחמש דקות"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-7-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים לדעת בסוף השיעור מה התלמידים באמת הבינו.</p>
+                    <div class="p-box"><pre id="prompt-7">סיימתי ללמד שיעור בכיתה <mark>[כיתה]</mark> בנושא <mark>[נושא]</mark>.
+מטרת הלמידה הייתה <mark>[מטרה]</mark>.
+צור כרטיס יציאה קצר שאפשר לענות עליו בחמש דקות ובאמצעותו אוכל לזהות אם התלמידים הבינו את הרעיון המרכזי.
+כלול שלוש משימות קצרות: שאלת הבנה, שאלת יישום ושאלה שחושפת תפיסה שגויה נפוצה.
+צרף תשובות צפויות, סימנים לקושי בהבנה והמלצה לפעילות פתיחה בשיעור הבא עבור תלמידים שזקוקים לחיזוק.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-7" aria-label="העתק פרומפט 7: כרטיס יציאה בחמש דקות"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="assess" id="p8" aria-labelledby="prompt-8-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">8</span>
+                    <div class="p-titles"><span class="p-cat">הערכה ומשוב</span><h3 class="p-title" id="prompt-8-title"><span class="sr-only">פרומפט 8: </span>מחוון ברור למשימה או לפרויקט</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-8-body" aria-label="הצגת הפרומפט המלא: מחוון ברור למשימה או לפרויקט"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-8-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> לפני שנותנים לתלמידים פרויקט, עבודה או משימה שדורשת הערכה.</p>
+                    <div class="p-box"><pre id="prompt-8">אני נותן לכיתה <mark>[כיתה]</mark> משימה בנושא <mark>[נושא]</mark>.
+תיאור המשימה: <mark>[פרטי המשימה]</mark>.
+מטרות הלמידה המרכזיות הן <mark>[מטרות]</mark>.
+בנה מחוון הערכה ברור והוגן הכולל ארבעה קריטריונים מרכזיים, עם שלוש רמות ביצוע לכל קריטריון.
+הדגש איכות הבנה, חשיבה, שימוש בראיות והיכולת להסביר החלטות, בהתאם לאופי המשימה.
+נסח את המחוון בשפה שהתלמידים יוכלו להבין, צרף דוגמה קצרה לכל רמת ביצוע והצע כיצד ניתן להשתמש במחוון למשוב מקדם למידה.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-8" aria-label="העתק פרומפט 8: מחוון ברור למשימה או לפרויקט"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="assess" id="p9" aria-labelledby="prompt-9-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">9</span>
+                    <div class="p-titles"><span class="p-cat">הערכה ומשוב</span><h3 class="p-title" id="prompt-9-title"><span class="sr-only">פרומפט 9: </span>מתכננים משימה לעידן שבו לתלמידים יש AI</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-9-body" aria-label="הצגת הפרומפט המלא: מתכננים משימה לעידן שבו לתלמידים יש AI"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-9-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים שהמשימה תבדוק למידה אמיתית, גם בעולם שבו תלמידים יכולים להיעזר ב-AI.</p>
+                    <div class="p-box"><pre id="prompt-9">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>.
+המשימה המקורית שלי היא: <mark>[תיאור המשימה]</mark>.
+אני רוצה להתאים אותה למציאות שבה תלמידים יכולים לקבל תשובות מוכנות מכלי AI.
+הצע דרך לשדרג את המשימה כך שתדרוש מהתלמידים להפגין הבנה, להסביר תהליך חשיבה, לבצע בחירות ולבסס מסקנות.
+שלב לפחות שני מרכיבים שקשה להעריך באמצעות התוצר הסופי בלבד, למשל הצגת תהליך עבודה, התייחסות למקור שנלמד בכיתה, הסבר בעל פה, רפלקציה או יישום במצב חדש.
+ציין מה התלמידים צריכים להגיש, איך המורה יכול לבדוק הבנה ואילו כללים כדאי לקבוע לגבי שימוש מותר ב-AI.
+הנח שהשימוש בכלים מותנה במדיניות בית הספר ובהנחיות משרד החינוך.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-9" aria-label="העתק פרומפט 9: מתכננים משימה לעידן שבו לתלמידים יש AI"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+<!--PROMPTS:END-->
+        </div>
+    </div>
+</section>
+
+<!-- ===== HABITS ===== -->
+<section class="sec" id="habits" aria-labelledby="habitsTitle" style="padding-top:20px">
+    <div class="container">
+        <h2 class="sec-heading" id="habitsTitle">איך לעבוד נכון עם AI?</h2>
+        <p class="sec-desc">7 הרגלים קטנים שמשפרים את העבודה</p>
+        <ol class="habits">
+            <li class="habit"><h3>התחילו מהמשימה, לא מהכלי.</h3><p>שאלו את עצמכם מה אתם רוצים לשפר: לחסוך זמן, להנגיש הסבר, ליצור עניין או לבדוק הבנה.</p></li>
+            <li class="habit"><h3>תנו הקשר.</h3><p>ציינו את שכבת הגיל, המקצוע, מטרת הלמידה, משך הפעילות והמגבלות שלכם.</p></li>
+            <li class="habit"><h3>אל תסתפקו בתשובה הראשונה.</h3><p>כתבו מה חסר, מה ארוך מדי, מה לא מתאים לכיתה ומה הייתם רוצים לשנות.</p></li>
+            <li class="habit"><h3>בקשו חלופות.</h3><p>במקום לקבל רעיון אחד, בקשו שלוש גישות שונות ובחרו את זו שמתאימה לכם.</p></li>
+            <li class="habit"><h3>בקשו ביקורת על התוצאה.</h3><p>למשל: "אילו הנחות עשית? מה עלול לא לעבוד בכיתה? איזו עובדה כאן דורשת בדיקה?"</p></li>
+            <li class="habit"><h3>שמרו על פרטיות ועל אמינות.</h3><p>השתמשו במידע מדומה או לא מזהה, בדקו מקורות ופרטים מקצועיים, ופעלו לפי הנחיות משרד החינוך וכללי בית הספר.</p></li>
+            <li class="habit"><h3>שמרו את מה שעבד.</h3><p>כשהגעתם לפרומפט שמייצר תוצאה טובה, שמרו אותו כתבנית לשימוש חוזר. כך לא צריך להמציא את אותה שיטה בכל פעם מחדש.</p></li>
+        </ol>
+    </div>
+</section>
+
+<!-- ===== CHALLENGE ===== -->
+<section class="sec" id="challenge" aria-labelledby="challengeTitle" style="padding-top:10px">
+    <div class="container">
+        <div class="challenge">
+            <h2 id="challengeTitle">אתגר קטן למחר בבוקר</h2>
+            <div class="challenge-text">
+                <p>בחרו שיעור אחד שאתם עומדים להעביר.</p>
+                <p>בחרו פרומפט אחד מתוך הערכה, התאימו אותו וצרו בעזרתו משהו שתוכלו לנסות בכיתה.</p>
+                <p>לא צריך להכין תוכנית גדולה. מספיק למצוא דרך טובה יותר לבצע משימה אחת.</p>
+                <p>התחלתם להשתמש? שאלו את עצמכם מה באמת השתפר, מה עדיין לא עובד ומה תרצו לשנות בפעם הבאה.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== LEARN WITH PRACTIAI ===== -->
+<section class="sec" id="learn" aria-labelledby="learnTitle" style="padding-top:10px">
+    <div class="container">
+        <div class="cta-shell">
+            <h2 id="learnTitle">להמשיך ללמוד עם <span class="grad-text">PractiAI</span></h2>
+            <p>סדנאות והכשרות מעשיות לצוותים חינוכיים ולארגונים.</p>
+            <div class="btn-row">
+                <a class="btn btn-primary" href="../index.html#solutions"><i aria-hidden="true" class="fa-solid fa-diagram-project"></i> מסלולי העבודה שלי</a>
+                <a class="btn btn-ghost" href="../index.html"><i aria-hidden="true" class="fa-solid fa-house"></i> PractiAI — עמוד הבית</a>
+                <a class="btn btn-ghost" href="../index.html#contact"><i aria-hidden="true" class="fa-solid fa-calendar-check"></i> קביעת שיחת התאמה</a>
+            </div>
+            <div class="btn-row contact-row">
+                <a class="btn btn-wa" href="https://wa.me/972506915269?text=היי%20טל%2C%20הגעתי%20מהאתר%20ואשמח%20לדבר%20על%20הרצאה%2C%20הכשרה%20או%20תהליך%20הטמעת%20AI%20בארגון" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fa-brands fa-whatsapp" style="font-size:1.25rem"></i> שליחת הודעה בוואטסאפ</a>
+                <a class="btn btn-ghost" href="mailto:hakokit@gmail.com?subject=%D7%A4%D7%A0%D7%99%D7%99%D7%94%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%91%D7%A0%D7%95%D7%A9%D7%90%20AI%20%D7%91%D7%90%D7%A8%D7%92%D7%95%D7%9F"><i aria-hidden="true" class="fa-regular fa-envelope"></i> שליחת הודעה במייל</a>
+                <a class="btn btn-ghost" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <button type="button" class="btn btn-ghost js-share"><i aria-hidden="true" class="fa-solid fa-share-nodes"></i> שיתוף הערכה</button>
+            </div>
+            <p class="cta-sign">PractiAI | בינה מלאכותית שעובדת בעולם האמיתי</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand"><strong>PractiAI</strong><span>טל חקוקי | הובלת AI בארגונים</span></div>
+            <div class="footer-links">
+                <a href="mailto:hakokit@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> אימייל</a>
+                <a href="https://wa.me/972506915269" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span class="ltr">050-6915269</span></a>
+                <a href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+                <a href="../index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> עמוד הבית</a>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <span>&copy; 2026 PractiAI. All Rights Reserved.</span>
+            <a href="../privacy.html">מדיניות פרטיות</a>
+            <a href="../accessibility.html">הצהרת נגישות</a>
+        </div>
+    </div>
+</footer>
+
+<!-- share fallback (desktop) -->
+<dialog class="share-dialog" id="shareDialog" aria-labelledby="shareTitle">
+    <button type="button" class="share-close" id="shareClose" aria-label="סגירת חלון השיתוף"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
+    <h2 id="shareTitle">שיתוף הערכה</h2>
+    <p>ערכת ה-AI של המורה – 9 פרומפטים מוכנים להעתקה מהרצאה של PractiAI<span class="share-url" id="shareUrl"></span></p>
+    <button type="button" class="btn btn-primary" id="shareCopy"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק קישור</span></button>
+    <a class="btn btn-wa" id="shareWa" href="#" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fa-brands fa-whatsapp"></i> שיתוף בוואטסאפ</a>
+</dialog>
+
+<div class="sr-only" id="liveRegion" aria-live="polite" aria-atomic="true"></div>
+
+<div class="a11y-widget">
+    <button class="a11y-btn-main" id="a11yMainBtn" aria-label="פתיחת תפריט נגישות" aria-expanded="false" aria-controls="a11yPanel"><i aria-hidden="true" class="fa-solid fa-universal-access"></i></button>
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות">
+        <div class="a11y-panel-header"><span>התאמות נגישות</span><button class="a11y-close" id="a11yCloseBtn" aria-label="סגור תפריט נגישות"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button></div>
+        <button class="a11y-option" id="toggleContrast"><i aria-hidden="true" class="fa-solid fa-circle-half-stroke"></i> ניגודיות גבוהה</button>
+        <button class="a11y-option" id="toggleFontSize"><i aria-hidden="true" class="fa-solid fa-magnifying-glass-plus"></i> הגדלת טקסט</button>
+        <button class="a11y-option" id="toggleMotion"><i aria-hidden="true" class="fa-solid fa-pause"></i> עצירת אנימציות</button>
+        <a class="a11y-option" href="../accessibility.html"><i aria-hidden="true" class="fa-solid fa-file-lines"></i> הצהרת נגישות</a>
+    </div>
+</div>
+
+<a href="https://wa.me/972506915269?text=היי%20טל%2C%20הגעתי%20מהאתר%20ואשמח%20לדבר%20על%20הרצאה%2C%20הכשרה%20או%20תהליך%20הטמעת%20AI%20בארגון" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="פניה בוואטסאפ"><i aria-hidden="true" class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+(function(){
+    'use strict';
+
+    var live = document.getElementById('liveRegion');
+    function announce(msg){ live.textContent = ''; setTimeout(function(){ live.textContent = msg; }, 30); }
+
+    /* ===== clipboard with execCommand fallback ===== */
+    function writeText(text){
+        if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text).catch(function(){ return legacyCopy(text); });
+        }
+        return legacyCopy(text);
+    }
+    function legacyCopy(text){
+        return new Promise(function(resolve, reject){
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0';
+            document.body.appendChild(ta);
+            ta.select();
+            ta.setSelectionRange(0, text.length);
+            var ok = false;
+            try { ok = document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            ok ? resolve() : reject();
+        });
+    }
+
+    /* ===== prompt cards: copy ===== */
+    document.querySelectorAll('.copy-btn').forEach(function(btn){
+        var label = btn.querySelector('span');
+        var icon = btn.querySelector('i');
+        var original = label.textContent;
+        var timer;
+        btn.addEventListener('click', function(e){
+            e.stopPropagation();
+            var pre = document.getElementById(btn.dataset.target);
+            if (!pre) return;
+            writeText(pre.textContent).then(function(){
+                clearTimeout(timer);
+                btn.classList.add('done');
+                label.textContent = 'הועתק ✓';
+                icon.className = 'fa-solid fa-check';
+                announce('הפרומפט הועתק');
+                timer = setTimeout(function(){
+                    btn.classList.remove('done');
+                    label.textContent = original;
+                    icon.className = 'fa-regular fa-copy';
+                }, 2000);
+            }).catch(function(){
+                var card = btn.closest('.p-card');
+                if (card) setOpen(card, true);
+                var r = document.createRange();
+                r.selectNodeContents(pre);
+                var s = window.getSelection();
+                s.removeAllRanges();
+                s.addRange(r);
+                label.textContent = 'הטקסט סומן, העתיקו ידנית';
+                announce('ההעתקה האוטומטית לא זמינה. הטקסט סומן להעתקה ידנית');
+                timer = setTimeout(function(){ label.textContent = original; }, 2600);
+            });
+        });
+    });
+
+    /* ===== prompt cards: collapse on mobile ===== */
+    function setOpen(card, open){
+        card.classList.toggle('open', open);
+        var t = card.querySelector('.p-toggle');
+        if (t) t.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    document.querySelectorAll('.p-card').forEach(function(card){
+        var t = card.querySelector('.p-toggle');
+        t.addEventListener('click', function(e){ e.stopPropagation(); setOpen(card, !card.classList.contains('open')); });
+        card.querySelector('.p-head').addEventListener('click', function(){
+            if (getComputedStyle(t).display === 'none') return;
+            setOpen(card, !card.classList.contains('open'));
+        });
+    });
+
+    /* ===== category filter ===== */
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.p-card');
+    var status = document.getElementById('filterStatus');
+    filterBtns.forEach(function(b){
+        b.addEventListener('click', function(){
+            var f = b.dataset.filter, shown = 0;
+            filterBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+            cards.forEach(function(c){
+                var on = f === 'all' || c.dataset.cat === f;
+                c.hidden = !on;
+                if (on) shown++;
+            });
+            status.textContent = 'מוצגים ' + shown + ' פרומפטים';
+        });
+    });
+
+    /* ===== deck: fullscreen ===== */
+    var frame = document.getElementById('deckFrame');
+    var fsBtn = document.getElementById('deckFs');
+    var canFs = document.fullscreenEnabled || document.webkitFullscreenEnabled;
+    fsBtn.addEventListener('click', function(){
+        if (canFs && frame.requestFullscreen) { frame.requestFullscreen(); }
+        else if (canFs && frame.webkitRequestFullscreen) { frame.webkitRequestFullscreen(); }
+        else { window.open('deck.html', '_blank', 'noopener'); return; }
+        try { frame.contentWindow.focus(); } catch (e) {}
+    });
+
+    /* ===== share ===== */
+    var shareUrl = (location.origin && location.origin !== 'null' ? location.origin + location.pathname : 'https://practiai.co.il/ai-education-kit/');
+    var shareText = 'ערכת ה-AI של המורה – 9 פרומפטים מוכנים להעתקה מהרצאה של PractiAI';
+    var dlg = document.getElementById('shareDialog');
+    document.getElementById('shareUrl').textContent = shareUrl;
+    document.getElementById('shareWa').href = 'https://wa.me/?text=' + encodeURIComponent(shareText + '\n' + shareUrl);
+    var lastTrigger = null;
+    document.querySelectorAll('.js-share').forEach(function(b){
+        b.addEventListener('click', function(){
+            lastTrigger = b;
+            var mobile = window.matchMedia('(pointer:coarse)').matches;
+            if (navigator.share && mobile) {
+                navigator.share({ title: 'ערכת ה-AI של המורה | PractiAI', text: shareText, url: shareUrl }).catch(function(){});
+            } else if (dlg.showModal) {
+                dlg.showModal();
+            } else {
+                window.open(document.getElementById('shareWa').href, '_blank', 'noopener');
+            }
+        });
+    });
+    document.getElementById('shareClose').addEventListener('click', function(){ dlg.close(); });
+    dlg.addEventListener('click', function(e){ if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function(){ if (lastTrigger) lastTrigger.focus(); });
+    var shareCopy = document.getElementById('shareCopy');
+    shareCopy.addEventListener('click', function(){
+        var label = shareCopy.querySelector('span');
+        writeText(shareUrl).then(function(){
+            label.textContent = 'הקישור הועתק ✓';
+            announce('הקישור הועתק');
+            setTimeout(function(){ label.textContent = 'העתק קישור'; }, 2000);
+        }).catch(function(){ label.textContent = shareUrl; });
+    });
+
+    /* ===== header + mobile menu ===== */
+    var header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', function(){ header.classList.toggle('scrolled', window.scrollY > 40); }, { passive:true });
+    var mt = document.getElementById('mobileToggle');
+    var nl = document.getElementById('navLinks');
+    function closeMenu(){ nl.classList.remove('open'); mt.setAttribute('aria-expanded', 'false'); mt.innerHTML = '<i aria-hidden="true" class="fa-solid fa-bars"></i>'; }
+    mt.addEventListener('click', function(){
+        var open = nl.classList.toggle('open');
+        mt.setAttribute('aria-expanded', open ? 'true' : 'false');
+        mt.innerHTML = open ? '<i aria-hidden="true" class="fa-solid fa-xmark"></i>' : '<i aria-hidden="true" class="fa-solid fa-bars"></i>';
+    });
+    nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+    /* ===== accessibility widget ===== */
+    var a11yBtn = document.getElementById('a11yMainBtn');
+    var a11yPanel = document.getElementById('a11yPanel');
+    a11yBtn.addEventListener('click', function(){
+        var on = a11yPanel.classList.toggle('active');
+        a11yBtn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    document.getElementById('a11yCloseBtn').addEventListener('click', function(){ a11yPanel.classList.remove('active'); a11yBtn.setAttribute('aria-expanded', 'false'); a11yBtn.focus(); });
+    document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && a11yPanel.classList.contains('active')) { a11yPanel.classList.remove('active'); a11yBtn.setAttribute('aria-expanded', 'false'); a11yBtn.focus(); }
+    });
+
+    function store(key, val){ try { if (val === undefined) return localStorage.getItem(key); localStorage.setItem(key, val); } catch (e) { return null; } }
+    function applyPref(key, cls, btnId, apply){
+        var btn = document.getElementById(btnId);
+        var set = function(v){
+            if (apply) { apply(v); } else { document.body.classList.toggle(cls, v); }
+            btn.classList.toggle('active-toggle', v);
+            btn.setAttribute('aria-pressed', v ? 'true' : 'false');
+            store(key, v ? '1' : '0');
+        };
+        set(store(key) === '1');
+        btn.addEventListener('click', function(){ set(!btn.classList.contains('active-toggle')); });
+    }
+    applyPref('pa_contrast', 'high-contrast', 'toggleContrast');
+    applyPref('pa_motion', 'no-motion', 'toggleMotion');
+    applyPref('pa_font', '', 'toggleFontSize', function(v){
+        document.documentElement.style.setProperty('--base-font-size', v ? '115%' : '100%');
+    });
+})();
+</script>
+</body>
+</html>
