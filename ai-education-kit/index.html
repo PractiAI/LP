@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>ערכת ה-AI של המורה | PractiAI</title>
-    <meta name="description" content="הערכה המלווה את ההרצאה &quot;בינה מלאכותית בחינוך&quot;: מצגת ההרצאה, 9 פרומפטים מוכנים להעתקה לתכנון שיעור, הוראה והערכה, ו-7 הרגלים לעבודה נכונה עם AI.">
+    <title>ערכת ה-AI למורים | PractiAI</title>
+    <meta name="description" content="הערכה המלווה את ההרצאה &quot;בינה מלאכותית למורים&quot;: מצגת ההרצאה, חמש יכולות AI שכדאי להכיר, 13 פרומפטים מוכנים להעתקה ו-7 הרגלים לעבודה נכונה ואחראית.">
     <meta name="author" content="טל חקוקי">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <link rel="canonical" href="https://practiai.co.il/ai-education-kit/">
@@ -12,12 +12,12 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="he_IL">
     <meta property="og:site_name" content="PractiAI">
-    <meta property="og:title" content="ערכת ה-AI של המורה | PractiAI">
-    <meta property="og:description" content="9 פרומפטים ורעיונות מעשיים שאפשר לנסות כבר בשיעור הבא.">
-    <meta property="og:image" content="https://practiai.co.il/ai-education-kit/og-image.png">
+    <meta property="og:title" content="ערכת ה-AI למורים | PractiAI">
+    <meta property="og:description" content="כלים, יכולות ופרומפטים לעבודה חכמה יותר עם בינה מלאכותית.">
+    <meta property="og:image" content="https://practiai.co.il/ai-education-kit/og-image.png?v=2">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="ערכת ה-AI של המורה · PractiAI">
+    <meta property="og:image:alt" content="ערכת ה-AI למורים · PractiAI">
     <meta property="og:url" content="https://practiai.co.il/ai-education-kit/">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -119,7 +119,8 @@
         .hero .sub{font-size:clamp(1.15rem,2.4vw,1.45rem);font-weight:700;color:var(--text);max-width:760px;margin-bottom:14px}
         .hero .lead{color:var(--text2);font-size:clamp(1rem,1.9vw,1.12rem);max-width:760px}
         .hero .lead p+p{margin-top:8px}
-        .quick-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+        .hero .sub2{color:var(--text2);font-size:clamp(1rem,1.9vw,1.12rem);max-width:760px;margin:-4px 0 14px}
+        .quick-nav{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
         .quick-nav a{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:var(--r-md);background:rgba(255,255,255,.03);border:1px solid var(--border);font-weight:700;font-size:.98rem;transition:all .3s}
         .quick-nav a:hover{border-color:rgba(0,212,255,.35);transform:translateY(-3px)}
         .quick-nav .ico{width:40px;height:40px;flex-shrink:0;border-radius:11px;display:grid;place-items:center;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.16);color:var(--cyan)}
@@ -145,6 +146,18 @@
         .tool-btn:hover{color:var(--cyan);border-color:rgba(0,212,255,.35)}
         .tool-btn i{color:var(--cyan)}
         body.high-contrast .tool-btn{background:#000;border-color:#ffff00;color:#ffff00}
+
+        /* ===== CAPABILITIES ===== */
+        .caps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:28px}
+        .cap{padding:22px 20px;border-radius:var(--r-lg);background:var(--bg-card);border:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
+        .cap .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.16);color:var(--cyan);font-size:1.05rem;margin-bottom:4px}
+        .cap h3{font-size:1.12rem;font-weight:800;line-height:1.35}
+        .cap p{color:var(--text2);font-size:.95rem;line-height:1.6;flex:1}
+        .cap .tool{align-self:flex-start;font-size:.82rem;font-weight:700;color:var(--violet-text);border:1px solid rgba(139,92,246,.3);background:rgba(139,92,246,.08);border-radius:999px;padding:3px 12px;margin-top:4px}
+        .caps-note{margin-top:18px;color:var(--text2);font-size:1rem;font-weight:600}
+        .caps-note strong{color:var(--text)}
+        body.high-contrast .cap{background:#000;border-color:#ffff00}
+        body.high-contrast .cap .tool{color:#ffff00;border-color:#ffff00;background:#000}
 
         /* ===== PROMPT LIBRARY ===== */
         .filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
@@ -255,7 +268,8 @@
 
         /* ===== RESPONSIVE ===== */
         @media(max-width:960px){
-            .quick-nav{grid-template-columns:repeat(2,1fr)}
+            .quick-nav{grid-template-columns:repeat(3,1fr)}
+            .caps{grid-template-columns:repeat(2,1fr)}
         }
         @media(max-width:768px){
             :root{--header-h:70px}
@@ -264,7 +278,9 @@
             .nav-links.open{display:flex;flex-direction:column;align-items:stretch;position:fixed;top:var(--header-h);right:0;left:0;background:rgba(6,6,14,.97);backdrop-filter:blur(20px);padding:20px;border-bottom:1px solid var(--border);z-index:99}
             .mobile-toggle{display:block}
             .hero{padding-top:calc(var(--header-h) + 26px)}
-            .quick-nav{gap:10px}
+            .quick-nav{gap:10px;grid-template-columns:repeat(2,1fr)}
+            .quick-nav a:last-child{grid-column:1/-1}
+            .caps{grid-template-columns:1fr}
             .quick-nav a{flex-direction:column;align-items:flex-start;gap:8px;padding:14px}
             .quick-nav small{display:none}
             .deck-shell{padding:10px;border-radius:var(--r-md)}
@@ -330,19 +346,21 @@
     <div class="container">
         <div class="crumb">
             <a href="../index.html">PractiAI — עמוד הבית</a><i class="fa-solid fa-angle-left" aria-hidden="true"></i>
-            <span>ערכת ה-AI של המורה</span>
+            <span>ערכת ה-AI למורים</span>
         </div>
-        <div class="label"><i aria-hidden="true" class="fa-solid fa-chalkboard-user"></i> בינה מלאכותית בחינוך</div>
-        <h1 id="kitTitle">ערכת ה-<span class="accent">AI</span> של המורה</h1>
-        <p class="sub">9 פרומפטים ורעיונות מעשיים שאפשר לנסות כבר בשיעור הבא.</p>
+        <div class="label"><i aria-hidden="true" class="fa-solid fa-chalkboard-user"></i> בינה מלאכותית למורים</div>
+        <h1 id="kitTitle">ערכת ה-<span class="accent">AI</span> למורים</h1>
+        <p class="sub">כלים, יכולות ופרומפטים לעבודה חכמה יותר</p>
+        <p class="sub2">לומדים לתקשר עם AI, לעבוד עם מסמכים, ליצור חומרים, להתאים תכנים ולשמור על שימוש אחראי.</p>
         <div class="lead">
-            <p>ברוכים הבאים לערכה המלווה את ההרצאה "בינה מלאכותית בחינוך" עם קווין ליאקס.</p>
+            <p>ברוכים הבאים לערכה המלווה את ההרצאה "בינה מלאכותית למורים: מכירים את היכולות, לומדים לעבוד נכון" עם קווין ליאקס.</p>
             <p>בחרו משימה שמעסיקה אתכם, התאימו את הפרטים בתוך הסוגריים, העתיקו את הפרומפט לכלי ה-AI שאתם מורשים להשתמש בו, ובדקו כיצד תוכלו לשפר את התוצאה.</p>
         </div>
 
         <nav class="quick-nav" aria-label="ניווט מהיר בעמוד">
             <a href="#deck"><span class="ico"><i aria-hidden="true" class="fa-solid fa-display"></i></span><span>מצגת ההרצאה<small>צפייה חוזרת בכל השקפים והדוגמאות.</small></span></a>
-            <a href="#prompts"><span class="ico"><i aria-hidden="true" class="fa-solid fa-wand-magic-sparkles"></i></span><span>ספריית הפרומפטים<small>9 פרומפטים מחולקים לתכנון שיעור, הוראה והערכה, עם כפתורי העתקה.</small></span></a>
+            <a href="#capabilities"><span class="ico"><i aria-hidden="true" class="fa-solid fa-layer-group"></i></span><span>חמש יכולות<small>מה AI יודע לעשות, ואיפה מוצאים את זה.</small></span></a>
+            <a href="#prompts"><span class="ico"><i aria-hidden="true" class="fa-solid fa-wand-magic-sparkles"></i></span><span>ספריית הפרומפטים<small>13 פרומפטים לפי יכולות, עם כפתורי העתקה.</small></span></a>
             <a href="#habits"><span class="ico"><i aria-hidden="true" class="fa-solid fa-list-check"></i></span><span>איך לעבוד נכון עם AI?<small>עקרונות פשוטים לשיפור תוצאות ולשימוש אחראי.</small></span></a>
             <a href="#learn"><span class="ico"><i aria-hidden="true" class="fa-solid fa-graduation-cap"></i></span><span>להמשיך ללמוד עם PractiAI<small>מידע על סדנאות והכשרות מעשיות לצוותים חינוכיים ולארגונים.</small></span></a>
         </nav>
@@ -373,115 +391,115 @@
     </div>
 </section>
 
+<!-- ===== CAPABILITIES ===== -->
+<section class="sec" id="capabilities" aria-labelledby="capsTitle" style="padding-top:20px">
+    <div class="container">
+        <h2 class="sec-heading" id="capsTitle">חמש יכולות שכדאי להכיר</h2>
+        <p class="sec-desc">הדוגמאות הן מהכלים של Google, שלרבים מהמורים יש אליהם גישה. אותן יכולות קיימות גם בכלים אחרים.</p>
+        <ul class="caps">
+            <li class="cap"><span class="ico"><i aria-hidden="true" class="fa-regular fa-comments"></i></span><h3>שיחה</h3><p>לחשוב יחד, לקבל רעיונות, להשוות חלופות ולשפר תשובה לאורך השיחה.</p><span class="tool">Gemini</span></li>
+            <li class="cap"><span class="ico"><i aria-hidden="true" class="fa-regular fa-file-lines"></i></span><h3>מסמכים</h3><p>לקרוא מסמכים שאתם מעלים, לענות מתוכם ולהפנות למקור.</p><span class="tool">Gemini Notebook (לשעבר NotebookLM)</span></li>
+            <li class="cap"><span class="ico"><i aria-hidden="true" class="fa-regular fa-image"></i></span><h3>יצירה</h3><p>להפיק תמונות, מצגות, אינפוגרפיקות וסקירות אודיו, לא רק טקסט.</p><span class="tool">Canvas ב-Gemini, Gemini Notebook</span></li>
+            <li class="cap"><span class="ico"><i aria-hidden="true" class="fa-solid fa-sliders"></i></span><h3>התאמה</h3><p>להתאים תוכן לרמות ולקהלים, ולשמור הוראות קבועות לעבודה חוזרת.</p><span class="tool">Skills ב-Gemini (לשעבר Gems)</span></li>
+            <li class="cap"><span class="ico"><i aria-hidden="true" class="fa-solid fa-list-check"></i></span><h3>ביצוע משימות</h3><p>סוכן שמבצע תהליך בכמה שלבים, לפי הרשאות ובפיקוח.</p><span class="tool">סוכני AI</span></li>
+        </ul>
+        <p class="caps-note">לא שואלים "איזה כלי?", אלא <strong>"איזו יכולת המשימה שלי צריכה?"</strong></p>
+    </div>
+</section>
+
 <!-- ===== PROMPTS ===== -->
 <section class="sec" id="prompts" aria-labelledby="promptsTitle" style="padding-top:20px">
     <div class="container">
         <h2 class="sec-heading" id="promptsTitle">ספריית הפרומפטים</h2>
-        <p class="sec-desc">9 פרומפטים מחולקים לתכנון שיעור, הוראה והערכה, עם כפתורי העתקה.</p>
+        <p class="sec-desc">13 פרומפטים מסודרים לפי יכולות, עם כפתורי העתקה. אפשר להתאים אותם ולשמור כתבניות לשימוש חוזר.</p>
 
         <div class="filters" role="group" aria-label="סינון פרומפטים לפי קטגוריה">
-            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">הכול <span class="count">(9)</span></button>
-            <button type="button" class="filter-btn" data-filter="plan" aria-pressed="false">תכנון שיעור ויצירת עניין <span class="count">(3)</span></button>
-            <button type="button" class="filter-btn" data-filter="think" aria-pressed="false">הבנה, תרגול וחשיבה <span class="count">(3)</span></button>
-            <button type="button" class="filter-btn" data-filter="assess" aria-pressed="false">הערכה ומשוב <span class="count">(3)</span></button>
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">הכול <span class="count">(13)</span></button>
+            <button type="button" class="filter-btn" data-filter="method" aria-pressed="false">שיטת עבודה עם AI <span class="count">(2)</span></button>
+            <button type="button" class="filter-btn" data-filter="ideas" aria-pressed="false">רעיונות וחלופות <span class="count">(3)</span></button>
+            <button type="button" class="filter-btn" data-filter="docs" aria-pressed="false">מסמכים והתאמת תוכן <span class="count">(3)</span></button>
+            <button type="button" class="filter-btn" data-filter="roles" aria-pressed="false">תפקידים וסימולציות <span class="count">(2)</span></button>
+            <button type="button" class="filter-btn" data-filter="assess" aria-pressed="false">הערכה ובדיקת הבנה <span class="count">(3)</span></button>
         </div>
         <p class="filter-status sr-only" id="filterStatus" aria-live="polite"></p>
 
         <div class="prompt-grid" id="promptGrid">
 <!--PROMPTS:START-->
-            <article class="p-card" data-cat="plan" id="p1" aria-labelledby="prompt-1-title">
+            <article class="p-card" data-cat="method" id="p1" aria-labelledby="prompt-1-title">
                 <div class="p-head">
                     <span class="p-num" aria-hidden="true">1</span>
-                    <div class="p-titles"><span class="p-cat">תכנון שיעור ויצירת עניין</span><h3 class="p-title" id="prompt-1-title"><span class="sr-only">פרומפט 1: </span>משיעור רגיל לאתגר שהתלמידים רוצים לפתור</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-1-body" aria-label="הצגת הפרומפט המלא: משיעור רגיל לאתגר שהתלמידים רוצים לפתור"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                    <div class="p-titles"><span class="p-cat">שיטת עבודה עם AI</span><h3 class="p-title" id="prompt-1-title"><span class="sr-only">פרומפט 1: </span>בונה הפרומפטים שלי</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-1-body" aria-label="הצגת הפרומפט המלא: בונה הפרומפטים שלי"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
                 </div>
                 <div class="p-body" id="prompt-1-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשיש לכם רעיון כללי ואתם לא בטוחים איך לנסח אותו כבקשה טובה.</p>
+                    <div class="p-box"><pre id="prompt-1">אני מורה ואני רוצה להיעזר בך במשימה הבאה: <mark>[תארו במשפט חופשי מה אתם צריכים]</mark>.
+לפני שאתה מבצע אותה, עזור לי לבנות בקשה מדויקת.
+שאל אותי עד חמש שאלות קצרות, אחת בכל פעם, על המטרה, ההקשר (מקצוע, כיתה, רמה), התוצר שאני רוצה לקבל והמגבלות (זמן, ציוד, אורך).
+אחרי שאענה, נסח עבורי פרומפט מלא ומסודר שאוכל להעתיק ולשמור לשימוש חוזר, והסבר בשורה אחת מה כל חלק בו מוסיף.
+אל תבצע את המשימה עצמה עד שאאשר את הנוסח.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-1" aria-label="העתק פרומפט 1: בונה הפרומפטים שלי"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="method" id="p2" aria-labelledby="prompt-2-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">2</span>
+                    <div class="p-titles"><span class="p-cat">שיטת עבודה עם AI</span><h3 class="p-title" id="prompt-2-title"><span class="sr-only">פרומפט 2: </span>העוזר הקבוע שלי</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-2-body" aria-label="הצגת הפרומפט המלא: העוזר הקבוע שלי"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-2-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשיש משימה שחוזרת כל שבוע, ואתם לא רוצים להסביר מחדש בכל פעם את אותם פרטים.</p>
+                    <div class="p-box"><pre id="prompt-2">אני רוצה להגדיר עוזר AI קבוע למשימה שחוזרת אצלי: <mark>[תיאור המשימה, למשל הכנת פעילויות במדעים לכיתות ה'–ו']</mark>.
+נסח עבורי הוראות קבועות לעוזר, שאוכל להדביק בהגדרות של עוזר מותאם (למשל Skill ב-Gemini, לשעבר Gem).
+ההוראות צריכות לכלול:
+- תפקיד העוזר ולמי הוא עוזר.
+- ההקשר הקבוע: <mark>[מקצוע, שכבות גיל ומאפייני הכיתות, ללא פרטים מזהים]</mark>.
+- שלבי עבודה: אילו שאלות לשאול אותי לפני שמתחילים.
+- מבנה קבוע לתוצרים.
+- כללים: לא להמציא עובדות, לסמן מה דורש בדיקה, ולא לבקש מידע מזהה על תלמידים.
+בסוף הצע שלוש בקשות לדוגמה שאוכל לנסות עם העוזר, כדי לבדוק שהוא עובד כמו שצריך.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-2" aria-label="העתק פרומפט 2: העוזר הקבוע שלי"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="ideas" id="p3" aria-labelledby="prompt-3-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">3</span>
+                    <div class="p-titles"><span class="p-cat">רעיונות וחלופות</span><h3 class="p-title" id="prompt-3-title"><span class="sr-only">פרומפט 3: </span>משיעור רגיל לאתגר שהתלמידים רוצים לפתור</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-3-body" aria-label="הצגת הפרומפט המלא: משיעור רגיל לאתגר שהתלמידים רוצים לפתור"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-3-body">
                     <p class="p-when"><strong>מתי להשתמש?</strong> כשיש נושא שצריך ללמד, אבל רוצים ליצור מעורבות ולא רק להעביר תוכן.</p>
-                    <div class="p-box"><pre id="prompt-1">אתה שותף פדגוגי יצירתי. אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, והנושא הבא הוא <mark>[נושא]</mark>. מטרת הלמידה היא <mark>[מטרה]</mark>.
+                    <div class="p-box"><pre id="prompt-3">אתה שותף פדגוגי יצירתי. אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, והנושא הבא הוא <mark>[נושא]</mark>. מטרת הלמידה היא <mark>[מטרה]</mark>.
 הצע שלוש דרכים להפוך את הנושא לפעילות של 15–20 דקות המבוססת על אתגר, דילמה, תעלומה או קבלת החלטה.
 הפעילות צריכה לגרום לתלמידים לחשוב, לשתף פעולה ולהשתמש בידע הנלמד כדי להגיע לתוצר או להחלטה.
 בחר את הרעיון המומלץ ופרט את שלבי ההפעלה, ההוראות לתלמידים, דרכי בדיקת ההבנה והציוד הנדרש. העדף פעילות פשוטה שאפשר לבצע בכיתה רגילה.</pre></div>
                 </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-1" aria-label="העתק פרומפט 1: משיעור רגיל לאתגר שהתלמידים רוצים לפתור"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-3" aria-label="העתק פרומפט 3: משיעור רגיל לאתגר שהתלמידים רוצים לפתור"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
             </article>
-            <article class="p-card" data-cat="plan" id="p2" aria-labelledby="prompt-2-title">
+            <article class="p-card" data-cat="ideas" id="p4" aria-labelledby="prompt-4-title">
                 <div class="p-head">
-                    <span class="p-num" aria-hidden="true">2</span>
-                    <div class="p-titles"><span class="p-cat">תכנון שיעור ויצירת עניין</span><h3 class="p-title" id="prompt-2-title"><span class="sr-only">פרומפט 2: </span>חמש דקות ראשונות שיגרמו לתלמידים להסתקרן</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-2-body" aria-label="הצגת הפרומפט המלא: חמש דקות ראשונות שיגרמו לתלמידים להסתקרן"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                    <span class="p-num" aria-hidden="true">4</span>
+                    <div class="p-titles"><span class="p-cat">רעיונות וחלופות</span><h3 class="p-title" id="prompt-4-title"><span class="sr-only">פרומפט 4: </span>חמש דקות ראשונות שיגרמו לתלמידים להסתקרן</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-4-body" aria-label="הצגת הפרומפט המלא: חמש דקות ראשונות שיגרמו לתלמידים להסתקרן"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
                 </div>
-                <div class="p-body" id="prompt-2-body">
+                <div class="p-body" id="prompt-4-body">
                     <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים פתיחה אחרת לשיעור, שתעורר שאלה לפני שמציגים את התשובה.</p>
-                    <div class="p-box"><pre id="prompt-2">אני עומד ללמד בכיתה <mark>[כיתה]</mark> את הנושא <mark>[נושא]</mark>.
+                    <div class="p-box"><pre id="prompt-4">אני עומד ללמד בכיתה <mark>[כיתה]</mark> את הנושא <mark>[נושא]</mark>.
 הצע חמש פתיחות מפתיעות לשיעור, שכל אחת נמשכת עד חמש דקות. שלב אפשרויות כמו שאלה פרובוקטיבית, חידה, סיפור קצר, ניסוי מחשבתי או בחירה בין שתי אפשרויות.
 כל פתיחה צריכה לעורר סקרנות ולהוביל באופן טבעי למטרת הלמידה.
 לכל רעיון ציין מה המורה אומר, מה התלמידים עושים, ואיזו שאלה תעביר אותנו לחלק הבא של השיעור. הימנע מעובדות מומצאות או מטענות שאינך יכול לבסס.</pre></div>
                 </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-2" aria-label="העתק פרומפט 2: חמש דקות ראשונות שיגרמו לתלמידים להסתקרן"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-4" aria-label="העתק פרומפט 4: חמש דקות ראשונות שיגרמו לתלמידים להסתקרן"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
             </article>
-            <article class="p-card" data-cat="plan" id="p3" aria-labelledby="prompt-3-title">
-                <div class="p-head">
-                    <span class="p-num" aria-hidden="true">3</span>
-                    <div class="p-titles"><span class="p-cat">תכנון שיעור ויצירת עניין</span><h3 class="p-title" id="prompt-3-title"><span class="sr-only">פרומפט 3: </span>אותה מטרת למידה, שלוש דרכי עבודה</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-3-body" aria-label="הצגת הפרומפט המלא: אותה מטרת למידה, שלוש דרכי עבודה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
-                </div>
-                <div class="p-body" id="prompt-3-body">
-                    <p class="p-when"><strong>מתי להשתמש?</strong> כשבכיתה יש פערים ברמת הידע, בקצב העבודה או במידת התמיכה הנדרשת.</p>
-                    <div class="p-box"><pre id="prompt-3">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, בנושא <mark>[נושא]</mark>.
-מטרת הלמידה המשותפת לכל התלמידים היא <mark>[מטרה]</mark>.
-צור שלוש גרסאות לפעילות של 15 דקות:
-1. גרסה עם יותר תיווך, דוגמאות והנחיות מדורגות.
-2. גרסה עצמאית ברמת הכיתה.
-3. גרסת העמקה המצריכה חשיבה ויישום נוספים.
-חשוב שכל שלוש הגרסאות יובילו לאותה מטרת למידה, בלי ליצור ציפיות נמוכות מתלמידים הזקוקים לתמיכה.
-הצג את ההוראות שאוכל לתת לתלמידים, את ההבדלים בין הגרסאות ואת הדרך לבדוק שכולם השיגו את המטרה.</pre></div>
-                </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-3" aria-label="העתק פרומפט 3: אותה מטרת למידה, שלוש דרכי עבודה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
-            </article>
-            <article class="p-card" data-cat="think" id="p4" aria-labelledby="prompt-4-title">
-                <div class="p-head">
-                    <span class="p-num" aria-hidden="true">4</span>
-                    <div class="p-titles"><span class="p-cat">הבנה, תרגול וחשיבה</span><h3 class="p-title" id="prompt-4-title"><span class="sr-only">פרומפט 4: </span>למה התלמיד טעה? מאבחנים תפיסה שגויה</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-4-body" aria-label="הצגת הפרומפט המלא: למה התלמיד טעה? מאבחנים תפיסה שגויה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
-                </div>
-                <div class="p-body" id="prompt-4-body">
-                    <p class="p-when"><strong>מתי להשתמש?</strong> כשתשובה שגויה עשויה להעיד על קושי בהבנה ולא רק על חוסר תשומת לב.</p>
-                    <div class="p-box"><pre id="prompt-4">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>.
-השאלה שנשאלה היא: <mark>[השאלה]</mark>.
-תשובה שגויה לדוגמה, ללא פרטים מזהים: <mark>[התשובה]</mark>.
-נתח עד שלוש תפיסות שגויות שעשויות להסביר את התשובה. אל תניח שאתה יודע בוודאות מה התלמיד חשב.
-עבור כל אפשרות הצע שאלה אבחונית קצרה שאוכל לשאול כדי לבדוק אם זו אכן הסיבה לטעות.
-לאחר מכן הצע הסבר חלופי, המחשה או פעילות קצרה שיעזרו לתלמיד להגיע להבנה בעצמו, בלי למסור לו מיד את הפתרון.</pre></div>
-                </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-4" aria-label="העתק פרומפט 4: למה התלמיד טעה? מאבחנים תפיסה שגויה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
-            </article>
-            <article class="p-card" data-cat="think" id="p5" aria-labelledby="prompt-5-title">
+            <article class="p-card" data-cat="ideas" id="p5" aria-labelledby="prompt-5-title">
                 <div class="p-head">
                     <span class="p-num" aria-hidden="true">5</span>
-                    <div class="p-titles"><span class="p-cat">הבנה, תרגול וחשיבה</span><h3 class="p-title" id="prompt-5-title"><span class="sr-only">פרומפט 5: </span>חדר האימון של המורה: שיחה עם תלמיד מדומה</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-5-body" aria-label="הצגת הפרומפט המלא: חדר האימון של המורה: שיחה עם תלמיד מדומה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                    <div class="p-titles"><span class="p-cat">רעיונות וחלופות</span><h3 class="p-title" id="prompt-5-title"><span class="sr-only">פרומפט 5: </span>משאלות זיכרון לשאלות שמפעילות חשיבה</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-5-body" aria-label="הצגת הפרומפט המלא: משאלות זיכרון לשאלות שמפעילות חשיבה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
                 </div>
                 <div class="p-body" id="prompt-5-body">
-                    <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים להתאמן על הסברים, שאלות או תגובות לקשיים של תלמידים.</p>
-                    <div class="p-box"><pre id="prompt-5">אני רוצה להתאמן על יכולת ההוראה שלי.
-אתה תגלם תלמיד בכיתה <mark>[כיתה]</mark> הלומד את הנושא <mark>[נושא]</mark>. התרגול יתבסס על החומר הבא: <mark>[הסבר או קטע לימודי קצר]</mark>.
-בחר קושי הבנה או תפיסה שגויה סבירה, ופתח את השיחה כתלמיד שמתקשה או מסיק מסקנה לא מדויקת.
-אני אשאל אותך שאלות ואנסה להוביל אותך להבנה. השב בכל פעם במשפט אחד או שניים והמתן לתגובה שלי. אל תיתן לעצמך את הפתרון.
-אחרי כחמישה חילופי דברים, שאל אם ארצה משוב.
-במשוב נתח את בהירות ההסברים שלי, את איכות השאלות ששאלתי, ואת הדרך שבה עודדתי חשיבה עצמאית.
-זוהי סימולציה לצורך אימון, לא תחזית על התנהגות של תלמיד אמיתי.</pre></div>
-                </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-5" aria-label="העתק פרומפט 5: חדר האימון של המורה: שיחה עם תלמיד מדומה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
-            </article>
-            <article class="p-card" data-cat="think" id="p6" aria-labelledby="prompt-6-title">
-                <div class="p-head">
-                    <span class="p-num" aria-hidden="true">6</span>
-                    <div class="p-titles"><span class="p-cat">הבנה, תרגול וחשיבה</span><h3 class="p-title" id="prompt-6-title"><span class="sr-only">פרומפט 6: </span>משאלות זיכרון לשאלות שמפעילות חשיבה</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-6-body" aria-label="הצגת הפרומפט המלא: משאלות זיכרון לשאלות שמפעילות חשיבה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
-                </div>
-                <div class="p-body" id="prompt-6-body">
                     <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים להעמיק דיון, לעודד נימוקים או להתקדם מעבר לשאלות עם תשובה אחת.</p>
-                    <div class="p-box"><pre id="prompt-6">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, בנושא <mark>[נושא]</mark>.
+                    <div class="p-box"><pre id="prompt-5">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, בנושא <mark>[נושא]</mark>.
 התלמידים כבר נחשפו למושגים המרכזיים, ואני רוצה לגרום להם לחשוב ולהשתתף בדיון.
 הצע שש שאלות מדורגות:
 - שתי שאלות שמחייבות להסביר רעיון ולא רק לזכור אותו.
@@ -490,50 +508,140 @@
 לכל שאלה ציין מהי מיומנות החשיבה שהיא מפעילה ושאלת המשך שאוכל לשאול אם התלמידים עונים תשובה קצרה מדי.
 הימנע משאלות פתוחות לכאורה שהתשובה להן ברורה מאליה.</pre></div>
                 </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-6" aria-label="העתק פרומפט 6: משאלות זיכרון לשאלות שמפעילות חשיבה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-5" aria-label="העתק פרומפט 5: משאלות זיכרון לשאלות שמפעילות חשיבה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
             </article>
-            <article class="p-card" data-cat="assess" id="p7" aria-labelledby="prompt-7-title">
+            <article class="p-card" data-cat="docs" id="p6" aria-labelledby="prompt-6-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">6</span>
+                    <div class="p-titles"><span class="p-cat">מסמכים והתאמת תוכן</span><h3 class="p-title" id="prompt-6-title"><span class="sr-only">פרומפט 6: </span>שואלים את המסמך: נהלים, חוזרים וחומרי לימוד</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-6-body" aria-label="הצגת הפרומפט המלא: שואלים את המסמך: נהלים, חוזרים וחומרי לימוד"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-6-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשיש מסמך ארוך ואתם צריכים למצוא בו תשובה מדויקת. עובד במיוחד טוב בכלי שעונה מתוך הקבצים שהעליתם, כמו Gemini Notebook.</p>
+                    <div class="p-box"><pre id="prompt-6">צירפתי מסמך: <mark>[סוג המסמך, למשל חוזר, נוהל, תוכנית לימודים או פרק מספר]</mark>.
+ענה על השאלות הבאות על סמך המסמך בלבד:
+<mark>[השאלות שלכם]</mark>
+לכל תשובה ציין את הסעיף או את הציטוט מהמסמך שעליו היא מבוססת.
+אם התשובה לא מופיעה במסמך, כתוב במפורש &quot;לא מופיע במסמך&quot; ואל תשלים מידע ממקורות אחרים.
+בסוף סכם בחמש נקודות מה חשוב שאדע מהמסמך לעבודה שלי כ<mark>[תפקיד או מקצוע]</mark>.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-6" aria-label="העתק פרומפט 6: שואלים את המסמך: נהלים, חוזרים וחומרי לימוד"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="docs" id="p7" aria-labelledby="prompt-7-title">
                 <div class="p-head">
                     <span class="p-num" aria-hidden="true">7</span>
-                    <div class="p-titles"><span class="p-cat">הערכה ומשוב</span><h3 class="p-title" id="prompt-7-title"><span class="sr-only">פרומפט 7: </span>כרטיס יציאה בחמש דקות</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-7-body" aria-label="הצגת הפרומפט המלא: כרטיס יציאה בחמש דקות"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                    <div class="p-titles"><span class="p-cat">מסמכים והתאמת תוכן</span><h3 class="p-title" id="prompt-7-title"><span class="sr-only">פרומפט 7: </span>מתוכן אחד לכמה תוצרים</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-7-body" aria-label="הצגת הפרומפט המלא: מתוכן אחד לכמה תוצרים"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
                 </div>
                 <div class="p-body" id="prompt-7-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשיש לכם הסבר או טקסט טוב, ואתם רוצים להפיק ממנו במהירות כמה חומרים לכיתה.</p>
+                    <div class="p-box"><pre id="prompt-7">הנה תוכן שאני משתמש בו בכיתה <mark>[כיתה]</mark> בנושא <mark>[נושא]</mark>:
+<mark>[הדביקו כאן את הטקסט או ההסבר]</mark>
+על בסיס התוכן הזה בלבד, צור:
+1. דף עבודה קצר עם חמש שאלות מדורגות.
+2. הסבר מותאם לתלמידים שמתקשים, בשפה פשוטה ועם דוגמה מהיומיום.
+3. שאלון של חמש שאלות אמריקאיות, כולל התשובות הנכונות.
+4. רעיון לחומר חזותי: תיאור של אינפוגרפיקה או תרשים שמסכמים את הנושא, כולל הטקסטים שיופיעו בו.
+שמור על המושגים והעובדות כפי שהם מופיעים בתוכן המקורי, וסמן כל מקום שבו הוספת מידע שלא הופיע בו.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-7" aria-label="העתק פרומפט 7: מתוכן אחד לכמה תוצרים"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="docs" id="p8" aria-labelledby="prompt-8-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">8</span>
+                    <div class="p-titles"><span class="p-cat">מסמכים והתאמת תוכן</span><h3 class="p-title" id="prompt-8-title"><span class="sr-only">פרומפט 8: </span>אותה מטרת למידה, שלוש דרכי עבודה</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-8-body" aria-label="הצגת הפרומפט המלא: אותה מטרת למידה, שלוש דרכי עבודה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-8-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשבכיתה יש פערים ברמת הידע, בקצב העבודה או במידת התמיכה הנדרשת.</p>
+                    <div class="p-box"><pre id="prompt-8">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>, בנושא <mark>[נושא]</mark>.
+מטרת הלמידה המשותפת לכל התלמידים היא <mark>[מטרה]</mark>.
+צור שלוש גרסאות לפעילות של 15 דקות:
+1. גרסה עם יותר תיווך, דוגמאות והנחיות מדורגות.
+2. גרסה עצמאית ברמת הכיתה.
+3. גרסת העמקה המצריכה חשיבה ויישום נוספים.
+חשוב שכל שלוש הגרסאות יובילו לאותה מטרת למידה, בלי ליצור ציפיות נמוכות מתלמידים הזקוקים לתמיכה.
+הצג את ההוראות שאוכל לתת לתלמידים, את ההבדלים בין הגרסאות ואת הדרך לבדוק שכולם השיגו את המטרה.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-8" aria-label="העתק פרומפט 8: אותה מטרת למידה, שלוש דרכי עבודה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="roles" id="p9" aria-labelledby="prompt-9-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">9</span>
+                    <div class="p-titles"><span class="p-cat">תפקידים וסימולציות</span><h3 class="p-title" id="prompt-9-title"><span class="sr-only">פרומפט 9: </span>למה התלמיד טעה? מאבחנים תפיסה שגויה</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-9-body" aria-label="הצגת הפרומפט המלא: למה התלמיד טעה? מאבחנים תפיסה שגויה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-9-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשתשובה שגויה עשויה להעיד על קושי בהבנה ולא רק על חוסר תשומת לב.</p>
+                    <div class="p-box"><pre id="prompt-9">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>.
+השאלה שנשאלה היא: <mark>[השאלה]</mark>.
+תשובה שגויה לדוגמה, ללא פרטים מזהים: <mark>[התשובה]</mark>.
+נתח עד שלוש תפיסות שגויות שעשויות להסביר את התשובה. אל תניח שאתה יודע בוודאות מה התלמיד חשב.
+עבור כל אפשרות הצע שאלה אבחונית קצרה שאוכל לשאול כדי לבדוק אם זו אכן הסיבה לטעות.
+לאחר מכן הצע הסבר חלופי, המחשה או פעילות קצרה שיעזרו לתלמיד להגיע להבנה בעצמו, בלי למסור לו מיד את הפתרון.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-9" aria-label="העתק פרומפט 9: למה התלמיד טעה? מאבחנים תפיסה שגויה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="roles" id="p10" aria-labelledby="prompt-10-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">10</span>
+                    <div class="p-titles"><span class="p-cat">תפקידים וסימולציות</span><h3 class="p-title" id="prompt-10-title"><span class="sr-only">פרומפט 10: </span>חדר האימון של המורה: שיחה עם תלמיד מדומה</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-10-body" aria-label="הצגת הפרומפט המלא: חדר האימון של המורה: שיחה עם תלמיד מדומה"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-10-body">
+                    <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים להתאמן על הסברים, שאלות או תגובות לקשיים של תלמידים.</p>
+                    <div class="p-box"><pre id="prompt-10">אני רוצה להתאמן על יכולת ההוראה שלי.
+אתה תגלם תלמיד בכיתה <mark>[כיתה]</mark> הלומד את הנושא <mark>[נושא]</mark>. התרגול יתבסס על החומר הבא: <mark>[הסבר או קטע לימודי קצר]</mark>.
+בחר קושי הבנה או תפיסה שגויה סבירה, ופתח את השיחה כתלמיד שמתקשה או מסיק מסקנה לא מדויקת.
+אני אשאל אותך שאלות ואנסה להוביל אותך להבנה. השב בכל פעם במשפט אחד או שניים והמתן לתגובה שלי. אל תיתן לעצמך את הפתרון.
+אחרי כחמישה חילופי דברים, שאל אם ארצה משוב.
+במשוב נתח את בהירות ההסברים שלי, את איכות השאלות ששאלתי, ואת הדרך שבה עודדתי חשיבה עצמאית.
+זוהי סימולציה לצורך אימון, לא תחזית על התנהגות של תלמיד אמיתי.</pre></div>
+                </div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-10" aria-label="העתק פרומפט 10: חדר האימון של המורה: שיחה עם תלמיד מדומה"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+            </article>
+            <article class="p-card" data-cat="assess" id="p11" aria-labelledby="prompt-11-title">
+                <div class="p-head">
+                    <span class="p-num" aria-hidden="true">11</span>
+                    <div class="p-titles"><span class="p-cat">הערכה ובדיקת הבנה</span><h3 class="p-title" id="prompt-11-title"><span class="sr-only">פרומפט 11: </span>כרטיס יציאה בחמש דקות</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-11-body" aria-label="הצגת הפרומפט המלא: כרטיס יציאה בחמש דקות"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div class="p-body" id="prompt-11-body">
                     <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים לדעת בסוף השיעור מה התלמידים באמת הבינו.</p>
-                    <div class="p-box"><pre id="prompt-7">סיימתי ללמד שיעור בכיתה <mark>[כיתה]</mark> בנושא <mark>[נושא]</mark>.
+                    <div class="p-box"><pre id="prompt-11">סיימתי ללמד שיעור בכיתה <mark>[כיתה]</mark> בנושא <mark>[נושא]</mark>.
 מטרת הלמידה הייתה <mark>[מטרה]</mark>.
 צור כרטיס יציאה קצר שאפשר לענות עליו בחמש דקות ובאמצעותו אוכל לזהות אם התלמידים הבינו את הרעיון המרכזי.
 כלול שלוש משימות קצרות: שאלת הבנה, שאלת יישום ושאלה שחושפת תפיסה שגויה נפוצה.
 צרף תשובות צפויות, סימנים לקושי בהבנה והמלצה לפעילות פתיחה בשיעור הבא עבור תלמידים שזקוקים לחיזוק.</pre></div>
                 </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-7" aria-label="העתק פרומפט 7: כרטיס יציאה בחמש דקות"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-11" aria-label="העתק פרומפט 11: כרטיס יציאה בחמש דקות"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
             </article>
-            <article class="p-card" data-cat="assess" id="p8" aria-labelledby="prompt-8-title">
+            <article class="p-card" data-cat="assess" id="p12" aria-labelledby="prompt-12-title">
                 <div class="p-head">
-                    <span class="p-num" aria-hidden="true">8</span>
-                    <div class="p-titles"><span class="p-cat">הערכה ומשוב</span><h3 class="p-title" id="prompt-8-title"><span class="sr-only">פרומפט 8: </span>מחוון ברור למשימה או לפרויקט</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-8-body" aria-label="הצגת הפרומפט המלא: מחוון ברור למשימה או לפרויקט"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                    <span class="p-num" aria-hidden="true">12</span>
+                    <div class="p-titles"><span class="p-cat">הערכה ובדיקת הבנה</span><h3 class="p-title" id="prompt-12-title"><span class="sr-only">פרומפט 12: </span>מחוון ברור למשימה או לפרויקט</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-12-body" aria-label="הצגת הפרומפט המלא: מחוון ברור למשימה או לפרויקט"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
                 </div>
-                <div class="p-body" id="prompt-8-body">
+                <div class="p-body" id="prompt-12-body">
                     <p class="p-when"><strong>מתי להשתמש?</strong> לפני שנותנים לתלמידים פרויקט, עבודה או משימה שדורשת הערכה.</p>
-                    <div class="p-box"><pre id="prompt-8">אני נותן לכיתה <mark>[כיתה]</mark> משימה בנושא <mark>[נושא]</mark>.
+                    <div class="p-box"><pre id="prompt-12">אני נותן לכיתה <mark>[כיתה]</mark> משימה בנושא <mark>[נושא]</mark>.
 תיאור המשימה: <mark>[פרטי המשימה]</mark>.
 מטרות הלמידה המרכזיות הן <mark>[מטרות]</mark>.
 בנה מחוון הערכה ברור והוגן הכולל ארבעה קריטריונים מרכזיים, עם שלוש רמות ביצוע לכל קריטריון.
 הדגש איכות הבנה, חשיבה, שימוש בראיות והיכולת להסביר החלטות, בהתאם לאופי המשימה.
 נסח את המחוון בשפה שהתלמידים יוכלו להבין, צרף דוגמה קצרה לכל רמת ביצוע והצע כיצד ניתן להשתמש במחוון למשוב מקדם למידה.</pre></div>
                 </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-8" aria-label="העתק פרומפט 8: מחוון ברור למשימה או לפרויקט"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-12" aria-label="העתק פרומפט 12: מחוון ברור למשימה או לפרויקט"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
             </article>
-            <article class="p-card" data-cat="assess" id="p9" aria-labelledby="prompt-9-title">
+            <article class="p-card" data-cat="assess" id="p13" aria-labelledby="prompt-13-title">
                 <div class="p-head">
-                    <span class="p-num" aria-hidden="true">9</span>
-                    <div class="p-titles"><span class="p-cat">הערכה ומשוב</span><h3 class="p-title" id="prompt-9-title"><span class="sr-only">פרומפט 9: </span>מתכננים משימה לעידן שבו לתלמידים יש AI</h3></div>
-                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-9-body" aria-label="הצגת הפרומפט המלא: מתכננים משימה לעידן שבו לתלמידים יש AI"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
+                    <span class="p-num" aria-hidden="true">13</span>
+                    <div class="p-titles"><span class="p-cat">הערכה ובדיקת הבנה</span><h3 class="p-title" id="prompt-13-title"><span class="sr-only">פרומפט 13: </span>מתכננים משימה לעידן שבו לתלמידים יש AI</h3></div>
+                    <button type="button" class="p-toggle" aria-expanded="false" aria-controls="prompt-13-body" aria-label="הצגת הפרומפט המלא: מתכננים משימה לעידן שבו לתלמידים יש AI"><i aria-hidden="true" class="fa-solid fa-chevron-down"></i></button>
                 </div>
-                <div class="p-body" id="prompt-9-body">
+                <div class="p-body" id="prompt-13-body">
                     <p class="p-when"><strong>מתי להשתמש?</strong> כשרוצים שהמשימה תבדוק למידה אמיתית, גם בעולם שבו תלמידים יכולים להיעזר ב-AI.</p>
-                    <div class="p-box"><pre id="prompt-9">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>.
+                    <div class="p-box"><pre id="prompt-13">אני מלמד <mark>[מקצוע]</mark> בכיתה <mark>[כיתה]</mark>.
 המשימה המקורית שלי היא: <mark>[תיאור המשימה]</mark>.
 אני רוצה להתאים אותה למציאות שבה תלמידים יכולים לקבל תשובות מוכנות מכלי AI.
 הצע דרך לשדרג את המשימה כך שתדרוש מהתלמידים להפגין הבנה, להסביר תהליך חשיבה, לבצע בחירות ולבסס מסקנות.
@@ -541,7 +649,7 @@
 ציין מה התלמידים צריכים להגיש, איך המורה יכול לבדוק הבנה ואילו כללים כדאי לקבוע לגבי שימוש מותר ב-AI.
 הנח שהשימוש בכלים מותנה במדיניות בית הספר ובהנחיות משרד החינוך.</pre></div>
                 </div>
-                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-9" aria-label="העתק פרומפט 9: מתכננים משימה לעידן שבו לתלמידים יש AI"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
+                <div class="p-foot"><button type="button" class="copy-btn" data-target="prompt-13" aria-label="העתק פרומפט 13: מתכננים משימה לעידן שבו לתלמידים יש AI"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק פרומפט</span></button></div>
             </article>
 <!--PROMPTS:END-->
         </div>
@@ -627,7 +735,7 @@
 <dialog class="share-dialog" id="shareDialog" aria-labelledby="shareTitle">
     <button type="button" class="share-close" id="shareClose" aria-label="סגירת חלון השיתוף"><i aria-hidden="true" class="fa-solid fa-xmark"></i></button>
     <h2 id="shareTitle">שיתוף הערכה</h2>
-    <p>ערכת ה-AI של המורה – 9 פרומפטים מוכנים להעתקה מהרצאה של PractiAI<span class="share-url" id="shareUrl"></span></p>
+    <p>ערכת ה-AI למורים – יכולות, כלים ו-13 פרומפטים מוכנים להעתקה מהרצאה של PractiAI<span class="share-url" id="shareUrl"></span></p>
     <button type="button" class="btn btn-primary" id="shareCopy"><i aria-hidden="true" class="fa-regular fa-copy"></i> <span>העתק קישור</span></button>
     <a class="btn btn-wa" id="shareWa" href="#" target="_blank" rel="noopener noreferrer"><i aria-hidden="true" class="fa-brands fa-whatsapp"></i> שיתוף בוואטסאפ</a>
 </dialog>
@@ -758,7 +866,7 @@
 
     /* ===== share ===== */
     var shareUrl = (location.origin && location.origin !== 'null' ? location.origin + location.pathname : 'https://practiai.co.il/ai-education-kit/');
-    var shareText = 'ערכת ה-AI של המורה – 9 פרומפטים מוכנים להעתקה מהרצאה של PractiAI';
+    var shareText = 'ערכת ה-AI למורים – יכולות, כלים ו-13 פרומפטים מוכנים להעתקה מהרצאה של PractiAI';
     var dlg = document.getElementById('shareDialog');
     document.getElementById('shareUrl').textContent = shareUrl;
     document.getElementById('shareWa').href = 'https://wa.me/?text=' + encodeURIComponent(shareText + '\n' + shareUrl);
@@ -768,7 +876,7 @@
             lastTrigger = b;
             var mobile = window.matchMedia('(pointer:coarse)').matches;
             if (navigator.share && mobile) {
-                navigator.share({ title: 'ערכת ה-AI של המורה | PractiAI', text: shareText, url: shareUrl }).catch(function(){});
+                navigator.share({ title: 'ערכת ה-AI למורים | PractiAI', text: shareText, url: shareUrl }).catch(function(){});
             } else if (dlg.showModal) {
                 dlg.showModal();
             } else {

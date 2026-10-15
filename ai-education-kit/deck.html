@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>בינה מלאכותית בחינוך | PractiAI</title>
+<title>בינה מלאכותית למורים | PractiAI</title>
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <style>
@@ -358,327 +358,383 @@ body.mouse #counter{opacity:1}
 #toast{position:fixed;top:24px;left:50%;transform:translate(-50%,-80px);background:var(--s2);border:1px solid var(--line2);padding:12px 22px;border-radius:12px;font-size:17px;z-index:60;transition:.35s}
 #toast.show{transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.f{transform:none}.msg .ct{opacity:1!important}}
+
+/* ================= v2 components ================= */
+.s1 h1{font-size:112px;margin-bottom:34px}
+.s1 .q1{font-size:40px;max-width:1500px}
+.s1 .q2{font-size:64px}
+.s1 .skills{flex-wrap:wrap;max-width:1300px;gap:16px;margin-top:40px}
+.s1 .chip{font-size:30px;padding:12px 26px}
+.tool{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-family:var(--fh);font-size:21px;font-weight:600;color:var(--c,var(--a2));
+  border:1px solid color-mix(in srgb,var(--c,#2fd6c9) 45%,transparent);background:color-mix(in srgb,var(--c,#2fd6c9) 10%,transparent);border-radius:99px;padding:6px 16px}
+.capline{margin-top:24px;display:flex;gap:22px;align-items:center;border-radius:24px;padding:22px 32px;background:rgba(47,214,201,.08);border:1px solid rgba(47,214,201,.4);font-size:31px;line-height:1.4}
+.capline .cl,.conv .cl{font-family:var(--fh);font-weight:700;color:var(--a2);flex:none}
+.capline b{color:var(--tx)}
+
+/* S3 five capabilities */
+.caps{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;align-content:start}
+.caps .sj{min-height:0;padding:32px 26px;display:flex;flex-direction:column}
+.caps .sj .ic{width:68px;height:68px;margin-bottom:22px}
+.caps .sj h3{font-size:38px;margin-bottom:12px}
+.caps .sj p{font-size:26px;flex:1}
+.caps .tool{align-self:flex-start}
+.s3 .summary{margin-top:44px}
+
+/* S5 before / after */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;min-height:0}
+.duo .chat .body{padding:24px 26px;gap:18px}
+.duo .msg{font-size:24px;max-width:94%;padding:20px 24px;line-height:1.45}
+.duo .msg ol{padding-inline-start:30px}
+.duo .msg li{margin:3px 0}
+.verdict{align-self:stretch;border-radius:18px;padding:14px 20px;font-family:var(--fh);font-size:24px;font-weight:600;border:1px dashed var(--line2);color:var(--mu)}
+.s5 .capline{margin-top:22px}
+
+/* S6 refinement */
+.s6 .chatwrap{grid-template-columns:.85fr 1.6fr;gap:50px}
+.s6 .side h2.title{font-size:54px}
+.s6 .msg{font-size:28px;max-width:90%}
+.s6 .rail{margin-bottom:30px}
+
+/* S7 documents */
+.docwrap{display:grid;grid-template-columns:1fr 1.25fr;gap:40px;flex:1;min-height:0}
+.doc{border-radius:28px;border:1px solid var(--line2);background:#f4f4fb;color:#1b1d33;padding:28px 32px;display:flex;flex-direction:column;gap:10px;box-shadow:0 30px 80px -40px rgba(0,0,0,.8)}
+.doc .dh{display:flex;align-items:center;gap:12px;font-family:var(--fh);font-weight:700;font-size:24px;color:#3a3d5c;padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid #d9dae8}
+.doc .dh svg{width:28px;height:28px;stroke:#5b4ee6;flex:none}
+.dsec{font-size:24px;line-height:1.45;padding:10px 14px;border-radius:12px;transition:background .5s,box-shadow .5s}
+.dsec b{font-family:var(--fh);color:#5b4ee6;margin-inline-end:8px}
+.dsec.hit{background:#fff1c7;box-shadow:inset 4px 0 0 #f5a524}
+.s7 .msg{font-size:27px;max-width:92%}
+.s7 .chat .body{gap:18px}
+.cite{display:inline-flex;align-items:center;font-family:var(--fh);font-size:20px;font-weight:700;color:#06060e;background:var(--warm);border-radius:8px;padding:0 10px;margin-inline-start:8px;vertical-align:middle;direction:ltr}
+
+/* S8 one source, many outputs */
+.passage.src{font-size:30px;line-height:1.55;padding:22px 30px;border-right-color:var(--a2);background:rgba(47,214,201,.05)}
+.passage.src .lbl{color:var(--a2)}
+.vers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:26px}
+.ver{border-radius:26px;padding:26px 28px;border:1px solid color-mix(in srgb,var(--c) 45%,transparent);background:color-mix(in srgb,var(--c) 8%,transparent);display:flex;flex-direction:column;gap:12px}
+.ver .lv{font-family:var(--fh);font-size:24px;font-weight:700;color:var(--c)}
+.ver p{font-size:27px;line-height:1.45}
+.ver p b{font-family:var(--fh)}
+.ver .ex{font-size:23px;line-height:1.4;color:var(--mu);margin-top:auto}
+.conv{margin-top:26px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:28px}
+.conv .chip{font-size:26px;padding:10px 22px}
+
+/* S9 media */
+.media{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-content:start}
+.media .sj{min-height:0;padding:32px 28px;display:flex;flex-direction:column}
+.media .sj .ic{width:68px;height:68px;margin-bottom:22px}
+.media .sj h3{font-size:38px;margin-bottom:14px}
+.ask{font-size:26px;line-height:1.45;color:var(--tx);flex:1}
+.media .tool{align-self:flex-start}
+
+/* S10 tiers */
+.tiers{display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr;align-items:stretch}
+.tier{display:flex;flex-direction:column;gap:16px;padding:32px 32px;border-color:color-mix(in srgb,var(--c) 40%,transparent)}
+.tier .lvl{font-family:var(--fh);font-size:40px;font-weight:700;color:var(--c)}
+.tier .ask{flex:none;font-size:26px;padding:16px 20px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.tier p{font-size:26px;line-height:1.45;color:var(--mu)}
+.tier .when{margin-top:auto;font-family:var(--fh);font-size:23px;font-weight:600;color:var(--tx)}
+.tier .tool{margin-top:0;align-self:flex-start}
+.tiers .arrow{display:grid;place-items:center}
+.tiers .arrow svg{width:48px;height:48px;stroke:var(--mu2)}
+
+/* S12 tasks */
+.tasks{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.task{display:flex;flex-direction:column;gap:14px;position:relative;border-color:color-mix(in srgb,var(--c) 40%,transparent)}
+.task .tn{font-family:var(--fh);font-size:64px;font-weight:800;line-height:1;color:var(--c)}
+.task .cap{align-self:flex-start;font-family:var(--fh);font-size:20px;font-weight:600;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);border-radius:99px;padding:4px 14px}
+.task h3{font-size:38px}
+.task p{font-size:28px;line-height:1.45;color:var(--mu)}
+.task .kp{margin-top:auto;font-family:var(--fh);font-size:22px;font-weight:600;color:var(--tx)}
+.s12 .summary{margin-top:46px}
+
+/* backup: 4 prompts */
+.sb1 .plist{gap:16px}
+.sb1 .pitem{padding:18px 26px}
+.sb1 .pitem h3{font-size:26px;margin-bottom:4px}
+.sb1 .pitem p{font-size:22px;max-height:none}
+.builder .ptxt span{padding:0}
+
+/* keep the 1920x1080 stage centred at any window size */
+html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 </style>
 </head>
 <body>
 <div id="deck"><div id="stage">
 
 <!-- ================= 1 ================= -->
-<section class="slide s1" data-time="2" data-title="כשהתשובה כבר לא הבעיה">
+<section class="slide s1" data-time="2" data-title="AI הוא הרבה יותר ממנוע תשובות">
   <div class="hero-top">
     <div class="logo">Practi<b>AI</b></div>
-    <div class="presenter">בינה מלאכותית בחינוך · <b>קווין ליאקס</b></div>
+    <div class="presenter">בינה מלאכותית למורים · <b>קווין ליאקס</b></div>
   </div>
-  <div class="kicker">פתיחה</div>
-  <h1>כשהתשובה<br><span class="grad">כבר לא הבעיה</span></h1>
-  <p class="q1 f" data-f="1">אם כל תלמיד יכול לקבל תשובה מצוינת בתוך שניות...</p>
-  <p class="q2 f" data-f="2">מה אנחנו <span class="grad">באמת</span> רוצים ללמד?</p>
+  <div class="kicker">מכירים את היכולות, לומדים לעבוד נכון</div>
+  <h1><span class="nw">AI הוא הרבה יותר</span><br><span class="grad">ממנוע תשובות</span></h1>
+  <p class="q1 f" data-f="1">רוב האנשים משתמשים בו כמו בחיפוש משופר: שואלים, מקבלים תשובה, סוגרים.</p>
+  <p class="q2 f" data-f="2">אבל הוא כבר יודע <span class="grad">הרבה יותר</span></p>
   <div class="skills f" data-f="3">
-    <span class="chip k">ידע ✓</span>
-    <span class="chip">לשאול</span><span class="chip">להבין</span><span class="chip">לבקר</span><span class="chip">ליישם</span>
+    <span class="chip">לקרוא מסמכים</span><span class="chip">ליצור תמונות ומצגות</span><span class="chip">להתאים תוכן</span><span class="chip">לגלם תפקיד</span><span class="chip">לבצע משימות</span>
   </div>
   <div class="qrbox">
     <div class="qr" data-qr></div>
-    <div class="qrcap"><b>ערכת ה-AI של המורה</b><br>פרומפטים מוכנים להעתקה</div>
+    <div class="qrcap"><b>ערכת ה-AI למורים</b><br>פרומפטים, יכולות וכלים</div>
   </div>
   <button class="dtimer" data-sec="60" style="top:auto;bottom:130px;left:460px"></button>
   <div class="foot"><span class="brand">Practi<b>AI</b> · בינה מלאכותית שעובדת בעולם האמיתי</span><span class="pg"></span></div>
 </section>
 
 <!-- ================= 2 ================= -->
-<section class="slide s2" data-time="3" data-title="מה הייתם שמחים לשנות?">
+<section class="slide s2" data-time="3" data-title="איפה AI יכול לעזור לי?">
   <div class="kicker">שאלה לקהל <span class="min">הצבעה</span></div>
-  <h2 class="title">מה הייתם שמחים <span class="grad">לשנות</span> בעבודה שלכם?</h2>
+  <h2 class="title">איפה AI יכול <span class="grad">לעזור לכם</span> השבוע?</h2>
   <div class="poll" id="poll">
-    <button class="pcard f" data-f="1"><div class="pn">01</div><div class="pt">להכין שיעור מעניין<br>בלי להשקיע שעות</div><div class="pv">0</div><div class="pbar"></div></button>
-    <button class="pcard f" data-f="1"><div class="pn">02</div><div class="pt">לתת מענה לתלמידים<br>ברמות שונות</div><div class="pv">0</div><div class="pbar"></div></button>
-    <button class="pcard f" data-f="1"><div class="pn">03</div><div class="pt">להבין למה תלמידים<br>לא מבינים נושא מסוים</div><div class="pv">0</div><div class="pbar"></div></button>
-    <button class="pcard f" data-f="1"><div class="pn">04</div><div class="pt">לגרום לתלמידים לחשוב,<br>ולא רק לשנן</div><div class="pv">0</div><div class="pbar"></div></button>
+    <button class="pcard f" data-f="1"><div class="pn">01</div><div class="pt">לקרוא ולסכם חוזרים,<br>נהלים ומסמכים ארוכים</div><div class="pv">0</div><div class="pbar"></div></button>
+    <button class="pcard f" data-f="1"><div class="pn">02</div><div class="pt">להתאים חומר אחד<br>לתלמידים ברמות שונות</div><div class="pv">0</div><div class="pbar"></div></button>
+    <button class="pcard f" data-f="1"><div class="pn">03</div><div class="pt">ליצור חומרים: דפי עבודה,<br>תמונות ומצגות</div><div class="pv">0</div><div class="pbar"></div></button>
+    <button class="pcard f" data-f="1"><div class="pn">04</div><div class="pt">לתכנן שיעור או פעילות<br>בפחות זמן</div><div class="pv">0</div><div class="pbar"></div></button>
   </div>
-  <div class="bottomline f" data-f="2">ומה אם היה לנו <span class="grad">שותף עבודה</span> זמין לכל אחת מהמשימות האלה?</div>
+  <div class="bottomline f" data-f="2">לכל משימה כזו מתאימה <span class="grad">יכולת AI אחרת.</span> היום נכיר אותן.</div>
   <button class="dtimer" data-sec="60"></button>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
 
 <!-- ================= 3 ================= -->
-<section class="slide s3" data-time="3" data-title="לא רק לעשות מהר יותר">
-  <div class="kicker">השינוי האמיתי</div>
-  <h2 class="title">השינוי הגדול הוא <span class="grad">לא רק לעשות מהר יותר</span></h2>
-  <div class="cmp-head"><span>שימוש בסיסי · חוסך זמן</span><span></span><span class="adv">שימוש מתקדם · משפר את ההוראה</span></div>
-  <div class="cmp">
-    <div class="row f" data-f="1"><div class="b">"כתוב לי מערך שיעור"</div><div class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div><div class="a">"עזור לי להפוך את השיעור לחוויה"</div></div>
-    <div class="row f" data-f="2"><div class="b">"פתור את השאלה"</div><div class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div><div class="a">"עזור לי להבין את הטעות"</div></div>
-    <div class="row f" data-f="3"><div class="b">"כתוב שאלות למבחן"</div><div class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div><div class="a">"עזור לי לבדוק מי באמת הבין"</div></div>
+<section class="slide s3" data-time="3" data-title="חמש יכולות שכדאי להכיר">
+  <div class="kicker">המפה</div>
+  <h2 class="title" style="margin-bottom:36px">חמש יכולות <span class="grad">שכדאי להכיר</span></h2>
+  <div class="caps">
+    <div class="sj f" data-f="1" style="--c:#2fd6c9"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div><h3>שיחה</h3><p>לחשוב יחד, לקבל רעיונות, להשוות חלופות ולשפר תשובה לאורך השיחה.</p><span class="tool">Gemini</span></div>
+    <div class="sj f" data-f="2" style="--c:#8b7bff"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><h3>מסמכים</h3><p>לקרוא מסמכים שאתם מעלים, לענות מתוכם ולהפנות למקור.</p><span class="tool">Gemini Notebook</span></div>
+    <div class="sj f" data-f="3" style="--c:#ffb547"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><h3>יצירה</h3><p>להפיק תמונות, מצגות, אינפוגרפיקות ואודיו, לא רק טקסט.</p><span class="tool">Canvas ב-Gemini</span></div>
+    <div class="sj f" data-f="4" style="--c:#ff6b8a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div><h3>התאמה</h3><p>להתאים תוכן לרמות ולקהלים, ולשמור הוראות קבועות לעבודה חוזרת.</p><span class="tool">Skills ב-Gemini</span></div>
+    <div class="sj f" data-f="5" style="--c:#5aa8ff"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3>ביצוע משימות</h3><p>סוכן שמבצע תהליך בכמה שלבים, לפי הרשאות ובפיקוח.</p><span class="tool">סוכני AI</span></div>
   </div>
-  <p class="msgline f" data-f="4">אותה טכנולוגיה יכולה <b>לחסוך זמן</b> וגם <b>לשפר את איכות ההוראה</b>. אלה לא אותם דברים.</p>
+  <p class="summary f" data-f="6">לא שואלים "איזה כלי?", אלא <span class="grad">"איזו יכולת המשימה שלי צריכה?"</span></p>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
 
 <!-- ================= 4 ================= -->
-<section class="slide s4" data-time="3" data-title="האתגר: אחוזים להחלטה">
-  <div class="kicker">דוגמה מהכיתה · מתמטיקה, כיתה ז'</div>
-  <h2 class="title" style="margin-bottom:30px">האתגר: להפוך אחוזים <span class="grad">להחלטה אמיתית</span></h2>
-  <div class="grid4">
-    <div>
-      <div class="budget-tag f" data-f="1">
-        <span style="font-size:32px;color:var(--mu)">מועצת התלמידים קיבלה</span>
-        <span class="big" id="bAmt">12,000</span><span class="cur">₪</span>
-        <span class="tgl" id="bTgl"><button class="sel" data-b="12000">12,000</button><button data-b="10800">10,800</button></span>
-      </div>
-      <div class="projs f" data-f="2" id="projs">
-        <button class="proj" data-cost="6000" style="--c:#2fd6c9"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
-          <div class="ic" style="background:rgba(47,214,201,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#2fd6c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12a10 10 0 0 1 20 0z"/><path d="M12 12v8a2 2 0 0 0 4 0"/></svg></div>
-          <div class="nm">הצללה בחצר</div><div class="pr">6,000 ₪</div><div class="pc"></div></button>
-        <button class="proj" data-cost="4000" style="--c:#8b7bff"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
-          <div class="ic" style="background:rgba(139,123,255,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#8b7bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div>
-          <div class="nm">פינת קריאה</div><div class="pr">4,000 ₪</div><div class="pc"></div></button>
-        <button class="proj" data-cost="5000" style="--c:#ffb547"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
-          <div class="ic" style="background:rgba(255,181,71,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#ffb547" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 0 1 0 20M2 12h20M12 2a15 15 0 0 0 0 20"/></svg></div>
-          <div class="nm">ציוד ספורט</div><div class="pr">5,000 ₪</div><div class="pc"></div></button>
-      </div>
-      <div class="mission f" data-f="3"><b>המשימה שלכם:</b> החליטו אילו פרויקטים לממן, חשבו איזה אחוז מהתקציב יוקצה לכל אחד, והגנו על ההחלטה שלכם.</div>
-    </div>
-    <div class="meter f" data-f="2">
-      <div class="mt"><span>שלושה רעיונות. אין מספיק כסף לכולם.</span><span id="sum15">סה"כ: 15,000 ₪</span></div>
-      <div class="stack" id="bStack"><i style="background:#2fd6c9;width:0"><span></span></i><i style="background:#8b7bff;width:0"><span></span></i><i style="background:#ffb547;width:0"><span></span></i></div>
-      <div class="stats">
-        <div class="stat"><div class="k">נבחר</div><div class="v" id="bSel">0 ₪</div></div>
-        <div class="stat"><div class="k" id="bLeftK">יתרה</div><div class="v" id="bLeft">12,000 ₪</div></div>
-      </div>
-      <div class="status idle" id="bStatus">לחצו על פרויקטים כדי לבנות החלטה</div>
-    </div>
-  </div>
-  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
-</section>
-
-<!-- ================= 5 ================= -->
-<section class="slide s5" data-time="3" data-title="כך מתחילה השיחה עם AI">
-  <div class="illus">המחשת שיחה שהוכנה מראש</div>
-  <div class="chatwrap">
-    <div class="side">
-      <div class="kicker">הדגמה 1 · חלק א'</div>
-      <h2 class="title">במקום לבקש דף עבודה, <span class="grad">מגדירים את האתגר</span></h2>
-      <p class="lead f" data-f="1">שימו לב מה המורה <b>כן</b> כותב: כיתה, נושא, משך, הנתונים, ומה התלמידים צריכים <b>לעשות</b>.</p>
-    </div>
-    <div class="chat">
-      <div class="bar"><span class="dot"></span><span>עוזר AI</span><span class="sp"></span><span>המחשה</span></div>
-      <div class="body">
-        <div class="msg t f" data-f="1"><div class="who">המורה</div>
-          <p>אני מלמד כיתה ז' בנושא אחוזים. אני רוצה להחליף הסבר פרונטלי בפעילות קבוצתית של 15 דקות שבה התלמידים מקבלים החלטה אמיתית.</p>
-          <p>צור משימה שבה מועצת התלמידים צריכה לחלק תקציב של 12,000 ₪ בין הצללה (6,000), פינת קריאה (4,000) וציוד ספורט (5,000).</p>
-          <p>כל קבוצה תצטרך לחשב אחוזים, לבחור פרויקטים ולהצדיק החלטה. הצע שלבי פעילות קצרים וברורים.</p></div>
-        <div class="msg ai f" data-f="2"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
-          <div class="ct"><p>הנה פעילות בשם <span class="hl">"מי יקבל את התקציב?"</span></p>
-          <ol><li>הציגו את שלוש ההצעות.</li><li>חלקו את הכיתה לצוותי החלטה.</li><li>בקשו מכל צוות להציג חלוקה אפשרית, חישובי אחוזים ושני נימוקים לבחירה.</li><li>קיימו הצבעה בין ההצעות.</li></ol></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
-</section>
-
-<!-- ================= 6 ================= -->
-<section class="slide s6" data-time="4" data-title="מתשובת AI לפעילות בכיתה">
-  <div class="kicker">הדגמה 1 · חלק ב'</div>
-  <h2 class="title">התלמידים לא רק מחשבים. <span class="grad">הם צריכים להחליט.</span></h2>
-  <div class="grid6">
-    <div class="card decision f" data-f="1">
-      <div class="tag">דוגמה להחלטה של קבוצת תלמידים</div>
-      <div class="combo">הצללה בחצר + ציוד ספורט</div>
-      <div class="tot">סה"כ <b>11,000 ₪</b> מתוך 12,000 ₪</div>
-      <div class="stack anim"><i style="--w:50%;background:#2fd6c9"><span>50%</span></i><i style="--w:41.7%;background:#ffb547"><span>41.7%</span></i><i style="--w:8.3%;background:rgba(255,255,255,.18)"><span></span></i></div>
-      <div class="legend">
-        <div><i style="background:#2fd6c9"></i>הצללה · 6,000 ₪<b>50%</b></div>
-        <div><i style="background:#ffb547"></i>ציוד ספורט · 5,000 ₪<b>41.7%</b></div>
-        <div><i style="background:rgba(255,255,255,.25)"></i>יתרה · 1,000 ₪<b>8.3%</b></div>
-      </div>
-    </div>
-    <div class="qs">
-      <h3 class="f" data-f="2">שאלות לדיון</h3>
-      <div class="q f" data-f="2"><span class="n">1</span>האם זו הבחירה הטובה ביותר לבית הספר?</div>
-      <div class="q f" data-f="3"><span class="n">2</span>איזו קבוצה יכולה להציע חלוקה אחרת?</div>
-      <div class="q f" data-f="4"><span class="n">3</span>האם ההחלטה הייתה משתנה אם היו עוד מגבלות?</div>
-    </div>
-  </div>
-  <button class="dtimer" data-sec="90"></button>
-  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
-</section>
-
-<!-- ================= 7 ================= -->
-<section class="slide s7" data-time="4" data-title="הפרומפט השני">
-  <div class="illus">המחשת שיחה שהוכנה מראש</div>
-  <div class="chatwrap">
-    <div class="side morph">
-      <div><div class="kicker">הדגמה 1 · חלק ג'</div>
-      <h2 class="title" style="margin-bottom:10px">התוצאה הראשונה היא רק <span class="grad">נקודת ההתחלה</span></h2></div>
-      <div class="f" data-f="2" id="cutBox">
-        <div class="bnum bold">12,000 ₪</div>
-        <div style="display:flex;align-items:center;gap:24px"><div class="bnum bnew" id="cutNum">12,000</div><span class="cutbadge">10%-</span></div>
-      </div>
-      <div class="nofit f" data-f="2">הצללה + ציוד ספורט = <b>11,000 ₪</b><br>כבר לא נכנס בתקציב של <b>10,800 ₪</b></div>
-      <div class="quote f" data-f="4">"לא החלפנו כלי, לא התחלנו מהתחלה. פשוט המשכנו לדבר עם ה-AI כמו עם שותף לתכנון."</div>
-    </div>
-    <div class="chat">
-      <div class="bar"><span class="dot"></span><span>עוזר AI · המשך השיחה</span><span class="sp"></span><span>המחשה</span></div>
-      <div class="body">
-        <div class="msg t f" data-f="1" data-until="2"><div class="who">המורה</div>
-          <p>עכשיו הכנס אירוע מפתיע: <b>תקציב בית הספר קוצץ ב-10%.</b></p>
-          <p>שנה את המשימה כך שהתלמידים יצטרכו לחשב מחדש את התקציב, לבחון את ההחלטות שלהם ולהסביר מה השתנה. הוסף גרסה תומכת לתלמידים שמתקשים.</p></div>
-        <div class="msg ai f" data-f="2"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
-          <div class="ct"><p><span class="alert">עדכון דחוף: התקציב קוצץ!</span></p>
-          <p>התקציב החדש: <span class="hl">10,800 ₪</span>. ההחלטה לממן הצללה וציוד ספורט כבר אינה אפשרית.</p>
-          <p><b>אתגר נוסף:</b> מצאו חלופה שעומדת בתקציב. הציגו כמה כסף חסכתם, מה ויתרתם עליו ומהו אחוז התקציב של כל פרויקט.</p></div></div>
-        <div class="msg ai f" data-f="3"><div class="who">עוזר AI · גרסה תומכת</div><div class="typing"><i></i><i></i><i></i></div>
-          <div class="ct"><p>לתלמידים שזקוקים לתמיכה: ספקו טבלה עם עלויות, שלבי חישוב ודוגמה פתורה לחישוב 10% מ-12,000 ₪.</p></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
-</section>
-
-<!-- ================= 8 ================= -->
-<section class="slide s8" data-time="4" data-title="ה-AI בתור התלמיד">
-  <div class="illus">המחשת שיחה שהוכנה מראש</div>
-  <div class="chatwrap">
-    <div class="side">
-      <div class="kicker">הדגמה 2 · קריאה והבנת הנקרא</div>
-      <h2 class="title" style="font-size:54px">הפעם לא מבקשים תשובה. <span class="grad">מתאמנים על הוראה.</span></h2>
-      <div class="passage f" data-f="1"><span class="lbl">הטקסט שהתלמיד קרא</span>
-      בסוף יום הלימודים מצאה מאיה במסדרון דף עם שאלות למבחן של מחר. היא הביטה סביב, קיפלה את הדף והכניסה אותו לתיק. אחרי כמה צעדים נעצרה, חזרה לאחור ונכנסה לחדר המורים.</div>
-    </div>
-    <div class="chat">
-      <div class="bar"><span class="dot"></span><span>סימולציה: תלמיד כיתה ז'</span><span class="sp"></span><span>המחשה</span></div>
-      <div class="body">
-        <div class="msg t f" data-f="2"><div class="who">המורה ל-AI</div>
-          <p>גלם תלמיד בכיתה ז' שקרא את הקטע וממהר להסיק מסקנות. אני אתאמן איתך בשאילת שאלות שמחזירות לראיות מהטקסט. השב בקצרה, בתור התלמיד בלבד.</p></div>
-        <div class="msg st f" data-f="3"><div class="who">התלמיד המדומה</div><div class="typing"><i></i><i></i><i></i></div>
-          <div class="ct"><p style="font-size:36px">"ברור שמאיה התכוונה להעתיק במבחן. אחרת למה היא הכניסה את הדף לתיק?"</p></div></div>
-        <div class="caution f" data-f="4"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-          <span>זו תפיסה אפשרית של תלמיד, לא פתרון חד-משמעי של הסיפור. איך הייתם מגיבים?</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
-</section>
-
-<!-- ================= 9 ================= -->
-<section class="slide s9" data-time="4" data-title="לאמן את השאלה הטובה">
-  <div class="illus">המחשת שיחה שהוכנה מראש</div>
-  <div class="chatwrap">
-    <div class="side">
-      <div class="kicker">הדגמה 2 · המשך אותה שיחה</div>
-      <h2 class="title" style="font-size:56px">אפשר לאמן את <span class="grad">מיומנות השאלה הטובה</span></h2>
-      <div class="rail" id="rail9">
-        <div data-r="1"><i>1</i>שאלה שמחזירה לטקסט</div>
-        <div data-r="2"><i>2</i>שאלה שמערערת את המסקנה</div>
-        <div data-r="3"><i>3</i>משוב על השאלות שלי</div>
-      </div>
-      <p class="lead f" data-f="5" style="margin-top:40px;font-size:30px">הסימולציה לא מנבאת איך תלמיד אמיתי יגיב, אבל <b>מאפשרת לתרגל מראש</b>.</p>
-    </div>
-    <div class="chat">
-      <div class="bar"><span class="dot"></span><span>סימולציה: תלמיד כיתה ז'</span><span class="sp"></span><span>המחשה</span></div>
-      <div class="body">
-        <div class="msg t f" data-f="1" data-dim="2" data-until="2"><div class="who">המורה</div><p>איזה פרט בטקסט גרם לך לחשוב כך?</p></div>
-        <div class="msg st f" data-f="1" data-dim="2" data-until="2"><div class="who">התלמיד</div><div class="typing"><i></i><i></i><i></i></div><div class="ct"><p>היא הסתכלה סביב והכניסה את הדף לתיק. זה נראה כאילו היא מסתירה אותו.</p></div></div>
-        <div class="msg t f" data-f="2" data-until="2"><div class="who">המורה</div><p>ואיזה פרט בטקסט יכול <b>לערער</b> את המסקנה שלך?</p></div>
-        <div class="msg st f" data-f="2" data-until="2"><div class="who">התלמיד</div><div class="typing"><i></i><i></i><i></i></div><div class="ct"><p>היא חזרה ונכנסה לחדר המורים. אולי היא בעצם רצתה למסור את הדף.</p></div></div>
-        <div class="msg t f" data-f="3"><div class="who">המורה</div><p>עצור את הסימולציה. תן לי משוב על השאלות ששאלתי.</p></div>
-        <div class="msg ai fb f" data-f="3"><div class="who">עוזר AI · משוב למורה</div><div class="typing"><i></i><i></i><i></i></div>
-          <div class="ct"><p>החזרת את התלמיד לטקסט במקום לומר לו שהוא טועה. השאלה השנייה הייתה חשובה במיוחד, כי היא ביקשה לחפש ראיות שמאתגרות את המסקנה הראשונית.</p></div></div>
-        <div class="improve f" data-f="4"><b>הצעה לשיפור:</b> "האם יכול להיות יותר מהסבר אחד להתנהגות של מאיה?"</div>
-      </div>
-    </div>
-  </div>
-  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
-</section>
-
-<!-- ================= 10 ================= -->
-<section class="slide s10" data-time="3" data-title="כמעט בכל מקצוע">
-  <div class="kicker">לא רק מתמטיקה ושפה</div>
-  <h2 class="title">אותה מתודולוגיה, <span class="grad">כמעט בכל מקצוע</span></h2>
-  <div class="subj">
-    <div class="sj f" data-f="1" style="--c:#2fd6c9"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3"/><path d="M7 15h10"/></svg></div><h3>מדעים</h3><p>להפוך מושג מדעי לתעלומה שהתלמידים צריכים לחקור.</p></div>
-    <div class="sj f" data-f="2" style="--c:#ffb547"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M2 10l10-7 10 7z"/></svg></div><h3>היסטוריה</h3><p>לבנות סימולציית החלטה על בסיס מקורות מתקופה היסטורית.</p></div>
-    <div class="sj f" data-f="3" style="--c:#8b7bff"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div><h3>אנגלית</h3><p>לתרגל שיחה עם דמות מדומה ברמת קושי מותאמת.</p></div>
-    <div class="sj f" data-f="4" style="--c:#ff6b8a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0zM8 21h8"/></svg></div><h3>ספרות ואזרחות</h3><p>לאמן דיון שבו צריך לבסס טענות באמצעות ראיות ונימוקים.</p></div>
-  </div>
-  <p class="summary f" data-f="5">לא מתחילים מהכלי. מתחילים ממה שאנחנו רוצים שהתלמיד <span class="grad">יעשה, יבין או יצליח להסביר.</span></p>
-  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
-</section>
-
-<!-- ================= 11 ================= -->
-<section class="slide s11" data-time="4" data-title="הנוסחה לבקשה טובה">
-  <div class="kicker">ידע פרקטי · לחצו על המרכיבים</div>
-  <h2 class="title" style="margin-bottom:32px">ארבעה דברים שעוזרים <span class="grad">ל-AI לעזור לנו</span></h2>
+<section class="slide s4" data-time="4" data-title="איך מדברים עם AI נכון?">
+  <div class="kicker">שיטת העבודה · לחצו על המרכיבים</div>
+  <h2 class="title" style="margin-bottom:32px">איך מדברים עם AI נכון? <span class="grad">ארבעה מרכיבים</span></h2>
   <div class="formula f" data-f="1" id="formula">
     <button class="fx" data-k="goal" style="--c:#2fd6c9"><div class="n">1</div><h3>מטרה</h3><p>מה אנחנו רוצים להשיג?</p></button>
-    <button class="fx" data-k="ctx" style="--c:#8b7bff"><div class="n">2</div><h3>הקשר</h3><p>איזה מקצוע, גיל, רמה וסביבה?</p></button>
+    <button class="fx" data-k="ctx" style="--c:#8b7bff"><div class="n">2</div><h3>הקשר</h3><p>מי אני, איזה מקצוע, גיל ורמה?</p></button>
     <button class="fx" data-k="out" style="--c:#ffb547"><div class="n">3</div><h3>תוצר</h3><p>מה בדיוק אנחנו רוצים לקבל?</p></button>
-    <button class="fx" data-k="lim" style="--c:#ff6b8a"><div class="n">4</div><h3>מגבלות</h3><p>זמן, ציוד, רמות קושי ודגשים.</p></button>
+    <button class="fx" data-k="lim" style="--c:#ff6b8a"><div class="n">4</div><h3>מגבלות</h3><p>זמן, ציוד, אורך ודגשים.</p></button>
   </div>
   <div class="builder f" data-f="2">
     <div><div class="lbl">הבקשה שלנו <span class="qmeter" id="qm"><i></i><i></i><i></i><i></i></span></div><div class="ptxt" id="ptxt"></div></div>
     <div style="display:flex;flex-direction:column;gap:12px"><button class="btn" id="fxAll">הצג גרסה מלאה</button><button class="btn" data-copy="#ptxt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>העתק</button></div>
   </div>
-  <div class="tip f" data-f="3"><span class="tl">הטיפ החשוב ביותר</span><span>אם התשובה הראשונה לא מספיק טובה, אל תתחילו מחדש. תגידו ל-AI בדיוק מה לשנות.</span></div>
+  <div class="tip f" data-f="3"><span class="tl">לא חייבים לזכור</span><span>אפשר לבקש מה-AI עצמו לשאול אתכם על ארבעת המרכיבים ולבנות את הבקשה. זה פרומפט 1 בערכה.</span></div>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
 
-<!-- ================= 12 ================= -->
-<section class="slide s12" data-time="3" data-title="שלושה דברים שלא מעבירים">
+<!-- ================= 5 ================= -->
+<section class="slide s5" data-time="5" data-title="מהבקשה לתוצאה: לפני ואחרי">
+  <div class="illus">המחשת שיחה שהוכנה מראש</div>
+  <div class="kicker">הדגמה · אותו נושא, שתי בקשות</div>
+  <h2 class="title" style="margin-bottom:28px">ההבדל הוא לא רק בבקשה. <span class="grad">הוא בתוצאה.</span></h2>
+  <div class="duo">
+    <div class="chat">
+      <div class="bar"><span class="dot" style="background:var(--mu2);box-shadow:none"></span><span>בקשה כללית</span><span class="sp"></span><span>Gemini · המחשה</span></div>
+      <div class="body">
+        <div class="msg t f" data-f="1"><div class="who">המורה</div><p>תכין לי שיעור על מערכת השמש.</p></div>
+        <div class="msg ai f" data-f="2"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
+          <div class="ct"><p><b>מערך שיעור: מערכת השמש</b></p><ol><li>פתיחה: מהי מערכת השמש?</li><li>הסבר על השמש ושמונת כוכבי הלכת.</li><li>דף עבודה: התאימו כל כוכב לכת לתיאור שלו.</li><li>סיכום ושאלות חזרה.</li></ol></div></div>
+        <div class="verdict v-gen f" data-f="2">נכון, אבל כללי. מתאים לכל כיתה, ולכן לאף כיתה.</div>
+      </div>
+    </div>
+    <div class="chat">
+      <div class="bar"><span class="dot"></span><span>בקשה עם ארבעת המרכיבים</span><span class="sp"></span><span>Gemini · המחשה</span></div>
+      <div class="body">
+        <div class="msg t f" data-f="3"><div class="who">המורה</div><p>אני מלמד מדעים בכיתה ה'. צור פעילות של 20 דקות בנושא מערכת השמש, שתגרום לתלמידים להיות פעילים, ללא צורך בציוד מיוחד. הצע שלוש אפשרויות והשווה ביניהן.</p></div>
+        <div class="msg ai f" data-f="4"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
+          <div class="ct"><ol><li><span class="hl">מודל בצעדים:</span> התלמידים הם כוכבי הלכת ופוסעים מרחקים.</li><li><span class="hl">"מי אני?":</span> כל קבוצה כותבת חידה על כוכב לכת, והכיתה מנחשת.</li><li><span class="hl">משימת חלל:</span> בוחרים כוכב לנחיתה ומנמקים לפי הנתונים.</li></ol><p><b>השוואה:</b> 1 הכי פעילה, 2 הכי קלה, 3 מפתחת נימוק.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="capline f" data-f="5"><span class="cl">היכולת</span><span>נותנים הקשר, מגדירים תוצר ומבקשים <b>כמה חלופות להשוואה</b>, במקום תשובה אחת.</span></div>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
+<!-- ================= 6 ================= -->
+<section class="slide s6" data-time="4" data-title="לא מתחילים מחדש">
+  <div class="illus">המחשת שיחה שהוכנה מראש</div>
+  <div class="chatwrap">
+    <div class="side morph">
+      <div><div class="kicker">הדגמה · המשך אותה שיחה</div>
+      <h2 class="title" style="margin-bottom:26px">לא מתחילים מחדש. <span class="grad">מתקנים, משפרים ומדייקים.</span></h2></div>
+      <div class="rail" id="rail6">
+        <div data-r="1"><i>1</i>בוחרים ומקצרים</div>
+        <div data-r="2"><i>2</i>משנים נתון: אין חצר</div>
+        <div data-r="3"><i>3</i>מבקשים ביקורת</div>
+      </div>
+      <div class="quote f" data-f="4">"לא החלפנו כלי ולא התחלנו מההתחלה. המשכנו לדבר עם ה-AI כמו עם שותף לתכנון."</div>
+    </div>
+    <div class="chat">
+      <div class="bar"><span class="dot"></span><span>Gemini · המשך השיחה</span><span class="sp"></span><span>המחשה</span></div>
+      <div class="body">
+        <div class="msg t f" data-f="1" data-until="1"><div class="who">המורה</div><p>אני בוחר באפשרות הראשונה. קצר אותה ל-15 דקות, וכתוב את ההוראות כדף משימה לתלמידים.</p></div>
+        <div class="msg ai f" data-f="1" data-until="1"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
+          <div class="ct"><p><b>דף משימה: מערכת השמש בצעדים (15 דק')</b></p><ol><li>קבלו כרטיס של כוכב לכת.</li><li>מצאו בטבלה את המרחק שלו מהשמש.</li><li>פסעו את המרחק לפי המקרא: צעד = 50 מיליון ק"מ.</li></ol></div></div>
+        <div class="msg t f" data-f="2" data-until="2"><div class="who">המורה</div><p>אין לנו גישה לחצר, רק הכיתה. התאם את הפעילות.</p></div>
+        <div class="msg ai f" data-f="2" data-until="2"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
+          <div class="ct"><p>שינוי: <span class="hl">מודל על חוט לאורך הכיתה.</span> כל קבוצה מסמנת את כוכב הלכת שלה במרחק המתאים. אותה למידה, בלי לצאת מהכיתה.</p></div></div>
+        <div class="msg t f" data-f="3"><div class="who">המורה</div><p>מה עלול לא לעבוד בכיתה? ואיזו עובדה כאן כדאי לבדוק?</p></div>
+        <div class="msg ai f" data-f="3"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
+          <div class="ct"><p>• כוכבי הלכת הרחוקים לא ייכנסו לכיתה בקנה המידה הזה. אפשר להשתמש במסדרון.</p><p>• כדאי לבדוק את טבלת המרחקים מול ספר הלימוד לפני השיעור.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
+<!-- ================= 7 ================= -->
+<section class="slide s7" data-time="4" data-title="AI מבין מסמכים">
+  <div class="illus">המחשה · מסמך לדוגמה</div>
+  <div class="kicker">יכולת: עבודה עם מסמכים</div>
+  <h2 class="title" style="margin-bottom:30px">AI מבין מסמכים, <span class="grad">ומראה מאיפה התשובה</span></h2>
+  <div class="docwrap">
+    <div class="doc f" data-f="1">
+      <div class="dh"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span>נוהל טיולים ופעילויות חוץ · בית ספר לדוגמה</span></div>
+      <div class="dsec"><b>2.1</b> כל פעילות מחוץ לבית הספר מתואמת עם הרכזת שבועיים מראש.</div>
+      <div class="dsec" id="src1"><b>3.4</b> ביציאה של כיתה אחת נדרשים שני מבוגרים מלווים לפחות, אחד מהם מורה.</div>
+      <div class="dsec"><b>4.2</b> טופס אישור הורים נאסף עד שלושה ימים לפני הפעילות.</div>
+      <div class="dsec" id="src2"><b>5.1</b> תלמיד ללא טופס אישור חתום נשאר בבית הספר בפעילות חלופית.</div>
+      <div class="dsec"><b>6.3</b> רשימת טלפונים לחירום נמצאת בידי כל מלווה.</div>
+    </div>
+    <div class="chat">
+      <div class="bar"><span class="dot"></span><span>Gemini Notebook · מקור אחד</span><span class="sp"></span><span>המחשה</span></div>
+      <div class="body">
+        <div class="msg t f" data-f="1" data-until="3"><div class="who">המורה</div><p>על סמך המסמך בלבד: כמה מלווים צריך ביציאה של כיתה אחת? ומה עושים עם תלמיד שלא הביא אישור? ציין סעיף לכל תשובה.</p></div>
+        <div class="msg ai f" data-f="2"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
+          <div class="ct"><p>נדרשים לפחות שני מבוגרים מלווים, ואחד מהם מורה. <span class="cite">3.4</span></p><p>תלמיד בלי טופס חתום נשאר בבית הספר בפעילות חלופית. <span class="cite">5.1</span></p></div></div>
+        <div class="msg t f" data-f="4"><div class="who">המורה</div><p>ומה התקציב לאוטובוס?</p></div>
+        <div class="msg ai f" data-f="4"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
+          <div class="ct"><p><b>לא מופיע במסמך.</b> כדאי לברר מול הרכזת.</p></div></div>
+      </div>
+    </div>
+    <i class="f" data-f="3" style="display:none" aria-hidden="true"></i>
+  </div>
+  <div class="capline f" data-f="5"><span class="cl">היכולת</span><span>לחפש, לסכם ולהסביר <b>מתוך מסמכים שאתם מספקים</b>, עם הפניה למקור שאפשר לבדוק.</span></div>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
+<!-- ================= 8 ================= -->
+<section class="slide s8" data-time="5" data-title="אותו חומר, כמה תוצרים">
+  <div class="kicker">יכולת: התאמת תוכן</div>
+  <h2 class="title" style="margin-bottom:28px">אותו חומר, <span class="grad">כמה תוצרים</span></h2>
+  <div class="passage src f" data-f="1"><span class="lbl">נקודת ההתחלה: הסבר אחד על מחזור המים</span>השמש מחממת את המים בים ובאגמים, והם מתאדים והופכים לאדים. האדים עולים, מתקררים ויוצרים עננים. כשהטיפות בענן מתכבדות, הן יורדות כגשם וחוזרות לים, לאגמים ולמי התהום.</div>
+  <div class="vers">
+    <div class="ver f" data-f="2" style="--c:#2fd6c9"><span class="lv">גרסה פשוטה</span><p>כשהשמש מחממת שלולית, המים "נעלמים". הם לא באמת נעלמים: הם עולים, מתקררים והופכים לענן. כשיש בענן הרבה מים, יורד גשם.</p><span class="ex">דוגמה מהיומיום: אדים מהסיר שנאספים על המכסה.</span></div>
+    <div class="ver f" data-f="3" style="--c:#8b7bff"><span class="lv">גרסה רגילה</span><p>מושגים מרכזיים: <b>אידוי · עיבוי · משקעים · חלחול.</b></p><span class="ex">שאלה: מה היה קורה למחזור המים אם השמש הייתה חלשה יותר?</span></div>
+    <div class="ver f" data-f="4" style="--c:#ffb547"><span class="lv">גרסת העמקה</span><p>שאלת חקר: איך כריתת יערות יכולה להשפיע על כמות הגשם באזור?</p><span class="ex">אתגר: מצאו שני קשרים בין מחזור המים לאקלים, עם ראיה לכל אחד.</span></div>
+  </div>
+  <div class="conv f" data-f="5"><span class="cl">אותו עיקרון עובד גם כדי</span><span class="chip">לתרגם</span><span class="chip">לקצר</span><span class="chip">ליצור שאלון</span><span class="chip">להמיר לטבלה</span><span class="chip">להכין דף עבודה</span></div>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
+<!-- ================= 9 ================= -->
+<section class="slide s9" data-time="4" data-title="מעבר לטקסט">
+  <div class="kicker">יכולת: יצירה</div>
+  <h2 class="title" style="margin-bottom:34px">מעבר לטקסט: <span class="grad">תמונות, מצגות, אודיו וחומרים חזותיים</span></h2>
+  <div class="media">
+    <div class="sj f" data-f="1" style="--c:#ffb547"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><h3>תמונה ואיור</h3><p class="ask">"צור איור בסגנון קומיקס של שלבי מחזור המים לכיתה ד', בלי טקסט בתוך התמונה."</p><span class="tool">Gemini</span></div>
+    <div class="sj f" data-f="2" style="--c:#8b7bff"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>מצגת</h3><p class="ask">"הפוך את ההסבר המצורף למצגת של שישה שקפים לכיתה ה'."</p><span class="tool">Canvas ב-Gemini</span></div>
+    <div class="sj f" data-f="3" style="--c:#2fd6c9"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>אינפוגרפיקה</h3><p class="ask">"צור אינפוגרפיקה של עמוד אחד שמסכמת את ארבעת שלבי מחזור המים."</p><span class="tool">Canvas ב-Gemini</span></div>
+    <div class="sj f" data-f="4" style="--c:#ff6b8a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></div><h3>אודיו</h3><p class="ask">סקירת אודיו: שיחה בין שני מגישים על החומר שהעליתם, לחזרה לפני מבחן.</p><span class="tool">Gemini Notebook</span></div>
+  </div>
+  <div class="tip f" data-f="5"><span class="tl">לפני שמחלקים</span><span>בודקים כל תוצר חזותי. טקסט בתוך תמונות, מספרים ועובדות עלולים לצאת שגויים.</span></div>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
+<!-- ================= 10 ================= -->
+<section class="slide s10" data-time="3" data-title="צ'אט, עוזר מותאם וסוכן AI">
+  <div class="kicker">שלוש רמות עבודה</div>
+  <h2 class="title" style="margin-bottom:34px">צ'אט, עוזר מותאם וסוכן AI: <span class="grad">מה ההבדל?</span></h2>
+  <div class="tiers">
+    <div class="card tier f" data-f="1" style="--c:#2fd6c9"><span class="lvl">צ'אט</span><p class="ask">"תכין לי פעילות בנושא אנרגיה לכיתה ו'."</p><p>נותנים בקשה ומקבלים תשובה. ממשיכים לדייק לאורך השיחה.</p><span class="when">מתאים ל: משימה חד-פעמית</span></div>
+    <div class="arrow f" data-f="2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div>
+    <div class="card tier f" data-f="2" style="--c:#8b7bff"><span class="lvl">עוזר מותאם</span><p class="ask">"העוזר הקבוע שלי להכנת פעילויות מדעים לכיתות ה'–ו'."</p><p>מוגדר מראש עם הוראות ומקורות, כדי לא להסביר בכל פעם מחדש.</p><span class="when">מתאים ל: משימה שחוזרת כל שבוע</span><span class="tool">Skills ב-Gemini</span></div>
+    <div class="arrow f" data-f="3"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div>
+    <div class="card tier f" data-f="3" style="--c:#ffb547"><span class="lvl">סוכן AI</span><p class="ask">"אסוף חומרים ממקורות מורשים, הכן טיוטה, בדוק מול הקריטריונים והפק מסמך לאישור."</p><p>מבצע כמה שלבים, ולעיתים משתמש בכלים מחוברים, לפי הרשאות ובפיקוח.</p><span class="when">מתאים ל: תהליך בכמה שלבים</span></div>
+  </div>
+  <p class="moe f" data-f="4" style="font-size:28px;margin-top:34px;text-align:center">לא כל עוזר מותאם הוא סוכן, ולא כל כלי יכול לפעול מחוץ לשיחה. האפשרויות תלויות בפלטפורמה ובהרשאות החשבון.</p>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
+<!-- ================= 11 ================= -->
+<section class="slide s11" data-time="3" data-title="איפה אפשר לטעות?">
   <div class="kicker">שימוש אחראי</div>
-  <h2 class="title" style="margin-bottom:34px">שלושה דברים <span class="grad">שלא מעבירים ל-AI</span></h2>
+  <h2 class="title" style="margin-bottom:34px">איפה אפשר לטעות? <span class="grad">אמינות, פרטיות והגנה על מידע</span></h2>
   <div class="three">
-    <div class="card rule f" data-f="1" style="--c:#ff6b8a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>מידע אישי ורגיש</h3><p>לא מעלים שמות תלמידים, ציונים, אבחונים או מידע מזהה.</p></div>
-    <div class="card rule f" data-f="2" style="--c:#ffb547"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M8 11l2 2 4-4"/></svg></div><h3>אחריות לאמינות</h3><p>בודקים עובדות, מקורות, חישובים והתאמה פדגוגית.</p></div>
-    <div class="card rule f" data-f="3" style="--c:#2fd6c9"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2zM9 21h6"/></svg></div><h3>שיקול דעת חינוכי</h3><p>המורה מחליט מה מתאים לתלמידים, כיצד להשתמש בתוצר והאם הכלי מאושר לשימוש.</p></div>
+    <div class="card rule f" data-f="1" style="--c:#ff6b8a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>מידע אישי ורגיש</h3><p>לא מעלים שמות תלמידים, ציונים, אבחונים או מידע מזהה, גם לא בתוך מסמך.</p></div>
+    <div class="card rule f" data-f="2" style="--c:#ffb547"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M8 11l2 2 4-4"/></svg></div><h3>אמינות ומקורות</h3><p>AI יכול לטעות גם כשהוא נשמע בטוח. בודקים עובדות, מספרים והפניות למקור.</p></div>
+    <div class="card rule f" data-f="3" style="--c:#2fd6c9"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>החשבון והכלי</h3><p>עובדים בכלי ובחשבון שבית הספר אישר, ובודקים מה נשמר ומי יכול לראות.</p></div>
   </div>
   <div class="quick f" data-f="4">
     <div class="qh">בדיקה מהירה: מעלים או לא? (לחצו לחשיפה)</div>
     <div class="qitems" id="qitems">
-      <button class="qi" data-v="no">רשימת שמות התלמידים וציוני המבחן האחרון<span class="vd">?</span></button>
-      <button class="qi" data-v="yes">"כיתה ז', 32 תלמידים, פערי רמות גדולים בשברים"<span class="vd">?</span></button>
+      <button class="qi" data-v="no">קובץ הציונים של הכיתה, כדי לקבל ניתוח<span class="vd">?</span></button>
+      <button class="qi" data-v="yes">חוזר או נוהל שפורסם לכל הצוות, בלי פרטים אישיים<span class="vd">?</span></button>
       <button class="qi" data-v="no">סיכום אבחון של תלמיד, גם בלי שם<span class="vd">?</span></button>
       <button class="qi" data-v="yes">תשובה שגויה לדוגמה, ללא פרטים מזהים<span class="vd">?</span></button>
     </div>
   </div>
-  <p class="moe f" data-f="4">גם כלי שנשמע משכנע יכול לטעות. פועלים לפי הנחיות משרד החינוך המעודכנות ומדיניות בית הספר.</p>
+  <p class="moe f" data-f="4">פועלים לפי מדיניות בית הספר ובכלים שאושרו לשימוש.</p>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
+<!-- ================= 12 ================= -->
+<section class="slide s12" data-time="2" data-title="שלוש משימות למחר בבוקר">
+  <div class="kicker">להתחיל מחר</div>
+  <h2 class="title" style="margin-bottom:40px">שלוש משימות <span class="grad">שאפשר לנסות מחר בבוקר</span></h2>
+  <div class="tasks">
+    <div class="card task f" data-f="1" style="--c:#2fd6c9"><span class="tn">1</span><span class="cap">שיחה</span><h3>תנו ל-AI לבנות איתכם בקשה</h3><p>כתבו במשפט מה אתם צריכים, ובקשו שישאל אתכם שאלות לפני שהוא מתחיל.</p><span class="kp">פרומפט 1 בערכה</span></div>
+    <div class="card task f" data-f="2" style="--c:#8b7bff"><span class="tn">2</span><span class="cap">מסמכים</span><h3>שאלו מסמך שאלה אחת</h3><p>העלו חוזר או פרק ארוך, ובקשו תשובה עם הפניה לסעיף.</p><span class="kp">פרומפט 6 בערכה</span></div>
+    <div class="card task f" data-f="3" style="--c:#ffb547"><span class="tn">3</span><span class="cap">התאמה</span><h3>חומר אחד, שלוש גרסאות</h3><p>קחו הסבר שכבר יש לכם, והפיקו ממנו גרסה פשוטה וגרסת העמקה.</p><span class="kp">פרומפט 7 בערכה</span></div>
+  </div>
+  <p class="summary f" data-f="4">משימה אחת. עשר דקות. ושואלים: <span class="grad">מה באמת השתפר?</span></p>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
 
 <!-- ================= 13 ================= -->
-<section class="slide s13" data-time="5" data-title="מחר בבוקר, אתם בוחרים">
+<section class="slide s13" data-time="3" data-title="ערכת ה-AI למורים">
   <div class="grid13">
     <div>
-      <div class="kicker">סיום</div>
-      <h2 class="title">מחר בבוקר, <span class="grad">אתם בוחרים</span></h2>
-      <p style="font-size:38px;color:var(--mu);margin:-14px 0 46px;line-height:1.4">לא צריך לשנות את כל ההוראה.<br>אפשר להתחיל <b style="color:var(--tx)">ממשימה אחת.</b></p>
+      <div class="kicker">סיום ושאלות</div>
+      <h2 class="title">הערכה <span class="grad">מחכה לכם</span></h2>
+      <p style="font-size:38px;color:var(--mu);margin:-14px 0 46px;line-height:1.4">לא צריך לשנות את כל העבודה.<br>אפשר להתחיל <b style="color:var(--tx)">ממשימה אחת.</b></p>
       <div class="kit">
-        <h3>ערכת ה-AI של המורה</h3>
+        <h3>ערכת ה-AI למורים</h3>
         <ul>
-          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>9 פרומפטים שימושיים להעתקה</li>
-          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>רעיונות ליישום במקצועות שונים</li>
-          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>טיפים לתוצאות מדויקות ואמינות</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>13 פרומפטים, מסודרים לפי יכולות</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>חמש היכולות ואיפה מוצאים אותן</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>7 הרגלים לעבודה נכונה ואחראית</li>
           <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>מצגת ההרצאה לעיון חוזר</li>
         </ul>
       </div>
     </div>
     <div class="qrbig">
       <div class="qr" data-qr></div>
-      <div class="qrcap">סרקו, בחרו <b>משימה אחת</b><br>ונסו אותה בשיעור הבא.</div>
+      <div class="qrcap">סרקו, בחרו <b>משימה אחת</b><br>ונסו אותה השבוע.</div>
     </div>
   </div>
   <div class="foot"><span class="brand">Practi<b>AI</b> · בינה מלאכותית שעובדת בעולם האמיתי</span><span class="pg"></span></div>
 </section>
 
 <!-- ================= BACKUP 1 ================= -->
-<section class="slide sb1" data-backup="1" data-time="0" data-title="B1 · הפרומפטים מההדגמה">
+<section class="slide sb1" data-backup="1" data-time="0" data-title="B1 · הפרומפטים מההדגמות">
   <div class="bk-tag">שקף גיבוי</div>
   <div class="kicker">להעתקה</div>
   <h2 class="title" style="margin-bottom:30px">הפרומפטים <span class="grad">מההדגמות</span></h2>
   <div class="plist">
-    <div class="pitem"><div><h3>הדגמה 1 · הגדרת האתגר (שקף 5)</h3><p id="bp1">אני מלמד כיתה ז' בנושא אחוזים. אני רוצה להחליף הסבר פרונטלי בפעילות קבוצתית של 15 דקות שבה התלמידים מקבלים החלטה אמיתית. צור משימה שבה מועצת התלמידים צריכה לחלק תקציב של 12,000 ₪ בין הצללה (6,000), פינת קריאה (4,000) וציוד ספורט (5,000). כל קבוצה תצטרך לחשב אחוזים, לבחור פרויקטים ולהצדיק החלטה. הצע שלבי פעילות קצרים וברורים.</p></div><button class="btn" data-copy="#bp1">העתק</button></div>
-    <div class="pitem"><div><h3>הדגמה 1 · שיחת המשך (שקף 7)</h3><p id="bp2">עכשיו הכנס אירוע מפתיע: תקציב בית הספר קוצץ ב-10%. שנה את המשימה כך שהתלמידים יצטרכו לחשב מחדש את התקציב, לבחון את ההחלטות שלהם ולהסביר מה השתנה. הוסף גרסה תומכת לתלמידים שמתקשים.</p></div><button class="btn" data-copy="#bp2">העתק</button></div>
-    <div class="pitem"><div><h3>הדגמה 2 · תלמיד מדומה (שקף 8)</h3><p id="bp3">גלם תלמיד בכיתה ז' שקרא את הקטע וממהר להסיק מסקנות. אני אתאמן איתך בשאילת שאלות שמחזירות לראיות מהטקסט. השב בקצרה, בתור התלמיד בלבד.</p></div><button class="btn" data-copy="#bp3">העתק</button></div>
+    <div class="pitem"><div><h3>בקשה עם ארבעת המרכיבים (שקף 5)</h3><p id="bp1">אני מלמד מדעים בכיתה ה'. צור פעילות של 20 דקות בנושא מערכת השמש, שתגרום לתלמידים להיות פעילים, ללא צורך בציוד מיוחד. הצע שלוש אפשרויות והשווה ביניהן.</p></div><button class="btn" data-copy="#bp1">העתק</button></div>
+    <div class="pitem"><div><h3>שיפור בהמשך השיחה (שקף 6)</h3><p id="bp2">מה עלול לא לעבוד בכיתה? ואיזו עובדה כאן כדאי לבדוק?</p></div><button class="btn" data-copy="#bp2">העתק</button></div>
+    <div class="pitem"><div><h3>שאלה על מסמך (שקף 7)</h3><p id="bp3">על סמך המסמך בלבד: [השאלה שלכם]. ציין סעיף לכל תשובה. אם התשובה לא מופיעה במסמך, כתוב "לא מופיע במסמך".</p></div><button class="btn" data-copy="#bp3">העתק</button></div>
+    <div class="pitem"><div><h3>אותו חומר, כמה גרסאות (שקף 8)</h3><p id="bp4">על בסיס ההסבר המצורף בלבד, צור שלוש גרסאות לאותה מטרת למידה: גרסה פשוטה עם דוגמה מהיומיום, גרסה רגילה עם מושגים מרכזיים ושאלה, וגרסת העמקה עם שאלת חקר.</p></div><button class="btn" data-copy="#bp4">העתק</button></div>
   </div>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
@@ -689,9 +745,9 @@ body.mouse #counter{opacity:1}
   <div class="kicker">שאלות ותשובות</div>
   <h2 class="title">שאלות <span class="grad">שעולות כמעט תמיד</span></h2>
   <div class="faq">
-    <div class="card"><h3>ומה אם התלמידים משתמשים ב-AI כדי להעתיק?</h3><p>משנים את המשימה, לא רק את הכללים: הצגת תהליך, הסבר בעל פה, התייחסות למקור מהכיתה ויישום במצב חדש. פרומפט 9 בערכה עוזר לעשות את זה.</p></div>
-    <div class="card"><h3>באיזה כלי מותר להשתמש?</h3><p>בכלי שמאושר בבית הספר, לפי הנחיות משרד החינוך המעודכנות. הפרומפטים בערכה עובדים בכל כלי צ'אט מקובל.</p></div>
-    <div class="card"><h3>איך מתחילים בלי להשקיע הרבה זמן?</h3><p>משימה אחת, פרומפט אחד, שיעור אחד. כשמשהו עובד, שומרים אותו כתבנית לשימוש חוזר.</p></div>
+    <div class="card"><h3>באיזה כלי כדאי להתחיל?</h3><p>בכלי שבית הספר אישר. לרבים מהמורים יש גישה ל-Gemini ול-Gemini Notebook דרך החשבון של בית הספר. הפרומפטים בערכה עובדים גם בכלים אחרים.</p></div>
+    <div class="card"><h3>ומה אם התלמידים משתמשים ב-AI כדי להעתיק?</h3><p>משנים את המשימה, לא רק את הכללים: הצגת תהליך, הסבר בעל פה, התייחסות למקור מהכיתה ויישום במצב חדש. פרומפט 13 בערכה עוזר לעשות את זה.</p></div>
+    <div class="card"><h3>איך מתחילים בלי להשקיע הרבה זמן?</h3><p>משימה אחת, פרומפט אחד. כשמשהו עובד, שומרים אותו כתבנית או כעוזר קבוע (פרומפט 2 בערכה).</p></div>
   </div>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
@@ -3086,16 +3142,12 @@ function next(){
 function prev(){ if(step>0){step--;apply();return;} if(cur>0) go(cur-1,'end'); }
 
 /* ---- slide hooks ---- */
-let cutDone=false;
 function hooks(s){
-  if(s.classList.contains('s7')){
-    const box=document.getElementById('cutBox'), num=document.getElementById('cutNum');
-    if(step>=2){ box.classList.add('cut');
-      if(!cutDone){ cutDone=true; const t0=performance.now(); const run=t=>{const p=Math.min(1,(t-t0-300)/900); const v=12000-1200*Math.max(0,p<0?0:1-Math.pow(1-p,3)); num.textContent=fmt(v); if(p<1) requestAnimationFrame(run);}; requestAnimationFrame(run);} }
-    else { box.classList.remove('cut'); cutDone=false; num.textContent='12,000'; }
+  if(s.classList.contains('s6')){
+    const r=Math.min(3,step); s.querySelectorAll('#rail6 div').forEach(d=>{const k=+d.dataset.r; d.className= k<r?'done':(k===r?'cur':'');});
   }
-  if(s.classList.contains('s9')){
-    const r=Math.min(3,step); s.querySelectorAll('#rail9 div').forEach(d=>{const k=+d.dataset.r; d.className= k<r?'done':(k===r?'cur':'');});
+  if(s.classList.contains('s7')){
+    ['src1','src2'].forEach(id=>document.getElementById(id).classList.toggle('hit',step>=3));
   }
 }
 
@@ -3106,27 +3158,7 @@ pcards.forEach((c,i)=>c.addEventListener('contextmenu',e=>{e.preventDefault(); v
 function renderPoll(){ const mx=Math.max(...votes), tot=votes.reduce((a,b)=>a+b,0);
   pcards.forEach((c,i)=>{ c.querySelector('.pv').textContent=votes[i]; c.querySelector('.pbar').style.width=tot?votes[i]/tot*100+'%':'0'; c.classList.toggle('lead',mx>0&&votes[i]===mx); }); syncPresenter(); }
 
-/* ---- S4 calculator ---- */
-let budget=12000;
-const projs=[...document.querySelectorAll('#projs .proj')];
-projs.forEach(p=>p.addEventListener('click',()=>{p.classList.toggle('sel');calc();}));
-document.querySelectorAll('#bTgl button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#bTgl button').forEach(x=>x.classList.toggle('sel',x===b)); budget=+b.dataset.b; document.getElementById('bAmt').textContent=fmt(budget); calc();}));
-function calc(){
-  let sel=0; const bars=[...document.querySelectorAll('#bStack i')];
-  projs.forEach((p,i)=>{const c=+p.dataset.cost, on=p.classList.contains('sel'); if(on) sel+=c;
-    p.querySelector('.pc').textContent= on? pct(c,budget)+' מהתקציב' : '';});
-  const scale=Math.max(budget,sel);
-  projs.forEach((p,i)=>{const c=+p.dataset.cost,on=p.classList.contains('sel'); bars[i].style.width= on? c/scale*100+'%':'0'; bars[i].querySelector('span').textContent= on? pct(c,budget):'';});
-  document.getElementById('bSel').textContent=fmt(sel)+' ₪';
-  const left=budget-sel, L=document.getElementById('bLeft'); L.textContent=fmt(Math.abs(left))+' ₪'; L.style.color= left<0?'var(--rose)':''; document.getElementById('bLeftK').textContent= left<0?'חסר':'יתרה';
-  const st=document.getElementById('bStatus');
-  if(!sel){st.className='status idle';st.textContent='לחצו על פרויקטים כדי לבנות החלטה';}
-  else if(left>=0){st.className='status ok';st.textContent=`בתקציב ✓ יתרה של ${pct(left,budget)}`;}
-  else {st.className='status over';st.textContent=`חריגה של ${fmt(-left)} ₪ — צריך לוותר על משהו`;}
-  syncPresenter();
-}
-
-/* ---- S11 builder ---- */
+/* ---- S4 builder ---- */
 const fx={goal:false,ctx:false,out:false,lim:false};
 const colors={goal:'#2fd6c9',ctx:'#8b7bff',out:'#ffb547',lim:'#ff6b8a'};
 let lastAdded=null;
@@ -3134,20 +3166,21 @@ document.querySelectorAll('#formula .fx').forEach(b=>b.addEventListener('click',
 document.getElementById('fxAll').addEventListener('click',()=>{const all=!Object.values(fx).every(Boolean); Object.keys(fx).forEach(k=>fx[k]=all); document.querySelectorAll('#formula .fx').forEach(b=>b.classList.toggle('sel',all)); lastAdded=null; build(); document.getElementById('fxAll').textContent=all?'חזרה להתחלה':'הצג גרסה מלאה';});
 function seg(k,t){const c=colors[k]; const hot=lastAdded===k; return `<span style="color:${c};${hot?`background:${c}22`:''}">${t}</span>`;}
 function build(){
-  let h='בנה ';
-  h+= fx.out? seg('out','פעילות קבוצתית') : 'לי פעילות';
-  if(fx.lim) h+=' '+seg('lim','של 15 דקות');
-  if(fx.ctx) h+=' '+seg('ctx','לכיתה ז\' בנושא אחוזים');
-  if(fx.goal) h+=', '+seg('goal', fx.out? 'שבה התלמידים מחלקים תקציב מוגבל, מנמקים את ההחלטה' : 'שבה התלמידים מחלקים תקציב מוגבל ומנמקים את ההחלטה');
-  if(fx.out) h+= fx.goal? ' '+seg('out','ומציגים חישובים') : ', '+seg('out','שבה התלמידים מציגים חישובים');
-  h+=fx.goal||fx.ctx||fx.out||fx.lim?'.':'.';
-  document.getElementById('ptxt').innerHTML= h==='בנה לי פעילות.'? '<span style="color:var(--mu)">"בנה לי פעילות"</span>' : '"'+h+'"';
+  const any=Object.values(fx).some(Boolean);
+  let h='';
+  if(fx.ctx) h+=seg('ctx','אני מלמד מדעים בכיתה ה\'.')+' ';
+  h+= fx.out? seg('out','צור פעילות של 20 דקות')+' בנושא מערכת השמש' : 'תכין לי שיעור על מערכת השמש';
+  if(fx.goal) h+=', '+seg('goal', fx.out? 'שתגרום לתלמידים להיות פעילים' : 'שיגרום לתלמידים להיות פעילים');
+  if(fx.lim) h+=', '+seg('lim','ללא צורך בציוד מיוחד');
+  h+='.';
+  if(fx.out) h+=' '+seg('out','הצע שלוש אפשרויות והשווה ביניהן.');
+  document.getElementById('ptxt').innerHTML= any? '"'+h+'"' : '<span style="color:var(--mu)">"תכין לי שיעור על מערכת השמש."</span>';
   const n=Object.values(fx).filter(Boolean).length; document.querySelectorAll('#qm i').forEach((i,k)=>i.classList.toggle('on',k<n));
   syncPresenter();
 }
 build();
 
-/* ---- S12 quick check ---- */
+/* ---- S11 quick check ---- */
 document.querySelectorAll('#qitems .qi').forEach(q=>q.addEventListener('click',()=>{ const v=q.dataset.v; const shown=q.classList.contains(v); q.classList.toggle(v,!shown); q.querySelector('.vd').textContent= shown?'?':(v==='no'?'✕ לא מעלים':'✓ אפשר, לא מזהה'); syncPresenter(); }));
 
 /* ---- copy ---- */
@@ -3318,6 +3351,7 @@ addEventListener('beforeunload',()=>{try{pw&&pw.close();}catch(e){}});
 /* ---- init ---- */
 const h=parseInt(location.hash.slice(1)); go(isNaN(h)?0:h-1);
 })();
+
 </script>
 </body>
 </html>
