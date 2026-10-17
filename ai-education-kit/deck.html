@@ -455,6 +455,121 @@ body.mouse #counter{opacity:1}
 .sb1 .pitem p{font-size:22px;max-height:none}
 .builder .ptxt span{padding:0}
 
+/* ================= v3 components ================= */
+/* AI sees: worksheet photo */
+.visionwrap{display:grid;grid-template-columns:.95fr 1.3fr;gap:40px;flex:1;min-height:0}
+.sheet{position:relative;overflow:hidden;border-radius:22px;background:#f4f1e8;color:#1b1d33;padding:28px 34px;box-shadow:0 30px 80px -40px rgba(0,0,0,.8);transform:rotate(-1deg)}
+.sheet h4{font-family:var(--fh);font-size:27px;font-weight:700;display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #d9d4c4;padding-bottom:12px;margin-bottom:12px}
+.sheet h4 span{font-size:19px;font-weight:600;color:#7a7465;background:#e8e3d4;border-radius:8px;padding:2px 10px}
+.sheet .sq{font-size:21px;color:#4a4740;margin-top:12px}
+.sheet .ans{font-family:"Segoe Print","Comic Sans MS",cursive;font-size:25px;color:#2547a8;margin:4px 0 0;display:flex;align-items:center;gap:12px}
+.sheet .ans i{font-style:normal;font-family:var(--fh);font-weight:800;font-size:28px;opacity:0;transition:opacity .4s}
+.sheet .ans.x i{color:#d83b2d}
+.sheet .ans.v i{color:#1f9d55}
+.sheet.on .ans i{opacity:1}
+.sheet.on .ans:nth-of-type(1) i{transition-delay:1.9s}
+.sheet.on .ans:nth-of-type(2) i{transition-delay:2.2s}
+.sheet.on .ans:nth-of-type(3) i{transition-delay:2.5s}
+.sheet.on .ans:nth-of-type(4) i{transition-delay:2.8s}
+.sheet .scan{position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,transparent,#2fd6c9,transparent);box-shadow:0 0 24px 6px rgba(47,214,201,.55);opacity:0;z-index:2}
+.sheet.on .scan{animation:scanDown 1.8s ease-in-out .5s 1 both}
+@keyframes scanDown{0%{top:0;opacity:1}95%{opacity:1}100%{top:100%;opacity:0}}
+.sv .msg{font-size:24px;max-width:96%;padding:18px 24px}
+.sv .chat .body{gap:14px;padding:22px 26px}
+.sv .improve{font-size:24px;padding:16px 22px}
+.errs{display:grid;gap:12px;margin-top:12px}
+.errs div{display:grid;grid-template-columns:1fr 140px 50px;align-items:center;gap:12px;font-size:21px}
+.errs em{display:block;height:12px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
+.errs em i{display:block;height:100%;width:0;border-radius:6px;background:var(--warm);transition:width .8s cubic-bezier(.2,.8,.2,1) 1.3s}
+.msg.on .errs em i{width:var(--w)}
+.errs b{font-family:var(--fh);color:var(--warm);font-size:23px}
+
+/* Build a tool */
+.buildwrap{display:grid;grid-template-columns:.78fr 1.55fr;gap:34px;flex:1;min-height:0}
+.buildwrap .side{display:flex;flex-direction:column;gap:18px;min-height:0}
+.buildwrap .chat{flex:1}
+.buildwrap .msg{font-size:21px;max-width:97%;padding:14px 18px}
+.buildwrap .msg .who{font-size:17px;margin-bottom:4px}
+.buildwrap .chat .body{gap:12px;padding:16px 18px}
+.refine{display:flex;flex-wrap:wrap;gap:10px}
+.refine span{font-family:var(--fh);font-size:17px;font-weight:600;color:var(--a2);border:1px dashed rgba(47,214,201,.55);border-radius:99px;padding:5px 14px}
+.playqr{display:flex;align-items:center;gap:18px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.03);padding:14px 18px}
+.playqr .qr{width:118px;padding:9px;border-radius:14px;flex:none}
+.playqr .qr.ph{font-size:13px;padding:10px}
+.playqr .qr.ph .qri{font-size:22px}
+.playqr p{font-size:22px;color:var(--mu);line-height:1.35}
+.playqr p b{display:block;font-family:var(--fh);color:var(--tx);font-size:26px}
+.gwin{border-radius:26px;border:1px solid var(--line2);background:#0b0d16;display:flex;flex-direction:column;overflow:hidden;min-height:0;box-shadow:0 30px 90px -40px rgba(139,123,255,.6)}
+.gbar{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid var(--line);font-size:20px;color:var(--mu)}
+.gbar .dots{display:flex;gap:7px}
+.gbar .dots i{width:11px;height:11px;border-radius:50%;background:var(--line2)}
+.gbar .gtag{margin-inline-start:auto;font-family:var(--fh);font-weight:600;font-size:18px;color:var(--warm);border:1px solid rgba(255,181,71,.45);border-radius:99px;padding:3px 12px}
+.game{position:relative;flex:1;display:flex;flex-direction:column;gap:12px;padding:20px 28px;--u:1.8px;min-height:0;overflow:hidden}
+.ghd{display:flex;align-items:center;gap:12px}
+.ghd>b{font-family:var(--fh);font-size:28px}
+.ghd .sp{flex:1}
+.ghd .pill{font-family:var(--fh);font-size:18px;font-weight:600;color:var(--mu);border:1px solid var(--line2);border-radius:99px;padding:4px 14px;white-space:nowrap}
+.ghd .pill b{color:var(--tx)}
+.ghd .pill.score b{color:var(--ok);font-size:1.15em}
+.gtime{height:7px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.gtime i{display:block;height:100%;width:100%;background:#5aa8ff;border-radius:99px}
+.gq{font-family:var(--fh);font-size:32px;font-weight:700;min-height:48px}
+.gq small{display:block;font-size:18px;color:var(--mu2);font-weight:500}
+.gsys{flex:1;display:flex;align-items:center;gap:10px;min-height:0}
+.gsun{flex:none;width:calc(var(--u)*40);height:calc(var(--u)*110);border-radius:calc(var(--u)*110) 0 0 calc(var(--u)*110);background:var(--warm);margin-right:calc(var(--u)*-12);display:grid;place-items:center;font-family:var(--fh);font-weight:700;font-size:18px;color:#06060e}
+.gplanets{flex:1;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.gpl{display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;border-radius:14px;transition:background .2s}
+.gpl:hover{background:rgba(255,255,255,.05)}
+.gpl[data-k=saturn]{margin:0 calc(var(--u)*16)}
+.gball{width:calc(var(--d)*var(--u));height:calc(var(--d)*var(--u));border-radius:50%;background:var(--c);position:relative;outline:3px solid transparent;outline-offset:5px;transition:transform .2s}
+.gpl:hover .gball{transform:scale(1.06)}
+.gball.ring::after{content:"";position:absolute;left:50%;top:50%;width:190%;height:42%;border:calc(var(--u)*3) solid #cdb98a;border-radius:50%;transform:translate(-50%,-50%) rotate(-14deg)}
+.gball.bands{background:repeating-linear-gradient(0deg,#c99b6d 0 12%,#e3c9a3 12% 22%,#b98257 22% 30%)}
+.gnm{font-family:var(--fh);font-size:18px;font-weight:600;color:var(--mu2);white-space:nowrap;min-height:24px}
+.gnm.show{color:var(--tx)}
+.gpl.ok .gball{outline-color:var(--ok)}
+.gpl.ok .gnm{color:var(--ok)}
+.gpl.no .gball{outline-color:var(--rose)}
+.gpl.no .gnm{color:var(--rose)}
+.gpl.no{animation:gshake .4s}
+@keyframes gshake{25%{translate:6px}50%{translate:-6px}75%{translate:3px}}
+.gsys.done .gpl{pointer-events:none}
+.gfb{min-height:92px;display:flex;align-items:center;gap:18px;padding:14px 20px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid var(--line);font-size:23px;line-height:1.4;color:var(--mu)}
+.gfb b.t{font-family:var(--fh);font-size:30px;flex:none}
+.gfb.ok{border-color:var(--ok)}
+.gfb.ok b.t{color:var(--ok)}
+.gfb.no{border-color:var(--rose)}
+.gfb.no b.t{color:var(--rose)}
+.gfb .sp{flex:1}
+.gnext{flex:none;background:var(--tx);color:#06060e;border-radius:12px;padding:10px 22px;font-family:var(--fh);font-weight:700;font-size:21px}
+.gend{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#0b0d16;text-align:center;z-index:3}
+.gend.on{display:flex}
+.gend .big{font-family:var(--fh);font-size:120px;font-weight:800;line-height:1;color:var(--ok)}
+.gend p{font-size:24px;color:var(--mu)}
+.sbuild .capline{margin-top:20px}
+
+/* Assignments */
+.asx{display:grid;grid-template-columns:1fr 90px 1.25fr;align-items:stretch}
+.asc{display:flex;flex-direction:column;gap:14px;padding:30px 34px}
+.asc .lab{font-family:var(--fh);font-size:22px;font-weight:700;letter-spacing:1px}
+.asc.old .lab{color:var(--mu2)}
+.asc.new .lab{color:var(--a2)}
+.asc.new{border-color:rgba(47,214,201,.45);background:linear-gradient(110deg,rgba(47,214,201,.08),rgba(139,123,255,.08))}
+.asc .txt{font-family:var(--fh);font-size:36px;font-weight:600;line-height:1.35}
+.asc.old .txt{color:var(--mu)}
+.asc .strike{background:linear-gradient(var(--rose),var(--rose)) no-repeat right 58%/0 4px;transition:background-size .7s .3s}
+.asc.old.cut .strike{background-size:100% 4px}
+.asc .why{font-size:25px;color:var(--mu);line-height:1.4}
+.asc .chk{display:flex;flex-wrap:wrap;gap:10px}
+.asc .chk span{font-family:var(--fh);font-size:20px;font-weight:600;color:var(--a2);background:rgba(47,214,201,.1);border-radius:99px;padding:5px 14px}
+.asarr{display:grid;place-items:center}
+.asarr svg{width:52px;height:52px;stroke:var(--mu2)}
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px}
+.ladder>div{border-radius:22px;padding:22px 26px;border:1px solid color-mix(in srgb,var(--c) 45%,transparent);background:color-mix(in srgb,var(--c) 8%,transparent)}
+.ladder b{font-family:var(--fh);font-size:20px;color:var(--c)}
+.ladder h3{font-size:32px;margin:6px 0 6px}
+.ladder p{font-size:24px;color:var(--mu);line-height:1.4}
+
 /* keep the 1920x1080 stage centred at any window size */
 html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 </style>
@@ -466,7 +581,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 <section class="slide s1" data-time="2" data-title="AI הוא הרבה יותר ממנוע תשובות">
   <div class="hero-top">
     <div class="logo">Practi<b>AI</b></div>
-    <div class="presenter">בינה מלאכותית למורים · <b>קווין ליאקס</b></div>
+    <div class="presenter"><b>בינה מלאכותית למורים</b> · מכירים את היכולות</div>
   </div>
   <div class="kicker">מכירים את היכולות, לומדים לעבוד נכון</div>
   <h1><span class="nw">AI הוא הרבה יותר</span><br><span class="grad">ממנוע תשובות</span></h1>
@@ -484,7 +599,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 </section>
 
 <!-- ================= 2 ================= -->
-<section class="slide s2" data-time="3" data-title="איפה AI יכול לעזור לי?">
+<section class="slide s2" data-time="2" data-title="איפה AI יכול לעזור לי?">
   <div class="kicker">שאלה לקהל <span class="min">הצבעה</span></div>
   <h2 class="title">איפה AI יכול <span class="grad">לעזור לכם</span> השבוע?</h2>
   <div class="poll" id="poll">
@@ -503,9 +618,9 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
   <div class="kicker">המפה</div>
   <h2 class="title" style="margin-bottom:36px">חמש יכולות <span class="grad">שכדאי להכיר</span></h2>
   <div class="caps">
-    <div class="sj f" data-f="1" style="--c:#2fd6c9"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div><h3>שיחה</h3><p>לחשוב יחד, לקבל רעיונות, להשוות חלופות ולשפר תשובה לאורך השיחה.</p><span class="tool">Gemini</span></div>
-    <div class="sj f" data-f="2" style="--c:#8b7bff"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><h3>מסמכים</h3><p>לקרוא מסמכים שאתם מעלים, לענות מתוכם ולהפנות למקור.</p><span class="tool">Gemini Notebook</span></div>
-    <div class="sj f" data-f="3" style="--c:#ffb547"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><h3>יצירה</h3><p>להפיק תמונות, מצגות, אינפוגרפיקות ואודיו, לא רק טקסט.</p><span class="tool">Canvas ב-Gemini</span></div>
+    <div class="sj f" data-f="1" style="--c:#2fd6c9"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div><h3>שיחה</h3><p>לחשוב יחד, להשוות חלופות ולשפר תשובה לאורך השיחה, גם בקול.</p><span class="tool">Gemini</span></div>
+    <div class="sj f" data-f="2" style="--c:#8b7bff"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><h3>מסמכים ותמונות</h3><p>לקרוא מסמכים, צילומים וכתב יד, לענות מתוכם ולהפנות למקור.</p><span class="tool">Gemini Notebook</span></div>
+    <div class="sj f" data-f="3" style="--c:#ffb547"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><h3>יצירה</h3><p>להפיק תמונות, מצגות ואודיו, ואפילו משחקים וכלים אינטראקטיביים.</p><span class="tool">Canvas ב-Gemini</span></div>
     <div class="sj f" data-f="4" style="--c:#ff6b8a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div><h3>התאמה</h3><p>להתאים תוכן לרמות ולקהלים, ולשמור הוראות קבועות לעבודה חוזרת.</p><span class="tool">Skills ב-Gemini</span></div>
     <div class="sj f" data-f="5" style="--c:#5aa8ff"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3>ביצוע משימות</h3><p>סוכן שמבצע תהליך בכמה שלבים, לפי הרשאות ובפיקוח.</p><span class="tool">סוכני AI</span></div>
   </div>
@@ -514,7 +629,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 </section>
 
 <!-- ================= 4 ================= -->
-<section class="slide s4" data-time="4" data-title="איך מדברים עם AI נכון?">
+<section class="slide s4" data-time="3" data-title="איך מדברים עם AI נכון?">
   <div class="kicker">שיטת העבודה · לחצו על המרכיבים</div>
   <h2 class="title" style="margin-bottom:32px">איך מדברים עם AI נכון? <span class="grad">ארבעה מרכיבים</span></h2>
   <div class="formula f" data-f="1" id="formula">
@@ -532,7 +647,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 </section>
 
 <!-- ================= 5 ================= -->
-<section class="slide s5" data-time="5" data-title="מהבקשה לתוצאה: לפני ואחרי">
+<section class="slide s5" data-time="4" data-title="מהבקשה לתוצאה: לפני ואחרי">
   <div class="illus">המחשת שיחה שהוכנה מראש</div>
   <div class="kicker">הדגמה · אותו נושא, שתי בקשות</div>
   <h2 class="title" style="margin-bottom:28px">ההבדל הוא לא רק בבקשה. <span class="grad">הוא בתוצאה.</span></h2>
@@ -560,7 +675,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 </section>
 
 <!-- ================= 6 ================= -->
-<section class="slide s6" data-time="4" data-title="לא מתחילים מחדש">
+<section class="slide s6" data-time="3" data-title="לא מתחילים מחדש">
   <div class="illus">המחשת שיחה שהוכנה מראש</div>
   <div class="chatwrap">
     <div class="side morph">
@@ -592,7 +707,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 </section>
 
 <!-- ================= 7 ================= -->
-<section class="slide s7" data-time="4" data-title="AI מבין מסמכים">
+<section class="slide s7" data-time="3" data-title="AI מבין מסמכים">
   <div class="illus">המחשה · מסמך לדוגמה</div>
   <div class="kicker">יכולת: עבודה עם מסמכים</div>
   <h2 class="title" style="margin-bottom:30px">AI מבין מסמכים, <span class="grad">ומראה מאיפה התשובה</span></h2>
@@ -622,8 +737,45 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
 
+<!-- ================= AI sees: worksheet photos ================= -->
+<section class="slide sv" data-time="3" data-title="AI רואה: מה הכיתה לא הבינה?">
+  <div class="illus">המחשה · דף עבודה לדוגמה, בלי שמות</div>
+  <div class="kicker">יכולת: קריאת תמונות וכתב יד</div>
+  <h2 class="title" style="margin-bottom:30px">מצלמים דפי עבודה. <span class="grad">מגלים מה הכיתה לא הבינה.</span></h2>
+  <div class="visionwrap">
+    <div class="sheet f" data-f="1">
+      <div class="scan"></div>
+      <h4>דף עבודה · מערכת השמש<span>תלמיד/ה 12</span></h4>
+      <div class="sq">1. סדרו לפי המרחק מהשמש (ארבעת הראשונים):</div>
+      <div class="ans x">נוגה, חמה, כדור הארץ, מאדים<i>✗</i></div>
+      <div class="sq">2. מהו כוכב הלכת החם ביותר?</div>
+      <div class="ans x">חמה, כי הוא הכי קרוב<i>✗</i></div>
+      <div class="sq">3. למה יש עונות בשנה?</div>
+      <div class="ans x">כי בקיץ אנחנו קרובים יותר לשמש<i>✗</i></div>
+      <div class="sq">4. מה גורם ליום וללילה?</div>
+      <div class="ans v">כדור הארץ מסתובב סביב עצמו<i>✓</i></div>
+    </div>
+    <div class="chat">
+      <div class="bar"><span class="dot"></span><span>Gemini · 6 צילומים</span><span class="sp"></span><span>המחשה</span></div>
+      <div class="body">
+        <div class="msg t f" data-f="2"><div class="who">המורה</div><p>צילמתי 6 דפי עבודה של הכיתה, בלי שמות. אילו טעויות חוזרות אצל כמה תלמידים?</p></div>
+        <div class="msg ai fb f" data-f="3"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div>
+          <div class="ct"><p><b>3 טעויות חוזרות, מתוך 6 דפים:</b></p>
+            <div class="errs">
+              <div><span>העונות נובעות מהמרחק מהשמש</span><em><i style="--w:67%"></i></em><b>4/6</b></div>
+              <div><span>חמה הוא כוכב הלכת החם ביותר</span><em><i style="--w:50%"></i></em><b>3/6</b></div>
+              <div><span>הסדר בין חמה לנוגה</span><em><i style="--w:33%"></i></em><b>2/6</b></div>
+            </div></div></div>
+        <div class="improve f" data-f="4"><b>הצעה לשיעור הבא:</b> 10 דקות על העונות, עם פנס וכדור. זו הטעות הנפוצה ביותר.</div>
+      </div>
+    </div>
+  </div>
+  <div class="capline f" data-f="5"><span class="cl">היכולת</span><span>AI קורא צילומים, טבלאות וכתב יד, ומחפש <b>דפוסים בכיתה</b>. הוא מצביע, אתם בודקים.</span></div>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
 <!-- ================= 8 ================= -->
-<section class="slide s8" data-time="5" data-title="אותו חומר, כמה תוצרים">
+<section class="slide s8" data-time="3" data-title="אותו חומר, כמה תוצרים">
   <div class="kicker">יכולת: התאמת תוכן</div>
   <h2 class="title" style="margin-bottom:28px">אותו חומר, <span class="grad">כמה תוצרים</span></h2>
   <div class="passage src f" data-f="1"><span class="lbl">נקודת ההתחלה: הסבר אחד על מחזור המים</span>השמש מחממת את המים בים ובאגמים, והם מתאדים והופכים לאדים. האדים עולים, מתקררים ויוצרים עננים. כשהטיפות בענן מתכבדות, הן יורדות כגשם וחוזרות לים, לאגמים ולמי התהום.</div>
@@ -637,7 +789,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
 </section>
 
 <!-- ================= 9 ================= -->
-<section class="slide s9" data-time="4" data-title="מעבר לטקסט">
+<section class="slide s9" data-time="2" data-title="מעבר לטקסט">
   <div class="kicker">יכולת: יצירה</div>
   <h2 class="title" style="margin-bottom:34px">מעבר לטקסט: <span class="grad">תמונות, מצגות, אודיו וחומרים חזותיים</span></h2>
   <div class="media">
@@ -650,6 +802,38 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
 
+<!-- ================= Build a tool from one sentence ================= -->
+<section class="slide sbuild" data-time="4" data-title="מתארים במשפט. מקבלים כלי.">
+  <div class="kicker">יכולת: בניית כלים אינטראקטיביים</div>
+  <h2 class="title" style="margin-bottom:28px">מתארים במשפט. <span class="grad">מקבלים כלי שעובד.</span></h2>
+  <div class="buildwrap">
+    <div class="side">
+      <div class="chat">
+        <div class="bar"><span class="dot"></span><span>Gemini · Canvas</span><span class="sp"></span><span>המחשה</span></div>
+        <div class="body">
+          <div class="msg t f" data-f="1"><div class="who">המורה</div><p>בנה משחק חזרה על מערכת השמש לכיתה ו'. 8 שאלות, לוחצים על כוכב הלכת הנכון, ניקוד עם בונוס מהירות, ומשפט הסבר אחרי כל תשובה.</p></div>
+          <div class="msg ai f" data-f="2"><div class="who">עוזר AI</div><div class="typing"><i></i><i></i><i></i></div><div class="ct"><p>המשחק מוכן. נסו אותו מימין, ושתפו בקישור.</p></div></div>
+          <div class="refine f" data-f="3"><span>+ מצב לשתי קבוצות</span><span>+ גרסה באנגלית</span><span>+ שאלות על ירחים</span></div>
+        </div>
+      </div>
+      <div class="playqr f" data-f="3"><div class="qr" data-qr-game></div><p><b>שחקו בטלפון</b>המשחק מחכה גם בערכה</p></div>
+    </div>
+    <div class="gwin f" data-f="2">
+      <div class="gbar"><span class="dots"><i></i><i></i><i></i></span><span>Canvas · חזרה למבחן: מערכת השמש</span><span class="gtag">נבנה ממשפט אחד</span></div>
+      <div class="game" id="game">
+        <div class="ghd"><b>חזרה למבחן · מערכת השמש</b><span class="sp"></span><span class="pill" id="gQn"></span><span class="pill">רצף <b id="gSt">0</b></span><span class="pill score">נקודות <b id="gSc">0</b></span></div>
+        <div class="gtime"><i id="gTb"></i></div>
+        <div class="gq" id="gQ"></div>
+        <div class="gsys"><div class="gsun">שמש</div><div class="gplanets" id="gPl"></div></div>
+        <div class="gfb" id="gFb"><span>לחצו על כוכב הלכת הנכון. מהר יותר = יותר נקודות.</span></div>
+        <div class="gend" id="gEnd"><p>סיימתם את החזרה</p><div class="big" id="gEndSc">0</div><p id="gEndTx"></p><button class="gnext" id="gAgain">שחקו שוב</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="capline f" data-f="4"><span class="cl">היכולת</span><span>מתארים במילים, ו-<b>Canvas ב-Gemini כותב את הקוד</b>. לא צריך לדעת לתכנת, אבל בודקים כל עובדה.</span></div>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
 <!-- ================= 10 ================= -->
 <section class="slide s10" data-time="3" data-title="צ'אט, עוזר מותאם וסוכן AI">
   <div class="kicker">שלוש רמות עבודה</div>
@@ -657,7 +841,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
   <div class="tiers">
     <div class="card tier f" data-f="1" style="--c:#2fd6c9"><span class="lvl">צ'אט</span><p class="ask">"תכין לי פעילות בנושא אנרגיה לכיתה ו'."</p><p>נותנים בקשה ומקבלים תשובה. ממשיכים לדייק לאורך השיחה.</p><span class="when">מתאים ל: משימה חד-פעמית</span></div>
     <div class="arrow f" data-f="2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div>
-    <div class="card tier f" data-f="2" style="--c:#8b7bff"><span class="lvl">עוזר מותאם</span><p class="ask">"העוזר הקבוע שלי להכנת פעילויות מדעים לכיתות ה'–ו'."</p><p>מוגדר מראש עם הוראות ומקורות, כדי לא להסביר בכל פעם מחדש.</p><span class="when">מתאים ל: משימה שחוזרת כל שבוע</span><span class="tool">Skills ב-Gemini</span></div>
+    <div class="card tier f" data-f="2" style="--c:#8b7bff"><span class="lvl">עוזר מותאם</span><p class="ask">"עוזר משוב למדעים ו': בודק תשובות לפי המחוון המצורף, פותח במה שעבד ומציע צעד אחד לשיפור."</p><p>מוגדר פעם אחת עם הוראות וקבצים, ומשמש כל השבוע.</p><span class="when">מתאים ל: משימה שחוזרת כל שבוע</span><span class="tool">Skills ב-Gemini</span></div>
     <div class="arrow f" data-f="3"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div>
     <div class="card tier f" data-f="3" style="--c:#ffb547"><span class="lvl">סוכן AI</span><p class="ask">"אסוף חומרים ממקורות מורשים, הכן טיוטה, בדוק מול הקריטריונים והפק מסמך לאישור."</p><p>מבצע כמה שלבים, ולעיתים משתמש בכלים מחוברים, לפי הרשאות ובפיקוח.</p><span class="when">מתאים ל: תהליך בכמה שלבים</span></div>
   </div>
@@ -665,12 +849,29 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
 
+<!-- ================= Assignments in the AI era ================= -->
+<section class="slide sassess" data-time="3" data-title="מה עושים עם המטלות?">
+  <div class="kicker">השאלה הגדולה</div>
+  <h2 class="title" style="margin-bottom:34px">התלמידים כבר שם. <span class="grad">מה עושים עם המטלות?</span></h2>
+  <div class="asx">
+    <div class="card asc old f" data-f="1"><span class="lab">המטלה הישנה</span><div class="txt"><span class="strike">כתבו עבודה של עמוד על מאדים.</span></div><div class="why">AI כותב אותה בעשר שניות. בודקים את הכלי, לא את התלמיד.</div></div>
+    <div class="asarr f" data-f="2"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div>
+    <div class="card asc new f" data-f="2"><span class="lab">המטלה החדשה</span><div class="txt">קבלו מ-AI תשובה על מאדים. מצאו בה שתי טעויות, ותקנו כל אחת עם הפניה לספר.</div><div class="chk"><span>חשיבה ביקורתית</span><span>שימוש במקורות</span><span>AI כחלק מהמטלה</span></div></div>
+  </div>
+  <div class="ladder">
+    <div class="f" data-f="3" style="--c:#2fd6c9"><b>רמה 1</b><h3>מבקרים את ה-AI</h3><p>מוצאים טעויות ומתקנים עם מקור</p></div>
+    <div class="f" data-f="3" style="--c:#8b7bff"><b>רמה 2</b><h3>שותף לחשיבה</h3><p>משתמשים בו לרעיונות, ומגישים גם את השיחה</p></div>
+    <div class="f" data-f="3" style="--c:#ffb547"><b>רמה 3</b><h3>מתעדים תהליך</h3><p>מה שאלתי, מה קיבלתי, מה שיניתי</p></div>
+  </div>
+  <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
+</section>
+
 <!-- ================= 11 ================= -->
-<section class="slide s11" data-time="3" data-title="איפה אפשר לטעות?">
+<section class="slide s11" data-time="2" data-title="איפה אפשר לטעות?">
   <div class="kicker">שימוש אחראי</div>
   <h2 class="title" style="margin-bottom:34px">איפה אפשר לטעות? <span class="grad">אמינות, פרטיות והגנה על מידע</span></h2>
   <div class="three">
-    <div class="card rule f" data-f="1" style="--c:#ff6b8a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>מידע אישי ורגיש</h3><p>לא מעלים שמות תלמידים, ציונים, אבחונים או מידע מזהה, גם לא בתוך מסמך.</p></div>
+    <div class="card rule f" data-f="1" style="--c:#ff6b8a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>מידע אישי ורגיש</h3><p>לא מעלים שמות תלמידים, ציונים, אבחונים או מידע מזהה, גם לא בתוך מסמך או צילום.</p></div>
     <div class="card rule f" data-f="2" style="--c:#ffb547"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M8 11l2 2 4-4"/></svg></div><h3>אמינות ומקורות</h3><p>AI יכול לטעות גם כשהוא נשמע בטוח. בודקים עובדות, מספרים והפניות למקור.</p></div>
     <div class="card rule f" data-f="3" style="--c:#2fd6c9"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>החשבון והכלי</h3><p>עובדים בכלי ובחשבון שבית הספר אישר, ובודקים מה נשמר ומי יכול לראות.</p></div>
   </div>
@@ -694,7 +895,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
   <div class="tasks">
     <div class="card task f" data-f="1" style="--c:#2fd6c9"><span class="tn">1</span><span class="cap">שיחה</span><h3>תנו ל-AI לבנות איתכם בקשה</h3><p>כתבו במשפט מה אתם צריכים, ובקשו שישאל אתכם שאלות לפני שהוא מתחיל.</p><span class="kp">פרומפט 1 בערכה</span></div>
     <div class="card task f" data-f="2" style="--c:#8b7bff"><span class="tn">2</span><span class="cap">מסמכים</span><h3>שאלו מסמך שאלה אחת</h3><p>העלו חוזר או פרק ארוך, ובקשו תשובה עם הפניה לסעיף.</p><span class="kp">פרומפט 6 בערכה</span></div>
-    <div class="card task f" data-f="3" style="--c:#ffb547"><span class="tn">3</span><span class="cap">התאמה</span><h3>חומר אחד, שלוש גרסאות</h3><p>קחו הסבר שכבר יש לכם, והפיקו ממנו גרסה פשוטה וגרסת העמקה.</p><span class="kp">פרומפט 7 בערכה</span></div>
+    <div class="card task f" data-f="3" style="--c:#ffb547"><span class="tn">3</span><span class="cap">יצירה</span><h3>בנו משחק חזרה במשפט אחד</h3><p>תארו ב-Canvas ב-Gemini את המשחק שאתם רוצים, ובדקו כל עובדה לפני השיעור.</p><span class="kp">פרומפט 10 בערכה</span></div>
   </div>
   <p class="summary f" data-f="4">משימה אחת. עשר דקות. ושואלים: <span class="grad">מה באמת השתפר?</span></p>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
@@ -710,9 +911,9 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
       <div class="kit">
         <h3>ערכת ה-AI למורים</h3>
         <ul>
-          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>13 פרומפטים, מסודרים לפי יכולות</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>17 פרומפטים, מסודרים לפי יכולות</li>
           <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>חמש היכולות ואיפה מוצאים אותן</li>
-          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>7 הרגלים לעבודה נכונה ואחראית</li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>משחק החזרה מההרצאה, לנסות בטלפון</li>
           <li><i><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i>מצגת ההרצאה לעיון חוזר</li>
         </ul>
       </div>
@@ -732,9 +933,9 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
   <h2 class="title" style="margin-bottom:30px">הפרומפטים <span class="grad">מההדגמות</span></h2>
   <div class="plist">
     <div class="pitem"><div><h3>בקשה עם ארבעת המרכיבים (שקף 5)</h3><p id="bp1">אני מלמד מדעים בכיתה ה'. צור פעילות של 20 דקות בנושא מערכת השמש, שתגרום לתלמידים להיות פעילים, ללא צורך בציוד מיוחד. הצע שלוש אפשרויות והשווה ביניהן.</p></div><button class="btn" data-copy="#bp1">העתק</button></div>
-    <div class="pitem"><div><h3>שיפור בהמשך השיחה (שקף 6)</h3><p id="bp2">מה עלול לא לעבוד בכיתה? ואיזו עובדה כאן כדאי לבדוק?</p></div><button class="btn" data-copy="#bp2">העתק</button></div>
+    <div class="pitem"><div><h3>משפט אחד, משחק עובד (שקף 11)</h3><p id="bp2">בנה משחק חזרה על מערכת השמש לכיתה ו'. 8 שאלות, לוחצים על כוכב הלכת הנכון, ניקוד עם בונוס מהירות, ומשפט הסבר אחרי כל תשובה.</p></div><button class="btn" data-copy="#bp2">העתק</button></div>
     <div class="pitem"><div><h3>שאלה על מסמך (שקף 7)</h3><p id="bp3">על סמך המסמך בלבד: [השאלה שלכם]. ציין סעיף לכל תשובה. אם התשובה לא מופיעה במסמך, כתוב "לא מופיע במסמך".</p></div><button class="btn" data-copy="#bp3">העתק</button></div>
-    <div class="pitem"><div><h3>אותו חומר, כמה גרסאות (שקף 8)</h3><p id="bp4">על בסיס ההסבר המצורף בלבד, צור שלוש גרסאות לאותה מטרת למידה: גרסה פשוטה עם דוגמה מהיומיום, גרסה רגילה עם מושגים מרכזיים ושאלה, וגרסת העמקה עם שאלת חקר.</p></div><button class="btn" data-copy="#bp4">העתק</button></div>
+    <div class="pitem"><div><h3>אותו חומר, כמה גרסאות (שקף 9)</h3><p id="bp4">על בסיס ההסבר המצורף בלבד, צור שלוש גרסאות לאותה מטרת למידה: גרסה פשוטה עם דוגמה מהיומיום, גרסה רגילה עם מושגים מרכזיים ושאלה, וגרסת העמקה עם שאלת חקר.</p></div><button class="btn" data-copy="#bp4">העתק</button></div>
   </div>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
 </section>
@@ -746,7 +947,7 @@ html body #deck>#stage{position:absolute;left:50%;top:50%;translate:-50% -50%}
   <h2 class="title">שאלות <span class="grad">שעולות כמעט תמיד</span></h2>
   <div class="faq">
     <div class="card"><h3>באיזה כלי כדאי להתחיל?</h3><p>בכלי שבית הספר אישר. לרבים מהמורים יש גישה ל-Gemini ול-Gemini Notebook דרך החשבון של בית הספר. הפרומפטים בערכה עובדים גם בכלים אחרים.</p></div>
-    <div class="card"><h3>ומה אם התלמידים משתמשים ב-AI כדי להעתיק?</h3><p>משנים את המשימה, לא רק את הכללים: הצגת תהליך, הסבר בעל פה, התייחסות למקור מהכיתה ויישום במצב חדש. פרומפט 13 בערכה עוזר לעשות את זה.</p></div>
+    <div class="card"><h3>ומה אם התלמידים משתמשים ב-AI כדי להעתיק?</h3><p>משנים את המטלה, לא רק את הכללים: מבקרים תשובה של AI, משתמשים בו כשותף לחשיבה, ומתעדים את התהליך (שקף 13, פרומפטים 16-17 בערכה).</p></div>
     <div class="card"><h3>איך מתחילים בלי להשקיע הרבה זמן?</h3><p>משימה אחת, פרומפט אחד. כשמשהו עובד, שומרים אותו כתבנית או כעוזר קבוע (פרומפט 2 בערכה).</p></div>
   </div>
   <div class="foot"><span class="brand">Practi<b>AI</b></span><span class="pg"></span></div>
@@ -3149,7 +3350,53 @@ function hooks(s){
   if(s.classList.contains('s7')){
     ['src1','src2'].forEach(id=>document.getElementById(id).classList.toggle('hit',step>=3));
   }
+  if(s.classList.contains('sassess')){
+    s.querySelector('.asc.old').classList.toggle('cut',step>=2);
+  }
+  if(s.classList.contains('sbuild') && step>=2){ if(!game.on) game.start(); }
+  else if(game.on) game.stop();
 }
+
+/* ---- slide "build": the review game that one sentence produced ---- */
+const game=(function(){
+  const P=[{k:'mercury',n:'כוכב חמה',d:22,c:'#9a9590'},{k:'venus',n:'נוגה',d:34,c:'#e6c98b'},{k:'earth',n:'כדור הארץ',d:36,c:'#3f7fd8'},{k:'mars',n:'מאדים',d:28,c:'#c8553a'},
+    {k:'jupiter',n:'צדק',d:84,c:'#c99b6d',cls:'bands'},{k:'saturn',n:'שבתאי',d:66,c:'#e2cc94',cls:'ring'},{k:'uranus',n:'אורנוס',d:46,c:'#8fd3da'},{k:'neptune',n:'נפטון',d:44,c:'#3c5bc9'}];
+  const Q=[{a:'mercury',q:'מי הכי קרוב לשמש?',f:'כוכב חמה. שנה שלמה שם נמשכת רק 88 ימים.'},
+    {a:'venus',q:'מי הכי חם במערכת השמש?',f:'נוגה, לא חמה! אטמוספירה עבה של פחמן דו-חמצני לוכדת חום של כ-460 מעלות.'},
+    {a:'earth',q:'על מי יש מים נוזליים על פני השטח?',f:'כדור הארץ. בגלל זה הוא היחיד שידוע שיש בו חיים.'},
+    {a:'mars',q:'מי מכונה "הכוכב האדום"?',f:'מאדים. הצבע מגיע מתחמוצת ברזל, כלומר חלודה, באבק שעל פניו.'},
+    {a:'jupiter',q:'מי הכי גדול?',f:'צדק. יותר מ-1,300 כדורי ארץ היו נכנסים בתוכו.'},
+    {a:'saturn',q:'מי היה צף באמבטיה ענקית?',f:'שבתאי. הצפיפות שלו נמוכה מזו של מים.'},
+    {a:'uranus',q:'מי מסתובב כמעט שוכב על הצד?',f:'אורנוס. הציר שלו נטוי בכ-98 מעלות.'},
+    {a:'neptune',q:'מי הכי רחוק מהשמש?',f:'נפטון. שנה אחת שם שווה ל-165 שנים שלנו.'}];
+  const $=id=>document.getElementById(id), TIME=20000;
+  const st={on:false}; let order=[],i=0,score=0,streak=0,res=[],t0=0,raf=0,locked=false,shown=0;
+  $('gPl').innerHTML=P.map(p=>`<button class="gpl" data-k="${p.k}" aria-label="${p.n}"><span class="gball ${p.cls||''}" style="--d:${p.d};--c:${p.c}"></span><span class="gnm">?</span></button>`).join('');
+  document.querySelectorAll('#gPl .gpl').forEach(b=>b.addEventListener('click',()=>answer(b.dataset.k)));
+  $('gAgain').addEventListener('click',()=>start());
+  const shuffle=a=>{a=a.slice();for(let j=a.length-1;j>0;j--){const r=Math.floor(Math.random()*(j+1));[a[j],a[r]]=[a[r],a[j]];}return a;};
+  function start(){st.on=true;order=shuffle(Q);i=0;score=0;streak=0;res=[];$('gEnd').classList.remove('on');$('gSc').textContent=0;$('gSt').textContent=0;
+    document.querySelectorAll('#gPl .gnm').forEach(n=>{n.textContent='?';n.classList.remove('show');});ask();}
+  function stop(){st.on=false;cancelAnimationFrame(raf);}
+  function ask(){locked=false;shown=performance.now();const q=order[i];
+    document.querySelector('#game .gsys').classList.remove('done');document.querySelectorAll('#gPl .gpl').forEach(b=>b.classList.remove('ok','no'));
+    $('gQ').innerHTML=`<small>שאלה ${i+1} מתוך ${order.length}</small>${q.q}`;$('gQn').innerHTML=`<b>${i+1}</b> / ${order.length}`;
+    $('gFb').className='gfb';$('gFb').innerHTML='<span>לחצו על כוכב הלכת הנכון. מהר יותר = יותר נקודות.</span>';
+    t0=performance.now();cancelAnimationFrame(raf);(function tick(){if(!st.on)return;const left=Math.max(0,1-(performance.now()-t0)/TIME);
+      $('gTb').style.width=left*100+'%';$('gTb').style.background=left<.25?'var(--rose)':left<.5?'var(--warm)':'#5aa8ff';
+      if(left<=0){answer(null);return;}raf=requestAnimationFrame(tick);})();}
+  function reveal(k){const b=document.querySelector(`#gPl .gpl[data-k="${k}"]`);const n=b.querySelector('.gnm');n.textContent=P.find(p=>p.k===k).n;n.classList.add('show');return b;}
+  function answer(k){if(!st.on||locked||performance.now()-shown<250)return;locked=true;cancelAnimationFrame(raf);
+    const q=order[i],ok=k===q.a,left=Math.max(0,1-(performance.now()-t0)/TIME);document.querySelector('#game .gsys').classList.add('done');
+    reveal(q.a).classList.add('ok');if(k&&!ok)reveal(k).classList.add('no');
+    let pts=0;if(ok){streak++;pts=50+Math.round(left*50)+(streak>1?10*(streak-1):0);score+=pts;}else streak=0;res.push(ok);
+    $('gSc').textContent=score;$('gSt').textContent=streak>1?'×'+streak:streak;
+    $('gFb').className='gfb '+(ok?'ok':'no');
+    $('gFb').innerHTML=`<b class="t">${ok?'+'+pts:k?'לא בדיוק':'נגמר הזמן'}</b><span class="sp">${q.f}</span><button class="gnext" id="gNx">${i<order.length-1?'הבא':'לתוצאה'}</button>`;
+    $('gNx').addEventListener('click',()=>{i++;if(i<order.length)ask();else finish();});}
+  function finish(){const good=res.filter(Boolean).length;$('gEndSc').textContent=score;$('gEndTx').textContent=`${good} מתוך ${res.length} תשובות נכונות`;$('gEnd').classList.add('on');}
+  return {get on(){return st.on;},start,stop};
+})();
 
 /* ---- S2 poll ---- */
 const pcards=[...document.querySelectorAll('#poll .pcard')]; const votes=[0,0,0,0];
@@ -3208,6 +3455,10 @@ function renderQR(){
   document.querySelectorAll('[data-qr]').forEach(q=>{
     if(CONFIG.siteUrl && typeof qrcode!=='undefined'){ const qr=qrcode(0,'M'); qr.addData(CONFIG.siteUrl); qr.make(); q.classList.remove('ph'); q.innerHTML=qr.createSvgTag({cellSize:8,margin:0,scalable:true}); }
     else { q.classList.add('ph'); q.innerHTML='<div><div class="qri">QR</div>הקוד לעמוד ההרצאה יתווסף לאחר פרסום האתר</div>'; }
+  });
+  document.querySelectorAll('[data-qr-game]').forEach(q=>{
+    if(CONFIG.siteUrl && typeof qrcode!=='undefined'){ const qr=qrcode(0,'M'); qr.addData(CONFIG.siteUrl.replace(/\/?$/,'/')+'game.html'); qr.make(); q.classList.remove('ph'); q.innerHTML=qr.createSvgTag({cellSize:8,margin:0,scalable:true}); }
+    else { q.classList.add('ph'); q.innerHTML='<div><div class="qri">QR</div>אחרי פרסום</div>'; }
   });
 }
 renderQR();

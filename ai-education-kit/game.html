@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>משחק חזרה: מערכת השמש | ערכת ה-AI למורים · PractiAI</title>
+<meta name="description" content="משחק חזרה על מערכת השמש לכיתה ו', דוגמה לכלי שנבנה ממשפט אחד ב-Canvas ב-Gemini. מתוך ערכת ה-AI למורים של PractiAI.">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<link rel="canonical" href="https://practiai.co.il/ai-education-kit/game.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="משחק חזרה: מערכת השמש | PractiAI">
+<meta property="og:description" content="נבנה ממשפט אחד ב-Canvas ב-Gemini. נסו בעצמכם.">
+<meta property="og:image" content="https://practiai.co.il/ai-education-kit/og-image.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/vendor/fonts/google-fonts.css">
+<style>
+:root{--bg:#06060e;--panel:#0d1020;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);--tx:#f1f5f9;--mu:#a3b0c2;--mu2:#8592a6;
+  --ok:#3ddc97;--bad:#ff6b6b;--amb:#ffb547;--blue:#5aa8ff;--cyan:#00d4ff;--u:min(calc((100vw - 260px) / 420),2.4px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--tx);font-family:'Heebo',Arial,sans-serif}
+body{display:flex;flex-direction:column;min-height:100vh}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,3vw,40px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;font-size:1.1rem}
+.brand img{width:36px;height:36px;border-radius:9px;background:#fff;padding:3px}
+.back{font-size:.95rem;font-weight:700;color:var(--mu);text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.back:hover{color:var(--cyan);border-color:rgba(0,212,255,.35)}
+.app{flex:1;display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);padding:clamp(14px,2.4vw,30px) clamp(16px,3vw,44px);max-width:1200px;width:100%;margin:0 auto}
+.hd{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hd h1{font-size:clamp(1.3rem,2.6vw,2rem);font-weight:900}
+.hd .sp{flex:1}
+.pill{font-weight:700;font-size:.9rem;color:var(--mu);border:1px solid var(--line2);border-radius:99px;padding:5px 14px;white-space:nowrap}
+.pill b{color:var(--tx)} .pill.score b{color:var(--ok)}
+.timebar{height:7px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
+.timebar i{display:block;height:100%;width:100%;background:var(--blue);border-radius:99px}
+.q{font-size:clamp(1.3rem,2.6vw,2.2rem);font-weight:800;min-height:1.3em}
+.q small{display:block;font-size:.85rem;font-weight:500;color:var(--mu2);margin-bottom:2px}
+.sys{flex:1;display:flex;align-items:center;gap:calc(var(--u)*6);min-height:240px;position:relative}
+.sun{flex:none;width:calc(var(--u)*50);height:calc(var(--u)*130);border-radius:calc(var(--u)*130) 0 0 calc(var(--u)*130);background:var(--amb);margin-right:calc(var(--u)*-10);display:grid;place-items:center;font-weight:800;font-size:.9rem;color:#06060e}
+.planets{flex:1;display:flex;align-items:center;justify-content:space-between;gap:calc(var(--u)*5)}
+.pl{display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 4px;border-radius:14px;transition:background .2s}
+.pl:hover{background:rgba(255,255,255,.05)}
+.pl[data-k=saturn]{margin:0 calc(var(--u)*18)}
+.ball{width:calc(var(--d)*var(--u));height:calc(var(--d)*var(--u));border-radius:50%;background:var(--c);position:relative;outline:3px solid transparent;outline-offset:5px;transition:transform .2s}
+.pl:hover .ball{transform:scale(1.06)}
+.ball.ring::after{content:"";position:absolute;left:50%;top:50%;width:190%;height:42%;border:calc(var(--u)*3) solid #cdb98a;border-radius:50%;transform:translate(-50%,-50%) rotate(-14deg)}
+.ball.bands{background:repeating-linear-gradient(0deg,#c99b6d 0 12%,#e3c9a3 12% 22%,#b98257 22% 30%)}
+.nm{font-weight:700;font-size:.95rem;color:var(--mu2);white-space:nowrap;min-height:1.4em}
+.nm.show{color:var(--tx)}
+.pl.ok .ball{outline-color:var(--ok)} .pl.ok .nm{color:var(--ok)}
+.pl.no .ball{outline-color:var(--bad)} .pl.no .nm{color:var(--bad)}
+.pl.no{animation:shake .4s}
+@keyframes shake{25%{translate:6px}50%{translate:-6px}75%{translate:3px}}
+.done .pl{pointer-events:none}
+.fb{min-height:clamp(72px,11vh,100px);display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:14px;background:var(--panel);border:1px solid var(--line);font-size:clamp(.95rem,1.4vw,1.15rem);line-height:1.5;color:var(--mu)}
+.fb b.t{font-size:clamp(1.2rem,1.9vw,1.6rem);font-weight:900;flex:none}
+.fb.ok{border-color:var(--ok)} .fb.ok b.t{color:var(--ok)}
+.fb.no{border-color:var(--bad)} .fb.no b.t{color:var(--bad)}
+.fb .sp{flex:1}
+.next{flex:none;background:var(--tx);color:#06060e;border-radius:10px;padding:10px 22px;font-weight:800}
+.end{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--bg);text-align:center;z-index:3}
+.end.on{display:flex}
+.end .big{font-size:clamp(4rem,10vw,8rem);font-weight:900;line-height:1;color:var(--ok)}
+.end p{color:var(--mu);font-size:1.1rem}
+.end .row{display:flex;gap:8px;margin:6px 0 10px}
+.end .row span{width:14px;height:14px;border-radius:4px;background:var(--bad)} .end .row span.y{background:var(--ok)}
+.how{border-top:1px solid var(--line);padding:18px clamp(16px,3vw,44px) 26px;color:var(--mu);font-size:.95rem;line-height:1.7}
+.how div{max-width:1200px;margin:0 auto}
+.how b{color:var(--tx)}
+.how q{display:block;margin:6px 0;padding:10px 14px;border-radius:10px;background:var(--panel);border:1px solid var(--line);color:var(--tx);quotes:none}
+@media (max-width:760px){
+  :root{--u:min(calc((100vw - 40px) / 300),1.8px)}
+  .sys{flex-direction:column;align-items:stretch;gap:8px;min-height:0}
+  .sun{width:auto;height:30px;border-radius:0 0 999px 999px;margin:0}
+  .planets{display:grid;grid-template-columns:repeat(4,1fr);gap:4px 6px;align-content:center}
+  .pl[data-k=saturn]{margin:0}
+  .ball.ring::after{width:150%}
+  .fb{flex-wrap:wrap}
+  .back span{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="./" aria-label="ערכת ה-AI למורים"><img src="../assets/practiai-mark.png" alt="" width="36" height="36">PractiAI</a>
+  <a class="back" href="./#capabilities">→ <span>חזרה ל</span>ערכת ה-AI למורים</a>
+</header>
+<main class="app" id="app">
+  <div class="hd">
+    <h1>חזרה למבחן · מערכת השמש</h1><span class="sp"></span>
+    <span class="pill" id="qn"></span>
+    <span class="pill">רצף <b id="st">0</b></span>
+    <span class="pill score">נקודות <b id="sc">0</b></span>
+  </div>
+  <div class="timebar" aria-hidden="true"><i id="tb"></i></div>
+  <div class="q" id="q" aria-live="polite"></div>
+  <div class="sys" id="sys">
+    <div class="sun" aria-hidden="true">שמש</div>
+    <div class="planets" id="planets"></div>
+    <div class="end" id="end">
+      <p>סיימתם את החזרה</p>
+      <div class="big" id="endScore">0</div>
+      <p id="endTxt"></p>
+      <div class="row" id="endRow" aria-hidden="true"></div>
+      <button class="next" id="again">שחקו שוב</button>
+    </div>
+  </div>
+  <div class="fb" id="fb" aria-live="polite"><span>לחצו על כוכב הלכת הנכון. מהר יותר = יותר נקודות.</span></div>
+</main>
+<footer class="how"><div>
+  <b>איך המשחק הזה נוצר?</b> בבקשה אחת ב-Canvas ב-Gemini:
+  <q>בנה משחק חזרה על מערכת השמש לכיתה ו'. 8 שאלות, לוחצים על כוכב הלכת הנכון, ניקוד עם בונוס מהירות, ומשפט הסבר אחרי כל תשובה.</q>
+  את הפרומפט המלא, עם מקום לנושא שלכם, תמצאו ב<a href="./#prompts">ספריית הפרומפטים</a> (פרומפט 10). כמו בכל תוצר של AI, בודקים כל עובדה לפני שמביאים לכיתה.
+</div></footer>
+<script>
+(function(){
+const P=[{k:'mercury',n:'כוכב חמה',d:22,c:'#9a9590'},{k:'venus',n:'נוגה',d:34,c:'#e6c98b'},{k:'earth',n:'כדור הארץ',d:36,c:'#3f7fd8'},{k:'mars',n:'מאדים',d:28,c:'#c8553a'},
+  {k:'jupiter',n:'צדק',d:84,c:'#c99b6d',cls:'bands'},{k:'saturn',n:'שבתאי',d:66,c:'#e2cc94',cls:'ring'},{k:'uranus',n:'אורנוס',d:46,c:'#8fd3da'},{k:'neptune',n:'נפטון',d:44,c:'#3c5bc9'}];
+const Q=[{a:'mercury',q:'מי הכי קרוב לשמש?',f:'כוכב חמה. שנה שלמה שם נמשכת רק 88 ימים.'},
+  {a:'venus',q:'מי הכי חם במערכת השמש?',f:'נוגה, לא חמה! אטמוספירה עבה של פחמן דו-חמצני לוכדת חום של כ-460 מעלות.'},
+  {a:'earth',q:'על מי יש מים נוזליים על פני השטח?',f:'כדור הארץ. בגלל זה הוא היחיד שידוע שיש בו חיים.'},
+  {a:'mars',q:'מי מכונה "הכוכב האדום"?',f:'מאדים. הצבע מגיע מתחמוצת ברזל, כלומר חלודה, באבק שעל פניו.'},
+  {a:'jupiter',q:'מי הכי גדול?',f:'צדק. יותר מ-1,300 כדורי ארץ היו נכנסים בתוכו.'},
+  {a:'saturn',q:'מי היה צף באמבטיה ענקית?',f:'שבתאי. הצפיפות שלו נמוכה מזו של מים.'},
+  {a:'uranus',q:'מי מסתובב כמעט שוכב על הצד?',f:'אורנוס. הציר שלו נטוי בכ-98 מעלות.'},
+  {a:'neptune',q:'מי הכי רחוק מהשמש?',f:'נפטון. שנה אחת שם שווה ל-165 שנים שלנו.'}];
+const $=s=>document.querySelector(s), TIME=20000;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let order=[],i=0,score=0,streak=0,res=[],t0=0,raf=0,locked=false,shown=0;
+$('#planets').innerHTML=P.map(p=>`<button class="pl" data-k="${p.k}" aria-label="${p.n}"><span class="ball ${p.cls||''}" style="--d:${p.d};--c:${p.c}"></span><span class="nm">?</span></button>`).join('');
+document.querySelectorAll('.pl').forEach(b=>b.addEventListener('click',()=>answer(b.dataset.k)));
+const shuffle=a=>{a=a.slice();for(let j=a.length-1;j>0;j--){const r=Math.floor(Math.random()*(j+1));[a[j],a[r]]=[a[r],a[j]];}return a;};
+function start(){order=shuffle(Q);i=0;score=0;streak=0;res=[];$('#end').classList.remove('on');$('#sc').textContent=0;$('#st').textContent=0;
+  document.querySelectorAll('.nm').forEach(n=>{n.textContent='?';n.classList.remove('show');});ask();}
+function ask(){locked=false;shown=performance.now();const q=order[i];
+  $('#sys').classList.remove('done');document.querySelectorAll('.pl').forEach(b=>b.classList.remove('ok','no'));
+  $('#q').innerHTML=`<small>שאלה ${i+1} מתוך ${order.length}</small>${q.q}`;$('#qn').innerHTML=`<b>${i+1}</b> / ${order.length}`;
+  $('#fb').className='fb';$('#fb').innerHTML='<span>לחצו על כוכב הלכת הנכון. מהר יותר = יותר נקודות.</span>';
+  t0=performance.now();cancelAnimationFrame(raf);(function tick(){const left=Math.max(0,1-(performance.now()-t0)/TIME);
+    $('#tb').style.width=left*100+'%';$('#tb').style.background=left<.25?'var(--bad)':left<.5?'var(--amb)':'var(--blue)';
+    if(left<=0){answer(null);return;}raf=requestAnimationFrame(tick);})();}
+function reveal(k){const b=document.querySelector(`.pl[data-k="${k}"]`);const n=b.querySelector('.nm');n.textContent=P.find(p=>p.k===k).n;n.classList.add('show');return b;}
+function answer(k){if(locked||performance.now()-shown<250)return;locked=true;cancelAnimationFrame(raf);
+  const q=order[i],ok=k===q.a,left=Math.max(0,1-(performance.now()-t0)/TIME);$('#sys').classList.add('done');
+  reveal(q.a).classList.add('ok');if(k&&!ok)reveal(k).classList.add('no');
+  let pts=0;if(ok){streak++;pts=50+Math.round(left*50)+(streak>1?10*(streak-1):0);score+=pts;}else streak=0;res.push(ok);
+  $('#sc').textContent=score;$('#st').textContent=streak>1?'×'+streak:streak;
+  $('#fb').className='fb '+(ok?'ok':'no');
+  $('#fb').innerHTML=`<b class="t">${ok?'+'+pts:k?'לא בדיוק':'נגמר הזמן'}</b><span class="sp">${q.f}</span><button class="next" id="nx">${i<order.length-1?'הבא':'לתוצאה'}</button>`;
+  $('#nx').addEventListener('click',next);$('#nx').focus({preventScroll:true});}
+function next(){i++;if(i<order.length)ask();else finish();}
+function finish(){const good=res.filter(Boolean).length;$('#endScore').textContent=score;$('#endTxt').textContent=`${good} מתוך ${res.length} תשובות נכונות`;
+  $('#endRow').innerHTML=res.map(r=>`<span class="${r?'y':''}"></span>`).join('');$('#end').classList.add('on');$('#again').focus({preventScroll:true});}
+$('#again').addEventListener('click',start);
+start();
+})();
+</script>
+</body>
+</html>
