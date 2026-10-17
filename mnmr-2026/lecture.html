@@ -1373,6 +1373,11 @@ i.mt { background: #16A08D; } i.mx { background: #CF7E14; }
         }
         const li = e.target.closest('.checklist li'); if (li) { li.classList.toggle('on'); return; }
         const tm = e.target.closest('.timer'); if (tm) { timerToggle(tm); return; }
+        /* MOUSE-NAV: a click anywhere else on the slide advances */
+        if (e.button !== 0 || B.classList.contains('ov') || B.classList.contains('reading')) return;
+        if (e.target.closest('a, button, input, textarea, select, label, summary, [contenteditable], [data-goto], .prompt, .copy-btn, .checklist, .timer, .dash, .m-row, .match, .layer, .dq-b, .path, .notes-panel, .modal, [data-scroll], [data-noedit]')) return;
+        if (window.getSelection && String(window.getSelection()).trim()) return;
+        next();
     });
 
     /* ---------- copy ---------- */
@@ -1628,6 +1633,7 @@ html,body{overflow:auto;height:auto;background:#05090F;color:#E9EEF4;font-family
     let wl = 0;
     window.addEventListener('wheel', (e) => {
         if (editing || B.classList.contains('reading') || B.classList.contains('ov') || e.target.closest('.notes-panel, .modal, [data-scroll]')) return;
+        if (window.self !== window.top && !document.fullscreenElement) { let pf = false; try { pf = !!window.parent.document.fullscreenElement; } catch (err) {} if (!pf) return; }  /* embedded preview: page scrolls */
         const now = Date.now(); if (now - wl < 650 || Math.abs(e.deltaY) < 30) return; wl = now; e.deltaY > 0 ? next() : prev();
     }, { passive: true });
     let tx = null, ty = null;

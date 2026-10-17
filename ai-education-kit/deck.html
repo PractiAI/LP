@@ -3491,6 +3491,26 @@ document.getElementById('nMenu').onclick=openMenu; document.getElementById('nFul
 document.getElementById('nPres').onclick=()=>openPresenter(); document.getElementById('nHelp').onclick=()=>help.classList.toggle('show');
 menu.addEventListener('click',e=>{if(e.target===menu)menu.classList.remove('show');}); help.addEventListener('click',()=>help.classList.remove('show'));
 let mt; document.addEventListener('mousemove',()=>{document.body.classList.add('mouse');clearTimeout(mt);mt=setTimeout(()=>document.body.classList.remove('mouse'),2200);});
+/* ---- MOUSE-NAV: click on a slide = next (skips interactive elements); wheel = next/prev.
+        When embedded in a page, the wheel works only in fullscreen so the host page keeps scrolling. ---- */
+const INTERACTIVE='a, button, input, textarea, select, .poll, .formula, .builder, .qitems, .game, .gwin, .playqr, .dtimer, [data-copy]';
+stage.addEventListener('click',e=>{
+  if(e.button!==0||e.target.closest(INTERACTIVE)) return;
+  const sel=window.getSelection&&String(window.getSelection()); if(sel&&sel.trim()) return;
+  next();
+});
+{ const embedded = window.self !== window.top;
+  const isFull = () => { if (document.fullscreenElement) return true; try { return !!window.parent.document.fullscreenElement; } catch (err) { return false; } };
+  let wheelLock=0, wheelAcc=0;
+  addEventListener('wheel',e=>{
+    if(menu.classList.contains('show')||help.classList.contains('show')) return;
+    if(embedded&&!isFull()) return;
+    e.preventDefault();
+    const now=Date.now(); if(now<wheelLock) return;            // swallow trackpad inertia
+    wheelAcc+=e.deltaY||e.deltaX; if(Math.abs(wheelAcc)<40) return;
+    (wheelAcc>0?next:prev)(); wheelAcc=0; wheelLock=now+650;
+  },{passive:false});
+}
 let tx=null; document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
 document.addEventListener('touchend',e=>{ if(tx===null) return; const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>60){ dx>0? next() : prev(); } tx=null; });
 

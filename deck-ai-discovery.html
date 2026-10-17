@@ -409,7 +409,7 @@
                 <div class="thumbs" aria-label="ניווט מהיר בין שקפים"></div>
                 <div class="deck-hint">
                     <span><i class="fa-regular fa-keyboard" aria-hidden="true"></i> ניווט:</span>
-                    <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים
+                    <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים <span class="mouse-hint"><i aria-hidden="true" class="fa-solid fa-computer-mouse"></i> לחיצה על השקף מקדמת · במסך מלא גם הגלגלת</span>
                     <span style="margin-inline-start:auto"><i class="fa-solid fa-lock" aria-hidden="true"></i> צפייה בלבד — המצגת אינה ניתנת להורדה</span>
                 </div>
             </div>
@@ -432,7 +432,7 @@
                 <div class="thumbs" aria-label="ניווט מהיר בין שקפים"></div>
                 <div class="deck-hint">
                     <span><i class="fa-regular fa-keyboard" aria-hidden="true"></i> ניווט:</span>
-                    <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים
+                    <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים <span class="mouse-hint"><i aria-hidden="true" class="fa-solid fa-computer-mouse"></i> לחיצה על השקף מקדמת · במסך מלא גם הגלגלת</span>
                     <span style="margin-inline-start:auto"><i class="fa-solid fa-lock" aria-hidden="true"></i> צפייה בלבד — המצגת אינה ניתנת להורדה</span>
                 </div>
             </div>        </div>
@@ -1275,9 +1275,22 @@ For each test provide: Input / Expected behavior / Actual behavior / Pass or Fai
         wrap.querySelector('.stage-guard').addEventListener('click', function(e){
             var r = stage.getBoundingClientRect();
             var x = e.clientX - r.left;
-            if (x < r.width * 0.35) { show(index + 1); }
-            else if (x > r.width * 0.65) { show(index - 1); }
+            if (x > r.width * 0.65) { show(index - 1); }   /* right-hand zone goes back */
+            else { show(index + 1); }                      /* a click anywhere else advances */
         });
+
+        /* mouse wheel in fullscreen: next / prev (the page scrolls normally otherwise) */
+        var wheelLock = 0, wheelAcc = 0;
+        wrap.addEventListener('wheel', function(e){
+            if (!(document.fullscreenElement && document.fullscreenElement.contains(wrap))) return;
+            e.preventDefault();
+            var now = Date.now();
+            if (now < wheelLock) return;                 // swallow trackpad inertia
+            wheelAcc += e.deltaY || e.deltaX;
+            if (Math.abs(wheelAcc) < 40) return;
+            show(wheelAcc > 0 ? index + 1 : index - 1);
+            wheelAcc = 0; wheelLock = now + 650;
+        }, { passive: false });
 
         wrap.querySelector('.btn-grid').addEventListener('click', function(){ openOverview(idx); });
         wrap.querySelector('.btn-fs').addEventListener('click', toggleFs);

@@ -1432,5 +1432,29 @@ let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:tr
 go((+(location.hash.slice(1))||1)-1);
 })();
 </script>
+<script>
+/* PractiAI mouse navigation: click on a slide = next (skips interactive elements); wheel = next/prev.
+   When embedded in a page, the wheel works only in fullscreen so the host page keeps scrolling. */
+(function(){
+  const stage = document.getElementById('stage');
+  const key = k => window.postMessage({ deckKey: k }, '*');   // ArrowLeft = next, ArrowRight = back (RTL)
+  const INTERACTIVE = 'a, button, input, textarea, select, iframe, .stabs, .pane, .poll, .comps, .editor, .caps5, .lvt, .adout, .ideas .w, .gset, .quiz2, .timer, .copybox, .pgrid, .phone, .foot';
+  stage.addEventListener('click', e => {
+    if (e.button !== 0 || e.target.closest(INTERACTIVE)) return;
+    const sel = window.getSelection && String(window.getSelection()); if (sel && sel.trim()) return;
+    key('ArrowLeft');
+  });
+  const embedded = window.self !== window.top;
+  const isFull = () => { if (document.fullscreenElement) return true; try { return !!window.parent.document.fullscreenElement; } catch (err) { return false; } };
+  let wheelLock = 0, wheelAcc = 0;
+  addEventListener('wheel', e => {
+    if (embedded && !isFull()) return;
+    e.preventDefault();
+    const now = Date.now(); if (now < wheelLock) return;
+    wheelAcc += e.deltaY || e.deltaX; if (Math.abs(wheelAcc) < 40) return;
+    key(wheelAcc > 0 ? 'ArrowLeft' : 'ArrowRight'); wheelAcc = 0; wheelLock = now + 650;
+  }, { passive: false });
+})();
+</script>
 </body>
 </html>

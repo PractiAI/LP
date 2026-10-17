@@ -47,6 +47,10 @@
  let touch=null;
  stage.addEventListener('touchstart',e=>{touch={x:e.changedTouches[0].clientX,y:e.changedTouches[0].clientY};},{passive:true});
  stage.addEventListener('touchend',e=>{if(!touch)return;const dx=e.changedTouches[0].clientX-touch.x,dy=e.changedTouches[0].clientY-touch.y;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)show(current+(dx>0?1:-1));touch=null;},{passive:true});
+ /* MOUSE-NAV: click on the slide = next; wheel = next/prev while the viewer is fullscreen */
+ stage.addEventListener('click',e=>{if(e.button!==0||e.target.closest('a,button,select,input'))return;show(current+1);});
+ let wheelLock=0,wheelAcc=0;
+ viewer.addEventListener('wheel',e=>{if(document.fullscreenElement!==viewer)return;e.preventDefault();const now=Date.now();if(now<wheelLock)return;wheelAcc+=e.deltaY||e.deltaX;if(Math.abs(wheelAcc)<40)return;show(current+(wheelAcc>0?1:-1));wheelAcc=0;wheelLock=now+650;},{passive:false});
  addEventListener('hashchange',fromHash);
  window.workshopDeck={show,jump,get current(){return current},get total(){return data.length},get ready(){return ready}};
  select.disabled=false;

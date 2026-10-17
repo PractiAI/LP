@@ -399,7 +399,7 @@
 
             <div class="deck-hint">
                 <span><i aria-hidden="true" class="fa-regular fa-keyboard"></i> ניווט:</span>
-                <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים
+                <kbd>←</kbd> הבא <kbd>→</kbd> הקודם <kbd>F</kbd> מסך מלא <kbd>G</kbd> כל השקפים <span class="mouse-hint"><i aria-hidden="true" class="fa-solid fa-computer-mouse"></i> לחיצה על השקף מקדמת · במסך מלא גם הגלגלת</span>
                 <span style="margin-inline-start:auto"><i aria-hidden="true" class="fa-solid fa-lock"></i> צפייה בלבד — המצגת אינה ניתנת להורדה</span>
             </div>
         </div>
@@ -723,9 +723,22 @@
     document.getElementById('guard').addEventListener('click', function(e){
         var r = stage.getBoundingClientRect();
         var x = e.clientX - r.left;
-        if (x < r.width * 0.35) { show(index + 1); }
-        else if (x > r.width * 0.65) { show(index - 1); }
+        if (x > r.width * 0.65) { show(index - 1); }   /* right-hand zone goes back */
+        else { show(index + 1); }                      /* a click anywhere else advances */
     });
+
+    /* mouse wheel in fullscreen: next / prev (the page scrolls normally otherwise) */
+    var wheelLock = 0, wheelAcc = 0;
+    viewer.addEventListener('wheel', function(e){
+        if (!(document.fullscreenElement === viewer)) return;
+        e.preventDefault();
+        var now = Date.now();
+        if (now < wheelLock) return;                 // swallow trackpad inertia
+        wheelAcc += e.deltaY || e.deltaX;
+        if (Math.abs(wheelAcc) < 40) return;
+        show(wheelAcc > 0 ? index + 1 : index - 1);
+        wheelAcc = 0; wheelLock = now + 650;
+    }, { passive: false });
 
     /* view-only deterrents */
     ['contextmenu','dragstart','selectstart'].forEach(function(ev){

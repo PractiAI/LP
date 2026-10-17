@@ -392,7 +392,7 @@
 
             <div class="deck-hint">
                 <span><i aria-hidden="true" class="fa-regular fa-keyboard"></i> Navigate:</span>
-                <kbd>→</kbd> next <kbd>←</kbd> previous <kbd>F</kbd> fullscreen <kbd>G</kbd> all slides
+                <kbd>→</kbd> next <kbd>←</kbd> previous <kbd>F</kbd> fullscreen <kbd>G</kbd> all slides <span class="mouse-hint"><i aria-hidden="true" class="fa-solid fa-computer-mouse"></i> click a slide to advance · mouse wheel in fullscreen</span>
                 <span style="margin-inline-start:auto"><i aria-hidden="true" class="fa-solid fa-lock"></i> View only — this deck cannot be downloaded</span>
             </div>
         </div>
@@ -1117,9 +1117,22 @@ Recommend one option, explain the trade-off, present the strongest case against 
     document.getElementById('guard').addEventListener('click', function(e){
         var r = stage.getBoundingClientRect();
         var x = e.clientX - r.left;
-        if (x > r.width * 0.65) { show(index + 1); }
-        else if (x < r.width * 0.35) { show(index - 1); }
+        if (x < r.width * 0.35) { show(index - 1); }   /* left-hand zone goes back */
+        else { show(index + 1); }                      /* a click anywhere else advances */
     });
+
+    /* mouse wheel in fullscreen: next / prev (the page scrolls normally otherwise) */
+    var wheelLock = 0, wheelAcc = 0;
+    viewer.addEventListener('wheel', function(e){
+        if (!(document.fullscreenElement === viewer)) return;
+        e.preventDefault();
+        var now = Date.now();
+        if (now < wheelLock) return;                 // swallow trackpad inertia
+        wheelAcc += e.deltaY || e.deltaX;
+        if (Math.abs(wheelAcc) < 40) return;
+        show(wheelAcc > 0 ? index + 1 : index - 1);
+        wheelAcc = 0; wheelLock = now + 650;
+    }, { passive: false });
 
     /* view-only deterrents */
     ['contextmenu','dragstart','selectstart'].forEach(function(ev){
