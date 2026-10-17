@@ -1588,6 +1588,35 @@ main{display:grid;grid-template-columns:1fr 300px;gap:0;overflow:hidden}
     }
     document.addEventListener('keydown', onKey);
 
+    /* --- mouse: click anywhere on a slide = next (skips interactive elements) --- */
+    const INTERACTIVE = 'a, button, input, textarea, select, .prompt, .timer, .checks li, tr.row, .card.tick, .pickable, .tgl, .tasks, .tpresets, .say, [data-k], .deck-controls';
+    stage.addEventListener('click', (e) => {
+        if (editing || e.button !== 0 || e.target.closest(INTERACTIVE)) return;
+        const sel = window.getSelection && String(window.getSelection());
+        if (sel && sel.trim()) return;                       // user was selecting text
+        next();
+    });
+
+    /* --- mouse wheel: next / prev. When embedded in a page, only in fullscreen,
+           so normal scrolling of the host page keeps working. --- */
+    const embedded = window.self !== window.top;
+    const isFull = () => {
+        if (document.fullscreenElement) return true;
+        try { return !!window.parent.document.fullscreenElement; } catch (err) { return false; }
+    };
+    let wheelLock = 0, wheelAcc = 0;
+    addEventListener('wheel', (e) => {
+        if (editing || body.classList.contains('ov-open')) return;
+        if (embedded && !isFull()) return;
+        e.preventDefault();
+        const now = Date.now();
+        if (now < wheelLock) return;                         // swallow trackpad inertia
+        wheelAcc += e.deltaY || e.deltaX;
+        if (Math.abs(wheelAcc) < 40) return;
+        (wheelAcc > 0 ? next : prev)();
+        wheelAcc = 0; wheelLock = now + 650;
+    }, { passive: false });
+
     /* --- touch swipe --- */
     let tx = null;
     addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; }, { passive: true });
