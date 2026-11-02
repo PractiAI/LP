@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>מנמ״ר הרשות בעידן ה-AI · חומרי הכנס | PractiAI</title>
-<meta name="description" content="חומרי ההרצאה והסדנה של טל חקוקי לכנס המנמ״רים הארצי, אילת 2026: מצגות, מבנה, הדגמות וקבצי עבודה, לעיון המארגנים.">
+<title>מנמ״ר הרשות בעידן ה-AI · חומרי ההרצאה והסדנה | PractiAI</title>
+<meta name="description" content="חומרי ההרצאה והסדנה של טל חקוקי בכנס המנמ״רים הארצי, אילת 2026: המצגות, הפרומפטים וקבצי התרגול, לעבודה בכנס ולהמשך ברשות.">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#FBFAF7">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="מנמ״ר הרשות בעידן ה-AI · חומרי ההרצאה והסדנה">
@@ -18,192 +19,205 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root{
-  --bg:#060E1A; --bg-2:#0B1626; --panel:rgba(255,255,255,.045); --panel-2:rgba(255,255,255,.075);
-  --line:rgba(255,255,255,.11); --line-2:rgba(255,255,255,.2);
-  --ink:#F3F6FA; --ink-2:#C3CEDB; --muted:#8796AB;
-  --accent:#3EE6C8; --accent-2:#12B5A0; --accent-ink:#062A25; --accent-soft:rgba(62,230,200,.12);
-  --signal:#FFB547; --signal-soft:rgba(255,181,71,.13);
+  --paper:#FBFAF7; --paper-2:#F4F2EC; --card:#FFFFFF; --tint:#F1F3F6;
+  --line:rgba(19,35,58,.10); --line-2:rgba(19,35,58,.18);
+  --ink:#13233A; --ink-2:#3D4B5F; --muted:#6A7689;
+  --accent:#0C7F72; --accent-2:#0A6A60; --accent-soft:rgba(12,127,114,.08); --accent-line:rgba(12,127,114,.35);
+  --signal:#B8680C; --signal-soft:rgba(184,104,12,.09);
+  --shadow:0 1px 2px rgba(19,35,58,.04),0 18px 44px -28px rgba(19,35,58,.22);
   --font-body:'Plex Hebrew','Arial Hebrew','Segoe UI',sans-serif;
   --font-display:'Frank Ruhl','David',serif;
   --font-mono:'Plex Mono',ui-monospace,monospace;
   --ease:cubic-bezier(.16,1,.3,1);
-  --wrap:1180px;
+  --wrap:1160px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--font-body);color:var(--ink);line-height:1.6;font-size:17px;min-height:100vh;
+body{font-family:var(--font-body);color:var(--ink);line-height:1.65;font-size:17px;min-height:100vh;
   background:
-    radial-gradient(1100px 650px at 92% -8%, rgba(62,230,200,.13), transparent 60%),
-    radial-gradient(900px 600px at -5% 38%, rgba(255,181,71,.06), transparent 60%),
-    linear-gradient(180deg,#071223 0%,#050B16 100%) fixed;
-  background-color:var(--bg)}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
-  background-image:radial-gradient(rgba(255,255,255,.07) 1.2px,transparent 1.3px);background-size:32px 32px;
-  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.15) 70%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.15) 70%)}
-main,header,footer{position:relative;z-index:1}
+    radial-gradient(1100px 600px at 95% -10%, rgba(12,127,114,.07), transparent 60%),
+    radial-gradient(900px 600px at -10% 35%, rgba(184,104,12,.045), transparent 60%),
+    var(--paper)}
 a{color:inherit}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
 .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
 .num{font-feature-settings:"tnum"}
 .hl{color:var(--accent)}
 
-/* top bar */
-.topbar{position:sticky;top:0;z-index:20;background:rgba(6,14,26,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+/* header */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.86);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
 .brand img{height:30px;width:auto;display:block}
-.topnav{display:flex;gap:4px;font-size:15px}
-.topnav a{text-decoration:none;color:var(--ink-2);padding:6px 12px;border-radius:20px;transition:background .2s,color .2s}
-.topnav a:hover{background:var(--panel-2);color:var(--ink)}
-.status{font-size:13px;color:var(--signal);background:var(--signal-soft);border:1px solid rgba(255,181,71,.4);border-radius:30px;padding:4px 12px;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
-.status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 8px var(--signal)}
+.topnav{display:flex;gap:2px;font-size:15px}
+.topnav a{text-decoration:none;color:var(--ink-2);padding:7px 13px;border-radius:20px;transition:background .2s,color .2s}
+.topnav a:hover{background:var(--accent-soft);color:var(--accent)}
 
 /* hero */
-.hero{padding-top:88px;padding-bottom:56px}
-.kicker{font-size:16px;font-weight:500;color:var(--accent);letter-spacing:.02em;display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.kicker::before{content:"";width:36px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--accent))}
-.hero h1{font-family:var(--font-display);font-weight:900;font-size:clamp(44px,7.4vw,92px);line-height:1.04;letter-spacing:-.01em}
-.grad{background:linear-gradient(90deg,#3EE6C8,#9AF5E4 50%,#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .sub{font-size:clamp(19px,2.2vw,25px);color:var(--ink-2);margin-top:20px;max-width:780px;line-height:1.45}
-.byline{margin-top:28px;font-size:18px;font-weight:700}
+.hero{padding-top:84px;padding-bottom:64px}
+.kicker{font-size:15px;font-weight:500;color:var(--accent);letter-spacing:.02em;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.kicker::before{content:"";width:34px;height:2px;border-radius:2px;background:var(--accent);opacity:.7}
+.hero h1{font-family:var(--font-display);font-weight:900;font-size:clamp(44px,7vw,88px);line-height:1.04;letter-spacing:-.01em;color:var(--ink)}
+.hero h1 .grad{background:linear-gradient(90deg,#0B5C70,#0C7F72 55%,#13A08E);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:clamp(19px,2.1vw,23px);color:var(--ink-2);margin-top:22px;max-width:760px;line-height:1.5}
+.byline{margin-top:24px;font-size:17px;font-weight:700;color:var(--ink)}
 .byline span{color:var(--muted);font-weight:400;margin:0 10px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
-.stat b{display:block;font-family:var(--font-display);font-size:42px;line-height:1;color:var(--accent);font-weight:900}
-.stat span{display:block;margin-top:8px;color:var(--ink-2);font-size:15px;line-height:1.4}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:16px;border-radius:30px;padding:12px 22px;border:1.5px solid var(--accent-line);color:var(--accent);background:var(--card);transition:all .2s;font-family:inherit;cursor:pointer}
+.btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 10px 24px -14px rgba(12,127,114,.8)}
+.btn.solid:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.btn svg{width:17px;height:17px}
 
 /* sections */
-section{padding:64px 0;scroll-margin-top:70px}
-.sec-head{margin-bottom:30px;max-width:820px}
-.sec-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;line-height:1.15}
+section{padding:72px 0;scroll-margin-top:72px}
+.sec-head{margin-bottom:32px;max-width:800px}
+.eyebrow{font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-bottom:10px;display:block}
+.sec-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.15;color:var(--ink)}
 .sec-head p{color:var(--ink-2);margin-top:12px;font-size:18px}
-.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line-2),transparent)}
+.band{background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.35));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 
-/* method flow */
-.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:st}
-.flow .st{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 18px;position:relative}
-.flow .st::before{counter-increment:st;content:"0" counter(st);font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:.05em}
-.flow .st h3{font-size:24px;margin:4px 0 2px}
+/* cards */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow)}
+.card .ix{font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.05em;display:block;margin-bottom:10px}
+.card h3{font-size:20px;line-height:1.35;margin-bottom:6px}
+.card p,.card li{color:var(--ink-2);font-size:16px}
+.card ul{list-style:none;display:grid;gap:5px;margin-top:8px}
+.card li{padding-right:18px;position:relative}
+.card li::before{content:"";position:absolute;right:2px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* quick start */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:st}
+.step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow);position:relative}
+.step::before{counter-increment:st;content:counter(st);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:700;font-size:18px;margin-bottom:14px}
+.step h3{font-size:20px;margin-bottom:6px}
+.step p{color:var(--ink-2);font-size:16px}
+
+/* method */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:m}
+.flow .st{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 18px;box-shadow:var(--shadow)}
+.flow .st::before{counter-increment:m;content:"0" counter(m);font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:.05em}
+.flow .st h3{font-family:var(--font-display);font-size:26px;margin:2px 0}
 .flow .st p{font-size:15px;color:var(--ink-2);line-height:1.45}
-.flow .st.tech{border-color:rgba(62,230,200,.45);box-shadow:0 20px 60px -30px rgba(62,230,200,.5)}
+.flow .st.key{background:linear-gradient(160deg,#118F80,#0A6A60);border-color:transparent;color:#fff}
+.flow .st.key::before,.flow .st.key p{color:rgba(255,255,255,.88)}
 .flow-note{margin-top:16px;color:var(--muted);font-size:15px}
-.bridge{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
-.bridge div{border-right:3px solid var(--accent);padding:6px 16px 6px 0;color:var(--ink-2)}
-.bridge div:last-child{border-color:var(--signal)}
-.bridge b{color:var(--ink);display:block;font-size:18px}
 
-/* deck cards */
+/* decks */
 .decks{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.deck{background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
-.deck.glow{border-color:rgba(62,230,200,.4)}
-.preview{position:relative;aspect-ratio:16/9;background:#02060C;overflow:hidden;border-bottom:1px solid var(--line)}
+.deck{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.preview{position:relative;aspect-ratio:16/9;background:#E7EAEE;overflow:hidden;border-bottom:1px solid var(--line)}
 .preview iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
-.preview a{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:flex-start;padding:14px;text-decoration:none;background:linear-gradient(0deg,rgba(2,6,12,.55),transparent 45%);opacity:0;transition:opacity .3s}
+.preview a{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;justify-content:flex-start;padding:14px;text-decoration:none;background:linear-gradient(0deg,rgba(19,35,58,.25),transparent 45%);opacity:0;transition:opacity .3s}
 .preview a:hover,.preview a:focus-visible{opacity:1}
-.preview a span{background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:14px;border-radius:30px;padding:6px 14px}
-.deck-body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:14px;flex:1}
-.tagline{display:flex;gap:8px;flex-wrap:wrap}
-.tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(62,230,200,.4);border-radius:30px;padding:3px 12px;white-space:nowrap}
-.tag.amber{color:var(--signal);background:var(--signal-soft);border-color:rgba(255,181,71,.4)}
-.tag.plain{color:var(--ink-2);background:var(--panel-2);border-color:var(--line)}
-.deck h3{font-size:28px;line-height:1.2}
+.preview a span{background:var(--accent);color:#fff;font-weight:700;font-size:14px;border-radius:30px;padding:6px 14px}
+.deck-body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:12px;flex:1}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;font-size:13px;font-weight:500;color:var(--ink-2);background:var(--tint);border:1px solid var(--line);border-radius:30px;padding:3px 12px;white-space:nowrap}
+.tag.teal{color:var(--accent);background:var(--accent-soft);border-color:var(--accent-line)}
+.tag.amber{color:var(--signal);background:var(--signal-soft);border-color:rgba(184,104,12,.35)}
+.deck h3{font-family:var(--font-display);font-size:28px;line-height:1.2}
 .deck p{color:var(--ink-2)}
-.deck .cta{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
-.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:16px;border-radius:30px;padding:11px 22px;border:1.5px solid var(--accent);color:var(--accent);transition:all .2s;background:transparent;font-family:inherit;cursor:pointer}
-.btn:hover{background:var(--accent-soft)}
-.btn.solid{background:var(--accent);color:var(--accent-ink)}
-.btn.solid:hover{background:#7DF0DA}
-.btn svg{width:18px;height:18px}
+.deck .actions{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+.key{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 14px;font-size:15px;color:var(--ink-2)}
+kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;padding:0 8px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:var(--paper);border:1px solid var(--line-2);border-bottom-width:3px;color:var(--ink)}
+.tip{margin-top:14px;color:var(--muted);font-size:15px}
 
 /* timeline */
 .tl{display:grid;gap:12px}
-.part{display:grid;grid-template-columns:150px 1fr;gap:22px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px 24px;align-items:start}
+.part{display:grid;grid-template-columns:150px 1fr;gap:22px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px;align-items:start;box-shadow:var(--shadow)}
 .part .when{font-family:var(--font-mono);color:var(--accent);font-size:15px;line-height:1.5}
 .part .when small{display:block;color:var(--muted);font-family:var(--font-body);font-size:13px;margin-top:2px}
-.part h3{font-size:22px;line-height:1.3}
+.part h3{font-size:21px;line-height:1.35}
 .part ul{list-style:none;margin-top:10px;display:grid;gap:4px}
 .part li{color:var(--ink-2);padding-right:20px;position:relative;font-size:16px}
 .part li::before{content:"";position:absolute;right:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .part .msg{margin-top:12px;border-right:3px solid var(--signal);padding-right:12px;font-weight:500;color:var(--ink)}
-.bar{display:flex;height:8px;border-radius:6px;overflow:hidden;margin:0 0 22px;gap:3px}
-.bar i{display:block;background:rgba(62,230,200,.5);border-radius:4px}
-.bar i:nth-child(even){background:rgba(62,230,200,.28)}
-.bar-legend{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;font-family:var(--font-mono);margin:-14px 0 22px}
 
 /* table */
-.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:var(--panel)}
-table{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
-th{text-align:right;font-weight:700;font-size:13px;color:var(--muted);padding:14px 18px;border-bottom:1px solid var(--line-2);letter-spacing:.02em}
+.tbl-wrap{border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th{text-align:right;font-weight:700;font-size:13px;color:var(--muted);padding:14px 18px;border-bottom:1px solid var(--line-2);background:var(--paper)}
 td{padding:14px 18px;border-bottom:1px solid var(--line);color:var(--ink-2);vertical-align:top}
 tr:last-child td{border-bottom:0}
 td:first-child{color:var(--ink);font-weight:700}
 td.mono{font-family:var(--font-mono);color:var(--accent);white-space:nowrap;font-size:14px}
 
-/* cards grid */
-.grid{display:grid;gap:16px}
-.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
-.card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:20px;padding:24px}
-.card .ix{font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:.05em;display:block;margin-bottom:8px}
-.card h3{font-size:21px;line-height:1.3;margin-bottom:8px}
-.card p,.card li{color:var(--ink-2);font-size:16px}
-.card ul{list-style:none;display:grid;gap:4px;margin-top:8px}
-.card li{padding-right:18px;position:relative}
-.card li::before{content:"";position:absolute;right:2px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.card .foot{margin-top:12px;font-size:14px;color:var(--muted)}
-.card.amber{border-color:rgba(255,181,71,.35)}
-.card.amber .ix{color:var(--signal)}
+/* prompts */
+.plib{display:grid;gap:12px}
+.plib-head{display:flex;align-items:baseline;gap:12px;margin:34px 0 14px}
+.plib-head:first-of-type{margin-top:0}
+.plib-head h3{font-size:20px}
+.plib-head span{color:var(--muted);font-size:15px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);transition:border-color .2s}
+.pc[open]{border-color:var(--accent-line)}
+.pc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 20px;user-select:none}
+.pc summary::-webkit-details-marker{display:none}
+.pn-tag{font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:20px;padding:2px 10px;white-space:nowrap}
+.pt{font-weight:700;font-size:17px;flex:1}
+.chev{width:10px;height:10px;border-left:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .25s;margin-left:4px}
+.pc[open] .chev{transform:rotate(135deg)}
+.pbody{padding:0 20px 20px}
+.pnote{color:var(--muted);font-size:15px;margin-bottom:10px}
+.ptext{white-space:pre-line;background:linear-gradient(180deg,#FFFFFF,#F7FBFA);border:1px solid var(--accent-line);border-radius:14px;padding:16px 18px;font-size:16px;line-height:1.75;color:var(--ink);user-select:text;-webkit-user-select:text}
+.copy{margin-top:12px;font-family:inherit;font-size:15px;font-weight:700;color:var(--accent);background:var(--card);border:1.5px solid var(--accent-line);border-radius:24px;padding:8px 18px;cursor:pointer;transition:all .2s}
+.copy:hover{border-color:var(--accent);background:var(--accent-soft)}
+.copy.done{background:var(--accent);border-color:var(--accent);color:#fff}
+.case{background:var(--card);border:1px solid var(--line);border-right:5px solid var(--accent);border-radius:20px;padding:26px 28px;box-shadow:var(--shadow)}
+.case h3{font-family:var(--font-display);font-size:24px;margin-bottom:8px}
+.case p,.case li{color:var(--ink-2)}
+.case ul{list-style:none;display:grid;gap:4px;margin:10px 0}
+.case li{padding-right:18px;position:relative}
+.case li::before{content:"";position:absolute;right:2px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.case .mission{margin-top:12px;border-right:3px solid var(--signal);padding-right:12px;color:var(--ink);font-weight:500}
 
 /* files */
-.files{display:grid;gap:10px}
-.file{display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px;transition:border-color .2s}
-.file:hover{border-color:rgba(62,230,200,.4)}
-.ext{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.04em;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(62,230,200,.35)}
-.ext.pdf{background:var(--signal-soft);color:var(--signal);border-color:rgba(255,181,71,.4)}
+.files{display:grid;gap:12px}
+.file{display:grid;grid-template-columns:54px 1fr auto;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 20px;box-shadow:var(--shadow);transition:border-color .2s}
+.file:hover{border-color:var(--accent-line)}
+.ext{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.04em;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line)}
+.ext.doc{background:rgba(37,99,235,.07);color:#1D4ED8;border-color:rgba(37,99,235,.28)}
 .file h3{font-size:17px;line-height:1.35}
-.file p{color:var(--muted);font-size:14px;line-height:1.45;margin-top:2px}
+.file p{color:var(--muted);font-size:14.5px;line-height:1.5;margin-top:2px}
 .file .dl{display:flex;gap:8px}
-.file .dl a{font-size:14px;font-weight:700;color:var(--accent);text-decoration:none;border:1px solid rgba(62,230,200,.45);border-radius:20px;padding:6px 14px;white-space:nowrap}
-.file .dl a:hover{background:var(--accent-soft)}
+.file .dl a{font-size:14px;font-weight:700;color:var(--accent);text-decoration:none;border:1.5px solid var(--accent-line);border-radius:20px;padding:6px 14px;white-space:nowrap;background:var(--card)}
+.file .dl a:hover{border-color:var(--accent);background:var(--accent-soft)}
 
-/* coordination */
-.coord{display:grid;gap:12px;counter-reset:co}
-.co{display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
-.co::before{counter-increment:co;content:counter(co);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:15px;color:var(--signal);border:1.5px solid rgba(255,181,71,.5);background:var(--signal-soft)}
-.co h3{font-size:18px;line-height:1.35}
-.co p{color:var(--ink-2);font-size:15px;margin-top:3px}
-.co .url{display:block;width:fit-content;margin-top:8px;font-family:var(--font-mono);font-size:14px;color:var(--accent);direction:ltr;text-decoration:none;border-bottom:1px solid rgba(62,230,200,.45);overflow-wrap:anywhere}
-.co .url:hover{color:var(--signal);border-color:var(--signal)}
-
-/* keys */
-.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.key{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px;color:var(--ink-2)}
-kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;padding:0 8px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:#0B1626;border:1px solid var(--line-2);border-bottom-width:3px;color:var(--ink)}
+/* after */
+.after{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.after div{border-top:3px solid var(--accent);padding-top:16px;display:flex;gap:16px;align-items:flex-start}
+.after b{font-family:var(--font-display);font-size:48px;color:var(--accent);line-height:.9}
+.after span{font-size:18px;line-height:1.45;color:var(--ink)}
+.closing{margin-top:44px;font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3.6vw,44px);line-height:1.25;border-right:6px solid var(--signal);padding-right:24px}
+.closing .grad{background:linear-gradient(90deg,#0B5C70,#0C7F72 55%,#13A08E);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* footer */
-footer{padding:56px 0 64px;border-top:1px solid var(--line);margin-top:24px}
+footer{padding:52px 0 60px;border-top:1px solid var(--line);background:rgba(255,255,255,.55)}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .who{display:flex;align-items:center;gap:16px}
-.who img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid rgba(62,230,200,.5)}
+.who img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-line)}
 .who b{display:block;font-size:18px}
 .who span{color:var(--muted);font-size:14px}
 .contact{display:flex;gap:10px;flex-wrap:wrap}
-.fine{color:var(--muted);font-size:13px;margin-top:26px;width:100%}
+.fine{color:var(--muted);font-size:13px;margin-top:24px;width:100%}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 .no-js .rv{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
 @media (max-width:980px){
   .topnav{display:none}
-  .stats{grid-template-columns:repeat(2,1fr)}
   .flow{grid-template-columns:1fr 1fr}
   .flow .st:last-child{grid-column:1/-1}
-  .decks,.g2,.g3,.bridge{grid-template-columns:1fr}
+  .decks,.g2,.g3,.steps,.after{grid-template-columns:1fr}
   .keys{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:760px){
-  table,thead,tbody,tr,td{display:block;min-width:0}
+  table,thead,tbody,tr,td{display:block}
   thead{display:none}
   tr{padding:16px 18px;border-bottom:1px solid var(--line)}
   tr:last-child{border-bottom:0}
@@ -219,32 +233,30 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 @media (max-width:640px){
   body{font-size:16px}
   .wrap{padding:0 16px}
-  .hero{padding-top:56px;padding-bottom:36px}
-  section{padding:44px 0}
-  .status{display:none}
+  .hero{padding-top:52px;padding-bottom:44px}
+  section{padding:50px 0}
   .part{grid-template-columns:1fr;gap:8px;padding:18px}
   .file{grid-template-columns:44px 1fr;padding:14px}
   .ext{width:44px;height:44px}
   .file .dl{grid-column:1/-1}
-  .co{grid-template-columns:36px 1fr;padding:16px}
-  .co .tag{grid-column:2;justify-self:start}
   .keys{grid-template-columns:1fr}
-  .stat b{font-size:34px}
+  .pc summary{padding:14px 16px}
+  .pbody{padding:0 16px 16px}
+  .ptext{font-size:15.5px;padding:14px}
 }
 </style>
 </head>
 <body class="no-js">
 <header class="topbar">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="PractiAI"><img src="practiai-logo-dark.png" alt="PractiAI" width="116" height="30"></a>
+    <a class="brand" href="#top" aria-label="PractiAI"><img src="practiai-logo-light.png" alt="PractiAI" width="116" height="30"></a>
     <nav class="topnav" aria-label="ניווט בעמוד">
       <a href="#decks">המצגות</a>
-      <a href="#lecture">מבנה ההרצאה</a>
-      <a href="#workshop">מבנה הסדנה</a>
+      <a href="#lecture">ההרצאה</a>
+      <a href="#workshop">הסדנה</a>
+      <a href="#prompts">פרומפטים</a>
       <a href="#files">קבצים</a>
-      <a href="#coordination">תיאום</a>
     </nav>
-    <span class="status">טיוטה לאישור המארגנים</span>
   </div>
 </header>
 
@@ -252,61 +264,65 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
   <div class="wrap hero">
     <div class="kicker rv"><span>כנס המנמ״רים הארצי · אילת · <span class="num">10.11.2026</span></span></div>
     <h1 class="rv">מנמ״ר הרשות<br><span class="grad">בעידן ה-AI</span></h1>
-    <p class="sub rv">הרצאה וסדנה מעשית: איך הופכים צורך ארגוני לפתרון, במהירות שלא הייתה אפשרית בעבר, ומה תפקידו של המנמ״ר בהובלת השינוי.</p>
+    <p class="sub rv">כל חומרי ההרצאה והסדנה במקום אחד: לעקוב אחרי המצגות במהלך הכנס, לתרגל בסדנה, ולחזור אליהם כשממשיכים את העבודה ברשות.</p>
     <div class="byline rv">טל חקוקי<span>|</span>PractiAI</div>
-    <div class="stats">
-      <div class="stat rv"><b class="num">60</b><span>דקות הרצאה, בחמישה חלקים</span></div>
-      <div class="stat rv"><b class="num">90</b><span>דקות סדנה מעשית על המכשיר של המשתתפים</span></div>
-      <div class="stat rv"><b class="num">2</b><span>הדגמות חיות, עם שקפי גיבוי מוכנים מראש</span></div>
-      <div class="stat rv"><b class="num">8</b><span>פרומפטים מלאים שהמשתתפים לוקחים איתם</span></div>
+    <div class="cta rv">
+      <a class="btn solid" href="lecture.html" target="_blank" rel="noopener">מצגת ההרצאה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+      <a class="btn solid" href="workshop.html" target="_blank" rel="noopener">מצגת הסדנה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+      <a class="btn" href="#prompts">לפרומפטים</a>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <section id="start" class="band">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">לפני שמתחילים</span>
+        <h2>מתחילים לעבוד בסדנה</h2>
+        <p>הסדנה מעשית. כל אחד עובד מהמחשב או מהטלפון שלו, בקצב שלו.</p>
+      </div>
+      <div class="steps">
+        <div class="step rv"><h3>פותחים כלי AI</h3><p>כל כלי שאתם יכולים להשתמש בו, למשל Copilot, Gemini או ChatGPT. מי שאין לו גישה עובד עם משתתף סמוך.</p></div>
+        <div class="step rv"><h3>מעתיקים פרומפט</h3><p>מספריית הפרומפטים כאן, או מתוך מצגת הסדנה. בטלפון, כפתור "קריאה" במצגת מציג כל פרומפט בגודל מלא.</p></div>
+        <div class="step rv"><h3>עובדים באותה שיחה</h3><p>ממשיכים באותה שיחה לאורך כל התרגול, כדי שהכלי יזכור את ההקשר. עובדים רק עם מידע סינתטי או מידע שמותר לשתף.</p></div>
+      </div>
+    </div>
+  </section>
 
   <section id="method">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>שני מפגשים, <span class="hl">שיטה אחת</span></h2>
-        <p>ההרצאה והסדנה בנויות על אותה מתודולוגיה: חמש שאלות שמובילות מצורך רשותי לערך ארגוני שאפשר למדוד. הטכנולוגיה נכנסת רק בתחנה הרביעית.</p>
+        <span class="eyebrow">המתודולוגיה</span>
+        <h2>מהצורך הרשותי לערך ארגוני</h2>
+        <p>חמש שאלות שמלוות את ההרצאה ואת הסדנה. הטכנולוגיה נכנסת רק בתחנה הרביעית.</p>
       </div>
       <div class="flow">
         <div class="st rv"><h3>צורך</h3><p>מה אנחנו רוצים לשפר?</p></div>
         <div class="st rv"><h3>תהליך</h3><p>איך העבודה מתבצעת היום?</p></div>
         <div class="st rv"><h3>מידע</h3><p>איזה מידע נדרש?</p></div>
-        <div class="st tech rv"><h3>פתרון</h3><p>מהי דרך הפתרון המתאימה?</p></div>
-        <div class="st rv"><h3>ערך</h3><p>איך נמדוד הצלחה?</p></div>
-      </div>
-      <div class="bridge">
-        <div class="rv"><b>בהרצאה: למה ואיך</b>המנמ״ר כמוביל שינוי, ארגז הכלים החדש, ושתי הדגמות חיות שמראות את השיטה בפעולה.</div>
-        <div class="rv"><b>בסדנה: עושים את זה בעצמנו</b>כל משתתף עובר את חמש התחנות על צורך מהרשות שלו, ויוצא עם כלי עבודה ראשון שנבדק ותוכנית פיילוט.</div>
+        <div class="st rv"><h3>פתרון</h3><p>מהי דרך הפתרון המתאימה?</p></div>
+        <div class="st key rv"><h3>ערך</h3><p>איך נמדוד הצלחה?</p></div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section id="decks">
+  <section id="decks" class="band">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>המצגות</h2>
-        <p>שתי המצגות אינטראקטיביות ומוצגות בדפדפן בדיוק כפי שיוצגו בכנס. מומלץ לצפות במחשב, במסך מלא.</p>
+        <span class="eyebrow">המצגות</span>
+        <h2>ההרצאה והסדנה</h2>
+        <p>המצגות אינטראקטיביות ונפתחות בדפדפן, במחשב ובטלפון.</p>
       </div>
       <div class="decks">
-        <article class="deck glow rv">
+        <article class="deck rv">
           <div class="preview">
             <iframe src="lecture.html" title="תצוגה מקדימה: מצגת ההרצאה" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
             <a href="lecture.html" target="_blank" rel="noopener"><span>פתיחת המצגת</span></a>
           </div>
           <div class="deck-body">
-            <div class="tagline"><span class="tag">הרצאה</span><span class="tag plain num">60 דקות</span><span class="tag plain num">20 שקפים + 4 שקפי גיבוי</span></div>
+            <div class="tags"><span class="tag teal">הרצאה</span><span class="tag num">60 דקות</span><span class="tag num">20 שקפים</span></div>
             <h3>מנמ״ר הרשות בעידן ה-AI</h3>
-            <p>מצורך ארגוני לפתרון במהירות שלא הייתה אפשרית בעבר. התפקיד המתרחב של המנמ״ר, ארגז הכלים החדש, שתי הדגמות חיות ומסגרת לתעדוף ולהטמעה בטוחה.</p>
-            <div class="cta">
-              <a class="btn solid" href="lecture.html" target="_blank" rel="noopener">פתיחת מצגת ההרצאה
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
-              <a class="btn" href="#lecture">מבנה ההרצאה</a>
-            </div>
+            <p>מצורך ארגוני לפתרון, במהירות שלא הייתה אפשרית בעבר. התפקיד המתרחב של המנמ״ר, ארגז הכלים החדש, שתי הדגמות חיות ומסגרת לתעדוף ולהטמעה בטוחה.</p>
+            <div class="actions"><a class="btn solid" href="lecture.html" target="_blank" rel="noopener">פתיחת מצגת ההרצאה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
           </div>
         </article>
         <article class="deck rv">
@@ -315,42 +331,30 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
             <a href="workshop.html" target="_blank" rel="noopener"><span>פתיחת המצגת</span></a>
           </div>
           <div class="deck-body">
-            <div class="tagline"><span class="tag amber">סדנה מעשית</span><span class="tag plain num">90 דקות</span><span class="tag plain num">13 שקפים + 8 נספחים</span></div>
+            <div class="tags"><span class="tag amber">סדנה מעשית</span><span class="tag num">90 דקות</span><span class="tag num">13 שקפים + 8 נספחים</span></div>
             <h3>מהצורך הרשותי לפתרון AI ראשון</h3>
-            <p>נזהה צורך, נבין את התהליך, נבחר גישת פתרון, נבנה כלי ראשוני ונתכנן את הצעד הבא. המצגת משמשת גם את המשתתפים: פרומפטים להעתקה, טיימרים ומצב קריאה בטלפון.</p>
-            <div class="cta">
-              <a class="btn solid" href="workshop.html" target="_blank" rel="noopener">פתיחת מצגת הסדנה
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
-              <a class="btn" href="#workshop">מבנה הסדנה</a>
-            </div>
+            <p>נזהה צורך, נבין את התהליך, נבחר גישת פתרון, נבנה כלי ראשוני ונתכנן את הצעד הבא. כולל טיימרים לתרגילים ונספחים עם כל הפרומפטים.</p>
+            <div class="actions"><a class="btn solid" href="workshop.html" target="_blank" rel="noopener">פתיחת מצגת הסדנה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
           </div>
         </article>
       </div>
-
-      <div class="sec-head rv" style="margin-top:40px;margin-bottom:16px"><p>ניווט במצגות (מחשב):</p></div>
       <div class="keys">
-        <div class="key rv"><kbd>→</kbd><kbd>←</kbd>מעבר בין שקפים</div>
+        <div class="key rv"><kbd>←</kbd><kbd>→</kbd>מעבר בין שקפים</div>
         <div class="key rv"><kbd>F</kbd>מסך מלא</div>
         <div class="key rv"><kbd>O</kbd>מבט על כל השקפים</div>
-        <div class="key rv"><kbd>Home</kbd>חזרה לשקף הראשון</div>
-        <div class="key rv"><kbd>B</kbd>שקפי הגיבוי להדגמות</div>
-        <div class="key rv"><kbd>R</kbd>מצב קריאה (נוח בטלפון)</div>
-        <div class="key rv"><kbd>T</kbd>טיימר תרגיל (בסדנה)</div>
-        <div class="key rv"><kbd>Esc</kbd>חזרה / סגירה</div>
+        <div class="key rv"><kbd>R</kbd>מצב קריאה</div>
       </div>
+      <p class="tip rv">אפשר גם ללחוץ על השקף כדי להתקדם. בטלפון מחליקים בין השקפים, וסרגל הכפתורים מוצג בתחתית המסך.</p>
     </div>
   </section>
-
-  <div class="divider"></div>
 
   <section id="lecture">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>מבנה ההרצאה · <span class="hl num">60 דקות</span></h2>
-        <p>מהשאלה "איזו מערכת צריך?" לשאלה "מה הדרך הנכונה והמהירה ביותר לתת מענה לצורך?". חמישה חלקים, שתי הדגמות חיות, וסיום בצעדים מעשיים ליום שאחרי הכנס.</p>
+        <span class="eyebrow">ההרצאה · 60 דקות</span>
+        <h2>מה עוברים בהרצאה</h2>
+        <p>מהשאלה "איזו מערכת צריך?" לשאלה "מה הדרך הנכונה והמהירה ביותר לתת מענה לצורך?".</p>
       </div>
-      <div class="bar rv" aria-hidden="true"><i style="flex:12"></i><i style="flex:9"></i><i style="flex:14"></i><i style="flex:14"></i><i style="flex:11"></i></div>
-      <div class="bar-legend rv" aria-hidden="true"><span>0′</span><span>60′</span></div>
       <div class="tl">
         <div class="part rv">
           <div class="when num"><span class="ltr">0–12</span> דק׳<small>שקפים <span class="ltr">1–7</span></small></div>
@@ -358,8 +362,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
             <ul>
               <li>התפקיד מתרחב: האחריות על תשתיות, שירות, מערכות ואבטחה נשמרת, ונוסף תפקיד המחבר בין מטרות הרשות, הצרכים, האנשים, המידע ויכולות ה-AI.</li>
               <li>מה כבר קורה בשלטון המקומי, בהבחנה בין תוכנית, פיילוט ופתרון שהוטמע.</li>
-              <li>מפת האתגרים של המנמ״רים עצמם, מתוך הסקר המקדים באפליקציית הכנס.</li>
-              <li>שימוש אישי ב-AI לעומת אימוץ ארגוני, וחישוב המחשה אינטראקטיבי עם הקהל.</li>
+              <li>שימוש אישי ב-AI לעומת אימוץ ארגוני, וחישוב המחשה אינטראקטיבי.</li>
             </ul>
             <div class="msg">השאלה החשובה אינה כמה שעות חסכנו, אלא לאן מנתבים את הזמן שהתפנה.</div>
           </div>
@@ -369,17 +372,17 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
           <div><h3>חלק 2 · ארגז הכלים והמתודולוגיה</h3>
             <ul>
               <li>חמש דרכי מימוש, מהפשוטה למורכבת: שילוב AI בעבודה הקיימת, ניתוח נתונים, ניהול ידע, אוטומציות וסוכנים, פיתוח כלי ייעודי.</li>
-              <li>המתודולוגיה: צורך ← תהליך ← מידע ← פתרון ← ערך.</li>
+              <li>המתודולוגיה: צורך, תהליך, מידע, פתרון, ערך.</li>
             </ul>
             <div class="msg">לא כל צורך דורש קוד. לא כל צורך דורש מערכת חדשה.</div>
           </div>
         </div>
         <div class="part rv">
           <div class="when num"><span class="ltr">21–35</span> דק׳<small>שקפים <span class="ltr">10–13</span></small></div>
-          <div><h3>חלק 3 · הדגמה חיה ראשונה: מנתוני מוקד 106 לתובנות ניהוליות</h3>
+          <div><h3>חלק 3 · הדגמה: מנתוני מוקד 106 לתובנות ניהוליות</h3>
             <ul>
-              <li>קובץ סינתטי של 628 פניות: בדיקת איכות הנתונים, עומסים, פניות חוזרות ועמידה ביעדי שירות.</li>
-              <li>דשבורד אינטראקטיבי בשקף, מחושב מהנתונים הסינתטיים ומסומן ככזה.</li>
+              <li>בדיקת איכות הנתונים, עומסים, פניות חוזרות ועמידה ביעדי שירות, על קובץ סינתטי של 628 פניות.</li>
+              <li>דשבורד אינטראקטיבי שמחושב מהנתונים הסינתטיים.</li>
               <li>ההבדל בין ניתוח מהיר לבין דשבורד ארגוני מתמשך: מקור מידע, עדכון, הרשאות, בקרת איכות ואחריות.</li>
             </ul>
             <div class="msg">מתחילים מהתובנה. מתקדמים לתשתית כשהערך מצדיק זאת.</div>
@@ -387,7 +390,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
         </div>
         <div class="part rv">
           <div class="when num"><span class="ltr">35–49</span> דק׳<small>שקפים <span class="ltr">14–17</span></small></div>
-          <div><h3>חלק 4 · הדגמה חיה שנייה: מאתגר אגפי להזדמנות</h3>
+          <div><h3>חלק 4 · הדגמה: מאתגר אגפי להזדמנות</h3>
             <ul>
               <li>מקרה פיקטיבי: מנהל אגף שפ״ע מתאר עבודה ידנית, מידע מפוזר ודוחות שגוזלים זמן.</li>
               <li>חמש שאלות לפגישת אבחון, בלי מילה אחת על AI.</li>
@@ -400,9 +403,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
           <div class="when num"><span class="ltr">49–60</span> דק׳<small>שקפים <span class="ltr">18–20</span></small></div>
           <div><h3>חלק 5 · תעדוף, הטמעה בטוחה וצעדים ראשונים</h3>
             <ul>
-              <li>ארבעה קריטריונים לתעדוף: ערך, ישימות, מורכבות וסיכון, על מפה שאפשר לגרור עם הקהל.</li>
+              <li>ארבעה קריטריונים לתעדוף: ערך, ישימות, מורכבות וסיכון.</li>
               <li>הטמעה בטוחה בשלושה רבדים: סביבה טכנולוגית, מדיניות ארגונית והתנהגות עובדים.</li>
-              <li>שלוש פעולות ליום שאחרי הכנס: שלוש שיחות עם מנהלי אגפים, מיפוי ותעדוף, פיילוט אחד שנמדד.</li>
+              <li>שלוש פעולות ליום שאחרי הכנס.</li>
             </ul>
             <div class="msg">אל תתחילו מכלי AI. התחילו מבעיה ששווה לפתור.</div>
           </div>
@@ -411,103 +414,275 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section id="workshop">
+  <section id="workshop" class="band">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>מבנה הסדנה · <span class="hl num">90 דקות</span></h2>
-        <p>הסדנה בנויה על עבודה מעשית: הדגמה קצרה, ואז כל משתתף עובד בעצמו. כל אחד עובד בקצב שלו, מהמחשב או מהטלפון, באותה שיחת AI לאורך כל הסדנה.</p>
+        <span class="eyebrow">הסדנה · 90 דקות</span>
+        <h2>מה בונים בסדנה</h2>
+        <p>בסוף הסדנה יש לכם אפיון של צורך, מפת הזדמנויות, כלי AI ראשון שנבדק, ותוכנית פיילוט ל-30 יום.</p>
       </div>
       <div class="tbl-wrap rv">
         <table>
-          <thead><tr><th>שלב</th><th>דקות</th><th>שקפים</th><th>מה קורה</th><th>התוצר</th></tr></thead>
+          <thead><tr><th>שלב</th><th>דקות</th><th>שקפים</th><th>מה עושים</th><th>התוצר</th></tr></thead>
           <tbody>
-            <tr><td>פתיחה והכנה</td><td class="mono"><span class="ltr">0–22</span></td><td class="mono"><span class="ltr">1–4</span></td><td>מטרת הסדנה, הכנת כלי AI, שלושה כללי עבודה (מידע, אמינות, אחריות) ובחירת אתגר: צורך מהרשות או מקרה מוכן.</td><td>כלי פתוח ואתגר נבחר</td></tr>
-            <tr><td>אבחון הצורך</td><td class="mono"><span class="ltr">22–40</span></td><td class="mono"><span class="ltr">5–6</span></td><td>תרגיל 1: ה-AI מנתח את התהליך ושואל שאלות השלמה, בלי להציע עדיין פתרון. בדיקה משותפת מול רשימה.</td><td>אפיון ראשוני והגדרת בעיה</td></tr>
-            <tr><td>הזדמנויות ובחירה</td><td class="mono"><span class="ltr">40–63</span></td><td class="mono"><span class="ltr">7–9</span></td><td>תרגיל 2: מפת הזדמנויות שמשווה בין חמש דרכי פתרון. חמש שאלות לפני בחירה. מה נחשב פתרון ראשוני.</td><td>מפת הזדמנויות ופתרון נבחר</td></tr>
-            <tr><td>בנייה ובדיקה</td><td class="mono"><span class="ltr">63–82</span></td><td class="mono"><span class="ltr">10–11</span></td><td>תרגיל 3: בניית כלי עבודה חוזר (תפקיד, קלט, פעולה, פלט, בקרה), הפעלה על מקרה לדוגמה, זיהוי פער ושיפור.</td><td>כלי ראשוני שנבדק ושופר</td></tr>
+            <tr><td>פתיחה והכנה</td><td class="mono"><span class="ltr">0–22</span></td><td class="mono"><span class="ltr">1–4</span></td><td>פותחים כלי AI, מכירים שלושה כללי עבודה (מידע, אמינות, אחריות) ובוחרים אתגר: צורך מהרשות או מקרה מוכן.</td><td>כלי פתוח ואתגר נבחר</td></tr>
+            <tr><td>אבחון הצורך</td><td class="mono"><span class="ltr">22–40</span></td><td class="mono"><span class="ltr">5–6</span></td><td>תרגיל 1: ה-AI מנתח את התהליך ושואל שאלות השלמה, בלי להציע עדיין פתרון. בודקים את האפיון מול רשימה.</td><td>אפיון ראשוני והגדרת בעיה</td></tr>
+            <tr><td>הזדמנויות ובחירה</td><td class="mono"><span class="ltr">40–63</span></td><td class="mono"><span class="ltr">7–9</span></td><td>תרגיל 2: מפת הזדמנויות שמשווה בין חמש דרכי פתרון. חמש שאלות לפני שבוחרים.</td><td>מפת הזדמנויות ופתרון נבחר</td></tr>
+            <tr><td>בנייה ובדיקה</td><td class="mono"><span class="ltr">63–82</span></td><td class="mono"><span class="ltr">10–11</span></td><td>תרגיל 3: בונים כלי עבודה חוזר (תפקיד, קלט, פעולה, פלט, בקרה), מפעילים על מקרה לדוגמה ומשפרים.</td><td>כלי ראשוני שנבדק ושופר</td></tr>
             <tr><td>פיילוט וסיכום</td><td class="mono"><span class="ltr">82–90</span></td><td class="mono"><span class="ltr">12–13</span></td><td>תוכנית פיילוט ל-30 יום, ושלוש משימות לשבוע שאחרי הכנס.</td><td>תוכנית פיילוט ל-30 יום</td></tr>
           </tbody>
         </table>
       </div>
-
       <div class="grid g3" style="margin-top:20px">
-        <div class="card rv"><span class="ix">התוצרים</span><h3>כל משתתף יוצא עם שניים</h3><ul><li><b>תוצר מתודי:</b> אפיון צורך, מפת הזדמנויות ותוכנית פעולה.</li><li><b>תוצר מעשי:</b> כלי עבודה מבוסס פרומפט שנבדק.</li></ul></div>
-        <div class="card rv"><span class="ix">נגישות</span><h3>ללא חסמי כניסה</h3><p>המסלול המרכזי אינו דורש חשבון בתשלום, כתיבת קוד, העלאת מסמכים או חיבור למערכות הרשות. מי שאין לו גישה לכלי AI עובד עם משתתף סמוך.</p></div>
-        <div class="card rv"><span class="ix">התאמה לקהל</span><h3>שני קצבים באותו חדר</h3><p>מתחילים עובדים עם הפרומפטים הקצרים ומקרה שפ״ע. מתקדמים בודקים מקרי קצה, הופכים את הכלי לעוזר קבוע או בונים אב־טיפוס על נתונים סינתטיים.</p></div>
-      </div>
-
-      <div class="sec-head rv" style="margin:40px 0 16px"><h2 style="font-size:24px">נספחי הסדנה: נשארים אצל המשתתפים</h2></div>
-      <div class="grid g2">
-        <div class="card rv"><span class="ix">נספחים <span class="ltr">1–5</span></span><h3>מקרה הבוחן וארבעה פרומפטים מלאים</h3><ul><li>מקרה לדוגמה: אגף שפ״ע ברשות מקומית (פיקטיבי)</li><li>אבחון צורך רשותי</li><li>מפת הזדמנויות AI</li><li>בניית כלי עבודה חוזר</li><li>תוכנית פיילוט ל-30 יום</li></ul></div>
-        <div class="card rv"><span class="ix">נספחים <span class="ltr">6–8</span> · בונוס</span><h3>להמשך העבודה ברשות</h3><ul><li>שיחת אבחון עם מנהל אגף</li><li>התאמה אישית של כלי AI לתפקיד המנמ״ר</li><li>שלד למדיניות AI רשותית, כטיוטה לדיון מקצועי ולא כמדיניות מאושרת</li></ul><p class="foot">לכל פרומפט כפתור העתקה, וקישור חזרה לתרגיל.</p></div>
+        <div class="card rv"><span class="ix">01 · מידע</span><h3>רק מה שמותר לשתף</h3><p>עובדים עם מידע סינתטי, כללי או מאושר לשיתוף בסביבת העבודה.</p></div>
+        <div class="card rv"><span class="ix">02 · אמינות</span><h3>בודקים כל תוצר</h3><p>בודקים תוצאות, מספרים, הנחות והמלצות. הפרומפטים מבקשים להפריד בין עובדות להנחות, ולא להמציא נתונים.</p></div>
+        <div class="card rv"><span class="ix">03 · אחריות</span><h3>האדם מחליט</h3><p>ה-AI מסייע לאפיין ולהציע. הוא אינו מאשר החלטות במקומנו, והכלי שבונים אינו פתרון ארגוני מאושר.</p></div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section id="principles">
+  <section id="prompts">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>עקרונות מקצועיים לאורך התוכן</h2>
-        <p>התוכן נבנה כך שיהיה מדויק, אחראי ומתאים לסביבה רשותית.</p>
+        <span class="eyebrow">ספריית הפרומפטים</span>
+        <h2>כל הפרומפטים, מוכנים להעתקה</h2>
+        <p>הפרומפטים הקצרים משמשים בתרגילים. הפרומפטים המלאים מפורטים יותר ומתאימים להמשך העבודה ברשות.</p>
       </div>
-      <div class="grid g3">
-        <div class="card rv"><span class="ix">01</span><h3>נתונים סינתטיים בלבד</h3><p>כל הקבצים, הרשויות והאנשים בהדגמות ובתרגילים בדויים. אין שימוש במידע של רשות אמיתית.</p></div>
-        <div class="card rv"><span class="ix">02</span><h3>עובדות בנפרד מפרשנות</h3><p>הפרומפטים מחייבים הפרדה בין ממצאים מחושבים, פרשנות אפשרית והמלצות לבדיקה, ואוסרים על המצאת מספרים, תקציבים או זמני חיסכון.</p></div>
-        <div class="card rv"><span class="ix">03</span><h3>תמונה מאוזנת</h3><p>הבחנה בין תוכנית, פיילוט ופתרון שהוטמע. ה-AI אינו מוצג כתחליף גורף ל-BI או למערכות ארגוניות.</p></div>
-        <div class="card rv"><span class="ix">04</span><h3>הטמעה בטוחה</h3><p>סביבה, מדיניות ועובדים פועלים יחד. סביבת AI מוגנת אינה מתקנת אוטומטית הרשאות מידע שגויות.</p></div>
-        <div class="card rv"><span class="ix">05</span><h3>האדם מחליט</h3><p>ה-AI מסייע לאפיין ולהציע. תוצרים נבדקים, ואינם מוצגים כפתרון ארגוני מאושר או מוכן לפריסה.</p></div>
-        <div class="card rv"><span class="ix">06</span><h3>מוכנות לתקלות</h3><p>לכל הדגמה חיה שקפי גיבוי עם תוצאה שנבדקה מראש, כך שההרצאה אינה תלויה בחיבור או בכלי.</p></div>
+
+      <div class="plib-head rv"><h3>מקרה הבוחן</h3><span>למי שלא הביא צורך משלו</span></div>
+      <div class="case rv">
+        <h3>אגף שפ״ע ברשות מקומית <span class="tag amber" style="vertical-align:middle;margin-right:8px">מקרה פיקטיבי</span></h3>
+        <p>ברשות מקומית פיקטיבית, אגף שפ״ע אחראי על ניקיון, תברואה, גינון ותחזוקת המרחב הציבורי. מנהל האגף מתאר מספר אתגרים:</p>
+        <ul>
+          <li>משימות מתקבלות ממוקד 106 וממקורות נוספים.</li>
+          <li>מידע על הטיפול נמצא במספר מערכות וקבצים.</li>
+          <li>ריכוז הדיווחים מתבצע ידנית.</li>
+          <li>קשה לעקוב אחר ביצוע משימות וחריגות.</li>
+          <li>הכנת דוחות להנהלה גוזלת זמן.</li>
+          <li>קיימת תלות בעובדים שמכירים את התהליך.</li>
+        </ul>
+        <p>הרשות משתמשת במערכות קיימות וב-Microsoft 365. בשלב הראשון אין כוונה להחליף מערכות ליבה.</p>
+        <p class="mission">המשימה: לאפיין את הבעיה, לזהות הזדמנויות ולבנות פתרון ראשוני שניתן לבחון.</p>
+      </div>
+
+      <div class="plib-head rv"><h3>פרומפטים קצרים לתרגילים</h3><span>לפי סדר הסדנה</span></div>
+      <div class="plib">
+<details class="pc rv" open>
+  <summary><span class="pn-tag">תרגיל 1</span><span class="pt">מאבחנים את הצורך</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    <p class="pnote">התוצר: אפיון ראשוני והגדרת בעיה. ה-AI שואל שאלות השלמה ולא מציע עדיין פתרון.</p>
+    <div class="ptext" id="p1">נתח את התהליך הרשותי שאתאר. זהה את מטרתו, שלבי העבודה, הגורמים המעורבים, הקשיים והמידע החסר. אל תציע עדיין פתרון. שאל עד חמש שאלות השלמה ונסח בסיום הגדרת בעיה ברורה.</div>
+    <button class="copy" type="button" data-copy="p1">העתקת הפרומפט</button>
+  </div>
+</details>
+<details class="pc rv">
+  <summary><span class="pn-tag">תרגיל 2</span><span class="pt">ממפים הזדמנויות</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    <p class="pnote">התוצר: מפת הזדמנויות והמלצה לפתרון ראשון.</p>
+    <div class="ptext" id="p2">בהתבסס על האפיון שביצענו, הצע חמש הזדמנויות לשיפור באמצעות AI. השווה בין שיפור תהליך קיים, ניתוח נתונים, סביבת ידע, אוטומציה ופיתוח כלי ייעודי. הצג ערך, ישימות, מורכבות וסיכון. המלץ על הזדמנות אחת לפיילוט והסבר מדוע.</div>
+    <button class="copy" type="button" data-copy="p2">העתקת הפרומפט</button>
+  </div>
+</details>
+<details class="pc rv">
+  <summary><span class="pn-tag">תרגיל 3</span><span class="pt">בונים כלי עבודה</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    <p class="pnote">התוצר: כלי AI ראשוני בצורת פרומפט חוזר, מוכן לבדיקה.</p>
+    <div class="ptext" id="p3">בנה עבורי פרומפט מקצועי לשימוש חוזר שיבצע את המשימה שבחרנו. הגדר את תפקיד הכלי, המידע שהוא צריך לקבל, שלבי העבודה, מבנה התוצאה וכללי הבקרה. צור פרומפט עצמאי שאפשר להפעיל בשיחה חדשה, והצע מקרה סינתטי לבדיקתו.</div>
+    <button class="copy" type="button" data-copy="p3">העתקת הפרומפט</button>
+  </div>
+</details>
+<details class="pc rv">
+  <summary><span class="pn-tag">פיילוט</span><span class="pt">מתוצר לפיילוט</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    <p class="pnote">התוצר: צעדים ראשונים ליישום ברשות.</p>
+    <div class="ptext" id="p4">בנה תוכנית פיילוט ראשונית ל-30 יום עבור הפתרון שיצרנו. הגדר מטרות, משתמשים, שלבי ביצוע, מידע ואישורים נדרשים, מדדי הצלחה וסיכונים. ציין מה נדרש לבדיקה לפני שימוש ארגוני אמיתי.</div>
+    <button class="copy" type="button" data-copy="p4">העתקת הפרומפט</button>
+  </div>
+</details>
+      </div>
+
+      <div class="plib-head rv"><h3>פרומפטים מלאים</h3><span>גרסה מפורטת לכל שלב</span></div>
+      <div class="plib">
+<details class="pc rv">
+  <summary><span class="pn-tag">פרומפט 1</span><span class="pt">אבחון צורך רשותי</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    
+    <div class="ptext" id="p5">פעל כיועץ לניתוח ולשיפור תהליכי עבודה ברשויות מקומיות.
+אני מנמ״ר המעוניין להבין תהליך עבודה רשותי ולזהות הזדמנויות לשיפור באמצעות AI.
+נתח את התהליך שאתאר לפי השלבים הבאים:
+1. מטרת התהליך והתוצאה הרצויה.
+2. שלבי העבודה הקיימים ובעלי התפקידים.
+3. המידע והמערכות המשמשים בתהליך, ככל שתוארו.
+4. קשיים, צווארי בקבוק, עבודה ידנית ופעולות חוזרות.
+5. השפעות אפשריות על שירות, יעילות ואיכות.
+6. מידע חסר ועד חמש שאלות לאבחון נוסף.
+7. הגדרת בעיה מסכמת וברורה.
+אל תציע עדיין פתרונות טכנולוגיים.
+הבחן בין עובדות שסיפקתי, הנחות אפשריות ומידע חסר. אל תמציא פרטים על הרשות.
+התהליך שאותו נרצה לנתח: [הכנס תיאור תהליך או השתמש במקרה שפ״ע מהנספח הקודם].</div>
+    <button class="copy" type="button" data-copy="p5">העתקת הפרומפט</button>
+  </div>
+</details>
+<details class="pc rv">
+  <summary><span class="pn-tag">פרומפט 2</span><span class="pt">מפת הזדמנויות AI</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    
+    <div class="ptext" id="p6">בהמשך לאפיון התהליך שביצענו, פעל כיועץ להטמעה פרקטית של GenAI ברשות מקומית.
+זהה עד חמש הזדמנויות לשיפור התהליך.
+עבור כל הזדמנות הצג:
+1. הבעיה שהיא נועדה לפתור.
+2. השיפור האפשרי.
+3. דרך פתרון מתאימה: AI בתהליך קיים, ניתוח נתונים, סביבת ידע, אוטומציה, סוכן או פיתוח ייעודי.
+4. ערך צפוי והדרך למדוד אותו.
+5. ישימות ומורכבות ראשונית.
+6. תלות בנתונים, במערכות, בהרשאות ובגורמים אחרים.
+7. סיכונים או מגבלות שצריך לבדוק.
+השווה בין ההזדמנויות והמלץ על אחת שמתאימה לפיילוט ראשוני.
+אל תמליץ על פתרון מורכב אם ניתן לבחון את הצורך באמצעות כלי קיים או שינוי תהליך פשוט.
+אל תמציא נתונים כספיים, זמני חיסכון, יכולות מערכות או תשתיות שלא תוארו.</div>
+    <button class="copy" type="button" data-copy="p6">העתקת הפרומפט</button>
+  </div>
+</details>
+<details class="pc rv">
+  <summary><span class="pn-tag">פרומפט 3</span><span class="pt">בניית כלי עבודה חוזר</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    
+    <div class="ptext" id="p7">בהתבסס על הצורך והפתרון שבחרנו, פעל כמומחה לאפיון ולבניית כלי עבודה מקצועיים מבוססי AI.
+צור כלי ראשוני בצורת פרומפט חוזר, שאוכל להפעיל בשיחה חדשה.
+הגדר:
+1. התפקיד המקצועי של הכלי.
+2. המשתמשים והמשימה שהכלי יבצע.
+3. המידע שיש לספק בכל שימוש.
+4. שלבי העבודה והבדיקות שהכלי יבצע.
+5. מבנה התוצאה הרצויה.
+6. התנהגות הכלי כאשר המידע חסר או סותר.
+7. כללים לאמינות, פרטיות ובקרה אנושית.
+לאחר האפיון, צור פרומפט מלא ועצמאי, מוכן להעתקה ולהפעלה.
+הצע גם מקרה בדיקה סינתטי רגיל ומקרה בדיקה עם מידע חסר.
+המטרה היא כלי שניתן לנסות באמצעות צ׳אט AI רגיל, ללא צורך בכתיבת קוד או בגישה למערכות הרשות.
+אל תציג את הכלי כפתרון ארגוני מאושר או מוכן לפריסה.</div>
+    <button class="copy" type="button" data-copy="p7">העתקת הפרומפט</button>
+  </div>
+</details>
+<details class="pc rv">
+  <summary><span class="pn-tag">פרומפט 4</span><span class="pt">תוכנית פיילוט ל-30 יום</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    
+    <div class="ptext" id="p8">פעל כיועץ להטמעה ארגונית של AI ברשות מקומית.
+בהמשך לאפיון ולפתרון הראשוני שבנינו, הכן תוכנית פיילוט מבוקרת ל-30 יום.
+כלול:
+1. מטרת הפיילוט והתוצאה הרצויה.
+2. אוכלוסיית המשתמשים והגורמים המעורבים.
+3. תהליך העבודה שיופעל בניסוי.
+4. מידע, כלים, הרשאות ומשאבים נדרשים.
+5. אישורים ובקרות שיש להשלים לפני התחלה.
+6. מדדי הצלחה והשוואה למצב הקיים.
+7. תוכנית פעולות לארבעה שבועות.
+8. סיכונים מרכזיים ובקרות מתאימות.
+9. קריטריונים להחלטה אם להרחיב, לשפר או לעצור.
+ציין במפורש אילו פרטים חסרים לצורך קבלת החלטה מקצועית.
+אל תמציא אישורים, תקציבים או נתוני ביצוע.
+בסיום הצג תקציר מנהלים קצר המאפשר להציג את הרעיון למנהל האגף ולהנהלת הרשות.</div>
+    <button class="copy" type="button" data-copy="p8">העתקת הפרומפט</button>
+  </div>
+</details>
+      </div>
+
+      <div class="plib-head rv"><h3>בונוס להמשך העבודה ברשות</h3></div>
+      <div class="plib">
+<details class="pc rv">
+  <summary><span class="pn-tag">בונוס</span><span class="pt">שיחת אבחון עם מנהל אגף</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    
+    <div class="ptext" id="p9">אני מנמ״ר ברשות מקומית ומתכונן לפגישת עבודה של 30–40 דקות עם מנהל אגף.
+פעל כיועץ לשיפור תהליכים ארגוניים ולהטמעת AI.
+בנה עבורי שאלון מקצועי וקצר שיעזור לי להבין את מטרות האגף, תהליכי העבודה, המשימות החוזרות, צווארי הבקבוק, המידע הקיים והבעיות שהמנהל רוצה לפתור.
+מנהל האגף אינו נדרש להכיר את עולם ה-AI. השאלות צריכות להתמקד בעבודה ובצרכים שלו, ולא בכלים טכנולוגיים.
+סדר את השאלות לפי רצף הגיוני והכן תבנית קצרה לתיעוד התשובות.
+בסיום הצע כיצד אוכל להפוך את סיכום הפגישה למפת הזדמנויות ולרשימת צעדים ראשונים.</div>
+    <button class="copy" type="button" data-copy="p9">העתקת הפרומפט</button>
+  </div>
+</details>
+<details class="pc rv">
+  <summary><span class="pn-tag">בונוס</span><span class="pt">התאמה אישית של כלי AI למנמ״ר</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    
+    <div class="ptext" id="p10">עזור לי לבנות הנחיות מקצועיות מותאמות אישית לשימוש שלי בכלי AI בתפקיד מנמ״ר ברשות מקומית.
+שאל אותי תחילה שאלות קצרות על תחומי האחריות שלי, סוגי המשימות, סביבת העבודה הטכנולוגית, הכלים המאושרים, המגבלות המקצועיות והעדפותיי לגבי צורת קבלת התשובות.
+אל תבקש ממני מידע אישי, חסוי, פרטי גישה או פרטים רגישים על מערכות הרשות.
+לאחר שאענה, צור עבורי טקסט קצר וממוקד שניתן לשלב בהנחיות האישיות של כלי AI או בתחילת שיחה.
+ההנחיות צריכות לגרום לכלי להתאים את המלצותיו לסביבת העבודה שלי, להעדיף פתרונות ישימים, לזהות חוסר במידע ולהימנע מהמלצות שחורגות מהמגבלות שציינתי.
+הסבר אילו הנחיות כדאי לשמור באופן קבוע ואילו פרטים עדיף למסור רק במסגרת שיחה מסוימת.</div>
+    <button class="copy" type="button" data-copy="p10">העתקת הפרומפט</button>
+  </div>
+</details>
+<details class="pc rv">
+  <summary><span class="pn-tag">בונוס</span><span class="pt">שלד למדיניות AI רשותית</span><span class="chev" aria-hidden="true"></span></summary>
+  <div class="pbody">
+    <p class="pnote">התוצאה היא טיוטה לדיון מקצועי, ולא מדיניות מאושרת או תחליף לבדיקת גורמי אבטחת מידע, פרטיות וייעוץ משפטי.</p>
+    <div class="ptext" id="p11">פעל כיועץ לתכנון מדיניות ארגונית לשימוש אחראי בבינה מלאכותית ברשות מקומית.
+המטרה היא לבנות טיוטה ראשונית למסמך מדיניות שתשמש לדיון ולאישור של גורמי המקצוע ברשות.
+ראשית שאל אותי על סביבת העבודה המאושרת, בעלי התפקידים, הכלים וההרשאות הקיימות, סוגי השימושים הצפויים ומגבלות הארגון.
+לאחר מכן הצע מבנה מדיניות הכולל:
+1. מטרות ועקרונות.
+2. תחולה ואחריות.
+3. כלים וסביבות שימוש מאושרות.
+4. סוגי מידע מותרים ואסורים לשיתוף.
+5. פרטיות ואבטחת מידע.
+6. בדיקת אמינות ובקרה אנושית.
+7. שימוש בסוכנים ובאוטומציות.
+8. תהליך לאישור שימושים חדשים.
+9. הדרכת עובדים ודיווח על אירועים.
+10. מנגנון עדכון המדיניות.
+הבחן בין עקרונות מוצעים לבין החלטות שדורשות אישור מקצועי.
+אל תמציא הוראות חוק או דרישות רגולטוריות.
+בסיום הצג רשימת בדיקות והחלטות שיש להשלים לפני אישור המסמך.</div>
+    <button class="copy" type="button" data-copy="p11">העתקת הפרומפט</button>
+  </div>
+</details>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section id="files">
+  <section id="files" class="band">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>קבצי עבודה</h2>
-        <p>הקבצים שמשמשים בהדגמות ובסדנה. כולם סינתטיים ונבנו במכוון עם בעיות איכות, מידע חסר וסתירות, כדי להראות איך בודקים תוצרי AI.</p>
+        <span class="eyebrow">קבצי תרגול</span>
+        <h2>הקבצים מההדגמות ומהסדנה</h2>
+        <p>כל הקבצים סינתטיים. הם נבנו בכוונה עם בעיות איכות, מידע חסר וסתירות, כדי לתרגל בדיקה של תוצרי AI.</p>
       </div>
       <div class="files">
         <div class="file rv">
           <div class="ext">XLSX</div>
-          <div><h3>נתוני מוקד 106 (סינתטיים)</h3><p>הדגמה ראשונה בהרצאה · 628 פניות, 14 שדות, ינואר–יוני 2026, ארבעה אזורים</p></div>
+          <div><h3>נתוני מוקד 106</h3><p>628 פניות, ינואר–יוני 2026, ארבעה אזורים. הקובץ מההדגמה הראשונה בהרצאה: נסו לנתח אותו בעצמכם, ובדקו אם הכלי מזהה את בעיות האיכות שבו.</p></div>
           <div class="dl"><a href="files/moked106-synthetic.xlsx" download="מוקד106_נתונים_סינתטיים.xlsx">Excel</a><a href="files/moked106-synthetic.csv" download="מוקד106_נתונים_סינתטיים.csv">CSV</a></div>
         </div>
         <div class="file rv">
-          <div class="ext">DOCX</div>
-          <div><h3>סיכום פגישת אבחון: אגף שפ״ע (סינתטי)</h3><p>הדגמה שנייה בהרצאה, ורקע מורחב למשתתפים מתקדמים בסדנה</p></div>
+          <div class="ext doc">DOCX</div>
+          <div><h3>סיכום פגישת אבחון: אגף שפ״ע</h3><p>רקע מורחב למקרה הבוחן: איך העבודה מתבצעת, מה הקשיים ואיך תיראה הצלחה. מתאים למי שרוצה לעבוד על המקרה לעומק.</p></div>
           <div class="dl"><a href="files/shefa-meeting-summary-synthetic.docx" download="שפע_סיכום_פגישה_סינתטי.docx">הורדה</a></div>
         </div>
         <div class="file rv">
-          <div class="ext">DOCX</div>
-          <div><h3>עדכונים שבועיים ממנהלי מחלקות (סינתטי)</h3><p>קלט לבדיקת "עוזר להכנת דוח סטטוס אגפי" בתרגיל 3 · כולל מידע חסר וסתירה מכוונת</p></div>
+          <div class="ext doc">DOCX</div>
+          <div><h3>עדכונים שבועיים ממנהלי מחלקות</h3><p>קלט לבדיקת הכלי שבונים בתרגיל 3. בסוף המסמך יש רשימה של מה כלי טוב צריך לזהות.</p></div>
           <div class="dl"><a href="files/manager-updates-synthetic.docx" download="עדכוני_מנהלים_סינתטיים.docx">הורדה</a></div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section id="coordination">
+  <section id="after">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>לתיאום עם המארגנים</h2>
-        <p>כמה נקודות שבהן נדרש מידע או סיוע מצד הכנס, כדי שההרצאה והסדנה ירוצו בצורה חלקה.</p>
+        <span class="eyebrow">אחרי הכנס</span>
+        <h2>מה עושים ביום שאחרי</h2>
       </div>
-      <div class="coord">
-        <div class="co rv"><div><h3>תוצאות הסקר המקדים באפליקציית הכנס</h3><p>שקף 5 בהרצאה מציג את מפת האתגרים של המשתתפים: תחומי פעילות, קשיים נפוצים, חסמים ודוגמאות אנונימיות, כולל מספר המשיבים. עד לקבלת התוצאות מוצגים בשקף מצייני מקום, ולא יוצגו נתונים שלא התקבלו מהסקר.</p></div><span class="tag amber">ממתין לנתונים</span></div>
-        <div class="co rv"><div><h3>הנגשת מצגת הסדנה למשתתפים</h3><p>המשתתפים מעתיקים פרומפטים מהמכשיר שלהם, ולכן חשוב שהקישור יהיה זמין באפליקציית הכנס לפני תחילת הסדנה. הקישור כבר פעיל, וקוד QR אליו מוצג בשקפים 2 ו-13: <a class="url" href="workshop.html" target="_blank" rel="noopener">practiai.co.il/mnmr-2026/workshop.html</a></p></div><span class="tag">מוכן</span></div>
-        <div class="co rv"><div><h3>רשת Wi-Fi באולם הסדנה</h3><p>המשתתפים עובדים מהמחשב או מהטלפון שלהם מול כלי AI, ולכן נדרשת רשת יציבה שתומכת בכל הנוכחים בו זמנית.</p></div><span class="tag plain">לאישור</span></div>
-        <div class="co rv"><div><h3>הקרנה וחיבור לאינטרנט בעמדת המרצה</h3><p>מסך במבנה 16:9, חיבור למחשב המרצה ואינטרנט יציב להדגמות החיות. לכל הדגמה קיים גיבוי חזותי, למקרה של תקלה.</p></div><span class="tag plain">לאישור</span></div>
-        <div class="co rv"><div><h3>עותקים מודפסים של מקרה הבוחן (אופציונלי)</h3><p>כמה עותקים של נספח 1 (אגף שפ״ע) למשתתפים שיתקשו לקרוא מהטלפון.</p></div><span class="tag plain">אופציונלי</span></div>
+      <div class="after">
+        <div class="rv"><b class="num">1</b><span>קובעים שיחות עם שלושה מנהלי אגפים.</span></div>
+        <div class="rv"><b class="num">2</b><span>מזהים הזדמנויות ומתעדפים אותן.</span></div>
+        <div class="rv"><b class="num">3</b><span>בוחרים פיילוט אחד, בודקים ומודדים.</span></div>
       </div>
+      <p class="closing rv">אל תתחילו מכלי AI.<br><span class="grad">התחילו מבעיה ששווה לפתור.</span></p>
     </div>
   </section>
 </main>
@@ -515,14 +690,15 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 <footer>
   <div class="wrap">
     <div class="who">
-      <img src="../assets/tal-hakoki.jpg" alt="טל חקוקי" width="56" height="56" loading="lazy">
+      <img src="../assets/tal-hakoki.jpg" alt="טל חקוקי" width="58" height="58" loading="lazy">
       <div><b>טל חקוקי</b><span>PractiAI · הטמעה פרקטית של בינה מלאכותית בארגונים</span></div>
     </div>
     <div class="contact">
       <a class="btn" href="mailto:tal@practiai.co.il?subject=%D7%9B%D7%A0%D7%A1%20%D7%94%D7%9E%D7%A0%D7%9E%D7%B4%D7%A8%D7%99%D7%9D%20%E2%80%94%20%D7%97%D7%95%D7%9E%D7%A8%D7%99%20%D7%94%D7%94%D7%A8%D7%A6%D7%90%D7%94%20%D7%95%D7%94%D7%A1%D7%93%D7%A0%D7%94">מייל</a>
       <a class="btn" href="https://wa.me/972506915269" target="_blank" rel="noopener">וואטסאפ</a>
+      <a class="btn" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <p class="fine">עמוד פנימי לעיון המארגנים. אינו מקושר מהאתר ואינו מופיע במנועי חיפוש. כל הנתונים, הרשויות והאנשים בהדגמות ובקבצים בדויים.</p>
+    <p class="fine">החומרים מיועדים למשתתפי כנס המנמ״רים הארצי 2026. כל הנתונים, הרשויות והאנשים בהדגמות ובקבצים בדויים.</p>
   </div>
 </footer>
 
@@ -535,11 +711,20 @@ document.body.classList.remove('no-js');
     entries.forEach(function(en){
       if(!en.isIntersecting)return;
       var el=en.target, sibs=Array.prototype.filter.call(el.parentNode.children,function(c){return c.classList.contains('rv')});
-      el.style.transitionDelay=Math.min(sibs.indexOf(el),6)*70+'ms';
+      el.style.transitionDelay=Math.min(sibs.indexOf(el),6)*60+'ms';
       el.classList.add('in'); io.unobserve(el);
     });
   },{rootMargin:'0px 0px -8% 0px'});
   els.forEach(function(e){io.observe(e)});
+})();
+(function(){
+  function fallback(text){var t=document.createElement('textarea');t.value=text;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(t);}
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-copy]'); if(!b)return;
+    var text=document.getElementById(b.getAttribute('data-copy')).innerText.trim();
+    var done=function(){var o=b.textContent;b.classList.add('done');b.textContent='הועתק ✓';setTimeout(function(){b.classList.remove('done');b.textContent=o;},1800);};
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(done,function(){fallback(text);done();});}else{fallback(text);done();}
+  });
 })();
 </script>
 </body>
