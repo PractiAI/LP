@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#FBFAF7">
+<meta name="theme-color" content="#F3F2ED">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="מנמ״ר הרשות בעידן ה-AI · חומרי ההרצאה והסדנה">
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root{
-  --paper:#FBFAF7; --paper-2:#F4F2EC; --card:#FFFFFF; --tint:#F1F3F6;
+  --paper:#F3F2ED; --paper-2:#ECEAE3; --card:#FFFFFF; --tint:#F1F3F6;
   --line:rgba(19,35,58,.10); --line-2:rgba(19,35,58,.18);
   --ink:#13233A; --ink-2:#3D4B5F; --muted:#6A7689;
   --accent:#0C7F72; --accent-2:#0A6A60; --accent-soft:rgba(12,127,114,.08); --accent-line:rgba(12,127,114,.35);
@@ -35,9 +35,12 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:var(--font-body);color:var(--ink);line-height:1.65;font-size:17px;min-height:100vh;
   background:
-    radial-gradient(1100px 600px at 95% -10%, rgba(12,127,114,.07), transparent 60%),
-    radial-gradient(900px 600px at -10% 35%, rgba(184,104,12,.045), transparent 60%),
-    var(--paper)}
+    radial-gradient(1200px 700px at 95% -10%, rgba(12,127,114,.13), transparent 62%),
+    radial-gradient(1000px 700px at -10% 40%, rgba(11,92,112,.07), transparent 60%),
+    radial-gradient(900px 600px at 100% 100%, rgba(184,104,12,.06), transparent 60%),
+    var(--paper) fixed}
+#neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
 a{color:inherit}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
 .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
@@ -45,7 +48,7 @@ a{color:inherit}
 .hl{color:var(--accent)}
 
 /* header */
-.topbar{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.86);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(243,242,237,.85);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
 .brand img{height:30px;width:auto;display:block}
 .topnav{display:flex;gap:2px;font-size:15px}
@@ -74,7 +77,7 @@ section{padding:72px 0;scroll-margin-top:72px}
 .eyebrow{font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-bottom:10px;display:block}
 .sec-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,3.6vw,42px);line-height:1.15;color:var(--ink)}
 .sec-head p{color:var(--ink-2);margin-top:12px;font-size:18px}
-.band{background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.35));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band{background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,.18));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 
 /* cards */
 .grid{display:grid;gap:18px}
@@ -100,8 +103,8 @@ section{padding:72px 0;scroll-margin-top:72px}
 .flow .st::before{counter-increment:m;content:"0" counter(m);font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:.05em}
 .flow .st h3{font-family:var(--font-display);font-size:26px;margin:2px 0}
 .flow .st p{font-size:15px;color:var(--ink-2);line-height:1.45}
-.flow .st.key{background:linear-gradient(160deg,#118F80,#0A6A60);border-color:transparent;color:#fff}
-.flow .st.key::before,.flow .st.key p{color:rgba(255,255,255,.88)}
+.flow .st.goal{background:linear-gradient(160deg,#118F80,#0A6A60);border-color:transparent;color:#fff}
+.flow .st.goal::before,.flow .st.goal p{color:rgba(255,255,255,.88)}
 .flow-note{margin-top:16px;color:var(--muted);font-size:15px}
 
 /* decks */
@@ -194,7 +197,7 @@ td.mono{font-family:var(--font-mono);color:var(--accent);white-space:nowrap;font
 .closing .grad{background:linear-gradient(90deg,#0B5C70,#0C7F72 55%,#13A08E);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* footer */
-footer{padding:52px 0 60px;border-top:1px solid var(--line);background:rgba(255,255,255,.55)}
+footer{padding:52px 0 60px;border-top:1px solid var(--line);background:rgba(255,255,255,.6)}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .who{display:flex;align-items:center;gap:16px}
 .who img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-line)}
@@ -247,6 +250,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 </style>
 </head>
 <body class="no-js">
+<canvas id="neural" aria-hidden="true"></canvas>
 <header class="topbar">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="PractiAI"><img src="practiai-logo-light.png" alt="PractiAI" width="116" height="30"></a>
@@ -300,7 +304,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
         <div class="st rv"><h3>תהליך</h3><p>איך העבודה מתבצעת היום?</p></div>
         <div class="st rv"><h3>מידע</h3><p>איזה מידע נדרש?</p></div>
         <div class="st rv"><h3>פתרון</h3><p>מהי דרך הפתרון המתאימה?</p></div>
-        <div class="st key rv"><h3>ערך</h3><p>איך נמדוד הצלחה?</p></div>
+        <div class="st goal rv"><h3>ערך</h3><p>איך נמדוד הצלחה?</p></div>
       </div>
     </div>
   </section>
@@ -319,7 +323,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
             <a href="lecture.html" target="_blank" rel="noopener"><span>פתיחת המצגת</span></a>
           </div>
           <div class="deck-body">
-            <div class="tags"><span class="tag teal">הרצאה</span><span class="tag num">60 דקות</span><span class="tag num">20 שקפים</span></div>
+            <div class="tags"><span class="tag teal">הרצאה</span><span class="tag num">60 דקות</span><span class="tag num">19 שקפים</span></div>
             <h3>מנמ״ר הרשות בעידן ה-AI</h3>
             <p>מצורך ארגוני לפתרון, במהירות שלא הייתה אפשרית בעבר. התפקיד המתרחב של המנמ״ר, ארגז הכלים החדש, שתי הדגמות חיות ומסגרת לתעדוף ולהטמעה בטוחה.</p>
             <div class="actions"><a class="btn solid" href="lecture.html" target="_blank" rel="noopener">פתיחת מצגת ההרצאה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></div>
@@ -357,7 +361,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       </div>
       <div class="tl">
         <div class="part rv">
-          <div class="when num"><span class="ltr">0–12</span> דק׳<small>שקפים <span class="ltr">1–7</span></small></div>
+          <div class="when num"><span class="ltr">0–12</span> דק׳<small>שקפים <span class="ltr">1–6</span></small></div>
           <div><h3>חלק 1 · המנמ״ר כמוביל שינוי</h3>
             <ul>
               <li>התפקיד מתרחב: האחריות על תשתיות, שירות, מערכות ואבטחה נשמרת, ונוסף תפקיד המחבר בין מטרות הרשות, הצרכים, האנשים, המידע ויכולות ה-AI.</li>
@@ -368,7 +372,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
           </div>
         </div>
         <div class="part rv">
-          <div class="when num"><span class="ltr">12–21</span> דק׳<small>שקפים <span class="ltr">8–9</span></small></div>
+          <div class="when num"><span class="ltr">12–21</span> דק׳<small>שקפים <span class="ltr">7–8</span></small></div>
           <div><h3>חלק 2 · ארגז הכלים והמתודולוגיה</h3>
             <ul>
               <li>חמש דרכי מימוש, מהפשוטה למורכבת: שילוב AI בעבודה הקיימת, ניתוח נתונים, ניהול ידע, אוטומציות וסוכנים, פיתוח כלי ייעודי.</li>
@@ -378,7 +382,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
           </div>
         </div>
         <div class="part rv">
-          <div class="when num"><span class="ltr">21–35</span> דק׳<small>שקפים <span class="ltr">10–13</span></small></div>
+          <div class="when num"><span class="ltr">21–35</span> דק׳<small>שקפים <span class="ltr">9–12</span></small></div>
           <div><h3>חלק 3 · הדגמה: מנתוני מוקד 106 לתובנות ניהוליות</h3>
             <ul>
               <li>בדיקת איכות הנתונים, עומסים, פניות חוזרות ועמידה ביעדי שירות, על קובץ סינתטי של 628 פניות.</li>
@@ -389,7 +393,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
           </div>
         </div>
         <div class="part rv">
-          <div class="when num"><span class="ltr">35–49</span> דק׳<small>שקפים <span class="ltr">14–17</span></small></div>
+          <div class="when num"><span class="ltr">35–49</span> דק׳<small>שקפים <span class="ltr">13–16</span></small></div>
           <div><h3>חלק 4 · הדגמה: מאתגר אגפי להזדמנות</h3>
             <ul>
               <li>מקרה פיקטיבי: מנהל אגף שפ״ע מתאר עבודה ידנית, מידע מפוזר ודוחות שגוזלים זמן.</li>
@@ -400,7 +404,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
           </div>
         </div>
         <div class="part rv">
-          <div class="when num"><span class="ltr">49–60</span> דק׳<small>שקפים <span class="ltr">18–20</span></small></div>
+          <div class="when num"><span class="ltr">49–60</span> דק׳<small>שקפים <span class="ltr">17–19</span></small></div>
           <div><h3>חלק 5 · תעדוף, הטמעה בטוחה וצעדים ראשונים</h3>
             <ul>
               <li>ארבעה קריטריונים לתעדוף: ערך, ישימות, מורכבות וסיכון.</li>
@@ -704,6 +708,61 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 
 <script>
 document.body.classList.remove('no-js');
+/* live neural network background */
+(function(){
+  var c=document.getElementById('neural'); if(!c||!c.getContext)return;
+  var ctx=c.getContext('2d'), W=0, H=0, dpr=1, nodes=[], pulses=[], raf=0, last=0, spawn=0;
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mouse={x:-9999,y:-9999}, LINK=150;
+  function init(){
+    dpr=Math.min(window.devicePixelRatio||1,2); W=innerWidth; H=innerHeight;
+    c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    LINK=W<640?115:150;
+    var n=Math.max(34,Math.min(120,Math.round(W*H/15000)));
+    while(nodes.length<n)nodes.push(mk());
+    nodes.length=n;
+    nodes.forEach(function(p){p.x=Math.min(p.x,W);p.y=Math.min(p.y,H);});
+  }
+  function mk(){var hub=Math.random()<.1;return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:hub?3.4:1.5+Math.random()*1.4,hub:hub,amb:hub&&Math.random()<.45,ph:Math.random()*6.28};}
+  function frame(t){
+    var dt=Math.min(40,t-last||16); last=t;
+    ctx.clearRect(0,0,W,H);
+    var i,j,a,b,dx,dy,d,al;
+    for(i=0;i<nodes.length;i++){a=nodes[i];
+      if(!still){a.x+=a.vx*dt/16;a.y+=a.vy*dt/16;
+        if(a.x<-20)a.x=W+20; if(a.x>W+20)a.x=-20; if(a.y<-20)a.y=H+20; if(a.y>H+20)a.y=-20;}
+    }
+    ctx.lineWidth=1;
+    for(i=0;i<nodes.length;i++){a=nodes[i];
+      for(j=i+1;j<nodes.length;j++){b=nodes[j];dx=a.x-b.x;dy=a.y-b.y;if(dx>LINK||dx<-LINK||dy>LINK||dy<-LINK)continue;d=Math.sqrt(dx*dx+dy*dy);
+        if(d<LINK){al=(1-d/LINK)*.3;ctx.strokeStyle='rgba(12,127,114,'+al.toFixed(3)+')';ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}
+      dx=a.x-mouse.x;dy=a.y-mouse.y;d=Math.sqrt(dx*dx+dy*dy);
+      if(d<190){ctx.strokeStyle='rgba(11,92,112,'+((1-d/190)*.35).toFixed(3)+')';ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke();}
+    }
+    /* signals travelling along links */
+    if(!still){spawn-=dt; if(spawn<=0&&pulses.length<14){spawn=260+Math.random()*420;
+      a=nodes[(Math.random()*nodes.length)|0]; var best=null,bd=LINK;
+      for(j=0;j<nodes.length;j++){b=nodes[j];if(b===a)continue;dx=a.x-b.x;dy=a.y-b.y;d=Math.sqrt(dx*dx+dy*dy);if(d<bd&&Math.random()<.6){bd=d;best=b;}}
+      if(best)pulses.push({a:a,b:best,t:0,amb:Math.random()<.25});}
+    for(i=pulses.length-1;i>=0;i--){var q=pulses[i];q.t+=dt/900;if(q.t>=1){pulses.splice(i,1);continue;}
+      var x=q.a.x+(q.b.x-q.a.x)*q.t,y=q.a.y+(q.b.y-q.a.y)*q.t,f=Math.sin(q.t*Math.PI);
+      var col=q.amb?'184,104,12':'12,127,114';
+      var g=ctx.createRadialGradient(x,y,0,x,y,9);g.addColorStop(0,'rgba('+col+','+(.55*f).toFixed(3)+')');g.addColorStop(1,'rgba('+col+',0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,9,0,6.283);ctx.fill();
+      ctx.fillStyle='rgba('+col+','+(.9*f).toFixed(3)+')';ctx.beginPath();ctx.arc(x,y,1.8,0,6.283);ctx.fill();}}
+    /* neurons */
+    for(i=0;i<nodes.length;i++){a=nodes[i];var pulse=still?0:(Math.sin(t/900+a.ph)+1)/2;
+      if(a.hub){ctx.fillStyle=a.amb?'rgba(184,104,12,'+(.10+.10*pulse).toFixed(3)+')':'rgba(12,127,114,'+(.10+.10*pulse).toFixed(3)+')';ctx.beginPath();ctx.arc(a.x,a.y,a.r+5+3*pulse,0,6.283);ctx.fill();}
+      ctx.fillStyle=a.amb?'rgba(184,104,12,.75)':'rgba(12,127,114,'+(a.hub?.75:.5)+')';ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,6.283);ctx.fill();}
+    if(!still)raf=requestAnimationFrame(frame);
+  }
+  function start(){cancelAnimationFrame(raf);last=0;raf=requestAnimationFrame(frame);}
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){init();if(still)frame(0);},150);});
+  window.addEventListener('pointermove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;},{passive:true});
+  document.addEventListener('pointerleave',function(){mouse.x=mouse.y=-9999;});
+  document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else if(!still)start();});
+  init(); if(still)frame(0); else start();
+})();
 (function(){
   var els=document.querySelectorAll('.rv');
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}

@@ -836,20 +836,6 @@ i.mt { background: #16A08D; } i.mx { background: #CF7E14; }
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מנמ״ר הרשות בעידן ה-AI</span></div>
 
 </section>
-<section class="slide " id="s5" data-part="0" data-time="חלק 1 · דקות 0–12">
-
-<div class="kicker rv">חלק 1 · המנמ״ר כמוביל שינוי</div><h2 class="title rv" style="--d:1">מה המנמ״רים עצמם רוצים לשפר?</h2><p class="subtitle rv" style="--d:2">מפת האתגרים מהשטח · מה עולה מהסקר המקדים של משתתפי הכנס?</p>
-<button class="edit-btn edit-only sv-edit" type="button" onclick="DECK_SURVEY_EDIT()">✎ הזנת נתוני הסקר</button>
-<div class="survey">
-  <div class="sv-side rv" style="--d:3"><ul class="bullets sm"><li>תחומי הפעילות שבהם זוהו צרכים</li><li>סוגי הבעיות החוזרות</li><li>חסמים מרכזיים לאימוץ AI</li><li>יכולות שהמשתתפים רוצים לפתח</li></ul><div class="sv-n" id="svN" data-runtime></div></div>
-  <div class="sv-chart rv" style="--d:4" id="svChart" data-runtime></div>
-  <div class="sv-col rv" style="--d:5"><div class="sv-lab">שלושת סוגי הקשיים הנפוצים</div><div id="svDiff" data-runtime></div><div class="sv-lab">שלוש דוגמאות אנונימיות לצרכים</div><div id="svNeeds" data-runtime></div></div>
-</div>
-<script type="application/json" id="survey-data">{"n": null, "areas": [], "difficulties": [], "needs": []}</script>
-
-<div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מנמ״ר הרשות בעידן ה-AI</span></div>
-
-</section>
 <section class="slide " id="s6" data-part="0" data-time="חלק 1 · דקות 0–12">
 
 <div class="kicker rv">חלק 1 · המנמ״ר כמוביל שינוי</div><h2 class="title rv" style="--d:1">שימוש אישי ב-AI <em>אינו</em> הטמעה ארגונית</h2>
@@ -1144,7 +1130,7 @@ i.mt { background: #16A08D; } i.mx { background: #CF7E14; }
             for (const p of P) { p.x += p.vx; p.y += p.vy; if (p.x < 40 || p.x > 1000) p.vx *= -1; if (p.y < 40 || p.y > 1040) p.vy *= -1; }
             for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) {
                 const dx = P[i].x - P[j].x, dy = P[i].y - P[j].y, d = Math.hypot(dx, dy);
-                if (d < 170) { ctx.strokeStyle = `rgba(12,127,114,${(1 - d / 170) * .28})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(P[i].x, P[i].y); ctx.lineTo(P[j].x, P[j].y); ctx.stroke(); }
+                if (d < 170) { ctx.strokeStyle = `rgba(12,127,114,${(1 - d / 170) * .42})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(P[i].x, P[i].y); ctx.lineTo(P[j].x, P[j].y); ctx.stroke(); }
             }
             P.forEach((p, k) => { ctx.fillStyle = k % 11 === 0 ? 'rgba(184,104,12,.95)' : 'rgba(12,127,114,.8)'; ctx.beginPath(); ctx.arc(p.x, p.y, k % 11 === 0 ? p.r + 2 : p.r, 0, 7); ctx.fill(); });
             st.raf = requestAnimationFrame(draw);
@@ -1241,7 +1227,7 @@ i.mt { background: #16A08D; } i.mx { background: #CF7E14; }
 
     /* --- slide 5: survey (data lives in a JSON tag inside the slide, saved with Ctrl+S) --- */
     function survey() { try { return JSON.parse($('#survey-data').textContent); } catch (e) { return { n: null, areas: [], difficulties: [], needs: [] }; } }
-    function renderSurvey() {
+    function renderSurvey() { if (!document.getElementById('svChart')) return;
         const d = survey();
         $('#svN').innerHTML = d.n ? `<div class="sv-nv"><b class="num">${d.n}</b><span>משיבים</span></div>` : '<div class="ph">מספר משיבים: [n = ___]</div>';
         if (d.areas && d.areas.length) {
