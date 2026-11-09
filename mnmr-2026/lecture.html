@@ -776,6 +776,36 @@ i.mt { background: #16A08D; } i.mx { background: #CF7E14; }
 .logo-slot.logo-real { border: 0; width: auto; height: 64px; }
 .logo-slot.logo-real img { height: 64px; width: auto; max-width: none; max-height: none; }
 
+/* 18 — prioritization scorecard */
+.score { position: absolute; left: var(--pad-x); right: var(--pad-x); top: 318px; }
+.sc-head, .sc-row { display: grid; grid-template-columns: 400px repeat(4, 1fr) 270px; gap: 14px; align-items: center; }
+.sc-head { padding: 0 26px 12px; }
+.sc-name-h { font-size: 22px; font-weight: 700; color: var(--muted); align-self: end; }
+.sc-crit { display: grid; grid-template-columns: 40px 1fr; column-gap: 10px; align-items: center; }
+.sc-crit .sc-ico { width: 38px; height: 38px; color: var(--accent); grid-row: span 2; }
+.sc-crit b { font-size: 32px; line-height: 1.1; } .sc-crit small { font-size: 18px; color: var(--muted); line-height: 1.25; }
+.sc-crit.sc-v { display: block; } .sc-crit.sc-v b { font-size: 26px; color: var(--muted); }
+.sc-row { background: #FFFFFF; border: 1px solid rgba(19,35,58,.09); border-radius: 18px; padding: 0 26px; height: 74px; margin-bottom: 10px;
+  box-shadow: 0 1px 2px rgba(19,35,58,.04), 0 12px 30px -24px rgba(19,35,58,.25); }
+.sc-name { font-size: 32px; font-weight: 700; color: var(--ink); }
+.chip { display: inline-flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 500; padding: 5px 16px; border-radius: 30px; white-space: nowrap; }
+.chip::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: currentColor; }
+.chip.g { color: var(--accent); background: rgba(12,127,114,.09); }
+.chip.m { color: #5A6679; background: #EEF1F4; }
+.chip.c { color: var(--signal); background: rgba(184,104,12,.1); }
+.verdict { display: inline-flex; font-size: 23px; font-weight: 700; padding: 6px 18px; border-radius: 30px; white-space: nowrap; }
+.verdict.v1 { background: linear-gradient(160deg, #118F80, #0A6A60); color: #fff; }
+.verdict.v2 { color: var(--accent); border: 1.5px solid rgba(12,127,114,.45); }
+.verdict.v3 { color: #5A6679; background: #EEF1F4; }
+.sc-pick { position: relative; }
+.sc-frame { position: absolute; inset: -9px -12px 1px -12px; border: 3px solid var(--accent); border-radius: 24px; pointer-events: none;
+  box-shadow: 0 24px 60px -30px rgba(12,127,114,.6); }
+.sc-frame span { position: absolute; top: -20px; left: 26px; background: var(--accent); color: #fff; font-size: 21px; font-weight: 700; padding: 3px 16px; border-radius: 20px; }
+.sc-legend { margin-top: 4px; font-size: 19px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.sc-legend i { width: 13px; height: 13px; border-radius: 50%; display: inline-block; margin-right: 12px; }
+.sc-legend i:first-child { margin-right: 0; }
+.sc-legend .lg { background: var(--accent); } .sc-legend .lm { background: #9AA4B2; } .sc-legend .lc { background: var(--signal); }
+
 /* opening-slide QR to the participant page */
 .qr-open { position: absolute; left: var(--pad-x); z-index: 2; width: 330px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
   background: #FFFFFF; border: 1px solid rgba(19,35,58,.1); border-radius: 28px; padding: 24px 24px 22px;
@@ -993,16 +1023,12 @@ i.mt { background: #16A08D; } i.mx { background: #CF7E14; }
 </section>
 <section class="slide " id="s18" data-part="4" data-time="חלק 5 · דקות 49–60">
 
-<div class="kicker rv">חלק 5 · תעדוף ומשילות</div><h2 class="title rv" style="--d:1">איך בוחרים במה להתחיל?</h2><p class="subtitle rv" style="--d:2">ארבעה קריטריונים לתעדוף</p>
-<div class="prio">
-  <div class="grid g2 crit"><div class="card rv" style="--d:3"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><div><h3>ערך</h3><p>איזו בעיה נפתור ומה ישתפר?</p></div></div><div class="card rv" style="--d:4"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><div><h3>ישימות</h3><p>האם קיימים המידע, הכלים והמשאבים?</p></div></div><div class="card rv" style="--d:5"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v2h4v4h-2a2 2 0 1 0 0 4h2v4h-4v-2a2 2 0 1 0-4 0v2H6v-4H4a2 2 0 1 1 0-4h2V6h4z"/></svg><div><h3>מורכבות</h3><p>כמה תלות קיימת במערכות, בספקים ובשינויים ארגוניים?</p></div></div><div class="card rv" style="--d:6"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><h3>סיכון</h3><p>מה נדרש מבחינת פרטיות, אבטחה ובקרה?</p></div></div></div>
-  <div class="mx rv" style="--d:5" data-noedit>
-    <div class="mx-ylab">ערך ↑</div>
-    <div class="mx-plot" id="mxPlot"><div class="mx-q hi"><span>התחילו כאן</span></div><div class="mx-q"></div><div class="mx-q"></div><div class="mx-q"></div>
-      <div class="mx-dot" style="left:7%;top:18%"><i></i><span>דוח ניהולי חודשי</span></div><div class="mx-dot" style="left:16%;top:34%"><i></i><span>ניתוח נתוני פניות</span></div><div class="mx-dot" style="left:40%;top:46%"><i></i><span>מעקב משימות</span></div><div class="mx-dot" style="left:50%;top:66%"><i></i><span>סביבת ידע</span></div><div class="mx-dot" style="left:62%;top:30%"><i></i><span>איסוף דיווחים אוטומטי</span></div></div>
-    <div class="mx-xlab">← ישימות</div>
-    <div class="mx-note">דוגמה: הזדמנויות אגף שפ״ע (פיקטיבי) · ניתן לגרור</div>
-  </div>
+<div class="kicker rv">חלק 5 · תעדוף ומשילות</div><h2 class="title rv" style="--d:1">איך בוחרים במה להתחיל?</h2><p class="subtitle rv" style="--d:2">ארבע שאלות לכל הזדמנות</p>
+<div class="score" data-noedit>
+  <div class="sc-head rv" style="--d:3"><div class="sc-name-h">הזדמנות</div><div class="sc-crit"><svg class="sc-ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><b>ערך</b><small>מה ישתפר?</small></div><div class="sc-crit"><svg class="sc-ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><b>ישימות</b><small>יש מידע, כלים ומשאבים?</small></div><div class="sc-crit"><svg class="sc-ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4a2 2 0 1 1 4 0v2h4v4h-2a2 2 0 1 0 0 4h2v4h-4v-2a2 2 0 1 0-4 0v2H6v-4H4a2 2 0 1 1 0-4h2V6h4z"/></svg><b>מורכבות</b><small>כמה תלות במערכות ובספקים?</small></div><div class="sc-crit"><svg class="sc-ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><b>סיכון</b><small>פרטיות, אבטחה ובקרה</small></div><div class="sc-crit sc-v"><b>המלצה</b></div></div>
+  <div class="sc-pick"><div class="sc-row rv" style="--d:4"><div class="sc-name">דוח ניהולי חודשי</div><div><span class="chip g">גבוה</span></div><div><span class="chip g">גבוהה</span></div><div><span class="chip g">נמוכה</span></div><div><span class="chip g">נמוך</span></div><div><span class="verdict v1">פיילוט ראשון</span></div></div><div class="sc-row rv" style="--d:5"><div class="sc-name">ניתוח נתוני פניות</div><div><span class="chip g">גבוה</span></div><div><span class="chip g">גבוהה</span></div><div><span class="chip g">נמוכה–בינונית</span></div><div><span class="chip m">בינוני</span></div><div><span class="verdict v1">פיילוט ראשון</span></div></div><div class="sc-frame f"><span>התחילו כאן</span></div></div>
+  <div class="sc-row rv" style="--d:6"><div class="sc-name">מעקב משימות</div><div><span class="chip g">גבוה</span></div><div><span class="chip m">בינונית</span></div><div><span class="chip m">בינונית</span></div><div><span class="chip g">נמוך</span></div><div><span class="verdict v2">שלב הבא</span></div></div><div class="sc-row rv" style="--d:7"><div class="sc-name">סביבת ידע אגפית</div><div><span class="chip m">בינוני</span></div><div><span class="chip m">בינונית</span></div><div><span class="chip m">בינונית</span></div><div><span class="chip m">בינוני</span></div><div><span class="verdict v2">שלב הבא</span></div></div><div class="sc-row rv" style="--d:8"><div class="sc-name">איסוף דיווחים אוטומטי</div><div><span class="chip g">גבוה</span></div><div><span class="chip c">נמוכה</span></div><div><span class="chip c">גבוהה</span></div><div><span class="chip c">גבוה</span></div><div><span class="verdict v3">בהמשך</span></div></div>
+  <div class="sc-legend rv" style="--d:9"><i class="lg"></i>לטובת פיילוט ראשון <i class="lm"></i>בינוני <i class="lc"></i>דורש תשומת לב · דוגמה: חמש ההזדמנויות מהדגמת שפ״ע (מקרה פיקטיבי, הערכה איכותית)</div>
 </div>
 <div class="punch f">התחילו מפיילוט בעל ערך ברור וסיכון שניתן לנהל.</div>
 
