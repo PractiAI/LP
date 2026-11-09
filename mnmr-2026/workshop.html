@@ -623,6 +623,14 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 .logo-slot.logo-real { border: 0; width: auto; height: 64px; }
 .logo-slot.logo-real img { height: 64px; width: auto; max-width: none; max-height: none; }
 
+/* added slides: personalization, automation, sharing */
+#wp .ex-prompt .ptext { font-size: 31px; line-height: 1.5; } #wp .ex-prompt .prompt { padding: 34px 40px 28px; }
+#wa .ex-prompt .ptext { font-size: 38px; }
+#ws .ex-prompt .ptext { font-size: 31px; line-height: 1.5; } #ws .ex-prompt .prompt { padding: 34px 40px 28px; }
+.sched { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 26px; }
+.sched b { font-size: 24px; color: var(--muted); font-weight: 500; }
+.sched .chip { font-size: 24px; }
+
 /* opening-slide QR to the participant page */
 .qr-open { position: absolute; left: var(--pad-x); z-index: 2; width: 330px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
   background: #FFFFFF; border: 1px solid rgba(19,35,58,.1); border-radius: 28px; padding: 24px 24px 22px;
@@ -634,11 +642,11 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 #btnNotes,#btnPres,#btnEdit,.edit-toggle,.edit-hotzone,.notes-panel,.edit-only{display:none !important;}
 </style>
 </head>
-<body data-deck="cio-workshop" data-version="2" data-file="mnmr-ai-workshop" data-parts='[&quot;פתיחה והכנה&quot;, &quot;אבחון הצורך&quot;, &quot;הזדמנויות ובחירה&quot;, &quot;בנייה ובדיקה&quot;, &quot;פיילוט וסיכום&quot;, &quot;נספחים&quot;]'>
+<body data-deck="cio-workshop" data-version="2" data-file="mnmr-ai-workshop" data-parts='[&quot;פתיחה והכנה&quot;, &quot;אבחון הצורך&quot;, &quot;הזדמנויות ובחירה&quot;, &quot;בנייה, בדיקה ושגרה&quot;, &quot;פיילוט וסיכום&quot;, &quot;נספחים&quot;]'>
 
 <div class="deck-viewport">
 <main class="deck-stage" id="deckStage">
-<section class="slide hero" id="w1" data-part="0" data-time="דקות 0–6" data-fx="net" data-fxleave="netStop">
+<section class="slide hero" id="w1" data-part="0" data-time="דקות 0–4" data-fx="net" data-fxleave="netStop">
 <div class="qr-open rv pop" style="--d:6"><div class="qr-img" role="img" aria-label="QR לאתר החומרים"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 236"  preserveAspectRatio="xMinYMin meet"><rect width="100%" height="100%" fill="white" cx="0" cy="0"/><path d="M2,2l8,0 0,8 -8,0 0,-8z M10,2l8,0 0,8 -8,0 0,-8z M18,2l8,0 0,8 -8,0 0,-8z M26,2l8,0 0,8 -8,0 0,-8z M34,2l8,0 0,8 -8,0 0,-8z M42,2l8,0 0,8 -8,0 0,-8z M50,2l8,0 0,8 -8,0 0,-8z M66,2l8,0 0,8 -8,0 0,-8z M90,2l8,0 0,8 -8,0 0,-8z M106,2l8,0 0,8 -8,0 0,-8z M114,2l8,0 0,8 -8,0 0,-8z M122,2l8,0 0,8 -8,0 0,-8z M146,2l8,0 0,8 -8,0 0,-8z M162,2l8,0 0,8 -8,0 0,-8z M178,2l8,0 0,8 -8,0 0,-8z M186,2l8,0 0,8 -8,0 0,-8z M194,2l8,0 0,8 -8,0 0,-8z M202,2l8,0 0,8 -8,0 0,-8z M210,2l8,0 0,8 -8,0 0,-8z M218,2l8,0 0,8 -8,0 0,-8z M226,2l8,0 0,8 -8,0 0,-8z M2,10l8,0 0,8 -8,0 0,-8z M50,10l8,0 0,8 -8,0 0,-8z M66,10l8,0 0,8 -8,0 0,-8z M90,10l8,0 0,8 -8,0 0,-8z M98,10l8,0 0,8 -8,0 0,-8z M106,10l8,0 0,8 -8,0 0,-8z M114,10l8,0 0,8 -8,0 0,-8z M122,10l8,0 0,8 -8,0 0,-8z M138,10l8,0 0,8 -8,0 0,-8z M154,10l8,0 0,8 -8,0 0,-8z M162,10l8,0 0,8 -8,0 0,-8z M178,10l8,0 0,8 -8,0 0,-8z M226,10l8,0 0,8 -8,0 0,-8z M2,18l8,0 0,8 -8,0 0,-8z M18,18l8,0 0,8 -8,0 0,-8z M26,18l8,0 0,8 -8,0 0,-8z M34,18l8,0 0,8 -8,0 0,-8z M50,18l8,0 0,8 -8,0 0,-8z M66,18l8,0 0,8 -8,0 0,-8z M74,18l8,0 0,8 -8,0 0,-8z M82,18l8,0 0,8 -8,0 0,-8z M98,18l8,0 0,8 -8,0 0,-8z M106,18l8,0 0,8 -8,0 0,-8z M114,18l8,0 0,8 -8,0 0,-8z M154,18l8,0 0,8 -8,0 0,-8z M162,18l8,0 0,8 -8,0 0,-8z M178,18l8,0 0,8 -8,0 0,-8z M194,18l8,0 0,8 -8,0 0,-8z M202,18l8,0 0,8 -8,0 0,-8z M210,18l8,0 0,8 -8,0 0,-8z M226,18l8,0 0,8 -8,0 0,-8z M2,26l8,0 0,8 -8,0 0,-8z M18,26l8,0 0,8 -8,0 0,-8z M26,26l8,0 0,8 -8,0 0,-8z M34,26l8,0 0,8 -8,0 0,-8z M50,26l8,0 0,8 -8,0 0,-8z M90,26l8,0 0,8 -8,0 0,-8z M98,26l8,0 0,8 -8,0 0,-8z M114,26l8,0 0,8 -8,0 0,-8z M122,26l8,0 0,8 -8,0 0,-8z M138,26l8,0 0,8 -8,0 0,-8z M154,26l8,0 0,8 -8,0 0,-8z M162,26l8,0 0,8 -8,0 0,-8z M178,26l8,0 0,8 -8,0 0,-8z M194,26l8,0 0,8 -8,0 0,-8z M202,26l8,0 0,8 -8,0 0,-8z M210,26l8,0 0,8 -8,0 0,-8z M226,26l8,0 0,8 -8,0 0,-8z M2,34l8,0 0,8 -8,0 0,-8z M18,34l8,0 0,8 -8,0 0,-8z M26,34l8,0 0,8 -8,0 0,-8z M34,34l8,0 0,8 -8,0 0,-8z M50,34l8,0 0,8 -8,0 0,-8z M66,34l8,0 0,8 -8,0 0,-8z M82,34l8,0 0,8 -8,0 0,-8z M106,34l8,0 0,8 -8,0 0,-8z M122,34l8,0 0,8 -8,0 0,-8z M146,34l8,0 0,8 -8,0 0,-8z M154,34l8,0 0,8 -8,0 0,-8z M178,34l8,0 0,8 -8,0 0,-8z M194,34l8,0 0,8 -8,0 0,-8z M202,34l8,0 0,8 -8,0 0,-8z M210,34l8,0 0,8 -8,0 0,-8z M226,34l8,0 0,8 -8,0 0,-8z M2,42l8,0 0,8 -8,0 0,-8z M50,42l8,0 0,8 -8,0 0,-8z M74,42l8,0 0,8 -8,0 0,-8z M82,42l8,0 0,8 -8,0 0,-8z M90,42l8,0 0,8 -8,0 0,-8z M106,42l8,0 0,8 -8,0 0,-8z M114,42l8,0 0,8 -8,0 0,-8z M138,42l8,0 0,8 -8,0 0,-8z M162,42l8,0 0,8 -8,0 0,-8z M178,42l8,0 0,8 -8,0 0,-8z M226,42l8,0 0,8 -8,0 0,-8z M2,50l8,0 0,8 -8,0 0,-8z M10,50l8,0 0,8 -8,0 0,-8z M18,50l8,0 0,8 -8,0 0,-8z M26,50l8,0 0,8 -8,0 0,-8z M34,50l8,0 0,8 -8,0 0,-8z M42,50l8,0 0,8 -8,0 0,-8z M50,50l8,0 0,8 -8,0 0,-8z M66,50l8,0 0,8 -8,0 0,-8z M82,50l8,0 0,8 -8,0 0,-8z M98,50l8,0 0,8 -8,0 0,-8z M114,50l8,0 0,8 -8,0 0,-8z M130,50l8,0 0,8 -8,0 0,-8z M146,50l8,0 0,8 -8,0 0,-8z M162,50l8,0 0,8 -8,0 0,-8z M178,50l8,0 0,8 -8,0 0,-8z M186,50l8,0 0,8 -8,0 0,-8z M194,50l8,0 0,8 -8,0 0,-8z M202,50l8,0 0,8 -8,0 0,-8z M210,50l8,0 0,8 -8,0 0,-8z M218,50l8,0 0,8 -8,0 0,-8z M226,50l8,0 0,8 -8,0 0,-8z M98,58l8,0 0,8 -8,0 0,-8z M114,58l8,0 0,8 -8,0 0,-8z M154,58l8,0 0,8 -8,0 0,-8z M162,58l8,0 0,8 -8,0 0,-8z M2,66l8,0 0,8 -8,0 0,-8z M26,66l8,0 0,8 -8,0 0,-8z M34,66l8,0 0,8 -8,0 0,-8z M42,66l8,0 0,8 -8,0 0,-8z M50,66l8,0 0,8 -8,0 0,-8z M58,66l8,0 0,8 -8,0 0,-8z M66,66l8,0 0,8 -8,0 0,-8z M82,66l8,0 0,8 -8,0 0,-8z M90,66l8,0 0,8 -8,0 0,-8z M98,66l8,0 0,8 -8,0 0,-8z M106,66l8,0 0,8 -8,0 0,-8z M114,66l8,0 0,8 -8,0 0,-8z M122,66l8,0 0,8 -8,0 0,-8z M130,66l8,0 0,8 -8,0 0,-8z M138,66l8,0 0,8 -8,0 0,-8z M170,66l8,0 0,8 -8,0 0,-8z M194,66l8,0 0,8 -8,0 0,-8z M210,66l8,0 0,8 -8,0 0,-8z M218,66l8,0 0,8 -8,0 0,-8z M226,66l8,0 0,8 -8,0 0,-8z M26,74l8,0 0,8 -8,0 0,-8z M42,74l8,0 0,8 -8,0 0,-8z M58,74l8,0 0,8 -8,0 0,-8z M66,74l8,0 0,8 -8,0 0,-8z M90,74l8,0 0,8 -8,0 0,-8z M114,74l8,0 0,8 -8,0 0,-8z M138,74l8,0 0,8 -8,0 0,-8z M146,74l8,0 0,8 -8,0 0,-8z M154,74l8,0 0,8 -8,0 0,-8z M170,74l8,0 0,8 -8,0 0,-8z M186,74l8,0 0,8 -8,0 0,-8z M194,74l8,0 0,8 -8,0 0,-8z M210,74l8,0 0,8 -8,0 0,-8z M218,74l8,0 0,8 -8,0 0,-8z M2,82l8,0 0,8 -8,0 0,-8z M10,82l8,0 0,8 -8,0 0,-8z M26,82l8,0 0,8 -8,0 0,-8z M34,82l8,0 0,8 -8,0 0,-8z M50,82l8,0 0,8 -8,0 0,-8z M74,82l8,0 0,8 -8,0 0,-8z M82,82l8,0 0,8 -8,0 0,-8z M90,82l8,0 0,8 -8,0 0,-8z M114,82l8,0 0,8 -8,0 0,-8z M162,82l8,0 0,8 -8,0 0,-8z M210,82l8,0 0,8 -8,0 0,-8z M10,90l8,0 0,8 -8,0 0,-8z M18,90l8,0 0,8 -8,0 0,-8z M34,90l8,0 0,8 -8,0 0,-8z M42,90l8,0 0,8 -8,0 0,-8z M58,90l8,0 0,8 -8,0 0,-8z M74,90l8,0 0,8 -8,0 0,-8z M114,90l8,0 0,8 -8,0 0,-8z M122,90l8,0 0,8 -8,0 0,-8z M138,90l8,0 0,8 -8,0 0,-8z M146,90l8,0 0,8 -8,0 0,-8z M154,90l8,0 0,8 -8,0 0,-8z M162,90l8,0 0,8 -8,0 0,-8z M178,90l8,0 0,8 -8,0 0,-8z M186,90l8,0 0,8 -8,0 0,-8z M194,90l8,0 0,8 -8,0 0,-8z M202,90l8,0 0,8 -8,0 0,-8z M226,90l8,0 0,8 -8,0 0,-8z M50,98l8,0 0,8 -8,0 0,-8z M58,98l8,0 0,8 -8,0 0,-8z M66,98l8,0 0,8 -8,0 0,-8z M74,98l8,0 0,8 -8,0 0,-8z M106,98l8,0 0,8 -8,0 0,-8z M114,98l8,0 0,8 -8,0 0,-8z M130,98l8,0 0,8 -8,0 0,-8z M162,98l8,0 0,8 -8,0 0,-8z M178,98l8,0 0,8 -8,0 0,-8z M186,98l8,0 0,8 -8,0 0,-8z M226,98l8,0 0,8 -8,0 0,-8z M26,106l8,0 0,8 -8,0 0,-8z M34,106l8,0 0,8 -8,0 0,-8z M58,106l8,0 0,8 -8,0 0,-8z M90,106l8,0 0,8 -8,0 0,-8z M138,106l8,0 0,8 -8,0 0,-8z M146,106l8,0 0,8 -8,0 0,-8z M162,106l8,0 0,8 -8,0 0,-8z M178,106l8,0 0,8 -8,0 0,-8z M186,106l8,0 0,8 -8,0 0,-8z M194,106l8,0 0,8 -8,0 0,-8z M202,106l8,0 0,8 -8,0 0,-8z M210,106l8,0 0,8 -8,0 0,-8z M218,106l8,0 0,8 -8,0 0,-8z M226,106l8,0 0,8 -8,0 0,-8z M26,114l8,0 0,8 -8,0 0,-8z M50,114l8,0 0,8 -8,0 0,-8z M66,114l8,0 0,8 -8,0 0,-8z M74,114l8,0 0,8 -8,0 0,-8z M82,114l8,0 0,8 -8,0 0,-8z M98,114l8,0 0,8 -8,0 0,-8z M114,114l8,0 0,8 -8,0 0,-8z M122,114l8,0 0,8 -8,0 0,-8z M154,114l8,0 0,8 -8,0 0,-8z M162,114l8,0 0,8 -8,0 0,-8z M170,114l8,0 0,8 -8,0 0,-8z M186,114l8,0 0,8 -8,0 0,-8z M194,114l8,0 0,8 -8,0 0,-8z M210,114l8,0 0,8 -8,0 0,-8z M226,114l8,0 0,8 -8,0 0,-8z M26,122l8,0 0,8 -8,0 0,-8z M34,122l8,0 0,8 -8,0 0,-8z M42,122l8,0 0,8 -8,0 0,-8z M82,122l8,0 0,8 -8,0 0,-8z M106,122l8,0 0,8 -8,0 0,-8z M114,122l8,0 0,8 -8,0 0,-8z M122,122l8,0 0,8 -8,0 0,-8z M154,122l8,0 0,8 -8,0 0,-8z M170,122l8,0 0,8 -8,0 0,-8z M178,122l8,0 0,8 -8,0 0,-8z M194,122l8,0 0,8 -8,0 0,-8z M210,122l8,0 0,8 -8,0 0,-8z M226,122l8,0 0,8 -8,0 0,-8z M10,130l8,0 0,8 -8,0 0,-8z M18,130l8,0 0,8 -8,0 0,-8z M26,130l8,0 0,8 -8,0 0,-8z M42,130l8,0 0,8 -8,0 0,-8z M50,130l8,0 0,8 -8,0 0,-8z M58,130l8,0 0,8 -8,0 0,-8z M154,130l8,0 0,8 -8,0 0,-8z M162,130l8,0 0,8 -8,0 0,-8z M186,130l8,0 0,8 -8,0 0,-8z M202,130l8,0 0,8 -8,0 0,-8z M2,138l8,0 0,8 -8,0 0,-8z M10,138l8,0 0,8 -8,0 0,-8z M18,138l8,0 0,8 -8,0 0,-8z M26,138l8,0 0,8 -8,0 0,-8z M34,138l8,0 0,8 -8,0 0,-8z M58,138l8,0 0,8 -8,0 0,-8z M66,138l8,0 0,8 -8,0 0,-8z M122,138l8,0 0,8 -8,0 0,-8z M130,138l8,0 0,8 -8,0 0,-8z M138,138l8,0 0,8 -8,0 0,-8z M154,138l8,0 0,8 -8,0 0,-8z M162,138l8,0 0,8 -8,0 0,-8z M194,138l8,0 0,8 -8,0 0,-8z M210,138l8,0 0,8 -8,0 0,-8z M218,138l8,0 0,8 -8,0 0,-8z M2,146l8,0 0,8 -8,0 0,-8z M10,146l8,0 0,8 -8,0 0,-8z M18,146l8,0 0,8 -8,0 0,-8z M34,146l8,0 0,8 -8,0 0,-8z M42,146l8,0 0,8 -8,0 0,-8z M50,146l8,0 0,8 -8,0 0,-8z M58,146l8,0 0,8 -8,0 0,-8z M82,146l8,0 0,8 -8,0 0,-8z M90,146l8,0 0,8 -8,0 0,-8z M106,146l8,0 0,8 -8,0 0,-8z M114,146l8,0 0,8 -8,0 0,-8z M122,146l8,0 0,8 -8,0 0,-8z M130,146l8,0 0,8 -8,0 0,-8z M146,146l8,0 0,8 -8,0 0,-8z M154,146l8,0 0,8 -8,0 0,-8z M170,146l8,0 0,8 -8,0 0,-8z M178,146l8,0 0,8 -8,0 0,-8z M186,146l8,0 0,8 -8,0 0,-8z M202,146l8,0 0,8 -8,0 0,-8z M226,146l8,0 0,8 -8,0 0,-8z M2,154l8,0 0,8 -8,0 0,-8z M10,154l8,0 0,8 -8,0 0,-8z M18,154l8,0 0,8 -8,0 0,-8z M26,154l8,0 0,8 -8,0 0,-8z M58,154l8,0 0,8 -8,0 0,-8z M90,154l8,0 0,8 -8,0 0,-8z M106,154l8,0 0,8 -8,0 0,-8z M122,154l8,0 0,8 -8,0 0,-8z M130,154l8,0 0,8 -8,0 0,-8z M146,154l8,0 0,8 -8,0 0,-8z M162,154l8,0 0,8 -8,0 0,-8z M170,154l8,0 0,8 -8,0 0,-8z M194,154l8,0 0,8 -8,0 0,-8z M202,154l8,0 0,8 -8,0 0,-8z M210,154l8,0 0,8 -8,0 0,-8z M2,162l8,0 0,8 -8,0 0,-8z M10,162l8,0 0,8 -8,0 0,-8z M34,162l8,0 0,8 -8,0 0,-8z M50,162l8,0 0,8 -8,0 0,-8z M58,162l8,0 0,8 -8,0 0,-8z M74,162l8,0 0,8 -8,0 0,-8z M90,162l8,0 0,8 -8,0 0,-8z M98,162l8,0 0,8 -8,0 0,-8z M106,162l8,0 0,8 -8,0 0,-8z M122,162l8,0 0,8 -8,0 0,-8z M138,162l8,0 0,8 -8,0 0,-8z M146,162l8,0 0,8 -8,0 0,-8z M154,162l8,0 0,8 -8,0 0,-8z M162,162l8,0 0,8 -8,0 0,-8z M170,162l8,0 0,8 -8,0 0,-8z M178,162l8,0 0,8 -8,0 0,-8z M186,162l8,0 0,8 -8,0 0,-8z M194,162l8,0 0,8 -8,0 0,-8z M202,162l8,0 0,8 -8,0 0,-8z M210,162l8,0 0,8 -8,0 0,-8z M218,162l8,0 0,8 -8,0 0,-8z M66,170l8,0 0,8 -8,0 0,-8z M90,170l8,0 0,8 -8,0 0,-8z M106,170l8,0 0,8 -8,0 0,-8z M122,170l8,0 0,8 -8,0 0,-8z M130,170l8,0 0,8 -8,0 0,-8z M138,170l8,0 0,8 -8,0 0,-8z M146,170l8,0 0,8 -8,0 0,-8z M162,170l8,0 0,8 -8,0 0,-8z M194,170l8,0 0,8 -8,0 0,-8z M202,170l8,0 0,8 -8,0 0,-8z M2,178l8,0 0,8 -8,0 0,-8z M10,178l8,0 0,8 -8,0 0,-8z M18,178l8,0 0,8 -8,0 0,-8z M26,178l8,0 0,8 -8,0 0,-8z M34,178l8,0 0,8 -8,0 0,-8z M42,178l8,0 0,8 -8,0 0,-8z M50,178l8,0 0,8 -8,0 0,-8z M66,178l8,0 0,8 -8,0 0,-8z M74,178l8,0 0,8 -8,0 0,-8z M82,178l8,0 0,8 -8,0 0,-8z M106,178l8,0 0,8 -8,0 0,-8z M122,178l8,0 0,8 -8,0 0,-8z M138,178l8,0 0,8 -8,0 0,-8z M154,178l8,0 0,8 -8,0 0,-8z M162,178l8,0 0,8 -8,0 0,-8z M178,178l8,0 0,8 -8,0 0,-8z M194,178l8,0 0,8 -8,0 0,-8z M202,178l8,0 0,8 -8,0 0,-8z M2,186l8,0 0,8 -8,0 0,-8z M50,186l8,0 0,8 -8,0 0,-8z M66,186l8,0 0,8 -8,0 0,-8z M82,186l8,0 0,8 -8,0 0,-8z M106,186l8,0 0,8 -8,0 0,-8z M122,186l8,0 0,8 -8,0 0,-8z M130,186l8,0 0,8 -8,0 0,-8z M138,186l8,0 0,8 -8,0 0,-8z M154,186l8,0 0,8 -8,0 0,-8z M162,186l8,0 0,8 -8,0 0,-8z M194,186l8,0 0,8 -8,0 0,-8z M218,186l8,0 0,8 -8,0 0,-8z M226,186l8,0 0,8 -8,0 0,-8z M2,194l8,0 0,8 -8,0 0,-8z M18,194l8,0 0,8 -8,0 0,-8z M26,194l8,0 0,8 -8,0 0,-8z M34,194l8,0 0,8 -8,0 0,-8z M50,194l8,0 0,8 -8,0 0,-8z M66,194l8,0 0,8 -8,0 0,-8z M98,194l8,0 0,8 -8,0 0,-8z M106,194l8,0 0,8 -8,0 0,-8z M122,194l8,0 0,8 -8,0 0,-8z M146,194l8,0 0,8 -8,0 0,-8z M154,194l8,0 0,8 -8,0 0,-8z M162,194l8,0 0,8 -8,0 0,-8z M170,194l8,0 0,8 -8,0 0,-8z M178,194l8,0 0,8 -8,0 0,-8z M186,194l8,0 0,8 -8,0 0,-8z M194,194l8,0 0,8 -8,0 0,-8z M202,194l8,0 0,8 -8,0 0,-8z M218,194l8,0 0,8 -8,0 0,-8z M226,194l8,0 0,8 -8,0 0,-8z M2,202l8,0 0,8 -8,0 0,-8z M18,202l8,0 0,8 -8,0 0,-8z M26,202l8,0 0,8 -8,0 0,-8z M34,202l8,0 0,8 -8,0 0,-8z M50,202l8,0 0,8 -8,0 0,-8z M66,202l8,0 0,8 -8,0 0,-8z M74,202l8,0 0,8 -8,0 0,-8z M90,202l8,0 0,8 -8,0 0,-8z M98,202l8,0 0,8 -8,0 0,-8z M114,202l8,0 0,8 -8,0 0,-8z M122,202l8,0 0,8 -8,0 0,-8z M154,202l8,0 0,8 -8,0 0,-8z M170,202l8,0 0,8 -8,0 0,-8z M186,202l8,0 0,8 -8,0 0,-8z M226,202l8,0 0,8 -8,0 0,-8z M2,210l8,0 0,8 -8,0 0,-8z M18,210l8,0 0,8 -8,0 0,-8z M26,210l8,0 0,8 -8,0 0,-8z M34,210l8,0 0,8 -8,0 0,-8z M50,210l8,0 0,8 -8,0 0,-8z M74,210l8,0 0,8 -8,0 0,-8z M122,210l8,0 0,8 -8,0 0,-8z M130,210l8,0 0,8 -8,0 0,-8z M138,210l8,0 0,8 -8,0 0,-8z M146,210l8,0 0,8 -8,0 0,-8z M162,210l8,0 0,8 -8,0 0,-8z M170,210l8,0 0,8 -8,0 0,-8z M186,210l8,0 0,8 -8,0 0,-8z M194,210l8,0 0,8 -8,0 0,-8z M210,210l8,0 0,8 -8,0 0,-8z M218,210l8,0 0,8 -8,0 0,-8z M226,210l8,0 0,8 -8,0 0,-8z M2,218l8,0 0,8 -8,0 0,-8z M50,218l8,0 0,8 -8,0 0,-8z M74,218l8,0 0,8 -8,0 0,-8z M82,218l8,0 0,8 -8,0 0,-8z M98,218l8,0 0,8 -8,0 0,-8z M106,218l8,0 0,8 -8,0 0,-8z M130,218l8,0 0,8 -8,0 0,-8z M146,218l8,0 0,8 -8,0 0,-8z M194,218l8,0 0,8 -8,0 0,-8z M202,218l8,0 0,8 -8,0 0,-8z M210,218l8,0 0,8 -8,0 0,-8z M226,218l8,0 0,8 -8,0 0,-8z M2,226l8,0 0,8 -8,0 0,-8z M10,226l8,0 0,8 -8,0 0,-8z M18,226l8,0 0,8 -8,0 0,-8z M26,226l8,0 0,8 -8,0 0,-8z M34,226l8,0 0,8 -8,0 0,-8z M42,226l8,0 0,8 -8,0 0,-8z M50,226l8,0 0,8 -8,0 0,-8z M66,226l8,0 0,8 -8,0 0,-8z M90,226l8,0 0,8 -8,0 0,-8z M114,226l8,0 0,8 -8,0 0,-8z M122,226l8,0 0,8 -8,0 0,-8z M130,226l8,0 0,8 -8,0 0,-8z M146,226l8,0 0,8 -8,0 0,-8z M162,226l8,0 0,8 -8,0 0,-8z M186,226l8,0 0,8 -8,0 0,-8z M194,226l8,0 0,8 -8,0 0,-8z M202,226l8,0 0,8 -8,0 0,-8z " stroke="transparent" fill="#13233A"/></svg></div><b>סרקו לכל החומרים</b><span>practiai.co.il/mnmr-2026</span></div>
 
 <canvas class="net" data-runtime width="1920" height="1080"></canvas>
@@ -652,16 +660,16 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w2" data-part="0" data-time="דקות 6–12">
+<section class="slide " id="w2" data-part="0" data-time="דקות 4–8">
 
-<div class="kicker rv">דקות 6–12 · הכנה</div><h2 class="title rv" style="--d:1">מתכוננים לעבודה</h2>
+<div class="kicker rv">דקות <span class="ltr">4–8</span> · הכנה</div><h2 class="title rv" style="--d:1">מתכוננים לעבודה</h2>
 <div class="prep">
   <div class="prep-col rv" style="--d:2"><h3>מה צריך?</h3>
     <div class="need"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="13" height="10" rx="1.5"/><path d="M6 18h7"/><rect x="17" y="8" width="5" height="12" rx="1.2"/></svg><span>מחשב או סמארטפון.</span></div>
     <div class="need"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7"/><path d="M8.5 14h4"/></svg><span>כלי AI שאתם יכולים להשתמש בו.</span></div>
     <div class="need"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><span>צורך רשותי שתרצו לשפר, או מקרה בוחן מוכן.</span></div></div>
   <div class="prep-col rv" style="--d:3"><h3>איך עובדים?</h3>
-    <ol class="steps"><li>כל אחד מתקדם בקצב שלו.</li><li>הפרומפטים נמצאים בנספח המצגת. <a class="jump" data-goto="a0" href="#a0">לרשימת הנספחים · שקף 14</a></li><li>מומלץ להמשיך באותה שיחת AI לאורך התרגול.</li></ol></div>
+    <ol class="steps"><li>כל אחד מתקדם בקצב שלו.</li><li>הפרומפטים נמצאים בנספח המצגת. <a class="jump" data-goto="a0" href="#a0">לרשימת הנספחים · שקף 17</a></li><li>מומלץ להמשיך באותה שיחת AI לאורך התרגול.</li></ol></div>
   <div class="qr-box rv" style="--d:4"><div class="qr" data-runtime></div><div class="qr-cap" data-runtime></div>
     <button class="edit-btn edit-only" type="button" onclick="DECK_SET_URL()">✎ הגדרת קישור למצגת</button></div>
 </div>
@@ -670,43 +678,63 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w3" data-part="0" data-time="דקות 12–17">
+<section class="slide " id="w3" data-part="0" data-time="דקות 8–11">
 
-<div class="kicker rv">דקות 12–17 · כללי עבודה</div><h2 class="title rv" style="--d:1">לפני שמתחילים, עובדים נכון</h2><p class="subtitle rv" style="--d:2">שלושה כללים פשוטים</p>
+<div class="kicker rv">דקות <span class="ltr">8–11</span> · כללי עבודה</div><h2 class="title rv" style="--d:1">לפני שמתחילים, עובדים נכון</h2><p class="subtitle rv" style="--d:2">שלושה כללים פשוטים</p>
 <div class="grid g3 rules"><div class="card rv pop" style="--d:3"><span class="ix">01</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><h3>מידע</h3><p>משתמשים רק במידע סינתטי, כללי או מאושר לשיתוף בסביבת העבודה.</p></div><div class="card rv pop" style="--d:4"><span class="ix">02</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><h3>אמינות</h3><p>בודקים תוצאות, מספרים, הנחות והמלצות.</p></div><div class="card rv pop" style="--d:5"><span class="ix">03</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.5c2.4 0 4 1.5 4.5 4"/></svg><h3>אחריות</h3><p>AI מסייע לאפיין ולהציע. הוא אינו מאשר החלטות במקומנו.</p></div></div>
 
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w4" data-part="0" data-time="דקות 17–22">
+<section class="slide " id="wp" data-part="0" data-time="דקות 11–17">
 
-<div class="kicker rv">דקות 17–22 · בחירת אתגר</div><h2 class="title rv" style="--d:1">בוחרים את האתגר</h2><p class="subtitle rv" style="--d:2">בחרו אחד משני מסלולים</p>
+<div class="kicker rv">שלב ראשון · דקות <span class="ltr">11–17</span></div><h2 class="title rv" style="--d:1">מתאימים את כלי ה-AI אליכם</h2>
+<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="5" data-noedit><span class="tl">זמן</span><span class="tv">05:00</span><span class="tb">▶</span></div></div>
+<div class="meta rv" style="--d:2"><span class="chip out">התוצר: כלי AI שמכיר את התפקיד שלכם.</span></div>
+<div class="ex">
+  <div class="ex-task rv" style="--d:3"><p class="mission">ככל שההקשר מדויק יותר, התשובות ספציפיות יותר ובעלות ערך גבוה יותר.</p><ol class="steps"><li>הדביקו את הפרומפט והשלימו את הפרטים שלכם.</li><li>שאלו שאלה מהעבודה וראו את ההבדל.</li></ol></div>
+  <div class="ex-prompt rv" style="--d:4"><div class="prompt "><span class="plabel">פרסונליזציה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">זכור מעכשיו לכל השיחות העתידיות שלנו:
+התפקיד שלי הוא [התפקיד] ברשות המקומית [שם הרשות].
+תחומי האחריות שלי הם [תחומי האחריות].
+הצוותים והגורמים שאני עובד איתם: [אגפים ובעלי תפקידים].
+הכלים והמערכות שבהם אני משתמש: [למשל Microsoft 365, מערכת המוקד].
+כך אני מעדיף לקבל תשובות: [קצר ותכליתי / טבלה / רשימת צעדים].
+התאם מעכשיו את התשובות וההמלצות שלך לתפקיד ולסביבת העבודה שלי.</div></div><div class="ex-link"><a class="jump" data-goto="a7" href="#a7">לגרסה המורחבת: נספח 7 · שקף 24</a></div></div>
+</div>
+<div class="punch f">מתשובות כלליות לתשובות שמותאמות לכל עובד ומנהל.</div>
+
+<div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
+
+</section>
+<section class="slide " id="w4" data-part="0" data-time="דקות 17–21">
+
+<div class="kicker rv">דקות <span class="ltr">17–21</span> · בחירת אתגר</div><h2 class="title rv" style="--d:1">בוחרים את האתגר</h2><p class="subtitle rv" style="--d:2">בחרו אחד משני מסלולים</p>
 <div class="grid g2 paths" data-noedit-click>
   <div class="card path rv" style="--d:3"><span class="ix">אפשרות א׳</span><h3>צורך מהרשות שלכם</h3><p>תהליך עבודה שהייתם רוצים לשפר, לקצר, לייעל או להנגיש.</p><div class="pick"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div></div>
   <div class="card path rv" style="--d:4"><div class="path-top"><span class="ix">אפשרות ב׳</span><span class="tag">מקרה פיקטיבי</span></div><h3>המקרה המוכן</h3>
     <p>מנהל אגף שפ״ע מתקשה לרכז נתונים, לעקוב אחר משימות ולהכין דוחות ניהוליים ממספר מקורות מידע.</p><p class="task"><b>המשימה:</b> למצוא דרך פשוטה יותר לעבוד.</p>
-    <div class="lnk"><a class="jump" data-goto="a1" href="#a1">התיאור המלא: נספח 1 · שקף 15</a></div><div class="pick"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div></div>
+    <div class="lnk"><a class="jump" data-goto="a1" href="#a1">התיאור המלא: נספח 1 · שקף 18</a></div><div class="pick"><svg class="ico sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div></div>
 </div>
 
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w5" data-part="1" data-time="דקות 22–34">
+<section class="slide " id="w5" data-part="1" data-time="דקות 21–31">
 
-<div class="kicker rv">תרגיל 1 · דקות 22–34</div><h2 class="title rv" style="--d:1">תרגיל 1, מאבחנים את הצורך</h2>
-<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="12" data-noedit><span class="tl">זמן התרגיל</span><span class="tv">12:00</span><span class="tb">▶</span></div></div>
+<div class="kicker rv">תרגיל 1 · דקות <span class="ltr">21–31</span></div><h2 class="title rv" style="--d:1">תרגיל 1, מאבחנים את הצורך</h2>
+<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="10" data-noedit><span class="tl">זמן התרגיל</span><span class="tv">10:00</span><span class="tb">▶</span></div></div>
 <div class="meta rv" style="--d:2"><span class="chip out">התוצר: אפיון ראשוני של הבעיה.</span></div>
 <div class="ex">
   <div class="ex-task rv" style="--d:3"><p class="mission">המשימה: להבין את הבעיה לפני שבוחרים פתרון.</p><ol class="steps"><li>פתחו שיחה בכלי ה-AI שלכם.</li><li>תארו את התהליך שבחרתם.</li></ol></div>
-  <div class="ex-prompt rv" style="--d:4"><div class="prompt "><span class="plabel">פרומפט קצר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">נתח את התהליך הרשותי שאתאר. זהה את מטרתו, שלבי העבודה, הגורמים המעורבים, הקשיים והמידע החסר. אל תציע עדיין פתרון. שאל עד חמש שאלות השלמה ונסח בסיום הגדרת בעיה ברורה.</div></div><div class="ex-link"><a class="jump" data-goto="a2" href="#a2">לפרומפט המלא: נספח 2 · שקף 16</a></div></div>
+  <div class="ex-prompt rv" style="--d:4"><div class="prompt "><span class="plabel">פרומפט קצר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">נתח את התהליך הרשותי שאתאר. זהה את מטרתו, שלבי העבודה, הגורמים המעורבים, הקשיים והמידע החסר. אל תציע עדיין פתרון. שאל עד חמש שאלות השלמה ונסח בסיום הגדרת בעיה ברורה.</div></div><div class="ex-link"><a class="jump" data-goto="a2" href="#a2">לפרומפט המלא: נספח 2 · שקף 19</a></div></div>
 </div>
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w6" data-part="1" data-time="דקות 34–40">
+<section class="slide " id="w6" data-part="1" data-time="דקות 31–35">
 
-<div class="kicker rv">דקות 34–40 · בדיקה</div><h2 class="title rv" style="--d:1">בודקים את האפיון</h2><p class="subtitle rv" style="--d:2">האם הבעיה הוגדרה נכון?</p>
-<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="6" data-noedit><span class="tl">זמן</span><span class="tv">06:00</span><span class="tb">▶</span></div></div>
+<div class="kicker rv">דקות <span class="ltr">31–35</span> · בדיקה</div><h2 class="title rv" style="--d:1">בודקים את האפיון</h2><p class="subtitle rv" style="--d:2">האם הבעיה הוגדרה נכון?</p>
+<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="4" data-noedit><span class="tl">זמן</span><span class="tv">04:00</span><span class="tb">▶</span></div></div>
 <div class="chk">
   <div class="rv" style="--d:3"><p class="mini-lab">בדקו שיש לכם (לחצו לסימון):</p>
   <ul class="checklist"><li>מטרה ברורה לתהליך.</li><li>תיאור של שלבי העבודה.</li><li>זיהוי קשיים וצווארי בקבוק.</li><li>מידע חסר שצריך להשלים.</li><li>תוצאה רצויה.</li></ul></div>
@@ -718,21 +746,21 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w7" data-part="2" data-time="דקות 40–53">
+<section class="slide " id="w7" data-part="2" data-time="דקות 35–46">
 
-<div class="kicker rv">תרגיל 2 · דקות 40–53</div><h2 class="title rv" style="--d:1">תרגיל 2, ממפים הזדמנויות</h2>
-<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="13" data-noedit><span class="tl">זמן התרגיל</span><span class="tv">13:00</span><span class="tb">▶</span></div></div>
+<div class="kicker rv">תרגיל 2 · דקות <span class="ltr">35–46</span></div><h2 class="title rv" style="--d:1">תרגיל 2, ממפים הזדמנויות</h2>
+<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="11" data-noedit><span class="tl">זמן התרגיל</span><span class="tv">11:00</span><span class="tb">▶</span></div></div>
 <div class="meta rv" style="--d:2"><span class="chip out">התוצר: מפת הזדמנויות והמלצה לפתרון ראשון.</span></div>
 <div class="ex">
   <div class="ex-task rv" style="--d:3"><p class="mission">עכשיו בודקים איך אפשר לשפר את התהליך.</p></div>
-  <div class="ex-prompt rv" style="--d:4"><div class="prompt "><span class="plabel">פרומפט קצר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בהתבסס על האפיון שביצענו, הצע חמש הזדמנויות לשיפור באמצעות AI. השווה בין שיפור תהליך קיים, ניתוח נתונים, סביבת ידע, אוטומציה ופיתוח כלי ייעודי. הצג ערך, ישימות, מורכבות וסיכון. המלץ על הזדמנות אחת לפיילוט והסבר מדוע.</div></div><div class="ex-link"><a class="jump" data-goto="a3" href="#a3">לפרומפט המלא: נספח 3 · שקף 17</a></div></div>
+  <div class="ex-prompt rv" style="--d:4"><div class="prompt "><span class="plabel">פרומפט קצר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בהתבסס על האפיון שביצענו, הצע חמש הזדמנויות לשיפור באמצעות AI. השווה בין שיפור תהליך קיים, ניתוח נתונים, סביבת ידע, אוטומציה ופיתוח כלי ייעודי. הצג ערך, ישימות, מורכבות וסיכון. המלץ על הזדמנות אחת לפיילוט והסבר מדוע.</div></div><div class="ex-link"><a class="jump" data-goto="a3" href="#a3">לפרומפט המלא: נספח 3 · שקף 20</a></div></div>
 </div><table class="t mini-map rv" style="--d:5"><tr><th>הזדמנות</th><th>דרך פתרון</th><th>ערך</th><th>ישימות</th><th>סיכון</th></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr></table>
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w8" data-part="2" data-time="דקות 53–57">
+<section class="slide " id="w8" data-part="2" data-time="דקות 46–50">
 
-<div class="kicker rv">דקות 53–57 · החלטה</div><h2 class="title rv" style="--d:1">בוחרים במה להתמקד</h2><p class="subtitle rv" style="--d:2">בחרו פתרון אחד · לפני ההמשך שאלו:</p>
+<div class="kicker rv">דקות <span class="ltr">46–50</span> · החלטה</div><h2 class="title rv" style="--d:1">בוחרים במה להתמקד</h2><p class="subtitle rv" style="--d:2">בחרו פתרון אחד · לפני ההמשך שאלו:</p>
 <div class="ex-timer rv" style="--d:1"><div class="timer" data-min="4" data-noedit><span class="tl">זמן</span><span class="tv">04:00</span><span class="tb">▶</span></div></div>
 <ul class="checklist dq5 rv" style="--d:3"><li><b class="num">01</b>האם הוא פותר בעיה אמיתית?</li><li><b class="num">02</b>האם אפשר לבדוק אותו בכלים הזמינים?</li><li><b class="num">03</b>האם הוא דורש חיבור למערכות?</li><li><b class="num">04</b>האם ניתן להתנסות בו ללא מידע רגיש?</li><li><b class="num">05</b>איך נדע אם הצליח?</li></ul>
 <p class="big-call statement f">בחרו משהו שאפשר לבחון <span class="grad">היום</span>.</p>
@@ -740,9 +768,9 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w9" data-part="2" data-time="דקות 57–63">
+<section class="slide " id="w9" data-part="2" data-time="דקות 50–54">
 
-<div class="kicker rv">דקות 57–63 · מה נחשב פתרון?</div><h2 class="title rv" style="--d:1">מה נחשב פתרון ראשוני?</h2><p class="subtitle rv" style="--d:2">לא חייבים לפתח אפליקציה. אפשר להתחיל ב:</p>
+<div class="kicker rv">דקות <span class="ltr">50–54</span> · מה נחשב פתרון?</div><h2 class="title rv" style="--d:1">מה נחשב פתרון ראשוני?</h2><p class="subtitle rv" style="--d:2">לא חייבים לפתח אפליקציה. אפשר להתחיל ב:</p>
 <div class="grid g5 kinds"><div class="card rv" style="--d:3"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><h3>עוזר לניתוח תהליכי עבודה.</h3></div><div class="card rv" style="--d:4"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/></svg><h3>כלי להכנת דוחות מובנים.</h3></div><div class="card rv" style="--d:5"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><h3>עוזר לבדיקת מסמכים.</h3></div><div class="card rv" style="--d:6"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="m5 7-3 7a3.5 3.5 0 0 0 6 0z"/><path d="m19 7-3 7a3.5 3.5 0 0 0 6 0z"/><path d="M8 21h8"/></svg><h3>כלי להשוואת חלופות.</h3></div><div class="card rv" style="--d:7"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10"/><path d="M4 12h16"/><path d="M4 18h7"/><circle cx="18" cy="6" r="2"/><circle cx="15" cy="18" r="2"/></svg><h3>תהליך עבודה חדש בשילוב AI.</h3></div></div>
 <div class="feat f"><span class="feat-lab">הדוגמה שתלווה אותנו</span><span class="feat-t">"עוזר להכנת דוח סטטוס אגפי"</span></div>
 <p class="adv f"><b>למתקדמים:</b> ניתן לפתח אב־טיפוס באמצעות כלי קוד או סוכנים, אם הסביבה מאפשרת.</p>
@@ -750,21 +778,21 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w10" data-part="3" data-time="דקות 63–76">
+<section class="slide " id="w10" data-part="3" data-time="דקות 54–67">
 
-<div class="kicker rv">תרגיל 3 · דקות 63–76</div><h2 class="title rv" style="--d:1">תרגיל 3, בונים כלי עבודה</h2>
+<div class="kicker rv">תרגיל 3 · דקות <span class="ltr">54–67</span></div><h2 class="title rv" style="--d:1">תרגיל 3, בונים כלי עבודה</h2>
 <div class="ex-timer rv" style="--d:1"><div class="timer" data-min="13" data-noedit><span class="tl">זמן התרגיל</span><span class="tv">13:00</span><span class="tb">▶</span></div></div>
 <div class="meta rv" style="--d:2"><span class="chip out">התוצר: כלי AI ראשוני שמוכן לבדיקה.</span></div>
 <p class="mission rv" style="--d:2;margin-top:24px">הופכים את הפתרון שבחרתם לכלי שאפשר להשתמש בו שוב.</p>
 <div class="tool5"><div class="flow"><div class="step f" data-f="1"><span>תפקיד</span><small>מי הכלי</small></div><div class="arrow f" data-f="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div><div class="step f" data-f="2"><span>קלט</span><small>מה הוא מקבל</small></div><div class="arrow f" data-f="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div><div class="step f" data-f="3"><span>פעולה</span><small>מה הוא עושה</small></div><div class="arrow f" data-f="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div><div class="step f" data-f="4"><span>פלט</span><small>מה הוא מחזיר</small></div><div class="arrow f" data-f="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div><div class="step f" data-f="5"><span>בקרה</span><small>מה הוא בודק</small></div></div></div>
-<div class="w10p rv" style="--d:4"><div class="prompt "><span class="plabel">פרומפט קצר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בנה עבורי פרומפט מקצועי לשימוש חוזר שיבצע את המשימה שבחרנו. הגדר את תפקיד הכלי, המידע שהוא צריך לקבל, שלבי העבודה, מבנה התוצאה וכללי הבקרה. צור פרומפט עצמאי שאפשר להפעיל בשיחה חדשה, והצע מקרה סינתטי לבדיקתו.</div></div><div class="ex-link"><a class="jump" data-goto="a4" href="#a4">לפרומפט המלא: נספח 4 · שקף 18</a></div></div>
+<div class="w10p rv" style="--d:4"><div class="prompt "><span class="plabel">פרומפט קצר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בנה עבורי פרומפט מקצועי לשימוש חוזר שיבצע את המשימה שבחרנו. הגדר את תפקיד הכלי, המידע שהוא צריך לקבל, שלבי העבודה, מבנה התוצאה וכללי הבקרה. צור פרומפט עצמאי שאפשר להפעיל בשיחה חדשה, והצע מקרה סינתטי לבדיקתו.</div></div><div class="ex-link"><a class="jump" data-goto="a4" href="#a4">לפרומפט המלא: נספח 4 · שקף 21</a></div></div>
 
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
-<section class="slide " id="w11" data-part="3" data-time="דקות 76–82">
+<section class="slide " id="w11" data-part="3" data-time="דקות 67–73">
 
-<div class="kicker rv">דקות 76–82 · בדיקה ושיפור</div><h2 class="title rv" style="--d:1">בודקים ומשפרים</h2><p class="subtitle rv" style="--d:2">יצרתם כלי. עכשיו בדקו אם הוא באמת עובד.</p>
+<div class="kicker rv">דקות <span class="ltr">67–73</span> · בדיקה ושיפור</div><h2 class="title rv" style="--d:1">בודקים ומשפרים</h2><p class="subtitle rv" style="--d:2">יצרתם כלי. עכשיו בדקו אם הוא באמת עובד.</p>
 <div class="ex-timer rv" style="--d:1"><div class="timer" data-min="6" data-noedit><span class="tl">זמן</span><span class="tv">06:00</span><span class="tb">▶</span></div></div>
 <div class="test">
   <div class="rv" style="--d:3"><p class="mission">הפעילו אותו על מקרה לדוגמה. בדקו:</p>
@@ -780,13 +808,44 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
+<section class="slide " id="wa" data-part="3" data-time="דקות 73–78">
+
+<div class="kicker rv">אוטומציה פשוטה · דקות <span class="ltr">73–78</span></div><h2 class="title rv" style="--d:1">ממשימה חוזרת לאוטומציה פשוטה</h2>
+<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="4" data-noedit><span class="tl">זמן</span><span class="tv">04:00</span><span class="tb">▶</span></div></div>
+<div class="meta rv" style="--d:2"><span class="chip out">התוצר: פרומפט שרץ לבד, בזמן קבוע.</span></div>
+<div class="ex">
+  <div class="ex-task rv" style="--d:3"><p class="mission">משימה קטנה שחוזרת על עצמה? פותרים אותה בלי פיתוח.</p><ol class="steps"><li>בחרו משימה חוזרת.</li><li>כתבו לה פרומפט ובדקו.</li><li>תזמנו ריצה קבועה.</li></ol></div>
+  <div class="ex-prompt rv" style="--d:4"><div class="prompt "><span class="plabel">דוגמה: כל בוקר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">עבור על תיבת המיילים שלי, בחן את המיילים מ-24 השעות האחרונות וצור רשימה של המשימות הדחופות ביותר, מסודרת לפי דרגת חשיבות.</div></div><div class="sched"><b>עוד רעיונות:</b><span class="chip">סיכום פגישות השבוע, כל חמישי</span><span class="chip">דוח פניות חודשי</span><span class="chip">תזכורת למשימות פתוחות</span></div></div>
+</div>
+<div class="punch f">משימות קטנות, פתרון פשוט, ערך כל יום.</div>
+
+<div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
+
+</section>
+<section class="slide " id="ws" data-part="3" data-time="דקות 78–82">
+
+<div class="kicker rv">שיתוף · דקות <span class="ltr">78–82</span></div><h2 class="title rv" style="--d:1">פיצחתם תהליך? הפכו אותו לפרומפט ושתפו</h2>
+<div class="ex-timer rv" style="--d:1"><div class="timer" data-min="3" data-noedit><span class="tl">זמן</span><span class="tv">03:00</span><span class="tb">▶</span></div></div>
+<div class="meta rv" style="--d:2"><span class="chip out">התוצר: פרומפט שאפשר לשמור ולשתף עם הצוות.</span></div>
+<div class="ex">
+  <div class="ex-task rv" style="--d:3"><p class="mission">ידע שנשאר בשיחה אחת לא הופך לשינוי ארגוני.</p><ol class="steps"><li>בקשו מה-AI לעבור על השיחה ולפרמל אותה.</li><li>בדקו ושמרו את הפרומפט.</li><li>שתפו עם הצוות הרלוונטי ברשות.</li></ol></div>
+  <div class="ex-prompt rv" style="--d:4"><div class="prompt "><span class="plabel">מהשיחה לפרומפט</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">עבור על כל השיחה שלנו מההתחלה. רכז את ההנחיות, ההערות והתיקונים שנתתי, ואת התוצר הסופי שאישרתי.
+על בסיסם כתוב פרומפט מלא ועצמאי שיאפשר לבצע את המשימה הזו שוב, בשיחה חדשה, גם על ידי עמית מהצוות.
+פתח בתיאור המידע שיש לספק, וסיים בכללי בקרה.
+אל תכלול בפרומפט מידע אישי או רגיש מהשיחה.</div></div></div>
+</div>
+<div class="punch f">תהליך שפוצח פעם אחת משמש את כל הצוות.</div>
+
+<div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
+
+</section>
 <section class="slide " id="w12" data-part="4" data-time="דקות 82–88">
 
-<div class="kicker rv">דקות 82–88 · תכנון פיילוט</div><h2 class="title rv" style="--d:1">מתוצר לפיילוט</h2>
+<div class="kicker rv">דקות <span class="ltr">82–88</span> · תכנון פיילוט</div><h2 class="title rv" style="--d:1">מתוצר לפיילוט</h2>
 <div class="ex-timer rv" style="--d:1"><div class="timer" data-min="6" data-noedit><span class="tl">זמן</span><span class="tv">06:00</span><span class="tb">▶</span></div></div>
 <div class="meta rv" style="--d:2"><span class="chip out">התוצר: צעדים ראשונים ליישום.</span></div>
 <p class="mission rv" style="--d:2;margin-top:22px">איך ממשיכים מכאן ברשות?</p>
-<div class="pilot rv" style="--d:3"><div class="prompt "><span class="plabel">פרומפט קצר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בנה תוכנית פיילוט ראשונית ל-30 יום עבור הפתרון שיצרנו. הגדר מטרות, משתמשים, שלבי ביצוע, מידע ואישורים נדרשים, מדדי הצלחה וסיכונים. ציין מה נדרש לבדיקה לפני שימוש ארגוני אמיתי.</div></div><div class="ex-link"><a class="jump" data-goto="a5" href="#a5">לפרומפט המלא: נספח 5 · שקף 19</a></div></div>
+<div class="pilot rv" style="--d:3"><div class="prompt "><span class="plabel">פרומפט קצר</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בנה תוכנית פיילוט ראשונית ל-30 יום עבור הפתרון שיצרנו. הגדר מטרות, משתמשים, שלבי ביצוע, מידע ואישורים נדרשים, מדדי הצלחה וסיכונים. ציין מה נדרש לבדיקה לפני שימוש ארגוני אמיתי.</div></div><div class="ex-link"><a class="jump" data-goto="a5" href="#a5">לפרומפט המלא: נספח 5 · שקף 22</a></div></div>
 <div class="weeks"><div class="wk f" data-f="1"><b>שבוע 1</b><span>השלמת אפיון ואישורים</span></div><div class="wk f" data-f="2"><b>שבוע 2</b><span>ניסוי מבוקר</span></div><div class="wk f" data-f="3"><b>שבוע 3</b><span>בדיקת איכות ושיפור</span></div><div class="wk f" data-f="4"><b>שבוע 4</b><span>הערכה והחלטה להמשך</span></div></div>
 <p class="wk-note rv" style="--d:5">רצף לדוגמה בלבד; הפרומפט מתאים אותו לצורך הרשותי.</p>
 
@@ -796,7 +855,7 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 <section class="slide hero" id="w13" data-part="4" data-time="דקות 88–90" data-fx="net" data-fxleave="netStop">
 
 <canvas class="net" data-runtime width="1920" height="1080"></canvas>
-<div class="kicker rv">דקות 88–90 · סיכום</div>
+<div class="kicker rv">דקות <span class="ltr">88–90</span> · סיכום</div>
 <h2 class="title rv" style="--d:1">מתחילים בצורך או בבעיה, לא בכלי</h2>
 <p class="end-lab rv" style="--d:2">ב-90 דקות עברתם:</p>
 <div class="rv" style="--d:2"><div class="flow pulse w13flow"><div class="step"><span>צורך</span></div><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div><div class="step"><span>תהליך</span></div><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div><div class="step"><span>מידע</span></div><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div><div class="step"><span>פתרון</span></div><div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg></div><div class="step"><span>ערך</span></div></div></div>
@@ -812,7 +871,7 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 
 <div class="kicker">נספחים</div><h2 class="title">נספחים: פרומפטים ומקרה בוחן</h2>
 <p class="subtitle">לחצו על נספח כדי לעבור אליו. בכל נספח: כפתור העתקה וקישור חזרה.</p>
-<div class="toc"><a class="toc-row" data-goto="a1" href="#a1"><span class="toc-n">נספח 1</span><span class="toc-t">מקרה לדוגמה, אגף שפ״ע ברשות מקומית</span><span class="toc-s num">שקף 15</span></a><a class="toc-row" data-goto="a2" href="#a2"><span class="toc-n">נספח 2</span><span class="toc-t">פרומפט 1, אבחון צורך רשותי</span><span class="toc-s num">שקף 16</span></a><a class="toc-row" data-goto="a3" href="#a3"><span class="toc-n">נספח 3</span><span class="toc-t">פרומפט 2, מפת הזדמנויות AI</span><span class="toc-s num">שקף 17</span></a><a class="toc-row" data-goto="a4" href="#a4"><span class="toc-n">נספח 4</span><span class="toc-t">פרומפט 3, בניית כלי עבודה חוזר</span><span class="toc-s num">שקף 18</span></a><a class="toc-row" data-goto="a5" href="#a5"><span class="toc-n">נספח 5</span><span class="toc-t">פרומפט 4, תוכנית פיילוט ל-30 יום</span><span class="toc-s num">שקף 19</span></a><a class="toc-row" data-goto="a6" href="#a6"><span class="toc-n">נספח 6</span><span class="toc-t">בונוס: שיחת אבחון עם מנהל אגף</span><span class="toc-s num">שקף 20</span></a><a class="toc-row" data-goto="a7" href="#a7"><span class="toc-n">נספח 7</span><span class="toc-t">בונוס: התאמה אישית של כלי AI למנמ״ר</span><span class="toc-s num">שקף 21</span></a><a class="toc-row" data-goto="a8a" href="#a8a"><span class="toc-n">נספח 8</span><span class="toc-t">בונוס: שלד למדיניות AI רשותית</span><span class="toc-s num">שקף 22</span></a></div>
+<div class="toc"><a class="toc-row" data-goto="a1" href="#a1"><span class="toc-n">נספח 1</span><span class="toc-t">מקרה לדוגמה, אגף שפ״ע ברשות מקומית</span><span class="toc-s num">שקף 18</span></a><a class="toc-row" data-goto="a2" href="#a2"><span class="toc-n">נספח 2</span><span class="toc-t">פרומפט 1, אבחון צורך רשותי</span><span class="toc-s num">שקף 19</span></a><a class="toc-row" data-goto="a3" href="#a3"><span class="toc-n">נספח 3</span><span class="toc-t">פרומפט 2, מפת הזדמנויות AI</span><span class="toc-s num">שקף 20</span></a><a class="toc-row" data-goto="a4" href="#a4"><span class="toc-n">נספח 4</span><span class="toc-t">פרומפט 3, בניית כלי עבודה חוזר</span><span class="toc-s num">שקף 21</span></a><a class="toc-row" data-goto="a5" href="#a5"><span class="toc-n">נספח 5</span><span class="toc-t">פרומפט 4, תוכנית פיילוט ל-30 יום</span><span class="toc-s num">שקף 22</span></a><a class="toc-row" data-goto="a6" href="#a6"><span class="toc-n">נספח 6</span><span class="toc-t">בונוס: שיחת אבחון עם מנהל אגף</span><span class="toc-s num">שקף 23</span></a><a class="toc-row" data-goto="a7" href="#a7"><span class="toc-n">נספח 7</span><span class="toc-t">בונוס: התאמה אישית של כלי AI למנמ״ר</span><span class="toc-s num">שקף 24</span></a><a class="toc-row" data-goto="a8a" href="#a8a"><span class="toc-n">נספח 8</span><span class="toc-t">בונוס: שלד למדיניות AI רשותית</span><span class="toc-s num">שקף 25</span></a></div>
 
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
@@ -828,14 +887,14 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
   <p class="lead sm">הרשות משתמשת במערכות קיימות וב-Microsoft 365. בשלב הראשון אין כוונה להחליף מערכות ליבה.</p>
   <p class="mission">המשימה: לאפיין את הבעיה, לזהות הזדמנויות ולבנות פתרון ראשוני שניתן לבחון.</p>
 </div>
-<div class="a-back bottom"><a class="jump back-link" data-goto="__back" data-fallback="w4" href="#w4">→ חזרה לבחירת האתגר · שקף 4</a></div>
+<div class="a-back bottom"><a class="jump back-link" data-goto="__back" data-fallback="w4" href="#w4">→ חזרה לבחירת האתגר · שקף 5</a></div>
 
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
 <section class="slide " id="a2" data-part="5" data-time="נספחים">
 <div class="kicker">נספח 2 · פרומפט מלא</div><h2 class="title a-title">פרומפט 1, אבחון צורך רשותי</h2>
-<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="w5" href="#w5">→ חזרה לתרגיל 1 · שקף 5</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">פעל כיועץ לניתוח ולשיפור תהליכי עבודה ברשויות מקומיות.
+<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="w5" href="#w5">→ חזרה לתרגיל 1 · שקף 6</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">פעל כיועץ לניתוח ולשיפור תהליכי עבודה ברשויות מקומיות.
 אני מנמ״ר המעוניין להבין תהליך עבודה רשותי ולזהות הזדמנויות לשיפור באמצעות AI.
 נתח את התהליך שאתאר לפי השלבים הבאים:
 1. מטרת התהליך והתוצאה הרצויה.
@@ -853,7 +912,7 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 </section>
 <section class="slide " id="a3" data-part="5" data-time="נספחים">
 <div class="kicker">נספח 3 · פרומפט מלא</div><h2 class="title a-title">פרומפט 2, מפת הזדמנויות AI</h2>
-<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="w7" href="#w7">→ חזרה לתרגיל 2 · שקף 7</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בהמשך לאפיון התהליך שביצענו, פעל כיועץ להטמעה פרקטית של GenAI ברשות מקומית.
+<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="w7" href="#w7">→ חזרה לתרגיל 2 · שקף 8</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בהמשך לאפיון התהליך שביצענו, פעל כיועץ להטמעה פרקטית של GenAI ברשות מקומית.
 זהה עד חמש הזדמנויות לשיפור התהליך.
 עבור כל הזדמנות הצג:
 1. הבעיה שהיא נועדה לפתור.
@@ -871,7 +930,7 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 </section>
 <section class="slide " id="a4" data-part="5" data-time="נספחים">
 <div class="kicker">נספח 4 · פרומפט מלא</div><h2 class="title a-title">פרומפט 3, בניית כלי עבודה חוזר</h2>
-<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="w10" href="#w10">→ חזרה לתרגיל 3 · שקף 10</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בהתבסס על הצורך והפתרון שבחרנו, פעל כמומחה לאפיון ולבניית כלי עבודה מקצועיים מבוססי AI.
+<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="w10" href="#w10">→ חזרה לתרגיל 3 · שקף 11</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">בהתבסס על הצורך והפתרון שבחרנו, פעל כמומחה לאפיון ולבניית כלי עבודה מקצועיים מבוססי AI.
 צור כלי ראשוני בצורת פרומפט חוזר, שאוכל להפעיל בשיחה חדשה.
 הגדר:
 1. התפקיד המקצועי של הכלי.
@@ -890,7 +949,7 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 </section>
 <section class="slide " id="a5" data-part="5" data-time="נספחים">
 <div class="kicker">נספח 5 · פרומפט מלא</div><h2 class="title a-title">פרומפט 4, תוכנית פיילוט ל-30 יום</h2>
-<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="w12" href="#w12">→ חזרה לתכנון הפיילוט · שקף 12</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">פעל כיועץ להטמעה ארגונית של AI ברשות מקומית.
+<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="w12" href="#w12">→ חזרה לתכנון הפיילוט · שקף 15</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">פעל כיועץ להטמעה ארגונית של AI ברשות מקומית.
 בהמשך לאפיון ולפתרון הראשוני שבנינו, הכן תוכנית פיילוט מבוקרת ל-30 יום.
 כלול:
 1. מטרת הפיילוט והתוצאה הרצויה.
@@ -910,7 +969,7 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 </section>
 <section class="slide " id="a6" data-part="5" data-time="נספחים">
 <div class="kicker">נספח 6 · בונוס</div><h2 class="title a-title">פרומפט בונוס, שיחת אבחון עם מנהל אגף</h2>
-<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="a0" href="#a0">→ חזרה לרשימת הנספחים · שקף 14</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">אני מנמ״ר ברשות מקומית ומתכונן לפגישת עבודה של 30–40 דקות עם מנהל אגף.
+<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="a0" href="#a0">→ חזרה לרשימת הנספחים · שקף 17</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">אני מנמ״ר ברשות מקומית ומתכונן לפגישת עבודה של 30–40 דקות עם מנהל אגף.
 פעל כיועץ לשיפור תהליכים ארגוניים ולהטמעת AI.
 בנה עבורי שאלון מקצועי וקצר שיעזור לי להבין את מטרות האגף, תהליכי העבודה, המשימות החוזרות, צווארי הבקבוק, המידע הקיים והבעיות שהמנהל רוצה לפתור.
 מנהל האגף אינו נדרש להכיר את עולם ה-AI. השאלות צריכות להתמקד בעבודה ובצרכים שלו, ולא בכלים טכנולוגיים.
@@ -921,7 +980,7 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 </section>
 <section class="slide " id="a7" data-part="5" data-time="נספחים">
 <div class="kicker">נספח 7 · בונוס</div><h2 class="title a-title">פרומפט בונוס, התאמה אישית של כלי AI למנמ״ר</h2>
-<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="a0" href="#a0">→ חזרה לרשימת הנספחים · שקף 14</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">עזור לי לבנות הנחיות מקצועיות מותאמות אישית לשימוש שלי בכלי AI בתפקיד מנמ״ר ברשות מקומית.
+<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="a0" href="#a0">→ חזרה לרשימת הנספחים · שקף 17</a></div><div class="a-prompt"><div class="prompt full "><span class="plabel">להעתקה</span><button class="copy-btn" type="button">העתקה</button><div class="ptext">עזור לי לבנות הנחיות מקצועיות מותאמות אישית לשימוש שלי בכלי AI בתפקיד מנמ״ר ברשות מקומית.
 שאל אותי תחילה שאלות קצרות על תחומי האחריות שלי, סוגי המשימות, סביבת העבודה הטכנולוגית, הכלים המאושרים, המגבלות המקצועיות והעדפותיי לגבי צורת קבלת התשובות.
 אל תבקש ממני מידע אישי, חסוי, פרטי גישה או פרטים רגישים על מערכות הרשות.
 לאחר שאענה, צור עבורי טקסט קצר וממוקד שניתן לשלב בהנחיות האישיות של כלי AI או בתחילת שיחה.
@@ -932,7 +991,7 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 </section>
 <section class="slide " id="a8a" data-part="5" data-time="נספחים">
 <div class="kicker">נספח 8 · בונוס · חלק 1 מתוך 2</div><h2 class="title a-title">פרומפט בונוס, שלד למדיניות AI רשותית</h2>
-<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="a0" href="#a0">→ חזרה לרשימת הנספחים · שקף 14</a></div><div class="a-prompt"><div class="prompt full " data-join="p8a,p8b"><span class="plabel">להעתקה · חלק 1</span><button class="copy-btn" type="button">העתקה</button><div class="ptext" id="p8a">פעל כיועץ לתכנון מדיניות ארגונית לשימוש אחראי בבינה מלאכותית ברשות מקומית.
+<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="a0" href="#a0">→ חזרה לרשימת הנספחים · שקף 17</a></div><div class="a-prompt"><div class="prompt full " data-join="p8a,p8b"><span class="plabel">להעתקה · חלק 1</span><button class="copy-btn" type="button">העתקה</button><div class="ptext" id="p8a">פעל כיועץ לתכנון מדיניות ארגונית לשימוש אחראי בבינה מלאכותית ברשות מקומית.
 המטרה היא לבנות טיוטה ראשונית למסמך מדיניות שתשמש לדיון ולאישור של גורמי המקצוע ברשות.
 ראשית שאל אותי על סביבת העבודה המאושרת, בעלי התפקידים, הכלים וההרשאות הקיימות, סוגי השימושים הצפויים ומגבלות הארגון.
 לאחר מכן הצע מבנה מדיניות הכולל:
@@ -940,13 +999,13 @@ table.t.mini-map { position: absolute; left: var(--pad-x); width: 1180px; bottom
 2. תחולה ואחריות.
 3. כלים וסביבות שימוש מאושרות.
 4. סוגי מידע מותרים ואסורים לשיתוף.
-5. פרטיות ואבטחת מידע.</div></div></div><div class="a-cont">ההמשך בשקף 23 · כפתור "העתקה" מעתיק את שני החלקים יחד</div>
+5. פרטיות ואבטחת מידע.</div></div></div><div class="a-cont">ההמשך בשקף 26 · כפתור "העתקה" מעתיק את שני החלקים יחד</div>
 <div class="chrome"><span class="snum"></span><span class="cplabel"></span><span class="parts"></span><span class="ctitle">מהצורך הרשותי לפתרון AI ראשון</span></div>
 
 </section>
 <section class="slide " id="a8b" data-part="5" data-time="נספחים">
 <div class="kicker">נספח 8 · בונוס · חלק 2 מתוך 2</div><h2 class="title a-title">פרומפט בונוס, שלד למדיניות AI רשותית (המשך)</h2>
-<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="a0" href="#a0">→ חזרה לרשימת הנספחים · שקף 14</a></div><div class="a-prompt"><div class="prompt full " data-join="p8a,p8b"><span class="plabel">להעתקה · חלק 2</span><button class="copy-btn" type="button">העתקה</button><div class="ptext" id="p8b">6. בדיקת אמינות ובקרה אנושית.
+<div class="a-back"><a class="jump back-link" data-goto="__back" data-fallback="a0" href="#a0">→ חזרה לרשימת הנספחים · שקף 17</a></div><div class="a-prompt"><div class="prompt full " data-join="p8a,p8b"><span class="plabel">להעתקה · חלק 2</span><button class="copy-btn" type="button">העתקה</button><div class="ptext" id="p8b">6. בדיקת אמינות ובקרה אנושית.
 7. שימוש בסוכנים ובאוטומציות.
 8. תהליך לאישור שימושים חדשים.
 9. הדרכת עובדים ודיווח על אירועים.
