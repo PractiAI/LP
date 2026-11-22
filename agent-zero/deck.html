@@ -158,7 +158,22 @@ h2{font-family:var(--fd);font-weight:900;font-size:58px;line-height:1.12;margin-
 .bar{position:fixed;top:0;right:0;height:4px;background:var(--accent);z-index:5;transition:width .3s}
 .hud{position:fixed;bottom:12px;left:16px;z-index:6;display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted);opacity:.25;transition:opacity .2s}
 .hud:hover{opacity:1}
-.hud button{font:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 12px;cursor:pointer;color:var(--ink)}
+.hud button,.hud a{font:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 12px;cursor:pointer;color:var(--ink);text-decoration:none}
+.hud .home{background:var(--accent);color:#fff;border-color:var(--accent)}
+body.embedded .hud,body.embedded .bar{display:none!important}
+body.embedded .stage{box-shadow:none;border-radius:0}
+@media (hover:none),(max-width:900px){.hud{opacity:1;left:50%;transform:translateX(-50%);bottom:10px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:22px;padding:6px 8px;box-shadow:0 10px 30px -14px rgba(19,35,58,.5)}.hud .k{display:none}}
+.ov{position:fixed;inset:0;z-index:20;background:rgba(236,234,227,.97);overflow:auto;padding:28px;display:none}
+body.overview .ov{display:block}
+.ov-head{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto 18px;font-size:18px;font-weight:700}
+.ov-head button{font:inherit;font-size:15px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:5px 14px;cursor:pointer}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;max-width:1400px;margin:0 auto}
+.ov-item{background:none;border:2px solid transparent;border-radius:10px;padding:0;cursor:pointer;text-align:right;font:inherit;color:var(--ink)}
+.ov-item.cur{border-color:var(--accent)}
+.ov-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:8px;box-shadow:0 8px 20px -12px rgba(19,35,58,.5);background:var(--paper)}
+.ov-thumb .stage{position:absolute;top:0;right:0;transform-origin:top right;pointer-events:none;box-shadow:none}
+.ov-cap{display:block;font-size:14px;padding:6px 4px;color:var(--ink-2)}
+.ov-cap b{color:var(--accent-2);margin-inline-end:6px}
 /* presenter notes */
 .notes{position:fixed;bottom:0;right:0;left:0;background:rgba(19,35,58,.95);color:#fff;padding:14px 24px 16px;font-size:16px;line-height:1.55;z-index:4;max-height:34vh;overflow:auto;display:none}
 body.show-notes .slide.on .notes{display:block}
@@ -208,10 +223,12 @@ body.show-notes .slide.on .notes{display:block}
 <section class="slide" id="s26" data-part="שגרות" aria-label="שקף 26: מה אפשר לעשות עם הסוכן שלנו מחר בבוקר?"><div class="stage"><div class="split"><div class="txt"><div class="kick">שגרות</div><h2>מה אפשר לעשות עם הסוכן שלנו מחר בבוקר?</h2><ul class="pts"><li>להריץ את המיומנות על חומר אמיתי ומותר.</li><li>לשפר את המיומנות לפי התוצר הראשון.</li><li>לבחור משימה אחת נוספת, באותה שיטה.</li></ul></div><div class="vis"><div class="morning"><div class="clock">08:00</div><div class="m-list"><div>☕ דוח התקדמות מחכה בתיקיית התוצרים</div><div>✎ טיוטה מוכנה לעריכה</div><div>✓ נתונים חסרים מסומנים מראש</div></div></div></div></div><div class="slide-foot"><span>שגרות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">26</span></div></div></section>
 <section class="slide" id="s27" data-part="שגרות" aria-label="שקף 27: הרשאות, פרטיות ובדיקת תוצאות"><div class="stage"><div class="split"><div class="txt"><div class="kick">אחריות</div><h2>הרשאות, פרטיות ובדיקת תוצאות</h2></div><div class="vis"><div class="safe"><div><b>הרשאות</b>מתחילים ב־Manual. מרחיבים רק כשמבינים.</div><div><b>פרטיות</b>בלי שמות, בלי מסמכים חסויים, בלי סיסמאות.</div><div><b>בדיקה</b>כל תוצר נבדק בידי אדם לפני שימוש.</div><div><b>מקור</b>קובצי מקור לא משתנים. תוצרים נשמרים בנפרד.</div></div></div></div><div class="slide-foot"><span>שגרות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">27</span></div></div></section>
 <section class="slide" id="s28" data-part="שגרות" aria-label="שקף 28: הסוכן הראשון שלי"><div class="stage"><div class="split"><div class="txt"><div class="kick">סיכום</div><h2>הסוכן הראשון שלי</h2><ul class="pts"><li>פרופיל · הוראות · תיקיית עבודה</li><li>משימה ראשונה · כלי אישי</li><li>מיומנות · תוצר · שגרה שנבדקה</li><li>להתחיל קטן, לשפר עד שעובד, ורק אז להרחיב.</li></ul><a class="site-link" href="my-agent.html" target="_blank" rel="noopener">באתר התרגול ← הסוכן הראשון שלי</a></div><div class="vis"><div class="tree"><div class="r root">▣ תיקיית העבודה שלי</div><div class="r">▤ הפרופיל-המקצועי-שלי.md</div><div class="r">▤ CLAUDE.md</div><div class="r">▣ חומרי-עבודה/</div><div class="r">▣ תוצרים/</div><div class="r">▣ .claude/skills/…/SKILL.md</div><div class="r ext">◷ שגרה מתוזמנת</div></div></div></div><div class="slide-foot"><span>שגרות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">28</span></div></div></section></main>
-<div class="hud"><button id="b-next" type="button" aria-label="השקף הבא">הבא ←</button><span id="cnt" class="num"></span><button id="b-prev" type="button" aria-label="השקף הקודם">→ הקודם</button><button id="b-fs" type="button">מסך מלא (F)</button></div>
+<div class="hud"><a class="home" href="index.html">← לאתר הסדנה</a><button id="b-next" type="button" aria-label="השקף הבא">הבא ←</button><span id="cnt" class="num"></span><button id="b-prev" type="button" aria-label="השקף הקודם">→ הקודם</button><button id="b-ov" type="button">כל השקפים<span class="k"> (O)</span></button><button id="b-fs" type="button">מסך מלא<span class="k"> (F)</span></button></div>
+<div class="ov" role="dialog" aria-label="מבט על כל השקפים"><div class="ov-head"><span>כל השקפים · בחרו שקף כדי לעבור אליו</span><button id="ov-close" type="button">סגירה (Esc)</button></div><div class="ov-grid" id="ov-grid"></div></div>
 <script>
 (function(){
   var slides=[].slice.call(document.querySelectorAll('.slide')),i=0,lock=0;
+  if(window.self!==window.top)document.body.classList.add('embedded');
   function fit(){var w=innerWidth,h=innerHeight;var s=Math.min(w/1600,h/900)*0.98;slides.forEach(function(sl){sl.querySelector('.stage').style.transform='scale('+s+')';sl.style.alignItems='center';});}
   function go(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach(function(s,k){s.classList.toggle('on',k===i);});document.querySelector('.bar').style.width=((i+1)/slides.length*100)+'%';document.getElementById('cnt').textContent=(i+1)+' / '+slides.length;if(history.replaceState)history.replaceState(null,'','#'+(i+1));}
   document.addEventListener('keydown',function(e){
@@ -219,9 +236,20 @@ body.show-notes .slide.on .notes{display:block}
     else if(['ArrowRight','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();go(i-1);}
     else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
     else if(e.key==='f'||e.key==='F'||e.key==='כ')fs();
+    else if(e.key==='o'||e.key==='O'||e.key==='ם')ov();
+    else if(e.key==='Escape'&&document.body.classList.contains('overview'))ov(false);
     
   });
-  document.addEventListener('click',function(e){if(e.target.closest('a,button,input,select,textarea,.hud'))return;if(String(window.getSelection()).length)return;go(i+1);});
+  var tx=null,ty=0;
+  document.addEventListener('touchstart',function(e){if(document.body.classList.contains('overview'))return;tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){go(i+(dx>0?1:-1));}},{passive:true});
+  var built=false;
+  function ov(show){var on=show===undefined?!document.body.classList.contains('overview'):show;
+    if(on&&!built){built=true;var g=document.getElementById('ov-grid');slides.forEach(function(sl,k){var b=document.createElement('button');b.type='button';b.className='ov-item';var t=document.createElement('div');t.className='ov-thumb';var st=sl.querySelector('.stage').cloneNode(true);st.style.transform='';t.appendChild(st);b.appendChild(t);var c=document.createElement('span');c.className='ov-cap';c.innerHTML='<b>'+(k+1)+'</b>'+(sl.querySelector('h1,h2')||{}).textContent;b.appendChild(c);b.onclick=function(){go(k);ov(false);};g.appendChild(b);});}
+    document.body.classList.toggle('overview',on);
+    if(on){document.querySelectorAll('.ov-item').forEach(function(b,k){b.classList.toggle('cur',k===i);var th=b.querySelector('.ov-thumb');th.firstChild.style.transform='scale('+(th.clientWidth/1600)+')';});var c=document.querySelector('.ov-item.cur');if(c)c.scrollIntoView({block:'center'});}}
+  document.getElementById('b-ov').onclick=function(){ov();};document.getElementById('ov-close').onclick=function(){ov(false);};
+  document.addEventListener('click',function(e){if(document.body.classList.contains('overview'))return;if(e.target.closest('a,button,input,select,textarea,.hud'))return;if(String(window.getSelection()).length)return;go(i+1);});
   document.addEventListener('wheel',function(e){var now=Date.now();if(window.self!==window.top&&!document.fullscreenElement)return;if(now<lock)return;lock=now+650;go(i+(e.deltaY>0?1:-1));},{passive:true});
   function fs(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
   document.getElementById('b-prev').onclick=function(){go(i-1)};document.getElementById('b-next').onclick=function(){go(i+1)};document.getElementById('b-fs').onclick=fs;
