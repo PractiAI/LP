@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>אייג׳נט זירו · מצגת | PractiAI</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+:root{--paper:#F3F2ED;--card:#fff;--ink:#13233A;--ink-2:#3D4B5F;--muted:#6A7689;--line:rgba(19,35,58,.12);--accent:#0C7F72;--accent-2:#0A6A60;--soft:rgba(12,127,114,.09);--signal:#A85D08;--signal-soft:rgba(184,104,12,.10);--violet:#5B4B8A;
+--fb:'Plex Hebrew','Arial Hebrew','Segoe UI',Arial,sans-serif;--fd:'Frank Ruhl','David',serif;--fm:'Plex Mono','Plex Hebrew',Consolas,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#E6E4DC;overflow:hidden;font-family:var(--fb);color:var(--ink)}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;align-items:center;justify-content:center}
+.slide.on{display:flex}
+.stage{width:1600px;height:900px;flex:0 0 auto;transform-origin:center center;position:relative;background:radial-gradient(900px 600px at 100% 0%,rgba(12,127,114,.10),transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(184,104,12,.06),transparent 60%),var(--paper);box-shadow:0 30px 80px -40px rgba(19,35,58,.45);border-radius:6px;overflow:hidden;padding:80px 96px 90px}
+code{font-family:var(--fm);font-size:.85em;background:var(--soft);color:var(--accent-2);padding:2px 8px;border-radius:6px;unicode-bidi:isolate;direction:ltr;display:inline-block}
+.kick{font-size:24px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.kick::before{content:"";width:40px;height:3px;background:var(--accent);border-radius:3px}
+h1{font-family:var(--fd);font-weight:900;font-size:150px;line-height:1;letter-spacing:-.01em}
+h2{font-family:var(--fd);font-weight:900;font-size:58px;line-height:1.12;margin-bottom:30px}
+.split{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;height:100%;align-items:center}
+.pts{list-style:none;display:flex;flex-direction:column;gap:16px}
+.pts li{font-size:29px;line-height:1.4;color:var(--ink-2);padding-inline-start:34px;position:relative}
+.pts li::before{content:"";position:absolute;right:0;top:15px;width:14px;height:14px;border-radius:50%;background:var(--accent)}
+.site-link{display:inline-block;margin-top:34px;font-size:20px;font-weight:700;color:var(--accent-2);text-decoration:none;border:2px solid rgba(12,127,114,.35);background:var(--card);border-radius:30px;padding:8px 20px}
+.slide-foot{position:absolute;bottom:28px;right:96px;left:96px;display:flex;justify-content:space-between;font-size:17px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.foot-note{font-size:20px;color:var(--muted);margin-top:18px;text-align:center}
+.title-wrap{height:100%;display:flex;flex-direction:column;justify-content:center}
+.logo{height:46px;width:auto;align-self:flex-start;margin-bottom:auto}
+.title-wrap h1{background:linear-gradient(90deg,#0B5C70,#0C7F72 55%,#13A08E);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:10px}
+.sub{font-size:46px;font-family:var(--fd);font-weight:700;color:var(--ink);margin-top:10px}
+.by{font-size:26px;color:var(--muted);margin-top:22px}
+.title-ladder{display:flex;gap:12px;margin-top:auto;align-items:flex-end}
+.title-ladder span{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 20px;font-size:21px;font-weight:700;margin-bottom:calc(var(--k)*16px);box-shadow:0 10px 24px -18px rgba(19,35,58,.4)}
+.title-ladder span:last-child{background:var(--accent);color:#fff;border-color:var(--accent)}
+.is-title .site-link{position:absolute;top:80px;left:96px;margin:0}
+.statement{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.statement h2{font-size:84px;max-width:1300px}
+.statement .kick::before{display:none}
+/* visuals */
+.vis{font-size:22px}
+.bubble{border-radius:18px;padding:12px 18px;margin-bottom:10px;max-width:90%;font-size:21px;line-height:1.4}
+.bubble.q{background:var(--accent);color:#fff;margin-inline-start:auto}
+.bubble.a{background:var(--card);border:1px solid var(--line)}
+.vs{display:grid;grid-template-columns:1fr 50px 1.2fr;gap:12px;align-items:stretch}
+.vs-col{background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column}
+.vs-col.agent{background:var(--card);border-color:rgba(12,127,114,.4);box-shadow:0 20px 40px -26px rgba(12,127,114,.6)}
+.vs-h{font-family:var(--fd);font-weight:900;font-size:34px;margin-bottom:14px}
+.vs-arrow{display:grid;place-items:center;font-size:40px;color:var(--accent)}
+.vs-cap{margin-top:auto;padding-top:12px;font-size:18px;color:var(--muted)}
+.act{background:var(--soft);border-radius:12px;padding:10px 14px;margin-bottom:8px;font-size:20px;border-inline-start:4px solid var(--accent)}
+.loop{position:relative;width:560px;height:560px;margin:auto}
+.loop::before{content:"";position:absolute;inset:70px;border:3px dashed rgba(12,127,114,.4);border-radius:50%}
+.loop-c{position:absolute;inset:200px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--fd);font-weight:900;font-size:34px}
+.loop-n{position:absolute;width:190px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;text-align:center;font-weight:700;font-size:26px;box-shadow:0 14px 30px -20px rgba(19,35,58,.5)}
+.loop-n small{display:block;font-size:17px;color:var(--muted);font-weight:400}
+.n1{top:0;left:185px}.n2{top:200px;left:0}.n3{bottom:0;left:185px}.n4{top:200px;right:0}
+.ladder{display:flex;align-items:flex-end;gap:12px;height:460px}
+.ladder .st{flex:1;background:var(--card);border:1px solid var(--line);border-radius:16px 16px 6px 6px;padding:16px;font-size:21px;font-weight:700;display:flex;flex-direction:column;gap:8px;box-shadow:0 14px 30px -22px rgba(19,35,58,.5)}
+.ladder .st b{width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--fd);font-size:24px}
+.s1{height:36%}.s2{height:52%}.s3{height:68%}.s4{height:84%}.s5{height:100%;background:linear-gradient(180deg,rgba(12,127,114,.12),#fff)!important}
+.steps{display:flex;flex-direction:column;gap:14px}
+.steps div{display:flex;gap:18px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;font-size:26px}
+.steps b{width:50px;height:50px;flex:0 0 50px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--fd);font-size:26px}
+.mock{display:grid;grid-template-columns:150px 1fr;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;height:440px;box-shadow:0 20px 50px -30px rgba(19,35,58,.5)}
+.mock-side{background:#ECEAE3;padding:16px 10px;display:flex;flex-direction:column;gap:8px}
+.ms-i{font-family:var(--fm);font-size:18px;padding:8px 12px;border-radius:10px;color:var(--ink-2);direction:ltr;text-align:right}
+.ms-i.on{background:var(--card);color:var(--accent-2);font-weight:700}
+.mock-main{padding:18px;display:flex;flex-direction:column}
+.mock-chat{flex:1}
+.mock-input{border:2px solid rgba(12,127,114,.35);border-radius:14px;padding:16px;color:var(--muted);font-size:20px}
+.mock-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pill{font-size:16px;border:1px solid var(--line);border-radius:20px;padding:4px 12px;background:#F6F7F4}
+.modes{display:flex;flex-direction:column;gap:12px}
+.modes div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px;display:flex;gap:18px;align-items:center}
+.modes b{font-family:var(--fm);font-size:22px;color:var(--accent-2);min-width:170px;direction:ltr;text-align:right}
+.modes span{font-size:21px;color:var(--ink-2)}
+.three-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.three-mini div{background:var(--soft);border-radius:14px;padding:12px;text-align:center;font-size:18px;color:var(--ink-2)}
+.three-mini b{display:block;font-size:24px;color:var(--ink)}
+.ctx{display:flex;flex-direction:column;gap:18px}
+.ctx>div{border-radius:18px;padding:22px;border:1px solid var(--line);background:rgba(255,255,255,.55)}
+.ctx-b{background:var(--card)!important;border-color:rgba(12,127,114,.4)!important}
+.ctx p{font-size:26px;font-weight:700;margin:8px 0}
+.ctx small{font-size:19px;color:var(--muted)}
+.tag{display:inline-block;font-size:16px;font-weight:700;background:#ECEAE3;border-radius:12px;padding:2px 12px}
+.tag.on{background:var(--accent);color:#fff}
+.chatflow{display:flex;flex-direction:column}
+.file{background:#FBFBF9;border:1px solid rgba(19,35,58,.2);border-radius:16px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(19,35,58,.5)}
+.file-h{background:#ECEAE3;padding:10px 18px;font-family:var(--fm);font-size:20px;color:var(--accent-2)}
+.file-list{padding:16px 54px 16px 20px;columns:2;font-size:20px;line-height:1.9}
+.file pre{font-family:var(--fm);font-size:20px;line-height:1.6;padding:18px 22px;white-space:pre-wrap;unicode-bidi:plaintext}
+.flow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+.flow>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:21px;font-weight:700}
+.flow>span{color:var(--accent);font-size:28px}
+.flow .hl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.flow .gate{background:var(--signal-soft);color:var(--signal);border-color:rgba(184,104,12,.35)}
+.flow.v{flex-direction:column;align-items:stretch;gap:0}
+.flow.v>div{text-align:center;position:relative;margin-bottom:26px}
+.flow.v>div:not(:last-child)::after{content:"↓";position:absolute;bottom:-27px;left:50%;transform:translateX(-50%);color:var(--accent);font-size:22px}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.rules div{background:var(--soft);border-radius:12px;padding:12px 16px;font-size:20px}
+.opps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.og{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.og-h{font-weight:900;font-size:22px;margin-bottom:10px;color:var(--accent-2)}
+.oc{background:var(--soft);border-radius:10px;padding:16px 10px;margin-bottom:8px;font-size:17px;text-align:center;color:var(--ink-2)}
+.dirs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.dirs div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.dirs i{font-style:normal;color:var(--accent);font-size:28px}
+.dirs b{font-size:23px}
+.dirs span{font-size:17px;color:var(--muted)}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.roles div{background:rgba(255,255,255,.6);border:1px dashed rgba(19,35,58,.2);border-radius:12px;padding:10px 14px;font-size:17px;color:var(--ink-2)}
+.roles b{display:block;font-size:19px;color:var(--ink)}
+.checkcard{background:var(--card);border:1px solid rgba(12,127,114,.35);border-radius:20px;padding:24px 30px;display:flex;flex-direction:column;gap:12px;font-size:26px;box-shadow:0 20px 50px -30px rgba(12,127,114,.6)}
+.cc-h{font-family:var(--fd);font-weight:900;font-size:32px;color:var(--accent-2)}
+.spec{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.spec div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 16px;font-size:20px;color:var(--muted);text-align:center}
+.spec b{display:block;font-size:26px;color:var(--ink)}
+.kb{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kb-c{background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:16px;padding:12px;min-height:300px}
+.kb-h{font-weight:900;font-size:22px;margin-bottom:10px}
+.kb-t{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:8px;font-size:18px}
+.cycle{display:flex;flex-direction:column;gap:6px;align-items:center}
+.cycle div{background:var(--card);border:1px solid var(--line);border-radius:30px;padding:12px 30px;font-size:24px;font-weight:700;min-width:360px;text-align:center}
+.cycle span{transform:rotate(-90deg);color:var(--accent);font-size:24px}
+.sessions{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sess{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;min-height:260px}
+.sess.empty{background:rgba(255,255,255,.4);border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.sess.empty p{font-size:80px;color:var(--muted);font-family:var(--fd)}
+.sess-h{font-weight:900;font-size:24px;margin-bottom:10px}
+.sess p{font-size:20px;color:var(--ink-2)}
+.skill-anat .sa-path{text-align:center;margin-bottom:16px;font-size:24px}
+.sa-g{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.sa-g div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-size:18px;color:var(--muted)}
+.sa-g b{font-size:22px;color:var(--ink);margin-inline-end:8px}
+.hw{display:flex;gap:30px;align-items:center;margin-top:20px}
+.hw>div{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:30px 50px;text-align:center;min-width:360px;box-shadow:0 20px 50px -30px rgba(19,35,58,.5)}
+.hw b{display:block;font-size:28px;color:var(--muted)}
+.hw span{display:block;font-family:var(--fd);font-weight:900;font-size:76px;color:var(--accent-2)}
+.hw small{font-size:20px;color:var(--ink-2)}
+.hw-plus{font-size:60px;color:var(--accent);background:none!important;border:none!important;box-shadow:none!important;min-width:0!important;padding:0!important}
+.morning{display:flex;gap:30px;align-items:center}
+.clock{width:200px;height:200px;border-radius:50%;background:var(--card);border:6px solid var(--accent);display:grid;place-items:center;font-family:var(--fm);font-size:44px;font-weight:700;flex:0 0 200px}
+.m-list{display:flex;flex-direction:column;gap:12px}
+.m-list div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:22px}
+.safe{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.safe div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;font-size:21px;color:var(--ink-2);min-height:170px}
+.safe b{display:block;font-family:var(--fd);font-size:30px;color:var(--accent-2);margin-bottom:6px}
+.tree{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 24px;font-size:24px}
+.tree .r{padding:9px 0;border-bottom:1px dashed var(--line);padding-inline-start:30px;unicode-bidi:plaintext}
+.tree .root{padding-inline-start:0;font-weight:900}
+.tree .ext{border-bottom:none;padding-inline-start:0;color:var(--accent-2);font-weight:700;border-top:1px solid var(--line);margin-top:6px}
+/* chrome */
+.bar{position:fixed;top:0;right:0;height:4px;background:var(--accent);z-index:5;transition:width .3s}
+.hud{position:fixed;bottom:12px;left:16px;z-index:6;display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted);opacity:.25;transition:opacity .2s}
+.hud:hover{opacity:1}
+.hud button{font:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 12px;cursor:pointer;color:var(--ink)}
+/* presenter notes */
+.notes{position:fixed;bottom:0;right:0;left:0;background:rgba(19,35,58,.95);color:#fff;padding:14px 24px 16px;font-size:16px;line-height:1.55;z-index:4;max-height:34vh;overflow:auto;display:none}
+body.show-notes .slide.on .notes{display:block}
+.notes b{color:#7FE0D2}
+.n-time{float:left;font-family:var(--fm);background:rgba(255,255,255,.1);border-radius:8px;padding:2px 10px}
+.n-demo{margin-top:6px;border-top:1px solid rgba(255,255,255,.15);padding-top:6px}
+@media print{html,body{overflow:visible;height:auto;background:#fff}.deck{position:static}.slide{position:relative;display:flex!important;page-break-after:always;height:auto}.stage{transform:none!important;box-shadow:none}.bar,.hud,.notes{display:none!important}}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<main class="deck"><section class="slide is-title" id="s1" data-part="מתחילים" aria-label="שקף 1: אייג׳נט זירו"><div class="stage"><div class="title-wrap"><img class="logo" src="assets/practiai-logo-light.png" alt="PractiAI"><div class="kick">סדנה מעשית · 3 שעות</div><h1>אייג׳נט זירו</h1><p class="sub">מאפס לסוכן בינה מלאכותית משלך</p><p class="by">טל חקוקי · PractiAI</p><div class="title-ladder"><span style="--k:0">הסוכן מכיר אותי</span><span style="--k:1">מגלים הזדמנויות</span><span style="--k:2">מבצעים ובונים</span><span style="--k:3">מיומנות</span><span style="--k:4">שגרה</span></div><a class="site-link" href="index.html" target="_blank" rel="noopener">באתר התרגול ← מתחילים כאן</a></div><div class="slide-foot"><span>מתחילים</span><span>אייג׳נט זירו · PractiAI</span><span class="num">1</span></div></div></section>
+<section class="slide" id="s2" data-part="מתחילים" aria-label="שקף 2: משיחה עם בינה מלאכותית לעבודה עם סוכן"><div class="stage"><div class="split"><div class="txt"><div class="kick">פתיחה</div><h2>משיחה עם בינה מלאכותית לעבודה עם סוכן</h2><ul class="pts"><li>בשיחה, אתם עושים את העבודה ובינה מלאכותית עונה.</li><li>עם סוכן, אתם מגדירים מטרה, והוא קורא, מתכנן, פועל ובודק.</li><li>התפקיד שלכם משתנה: מהעתק־הדבק להגדרה, אישור ובדיקה.</li></ul></div><div class="vis"><div class="vs"><div class="vs-col"><div class="vs-h">שיחה</div><div class="bubble q">כתוב לי סיכום של הפגישה</div><div class="bubble a">הנה סיכום…</div><div class="vs-cap">אתם מעתיקים, מדביקים, שומרים</div></div><div class="vs-arrow">←</div><div class="vs-col agent"><div class="vs-h">סוכן</div><div class="act">קורא את הקבצים בתיקייה</div><div class="act">מציג תוכנית ומבקש אישור</div><div class="act">יוצר קובץ סיכום בתיקיית התוצרים</div><div class="act">בודק את התוצר ומדווח</div><div class="vs-cap">אתם מגדירים, מאשרים ובודקים</div></div></div></div></div><div class="slide-foot"><span>מתחילים</span><span>אייג׳נט זירו · PractiAI</span><span class="num">2</span></div></div></section>
+<section class="slide" id="s3" data-part="מתחילים" aria-label="שקף 3: מהו סוכן ומה הוא מסוגל לעשות?"><div class="stage"><div class="split"><div class="txt"><div class="kick">פתיחה</div><h2>מהו סוכן ומה הוא מסוגל לעשות?</h2><ul class="pts"><li>מקבל מטרה, לא רק שאלה.</li><li>עובד על קבצים אמיתיים בתיקייה שבחרתם.</li><li>מציג תוכנית ומבקש אישור לפני שינויים.</li><li>בודק את מה שעשה ומדווח מה לא נבדק.</li></ul></div><div class="vis"><div class="loop"><div class="loop-c">מטרה</div><div class="loop-n n1">מבין<small>קורא קבצים והקשר</small></div><div class="loop-n n2">מתכנן<small>מציג תוכנית</small></div><div class="loop-n n3">פועל<small>יוצר ומשנה קבצים</small></div><div class="loop-n n4">בודק<small>מוודא ומדווח</small></div></div></div></div><div class="slide-foot"><span>מתחילים</span><span>אייג׳נט זירו · PractiAI</span><span class="num">3</span></div></div></section>
+<section class="slide" id="s4" data-part="מתחילים" aria-label="שקף 4: מסלול חמש מדרגות ההצלחה"><div class="stage"><div class="split"><div class="txt"><div class="kick">מה נבנה היום</div><h2>מסלול חמש מדרגות ההצלחה</h2><ul class="pts"><li>כל אחד בונה סוכן לעבודה שלו.</li><li>אין תוצר אחיד: ההצלחה נמדדת בתהליך.</li><li>מתחילים קטן, ומרחיבים רק אחרי שעובד.</li><li>מסלול דוגמה פתוח לכולם, בכל שלב.</li></ul><a class="site-link" href="index.html" target="_blank" rel="noopener">באתר התרגול ← מתחילים כאן</a></div><div class="vis"><div class="ladder"><div class="st s1"><b>1</b>הסוכן מכיר אותי</div><div class="st s2"><b>2</b>מגלים הזדמנויות</div><div class="st s3"><b>3</b>מבצעים ובונים</div><div class="st s4"><b>4</b>מיומנות</div><div class="st s5"><b>5</b>שגרה</div></div></div></div><div class="slide-foot"><span>מתחילים</span><span>אייג׳נט זירו · PractiAI</span><span class="num">4</span></div></div></section>
+<section class="slide" id="s5" data-part="מתחילים" aria-label="שקף 5: התקנת קלוד למחשב"><div class="stage"><div class="split"><div class="txt"><div class="kick">התקנה</div><h2>התקנת קלוד למחשב</h2><a class="site-link" href="setup.html" target="_blank" rel="noopener">באתר התרגול ← התקנה והיכרות</a></div><div class="vis"><div class="steps"><div><b>1</b><span>מורידים מ־<code>claude.ai/download</code></span></div><div><b>2</b><span>מתקינים ומתחברים לחשבון</span></div><div><b>3</b><span>לוחצים על הלשונית <strong>Code</strong></span></div><div><b>4</b><span><strong>Open folder…</strong> ובוחרים את תיקיית העבודה</span></div></div><p class="foot-note">נדרש מנוי Pro, Max, Ultra, Team או Enterprise. אין צורך בכלי פיתוח.</p></div></div><div class="slide-foot"><span>מתחילים</span><span>אייג׳נט זירו · PractiAI</span><span class="num">5</span></div></div></section>
+<section class="slide" id="s6" data-part="מתחילים" aria-label="שקף 6: היכרות עם סביבת קלוד קוד"><div class="stage"><div class="split"><div class="txt"><div class="kick">התקנה</div><h2>היכרות עם סביבת קלוד קוד</h2><ul class="pts"><li>סרגל הצד: Code, Scheduled, Customize.</li><li>תיבת הכתיבה: כאן מדביקים פרומפטים.</li><li>השורה שמתחת: תיקייה, הרשאות, מודל ו־+.</li></ul><a class="site-link" href="setup.html" target="_blank" rel="noopener">באתר התרגול ← התקנה והיכרות</a></div><div class="vis"><div class="mock"><div class="mock-side"><div class="ms-i on">Code</div><div class="ms-i">Scheduled</div><div class="ms-i">Customize</div></div><div class="mock-main"><div class="mock-chat"><div class="bubble a">הנה הקבצים בתיקייה: …</div></div><div class="mock-input">מה תרצו שקלוד יעשה?</div><div class="mock-row"><span class="pill">Local · תיקיית העבודה שלי</span><span class="pill">Manual</span><span class="pill">מודל</span><span class="pill">+</span></div></div></div></div></div><div class="slide-foot"><span>מתחילים</span><span>אייג׳נט זירו · PractiAI</span><span class="num">6</span></div></div></section>
+<section class="slide" id="s7" data-part="מתחילים" aria-label="שקף 7: תיקיות, מודלים והרשאות: מה צריך לדעת כדי להתחיל?"><div class="stage"><div class="split"><div class="txt"><div class="kick">התקנה</div><h2>תיקיות, מודלים והרשאות: מה צריך לדעת כדי להתחיל?</h2><a class="site-link" href="setup.html" target="_blank" rel="noopener">באתר התרגול ← התקנה והיכרות</a></div><div class="vis"><div class="modes"><div><b>Manual</b><span>שואל לפני כל עריכה ופקודה. מומלץ להתחלה.</span></div><div><b>Accept edits</b><span>מאשר עריכות קבצים מעצמו, ושואל על השאר.</span></div><div><b>Plan</b><span>חוקר ומציע תוכנית, בלי לשנות קבצים.</span></div></div><div class="three-mini"><div><b>תיקייה</b>מה קלוד רואה</div><div><b>מודל</b>מי חושב</div><div><b>הרשאות</b>מה מותר בלי לשאול</div></div></div></div><div class="slide-foot"><span>מתחילים</span><span>אייג׳נט זירו · PractiAI</span><span class="num">7</span></div></div></section>
+<section class="slide" id="s8" data-part="הסוכן מכיר אותי" aria-label="שקף 8: לפני שנותנים משימות, נותנים הקשר"><div class="stage"><div class="split"><div class="txt"><div class="kick">הסוכן מכיר אותי</div><h2>לפני שנותנים משימות, נותנים הקשר</h2><ul class="pts"><li>סוכן בלי הקשר מציע רעיונות כלליים.</li><li>סוכן עם הקשר מציע את מה שמתאים לכם.</li><li>ההקשר נבנה בשיחה ונשמר בקובץ.</li></ul></div><div class="vis"><div class="ctx"><div class="ctx-a"><div class="tag">בלי הקשר</div><p>"תציע לי רעיונות לשיפור העבודה"</p><small>רעיונות כלליים שמתאימים לכולם, ולכן לאף אחד</small></div><div class="ctx-b"><div class="tag on">עם הקשר</div><p>"קרא את הפרופיל שלי והצע לי שש הזדמנויות"</p><small>הצעות שמבוססות על התפקיד, המשימות והאתגרים שלכם</small></div></div></div></div><div class="slide-foot"><span>הסוכן מכיר אותי</span><span>אייג׳נט זירו · PractiAI</span><span class="num">8</span></div></div></section>
+<section class="slide" id="s9" data-part="הסוכן מכיר אותי" aria-label="שקף 9: שיחת היכרות מקצועית עם קלוד"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 1</div><h2>שיחת היכרות מקצועית עם קלוד</h2><ul class="pts"><li>פרומפט מלא: עד שמונה שאלות.</li><li>רוצה להתחיל מהר? שלוש שאלות בלבד.</li><li>אין צורך בשם הארגון או בשמות אנשים.</li><li>בסוף: סיכום שאתם מאשרים או מתקנים.</li></ul><a class="site-link" href="meet.html" target="_blank" rel="noopener">באתר התרגול ← קלוד לומד להכיר אותי</a></div><div class="vis"><div class="chatflow"><div class="bubble a">מה התפקיד שלך ומה תחומי האחריות שלך?</div><div class="bubble q">אני מנהלת פרויקטים בחברה בתחום הבנייה…</div><div class="bubble a">אילו משימות גוזלות ממך הכי הרבה זמן?</div><div class="bubble q">דיווחי התקדמות שבועיים</div><div class="bubble a">הנה מה שהבנתי עלייך. לאשר או לתקן?</div></div><p class="foot-note">שאלה אחת בכל פעם · עד שמונה שאלות · אפשר לדלג</p></div></div><div class="slide-foot"><span>הסוכן מכיר אותי</span><span>אייג׳נט זירו · PractiAI</span><span class="num">9</span></div></div></section>
+<section class="slide" id="s10" data-part="הסוכן מכיר אותי" aria-label="שקף 10: יוצרים את קובץ הפרופיל המקצועי"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 2</div><h2>יוצרים את קובץ הפרופיל המקצועי</h2><ul class="pts"><li>12 כותרות קבועות.</li><li>רק מידע שסיפקתם.</li><li>קלוד מציג לפני שמירה.</li><li>אתם מוחקים כל פרט מיותר.</li></ul><a class="site-link" href="profile.html" target="_blank" rel="noopener">באתר התרגול ← הפרופיל המקצועי שלי</a></div><div class="vis"><div class="file"><div class="file-h">הפרופיל-המקצועי-שלי.md</div><ol class="file-list"><li>התפקיד והעולם המקצועי</li><li>מטרות התפקיד</li><li>תחומי אחריות</li><li>משימות שגרתיות</li><li>מסמכים ומידע</li><li>כלים ומערכות</li><li>תוצרים נדרשים</li><li>אתגרים חוזרים</li><li>הזדמנויות ל־AI</li><li>העדפות עבודה</li><li>מגבלות והרשאות</li><li>מידע שחסר</li></ol></div></div></div><div class="slide-foot"><span>הסוכן מכיר אותי</span><span>אייג׳נט זירו · PractiAI</span><span class="num">10</span></div></div></section>
+<section class="slide" id="s11" data-part="הסוכן מכיר אותי" aria-label="שקף 11: איך הפרופיל ישפר את העבודה שלנו בהמשך?"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 2</div><h2>איך הפרופיל ישפר את העבודה שלנו בהמשך?</h2><ul class="pts"><li>ההזדמנויות יבוססו עליו.</li><li>קובץ ההוראות יטען אותו בכל סשן.</li><li>המיומנות תדע למי היא כותבת.</li><li>מעדכנים אותו כמו כל מסמך.</li></ul></div><div class="vis"><div class="flow"><div>שיחת היכרות</div><span>←</span><div class="hl">קובץ פרופיל</div><span>←</span><div>הזדמנויות מותאמות</div><span>←</span><div>משימות, כלים, מיומנות</div></div><div class="rules"><div>✓ רק מה שסיפרתם</div><div>✓ סעיף ריק = "עדיין לא הוגדר"</div><div>✓ בלי מידע מזהה</div><div>✓ אתם מאשרים לפני שמירה</div></div></div></div><div class="slide-foot"><span>הסוכן מכיר אותי</span><span>אייג׳נט זירו · PractiAI</span><span class="num">11</span></div></div></section>
+<section class="slide" id="s12" data-part="מגלים הזדמנויות" aria-label="שקף 12: אילו פעולות בעבודה שלי אפשר לשפר באמצעות סוכן?"><div class="stage"><div class="split"><div class="txt"><div class="kick">מגלים הזדמנויות</div><h2>אילו פעולות בעבודה שלי אפשר לשפר באמצעות סוכן?</h2><ul class="pts"><li>קלוד קורא את הפרופיל ומציע שש הזדמנויות.</li><li>כל הזדמנות עם צורך, קלט, תוצר ובדיקה.</li><li>בלי אוטומציה רק כי היא אפשרית.</li></ul><a class="site-link" href="opportunities.html" target="_blank" rel="noopener">באתר התרגול ← מגלים הזדמנויות</a></div><div class="vis"><div class="opps"><div class="og"><div class="og-h">2 משימות</div><div class="oc">מהר יותר עם סוכן</div><div class="oc">מהר יותר עם סוכן</div></div><div class="og"><div class="og-h">2 כלים קטנים</div><div class="oc">עוזרים בעבודה</div><div class="oc">עוזרים בעבודה</div></div><div class="og"><div class="og-h">2 תהליכים חוזרים</div><div class="oc">מיומנות או שגרה</div><div class="oc">מיומנות או שגרה</div></div></div><p class="foot-note">לכל הזדמנות: צורך · פעולה · קלט · תוצר · פשטות · רגישות · בדיקה</p></div></div><div class="slide-foot"><span>מגלים הזדמנויות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">12</span></div></div></section>
+<section class="slide" id="s13" data-part="מגלים הזדמנויות" aria-label="שקף 13: שלושה כיוונים: ביצוע משימה, בניית כלי, יצירת שגרה"><div class="stage"><div class="split"><div class="txt"><div class="kick">מגלים הזדמנויות</div><h2>שלושה כיוונים: ביצוע משימה, בניית כלי, יצירת שגרה</h2></div><div class="vis"><div class="dirs"><div><i>▶</i><b>ביצוע משימה</b><span>סיכום, טיוטה, דוח, ארגון קבצים</span></div><div><i>◧</i><b>בניית כלי</b><span>עמוד אינטראקטיבי קטן שעובד במחשב</span></div><div><i>◷</i><b>יצירת שגרה</b><span>תהליך חוזר שמופעל לפי לוח זמנים</span></div></div><div class="roles"><div><b>משאבי אנוש</b>תוכנית קליטה</div><div><b>ניהול פרויקטים</b>דוח התקדמות</div><div><b>מכירות</b>סיכום פגישה והמשך טיפול</div><div><b>הוראה</b>מערך שיעור</div><div><b>בעלי עסקים</b>תוכנית פעילות שבועית</div><div><b>מנהלה</b>מסמכים אחידים</div></div><p class="foot-note">דוגמאות בלבד. כל אחד מקבל הצעות לפי הפרופיל שלו.</p></div></div><div class="slide-foot"><span>מגלים הזדמנויות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">13</span></div></div></section>
+<section class="slide" id="s14" data-part="מגלים הזדמנויות" aria-label="שקף 14: בוחרים הזדמנות אישית ובודקים שהיא ישימה"><div class="stage"><div class="split"><div class="txt"><div class="kick">מגלים הזדמנויות</div><h2>בוחרים הזדמנות אישית ובודקים שהיא ישימה</h2><ul class="pts"><li>בוחרים את הקטנה והפשוטה.</li><li>פרומפט שני: הופכים אותה למשימת התנסות.</li><li>מתחילים בנתוני דוגמה, לא במידע רגיש.</li></ul><a class="site-link" href="opportunities.html" target="_blank" rel="noopener">באתר התרגול ← מגלים הזדמנויות</a></div><div class="vis"><div class="checkcard"><div class="cc-h">משימת התנסות טובה</div><div>✓ מטרה ברורה</div><div>✓ קלט זמין, או נתוני דוגמה</div><div>✓ תוצר מינימלי מוגדר</div><div>✓ ברור מה אסור לסוכן</div><div>✓ אפשר לבדוק ברבע שעה</div></div></div></div><div class="slide-foot"><span>מגלים הזדמנויות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">14</span></div></div></section>
+<section class="slide" id="s15" data-part="מגלים הזדמנויות" aria-label="שקף 15: מתכנון לביצוע: משימה ראשונה"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 4</div><h2>מתכנון לביצוע: משימה ראשונה</h2><ul class="pts"><li>קלוד בודק אילו קבצים יש.</li><li>מציג תוכנית, ומחכה לאישור.</li><li>מבצע בתיקיית הפרויקט בלבד.</li><li>מדווח מה בדק בפועל.</li></ul><a class="site-link" href="first-task.html" target="_blank" rel="noopener">באתר התרגול ← מבצעים משימה ראשונה</a></div><div class="vis"><div class="flow v"><div>בדיקת קבצים ומידע</div><div class="hl">תוכנית קצרה</div><div class="gate">האישור שלכם</div><div>ביצוע בתיקיית הפרויקט</div><div>תוצר + "מה בדקתי בפועל"</div></div></div></div><div class="slide-foot"><span>מגלים הזדמנויות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">15</span></div></div></section>
+<section class="slide" id="s16" data-part="יוצרים כלי" aria-label="שקף 16: איך הופכים צורך מקצועי לכלי פשוט?"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 5</div><h2>איך הופכים צורך מקצועי לכלי פשוט?</h2><ul class="pts"><li>אפיון לפני בנייה.</li><li>שלוש פונקציות לכל היותר.</li><li>לא כל צורך מחייב אפליקציה: תבנית אינטראקטיבית היא גם כלי.</li></ul><a class="site-link" href="tool.html" target="_blank" rel="noopener">באתר התרגול ← בונים כלי אישי</a></div><div class="vis"><div class="spec"><div><b>מי</b>ישתמש?</div><div><b>איזו בעיה</b>הוא פותר?</div><div><b>3 פונקציות</b>לא יותר</div><div><b>קלט</b>מה מזינים?</div><div><b>תוצר</b>מה מקבלים?</div><div><b>בדיקה</b>איך יודעים שעובד?</div></div><p class="foot-note">מקומי · בלי חשבון · בלי שרת · בלי מסד נתונים</p></div></div><div class="slide-foot"><span>יוצרים כלי</span><span>אייג׳נט זירו · PractiAI</span><span class="num">16</span></div></div></section>
+<section class="slide" id="s17" data-part="יוצרים כלי" aria-label="שקף 17: בניית גרסה ראשונה בשפה טבעית"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 5</div><h2>בניית גרסה ראשונה בשפה טבעית</h2><ul class="pts"><li>תיקיית משנה ייעודית בפרויקט.</li><li>ממשק עברי, נתוני דוגמה בלבד.</li><li>בלי שירותים חיצוניים ובלי פרסום.</li></ul><a class="site-link" href="tool.html" target="_blank" rel="noopener">באתר התרגול ← בונים כלי אישי</a></div><div class="vis"><div class="kb"><div class="kb-c"><div class="kb-h">פתוחה</div><div class="kb-t">לפנות למרצים</div><div class="kb-t">סקר אמצע</div></div><div class="kb-c"><div class="kb-h">בתהליך</div><div class="kb-t">מפגש היכרות</div><div class="kb-t">עדכון האתר</div></div><div class="kb-c"><div class="kb-h">הושלמה</div><div class="kb-t">מצגת פתיחה</div></div></div><p class="foot-note">כלי לדוגמה מסביבת ההדגמה: לוח משימות, נבנה בשפה טבעית</p></div></div><div class="slide-foot"><span>יוצרים כלי</span><span>אייג׳נט זירו · PractiAI</span><span class="num">17</span></div></div></section>
+<section class="slide" id="s18" data-part="יוצרים כלי" aria-label="שקף 18: בודקים ומשפרים את התוצאה"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 5</div><h2>בודקים ומשפרים את התוצאה</h2><ul class="pts"><li>פותחים ומנסים בעצמכם.</li><li>כותבים הערות במילים שלכם.</li><li>מבקשים רק שני שיפורים בכל סבב.</li></ul><a class="site-link" href="connectors.html" target="_blank" rel="noopener">באתר התרגול ← חיבורים רשמיים</a></div><div class="vis"><div class="cycle"><div>פותחים</div><span>←</span><div>מנסים פעולה אחת</div><span>←</span><div>כותבים הערות</div><span>←</span><div>שני שיפורים בלבד</div><span>←</span><div>בודקים שוב</div></div></div></div><div class="slide-foot"><span>יוצרים כלי</span><span>אייג׳נט זירו · PractiAI</span><span class="num">18</span></div></div></section>
+<section class="slide" id="s19" data-part="סביבת עבודה מתמשכת" aria-label="שקף 19: מה קלוד צריך לזכור על הפרויקט?"><div class="stage"><div class="split"><div class="txt"><div class="kick">סביבת עבודה מתמשכת</div><h2>מה קלוד צריך לזכור על הפרויקט?</h2><ul class="pts"><li>כל סשן חדש מתחיל נקי.</li><li>מה שחשוב, שומרים בקבצים.</li><li>קלוד קוד טוען את CLAUDE.md אוטומטית.</li></ul></div><div class="vis"><div class="sessions"><div class="sess"><div class="sess-h">סשן 1</div><p>שיחת היכרות, פרופיל, משימה…</p></div><div class="sess empty"><div class="sess-h">סשן 2</div><p>?</p><small>מתחיל נקי</small></div></div><p class="foot-note">מה שחשוב, שומרים בקבצים. קבצים נשארים, שיחות לא.</p></div></div><div class="slide-foot"><span>סביבת עבודה מתמשכת</span><span>אייג׳נט זירו · PractiAI</span><span class="num">19</span></div></div></section>
+<section class="slide" id="s20" data-part="סביבת עבודה מתמשכת" aria-label="שקף 20: קובץ ההנחיות והפרופיל המקצועי"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 6</div><h2>קובץ ההנחיות והפרופיל המקצועי</h2><ul class="pts"><li>הפרופיל: מי אני.</li><li>ההוראות: איך לעבוד איתי.</li><li>שורת <code>@</code> טוענת את הפרופיל.</li><li>בודקים בסשן חדש.</li></ul><a class="site-link" href="instructions.html" target="_blank" rel="noopener">באתר התרגול ← הוראות קבועות</a></div><div class="vis"><div class="file"><div class="file-h">CLAUDE.md</div><pre># הוראות קבועות לפרויקט
+
+@הפרופיל-המקצועי-שלי.md
+
+## איך לעבוד איתי
+1. לעבוד בעברית.
+2. לשאול כשחסר מידע מהותי.
+3. לא להמציא עובדות.
+4. להציג תוכנית לפני שינויים.
+5. לא לשנות קובצי מקור בלי אישור.
+(ועוד חמש הוראות)</pre></div></div></div><div class="slide-foot"><span>סביבת עבודה מתמשכת</span><span>אייג׳נט זירו · PractiAI</span><span class="num">20</span></div></div></section>
+<section class="slide" id="s21" data-part="סביבת עבודה מתמשכת" aria-label="שקף 21: מהי מיומנות מקצועית חוזרת?"><div class="stage"><div class="split"><div class="txt"><div class="kick">מיומנות</div><h2>מהי מיומנות מקצועית חוזרת?</h2><ul class="pts"><li>תהליך עבודה כתוב, פעם אחת.</li><li>מפעילים בפקודה או בבקשה רגילה.</li><li>הפרופיל אינו מיומנות. המיומנות אינה מתזמנת את עצמה.</li></ul><a class="site-link" href="skill.html" target="_blank" rel="noopener">באתר התרגול ← יוצרים מיומנות</a></div><div class="vis"><div class="skill-anat"><div class="sa-path"><code>.claude/skills/weekly-report/SKILL.md</code></div><div class="sa-g"><div><b>מתי</b>משתמשים בה</div><div><b>קלט</b>אילו קבצים</div><div><b>שלבים</b>באיזה סדר</div><div><b>בדיקות</b>לפני שמציגים</div><div><b>חסר או סותר</b>מה עושים</div><div><b>שמירה</b>איפה ובלי לדרוס</div><div><b>אישור</b>מה מחייב</div><div><b>אסור</b>בלי אישור</div></div></div></div></div><div class="slide-foot"><span>סביבת עבודה מתמשכת</span><span>אייג׳נט זירו · PractiAI</span><span class="num">21</span></div></div></section>
+<section class="slide" id="s22" data-part="סביבת עבודה מתמשכת" aria-label="שקף 22: יוצרים מיומנות אישית"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 7</div><h2>יוצרים מיומנות אישית</h2><a class="site-link" href="skill.html" target="_blank" rel="noopener">באתר התרגול ← יוצרים מיומנות</a></div><div class="vis"><div class="flow v"><div>3 אפשרויות מהפרופיל</div><div class="hl">בוחרים את הפשוטה</div><div>קלוד מציג מבנה</div><div class="gate">האישור שלכם</div><div>קלוד יוצר + נתוני דוגמה</div></div><p class="foot-note">שם המיומנות באותיות לועזיות, כי הוא הופך לפקודה: <code>/weekly-report</code></p></div></div><div class="slide-foot"><span>סביבת עבודה מתמשכת</span><span>אייג׳נט זירו · PractiAI</span><span class="num">22</span></div></div></section>
+<section class="slide" id="s23" data-part="סביבת עבודה מתמשכת" aria-label="שקף 23: מפעילים את המיומנות ובודקים אותה"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 7</div><h2>מפעילים את המיומנות ובודקים אותה</h2><ul class="pts"><li>הקלידו <code>/</code> וראו את המיומנות ברשימה.</li><li>הפעילו על נתוני הדוגמה.</li><li>בדקו את התוצר ואת קובצי המקור.</li></ul><a class="site-link" href="skill.html" target="_blank" rel="noopener">באתר התרגול ← יוצרים מיומנות</a></div><div class="vis"><div class="checkcard"><div class="cc-h">בדיקת מיומנות</div><div>✓ רצה על נתוני הדוגמה</div><div>✓ התוצר נשמר בתיקיית התוצרים</div><div>✓ קובצי המקור לא השתנו</div><div>✓ עובדת גם בפקודה <code>/שם</code></div><div>✓ לא תלויה במידע מהשיחה</div></div></div></div><div class="slide-foot"><span>סביבת עבודה מתמשכת</span><span>אייג׳נט זירו · PractiAI</span><span class="num">23</span></div></div></section>
+<section class="slide" id="s24" data-part="שגרות" aria-label="שקף 24: המיומנות מגדירה איך. השגרה מגדירה מתי."><div class="stage"><div class="statement"><div class="kick">שגרות</div><h2>המיומנות מגדירה איך. השגרה מגדירה מתי.</h2><div class="hw"><div class="hw-a"><b>מיומנות</b><span>איך</span><small>התהליך, צעד אחר צעד</small></div><div class="hw-plus">+</div><div class="hw-b"><b>שגרה</b><span>מתי</span><small>כל יום חמישי ב־08:00</small></div></div></div><div class="slide-foot"><span>שגרות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">24</span></div></div></section>
+<section class="slide" id="s25" data-part="שגרות" aria-label="שקף 25: יוצרים שגרה מתוזמנת ומריצים בדיקה"><div class="stage"><div class="split"><div class="txt"><div class="kick">תרגיל 8</div><h2>יוצרים שגרה מתוזמנת ומריצים בדיקה</h2><ul class="pts"><li>בודקים קודם אם המיומנות מתאימה לתזמון.</li><li>מגדירים: שם בעברית, תיקייה, תדירות.</li><li>Run now ובודקים תוצר חדש.</li><li>יודעים להשהות, לערוך ולמחוק.</li></ul><a class="site-link" href="routine.html" target="_blank" rel="noopener">באתר התרגול ← יוצרים שגרה</a></div><div class="vis"><div class="flow v"><div>האם מתאים לתזמון?</div><div>הגדרת השגרה: שם, תיקייה, תדירות</div><div class="gate">האישור שלכם</div><div class="hl">Run now: הרצת בדיקה</div><div>תוצר חדש בתיקיית התוצרים</div></div><p class="foot-note">פועלת רק כשהאפליקציה פתוחה והמחשב ער</p></div></div><div class="slide-foot"><span>שגרות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">25</span></div></div></section>
+<section class="slide" id="s26" data-part="שגרות" aria-label="שקף 26: מה אפשר לעשות עם הסוכן שלנו מחר בבוקר?"><div class="stage"><div class="split"><div class="txt"><div class="kick">שגרות</div><h2>מה אפשר לעשות עם הסוכן שלנו מחר בבוקר?</h2><ul class="pts"><li>להריץ את המיומנות על חומר אמיתי ומותר.</li><li>לשפר את המיומנות לפי התוצר הראשון.</li><li>לבחור משימה אחת נוספת, באותה שיטה.</li></ul></div><div class="vis"><div class="morning"><div class="clock">08:00</div><div class="m-list"><div>☕ דוח התקדמות מחכה בתיקיית התוצרים</div><div>✎ טיוטה מוכנה לעריכה</div><div>✓ נתונים חסרים מסומנים מראש</div></div></div></div></div><div class="slide-foot"><span>שגרות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">26</span></div></div></section>
+<section class="slide" id="s27" data-part="שגרות" aria-label="שקף 27: הרשאות, פרטיות ובדיקת תוצאות"><div class="stage"><div class="split"><div class="txt"><div class="kick">אחריות</div><h2>הרשאות, פרטיות ובדיקת תוצאות</h2></div><div class="vis"><div class="safe"><div><b>הרשאות</b>מתחילים ב־Manual. מרחיבים רק כשמבינים.</div><div><b>פרטיות</b>בלי שמות, בלי מסמכים חסויים, בלי סיסמאות.</div><div><b>בדיקה</b>כל תוצר נבדק בידי אדם לפני שימוש.</div><div><b>מקור</b>קובצי מקור לא משתנים. תוצרים נשמרים בנפרד.</div></div></div></div><div class="slide-foot"><span>שגרות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">27</span></div></div></section>
+<section class="slide" id="s28" data-part="שגרות" aria-label="שקף 28: הסוכן הראשון שלי"><div class="stage"><div class="split"><div class="txt"><div class="kick">סיכום</div><h2>הסוכן הראשון שלי</h2><ul class="pts"><li>פרופיל · הוראות · תיקיית עבודה</li><li>משימה ראשונה · כלי אישי</li><li>מיומנות · תוצר · שגרה שנבדקה</li><li>להתחיל קטן, לשפר עד שעובד, ורק אז להרחיב.</li></ul><a class="site-link" href="my-agent.html" target="_blank" rel="noopener">באתר התרגול ← הסוכן הראשון שלי</a></div><div class="vis"><div class="tree"><div class="r root">▣ תיקיית העבודה שלי</div><div class="r">▤ הפרופיל-המקצועי-שלי.md</div><div class="r">▤ CLAUDE.md</div><div class="r">▣ חומרי-עבודה/</div><div class="r">▣ תוצרים/</div><div class="r">▣ .claude/skills/…/SKILL.md</div><div class="r ext">◷ שגרה מתוזמנת</div></div></div></div><div class="slide-foot"><span>שגרות</span><span>אייג׳נט זירו · PractiAI</span><span class="num">28</span></div></div></section></main>
+<div class="hud"><button id="b-next" type="button" aria-label="השקף הבא">הבא ←</button><span id="cnt" class="num"></span><button id="b-prev" type="button" aria-label="השקף הקודם">→ הקודם</button><button id="b-fs" type="button">מסך מלא (F)</button></div>
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0,lock=0;
+  function fit(){var w=innerWidth,h=innerHeight;var s=Math.min(w/1600,h/900)*0.98;slides.forEach(function(sl){sl.querySelector('.stage').style.transform='scale('+s+')';sl.style.alignItems='center';});}
+  function go(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach(function(s,k){s.classList.toggle('on',k===i);});document.querySelector('.bar').style.width=((i+1)/slides.length*100)+'%';document.getElementById('cnt').textContent=(i+1)+' / '+slides.length;if(history.replaceState)history.replaceState(null,'','#'+(i+1));}
+  document.addEventListener('keydown',function(e){
+    if(['ArrowLeft','PageDown',' ','Enter'].indexOf(e.key)>-1){e.preventDefault();go(i+1);}
+    else if(['ArrowRight','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();go(i-1);}
+    else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
+    else if(e.key==='f'||e.key==='F'||e.key==='כ')fs();
+    
+  });
+  document.addEventListener('click',function(e){if(e.target.closest('a,button,input,select,textarea,.hud'))return;if(String(window.getSelection()).length)return;go(i+1);});
+  document.addEventListener('wheel',function(e){var now=Date.now();if(window.self!==window.top&&!document.fullscreenElement)return;if(now<lock)return;lock=now+650;go(i+(e.deltaY>0?1:-1));},{passive:true});
+  function fs(){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  document.getElementById('b-prev').onclick=function(){go(i-1)};document.getElementById('b-next').onclick=function(){go(i+1)};document.getElementById('b-fs').onclick=fs;
+  
+  addEventListener('resize',fit);fit();var h=parseInt(location.hash.slice(1),10);go(h?h-1:0);
+})();</script>
+</body>
+</html>

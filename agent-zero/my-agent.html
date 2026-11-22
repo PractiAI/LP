@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>הסוכן הראשון שלי · אייג׳נט זירו | PractiAI</title>
+<meta name="description" content="עוברים על סביבת העבודה שבניתם, בודקים שכל הרכיבים במקום, ובוחרים את הצעד הבא.">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="theme-color" content="#F3F2ED">
+<meta property="og:title" content="אייג׳נט זירו · מאפס לסוכן בינה מלאכותית משלך">
+<meta property="og:description" content="אתר התרגול של הסדנה · טל חקוקי | PractiAI">
+<meta property="og:locale" content="he_IL">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>:root{
+  --paper:#F3F2ED;--paper-2:#ECEAE3;--card:#FFFFFF;--tint:#F6F7F4;
+  --line:rgba(19,35,58,.10);--line-2:rgba(19,35,58,.18);
+  --ink:#13233A;--ink-2:#3D4B5F;--muted:#5F6B7D;
+  --accent:#0C7F72;--accent-2:#0A6A60;--accent-soft:rgba(12,127,114,.08);--accent-line:rgba(12,127,114,.35);
+  --signal:#A85D08;--signal-soft:rgba(184,104,12,.09);
+  --violet:#5B4B8A;--violet-soft:rgba(91,75,138,.08);
+  --shadow:0 1px 2px rgba(19,35,58,.04),0 18px 44px -28px rgba(19,35,58,.22);
+  --font-body:'Plex Hebrew','Arial Hebrew','Segoe UI',Arial,sans-serif;
+  --font-display:'Frank Ruhl','David',serif;
+  --font-mono:'Plex Mono','Plex Hebrew',ui-monospace,Consolas,monospace;
+  --wrap:1220px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{font-family:var(--font-body);color:var(--ink);line-height:1.7;font-size:17px;background:
+  radial-gradient(1100px 650px at 100% -10%,rgba(12,127,114,.10),transparent 62%),
+  radial-gradient(900px 600px at -10% 50%,rgba(11,92,112,.05),transparent 60%),var(--paper) fixed;min-height:100vh}
+a{color:var(--accent-2)}
+img{max-width:100%}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.num{font-feature-settings:"tnum"}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.skip{position:absolute;top:-60px;right:12px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:99}
+.skip:focus{top:10px}
+:focus-visible{outline:3px solid rgba(12,127,114,.55);outline-offset:2px;border-radius:6px}
+code{font-family:var(--font-mono);font-size:.88em;background:var(--accent-soft);color:var(--accent-2);padding:1px 6px;border-radius:5px;unicode-bidi:isolate;white-space:nowrap}
+mark{background:var(--signal-soft);color:var(--signal);border-radius:4px;padding:0 3px;font-weight:700}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(243,242,237,.88);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand img{height:28px;width:auto}
+.brand-name{font-family:var(--font-display);font-weight:900;font-size:21px;border-inline-start:1px solid var(--line-2);padding-inline-start:12px}
+.progress{margin-inline-start:auto;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.progress-bar{width:140px;height:8px;border-radius:8px;background:var(--paper-2);overflow:hidden}
+.progress-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#0B5C70,#0C7F72);border-radius:8px;transition:width .4s}
+.menu-btn{display:none;background:none;border:1px solid var(--line-2);border-radius:10px;width:42px;height:38px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:4px}
+.menu-btn span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px}
+
+/* shell */
+.shell{display:grid;grid-template-columns:270px minmax(0,1fr);gap:40px;padding-top:28px;padding-bottom:60px}
+.side{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 100px);overflow:auto;padding-bottom:12px}
+.nav{list-style:none;display:flex;flex-direction:column;gap:2px}
+.nav a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-2);padding:7px 10px;border-radius:10px;font-size:15px;line-height:1.35}
+.nav a:hover{background:var(--accent-soft);color:var(--accent-2)}
+.nav a[aria-current=page]{background:var(--card);color:var(--ink);font-weight:700;box-shadow:var(--shadow)}
+.nav-n{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;background:var(--paper-2);color:var(--muted);font-weight:700}
+.nav-t{flex:1}
+.nav-done{opacity:0;color:var(--accent);font-weight:900}
+.nav a.is-done .nav-done{opacity:1}
+.nav a.is-done .nav-n{background:var(--accent);color:#fff}
+.reset{margin-top:14px;background:none;border:none;color:var(--muted);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer;padding:4px 10px}
+
+/* hero */
+main{min-width:0}
+.hero{padding:18px 0 26px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.kicker{font-size:15px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.kicker::before{content:"";width:30px;height:2px;background:var(--accent);opacity:.7;border-radius:2px}
+.time{font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1px 10px;font-size:13px}
+h1{font-family:var(--font-display);font-weight:900;font-size:clamp(32px,4.6vw,54px);line-height:1.12;color:var(--ink)}
+.h1-sub{display:block;font-size:.5em;font-weight:700;color:var(--accent);margin-top:10px}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--ink-2);margin-top:14px;max-width:780px;line-height:1.55}
+.byline{margin-top:16px;font-weight:700}
+.byline span{color:var(--muted);font-weight:400;margin:0 6px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.toc a{font-size:14px;text-decoration:none;color:var(--ink-2);border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:4px 12px}
+.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+/* blocks */
+.block{padding:26px 0;border-bottom:1px solid var(--line)}
+.block:last-of-type{border-bottom:none}
+.block>h2,.prose h2{font-family:var(--font-display);font-weight:700;font-size:clamp(24px,2.6vw,30px);margin-bottom:14px;color:var(--ink)}
+.prose h2{margin-top:30px}
+h3{font-size:18px;margin:18px 0 8px}
+p{margin:0 0 12px;max-width:820px}
+ul,ol{margin:0 0 14px;padding-inline-start:24px;max-width:820px}
+li{margin-bottom:6px}
+li::marker{color:var(--accent);font-weight:700}
+.small{font-size:14px;color:var(--muted)}
+blockquote{border-inline-start:3px solid var(--accent-line);padding:4px 14px;color:var(--ink-2);margin:0 0 12px}
+.table-wrap{overflow-x:auto;margin:0 0 16px;max-width:860px}
+table{border-collapse:collapse;width:100%;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:15px}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--tint);font-weight:700}
+
+.callout{border-radius:14px;padding:14px 18px;margin:14px 0;max-width:860px;border:1px solid var(--line);background:var(--card)}
+.callout p:last-child{margin-bottom:0}
+.callout.info{border-inline-start:4px solid var(--accent);background:linear-gradient(90deg,var(--card),var(--accent-soft))}
+.callout.privacy{border-inline-start:4px solid var(--violet);background:linear-gradient(90deg,var(--card),var(--violet-soft))}
+.callout.warn{border-inline-start:4px solid var(--signal);background:linear-gradient(90deg,var(--card),var(--signal-soft))}
+.callout.good{border-inline-start:4px solid var(--accent);font-size:18px}
+.concepts{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 18px 8px;margin-top:16px;max-width:860px;box-shadow:var(--shadow)}
+
+/* tabs + prompts */
+.tablist{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line-2);margin-bottom:14px}
+.tab{font:inherit;font-weight:700;font-size:15px;background:none;border:none;border-bottom:3px solid transparent;padding:9px 14px;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:8px;margin-bottom:-1px}
+.tab[aria-selected=true]{color:var(--accent-2);border-bottom-color:var(--accent)}
+.tab-badge{font-size:11px;font-weight:700;background:var(--accent-soft);color:var(--accent-2);border-radius:10px;padding:1px 7px}
+.track-note{color:var(--ink-2);font-size:15px}
+.step-label{font-size:13px;font-weight:700;color:var(--muted);margin:16px 0 6px;letter-spacing:.02em}
+.prompt{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin-bottom:14px;max-width:880px;overflow:hidden}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px 10px 10px;background:var(--tint);border-bottom:1px solid var(--line)}
+.prompt-title{font-weight:700;font-size:15px}
+.copy{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--accent-line);background:var(--card);color:var(--accent-2);border-radius:20px;padding:5px 16px;cursor:pointer;flex:0 0 auto;transition:all .2s}
+.copy:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.copy.ok{background:var(--accent);color:#fff;border-color:var(--accent)}
+.prompt-text{font-family:var(--font-body);white-space:pre-wrap;word-wrap:break-word;padding:14px 18px;font-size:15.5px;line-height:1.7;max-height:420px;overflow:auto;color:var(--ink)}
+.prompt.expanded .prompt-text{max-height:none}
+
+/* files */
+.file{background:#FBFBF9;border:1px solid var(--line-2);border-radius:14px;margin:14px 0;max-width:860px;overflow:hidden}
+.file figcaption{display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--paper-2);border-bottom:1px solid var(--line);font-size:14px;flex-wrap:wrap}
+.file-ico{color:var(--accent)}
+.file-note{color:var(--muted);margin-inline-start:auto;font-size:13px}
+.file-pre{font-family:var(--font-mono);font-size:13.5px;white-space:pre-wrap;padding:14px 16px;line-height:1.65;max-height:380px;overflow:auto;unicode-bidi:plaintext}
+
+/* checklist */
+.checklist{list-style:none;padding:0;max-width:820px}
+.checklist li{margin-bottom:8px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;transition:border-color .2s}
+.checklist label:hover{border-color:var(--accent-line)}
+.checklist input{width:20px;height:20px;accent-color:var(--accent);margin-top:3px;flex:0 0 auto}
+.checklist input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--accent-line)}
+.done-box{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.done-hint{font-size:13px;color:var(--muted)}
+.mark-done[aria-pressed=true]{background:var(--card);color:var(--accent-2)}
+.mark-done[aria-pressed=true]::before{content:"✓ "}
+
+/* accordion */
+.acc{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;max-width:860px}
+.acc summary{cursor:pointer;padding:11px 16px;font-weight:700;list-style:none;display:flex;gap:10px;align-items:center}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::before{content:"+";color:var(--accent);font-weight:900;width:14px;flex:0 0 14px}
+.acc[open] summary::before{content:"−"}
+.acc-body{padding:0 16px 8px 16px;padding-inline-start:40px;color:var(--ink-2)}
+.faq-group{margin-bottom:22px}
+.faq-group h3 a{color:var(--ink);text-decoration:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:16px;border-radius:30px;padding:11px 22px;border:1.5px solid var(--accent-line);color:var(--accent-2);background:var(--card);cursor:pointer;font-family:inherit;transition:all .2s}
+.btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 10px 24px -14px rgba(12,127,114,.8)}
+.btn.solid:hover{background:var(--accent-2)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}
+
+/* ladder, four, tree, downloads */
+.ladder{list-style:none;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:none;margin:10px 0 18px}
+.ladder li{margin:0}
+.ladder a{display:flex;flex-direction:column;gap:10px;height:100%;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+.ladder li:nth-child(2) a{margin-top:-10px}.ladder li:nth-child(3) a{margin-top:-20px}.ladder li:nth-child(4) a{margin-top:-30px}.ladder li:nth-child(5) a{margin-top:-40px}
+.ladder{padding-top:40px}
+.ladder a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ladder-n{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:900;font-family:var(--font-display);font-size:18px}
+.ladder b{display:block;font-size:17px}
+.ladder small{display:block;color:var(--muted);font-size:14px;line-height:1.4;margin-top:2px}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0 18px}
+.four div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+.four b{display:block;font-family:var(--font-display);font-size:20px;color:var(--accent-2)}
+.four span{font-size:15px;color:var(--ink-2)}
+.tree{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;max-width:760px;box-shadow:var(--shadow);margin-bottom:16px}
+.tree-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+.tree-row:last-child{border-bottom:none}
+.tree-row:not(.root):not(.ext){padding-inline-start:26px}
+.tree-row span{color:var(--accent);width:16px}
+.tree-row em{color:var(--muted);font-style:normal;font-size:14px;margin-inline-start:auto}
+.tree-row.ext{margin-top:6px;border-top:1px solid var(--line-2);padding-top:10px}
+.dl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:8px 0 22px}
+.dl{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);transition:border-color .2s}
+.dl:hover{border-color:var(--accent)}
+.dl b{font-size:19px;font-family:var(--font-display)}
+.dl span{color:var(--ink-2);font-size:15px}
+.dl-kind{align-self:flex-start;font-size:12px!important;font-weight:700;background:var(--accent-soft);color:var(--accent-2)!important;border-radius:10px;padding:1px 9px}
+.dl-go{margin-top:auto;color:var(--accent-2)!important;font-weight:700}
+
+/* prompt library */
+.lib-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0 6px}
+.lib-search input,#lib-stage{font:inherit;font-size:15px;border:1px solid var(--line-2);border-radius:20px;padding:7px 14px;background:var(--card);min-width:220px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:inherit;font-size:14px;border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:5px 12px;cursor:pointer;color:var(--ink-2)}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.lib-item{margin-top:14px}
+.lib-meta{display:flex;gap:10px;align-items:center;font-size:14px;margin-bottom:6px}
+.lib-meta a{color:var(--muted);text-decoration:none}
+.tag{font-size:12px;font-weight:700;border-radius:10px;padding:1px 8px;background:var(--paper-2);color:var(--ink-2)}
+.tag-deep{background:var(--violet-soft);color:var(--violet)}
+.tag-sample{background:var(--signal-soft);color:var(--signal)}
+.tag-short{background:var(--accent-soft);color:var(--accent-2)}
+
+/* pager, footer, toast */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.pg{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;transition:border-color .2s}
+.pg:hover{border-color:var(--accent)}
+.pg small{color:var(--muted)}
+.pg.next{text-align:left}
+.foot{border-top:1px solid var(--line);padding:22px 0 30px;font-size:14px;color:var(--muted)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:9px 18px;border-radius:24px;font-size:15px;opacity:0;pointer-events:none;transition:all .25s;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* responsive */
+@media (max-width:1000px){
+  .ladder{grid-template-columns:1fr;padding-top:0}
+  .ladder li a{margin-top:0!important;flex-direction:row;align-items:center}
+  .four{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .shell{grid-template-columns:1fr;gap:0;padding-top:12px}
+  .menu-btn{display:flex}
+  .side{position:fixed;top:64px;right:0;bottom:0;width:min(320px,86vw);max-height:none;background:var(--paper);border-inline-start:1px solid var(--line);padding:16px;z-index:25;transform:translateX(105%);transition:transform .25s;box-shadow:-20px 0 40px -20px rgba(19,35,58,.3)}
+  body.nav-open .side{transform:none}
+  .progress-bar{width:70px}
+  .brand img{display:none}
+  .brand-name{border:none;padding:0}
+  .dl-grid{grid-template-columns:1fr}
+  .pager{grid-template-columns:1fr}
+  .pg.next{text-align:right}
+  .wrap{padding:0 16px}
+  code{white-space:normal;word-break:break-word}
+}
+@media (max-width:480px){.four{grid-template-columns:1fr}.prompt-text{font-size:15px;padding:12px 14px}}
+@media print{.topbar,.side,.pager,.copy,.toast,.done-box,.toc{display:none!important}.shell{display:block}.prompt-text{max-height:none}}
+</style>
+</head>
+<body data-page="my-agent">
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="side" aria-label="תפריט השלבים"><span></span><span></span><span></span></button>
+    <a class="brand" href="index.html" aria-label="אייג׳נט זירו, לעמוד הפתיחה"><img src="assets/practiai-logo-light.png" alt="PractiAI" width="120" height="30"><span class="brand-name">אייג׳נט זירו</span></a>
+    <div class="progress" aria-label="התקדמות בסדנה"><div class="progress-bar"><span id="prog-fill"></span></div><span id="prog-txt" class="num">0/11</span></div>
+  </div>
+</header>
+<div class="shell wrap">
+  <aside class="side" id="side" aria-label="שלבי הסדנה">
+    <ol class="nav"><li><a href="index.html" data-nav="index"><span class="nav-n">1</span><span class="nav-t">מתחילים כאן</span></a></li><li><a href="setup.html" data-nav="setup"><span class="nav-n">2</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors"><span class="nav-n">8</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions"><span class="nav-n">9</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill"><span class="nav-n">10</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" data-nav="routine"><span class="nav-n">11</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" aria-current="page" data-nav="my-agent"><span class="nav-n">12</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="prompts.html" data-nav="prompts"><span class="nav-n">13</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help"><span class="nav-n">14</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads"><span class="nav-n">15</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
+    <button type="button" class="reset" id="reset">איפוס ההתקדמות</button>
+  </aside>
+  <main id="main" tabindex="-1">
+    <div class="hero">
+      <div class="kicker">סיכום<span class="time num" dir="ltr">02:53–03:00</span></div>
+      <h1>הסוכן הראשון שלך מוכן להמשך עבודה</h1>
+      <p class="lead">עוברים על סביבת העבודה שבניתם, בודקים שכל הרכיבים במקום, ובוחרים את הצעד הבא.</p>
+      
+      
+    </div>
+    <div class="prose"><h2>מה בניתם היום?</h2><p>התחלת מהיכרות עם קלוד קוד.</p><p>לאחר מכן לימדת אותו להכיר את התפקיד שלך ואת הצרכים המקצועיים שלך.</p><p>זיהית הזדמנויות לשיפור העבודה שלך והתנסית במשימה ראשונה.</p><p>למדת לבנות כלי וליצור דרך עבודה חוזרת.</p><p>לבסוף הגדרת שגרה שמאפשרת להפעיל את התהליך מחדש.</p><p>השלב הבא הוא להשתמש באותה שיטה כדי לשפר עוד משימה אחת בעבודה שלך.</p><div class="callout good"><strong>ההמלצה שלנו:</strong> להתחיל במשימה קטנה, לשפר אותה עד שהיא עובדת היטב, ורק אז להרחיב אותה לשגרה משמעותית יותר.</div><h2>הסביבה שלכם</h2><div class="tree" dir="rtl">
+<div class="tree-row root"><span>▣</span><b>תיקיית העבודה שלי</b></div>
+<div class="tree-row"><span>▤</span><code dir="auto">הפרופיל-המקצועי-שלי.md</code><em>מי אני</em></div>
+<div class="tree-row"><span>▤</span><code dir="auto">CLAUDE.md</code><em>איך לעבוד איתי</em></div>
+<div class="tree-row"><span>▣</span><code dir="auto">חומרי-עבודה/</code><em>קובצי המקור</em></div>
+<div class="tree-row"><span>▣</span><code dir="auto">תוצרים/</code><em>משימה ראשונה, כלי, דוחות</em></div>
+<div class="tree-row"><span>▣</span><code dir="auto">.claude/skills/&lt;שם&gt;/SKILL.md</code><em>המיומנות שלי</em></div>
+<div class="tree-row ext"><span>◷</span><b>שגרה מתוזמנת</b><em>מוגדרת באפליקציה, תחת Scheduled</em></div>
+</div><h2>ארבעת הרכיבים, במשפט אחד כל אחד</h2><div class="four">
+<div><b>פרופיל</b><span>מי אני ומה חשוב לדעת על העבודה שלי.</span></div>
+<div><b>הוראות</b><span>איך קלוד צריך לעבוד בפרויקט הזה.</span></div>
+<div><b>מיומנות</b><span>איך מבצעים תהליך חוזר, צעד אחר צעד.</span></div>
+<div><b>שגרה</b><span>מתי מפעילים את התהליך, אוטומטית.</span></div>
+</div><h2>איך מתחזקים את הסוכן?</h2><ul><li><strong>אחת לחודש:</strong> עברו על הפרופיל ועדכנו את מה שהשתנה.</li><li><strong>אחרי כל הרצה של השגרה:</strong> קראו את התוצר. אם משהו חוזר על עצמו כבעיה, תקנו את המיומנות.</li><li><strong>כשנוסף תהליך חדש:</strong> אל תעמיסו על המיומנות הקיימת. צרו מיומנות חדשה.</li><li><strong>כששגרה כבר לא נחוצה:</strong> השהו או מחקו אותה.</li></ul></div><section class="block" id="check"><h2>רשימת הבדיקה של הסביבה</h2><ul class="checklist" data-page="my-agent"><li><label><input type="checkbox" data-k="my-agent:0"><span>יש לי פרופיל מקצועי.</span></label></li><li><label><input type="checkbox" data-k="my-agent:1"><span>יש לי הוראות עבודה קבועות.</span></label></li><li><label><input type="checkbox" data-k="my-agent:2"><span>יש לי תיקיית עבודה מסודרת.</span></label></li><li><label><input type="checkbox" data-k="my-agent:3"><span>ביצעתי משימה ראשונה ובדקתי אותה.</span></label></li><li><label><input type="checkbox" data-k="my-agent:4"><span>בניתי כלי אישי, או החלטתי לדלג עליו.</span></label></li><li><label><input type="checkbox" data-k="my-agent:5"><span>יש לי מיומנות חוזרת.</span></label></li><li><label><input type="checkbox" data-k="my-agent:6"><span>יש לי תוצר שנוצר באמצעות המיומנות.</span></label></li><li><label><input type="checkbox" data-k="my-agent:7"><span>הגדרתי שגרה מתוזמנת ובדקתי אותה.</span></label></li></ul><div class="done-box"><button type="button" class="btn solid mark-done" data-page="my-agent" aria-pressed="false">סיימתי את הסדנה</button></div></section><section class="block" id="ask"><h2>מה מבקשים מקלוד?</h2><div class="tabs" data-default="short"><div class="tablist" role="tablist" aria-label="בחירת מסלול"><button type="button" role="tab" class="tab" id="tab-my-agent-short" aria-controls="panel-my-agent-short" data-track="short" aria-selected="true">מסלול קצר<span class="tab-badge">בסדנה</span></button><button type="button" role="tab" class="tab" id="tab-my-agent-deep" aria-controls="panel-my-agent-deep" data-track="deep" aria-selected="false">מסלול מעמיק</button></div><div class="tab-panel" role="tabpanel" id="panel-my-agent-short" aria-labelledby="tab-my-agent-short" data-track="short"><p class="track-note">הפרומפט המרכזי של התרגיל. מספיק כדי להשלים את השלב.</p><div class="prompt" id="my-agent-short-1">
+  <div class="prompt-head"><span class="prompt-title">בדיקת הסביבה שבניתי</span><button class="copy" type="button" data-copy="my-agent-short-1" aria-label="העתקת הפרומפט: בדיקת הסביבה שבניתי">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+
+1. הפרופיל המקצועי.
+2. קובץ ההוראות הקבועות.
+3. תיקיית חומרי העבודה.
+4. התוצר של המשימה הראשונה.
+5. הכלי האישי, אם נוצר.
+6. המיומנות.
+7. תוצר שנוצר באמצעות המיומנות.
+8. השגרה המתוזמנת.
+
+לכל רכיב ציין אם הוא קיים, איפה הוא נמצא ומה הוא עושה.
+
+אל תשנה קבצים.</pre>
+  <textarea class="prompt-src" hidden>עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+
+1. הפרופיל המקצועי.
+2. קובץ ההוראות הקבועות.
+3. תיקיית חומרי העבודה.
+4. התוצר של המשימה הראשונה.
+5. הכלי האישי, אם נוצר.
+6. המיומנות.
+7. תוצר שנוצר באמצעות המיומנות.
+8. השגרה המתוזמנת.
+
+לכל רכיב ציין אם הוא קיים, איפה הוא נמצא ומה הוא עושה.
+
+אל תשנה קבצים.</textarea>
+</div></div><div class="tab-panel" role="tabpanel" id="panel-my-agent-deep" aria-labelledby="tab-my-agent-deep" data-track="deep" hidden><p class="track-note">אחרי הפרומפט המרכזי: עוד בירור, עוד התאמה אישית ועוד בדיקות.</p><div class="step-label">שלב 1 מתוך 2</div><div class="prompt" id="my-agent-deep-2">
+  <div class="prompt-head"><span class="prompt-title">בדיקת הסביבה שבניתי</span><button class="copy" type="button" data-copy="my-agent-deep-2" aria-label="העתקת הפרומפט: בדיקת הסביבה שבניתי">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+
+1. הפרופיל המקצועי.
+2. קובץ ההוראות הקבועות.
+3. תיקיית חומרי העבודה.
+4. התוצר של המשימה הראשונה.
+5. הכלי האישי, אם נוצר.
+6. המיומנות.
+7. תוצר שנוצר באמצעות המיומנות.
+8. השגרה המתוזמנת.
+
+לכל רכיב ציין אם הוא קיים, איפה הוא נמצא ומה הוא עושה.
+
+אל תשנה קבצים.</pre>
+  <textarea class="prompt-src" hidden>עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+
+1. הפרופיל המקצועי.
+2. קובץ ההוראות הקבועות.
+3. תיקיית חומרי העבודה.
+4. התוצר של המשימה הראשונה.
+5. הכלי האישי, אם נוצר.
+6. המיומנות.
+7. תוצר שנוצר באמצעות המיומנות.
+8. השגרה המתוזמנת.
+
+לכל רכיב ציין אם הוא קיים, איפה הוא נמצא ומה הוא עושה.
+
+אל תשנה קבצים.</textarea>
+</div><div class="step-label">שלב 2 מתוך 2</div><div class="prompt" id="my-agent-deep-3">
+  <div class="prompt-head"><span class="prompt-title">העמקה: מה הצעד הבא שלי?</span><button class="copy" type="button" data-copy="my-agent-deep-3" aria-label="העתקת הפרומפט: העמקה: מה הצעד הבא שלי?">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו היום.
+
+הצע משימה אחת נוספת שכדאי לי לשפר בשבוע הקרוב בעזרת אותה שיטה: הגדרה, ביצוע, בדיקה, מיומנות ושגרה.
+
+הצג את המשימה, את הצעד הראשון שאפשר לעשות מחר בבוקר בעשר דקות, ואיך אדע שזה עבד.
+
+אל תיצור קבצים.</pre>
+  <textarea class="prompt-src" hidden>קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו היום.
+
+הצע משימה אחת נוספת שכדאי לי לשפר בשבוע הקרוב בעזרת אותה שיטה: הגדרה, ביצוע, בדיקה, מיומנות ושגרה.
+
+הצג את המשימה, את הצעד הראשון שאפשר לעשות מחר בבוקר בעשר דקות, ואיך אדע שזה עבד.
+
+אל תיצור קבצים.</textarea>
+</div></div></div></section>
+    <nav class="pager" aria-label="מעבר בין עמודים"><a class="pg prev" href="routine.html"><small>→ הקודם</small><b>יוצרים שגרה</b></a><a class="pg next" href="prompts.html"><small>הבא ←</small><b>ספריית פרומפטים</b></a></nav>
+  </main>
+</div>
+<footer class="foot"><div class="wrap">אייג׳נט זירו · סדנה של <a href="https://practiai.co.il" rel="noopener">PractiAI</a> · טל חקוקי. האתר אינו אוסף מידע. סימוני ההתקדמות נשמרים בדפדפן שלכם בלבד.</div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.AZ_EXERCISES=["setup","meet","profile","opportunities","first-task","tool","connectors","instructions","skill","routine","my-agent"];</script>
+<script>(function(){
+  var KEY='agentZero.v1';
+  var state={done:{},checks:{},track:null};
+  try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s)state=Object.assign(state,s);}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  var toastT;
+  function toast(t){var el=document.getElementById('toast');if(!el)return;el.textContent=t;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){el.classList.remove('show');},1800);}
+
+  // progress + nav marks
+  function paint(){
+    var ex=window.AZ_EXERCISES||[];var n=ex.filter(function(s){return state.done[s];}).length;
+    var f=document.getElementById('prog-fill'),t=document.getElementById('prog-txt');
+    if(f)f.style.width=(ex.length?n/ex.length*100:0)+'%';
+    if(t)t.textContent=n+'/'+ex.length;
+    document.querySelectorAll('[data-nav]').forEach(function(a){a.classList.toggle('is-done',!!state.done[a.getAttribute('data-nav')]);});
+    document.querySelectorAll('.mark-done').forEach(function(b){var d=!!state.done[b.getAttribute('data-page')];b.setAttribute('aria-pressed',d);b.textContent=d?'השלב הושלם':(b.getAttribute('data-label')||b.textContent);});
+  }
+  document.querySelectorAll('.mark-done').forEach(function(b){
+    b.setAttribute('data-label',b.textContent);
+    b.addEventListener('click',function(){var p=b.getAttribute('data-page');state.done[p]=!state.done[p];save();paint();toast(state.done[p]?'כל הכבוד! השלב סומן כהושלם':'הסימון הוסר');});
+  });
+
+  // checklists
+  document.querySelectorAll('.checklist input').forEach(function(i){
+    var k=i.getAttribute('data-k');i.checked=!!state.checks[k];
+    i.addEventListener('change',function(){state.checks[k]=i.checked;
+      var ul=i.closest('.checklist'),all=ul.querySelectorAll('input'),on=ul.querySelectorAll('input:checked');
+      if(all.length===on.length&&!state.done[ul.getAttribute('data-page')]){state.done[ul.getAttribute('data-page')]=true;toast('כל הבדיקות עברו. השלב סומן כהושלם');}
+      save();paint();});
+  });
+
+  // tabs (track remembered globally once chosen)
+  function selectTrack(box,tr){
+    var tabs=box.querySelectorAll('.tab');var has=false;
+    tabs.forEach(function(t){if(t.getAttribute('data-track')===tr)has=true;});
+    if(!has)return;
+    tabs.forEach(function(t){t.setAttribute('aria-selected',t.getAttribute('data-track')===tr);});
+    box.querySelectorAll('.tab-panel').forEach(function(p){p.hidden=p.getAttribute('data-track')!==tr;});
+  }
+  document.querySelectorAll('.tabs').forEach(function(box){
+    if(state.track)selectTrack(box,state.track);
+    box.querySelectorAll('.tab').forEach(function(t){
+      t.addEventListener('click',function(){var tr=t.getAttribute('data-track');state.track=tr;save();selectTrack(box,tr);});
+      t.addEventListener('keydown',function(e){if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;var arr=[].slice.call(box.querySelectorAll('.tab'));var i=arr.indexOf(t);var n=arr[(i+(e.key==='ArrowLeft'?1:-1)+arr.length)%arr.length];n.focus();n.click();});
+    });
+  });
+
+  // copy
+  function copyText(txt,btn){
+    function ok(){btn.classList.add('ok');btn.textContent='הועתק ✓';toast('הפרומפט הועתק. הדביקו אותו בקלוד קוד');setTimeout(function(){btn.classList.remove('ok');btn.textContent='העתקה';},1800);}
+    function fallback(){var ta=document.createElement('textarea');ta.value=txt;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok();}catch(e){toast('לא הצלחנו להעתיק. סמנו את הטקסט והעתיקו ידנית');}document.body.removeChild(ta);}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback);}else fallback();
+  }
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));copyText(card.querySelector('.prompt-src').value,b);});
+  });
+
+  // mobile menu
+  var mb=document.querySelector('.menu-btn');
+  if(mb)mb.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');mb.setAttribute('aria-expanded',o);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('nav-open')){document.body.classList.remove('nav-open');mb.setAttribute('aria-expanded','false');mb.focus();}});
+
+  // reset
+  var r=document.getElementById('reset');
+  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
+
+  // prompt library filters
+  var q=document.getElementById('lib-q');
+  if(q){
+    var stage=document.getElementById('lib-stage'),tr='';
+    function filt(){var v=q.value.trim(),n=0;
+      document.querySelectorAll('.lib-item').forEach(function(it){
+        var show=(!stage.value||it.getAttribute('data-s')===stage.value)&&(!tr||it.getAttribute('data-tr')===tr)&&(!v||it.textContent.indexOf(v)>-1);
+        it.hidden=!show;if(show)n++;});
+      document.getElementById('lib-count').textContent=n+' פרומפטים';}
+    q.addEventListener('input',filt);stage.addEventListener('change',filt);
+    document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){tr=c.getAttribute('data-tr');document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c);});filt();});});
+    filt();
+  }
+  paint();
+})();
+</script>
+</body>
+</html>
