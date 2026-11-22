@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דפדפן ושליטה במחשב · אייג׳נט זירו | PractiAI</title>
+<meta name="description" content="מכירים שלוש יכולות שמאפשרות לקלוד לפעול מחוץ לתיקיית העבודה: הדפדפן המובנה, ההרחבה Claude in Chrome ושליטה במחשב. לומדים איפה מפעילים כל אחת בהגדרות, ומתי נכון להשתמש בה.">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="theme-color" content="#F3F2ED">
+<meta property="og:title" content="אייג׳נט זירו · מאפס לסוכן בינה מלאכותית משלך">
+<meta property="og:description" content="אתר התרגול של הסדנה · טל חקוקי | PractiAI">
+<meta property="og:locale" content="he_IL">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>:root{
+  --paper:#F3F2ED;--paper-2:#ECEAE3;--card:#FFFFFF;--tint:#F6F7F4;
+  --line:rgba(19,35,58,.10);--line-2:rgba(19,35,58,.18);
+  --ink:#13233A;--ink-2:#3D4B5F;--muted:#5F6B7D;
+  --accent:#0C7F72;--accent-2:#0A6A60;--accent-soft:rgba(12,127,114,.08);--accent-line:rgba(12,127,114,.35);
+  --signal:#A85D08;--signal-soft:rgba(184,104,12,.09);
+  --violet:#5B4B8A;--violet-soft:rgba(91,75,138,.08);
+  --shadow:0 1px 2px rgba(19,35,58,.04),0 18px 44px -28px rgba(19,35,58,.22);
+  --font-body:'Plex Hebrew','Arial Hebrew','Segoe UI',Arial,sans-serif;
+  --font-display:'Frank Ruhl','David',serif;
+  --font-mono:'Plex Mono','Plex Hebrew',ui-monospace,Consolas,monospace;
+  --wrap:1220px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{font-family:var(--font-body);color:var(--ink);line-height:1.7;font-size:17px;background:
+  radial-gradient(1100px 650px at 100% -10%,rgba(12,127,114,.10),transparent 62%),
+  radial-gradient(900px 600px at -10% 50%,rgba(11,92,112,.05),transparent 60%),var(--paper) fixed;min-height:100vh}
+a{color:var(--accent-2)}
+img{max-width:100%}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.num{font-feature-settings:"tnum"}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.skip{position:absolute;top:-60px;right:12px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:99}
+.skip:focus{top:10px}
+:focus-visible{outline:3px solid rgba(12,127,114,.55);outline-offset:2px;border-radius:6px}
+code{font-family:var(--font-mono);font-size:.88em;background:var(--accent-soft);color:var(--accent-2);padding:1px 6px;border-radius:5px;unicode-bidi:isolate;white-space:nowrap}
+mark{background:var(--signal-soft);color:var(--signal);border-radius:4px;padding:0 3px;font-weight:700}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(243,242,237,.88);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.topbar-in{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand img{height:28px;width:auto}
+.brand-name{font-family:var(--font-display);font-weight:900;font-size:21px;border-inline-start:1px solid var(--line-2);padding-inline-start:12px}
+.progress{margin-inline-start:auto;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.progress-bar{width:140px;height:8px;border-radius:8px;background:var(--paper-2);overflow:hidden}
+.progress-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#0B5C70,#0C7F72);border-radius:8px;transition:width .4s}
+.menu-btn{display:none;background:none;border:1px solid var(--line-2);border-radius:10px;width:42px;height:38px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:4px}
+.menu-btn span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px}
+
+/* shell */
+.shell{display:grid;grid-template-columns:270px minmax(0,1fr);gap:40px;padding-top:28px;padding-bottom:60px}
+.side{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 100px);overflow:auto;padding-bottom:12px}
+.nav{list-style:none;display:flex;flex-direction:column;gap:2px}
+.nav a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-2);padding:7px 10px;border-radius:10px;font-size:15px;line-height:1.35}
+.nav a:hover{background:var(--accent-soft);color:var(--accent-2)}
+.nav a[aria-current=page]{background:var(--card);color:var(--ink);font-weight:700;box-shadow:var(--shadow)}
+.nav-n{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;background:var(--paper-2);color:var(--muted);font-weight:700}
+.nav-t{flex:1}
+.nav-done{opacity:0;color:var(--accent);font-weight:900}
+.nav a.is-done .nav-done{opacity:1}
+.nav a.is-done .nav-n{background:var(--accent);color:#fff}
+.reset{margin-top:14px;background:none;border:none;color:var(--muted);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer;padding:4px 10px}
+
+/* hero */
+main{min-width:0}
+.hero{padding:18px 0 26px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.kicker{font-size:15px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.kicker::before{content:"";width:30px;height:2px;background:var(--accent);opacity:.7;border-radius:2px}
+.time{font-weight:500;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1px 10px;font-size:13px}
+h1{font-family:var(--font-display);font-weight:900;font-size:clamp(32px,4.6vw,54px);line-height:1.12;color:var(--ink)}
+.h1-sub{display:block;font-size:.5em;font-weight:700;color:var(--accent);margin-top:10px}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--ink-2);margin-top:14px;max-width:780px;line-height:1.55}
+.byline{margin-top:16px;font-weight:700}
+.byline span{color:var(--muted);font-weight:400;margin:0 6px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.toc a{font-size:14px;text-decoration:none;color:var(--ink-2);border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:4px 12px}
+.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+/* blocks */
+.block{padding:26px 0;border-bottom:1px solid var(--line)}
+.block:last-of-type{border-bottom:none}
+.block>h2,.prose h2{font-family:var(--font-display);font-weight:700;font-size:clamp(24px,2.6vw,30px);margin-bottom:14px;color:var(--ink)}
+.prose h2{margin-top:30px}
+h3{font-size:18px;margin:18px 0 8px}
+p{margin:0 0 12px;max-width:820px}
+ul,ol{margin:0 0 14px;padding-inline-start:24px;max-width:820px}
+li{margin-bottom:6px}
+li::marker{color:var(--accent);font-weight:700}
+.small{font-size:14px;color:var(--muted)}
+blockquote{border-inline-start:3px solid var(--accent-line);padding:4px 14px;color:var(--ink-2);margin:0 0 12px}
+.table-wrap{overflow-x:auto;margin:0 0 16px;max-width:860px}
+table{border-collapse:collapse;width:100%;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:15px}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--tint);font-weight:700}
+
+.callout{border-radius:14px;padding:14px 18px;margin:14px 0;max-width:860px;border:1px solid var(--line);background:var(--card)}
+.callout p:last-child{margin-bottom:0}
+.callout.info{border-inline-start:4px solid var(--accent);background:linear-gradient(90deg,var(--card),var(--accent-soft))}
+.callout.privacy{border-inline-start:4px solid var(--violet);background:linear-gradient(90deg,var(--card),var(--violet-soft))}
+.callout.warn{border-inline-start:4px solid var(--signal);background:linear-gradient(90deg,var(--card),var(--signal-soft))}
+.callout.good{border-inline-start:4px solid var(--accent);font-size:18px}
+.concepts{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 18px 8px;margin-top:16px;max-width:860px;box-shadow:var(--shadow)}
+
+/* tabs + prompts */
+.tablist{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line-2);margin-bottom:14px}
+.tab{font:inherit;font-weight:700;font-size:15px;background:none;border:none;border-bottom:3px solid transparent;padding:9px 14px;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:8px;margin-bottom:-1px}
+.tab[aria-selected=true]{color:var(--accent-2);border-bottom-color:var(--accent)}
+.tab-badge{font-size:11px;font-weight:700;background:var(--accent-soft);color:var(--accent-2);border-radius:10px;padding:1px 7px}
+.track-note{color:var(--ink-2);font-size:15px}
+.step-label{font-size:13px;font-weight:700;color:var(--muted);margin:16px 0 6px;letter-spacing:.02em}
+.prompt{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin-bottom:14px;max-width:880px;overflow:hidden}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px 10px 10px;background:var(--tint);border-bottom:1px solid var(--line)}
+.prompt-title{font-weight:700;font-size:15px}
+.copy{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--accent-line);background:var(--card);color:var(--accent-2);border-radius:20px;padding:5px 16px;cursor:pointer;flex:0 0 auto;transition:all .2s}
+.copy:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.copy.ok{background:var(--accent);color:#fff;border-color:var(--accent)}
+.prompt-text{font-family:var(--font-body);white-space:pre-wrap;word-wrap:break-word;padding:14px 18px;font-size:15.5px;line-height:1.7;max-height:420px;overflow:auto;color:var(--ink)}
+.prompt.expanded .prompt-text{max-height:none}
+
+/* files */
+.file{background:#FBFBF9;border:1px solid var(--line-2);border-radius:14px;margin:14px 0;max-width:860px;overflow:hidden}
+.file figcaption{display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--paper-2);border-bottom:1px solid var(--line);font-size:14px;flex-wrap:wrap}
+.file-ico{color:var(--accent)}
+.file-note{color:var(--muted);margin-inline-start:auto;font-size:13px}
+.file-pre{font-family:var(--font-mono);font-size:13.5px;white-space:pre-wrap;padding:14px 16px;line-height:1.65;max-height:380px;overflow:auto;unicode-bidi:plaintext}
+
+/* checklist */
+.checklist{list-style:none;padding:0;max-width:820px}
+.checklist li{margin-bottom:8px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;transition:border-color .2s}
+.checklist label:hover{border-color:var(--accent-line)}
+.checklist input{width:20px;height:20px;accent-color:var(--accent);margin-top:3px;flex:0 0 auto}
+.checklist input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--accent-line)}
+.done-box{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.done-hint{font-size:13px;color:var(--muted)}
+.mark-done[aria-pressed=true]{background:var(--card);color:var(--accent-2)}
+.mark-done[aria-pressed=true]::before{content:"✓ "}
+
+/* accordion */
+.acc{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;max-width:860px}
+.acc summary{cursor:pointer;padding:11px 16px;font-weight:700;list-style:none;display:flex;gap:10px;align-items:center}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::before{content:"+";color:var(--accent);font-weight:900;width:14px;flex:0 0 14px}
+.acc[open] summary::before{content:"−"}
+.acc-body{padding:0 16px 8px 16px;padding-inline-start:40px;color:var(--ink-2)}
+.faq-group{margin-bottom:22px}
+.faq-group h3 a{color:var(--ink);text-decoration:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:16px;border-radius:30px;padding:11px 22px;border:1.5px solid var(--accent-line);color:var(--accent-2);background:var(--card);cursor:pointer;font-family:inherit;transition:all .2s}
+.btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 10px 24px -14px rgba(12,127,114,.8)}
+.btn.solid:hover{background:var(--accent-2)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}
+
+/* ladder, four, tree, downloads */
+.ladder{list-style:none;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:none;margin:10px 0 18px}
+.ladder li{margin:0}
+.ladder a{display:flex;flex-direction:column;gap:10px;height:100%;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+.ladder li:nth-child(2) a{margin-top:-10px}.ladder li:nth-child(3) a{margin-top:-20px}.ladder li:nth-child(4) a{margin-top:-30px}.ladder li:nth-child(5) a{margin-top:-40px}
+.ladder{padding-top:40px}
+.ladder a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ladder-n{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:900;font-family:var(--font-display);font-size:18px}
+.ladder b{display:block;font-size:17px}
+.ladder small{display:block;color:var(--muted);font-size:14px;line-height:1.4;margin-top:2px}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0 18px}
+.four div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+.four b{display:block;font-family:var(--font-display);font-size:20px;color:var(--accent-2)}
+.four span{font-size:15px;color:var(--ink-2)}
+.tree{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;max-width:760px;box-shadow:var(--shadow);margin-bottom:16px}
+.tree-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+.tree-row:last-child{border-bottom:none}
+.tree-row:not(.root):not(.ext){padding-inline-start:26px}
+.tree-row span{color:var(--accent);width:16px}
+.tree-row em{color:var(--muted);font-style:normal;font-size:14px;margin-inline-start:auto}
+.tree-row.ext{margin-top:6px;border-top:1px solid var(--line-2);padding-top:10px}
+.dl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:8px 0 22px}
+.dl{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);transition:border-color .2s}
+.dl:hover{border-color:var(--accent)}
+.dl b{font-size:19px;font-family:var(--font-display)}
+.dl span{color:var(--ink-2);font-size:15px}
+.dl-kind{align-self:flex-start;font-size:12px!important;font-weight:700;background:var(--accent-soft);color:var(--accent-2)!important;border-radius:10px;padding:1px 9px}
+.dl-go{margin-top:auto;color:var(--accent-2)!important;font-weight:700}
+
+/* prompt library */
+.lib-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0 6px}
+.lib-search input,#lib-stage{font:inherit;font-size:15px;border:1px solid var(--line-2);border-radius:20px;padding:7px 14px;background:var(--card);min-width:220px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:inherit;font-size:14px;border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:5px 12px;cursor:pointer;color:var(--ink-2)}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.lib-item{margin-top:14px}
+.lib-meta{display:flex;gap:10px;align-items:center;font-size:14px;margin-bottom:6px}
+.lib-meta a{color:var(--muted);text-decoration:none}
+.tag{font-size:12px;font-weight:700;border-radius:10px;padding:1px 8px;background:var(--paper-2);color:var(--ink-2)}
+.tag-deep{background:var(--violet-soft);color:var(--violet)}
+.tag-sample{background:var(--signal-soft);color:var(--signal)}
+.tag-short{background:var(--accent-soft);color:var(--accent-2)}
+
+/* pager, footer, toast */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.pg{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;transition:border-color .2s}
+.pg:hover{border-color:var(--accent)}
+.pg small{color:var(--muted)}
+.pg.next{text-align:left}
+.foot{border-top:1px solid var(--line);padding:22px 0 30px;font-size:14px;color:var(--muted)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:9px 18px;border-radius:24px;font-size:15px;opacity:0;pointer-events:none;transition:all .25s;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* responsive */
+@media (max-width:1000px){
+  .ladder{grid-template-columns:1fr;padding-top:0}
+  .ladder li a{margin-top:0!important;flex-direction:row;align-items:center}
+  .four{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .shell{grid-template-columns:1fr;gap:0;padding-top:12px}
+  .menu-btn{display:flex}
+  .side{position:fixed;top:64px;right:0;bottom:0;width:min(320px,86vw);max-height:none;background:var(--paper);border-inline-start:1px solid var(--line);padding:16px;z-index:25;transform:translateX(105%);transition:transform .25s;box-shadow:-20px 0 40px -20px rgba(19,35,58,.3)}
+  body.nav-open .side{transform:none}
+  .progress-bar{width:70px}
+  .brand img{display:none}
+  .brand-name{border:none;padding:0}
+  .dl-grid{grid-template-columns:1fr}
+  .pager{grid-template-columns:1fr}
+  .pg.next{text-align:right}
+  .wrap{padding:0 16px}
+  code{white-space:normal;word-break:break-word}
+}
+@media (max-width:480px){.four{grid-template-columns:1fr}.prompt-text{font-size:15px;padding:12px 14px}}
+@media print{.topbar,.side,.pager,.copy,.toast,.done-box,.toc{display:none!important}.shell{display:block}.prompt-text{max-height:none}}
+
+/* ===== shared header/footer (v2) ===== */
+.brand{display:flex;align-items:center;gap:12px}
+.brand a{display:flex;align-items:center;text-decoration:none;color:var(--ink)}
+.toplinks{display:flex;gap:2px;font-size:14.5px;margin-inline-start:18px}
+.toplinks a,.topnav a{text-decoration:none;color:var(--ink-2);padding:6px 12px;border-radius:20px;transition:background .2s,color .2s}
+.toplinks a:hover,.topnav a:hover{background:var(--accent-soft);color:var(--accent-2)}
+.topnav{display:flex;gap:2px;font-size:15px;margin-inline-start:auto}
+.foot{border-top:1px solid var(--line);background:rgba(255,255,255,.6);padding:44px 0 50px;font-size:15px;color:var(--ink-2)}
+.foot-in{display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap}
+.who{display:flex;align-items:center;gap:16px}
+.who img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-line)}
+.who b{display:block;font-size:18px;color:var(--ink)}
+.who span{color:var(--muted);font-size:14px}
+.contact{display:flex;gap:10px;flex-wrap:wrap}
+.contact .btn{font-size:15px;padding:9px 18px}
+.btn svg{width:16px;height:16px}
+.fine{color:var(--muted);font-size:13px;width:100%;max-width:none;margin:8px 0 0}
+.btn.solid.alt{background:var(--ink);border-color:var(--ink);box-shadow:0 10px 24px -14px rgba(19,35,58,.7)}
+.btn.solid.alt:hover{background:#0b1626}
+
+/* ===== landing ===== */
+.landing main{display:block}
+.hero-l{padding-top:72px;padding-bottom:56px}
+h1.big{font-size:clamp(46px,7vw,92px);line-height:1.04}
+h1.big .grad{display:block;font-size:.42em;font-weight:700;margin-top:14px;background:linear-gradient(90deg,#0B5C70,#0C7F72 55%,#13A08E);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.3}
+.hero-l .lead{margin-top:22px}
+.landing section{padding:64px 0;scroll-margin-top:64px}
+.landing .band{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.2));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{margin-bottom:28px;max-width:800px}
+.eyebrow{font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-bottom:8px;display:block}
+.sec-head h2,.h2{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3.4vw,40px);line-height:1.15;margin-bottom:10px}
+.sec-head p{color:var(--ink-2);font-size:18px}
+.deckcard{display:grid;grid-template-columns:1.35fr 1fr;background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.preview{position:relative;aspect-ratio:16/9;background:#E7EAEE;overflow:hidden;border-inline-start:1px solid var(--line)}
+.preview iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+.preview a{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;padding:14px;text-decoration:none;background:linear-gradient(0deg,rgba(19,35,58,.25),transparent 45%);opacity:0;transition:opacity .3s}
+.preview a:hover,.preview a:focus-visible{opacity:1}
+.preview a span{background:var(--accent);color:#fff;font-weight:700;font-size:14px;border-radius:30px;padding:6px 14px}
+.deck-body{padding:26px 28px;display:flex;flex-direction:column;gap:12px}
+.deck-body h3{font-family:var(--font-display);font-size:28px;line-height:1.2;margin:0}
+.deck-body p{color:var(--ink-2);margin:0}
+.deck-body .actions{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tags .tag{font-size:13px;font-weight:500;background:var(--tint);border:1px solid var(--line);border-radius:30px;padding:3px 12px}
+.tags .tag.teal{color:var(--accent-2);background:var(--accent-soft);border-color:var(--accent-line)}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.key{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 14px;font-size:15px;color:var(--ink-2)}
+kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;padding:0 8px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:var(--paper);border:1px solid var(--line-2);border-bottom-width:3px;color:var(--ink)}
+.tip{margin-top:14px;color:var(--muted);font-size:15px}
+.progress-line{display:flex;align-items:center;gap:12px;margin:8px 0 18px;font-size:15px;color:var(--muted)}
+.progress-bar.wide{width:220px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pcard{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);transition:border-color .2s,transform .2s;position:relative}
+.pcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.pc-top{display:flex;justify-content:space-between;font-size:13px}
+.pc-k{color:var(--accent);font-weight:700}
+.pc-t{color:var(--muted)}
+.pcard b{font-family:var(--font-display);font-size:21px;line-height:1.25}
+.pc-l{font-size:14.5px;color:var(--ink-2);line-height:1.5}
+.pc-done{display:none;font-size:13px;font-weight:700;color:var(--accent)}
+.pcard.is-done{border-color:var(--accent-line);background:linear-gradient(180deg,#fff,var(--accent-soft))}
+.pcard.is-done .pc-done{display:block}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.clean{padding-inline-start:20px}
+.clean li{margin-bottom:10px;color:var(--ink-2)}
+.clean b{color:var(--ink)}
+.after{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:8px}
+.after div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.after b{display:block;font-family:var(--font-display);font-size:22px;color:var(--accent-2);margin-bottom:6px}
+.after span{color:var(--ink-2);font-size:15.5px}
+@media (max-width:1000px){.deckcard{grid-template-columns:1fr}.preview{border-inline-start:none;border-bottom:1px solid var(--line)}.pgrid{grid-template-columns:repeat(2,1fr)}.keys{grid-template-columns:repeat(2,1fr)}.toplinks{display:none}}
+@media (max-width:860px){.topnav{display:none}.g2,.after{grid-template-columns:1fr}.landing section{padding:48px 0}.hero-l{padding-top:44px}.foot-in{flex-direction:column;align-items:flex-start}}
+@media (max-width:560px){.pgrid,.keys{grid-template-columns:1fr}.progress-bar.wide{width:120px}}
+@media (max-width:860px){.brand img{display:block!important;height:22px}.brand-name{font-size:17px;padding-inline-start:10px;border-inline-start:1px solid var(--line-2)!important}.progress-bar{width:50px}.brand{gap:10px}}
+.brand-name{white-space:nowrap}
+
+/* live neural-network background (same as MNMR 2026 page) */
+#neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.topbar{z-index:30}
+main,.shell,.foot{position:relative;z-index:1}
+</style>
+</head>
+<body data-page="browser-computer">
+<canvas id="neural" aria-hidden="true"></canvas>
+<a class="skip" href="#main">דילוג לתוכן</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="side" aria-label="תפריט השלבים"><span></span><span></span><span></span></button>
+    <div class="brand"><a href="https://practiai.co.il/" aria-label="לאתר הראשי של PractiAI"><img src="assets/practiai-logo-light.png" alt="PractiAI" width="120" height="30"></a><a class="brand-name" href="index.html">אייג׳נט זירו</a></div>
+    <nav class="toplinks" aria-label="קישורים מהירים"><a href="index.html">עמוד הסדנה</a><a href="deck.html" target="_blank" rel="noopener">המצגת</a><a href="prompts.html">פרומפטים</a></nav>
+    <div class="progress" aria-label="התקדמות בסדנה"><div class="progress-bar"><span id="prog-fill"></span></div><span id="prog-txt" class="num">0/12</span></div>
+  </div>
+</header>
+<div class="shell wrap">
+  <aside class="side" id="side" aria-label="שלבי הסדנה">
+    <ol class="nav"><li><a href="index.html" data-nav="index"><span class="nav-n">1</span><span class="nav-t">מתחילים כאן</span></a></li><li><a href="setup.html" data-nav="setup"><span class="nav-n">2</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" aria-current="page" data-nav="browser-computer"><span class="nav-n">8</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors"><span class="nav-n">9</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" data-nav="routine"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" data-nav="my-agent"><span class="nav-n">13</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="prompts.html" data-nav="prompts"><span class="nav-n">14</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help"><span class="nav-n">15</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads"><span class="nav-n">16</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
+    <button type="button" class="reset" id="reset">איפוס ההתקדמות</button>
+  </aside>
+  <main id="main" tabindex="-1">
+    <div class="hero">
+      <div class="kicker">הדגמה<span class="time num" dir="ltr">01:45–01:50</span></div>
+      <h1>קלוד עובד בדפדפן ובמחשב שלי</h1>
+      <p class="lead">מכירים שלוש יכולות שמאפשרות לקלוד לפעול מחוץ לתיקיית העבודה: הדפדפן המובנה, ההרחבה Claude in Chrome ושליטה במחשב. לומדים איפה מפעילים כל אחת בהגדרות, ומתי נכון להשתמש בה.</p>
+      
+      <nav class="toc" aria-label="בעמוד הזה"><a href="#what">מה עושים</a><a href="#how">איך מתחילים</a><a href="#ask">הפרומפט</a><a href="#check">בדיקת הצלחה</a><a href="#stuck">נתקעת?</a></nav>
+    </div>
+    <section class="block" id="what"><h2>מה אנחנו עושים עכשיו?</h2><p>עד עכשיו קלוד עבד על קבצים בתיקייה. יש לו גם שלוש דרכים לעבוד כמו שאנחנו עובדים: לגלוש באתרים, ללחוץ על כפתורים ולהפעיל אפליקציות.</p><div class="table-wrap"><table><thead><tr><th>היכולת</th><th>מה היא עושה</th><th>מתי מתאים</th></tr></thead><tbody><tr><td><strong>הדפדפן המובנה</strong></td><td>דפדפן בתוך אפליקציית קלוד, עם לשוניות, ובלי הסיסמאות וההיסטוריה שלכם</td><td>לבדוק כלי שבניתם, לקרוא אתרים ציבוריים</td></tr><tr><td><strong>Claude in Chrome</strong></td><td>הרחבה לכרום שמאפשרת לקלוד לקרוא אתרים, ללחוץ ולנווט בדפדפן שלכם</td><td>כשצריך לעבוד באתר שאתם מחוברים אליו</td></tr><tr><td><strong>שליטה במחשב</strong> (Computer use)</td><td>קלוד רואה את המסך, לוחץ ומקליד באפליקציות במחשב</td><td>כשאין דרך אחרת: אפליקציה שאין לה חיבור ואינה אתר</td></tr></tbody></table></div><p><strong>כלל האצבע:</strong> קלוד מעדיף תמיד את הדרך הישירה ביותר. קודם חיבור רשמי או קבצים, אחר כך דפדפן, ורק בסוף שליטה במחשב.</p><div class="callout privacy"><p><strong>כללי בטיחות לשלוש היכולות:</strong></p><ul><li><strong>אין סיסמאות.</strong> קלוד עוצר בדפי התחברות ובבדיקות CAPTCHA ומבקש שתטפלו בהם בעצמכם. לא נותנים לו להקליד סיסמה, מספר כרטיס אשראי או תעודת זהות.</li><li><strong>לא באתרים ובאפליקציות רגישים.</strong> לא בבנק, לא במערכות רפואיות או ממשלתיות אישיות ולא בפלטפורמות מסחר. עם Claude in Chrome מומלץ להשתמש בפרופיל כרום נפרד, שאין בו חשבונות רגישים.</li><li><strong>זהירות מהוראות מוסתרות.</strong> אתר יכול להכיל טקסט שמנסה &quot;לשכנע&quot; את קלוד לעשות משהו אחר. אם קלוד מתחיל לעסוק פתאום בנושא שלא ביקשתם, עצרו אותו מיד.</li><li><strong>השליטה במחשב פועלת על המחשב האמיתי שלכם.</strong> אין &quot;ארגז חול&quot; בינה לבין האפליקציות שאישרתם. מאשרים רק את האפליקציות הנחוצות למשימה. דפדפנים מקבלים צפייה בלבד, ותוכנות פיתוח מקבלים לחיצה בלבד, בלי הקלדה.</li><li><strong>האחריות שלכם.</strong> כל הודעה שנשלחת, רכישה או שינוי שנעשים דרך הדפדפן או המחשב הם באחריותכם. לפני פעולה שאי אפשר לבטל, קלוד צריך לשאול.</li></ul></div><div class="callout warn"><p><strong>זמינות:</strong> שליטה במחשב בלשונית Code פועלת בווינדוס ובמק (macOS 14 ומעלה), ורק במנויי Pro, Max ו־Ultra. היא לא זמינה במנויי Team ו־Enterprise. ההרחבה Claude in Chrome זמינה בכל המנויים בתשלום. שמות התפריטים עשויים להשתנות מעט בין גרסאות.</p></div></section><section class="block" id="why"><h2>למה זה שימושי?</h2><ul><li>אחרי שבניתם כלי בתרגיל הקודם, קלוד יכול לפתוח אותו בדפדפן המובנה, ללחוץ על הכפתורים ולבדוק בעצמו שהוא עובד.</li><li>קלוד יכול להיכנס לאתר ציבורי, למשל אתר של משרד ממשלתי או ארגון מקצועי, לאסוף את המידע העדכני ולסכם אותו בקובץ בתיקייה.</li><li>אם יש לכם אפליקציה במחשב שאין לה חיבור, קלוד יכול להפעיל אותה ישירות. זו היכולת החזקה ביותר, ולכן גם זו שדורשת הכי הרבה זהירות.</li></ul></section><section class="block" id="how"><h2>איך מתחילים?</h2><ol><li><strong>הדפדפן המובנה</strong> פועל מיד, בלי התקנה. פותחים אותו ב־<strong>Ctrl+Shift+B</strong> (במק: <strong>Cmd+Shift+B</strong>), או מבקשים מקלוד לפתוח אתר. בפעם הראשונה שקלוד נכנס לאתר חיצוני מופיע כרטיס אישור: <strong>Allow once</strong>, <strong>Always allow</strong> או <strong>Deny</strong>. מכבים את הדפדפן המובנה בהגדרות: <strong>Settings</strong> ‏←‏ <strong>Code</strong> (או <strong>Claude Code</strong>) ‏←‏ <strong>Browser tools</strong>.</li><li><strong>Claude in Chrome</strong>: מתקינים את ההרחבה <strong>Claude</strong> מחנות האינטרנט של כרום (<strong>Add to Chrome</strong>), מתחברים לאותו חשבון קלוד ומצמידים את ההרחבה לסרגל. באפליקציה מחברים אותה דרך <strong>Customize</strong> ‏←‏ <strong>Connectors</strong> ‏←‏ <strong>Claude in Chrome</strong> ‏←‏ <strong>Configure</strong>. קלוד מבקש אישור לפני שהוא פועל באתר חדש.</li><li><strong>שליטה במחשב</strong>: <strong>Settings</strong> ‏←‏ <strong>Capabilities</strong> (או <strong>This computer</strong> ‏←‏ <strong>System</strong>) ‏←‏ <strong>Computer use</strong> ‏←‏ מפעילים את <strong>Enable computer use</strong>. במק צריך לאשר גם הרשאות <strong>Accessibility</strong> ו־<strong>Screen Recording</strong>. בפעם הראשונה שקלוד רוצה להשתמש באפליקציה מופיע חלון אישור: <strong>Allow for this session</strong> או <strong>Deny</strong>.</li><li>בסדנה המנחה מדגים. מי שרוצה מנסה את הדפדפן המובנה על הכלי שבנה. את שתי היכולות האחרות כדאי לנסות אחרי הסדנה, בזמן שלכם.</li></ol></section><section class="block" id="ask"><h2>מה מבקשים מקלוד?</h2><div class="tabs" data-default="short"><div class="tablist" role="tablist" aria-label="בחירת מסלול"><button type="button" role="tab" class="tab" id="tab-browser-computer-short" aria-controls="panel-browser-computer-short" data-track="short" aria-selected="true">מסלול קצר<span class="tab-badge">בסדנה</span></button><button type="button" role="tab" class="tab" id="tab-browser-computer-deep" aria-controls="panel-browser-computer-deep" data-track="deep" aria-selected="false">מסלול מעמיק</button><button type="button" role="tab" class="tab" id="tab-browser-computer-sample" aria-controls="panel-browser-computer-sample" data-track="sample" aria-selected="false">מסלול דוגמה</button></div><div class="tab-panel" role="tabpanel" id="panel-browser-computer-short" aria-labelledby="tab-browser-computer-short" data-track="short"><p class="track-note">הפרומפט המרכזי של התרגיל. מספיק כדי להשלים את השלב.</p><div class="step-label">שלב 1 מתוך 2</div><div class="prompt" id="browser-computer-short-1">
+  <div class="prompt-head"><span class="prompt-title">דפדפן מובנה: קלוד בודק את הכלי שבניתי</span><button class="copy" type="button" data-copy="browser-computer-short-1" aria-label="העתקת הפרומפט: דפדפן מובנה: קלוד בודק את הכלי שבניתי">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">פתח בדפדפן המובנה את הכלי שבנינו בתיקיית הפרויקט.
+
+בדוק בעצמך שהפעולות המרכזיות שלו עובדות: לחץ על הכפתורים, נסה את השדות והסינונים.
+
+הצג לי מה בדקת, מה עבד ומה לא עבד.
+
+אל תשנה קבצים לפני שאאשר.</pre>
+  <textarea class="prompt-src" hidden>פתח בדפדפן המובנה את הכלי שבנינו בתיקיית הפרויקט.
+
+בדוק בעצמך שהפעולות המרכזיות שלו עובדות: לחץ על הכפתורים, נסה את השדות והסינונים.
+
+הצג לי מה בדקת, מה עבד ומה לא עבד.
+
+אל תשנה קבצים לפני שאאשר.</textarea>
+</div><div class="step-label">שלב 2 מתוך 2</div><div class="prompt" id="browser-computer-short-2">
+  <div class="prompt-head"><span class="prompt-title">אתר ציבורי: איסוף מידע לקובץ</span><button class="copy" type="button" data-copy="browser-computer-short-2" aria-label="העתקת הפרומפט: אתר ציבורי: איסוף מידע לקובץ">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">היכנס לאתר הציבורי הבא: <mark>[כתובת של אתר ציבורי שקשור לעבודה שלי]</mark>
+
+קרא את העמוד וסכם בעשר שורות לכל היותר את המידע שרלוונטי לתפקיד שלי, לפי הפרופיל המקצועי שלי.
+
+שמור את הסיכום בקובץ חדש בתיקייה <code dir="auto">תוצרים</code>, וכתוב בראשו את כתובת המקור ואת התאריך.
+
+אל תתחבר לשום חשבון, אל תמלא טפסים ואל תלחץ על כפתורי שליחה או רכישה.</pre>
+  <textarea class="prompt-src" hidden>היכנס לאתר הציבורי הבא: [כתובת של אתר ציבורי שקשור לעבודה שלי]
+
+קרא את העמוד וסכם בעשר שורות לכל היותר את המידע שרלוונטי לתפקיד שלי, לפי הפרופיל המקצועי שלי.
+
+שמור את הסיכום בקובץ חדש בתיקייה `תוצרים`, וכתוב בראשו את כתובת המקור ואת התאריך.
+
+אל תתחבר לשום חשבון, אל תמלא טפסים ואל תלחץ על כפתורי שליחה או רכישה.</textarea>
+</div></div><div class="tab-panel" role="tabpanel" id="panel-browser-computer-deep" aria-labelledby="tab-browser-computer-deep" data-track="deep" hidden><p class="track-note">אחרי הפרומפט המרכזי: עוד בירור, עוד התאמה אישית ועוד בדיקות.</p><div class="step-label">שלב 1 מתוך 4</div><div class="prompt" id="browser-computer-deep-3">
+  <div class="prompt-head"><span class="prompt-title">דפדפן מובנה: קלוד בודק את הכלי שבניתי</span><button class="copy" type="button" data-copy="browser-computer-deep-3" aria-label="העתקת הפרומפט: דפדפן מובנה: קלוד בודק את הכלי שבניתי">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">פתח בדפדפן המובנה את הכלי שבנינו בתיקיית הפרויקט.
+
+בדוק בעצמך שהפעולות המרכזיות שלו עובדות: לחץ על הכפתורים, נסה את השדות והסינונים.
+
+הצג לי מה בדקת, מה עבד ומה לא עבד.
+
+אל תשנה קבצים לפני שאאשר.</pre>
+  <textarea class="prompt-src" hidden>פתח בדפדפן המובנה את הכלי שבנינו בתיקיית הפרויקט.
+
+בדוק בעצמך שהפעולות המרכזיות שלו עובדות: לחץ על הכפתורים, נסה את השדות והסינונים.
+
+הצג לי מה בדקת, מה עבד ומה לא עבד.
+
+אל תשנה קבצים לפני שאאשר.</textarea>
+</div><div class="step-label">שלב 2 מתוך 4</div><div class="prompt" id="browser-computer-deep-4">
+  <div class="prompt-head"><span class="prompt-title">אתר ציבורי: איסוף מידע לקובץ</span><button class="copy" type="button" data-copy="browser-computer-deep-4" aria-label="העתקת הפרומפט: אתר ציבורי: איסוף מידע לקובץ">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">היכנס לאתר הציבורי הבא: <mark>[כתובת של אתר ציבורי שקשור לעבודה שלי]</mark>
+
+קרא את העמוד וסכם בעשר שורות לכל היותר את המידע שרלוונטי לתפקיד שלי, לפי הפרופיל המקצועי שלי.
+
+שמור את הסיכום בקובץ חדש בתיקייה <code dir="auto">תוצרים</code>, וכתוב בראשו את כתובת המקור ואת התאריך.
+
+אל תתחבר לשום חשבון, אל תמלא טפסים ואל תלחץ על כפתורי שליחה או רכישה.</pre>
+  <textarea class="prompt-src" hidden>היכנס לאתר הציבורי הבא: [כתובת של אתר ציבורי שקשור לעבודה שלי]
+
+קרא את העמוד וסכם בעשר שורות לכל היותר את המידע שרלוונטי לתפקיד שלי, לפי הפרופיל המקצועי שלי.
+
+שמור את הסיכום בקובץ חדש בתיקייה `תוצרים`, וכתוב בראשו את כתובת המקור ואת התאריך.
+
+אל תתחבר לשום חשבון, אל תמלא טפסים ואל תלחץ על כפתורי שליחה או רכישה.</textarea>
+</div><div class="step-label">שלב 3 מתוך 4</div><div class="prompt" id="browser-computer-deep-5">
+  <div class="prompt-head"><span class="prompt-title">שליטה במחשב: הדגמה בטוחה</span><button class="copy" type="button" data-copy="browser-computer-deep-5" aria-label="העתקת הפרומפט: שליטה במחשב: הדגמה בטוחה">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">אני רוצה לנסות את היכולת לשלוט במחשב, במשימה בטוחה ופשוטה.
+
+פתח את פנקס הרשימות (בווינדוס: Notepad, במק: TextEdit).
+
+כתוב בו את שלושת הכללים של הסדנה: מתחילים קטן, לא מעלים מידע רגיש, בודקים כל תוצאה.
+
+אל תשמור את הקובץ ואל תפתח אף אפליקציה אחרת.
+
+לפני שאתה מתחיל, הסבר לי אילו אפליקציות תבקש לאשר ולמה.</pre>
+  <textarea class="prompt-src" hidden>אני רוצה לנסות את היכולת לשלוט במחשב, במשימה בטוחה ופשוטה.
+
+פתח את פנקס הרשימות (בווינדוס: Notepad, במק: TextEdit).
+
+כתוב בו את שלושת הכללים של הסדנה: מתחילים קטן, לא מעלים מידע רגיש, בודקים כל תוצאה.
+
+אל תשמור את הקובץ ואל תפתח אף אפליקציה אחרת.
+
+לפני שאתה מתחיל, הסבר לי אילו אפליקציות תבקש לאשר ולמה.</textarea>
+</div><div class="step-label">שלב 4 מתוך 4</div><div class="prompt" id="browser-computer-deep-6">
+  <div class="prompt-head"><span class="prompt-title">העמקה: איזו יכולת מתאימה לתהליך שלי?</span><button class="copy" type="button" data-copy="browser-computer-deep-6" aria-label="העתקת הפרומפט: העמקה: איזו יכולת מתאימה לתהליך שלי?">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו.
+
+האם יש תהליך בעבודה שלי שבו קלוד יצטרך לעבוד באתר או באפליקציה, ולא רק על קבצים?
+
+אם יש, הסבר:
+
+1. איזו מבין שלוש היכולות מתאימה: הדפדפן המובנה, Claude in Chrome או שליטה במחשב. העדף את הפשוטה והבטוחה ביותר.
+2. מה בדיוק קלוד יעשה שם.
+3. אילו פעולות דורשות אישור שלי.
+4. אילו סיכוני פרטיות כדאי להביא בחשבון, ומה כדאי לבדוק עם הארגון.
+
+אל תפתח אתרים או אפליקציות, ואל תבצע פעולות.</pre>
+  <textarea class="prompt-src" hidden>קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו.
+
+האם יש תהליך בעבודה שלי שבו קלוד יצטרך לעבוד באתר או באפליקציה, ולא רק על קבצים?
+
+אם יש, הסבר:
+
+1. איזו מבין שלוש היכולות מתאימה: הדפדפן המובנה, Claude in Chrome או שליטה במחשב. העדף את הפשוטה והבטוחה ביותר.
+2. מה בדיוק קלוד יעשה שם.
+3. אילו פעולות דורשות אישור שלי.
+4. אילו סיכוני פרטיות כדאי להביא בחשבון, ומה כדאי לבדוק עם הארגון.
+
+אל תפתח אתרים או אפליקציות, ואל תבצע פעולות.</textarea>
+</div></div><div class="tab-panel" role="tabpanel" id="panel-browser-computer-sample" aria-labelledby="tab-browser-computer-sample" data-track="sample" hidden><p class="track-note">עבודה על סביבת העבודה לדוגמה, הארגון הפיקטיבי "גשר". אפשר להצטרף למסלול הזה בכל שלב.</p><p class="small">צריך את הקבצים? <a href="downloads.html">הורידו את סביבת העבודה לדוגמה</a>.</p><div class="prompt" id="browser-computer-sample-7">
+  <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: בדיקת לוח המשימות בדפדפן</span><button class="copy" type="button" data-copy="browser-computer-sample-7" aria-label="העתקת הפרומפט: מסלול דוגמה: בדיקת לוח המשימות בדפדפן">העתקה</button></div>
+  <pre class="prompt-text" dir="rtl">פתח בדפדפן המובנה את לוח המשימות שבנינו בתיקייה <code dir="auto">תוצרים/לוח-משימות</code>.
+
+בדוק בעצמך:
+
+1. שכל המשימות מוצגות בשלוש העמודות.
+2. שהסינון לפי אחראי עובד.
+3. שהעברת משימה לסטטוס אחר עובדת.
+
+הצג לי מה בדקת ומה מצאת. אל תשנה קבצים.</pre>
+  <textarea class="prompt-src" hidden>פתח בדפדפן המובנה את לוח המשימות שבנינו בתיקייה `תוצרים/לוח-משימות`.
+
+בדוק בעצמך:
+
+1. שכל המשימות מוצגות בשלוש העמודות.
+2. שהסינון לפי אחראי עובד.
+3. שהעברת משימה לסטטוס אחר עובדת.
+
+הצג לי מה בדקת ומה מצאת. אל תשנה קבצים.</textarea>
+</div></div></div></section><section class="block" id="expect"><h2>מה אמור לקרות?</h2><p>בהדגמה של הדפדפן המובנה, קלוד פותח את הכלי בלשונית בתוך האפליקציה, לוחץ על הכפתורים ומדווח מה עבד. בכל אתר חיצוני חדש מופיע כרטיס אישור. בשליטה במחשב מופיע חלון אישור לכל אפליקציה, ורק אחרי האישור קלוד פועל בה.</p></section><section class="block" id="check"><h2>איך יודעים שהצלחנו?</h2><ul class="checklist" data-page="browser-computer"><li><label><input type="checkbox" data-k="browser-computer:0"><span>אני יודע מה ההבדל בין הדפדפן המובנה, Claude in Chrome ושליטה במחשב.</span></label></li><li><label><input type="checkbox" data-k="browser-computer:1"><span>אני יודע איפה מפעילים כל אחת מהן בהגדרות.</span></label></li><li><label><input type="checkbox" data-k="browser-computer:2"><span>אני יודע שקלוד מבקש אישור לכל אתר חדש ולכל אפליקציה.</span></label></li><li><label><input type="checkbox" data-k="browser-computer:3"><span>אני מכיר את כללי הבטיחות: בלי סיסמאות, בלי אתרים רגישים, ועוצרים כשמשהו נראה חשוד.</span></label></li></ul><div class="done-box"><button type="button" class="btn solid mark-done" data-page="browser-computer" aria-pressed="false">סימון השלב כהושלם</button><span class="done-hint">ההתקדמות נשמרת בדפדפן הזה בלבד.</span></div></section><section class="block" id="stuck"><h2>נתקעת?</h2><details class="acc"><summary>אני לא רואה את האפשרות Computer use בהגדרות</summary><div class="acc-body"><p>בדקו את סוג המנוי: שליטה במחשב בלשונית Code זמינה רק ב־Pro, Max ו־Ultra, ולא ב־Team או ב־Enterprise. בחלק מהגרסאות היא נמצאת תחת <strong>This computer</strong> ‏←‏ <strong>System</strong>, ובאחרות תחת <strong>Capabilities</strong>.</p></div></details><details class="acc"><summary>במק קלוד לא מצליח לראות את המסך</summary><div class="acc-body"><p>צריך לאשר לאפליקציית קלוד הרשאות <strong>Accessibility</strong> ו־<strong>Screen Recording</strong> בהגדרות המערכת של המק. מצב ההרשאות מוצג גם בעמוד ההגדרות של Computer use.</p></div></details><details class="acc"><summary>קלוד לא מצליח להקליד בדפדפן או בתוכנה</summary><div class="acc-body"><p>זו התנהגות מכוונת: בשליטה במחשב, דפדפנים מקבלים הרשאת צפייה בלבד ותוכנות פיתוח מקבלות לחיצה בלבד. לעבודה באתרים משתמשים בדפדפן המובנה או ב־Claude in Chrome.</p></div></details><details class="acc"><summary>ההרחבה Claude in Chrome לא מתחברת</summary><div class="acc-body"><p>ודאו שההרחבה מותקנת בכרום, שאתם מחוברים בה לאותו חשבון קלוד שבאפליקציה, ושהיא מופעלת תחת <strong>Customize</strong> ‏←‏ <strong>Connectors</strong>. אחרי ההתקנה נסו לפתוח סשן חדש.</p></div></details><details class="acc"><summary>איך עוצרים את קלוד באמצע?</summary><div class="acc-body"><p>לוחצים על כפתור העצירה בתיבת הכתיבה, או על <strong>Esc</strong>. אפשר גם לכבות את <strong>Enable computer use</strong> בהגדרות, ואז קלוד לא יוכל לשלוט במחשב.</p></div></details><p class="small">לא מצאתם תשובה? <a href="help.html">לעמוד העזרה המלא</a>.</p></section><section class="block" id="deepen"><h2>רוצה להעמיק?</h2><p>אחרי הסדנה: הוסיפו למיומנות שלכם שלב בדיקה בדפדפן המובנה. למשל, אחרי שהמיומנות מייצרת עמוד או כלי, קלוד פותח אותו ובודק אותו בעצמו לפני שהוא מדווח שסיים.</p></section>
+    <nav class="pager" aria-label="מעבר בין עמודים"><a class="pg prev" href="tool.html"><small>→ הקודם</small><b>בונים כלי אישי</b></a><a class="pg next" href="connectors.html"><small>הבא ←</small><b>חיבורים רשמיים</b></a></nav>
+  </main>
+</div>
+<footer class="foot" id="contact">
+  <div class="wrap foot-in">
+    <div class="who"><img src="assets/tal-hakoki-320.webp" alt="טל חקוקי" width="58" height="58" loading="lazy"><div><b>טל חקוקי</b><span>PractiAI · הטמעה פרקטית של בינה מלאכותית בארגונים</span></div></div>
+    <div class="contact">
+      <a class="btn" href="mailto:tal@practiai.co.il?subject=%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%B3%D7%A0%D7%98%20%D7%96%D7%99%D7%A8%D7%95">מייל</a>
+      <a class="btn" href="https://wa.me/972506915269" target="_blank" rel="noopener">וואטסאפ</a>
+      <a class="btn" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn solid" href="https://practiai.co.il/">לאתר הראשי של PractiAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+    </div>
+    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.AZ_EXERCISES=["setup","meet","profile","opportunities","first-task","tool","browser-computer","connectors","instructions","skill","routine","my-agent"];</script>
+<script>(function(){
+  var KEY='agentZero.v1';
+  var state={done:{},checks:{},track:null};
+  try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s)state=Object.assign(state,s);}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  var toastT;
+  function toast(t){var el=document.getElementById('toast');if(!el)return;el.textContent=t;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){el.classList.remove('show');},1800);}
+
+  // progress + nav marks
+  function paint(){
+    var ex=window.AZ_EXERCISES||[];var n=ex.filter(function(s){return state.done[s];}).length;
+    var f=document.getElementById('prog-fill'),t=document.getElementById('prog-txt');
+    if(f)f.style.width=(ex.length?n/ex.length*100:0)+'%';
+    if(t)t.textContent=n+'/'+ex.length;
+    document.querySelectorAll('[data-nav]').forEach(function(a){a.classList.toggle('is-done',!!state.done[a.getAttribute('data-nav')]);});
+    document.querySelectorAll('.mark-done').forEach(function(b){var d=!!state.done[b.getAttribute('data-page')];b.setAttribute('aria-pressed',d);b.textContent=d?'השלב הושלם':(b.getAttribute('data-label')||b.textContent);});
+  }
+  document.querySelectorAll('.mark-done').forEach(function(b){
+    b.setAttribute('data-label',b.textContent);
+    b.addEventListener('click',function(){var p=b.getAttribute('data-page');state.done[p]=!state.done[p];save();paint();toast(state.done[p]?'כל הכבוד! השלב סומן כהושלם':'הסימון הוסר');});
+  });
+
+  // checklists
+  document.querySelectorAll('.checklist input').forEach(function(i){
+    var k=i.getAttribute('data-k');i.checked=!!state.checks[k];
+    i.addEventListener('change',function(){state.checks[k]=i.checked;
+      var ul=i.closest('.checklist'),all=ul.querySelectorAll('input'),on=ul.querySelectorAll('input:checked');
+      if(all.length===on.length&&!state.done[ul.getAttribute('data-page')]){state.done[ul.getAttribute('data-page')]=true;toast('כל הבדיקות עברו. השלב סומן כהושלם');}
+      save();paint();});
+  });
+
+  // tabs (track remembered globally once chosen)
+  function selectTrack(box,tr){
+    var tabs=box.querySelectorAll('.tab');var has=false;
+    tabs.forEach(function(t){if(t.getAttribute('data-track')===tr)has=true;});
+    if(!has)return;
+    tabs.forEach(function(t){t.setAttribute('aria-selected',t.getAttribute('data-track')===tr);});
+    box.querySelectorAll('.tab-panel').forEach(function(p){p.hidden=p.getAttribute('data-track')!==tr;});
+  }
+  document.querySelectorAll('.tabs').forEach(function(box){
+    if(state.track)selectTrack(box,state.track);
+    box.querySelectorAll('.tab').forEach(function(t){
+      t.addEventListener('click',function(){var tr=t.getAttribute('data-track');state.track=tr;save();selectTrack(box,tr);});
+      t.addEventListener('keydown',function(e){if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;var arr=[].slice.call(box.querySelectorAll('.tab'));var i=arr.indexOf(t);var n=arr[(i+(e.key==='ArrowLeft'?1:-1)+arr.length)%arr.length];n.focus();n.click();});
+    });
+  });
+
+  // copy
+  function copyText(txt,btn){
+    function ok(){btn.classList.add('ok');btn.textContent='הועתק ✓';toast('הפרומפט הועתק. הדביקו אותו בקלוד קוד');setTimeout(function(){btn.classList.remove('ok');btn.textContent='העתקה';},1800);}
+    function fallback(){var ta=document.createElement('textarea');ta.value=txt;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok();}catch(e){toast('לא הצלחנו להעתיק. סמנו את הטקסט והעתיקו ידנית');}document.body.removeChild(ta);}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback);}else fallback();
+  }
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));copyText(card.querySelector('.prompt-src').value,b);});
+  });
+
+  // mobile menu
+  var mb=document.querySelector('.menu-btn');
+  if(mb)mb.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');mb.setAttribute('aria-expanded',o);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('nav-open')){document.body.classList.remove('nav-open');mb.setAttribute('aria-expanded','false');mb.focus();}});
+
+  // reset
+  var r=document.getElementById('reset');
+  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
+
+  // prompt library filters
+  var q=document.getElementById('lib-q');
+  if(q){
+    var stage=document.getElementById('lib-stage'),tr='';
+    function filt(){var v=q.value.trim(),n=0;
+      document.querySelectorAll('.lib-item').forEach(function(it){
+        var show=(!stage.value||it.getAttribute('data-s')===stage.value)&&(!tr||it.getAttribute('data-tr')===tr)&&(!v||it.textContent.indexOf(v)>-1);
+        it.hidden=!show;if(show)n++;});
+      document.getElementById('lib-count').textContent=n+' פרומפטים';}
+    q.addEventListener('input',filt);stage.addEventListener('change',filt);
+    document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){tr=c.getAttribute('data-tr');document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c);});filt();});});
+    filt();
+  }
+  paint();
+})();
+</script>
+<script>/* live neural network background */
+(function(){
+  var c=document.getElementById('neural'); if(!c||!c.getContext)return;
+  var ctx=c.getContext('2d'), W=0, H=0, dpr=1, nodes=[], pulses=[], raf=0, last=0, spawn=0;
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mouse={x:-9999,y:-9999}, LINK=150;
+  function init(){
+    dpr=Math.min(window.devicePixelRatio||1,2); W=innerWidth; H=innerHeight;
+    c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    LINK=W<640?115:150;
+    var n=Math.max(34,Math.min(120,Math.round(W*H/15000)));
+    while(nodes.length<n)nodes.push(mk());
+    nodes.length=n;
+    nodes.forEach(function(p){p.x=Math.min(p.x,W);p.y=Math.min(p.y,H);});
+  }
+  function mk(){var hub=Math.random()<.1;return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:hub?3.4:1.5+Math.random()*1.4,hub:hub,amb:hub&&Math.random()<.45,ph:Math.random()*6.28};}
+  function frame(t){
+    var dt=Math.min(40,t-last||16); last=t;
+    ctx.clearRect(0,0,W,H);
+    var i,j,a,b,dx,dy,d,al;
+    for(i=0;i<nodes.length;i++){a=nodes[i];
+      if(!still){a.x+=a.vx*dt/16;a.y+=a.vy*dt/16;
+        if(a.x<-20)a.x=W+20; if(a.x>W+20)a.x=-20; if(a.y<-20)a.y=H+20; if(a.y>H+20)a.y=-20;}
+    }
+    ctx.lineWidth=1;
+    for(i=0;i<nodes.length;i++){a=nodes[i];
+      for(j=i+1;j<nodes.length;j++){b=nodes[j];dx=a.x-b.x;dy=a.y-b.y;if(dx>LINK||dx<-LINK||dy>LINK||dy<-LINK)continue;d=Math.sqrt(dx*dx+dy*dy);
+        if(d<LINK){al=(1-d/LINK)*.3;ctx.strokeStyle='rgba(12,127,114,'+al.toFixed(3)+')';ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}
+      dx=a.x-mouse.x;dy=a.y-mouse.y;d=Math.sqrt(dx*dx+dy*dy);
+      if(d<190){ctx.strokeStyle='rgba(11,92,112,'+((1-d/190)*.35).toFixed(3)+')';ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke();}
+    }
+    /* signals travelling along links */
+    if(!still){spawn-=dt; if(spawn<=0&&pulses.length<14){spawn=260+Math.random()*420;
+      a=nodes[(Math.random()*nodes.length)|0]; var best=null,bd=LINK;
+      for(j=0;j<nodes.length;j++){b=nodes[j];if(b===a)continue;dx=a.x-b.x;dy=a.y-b.y;d=Math.sqrt(dx*dx+dy*dy);if(d<bd&&Math.random()<.6){bd=d;best=b;}}
+      if(best)pulses.push({a:a,b:best,t:0,amb:Math.random()<.25});}
+    for(i=pulses.length-1;i>=0;i--){var q=pulses[i];q.t+=dt/900;if(q.t>=1){pulses.splice(i,1);continue;}
+      var x=q.a.x+(q.b.x-q.a.x)*q.t,y=q.a.y+(q.b.y-q.a.y)*q.t,f=Math.sin(q.t*Math.PI);
+      var col=q.amb?'184,104,12':'12,127,114';
+      var g=ctx.createRadialGradient(x,y,0,x,y,9);g.addColorStop(0,'rgba('+col+','+(.55*f).toFixed(3)+')');g.addColorStop(1,'rgba('+col+',0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,9,0,6.283);ctx.fill();
+      ctx.fillStyle='rgba('+col+','+(.9*f).toFixed(3)+')';ctx.beginPath();ctx.arc(x,y,1.8,0,6.283);ctx.fill();}}
+    /* neurons */
+    for(i=0;i<nodes.length;i++){a=nodes[i];var pulse=still?0:(Math.sin(t/900+a.ph)+1)/2;
+      if(a.hub){ctx.fillStyle=a.amb?'rgba(184,104,12,'+(.10+.10*pulse).toFixed(3)+')':'rgba(12,127,114,'+(.10+.10*pulse).toFixed(3)+')';ctx.beginPath();ctx.arc(a.x,a.y,a.r+5+3*pulse,0,6.283);ctx.fill();}
+      ctx.fillStyle=a.amb?'rgba(184,104,12,.75)':'rgba(12,127,114,'+(a.hub?.75:.5)+')';ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,6.283);ctx.fill();}
+    if(!still)raf=requestAnimationFrame(frame);
+  }
+  function start(){cancelAnimationFrame(raf);last=0;raf=requestAnimationFrame(frame);}
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){init();if(still)frame(0);},150);});
+  window.addEventListener('pointermove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;},{passive:true});
+  document.addEventListener('pointerleave',function(){mouse.x=mouse.y=-9999;});
+  document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else if(!still)start();});
+  init(); if(still)frame(0); else start();
+})();
+</script>
+</body>
+</html>
