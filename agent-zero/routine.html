@@ -10,6 +10,7 @@
 <meta property="og:title" content="אייג׳נט זירו · מאפס לסוכן בינה מלאכותית משלך">
 <meta property="og:description" content="אתר התרגול של הסדנה · טל חקוקי | PractiAI">
 <meta property="og:locale" content="he_IL">
+<meta property="og:image" content="https://practiai.co.il/agent-zero/assets/og.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>:root{
@@ -315,6 +316,34 @@ kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;paddi
 #neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .topbar{z-index:30}
 main,.shell,.foot{position:relative;z-index:1}
+/* masculine / feminine prompt wording */
+.prompt.has-g pre.g-f{display:none}
+body.g-f .prompt.has-g pre.g-m{display:none}
+body.g-f .prompt.has-g pre.g-f{display:block}
+.gender{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);margin:0 0 12px}
+.gender button{font:inherit;font-size:14px;border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:3px 12px;cursor:pointer;color:var(--ink-2)}
+.gender button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+/* checkpoints (replace the old progress bar) */
+.cps{margin-inline-start:auto;display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted)}
+.cp-lbl{margin-inline-end:4px}
+.cp{display:inline-flex;align-items:center;gap:6px}
+.cp b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--paper-2);color:var(--muted);border:1px solid var(--line);transition:all .3s}
+.cp.on b{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cp-n{margin-inline-start:4px;font-weight:700}
+.cps.big{margin:8px 0 18px;flex-wrap:wrap;gap:8px;font-size:14px}
+.cps.big .cp{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 12px}
+.cps.big .cp i{font-style:normal;color:var(--ink-2)}
+.cps.big .cp.on{border-color:var(--accent-line);background:var(--accent-soft)}
+.nav-sep{height:1px;background:var(--line);margin:8px 10px}
+@media (max-width:860px){.cp-lbl,.cp-n{display:none}.cp b{width:18px;height:18px;font-size:10px}.cps{gap:3px}}
+.after-cta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;max-width:900px}
+.after-cta>div{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.after-cta>div:last-child{border-color:var(--accent-line);background:linear-gradient(180deg,#fff,var(--accent-soft))}
+.after-cta b{font-family:var(--font-display);font-size:21px}
+.after-cta span{color:var(--ink-2);font-size:15px}
+.after-cta .btn{align-self:flex-start;margin-top:auto;font-size:15px;padding:9px 18px}
+@media (max-width:700px){.after-cta{grid-template-columns:1fr}}
+body:not(.landing) #neural{opacity:.45}
 </style>
 </head>
 <body data-page="routine">
@@ -325,12 +354,12 @@ main,.shell,.foot{position:relative;z-index:1}
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="side" aria-label="תפריט השלבים"><span></span><span></span><span></span></button>
     <div class="brand"><a href="https://practiai.co.il/" aria-label="לאתר הראשי של PractiAI"><img src="assets/practiai-logo-light.png" alt="PractiAI" width="120" height="30"></a><a class="brand-name" href="index.html">אייג׳נט זירו</a></div>
     <nav class="toplinks" aria-label="קישורים מהירים"><a href="index.html">עמוד הסדנה</a><a href="deck.html" target="_blank" rel="noopener">המצגת</a><a href="prompts.html">פרומפטים</a></nav>
-    <div class="progress" aria-label="התקדמות בסדנה"><div class="progress-bar"><span id="prog-fill"></span></div><span id="prog-txt" class="num">0/12</span></div>
+    <div class="cps" role="group" aria-label="נקודות הבקרה של הסדנה"><span class="cp-lbl">נקודות בקרה</span><span class="cp" title="1. פרופיל מקצועי"><b>1</b></span><span class="cp" title="2. הזדמנות נבחרה"><b>2</b></span><span class="cp" title="3. משימה מוגדרת"><b>3</b></span><span class="cp" title="4. משימה בוצעה ונבדקה"><b>4</b></span><span class="cp" title="5. מיומנות עובדת"><b>5</b></span><span class="cp" title="6. שגרה נבדקה"><b>6</b></span><span class="cp-n num">0/6</span></div>
   </div>
 </header>
 <div class="shell wrap">
   <aside class="side" id="side" aria-label="שלבי הסדנה">
-    <ol class="nav"><li><a href="index.html" data-nav="index"><span class="nav-n">1</span><span class="nav-t">מתחילים כאן</span></a></li><li><a href="setup.html" data-nav="setup"><span class="nav-n">2</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" data-nav="browser-computer"><span class="nav-n">8</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors"><span class="nav-n">9</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" aria-current="page" data-nav="routine"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" data-nav="my-agent"><span class="nav-n">13</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="prompts.html" data-nav="prompts"><span class="nav-n">14</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help"><span class="nav-n">15</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads"><span class="nav-n">16</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
+    <ol class="nav"><li><a href="index.html" data-nav="index" title="אייג׳נט זירו · PractiAI"><span class="nav-n">⌂</span><span class="nav-t">עמוד הסדנה</span></a></li><li class="nav-sep" aria-hidden="true"></li><li><a href="setup.html" data-nav="setup" title="שלב 0"><span class="nav-n">0</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet" title="תרגיל 1"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile" title="תרגיל 2"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities" title="תרגיל 3"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task" title="תרגיל 4"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool" title="תרגיל 5"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" data-nav="browser-computer" title="הדגמה"><span class="nav-n">◆</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors" title="הדגמה"><span class="nav-n">◆</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions" title="תרגיל 6"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill" title="תרגיל 7"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" aria-current="page" data-nav="routine" title="תרגיל 8"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" data-nav="my-agent" title="סיכום"><span class="nav-n">★</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li class="nav-sep" aria-hidden="true"></li><li><a href="prompts.html" data-nav="prompts" title="לעיון ולהעתקה"><span class="nav-n">❝</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help" title="נתקעתם?"><span class="nav-n">?</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads" title="קבצים לסדנה"><span class="nav-n">↓</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
     <button type="button" class="reset" id="reset">איפוס ההתקדמות</button>
   </aside>
   <main id="main" tabindex="-1">
@@ -341,9 +370,9 @@ main,.shell,.foot{position:relative;z-index:1}
       
       <nav class="toc" aria-label="בעמוד הזה"><a href="#what">מה עושים</a><a href="#how">איך מתחילים</a><a href="#ask">הפרומפט</a><a href="#check">בדיקת הצלחה</a><a href="#stuck">נתקעת?</a></nav>
     </div>
-    <section class="block" id="what"><h2>מה אנחנו עושים עכשיו?</h2><p><strong>המיומנות מגדירה איך. השגרה מגדירה מתי.</strong></p><p>שגרה מתוזמנת (Scheduled task) היא משימה שאפליקציית קלוד למחשב מפעילה לפי לוח זמנים: כל יום, כל שבוע או בכל שעה. בכל הפעלה נפתח סשן חדש בתיקיית העבודה, והוא מבצע את ההוראות שכתבתם, למשל: להפעיל את המיומנות ולשמור תוצר חדש.</p><div class="callout warn"><p><strong>חשוב לדעת:</strong> שגרה מקומית פועלת רק כשאפליקציית קלוד למחשב פתוחה והמחשב ער. אם המחשב כבוי או ישן בזמן שנקבע, ההפעלה מדולגת. כשהמחשב מתעורר, האפליקציה מריצה הפעלת השלמה אחת עבור הזמן האחרון שהוחמץ. כדי שהמחשב לא יירדם, אפשר להפעיל את <strong>Keep computer awake</strong> בהגדרות האפליקציה.</p></div></section><section class="block" id="why"><h2>למה זה שימושי?</h2><ul><li>דוח התקדמות שמוכן בכל יום חמישי בבוקר, לפני ישיבת הצוות.</li><li>סיכום שבועי של קבצים שנוספו לתיקייה, שמחכה לכם ביום ראשון.</li></ul></section><section class="block" id="how"><h2>איך מתחילים?</h2><ol><li>שלחו את פרומפט בדיקת ההתאמה לתזמון.</li><li>אם המיומנות לא מתאימה, קבלו מקלוד גרסה מצומצמת ובטוחה.</li><li>שלחו את פרומפט הגדרת השגרה. קראו את ההגדרות ואשרו.</li><li>בדקו שהשגרה מופיעה תחת <strong>Scheduled</strong> בסרגל הצד.</li><li>הריצו בדיקה מיידית: פרומפט הבדיקה, או הכפתור <strong>Run now</strong> בעמוד השגרה.</li><li>אם ההרצה עוצרת ומבקשת אישור, פתחו את הסשן של ההרצה ואשרו שם. כדי שזה לא יחזור, בחרו &quot;לאשר תמיד&quot; (always allow).</li><li>בדקו שנוצר תוצר חדש בתיקיית התוצרים.</li></ol><div class="callout info"><p><strong>אפשר גם בלי פרומפט:</strong> <strong>Scheduled</strong> בסרגל הצד ‏←‏ <strong>New task</strong> ‏←‏ אם מוצעות שתי אפשרויות, בחרו <strong>Set up manually</strong> ‏←‏ שם והוראות ‏←‏ תחת <strong>Advanced settings</strong> הפעילו <strong>Only on this computer</strong> ובחרו את תיקיית העבודה ‏←‏ בחרו תדירות בכרטיס <strong>Trigger</strong> ‏←‏ <strong>Create</strong>.</p></div></section><section class="block" id="ask"><h2>מה מבקשים מקלוד?</h2><div class="tabs" data-default="short"><div class="tablist" role="tablist" aria-label="בחירת מסלול"><button type="button" role="tab" class="tab" id="tab-routine-short" aria-controls="panel-routine-short" data-track="short" aria-selected="true">מסלול קצר<span class="tab-badge">בסדנה</span></button><button type="button" role="tab" class="tab" id="tab-routine-deep" aria-controls="panel-routine-deep" data-track="deep" aria-selected="false">מסלול מעמיק</button><button type="button" role="tab" class="tab" id="tab-routine-sample" aria-controls="panel-routine-sample" data-track="sample" aria-selected="false">מסלול דוגמה</button></div><div class="tab-panel" role="tabpanel" id="panel-routine-short" aria-labelledby="tab-routine-short" data-track="short"><p class="track-note">הפרומפט המרכזי של התרגיל. מספיק כדי להשלים את השלב.</p><div class="step-label">שלב 1 מתוך 3</div><div class="prompt" id="routine-short-1">
+    <section class="block" id="what"><h2>מה אנחנו עושים עכשיו?</h2><p><strong>המיומנות מגדירה איך. השגרה מגדירה מתי.</strong></p><p>שגרה מתוזמנת (Scheduled task) היא משימה שאפליקציית קלוד למחשב מפעילה לפי לוח זמנים: כל יום, כל שבוע או בכל שעה. בכל הפעלה נפתח סשן חדש בתיקיית העבודה, והוא מבצע את ההוראות שכתבתם, למשל: להפעיל את המיומנות ולשמור תוצר חדש.</p><div class="callout warn"><p><strong>חשוב לדעת:</strong> שגרה מקומית פועלת רק כשאפליקציית קלוד למחשב פתוחה והמחשב ער. אם המחשב כבוי או ישן בזמן שנקבע, ההפעלה מדולגת. כשהמחשב מתעורר, האפליקציה מריצה הפעלת השלמה אחת עבור הזמן האחרון שהוחמץ. כדי שהמחשב לא יירדם, אפשר להפעיל את <strong>Keep computer awake</strong> בהגדרות האפליקציה.</p></div></section><section class="block" id="why"><h2>למה זה שימושי?</h2><ul><li>דוח התקדמות שמוכן בכל יום חמישי בבוקר, לפני ישיבת הצוות.</li><li>סיכום שבועי של קבצים שנוספו לתיקייה, שמחכה לכם ביום ראשון.</li></ul></section><section class="block" id="how"><h2>איך מתחילים?</h2><ol><li>שלחו את פרומפט בדיקת ההתאמה לתזמון.</li><li>אם המיומנות לא מתאימה, קבלו מקלוד גרסה מצומצמת ובטוחה.</li><li>שלחו את פרומפט הגדרת השגרה. קראו את ההגדרות ואשרו.</li><li>בדקו שהשגרה מופיעה תחת <strong>Scheduled</strong> בסרגל הצד.</li><li>הריצו בדיקה מיידית: פרומפט הבדיקה, או הכפתור <strong>Run now</strong> בעמוד השגרה.</li><li>אם ההרצה עוצרת ומבקשת אישור, פתחו את הסשן של ההרצה ואשרו שם. כדי שזה לא יחזור, בחרו &quot;לאשר תמיד&quot; (always allow).</li><li>בדקו שנוצר תוצר חדש בתיקיית התוצרים.</li></ol><div class="callout info"><p><strong>אפשר גם בלי פרומפט:</strong> <strong>Scheduled</strong> בסרגל הצד ‏←‏ <strong>New task</strong> ‏←‏ אם מוצעות שתי אפשרויות, בחרו <strong>Set up manually</strong> ‏←‏ שם והוראות ‏←‏ תחת <strong>Advanced settings</strong> הפעילו <strong>Only on this computer</strong> ובחרו את תיקיית העבודה ‏←‏ בחרו תדירות בכרטיס <strong>Trigger</strong> ‏←‏ <strong>Create</strong>.</p></div></section><section class="block" id="ask"><h2>מה מבקשים מקלוד?</h2><div class="gender" role="group" aria-label="לשון הפרומפטים"><span>לשון הפרומפטים:</span><button type="button" data-g="m" aria-pressed="true">זכר</button><button type="button" data-g="f" aria-pressed="false">נקבה</button></div><div class="tabs" data-default="short"><div class="tablist" role="tablist" aria-label="בחירת מסלול"><button type="button" role="tab" class="tab" id="tab-routine-short" aria-controls="panel-routine-short" data-track="short" aria-selected="true">מסלול קצר<span class="tab-badge">בסדנה</span></button><button type="button" role="tab" class="tab" id="tab-routine-deep" aria-controls="panel-routine-deep" data-track="deep" aria-selected="false">מסלול מעמיק</button><button type="button" role="tab" class="tab" id="tab-routine-sample" aria-controls="panel-routine-sample" data-track="sample" aria-selected="false">מסלול דוגמה</button></div><div class="tab-panel" role="tabpanel" id="panel-routine-short" aria-labelledby="tab-routine-short" data-track="short"><p class="track-note">הפרומפט המרכזי של התרגיל. מספיק כדי להשלים את השלב.</p><div class="step-label">שלב 1 מתוך 3</div><div class="prompt" id="routine-short-1">
   <div class="prompt-head"><span class="prompt-title">שלב א: האם המיומנות מתאימה לתזמון?</span><button class="copy" type="button" data-copy="routine-short-1" aria-label="העתקת הפרומפט: שלב א: האם המיומנות מתאימה לתזמון?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
 
 בדוק תחילה האם היא מתאימה להפעלה אוטומטית.
 
@@ -359,7 +388,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אם המיומנות אינה מתאימה לתזמון, הצע גרסה מצומצמת ובטוחה שמתאימה לבדיקה.
 
 אל תיצור עדיין משימה מתוזמנת.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
+  <textarea class="prompt-src g-m" hidden>אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
 
 בדוק תחילה האם היא מתאימה להפעלה אוטומטית.
 
@@ -377,7 +406,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תיצור עדיין משימה מתוזמנת.</textarea>
 </div><div class="step-label">שלב 2 מתוך 3</div><div class="prompt" id="routine-short-2">
   <div class="prompt-head"><span class="prompt-title">שלב ב: הגדרת השגרה</span><button class="copy" type="button" data-copy="routine-short-2" aria-label="העתקת הפרומפט: שלב ב: הגדרת השגרה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
 
 המשימה צריכה לפעול על תיקיית הפרויקט הנוכחית ולהשתמש במיומנות שיצרנו.
 
@@ -401,7 +430,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני יצירת המשימה, הצג את ההגדרות ובקש את אישורי.
 
 לאחר אישורי, צור את המשימה המקומית באמצעות הממשק והכלים הזמינים.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
 
 המשימה צריכה לפעול על תיקיית הפרויקט הנוכחית ולהשתמש במיומנות שיצרנו.
 
@@ -427,7 +456,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לאחר אישורי, צור את המשימה המקומית באמצעות הממשק והכלים הזמינים.</textarea>
 </div><div class="step-label">שלב 3 מתוך 3</div><div class="prompt" id="routine-short-3">
   <div class="prompt-head"><span class="prompt-title">שלב ג: בדיקה מיידית</span><button class="copy" type="button" data-copy="routine-short-3" aria-label="העתקת הפרומפט: שלב ג: בדיקה מיידית">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">הפעל את המשימה כעת לצורך בדיקה.
+  <pre class="prompt-text g-m" dir="rtl">הפעל את המשימה כעת לצורך בדיקה.
 
 ודא שהמיומנות הופעלה מתוך המשימה המתוזמנת, ולא רק מתוך הסשן הרגיל שלנו.
 
@@ -436,7 +465,7 @@ main,.shell,.foot{position:relative;z-index:1}
 הצג את תוצאות הבדיקה ואת מיקום התוצר.
 
 אם ההפעלה נכשלה, הסבר את הסיבה והצע תיקון.</pre>
-  <textarea class="prompt-src" hidden>הפעל את המשימה כעת לצורך בדיקה.
+  <textarea class="prompt-src g-m" hidden>הפעל את המשימה כעת לצורך בדיקה.
 
 ודא שהמיומנות הופעלה מתוך המשימה המתוזמנת, ולא רק מתוך הסשן הרגיל שלנו.
 
@@ -447,7 +476,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אם ההפעלה נכשלה, הסבר את הסיבה והצע תיקון.</textarea>
 </div></div><div class="tab-panel" role="tabpanel" id="panel-routine-deep" aria-labelledby="tab-routine-deep" data-track="deep" hidden><p class="track-note">אחרי הפרומפט המרכזי: עוד בירור, עוד התאמה אישית ועוד בדיקות.</p><div class="step-label">שלב 1 מתוך 4</div><div class="prompt" id="routine-deep-4">
   <div class="prompt-head"><span class="prompt-title">שלב א: האם המיומנות מתאימה לתזמון?</span><button class="copy" type="button" data-copy="routine-deep-4" aria-label="העתקת הפרומפט: שלב א: האם המיומנות מתאימה לתזמון?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
 
 בדוק תחילה האם היא מתאימה להפעלה אוטומטית.
 
@@ -463,7 +492,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אם המיומנות אינה מתאימה לתזמון, הצע גרסה מצומצמת ובטוחה שמתאימה לבדיקה.
 
 אל תיצור עדיין משימה מתוזמנת.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
+  <textarea class="prompt-src g-m" hidden>אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
 
 בדוק תחילה האם היא מתאימה להפעלה אוטומטית.
 
@@ -481,7 +510,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תיצור עדיין משימה מתוזמנת.</textarea>
 </div><div class="step-label">שלב 2 מתוך 4</div><div class="prompt" id="routine-deep-5">
   <div class="prompt-head"><span class="prompt-title">שלב ב: הגדרת השגרה</span><button class="copy" type="button" data-copy="routine-deep-5" aria-label="העתקת הפרומפט: שלב ב: הגדרת השגרה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
 
 המשימה צריכה לפעול על תיקיית הפרויקט הנוכחית ולהשתמש במיומנות שיצרנו.
 
@@ -505,7 +534,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני יצירת המשימה, הצג את ההגדרות ובקש את אישורי.
 
 לאחר אישורי, צור את המשימה המקומית באמצעות הממשק והכלים הזמינים.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
 
 המשימה צריכה לפעול על תיקיית הפרויקט הנוכחית ולהשתמש במיומנות שיצרנו.
 
@@ -531,7 +560,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לאחר אישורי, צור את המשימה המקומית באמצעות הממשק והכלים הזמינים.</textarea>
 </div><div class="step-label">שלב 3 מתוך 4</div><div class="prompt" id="routine-deep-6">
   <div class="prompt-head"><span class="prompt-title">שלב ג: בדיקה מיידית</span><button class="copy" type="button" data-copy="routine-deep-6" aria-label="העתקת הפרומפט: שלב ג: בדיקה מיידית">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">הפעל את המשימה כעת לצורך בדיקה.
+  <pre class="prompt-text g-m" dir="rtl">הפעל את המשימה כעת לצורך בדיקה.
 
 ודא שהמיומנות הופעלה מתוך המשימה המתוזמנת, ולא רק מתוך הסשן הרגיל שלנו.
 
@@ -540,7 +569,7 @@ main,.shell,.foot{position:relative;z-index:1}
 הצג את תוצאות הבדיקה ואת מיקום התוצר.
 
 אם ההפעלה נכשלה, הסבר את הסיבה והצע תיקון.</pre>
-  <textarea class="prompt-src" hidden>הפעל את המשימה כעת לצורך בדיקה.
+  <textarea class="prompt-src g-m" hidden>הפעל את המשימה כעת לצורך בדיקה.
 
 ודא שהמיומנות הופעלה מתוך המשימה המתוזמנת, ולא רק מתוך הסשן הרגיל שלנו.
 
@@ -549,18 +578,26 @@ main,.shell,.foot{position:relative;z-index:1}
 הצג את תוצאות הבדיקה ואת מיקום התוצר.
 
 אם ההפעלה נכשלה, הסבר את הסיבה והצע תיקון.</textarea>
-</div><div class="step-label">שלב 4 מתוך 4</div><div class="prompt" id="routine-deep-7">
+</div><div class="step-label">שלב 4 מתוך 4</div><div class="prompt has-g" id="routine-deep-7">
   <div class="prompt-head"><span class="prompt-title">העמקה: ניהול השגרה</span><button class="copy" type="button" data-copy="routine-deep-7" aria-label="העתקת הפרומפט: העמקה: ניהול השגרה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
+  <pre class="prompt-text g-m" dir="rtl">הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
 
 1. משהה את השגרה ומפעיל אותה מחדש.
 2. משנה את התדירות או את השעה.
 3. עורך את ההוראות של השגרה.
 4. רואה את ההרצות הקודמות ואת התוצאות שלהן.
 5. מוחק את השגרה כשאינני צריך אותה עוד.
+
+אחר כך השהה את השגרה רק אם אבקש ממך.</pre><pre class="prompt-text g-f" dir="rtl">הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
+
+1. משהה את השגרה ומפעיל אותה מחדש.
+2. משנה את התדירות או את השעה.
+3. עורך את ההוראות של השגרה.
+4. רואה את ההרצות הקודמות ואת התוצאות שלהן.
+5. מוחק את השגרה כשאינני צריכה אותה עוד.
 
 אחר כך השהה את השגרה רק אם אבקש ממך.</pre>
-  <textarea class="prompt-src" hidden>הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
+  <textarea class="prompt-src g-m" hidden>הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
 
 1. משהה את השגרה ומפעיל אותה מחדש.
 2. משנה את התדירות או את השעה.
@@ -568,10 +605,18 @@ main,.shell,.foot{position:relative;z-index:1}
 4. רואה את ההרצות הקודמות ואת התוצאות שלהן.
 5. מוחק את השגרה כשאינני צריך אותה עוד.
 
+אחר כך השהה את השגרה רק אם אבקש ממך.</textarea><textarea class="prompt-src g-f" hidden>הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
+
+1. משהה את השגרה ומפעיל אותה מחדש.
+2. משנה את התדירות או את השעה.
+3. עורך את ההוראות של השגרה.
+4. רואה את ההרצות הקודמות ואת התוצאות שלהן.
+5. מוחק את השגרה כשאינני צריכה אותה עוד.
+
 אחר כך השהה את השגרה רק אם אבקש ממך.</textarea>
-</div></div><div class="tab-panel" role="tabpanel" id="panel-routine-sample" aria-labelledby="tab-routine-sample" data-track="sample" hidden><p class="track-note">עבודה על סביבת העבודה לדוגמה, הארגון הפיקטיבי "גשר". אפשר להצטרף למסלול הזה בכל שלב.</p><p class="small">צריך את הקבצים? <a href="downloads.html">הורידו את סביבת העבודה לדוגמה</a>.</p><div class="prompt" id="routine-sample-8">
+</div></div><div class="tab-panel" role="tabpanel" id="panel-routine-sample" aria-labelledby="tab-routine-sample" data-track="sample" hidden><p class="track-note">עבודה על סביבת העבודה לדוגמה, הארגון הפיקטיבי "גשר". אפשר להצטרף למסלול הזה בכל שלב.</p><p class="small">צריך את הקבצים? <a href="downloads.html">הורידו את סביבת העבודה לדוגמה</a>. מצטרפים באמצע הסדנה? <a href="downloads.html#join">פרומפט ההצטרפות</a> מעתיק את כל מה שנוצר בשלבים הקודמים.</p><div class="prompt" id="routine-sample-8">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: דוח התקדמות שבועי</span><button class="copy" type="button" data-copy="routine-sample-8" aria-label="העתקת הפרומפט: מסלול דוגמה: דוח התקדמות שבועי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בשם &quot;דוח התקדמות שבועי — גשר&quot;.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בשם &quot;דוח התקדמות שבועי — גשר&quot;.
 
 השגרה תפעל על תיקיית הפרויקט הנוכחית, בכל יום חמישי בשעה 08:00.
 
@@ -586,7 +631,7 @@ main,.shell,.foot{position:relative;z-index:1}
 השגרה לא תשלח מידע, לא תפרסם קבצים, לא תשנה את הקבצים שבתיקייה <code dir="auto">חומרי-עבודה</code> ולא תיצור שגרות נוספות.
 
 לפני יצירת השגרה הצג את ההגדרות ובקש אישור. אחרי היצירה הפעל אותה פעם אחת לבדיקה.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בשם &quot;דוח התקדמות שבועי — גשר&quot;.
+  <textarea class="prompt-src g-m" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בשם &quot;דוח התקדמות שבועי — גשר&quot;.
 
 השגרה תפעל על תיקיית הפרויקט הנוכחית, בכל יום חמישי בשעה 08:00.
 
@@ -614,14 +659,14 @@ main,.shell,.foot{position:relative;z-index:1}
       <a class="btn" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn solid" href="https://practiai.co.il/">לאתר הראשי של PractiAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
     </div>
-    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם.</p>
+    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם. <a href="https://practiai.co.il/accessibility.html">הצהרת נגישות</a></p>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.AZ_EXERCISES=["setup","meet","profile","opportunities","first-task","tool","browser-computer","connectors","instructions","skill","routine","my-agent"];</script>
 <script>(function(){
   var KEY='agentZero.v1';
-  var state={done:{},checks:{},track:null};
+  var state={done:{},checks:{},track:null,g:'m'};
   try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s)state=Object.assign(state,s);}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
   var toastT;
@@ -629,10 +674,10 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // progress + nav marks
   function paint(){
-    var ex=window.AZ_EXERCISES||[];var n=ex.filter(function(s){return state.done[s];}).length;
-    var f=document.getElementById('prog-fill'),t=document.getElementById('prog-txt');
-    if(f)f.style.width=(ex.length?n/ex.length*100:0)+'%';
-    if(t)t.textContent=n+'/'+ex.length;
+    // progress = the six workshop checkpoints
+    var cps=[state.done.profile, state.done.opportunities||state.checks['opportunities:1'], state.done.opportunities, state.done['first-task'], state.done.skill, state.done.routine];
+    var n=cps.filter(Boolean).length;
+    document.querySelectorAll('.cps').forEach(function(box){box.querySelectorAll('.cp').forEach(function(d,k){d.classList.toggle('on',!!cps[k]);});var t=box.querySelector('.cp-n');if(t)t.textContent=n+'/6';});
     document.querySelectorAll('[data-nav]').forEach(function(a){a.classList.toggle('is-done',!!state.done[a.getAttribute('data-nav')]);});
     document.querySelectorAll('.mark-done').forEach(function(b){var d=!!state.done[b.getAttribute('data-page')];b.setAttribute('aria-pressed',d);b.textContent=d?'השלב הושלם':(b.getAttribute('data-label')||b.textContent);});
   }
@@ -673,7 +718,7 @@ main,.shell,.foot{position:relative;z-index:1}
     if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback);}else fallback();
   }
   document.querySelectorAll('.copy').forEach(function(b){
-    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));copyText(card.querySelector('.prompt-src').value,b);});
+    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));var src=(state.g==='f'&&card.querySelector('.prompt-src.g-f'))||card.querySelector('.prompt-src');copyText(src.value,b);});
   });
 
   // mobile menu
@@ -683,7 +728,7 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // reset
   var r=document.getElementById('reset');
-  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
+  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null,g:state.g};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
 
   // prompt library filters
   var q=document.getElementById('lib-q');
@@ -698,6 +743,9 @@ main,.shell,.foot{position:relative;z-index:1}
     document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){tr=c.getAttribute('data-tr');document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c);});filt();});});
     filt();
   }
+  function setG(g){state.g=g;document.body.classList.toggle('g-f',g==='f');document.querySelectorAll('.gender button').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-g')===g);});}
+  document.querySelectorAll('.gender button').forEach(function(x){x.addEventListener('click',function(){setG(x.getAttribute('data-g'));save();toast(state.g==='f'?'הפרומפטים מוצגים בלשון נקבה':'הפרומפטים מוצגים בלשון זכר');});});
+  setG(state.g||'m');
   paint();
 })();
 </script>

@@ -10,6 +10,7 @@
 <meta property="og:title" content="אייג׳נט זירו · מאפס לסוכן בינה מלאכותית משלך">
 <meta property="og:description" content="אתר התרגול של הסדנה · טל חקוקי | PractiAI">
 <meta property="og:locale" content="he_IL">
+<meta property="og:image" content="https://practiai.co.il/agent-zero/assets/og.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>:root{
@@ -315,6 +316,34 @@ kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;paddi
 #neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .topbar{z-index:30}
 main,.shell,.foot{position:relative;z-index:1}
+/* masculine / feminine prompt wording */
+.prompt.has-g pre.g-f{display:none}
+body.g-f .prompt.has-g pre.g-m{display:none}
+body.g-f .prompt.has-g pre.g-f{display:block}
+.gender{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);margin:0 0 12px}
+.gender button{font:inherit;font-size:14px;border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:3px 12px;cursor:pointer;color:var(--ink-2)}
+.gender button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+/* checkpoints (replace the old progress bar) */
+.cps{margin-inline-start:auto;display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted)}
+.cp-lbl{margin-inline-end:4px}
+.cp{display:inline-flex;align-items:center;gap:6px}
+.cp b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--paper-2);color:var(--muted);border:1px solid var(--line);transition:all .3s}
+.cp.on b{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cp-n{margin-inline-start:4px;font-weight:700}
+.cps.big{margin:8px 0 18px;flex-wrap:wrap;gap:8px;font-size:14px}
+.cps.big .cp{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 12px}
+.cps.big .cp i{font-style:normal;color:var(--ink-2)}
+.cps.big .cp.on{border-color:var(--accent-line);background:var(--accent-soft)}
+.nav-sep{height:1px;background:var(--line);margin:8px 10px}
+@media (max-width:860px){.cp-lbl,.cp-n{display:none}.cp b{width:18px;height:18px;font-size:10px}.cps{gap:3px}}
+.after-cta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;max-width:900px}
+.after-cta>div{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.after-cta>div:last-child{border-color:var(--accent-line);background:linear-gradient(180deg,#fff,var(--accent-soft))}
+.after-cta b{font-family:var(--font-display);font-size:21px}
+.after-cta span{color:var(--ink-2);font-size:15px}
+.after-cta .btn{align-self:flex-start;margin-top:auto;font-size:15px;padding:9px 18px}
+@media (max-width:700px){.after-cta{grid-template-columns:1fr}}
+body:not(.landing) #neural{opacity:.45}
 </style>
 </head>
 <body data-page="setup">
@@ -325,12 +354,12 @@ main,.shell,.foot{position:relative;z-index:1}
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="side" aria-label="תפריט השלבים"><span></span><span></span><span></span></button>
     <div class="brand"><a href="https://practiai.co.il/" aria-label="לאתר הראשי של PractiAI"><img src="assets/practiai-logo-light.png" alt="PractiAI" width="120" height="30"></a><a class="brand-name" href="index.html">אייג׳נט זירו</a></div>
     <nav class="toplinks" aria-label="קישורים מהירים"><a href="index.html">עמוד הסדנה</a><a href="deck.html" target="_blank" rel="noopener">המצגת</a><a href="prompts.html">פרומפטים</a></nav>
-    <div class="progress" aria-label="התקדמות בסדנה"><div class="progress-bar"><span id="prog-fill"></span></div><span id="prog-txt" class="num">0/12</span></div>
+    <div class="cps" role="group" aria-label="נקודות הבקרה של הסדנה"><span class="cp-lbl">נקודות בקרה</span><span class="cp" title="1. פרופיל מקצועי"><b>1</b></span><span class="cp" title="2. הזדמנות נבחרה"><b>2</b></span><span class="cp" title="3. משימה מוגדרת"><b>3</b></span><span class="cp" title="4. משימה בוצעה ונבדקה"><b>4</b></span><span class="cp" title="5. מיומנות עובדת"><b>5</b></span><span class="cp" title="6. שגרה נבדקה"><b>6</b></span><span class="cp-n num">0/6</span></div>
   </div>
 </header>
 <div class="shell wrap">
   <aside class="side" id="side" aria-label="שלבי הסדנה">
-    <ol class="nav"><li><a href="index.html" data-nav="index"><span class="nav-n">1</span><span class="nav-t">מתחילים כאן</span></a></li><li><a href="setup.html" aria-current="page" data-nav="setup"><span class="nav-n">2</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" data-nav="browser-computer"><span class="nav-n">8</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors"><span class="nav-n">9</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" data-nav="routine"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" data-nav="my-agent"><span class="nav-n">13</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="prompts.html" data-nav="prompts"><span class="nav-n">14</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help"><span class="nav-n">15</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads"><span class="nav-n">16</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
+    <ol class="nav"><li><a href="index.html" data-nav="index" title="אייג׳נט זירו · PractiAI"><span class="nav-n">⌂</span><span class="nav-t">עמוד הסדנה</span></a></li><li class="nav-sep" aria-hidden="true"></li><li><a href="setup.html" aria-current="page" data-nav="setup" title="שלב 0"><span class="nav-n">0</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet" title="תרגיל 1"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile" title="תרגיל 2"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities" title="תרגיל 3"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task" title="תרגיל 4"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool" title="תרגיל 5"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" data-nav="browser-computer" title="הדגמה"><span class="nav-n">◆</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors" title="הדגמה"><span class="nav-n">◆</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions" title="תרגיל 6"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill" title="תרגיל 7"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" data-nav="routine" title="תרגיל 8"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" data-nav="my-agent" title="סיכום"><span class="nav-n">★</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li class="nav-sep" aria-hidden="true"></li><li><a href="prompts.html" data-nav="prompts" title="לעיון ולהעתקה"><span class="nav-n">❝</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help" title="נתקעתם?"><span class="nav-n">?</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads" title="קבצים לסדנה"><span class="nav-n">↓</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
     <button type="button" class="reset" id="reset">איפוס ההתקדמות</button>
   </aside>
   <main id="main" tabindex="-1">
@@ -341,50 +370,82 @@ main,.shell,.foot{position:relative;z-index:1}
       
       <nav class="toc" aria-label="בעמוד הזה"><a href="#what">מה עושים</a><a href="#how">איך מתחילים</a><a href="#ask">הפרומפט</a><a href="#check">בדיקת הצלחה</a><a href="#stuck">נתקעת?</a></nav>
     </div>
-    <section class="block" id="what"><h2>מה אנחנו עושים עכשיו?</h2><p>נתקין את אפליקציית קלוד למחשב, נפתח בה את סביבת קלוד קוד, ונחבר אותה לתיקיית עבודה מקומית.<br>בתיקייה הזו ייבנה בהדרגה הסוכן האישי שלכם.</p><div class="concepts"><h3>ארבעה מושגים שכדאי להכיר</h3><ul><li><strong>תיקייה:</strong> המקום במחשב שבו קלוד עובד. הוא רואה רק את מה שנמצא בתיקייה שבחרתם.</li><li><strong>מודל:</strong> &quot;המוח&quot; שמפעיל את הסוכן. בוחרים אותו בבורר המודלים שבשורה שמתחת לתיבת הכתיבה. לסדנה מתאים מודל ברירת המחדל.</li><li><strong>הרשאות:</strong> קובעות מה קלוד רשאי לעשות בלי לשאול. <strong>Manual</strong> שואל לפני כל עריכה ופקודה. <strong>Accept edits</strong> מאשר עריכות קבצים מעצמו. <strong>Plan</strong> רק מתכנן ומציע, בלי לשנות קבצים.</li><li><strong>סשן:</strong> שיחת עבודה אחת. סשן חדש מתחיל &quot;נקי&quot;, ולכן בהמשך נלמד לשמור את מה שחשוב בקבצים.</li></ul></div></section><section class="block" id="why"><h2>למה זה שימושי?</h2><p>בצ׳אט רגיל, קלוד עונה לכם. בקלוד קוד, הוא יכול גם לקרוא קבצים בתיקייה, ליצור מסמכים, לבנות כלים קטנים ולבצע תהליכים שלמים. ההבדל הזה הוא ההבדל בין שיחה לבין סוכן.</p></section><section class="block" id="how"><h2>איך מתחילים?</h2><ol><li>היכנסו לכתובת <code dir="auto">claude.ai/download</code>, הורידו את הגרסה למחשב שלכם (ווינדוס או מק) והתקינו.</li><li>פתחו את האפליקציה והתחברו לחשבון קלוד שלכם. לעבודה בקלוד קוד נדרש מנוי בתשלום: Pro, Max, Ultra, Team או Enterprise.</li><li>בראש סרגל הצד לחצו על הלשונית <strong>Code</strong>.</li><li>הורידו את <strong>חבילת הפתיחה</strong> מעמוד חומרי ההורדה, חלצו אותה ושמרו את התיקייה במקום נוח, למשל בשולחן העבודה.</li><li>בשורה שמתחת לתיבת הכתיבה בחרו את הסביבה המקומית (<strong>Local</strong>), ואז <strong>Open folder…</strong> ובחרו את תיקיית העבודה שחילצתם.</li><li>בדקו את מצב ההרשאות בשורה שמתחת לתיבת הכתיבה. בתחילת הדרך מומלץ להשאיר את ברירת המחדל (<strong>Manual</strong>), שבה קלוד מבקש אישור לפני כל שינוי.</li><li>שלחו את הפרומפט הראשון שמופיע למטה.</li></ol></section><section class="block" id="ask"><h2>מה מבקשים מקלוד?</h2><div class="tabs" data-default="short"><div class="tablist" role="tablist" aria-label="בחירת מסלול"><button type="button" role="tab" class="tab" id="tab-setup-short" aria-controls="panel-setup-short" data-track="short" aria-selected="true">מסלול קצר<span class="tab-badge">בסדנה</span></button><button type="button" role="tab" class="tab" id="tab-setup-deep" aria-controls="panel-setup-deep" data-track="deep" aria-selected="false">מסלול מעמיק</button><button type="button" role="tab" class="tab" id="tab-setup-sample" aria-controls="panel-setup-sample" data-track="sample" aria-selected="false">מסלול דוגמה</button></div><div class="tab-panel" role="tabpanel" id="panel-setup-short" aria-labelledby="tab-setup-short" data-track="short"><p class="track-note">הפרומפט המרכזי של התרגיל. מספיק כדי להשלים את השלב.</p><div class="prompt" id="setup-short-1">
+    <section class="block" id="what"><h2>מה אנחנו עושים עכשיו?</h2><p>נתקין את אפליקציית קלוד למחשב, נפתח בה את סביבת קלוד קוד, ונחבר אותה לתיקיית עבודה מקומית.<br>בתיקייה הזו ייבנה בהדרגה הסוכן האישי שלכם.</p><div class="callout warn"><p><strong>שני דברים שכדאי לבדוק עכשיו:</strong></p><ul><li><strong>גרסת האפליקציה:</strong> שגרות מתוזמנות, שנבנה בסוף הסדנה, דורשות גרסה 1.1.5368 ומעלה. אם האפליקציה מציעה עדכון, עדכנו עכשיו.</li><li><strong>מכסת השימוש:</strong> לכל מנוי יש מכסת שימוש, ובשלוש שעות של עבודה רצופה אפשר להגיע אליה, במיוחד במנוי Pro. כדי לחסוך: השאירו את מודל ברירת המחדל ואל תבחרו את המודל החזק ביותר, נהלו שיחות ממוקדות, והתחילו סשן חדש כשעוברים לנושא חדש. אם הגעתם למכסה, המשיכו לעקוב אחרי ההדגמה וחזרו לתרגול כשהיא מתחדשת.</li></ul></div><div class="concepts"><h3>ארבעה מושגים שכדאי להכיר</h3><ul><li><strong>תיקייה:</strong> המקום במחשב שבו קלוד עובד. הוא רואה רק את מה שנמצא בתיקייה שבחרתם.</li><li><strong>מודל:</strong> &quot;המוח&quot; שמפעיל את הסוכן. בוחרים אותו בבורר המודלים שבשורה שמתחת לתיבת הכתיבה. לסדנה מתאים מודל ברירת המחדל.</li><li><strong>הרשאות:</strong> קובעות מה קלוד רשאי לעשות בלי לשאול. <strong>Manual</strong> שואל לפני כל עריכה ופקודה. <strong>Accept edits</strong> מאשר עריכות קבצים מעצמו. <strong>Plan</strong> רק מתכנן ומציע, בלי לשנות קבצים.</li><li><strong>סשן:</strong> שיחת עבודה אחת. סשן חדש מתחיל &quot;נקי&quot;, ולכן בהמשך נלמד לשמור את מה שחשוב בקבצים.</li></ul></div></section><section class="block" id="why"><h2>למה זה שימושי?</h2><p>בצ׳אט רגיל, קלוד עונה לכם. בקלוד קוד, הוא יכול גם לקרוא קבצים בתיקייה, ליצור מסמכים, לבנות כלים קטנים ולבצע תהליכים שלמים. ההבדל הזה הוא ההבדל בין שיחה לבין סוכן.</p></section><section class="block" id="how"><h2>איך מתחילים?</h2><ol><li>היכנסו לכתובת <code dir="auto">claude.ai/download</code>, הורידו את הגרסה למחשב שלכם (ווינדוס או מק) והתקינו.</li><li>פתחו את האפליקציה והתחברו לחשבון קלוד שלכם. לעבודה בקלוד קוד נדרש מנוי בתשלום: Pro, Max, Ultra, Team או Enterprise.</li><li>בראש סרגל הצד לחצו על הלשונית <strong>Code</strong>.</li><li>הורידו את <strong>חבילת הפתיחה</strong> מעמוד חומרי ההורדה, חלצו אותה ושמרו את התיקייה במקום נוח, למשל בשולחן העבודה.</li><li>בשורה שמתחת לתיבת הכתיבה בחרו את הסביבה המקומית (<strong>Local</strong>), ואז <strong>Open folder…</strong> ובחרו את תיקיית העבודה שחילצתם.</li><li>בדקו את מצב ההרשאות בשורה שמתחת לתיבת הכתיבה. בתחילת הדרך מומלץ להשאיר את ברירת המחדל (<strong>Manual</strong>), שבה קלוד מבקש אישור לפני כל שינוי.</li><li>שלחו את הפרומפט הראשון שמופיע למטה.</li></ol></section><section class="block" id="ask"><h2>מה מבקשים מקלוד?</h2><div class="gender" role="group" aria-label="לשון הפרומפטים"><span>לשון הפרומפטים:</span><button type="button" data-g="m" aria-pressed="true">זכר</button><button type="button" data-g="f" aria-pressed="false">נקבה</button></div><div class="tabs" data-default="short"><div class="tablist" role="tablist" aria-label="בחירת מסלול"><button type="button" role="tab" class="tab" id="tab-setup-short" aria-controls="panel-setup-short" data-track="short" aria-selected="true">מסלול קצר<span class="tab-badge">בסדנה</span></button><button type="button" role="tab" class="tab" id="tab-setup-deep" aria-controls="panel-setup-deep" data-track="deep" aria-selected="false">מסלול מעמיק</button><button type="button" role="tab" class="tab" id="tab-setup-sample" aria-controls="panel-setup-sample" data-track="sample" aria-selected="false">מסלול דוגמה</button></div><div class="tab-panel" role="tabpanel" id="panel-setup-short" aria-labelledby="tab-setup-short" data-track="short"><p class="track-note">הפרומפט המרכזי של התרגיל. מספיק כדי להשלים את השלב.</p><div class="prompt has-g" id="setup-short-1">
   <div class="prompt-head"><span class="prompt-title">הפרומפט הראשון</span><button class="copy" type="button" data-copy="setup-short-1" aria-label="העתקת הפרומפט: הפרומפט הראשון">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+אל תשנה ואל תיצור קבצים.</pre><pre class="prompt-text g-f" dir="rtl">שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+אל תשנה ואל תיצור קבצים.</textarea><textarea class="prompt-src g-f" hidden>שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</textarea>
-</div></div><div class="tab-panel" role="tabpanel" id="panel-setup-deep" aria-labelledby="tab-setup-deep" data-track="deep" hidden><p class="track-note">אחרי הפרומפט המרכזי: עוד בירור, עוד התאמה אישית ועוד בדיקות.</p><div class="step-label">שלב 1 מתוך 2</div><div class="prompt" id="setup-deep-2">
+</div></div><div class="tab-panel" role="tabpanel" id="panel-setup-deep" aria-labelledby="tab-setup-deep" data-track="deep" hidden><p class="track-note">אחרי הפרומפט המרכזי: עוד בירור, עוד התאמה אישית ועוד בדיקות.</p><div class="step-label">שלב 1 מתוך 2</div><div class="prompt has-g" id="setup-deep-2">
   <div class="prompt-head"><span class="prompt-title">הפרומפט הראשון</span><button class="copy" type="button" data-copy="setup-deep-2" aria-label="העתקת הפרומפט: הפרומפט הראשון">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+אל תשנה ואל תיצור קבצים.</pre><pre class="prompt-text g-f" dir="rtl">שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+אל תשנה ואל תיצור קבצים.</textarea><textarea class="prompt-src g-f" hidden>שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</textarea>
-</div><div class="step-label">שלב 2 מתוך 2</div><div class="prompt" id="setup-deep-3">
+</div><div class="step-label">שלב 2 מתוך 2</div><div class="prompt has-g" id="setup-deep-3">
   <div class="prompt-head"><span class="prompt-title">הפרומפט הראשון, עם בירור נוסף</span><button class="copy" type="button" data-copy="setup-deep-3" aria-label="העתקת הפרומפט: הפרומפט הראשון, עם בירור נוסף">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו, ומה ההבדל בין שיחה רגילה עם בינה מלאכותית לבין עבודה איתך כאן.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 לבסוף הסבר לי בקצרה מה המשמעות של מצב ההרשאות שבו אני נמצא עכשיו, ומתי כדאי לבקש ממך לעבוד במצב תכנון בלבד.
+
+אל תשנה ואל תיצור קבצים.</pre><pre class="prompt-text g-f" dir="rtl">שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו, ומה ההבדל בין שיחה רגילה עם בינה מלאכותית לבין עבודה איתך כאן.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+לבסוף הסבר לי בקצרה מה המשמעות של מצב ההרשאות שבו אני נמצאת עכשיו, ומתי כדאי לבקש ממך לעבוד במצב תכנון בלבד.
 
 אל תשנה ואל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו, ומה ההבדל בין שיחה רגילה עם בינה מלאכותית לבין עבודה איתך כאן.
 
@@ -392,21 +453,29 @@ main,.shell,.foot{position:relative;z-index:1}
 
 לבסוף הסבר לי בקצרה מה המשמעות של מצב ההרשאות שבו אני נמצא עכשיו, ומתי כדאי לבקש ממך לעבוד במצב תכנון בלבד.
 
+אל תשנה ואל תיצור קבצים.</textarea><textarea class="prompt-src g-f" hidden>שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו, ומה ההבדל בין שיחה רגילה עם בינה מלאכותית לבין עבודה איתך כאן.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+לבסוף הסבר לי בקצרה מה המשמעות של מצב ההרשאות שבו אני נמצאת עכשיו, ומתי כדאי לבקש ממך לעבוד במצב תכנון בלבד.
+
 אל תשנה ואל תיצור קבצים.</textarea>
-</div></div><div class="tab-panel" role="tabpanel" id="panel-setup-sample" aria-labelledby="tab-setup-sample" data-track="sample" hidden><p class="track-note">עבודה על סביבת העבודה לדוגמה, הארגון הפיקטיבי "גשר". אפשר להצטרף למסלול הזה בכל שלב.</p><p class="small">צריך את הקבצים? <a href="downloads.html">הורידו את סביבת העבודה לדוגמה</a>.</p><div class="prompt" id="setup-sample-4">
+</div></div><div class="tab-panel" role="tabpanel" id="panel-setup-sample" aria-labelledby="tab-setup-sample" data-track="sample" hidden><p class="track-note">עבודה על סביבת העבודה לדוגמה, הארגון הפיקטיבי "גשר". אפשר להצטרף למסלול הזה בכל שלב.</p><p class="small">צריך את הקבצים? <a href="downloads.html">הורידו את סביבת העבודה לדוגמה</a>. מצטרפים באמצע הסדנה? <a href="downloads.html#join">פרומפט ההצטרפות</a> מעתיק את כל מה שנוצר בשלבים הקודמים.</p><div class="prompt" id="setup-sample-4">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: היכרות עם סביבת הדוגמה</span><button class="copy" type="button" data-copy="setup-sample-4" aria-label="העתקת הפרומפט: מסלול דוגמה: היכרות עם סביבת הדוגמה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">פתחתי את תיקיית &quot;סביבת העבודה לדוגמה&quot; של הסדנה.
+  <pre class="prompt-text g-m" dir="rtl">פתחתי את תיקיית &quot;סביבת העבודה לדוגמה&quot; של הסדנה.
 
 קרא את הקובץ <code dir="auto">קרא-אותי.md</code> והסבר לי במילים פשוטות מה התרחיש, אילו קבצים יש בתיקייה ומה מכיל כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>פתחתי את תיקיית &quot;סביבת העבודה לדוגמה&quot; של הסדנה.
+  <textarea class="prompt-src g-m" hidden>פתחתי את תיקיית &quot;סביבת העבודה לדוגמה&quot; של הסדנה.
 
 קרא את הקובץ `קרא-אותי.md` והסבר לי במילים פשוטות מה התרחיש, אילו קבצים יש בתיקייה ומה מכיל כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</textarea>
-</div></div></div></section><section class="block" id="expect"><h2>מה אמור לקרות?</h2><p>קלוד מסביר בפשטות מה הוא יכול לעשות, מציג את רשימת הקבצים שבתיקייה ולא משנה דבר. אם הוא מבקש הרשאה לקרוא קבצים, זה תקין: אשרו.</p></section><section class="block" id="check"><h2>איך יודעים שהצלחנו?</h2><ul class="checklist" data-page="setup"><li><label><input type="checkbox" data-k="setup:0"><span>האפליקציה מותקנת ואני מחובר לחשבון.</span></label></li><li><label><input type="checkbox" data-k="setup:1"><span>אני בלשונית Code.</span></label></li><li><label><input type="checkbox" data-k="setup:2"><span>התיקייה הנכונה פתוחה.</span></label></li><li><label><input type="checkbox" data-k="setup:3"><span>קלוד הציג את הקבצים שבתיקייה.</span></label></li><li><label><input type="checkbox" data-k="setup:4"><span>אני יודע איפה בוחרים מודל ואיפה רואים את מצב ההרשאות.</span></label></li></ul><div class="done-box"><button type="button" class="btn solid mark-done" data-page="setup" aria-pressed="false">סימון השלב כהושלם</button><span class="done-hint">ההתקדמות נשמרת בדפדפן הזה בלבד.</span></div></section><section class="block" id="stuck"><h2>נתקעת?</h2><details class="acc"><summary>מופיעה הודעה שצריך לשדרג את החשבון</summary><div class="acc-body"><p>לשונית Code דורשת מנוי בתשלום (Pro, Max, Ultra, Team או Enterprise). אם אין לכם מנוי, הצטרפו לעמית לצפייה והמשיכו עם מסלול הדוגמה כשתוכלו.</p></div></details><details class="acc"><summary>לא מוצאים איך לבחור תיקייה</summary><div class="acc-body"><p>בשורה שמתחת לתיבת הכתיבה לחצו על בורר הסביבה, בחרו את האפשרות שתחת <strong>Local</strong>, ואז לחצו על בורר התיקייה ובחרו <strong>Open folder…</strong>. שמות הכפתורים עשויים להשתנות מעט בין גרסאות.</p></div></details><details class="acc"><summary>קלוד מבקש אישור על כל פעולה</summary><div class="acc-body"><p>זו התנהגות תקינה במצב <strong>Manual</strong>. קראו מה הוא מבקש לעשות ואשרו. בהמשך הסדנה נשקול לעבור למצב <strong>Accept edits</strong>.</p></div></details><details class="acc"><summary>האם צריך להתקין גיט או Node.js?</summary><div class="acc-body"><p>לא. אפליקציית קלוד למחשב כוללת את קלוד קוד, ואין צורך בכלי פיתוח נוספים לסדנה הזו.</p></div></details><p class="small">לא מצאתם תשובה? <a href="help.html">לעמוד העזרה המלא</a>.</p></section><section class="block" id="deepen"><h2>רוצה להעמיק?</h2><p>נסו לבקש מקלוד לעבוד במצב <strong>Plan</strong>, ושאלו אותו: &quot;איך היית מארגן את התיקייה הזו לעבודה שוטפת?&quot;. שימו לב שבמצב הזה הוא מציע ואינו משנה קבצים.</p></section>
-    <nav class="pager" aria-label="מעבר בין עמודים"><a class="pg prev" href="index.html"><small>→ הקודם</small><b>מתחילים כאן</b></a><a class="pg next" href="meet.html"><small>הבא ←</small><b>קלוד לומד להכיר אותי</b></a></nav>
+</div></div></div></section><section class="block" id="expect"><h2>מה אמור לקרות?</h2><p>קלוד מסביר בפשטות מה הוא יכול לעשות, מציג את רשימת הקבצים שבתיקייה ולא משנה דבר. אם הוא מבקש הרשאה לקרוא קבצים, זה תקין: אשרו.</p></section><section class="block" id="check"><h2>איך יודעים שהצלחנו?</h2><ul class="checklist" data-page="setup"><li><label><input type="checkbox" data-k="setup:0"><span>האפליקציה מותקנת ואני מחובר לחשבון.</span></label></li><li><label><input type="checkbox" data-k="setup:1"><span>אני בלשונית Code.</span></label></li><li><label><input type="checkbox" data-k="setup:2"><span>התיקייה הנכונה פתוחה.</span></label></li><li><label><input type="checkbox" data-k="setup:3"><span>קלוד הציג את הקבצים שבתיקייה.</span></label></li><li><label><input type="checkbox" data-k="setup:4"><span>אני יודע איפה בוחרים מודל ואיפה רואים את מצב ההרשאות.</span></label></li></ul><div class="done-box"><button type="button" class="btn solid mark-done" data-page="setup" aria-pressed="false">סימון השלב כהושלם</button><span class="done-hint">ההתקדמות נשמרת בדפדפן הזה בלבד.</span></div></section><section class="block" id="stuck"><h2>נתקעת?</h2><details class="acc"><summary>מופיעה הודעה שצריך לשדרג את החשבון</summary><div class="acc-body"><p>לשונית Code דורשת מנוי בתשלום (Pro, Max, Ultra, Team או Enterprise). אם אין לכם מנוי, הצטרפו לעמית לצפייה והמשיכו עם מסלול הדוגמה כשתוכלו.</p></div></details><details class="acc"><summary>לא מוצאים איך לבחור תיקייה</summary><div class="acc-body"><p>בשורה שמתחת לתיבת הכתיבה לחצו על בורר הסביבה, בחרו את האפשרות שתחת <strong>Local</strong>, ואז לחצו על בורר התיקייה ובחרו <strong>Open folder…</strong>. שמות הכפתורים עשויים להשתנות מעט בין גרסאות.</p></div></details><details class="acc"><summary>קלוד מבקש אישור על כל פעולה</summary><div class="acc-body"><p>זו התנהגות תקינה במצב <strong>Manual</strong>. קראו מה הוא מבקש לעשות ואשרו. בהמשך הסדנה נשקול לעבור למצב <strong>Accept edits</strong>.</p></div></details><details class="acc"><summary>קיבלתי הודעה שהגעתי למגבלת השימוש</summary><div class="acc-body"><p>זו מכסה של המנוי, לא תקלה. המשיכו לעקוב אחרי ההדגמה של המנחה. כשהמכסה מתחדשת, חזרו לשלב שבו עצרתם: כל מה שיצרתם שמור בקבצים.</p></div></details><details class="acc"><summary>האם צריך להתקין גיט או Node.js?</summary><div class="acc-body"><p>לא. אפליקציית קלוד למחשב כוללת את קלוד קוד, ואין צורך בכלי פיתוח נוספים לסדנה הזו.</p></div></details><p class="small">לא מצאתם תשובה? <a href="help.html">לעמוד העזרה המלא</a>.</p></section><section class="block" id="deepen"><h2>רוצה להעמיק?</h2><p>נסו לבקש מקלוד לעבוד במצב <strong>Plan</strong>, ושאלו אותו: &quot;איך היית מארגן את התיקייה הזו לעבודה שוטפת?&quot;. שימו לב שבמצב הזה הוא מציע ואינו משנה קבצים.</p></section>
+    <nav class="pager" aria-label="מעבר בין עמודים"><a class="pg prev" href="index.html"><small>→ הקודם</small><b>עמוד הסדנה</b></a><a class="pg next" href="meet.html"><small>הבא ←</small><b>קלוד לומד להכיר אותי</b></a></nav>
   </main>
 </div>
 <footer class="foot" id="contact">
@@ -418,14 +487,14 @@ main,.shell,.foot{position:relative;z-index:1}
       <a class="btn" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn solid" href="https://practiai.co.il/">לאתר הראשי של PractiAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
     </div>
-    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם.</p>
+    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם. <a href="https://practiai.co.il/accessibility.html">הצהרת נגישות</a></p>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.AZ_EXERCISES=["setup","meet","profile","opportunities","first-task","tool","browser-computer","connectors","instructions","skill","routine","my-agent"];</script>
 <script>(function(){
   var KEY='agentZero.v1';
-  var state={done:{},checks:{},track:null};
+  var state={done:{},checks:{},track:null,g:'m'};
   try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s)state=Object.assign(state,s);}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
   var toastT;
@@ -433,10 +502,10 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // progress + nav marks
   function paint(){
-    var ex=window.AZ_EXERCISES||[];var n=ex.filter(function(s){return state.done[s];}).length;
-    var f=document.getElementById('prog-fill'),t=document.getElementById('prog-txt');
-    if(f)f.style.width=(ex.length?n/ex.length*100:0)+'%';
-    if(t)t.textContent=n+'/'+ex.length;
+    // progress = the six workshop checkpoints
+    var cps=[state.done.profile, state.done.opportunities||state.checks['opportunities:1'], state.done.opportunities, state.done['first-task'], state.done.skill, state.done.routine];
+    var n=cps.filter(Boolean).length;
+    document.querySelectorAll('.cps').forEach(function(box){box.querySelectorAll('.cp').forEach(function(d,k){d.classList.toggle('on',!!cps[k]);});var t=box.querySelector('.cp-n');if(t)t.textContent=n+'/6';});
     document.querySelectorAll('[data-nav]').forEach(function(a){a.classList.toggle('is-done',!!state.done[a.getAttribute('data-nav')]);});
     document.querySelectorAll('.mark-done').forEach(function(b){var d=!!state.done[b.getAttribute('data-page')];b.setAttribute('aria-pressed',d);b.textContent=d?'השלב הושלם':(b.getAttribute('data-label')||b.textContent);});
   }
@@ -477,7 +546,7 @@ main,.shell,.foot{position:relative;z-index:1}
     if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback);}else fallback();
   }
   document.querySelectorAll('.copy').forEach(function(b){
-    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));copyText(card.querySelector('.prompt-src').value,b);});
+    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));var src=(state.g==='f'&&card.querySelector('.prompt-src.g-f'))||card.querySelector('.prompt-src');copyText(src.value,b);});
   });
 
   // mobile menu
@@ -487,7 +556,7 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // reset
   var r=document.getElementById('reset');
-  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
+  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null,g:state.g};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
 
   // prompt library filters
   var q=document.getElementById('lib-q');
@@ -502,6 +571,9 @@ main,.shell,.foot{position:relative;z-index:1}
     document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){tr=c.getAttribute('data-tr');document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c);});filt();});});
     filt();
   }
+  function setG(g){state.g=g;document.body.classList.toggle('g-f',g==='f');document.querySelectorAll('.gender button').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-g')===g);});}
+  document.querySelectorAll('.gender button').forEach(function(x){x.addEventListener('click',function(){setG(x.getAttribute('data-g'));save();toast(state.g==='f'?'הפרומפטים מוצגים בלשון נקבה':'הפרומפטים מוצגים בלשון זכר');});});
+  setG(state.g||'m');
   paint();
 })();
 </script>

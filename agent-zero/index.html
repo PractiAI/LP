@@ -12,7 +12,7 @@
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="אייג׳נט זירו · מאפס לסוכן בינה מלאכותית משלך">
 <meta property="og:description" content="סדנה מעשית בקלוד קוד · טל חקוקי | PractiAI">
-<meta property="og:image" content="https://practiai.co.il/og-image.png">
+<meta property="og:image" content="https://practiai.co.il/agent-zero/assets/og.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>:root{
@@ -318,6 +318,34 @@ kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;paddi
 #neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .topbar{z-index:30}
 main,.shell,.foot{position:relative;z-index:1}
+/* masculine / feminine prompt wording */
+.prompt.has-g pre.g-f{display:none}
+body.g-f .prompt.has-g pre.g-m{display:none}
+body.g-f .prompt.has-g pre.g-f{display:block}
+.gender{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);margin:0 0 12px}
+.gender button{font:inherit;font-size:14px;border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:3px 12px;cursor:pointer;color:var(--ink-2)}
+.gender button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+/* checkpoints (replace the old progress bar) */
+.cps{margin-inline-start:auto;display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted)}
+.cp-lbl{margin-inline-end:4px}
+.cp{display:inline-flex;align-items:center;gap:6px}
+.cp b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--paper-2);color:var(--muted);border:1px solid var(--line);transition:all .3s}
+.cp.on b{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cp-n{margin-inline-start:4px;font-weight:700}
+.cps.big{margin:8px 0 18px;flex-wrap:wrap;gap:8px;font-size:14px}
+.cps.big .cp{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 12px}
+.cps.big .cp i{font-style:normal;color:var(--ink-2)}
+.cps.big .cp.on{border-color:var(--accent-line);background:var(--accent-soft)}
+.nav-sep{height:1px;background:var(--line);margin:8px 10px}
+@media (max-width:860px){.cp-lbl,.cp-n{display:none}.cp b{width:18px;height:18px;font-size:10px}.cps{gap:3px}}
+.after-cta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;max-width:900px}
+.after-cta>div{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.after-cta>div:last-child{border-color:var(--accent-line);background:linear-gradient(180deg,#fff,var(--accent-soft))}
+.after-cta b{font-family:var(--font-display);font-size:21px}
+.after-cta span{color:var(--ink-2);font-size:15px}
+.after-cta .btn{align-self:flex-start;margin-top:auto;font-size:15px;padding:9px 18px}
+@media (max-width:700px){.after-cta{grid-template-columns:1fr}}
+body:not(.landing) #neural{opacity:.45}
 </style>
 </head>
 <body data-page="index" class="landing">
@@ -356,7 +384,7 @@ main,.shell,.foot{position:relative;z-index:1}
 <section id="path"><div class="wrap">
   <div class="sec-head"><span class="eyebrow">התרגול</span><h2>חמש מדרגות, שנים־עשר שלבים</h2><p>כל אחד בונה סוכן לעבודה שלו. בכל שלב יש פרומפט מוכן, בדיקת הצלחה ועזרה, ובכל שלב אפשר לבחור מסלול קצר, מעמיק או מסלול דוגמה.</p></div>
   <ol class="ladder"><li><a href="meet.html"><span class="ladder-n">1</span><span><b>הסוכן מכיר אותי</b><small>שיחת היכרות ופרופיל מקצועי</small></span></a></li><li><a href="opportunities.html"><span class="ladder-n">2</span><span><b>מגלים הזדמנויות</b><small>בוחרים צורך אמיתי וקטן</small></span></a></li><li><a href="first-task.html"><span class="ladder-n">3</span><span><b>מבצעים ובונים</b><small>משימה ראשונה וכלי אישי</small></span></a></li><li><a href="skill.html"><span class="ladder-n">4</span><span><b>מיומנות</b><small>תהליך חוזר בפקודה אחת</small></span></a></li><li><a href="routine.html"><span class="ladder-n">5</span><span><b>שגרה</b><small>הסוכן עובד לפי לוח זמנים</small></span></a></li></ol>
-  <div class="progress-line"><span>ההתקדמות שלכם:</span><div class="progress-bar wide"><span id="prog-fill"></span></div><span id="prog-txt" class="num">0/12</span></div>
+  <div class="cps big" role="group" aria-label="נקודות הבקרה של הסדנה"><span class="cp-lbl">נקודות בקרה</span><span class="cp" title="1. פרופיל מקצועי"><b>1</b><i>פרופיל מקצועי</i></span><span class="cp" title="2. הזדמנות נבחרה"><b>2</b><i>הזדמנות נבחרה</i></span><span class="cp" title="3. משימה מוגדרת"><b>3</b><i>משימה מוגדרת</i></span><span class="cp" title="4. משימה בוצעה ונבדקה"><b>4</b><i>משימה בוצעה ונבדקה</i></span><span class="cp" title="5. מיומנות עובדת"><b>5</b><i>מיומנות עובדת</i></span><span class="cp" title="6. שגרה נבדקה"><b>6</b><i>שגרה נבדקה</i></span><span class="cp-n num">0/6</span></div>
   <div class="pgrid"><a class="pcard" href="setup.html" data-nav="setup"><span class="pc-top"><span class="pc-k">שלב 0</span><span class="pc-t num" dir="ltr">00:10–00:35</span></span><b>התקנה והיכרות</b><span class="pc-l">מתקינים את קלוד למחשב, פותחים את לשונית Code, מחברים אותה לתיקיית העבודה ומנהלים שיחה ראשונה.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="meet.html" data-nav="meet"><span class="pc-top"><span class="pc-k">תרגיל 1</span><span class="pc-t num" dir="ltr">00:35–00:45</span></span><b>קלוד לומד להכיר אותי</b><span class="pc-l">מנהלים עם קלוד שיחת היכרות קצרה, כדי שיבין את התפקיד, את המשימות ואת האתגרים שלכם.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="profile.html" data-nav="profile"><span class="pc-top"><span class="pc-k">תרגיל 2</span><span class="pc-t num" dir="ltr">00:45–00:55</span></span><b>הפרופיל המקצועי שלי</b><span class="pc-l">הופכים את שיחת ההיכרות לקובץ ידע מסודר, שאפשר להמשיך להשתמש בו בסשנים הבאים.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="opportunities.html" data-nav="opportunities"><span class="pc-top"><span class="pc-k">תרגיל 3</span><span class="pc-t num" dir="ltr">00:55–01:15</span></span><b>מגלים הזדמנויות</b><span class="pc-l">מזהים הזדמנויות מעשיות לשימוש בסוכן, שמבוססות על העבודה שלכם, ובוחרים אחת להתחלה.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="first-task.html" data-nav="first-task"><span class="pc-top"><span class="pc-k">תרגיל 4</span><span class="pc-t num" dir="ltr">01:15–01:30</span></span><b>מבצעים משימה ראשונה</b><span class="pc-l">מבצעים את משימת ההתנסות שבחרתם: קלוד מציג תוכנית, אתם מאשרים, והוא מבצע ובודק.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="tool.html" data-nav="tool"><span class="pc-top"><span class="pc-k">תרגיל 5</span><span class="pc-t num" dir="ltr">01:30–01:45</span></span><b>בונים כלי אישי</b><span class="pc-l">מאפיינים ובונים כלי קטן שקשור לעבודה שלכם, בשפה טבעית בלבד, בלי לכתוב שורת קוד.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="browser-computer.html" data-nav="browser-computer"><span class="pc-top"><span class="pc-k">הדגמה</span><span class="pc-t num" dir="ltr">01:45–01:50</span></span><b>דפדפן ושליטה במחשב</b><span class="pc-l">מכירים שלוש יכולות שמאפשרות לקלוד לפעול מחוץ לתיקיית העבודה: הדפדפן המובנה, ההרחבה Claude in Chrome ושליטה במחשב. לומדים איפה מפעילים כל אחת בהגדרות, ומתי נכון להשתמש בה.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="connectors.html" data-nav="connectors"><span class="pc-top"><span class="pc-k">הדגמה</span><span class="pc-t num" dir="ltr">01:50–01:55</span></span><b>חיבורים רשמיים</b><span class="pc-l">מכירים את האפשרות לחבר את קלוד לשירותים שאתם עובדים איתם, דרך ממשק גרפי רשמי ובלי ידע טכני.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="instructions.html" data-nav="instructions"><span class="pc-top"><span class="pc-k">תרגיל 6</span><span class="pc-t num" dir="ltr">01:55–02:05</span></span><b>הוראות קבועות לפרויקט</b><span class="pc-l">יוצרים את קובץ ההוראות הקבועות CLAUDE.md, ומחברים אליו את הפרופיל המקצועי, כך שקלוד יכיר אתכם גם בסשן חדש.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="skill.html" data-nav="skill"><span class="pc-top"><span class="pc-k">תרגיל 7</span><span class="pc-t num" dir="ltr">02:05–02:30</span></span><b>יוצרים מיומנות</b><span class="pc-l">בוחרים תהליך שחוזר בעבודה שלכם, והופכים אותו למיומנות (Skill) שאפשר להפעיל שוב בפקודה אחת.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="routine.html" data-nav="routine"><span class="pc-top"><span class="pc-k">תרגיל 8</span><span class="pc-t num" dir="ltr">02:30–02:53</span></span><b>יוצרים שגרה</b><span class="pc-l">בודקים שהמיומנות מתאימה להפעלה אוטומטית, מגדירים שגרה מתוזמנת מקומית, ומריצים בדיקה מיידית.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a><a class="pcard" href="my-agent.html" data-nav="my-agent"><span class="pc-top"><span class="pc-k">סיכום</span><span class="pc-t num" dir="ltr">02:53–03:00</span></span><b>הסוכן הראשון שלי</b><span class="pc-l">עוברים על סביבת העבודה שבניתם, בודקים שכל הרכיבים במקום, ובוחרים את הצעד הבא.</span><span class="pc-done" aria-hidden="true">✓ הושלם</span></a></div>
 </div></section>
 
@@ -368,7 +396,7 @@ main,.shell,.foot{position:relative;z-index:1}
 </div></section>
 
 <section id="prompts"><div class="wrap">
-  <div class="sec-head"><span class="eyebrow">פרומפטים</span><h2>כל הפרומפטים, מוכנים להעתקה</h2><p><span class="num">43</span> פרומפטים לפי שלבים ומסלולים, עם חיפוש וסינון. מחליפים את מה שבסוגריים המרובעים בפרטים שלכם.</p></div>
+  <div class="sec-head"><span class="eyebrow">פרומפטים</span><h2>כל הפרומפטים, מוכנים להעתקה</h2><p><span class="num">44</span> פרומפטים לפי שלבים ומסלולים, עם חיפוש וסינון. מחליפים את מה שבסוגריים המרובעים בפרטים שלכם.</p></div>
   <div class="cta-row"><a class="btn solid" href="prompts.html">לספריית הפרומפטים ←</a><a class="btn" href="downloads/agent-zero-prompts.md" download>הורדה כקובץ אחד ↓</a></div>
 </div></section>
 
@@ -385,7 +413,8 @@ main,.shell,.foot{position:relative;z-index:1}
     <div><b>בחודש הקרוב</b><span>בחרו משימה אחת נוספת ושפרו אותה באותה שיטה: הגדרה, ביצוע, בדיקה, מיומנות ושגרה.</span></div>
   </div>
   <div class="callout good"><strong>ההמלצה שלנו:</strong> להתחיל במשימה קטנה, לשפר אותה עד שהיא עובדת היטב, ורק אז להרחיב אותה לשגרה משמעותית יותר.</div>
-  <div class="cta-row"><a class="btn solid" href="my-agent.html">רשימת הבדיקה של הסוכן הראשון שלי ←</a><a class="btn" href="help.html">עזרה ופתרון תקלות</a><a class="btn" href="#contact">שאלה? כתבו לי</a></div>
+  <div class="cta-row"><a class="btn solid" href="my-agent.html">רשימת הבדיקה של הסוכן הראשון שלי ←</a><a class="btn" href="help.html">עזרה ופתרון תקלות</a></div>
+  <div class="after-cta"><div><b>איך היה?</b><span>משוב קצר עוזר לי לשפר את הסדנה. שתי שורות בוואטסאפ מספיקות.</span><a class="btn" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%94%D7%A9%D7%AA%D7%AA%D7%A4%D7%AA%D7%99%20%D7%91%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%B3%D7%A0%D7%98%20%D7%96%D7%99%D7%A8%D7%95.%20%D7%94%D7%9E%D7%A9%D7%95%D7%91%20%D7%A9%D7%9C%D7%99%3A%20" target="_blank" rel="noopener">משוב בוואטסאפ</a></div><div><b>רוצים את הסדנה לצוות?</b><span>סדנה מותאמת לארגון, עם תרגול על התהליכים של הצוות שלכם.</span><a class="btn solid" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%B3%D7%A0%D7%98%20%D7%96%D7%99%D7%A8%D7%95%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%20%D7%A9%D7%9C%D7%A0%D7%95." target="_blank" rel="noopener">לתיאום שיחה</a></div></div>
 </div></section></main>
 <footer class="foot" id="contact">
   <div class="wrap foot-in">
@@ -396,14 +425,14 @@ main,.shell,.foot{position:relative;z-index:1}
       <a class="btn" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn solid" href="https://practiai.co.il/">לאתר הראשי של PractiAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
     </div>
-    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם.</p>
+    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם. <a href="https://practiai.co.il/accessibility.html">הצהרת נגישות</a></p>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.AZ_EXERCISES=["setup","meet","profile","opportunities","first-task","tool","browser-computer","connectors","instructions","skill","routine","my-agent"];</script>
 <script>(function(){
   var KEY='agentZero.v1';
-  var state={done:{},checks:{},track:null};
+  var state={done:{},checks:{},track:null,g:'m'};
   try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s)state=Object.assign(state,s);}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
   var toastT;
@@ -411,10 +440,10 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // progress + nav marks
   function paint(){
-    var ex=window.AZ_EXERCISES||[];var n=ex.filter(function(s){return state.done[s];}).length;
-    var f=document.getElementById('prog-fill'),t=document.getElementById('prog-txt');
-    if(f)f.style.width=(ex.length?n/ex.length*100:0)+'%';
-    if(t)t.textContent=n+'/'+ex.length;
+    // progress = the six workshop checkpoints
+    var cps=[state.done.profile, state.done.opportunities||state.checks['opportunities:1'], state.done.opportunities, state.done['first-task'], state.done.skill, state.done.routine];
+    var n=cps.filter(Boolean).length;
+    document.querySelectorAll('.cps').forEach(function(box){box.querySelectorAll('.cp').forEach(function(d,k){d.classList.toggle('on',!!cps[k]);});var t=box.querySelector('.cp-n');if(t)t.textContent=n+'/6';});
     document.querySelectorAll('[data-nav]').forEach(function(a){a.classList.toggle('is-done',!!state.done[a.getAttribute('data-nav')]);});
     document.querySelectorAll('.mark-done').forEach(function(b){var d=!!state.done[b.getAttribute('data-page')];b.setAttribute('aria-pressed',d);b.textContent=d?'השלב הושלם':(b.getAttribute('data-label')||b.textContent);});
   }
@@ -455,7 +484,7 @@ main,.shell,.foot{position:relative;z-index:1}
     if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback);}else fallback();
   }
   document.querySelectorAll('.copy').forEach(function(b){
-    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));copyText(card.querySelector('.prompt-src').value,b);});
+    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));var src=(state.g==='f'&&card.querySelector('.prompt-src.g-f'))||card.querySelector('.prompt-src');copyText(src.value,b);});
   });
 
   // mobile menu
@@ -465,7 +494,7 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // reset
   var r=document.getElementById('reset');
-  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
+  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null,g:state.g};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
 
   // prompt library filters
   var q=document.getElementById('lib-q');
@@ -480,6 +509,9 @@ main,.shell,.foot{position:relative;z-index:1}
     document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){tr=c.getAttribute('data-tr');document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c);});filt();});});
     filt();
   }
+  function setG(g){state.g=g;document.body.classList.toggle('g-f',g==='f');document.querySelectorAll('.gender button').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-g')===g);});}
+  document.querySelectorAll('.gender button').forEach(function(x){x.addEventListener('click',function(){setG(x.getAttribute('data-g'));save();toast(state.g==='f'?'הפרומפטים מוצגים בלשון נקבה':'הפרומפטים מוצגים בלשון זכר');});});
+  setG(state.g||'m');
   paint();
 })();
 </script>

@@ -10,6 +10,7 @@
 <meta property="og:title" content="אייג׳נט זירו · מאפס לסוכן בינה מלאכותית משלך">
 <meta property="og:description" content="אתר התרגול של הסדנה · טל חקוקי | PractiAI">
 <meta property="og:locale" content="he_IL">
+<meta property="og:image" content="https://practiai.co.il/agent-zero/assets/og.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>:root{
@@ -315,6 +316,34 @@ kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;paddi
 #neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .topbar{z-index:30}
 main,.shell,.foot{position:relative;z-index:1}
+/* masculine / feminine prompt wording */
+.prompt.has-g pre.g-f{display:none}
+body.g-f .prompt.has-g pre.g-m{display:none}
+body.g-f .prompt.has-g pre.g-f{display:block}
+.gender{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);margin:0 0 12px}
+.gender button{font:inherit;font-size:14px;border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:3px 12px;cursor:pointer;color:var(--ink-2)}
+.gender button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+/* checkpoints (replace the old progress bar) */
+.cps{margin-inline-start:auto;display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted)}
+.cp-lbl{margin-inline-end:4px}
+.cp{display:inline-flex;align-items:center;gap:6px}
+.cp b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--paper-2);color:var(--muted);border:1px solid var(--line);transition:all .3s}
+.cp.on b{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cp-n{margin-inline-start:4px;font-weight:700}
+.cps.big{margin:8px 0 18px;flex-wrap:wrap;gap:8px;font-size:14px}
+.cps.big .cp{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 12px}
+.cps.big .cp i{font-style:normal;color:var(--ink-2)}
+.cps.big .cp.on{border-color:var(--accent-line);background:var(--accent-soft)}
+.nav-sep{height:1px;background:var(--line);margin:8px 10px}
+@media (max-width:860px){.cp-lbl,.cp-n{display:none}.cp b{width:18px;height:18px;font-size:10px}.cps{gap:3px}}
+.after-cta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;max-width:900px}
+.after-cta>div{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.after-cta>div:last-child{border-color:var(--accent-line);background:linear-gradient(180deg,#fff,var(--accent-soft))}
+.after-cta b{font-family:var(--font-display);font-size:21px}
+.after-cta span{color:var(--ink-2);font-size:15px}
+.after-cta .btn{align-self:flex-start;margin-top:auto;font-size:15px;padding:9px 18px}
+@media (max-width:700px){.after-cta{grid-template-columns:1fr}}
+body:not(.landing) #neural{opacity:.45}
 </style>
 </head>
 <body data-page="prompts">
@@ -325,12 +354,12 @@ main,.shell,.foot{position:relative;z-index:1}
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="side" aria-label="תפריט השלבים"><span></span><span></span><span></span></button>
     <div class="brand"><a href="https://practiai.co.il/" aria-label="לאתר הראשי של PractiAI"><img src="assets/practiai-logo-light.png" alt="PractiAI" width="120" height="30"></a><a class="brand-name" href="index.html">אייג׳נט זירו</a></div>
     <nav class="toplinks" aria-label="קישורים מהירים"><a href="index.html">עמוד הסדנה</a><a href="deck.html" target="_blank" rel="noopener">המצגת</a><a href="prompts.html">פרומפטים</a></nav>
-    <div class="progress" aria-label="התקדמות בסדנה"><div class="progress-bar"><span id="prog-fill"></span></div><span id="prog-txt" class="num">0/12</span></div>
+    <div class="cps" role="group" aria-label="נקודות הבקרה של הסדנה"><span class="cp-lbl">נקודות בקרה</span><span class="cp" title="1. פרופיל מקצועי"><b>1</b></span><span class="cp" title="2. הזדמנות נבחרה"><b>2</b></span><span class="cp" title="3. משימה מוגדרת"><b>3</b></span><span class="cp" title="4. משימה בוצעה ונבדקה"><b>4</b></span><span class="cp" title="5. מיומנות עובדת"><b>5</b></span><span class="cp" title="6. שגרה נבדקה"><b>6</b></span><span class="cp-n num">0/6</span></div>
   </div>
 </header>
 <div class="shell wrap">
   <aside class="side" id="side" aria-label="שלבי הסדנה">
-    <ol class="nav"><li><a href="index.html" data-nav="index"><span class="nav-n">1</span><span class="nav-t">מתחילים כאן</span></a></li><li><a href="setup.html" data-nav="setup"><span class="nav-n">2</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" data-nav="browser-computer"><span class="nav-n">8</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors"><span class="nav-n">9</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" data-nav="routine"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" data-nav="my-agent"><span class="nav-n">13</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="prompts.html" aria-current="page" data-nav="prompts"><span class="nav-n">14</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help"><span class="nav-n">15</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads"><span class="nav-n">16</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
+    <ol class="nav"><li><a href="index.html" data-nav="index" title="אייג׳נט זירו · PractiAI"><span class="nav-n">⌂</span><span class="nav-t">עמוד הסדנה</span></a></li><li class="nav-sep" aria-hidden="true"></li><li><a href="setup.html" data-nav="setup" title="שלב 0"><span class="nav-n">0</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet" title="תרגיל 1"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile" title="תרגיל 2"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities" title="תרגיל 3"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task" title="תרגיל 4"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool" title="תרגיל 5"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" data-nav="browser-computer" title="הדגמה"><span class="nav-n">◆</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors" title="הדגמה"><span class="nav-n">◆</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions" title="תרגיל 6"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill" title="תרגיל 7"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" data-nav="routine" title="תרגיל 8"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" data-nav="my-agent" title="סיכום"><span class="nav-n">★</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li class="nav-sep" aria-hidden="true"></li><li><a href="prompts.html" aria-current="page" data-nav="prompts" title="לעיון ולהעתקה"><span class="nav-n">❝</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help" title="נתקעתם?"><span class="nav-n">?</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads" title="קבצים לסדנה"><span class="nav-n">↓</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
     <button type="button" class="reset" id="reset">איפוס ההתקדמות</button>
   </aside>
   <main id="main" tabindex="-1">
@@ -341,63 +370,91 @@ main,.shell,.foot{position:relative;z-index:1}
       
       
     </div>
-    <div class="lib-bar">
+    <div class="gender" role="group" aria-label="לשון הפרומפטים"><span>לשון הפרומפטים:</span><button type="button" data-g="m" aria-pressed="true">זכר</button><button type="button" data-g="f" aria-pressed="false">נקבה</button></div><div class="lib-bar">
   <label class="lib-search"><span class="sr">חיפוש</span><input type="search" id="lib-q" placeholder="חיפוש בפרומפטים…"></label>
   <div class="chips" role="group" aria-label="סינון לפי מסלול"><button type="button" class="chip" data-tr="" aria-pressed="true">כל המסלולים</button><button type="button" class="chip" data-tr="short" aria-pressed="false">מסלול קצר</button><button type="button" class="chip" data-tr="deep" aria-pressed="false">מסלול מעמיק</button><button type="button" class="chip" data-tr="sample" aria-pressed="false">מסלול דוגמה</button></div>
-  <select id="lib-stage" aria-label="סינון לפי שלב"><option value="">כל השלבים</option><option value="setup">התקנה והיכרות</option><option value="meet">קלוד לומד להכיר אותי</option><option value="profile">הפרופיל המקצועי שלי</option><option value="opportunities">מגלים הזדמנויות</option><option value="first-task">מבצעים משימה ראשונה</option><option value="tool">בונים כלי אישי</option><option value="browser-computer">דפדפן ושליטה במחשב</option><option value="connectors">חיבורים רשמיים</option><option value="instructions">הוראות קבועות לפרויקט</option><option value="skill">יוצרים מיומנות</option><option value="routine">יוצרים שגרה</option><option value="my-agent">הסוכן הראשון שלי</option></select>
+  <select id="lib-stage" aria-label="סינון לפי שלב"><option value="">כל השלבים</option><option value="setup">התקנה והיכרות</option><option value="meet">קלוד לומד להכיר אותי</option><option value="profile">הפרופיל המקצועי שלי</option><option value="opportunities">מגלים הזדמנויות</option><option value="first-task">מבצעים משימה ראשונה</option><option value="tool">בונים כלי אישי</option><option value="browser-computer">דפדפן ושליטה במחשב</option><option value="connectors">חיבורים רשמיים</option><option value="instructions">הוראות קבועות לפרויקט</option><option value="skill">יוצרים מיומנות</option><option value="routine">יוצרים שגרה</option><option value="my-agent">הסוכן הראשון שלי</option><option value="downloads">חומרי הורדה</option></select>
 </div>
 <p class="small" id="lib-count"></p>
-<div id="lib"><div class="lib-item" data-s="setup" data-tr="short"><div class="lib-meta"><a href="setup.html#ask">שלב 0 · התקנה והיכרות</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-1">
+<div id="lib"><div class="lib-item" data-s="setup" data-tr="short"><div class="lib-meta"><a href="setup.html#ask">שלב 0 · התקנה והיכרות</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt has-g" id="lib-1">
   <div class="prompt-head"><span class="prompt-title">הפרומפט הראשון</span><button class="copy" type="button" data-copy="lib-1" aria-label="העתקת הפרומפט: הפרומפט הראשון">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+אל תשנה ואל תיצור קבצים.</pre><pre class="prompt-text g-f" dir="rtl">שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+אל תשנה ואל תיצור קבצים.</textarea><textarea class="prompt-src g-f" hidden>שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</textarea>
-</div></div><div class="lib-item" data-s="setup" data-tr="deep"><div class="lib-meta"><a href="setup.html#ask">שלב 0 · התקנה והיכרות</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-2">
+</div></div><div class="lib-item" data-s="setup" data-tr="deep"><div class="lib-meta"><a href="setup.html#ask">שלב 0 · התקנה והיכרות</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt has-g" id="lib-2">
   <div class="prompt-head"><span class="prompt-title">הפרומפט הראשון, עם בירור נוסף</span><button class="copy" type="button" data-copy="lib-2" aria-label="העתקת הפרומפט: הפרומפט הראשון, עם בירור נוסף">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו, ומה ההבדל בין שיחה רגילה עם בינה מלאכותית לבין עבודה איתך כאן.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 לבסוף הסבר לי בקצרה מה המשמעות של מצב ההרשאות שבו אני נמצא עכשיו, ומתי כדאי לבקש ממך לעבוד במצב תכנון בלבד.
+
+אל תשנה ואל תיצור קבצים.</pre><pre class="prompt-text g-f" dir="rtl">שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו, ומה ההבדל בין שיחה רגילה עם בינה מלאכותית לבין עבודה איתך כאן.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+לבסוף הסבר לי בקצרה מה המשמעות של מצב ההרשאות שבו אני נמצאת עכשיו, ומתי כדאי לבקש ממך לעבוד במצב תכנון בלבד.
 
 אל תשנה ואל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>שלום. זו הפעם הראשונה שאני עובד איתך בקלוד קוד.
 
 הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו, ומה ההבדל בין שיחה רגילה עם בינה מלאכותית לבין עבודה איתך כאן.
 
 אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
 
 לבסוף הסבר לי בקצרה מה המשמעות של מצב ההרשאות שבו אני נמצא עכשיו, ומתי כדאי לבקש ממך לעבוד במצב תכנון בלבד.
+
+אל תשנה ואל תיצור קבצים.</textarea><textarea class="prompt-src g-f" hidden>שלום. זו הפעם הראשונה שאני עובדת איתך בקלוד קוד.
+
+הסבר לי בשלושה משפטים פשוטים מה אתה יכול לעשות בתיקייה הזו, ומה ההבדל בין שיחה רגילה עם בינה מלאכותית לבין עבודה איתך כאן.
+
+אחר כך הצג לי אילו קבצים ותיקיות יש כאן, ומה לדעתך המטרה של כל אחד מהם.
+
+לבסוף הסבר לי בקצרה מה המשמעות של מצב ההרשאות שבו אני נמצאת עכשיו, ומתי כדאי לבקש ממך לעבוד במצב תכנון בלבד.
 
 אל תשנה ואל תיצור קבצים.</textarea>
 </div></div><div class="lib-item" data-s="setup" data-tr="sample"><div class="lib-meta"><a href="setup.html#ask">שלב 0 · התקנה והיכרות</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-3">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: היכרות עם סביבת הדוגמה</span><button class="copy" type="button" data-copy="lib-3" aria-label="העתקת הפרומפט: מסלול דוגמה: היכרות עם סביבת הדוגמה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">פתחתי את תיקיית &quot;סביבת העבודה לדוגמה&quot; של הסדנה.
+  <pre class="prompt-text g-m" dir="rtl">פתחתי את תיקיית &quot;סביבת העבודה לדוגמה&quot; של הסדנה.
 
 קרא את הקובץ <code dir="auto">קרא-אותי.md</code> והסבר לי במילים פשוטות מה התרחיש, אילו קבצים יש בתיקייה ומה מכיל כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>פתחתי את תיקיית &quot;סביבת העבודה לדוגמה&quot; של הסדנה.
+  <textarea class="prompt-src g-m" hidden>פתחתי את תיקיית &quot;סביבת העבודה לדוגמה&quot; של הסדנה.
 
 קרא את הקובץ `קרא-אותי.md` והסבר לי במילים פשוטות מה התרחיש, אילו קבצים יש בתיקייה ומה מכיל כל אחד מהם.
 
 אל תשנה ואל תיצור קבצים.</textarea>
-</div></div><div class="lib-item" data-s="meet" data-tr="deep"><div class="lib-meta"><a href="meet.html#ask">תרגיל 1 · קלוד לומד להכיר אותי</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-4">
+</div></div><div class="lib-item" data-s="meet" data-tr="deep"><div class="lib-meta"><a href="meet.html#ask">תרגיל 1 · קלוד לומד להכיר אותי</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt has-g" id="lib-4">
   <div class="prompt-head"><span class="prompt-title">פרומפט מלא: היכרות מקצועית</span><button class="copy" type="button" data-copy="lib-4" aria-label="העתקת הפרומפט: פרומפט מלא: היכרות מקצועית">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה שנתחיל לעבוד יחד בצורה מקצועית ומותאמת אליי.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה שנתחיל לעבוד יחד בצורה מקצועית ומותאמת אליי.
 
 לפני שנבצע משימות, חשוב לי שתכיר את העולם המקצועי שלי, את תחומי האחריות שלי, את המשימות שאני מבצע ואת האתגרים שאני מתמודד איתם.
 
@@ -420,6 +477,36 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשתמש במושגים טכניים מורכבים.
 
 אפשר לי לענות בקצרה, לדלג על שאלה או לומר שאינני יודע.
+
+אל תבקש פרטים אישיים, פרטי לקוחות, מידע חסוי או מידע מזהה שאין בו צורך.
+
+הגבל את השיחה לעד שמונה שאלות מרכזיות, אלא אם אבקש להעמיק.
+
+בסיום, הצג סיכום של מה שהבנת עליי ובקש ממני לאשר או לתקן אותו.
+
+אל תיצור עדיין קבצים.</pre><pre class="prompt-text g-f" dir="rtl">אני רוצה שנתחיל לעבוד יחד בצורה מקצועית ומותאמת אליי.
+
+לפני שנבצע משימות, חשוב לי שתכיר את העולם המקצועי שלי, את תחומי האחריות שלי, את המשימות שאני מבצעת ואת האתגרים שאני מתמודדת איתם.
+
+אני רוצה שתנהל איתי שיחת היכרות קצרה, שבסופה תוכל ליצור עבורי פרופיל מקצועי מסודר.
+
+פעל כך:
+
+1. שאל אותי שאלה אחת בכל פעם.
+2. התחל בהבנת התפקיד שלי ותחומי האחריות שלי.
+3. המשך להבנת סוג הארגון או המסגרת שבה אני עובדת, בלי לדרוש שם ארגון.
+4. ברר אילו משימות אני מבצעת באופן שוטף.
+5. ברר עם אילו סוגי מסמכים, מידע וכלים אני עובדת.
+6. שאל אילו משימות גוזלות ממני זמן או יוצרות קושי.
+7. ברר אילו תוצרים אני נדרשת לייצר ואיך נראית תוצאה טובה מבחינתי.
+8. שאל אילו משימות הייתי רוצה לשפר בעזרת בינה מלאכותית.
+9. ברר אילו מגבלות חשוב להביא בחשבון, כגון פרטיות, מדיניות ארגונית או צורך באישור אנושי.
+
+אם תשובה שלי כללית מדי, עזור לי לדייק באמצעות דוגמאות.
+
+אל תשתמש במושגים טכניים מורכבים.
+
+אפשר לי לענות בקצרה, לדלג על שאלה או לומר שאינני יודעת.
 
 אל תבקש פרטים אישיים, פרטי לקוחות, מידע חסוי או מידע מזהה שאין בו צורך.
 
@@ -428,7 +515,7 @@ main,.shell,.foot{position:relative;z-index:1}
 בסיום, הצג סיכום של מה שהבנת עליי ובקש ממני לאשר או לתקן אותו.
 
 אל תיצור עדיין קבצים.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה שנתחיל לעבוד יחד בצורה מקצועית ומותאמת אליי.
+  <textarea class="prompt-src g-m" hidden>אני רוצה שנתחיל לעבוד יחד בצורה מקצועית ומותאמת אליי.
 
 לפני שנבצע משימות, חשוב לי שתכיר את העולם המקצועי שלי, את תחומי האחריות שלי, את המשימות שאני מבצע ואת האתגרים שאני מתמודד איתם.
 
@@ -458,19 +545,57 @@ main,.shell,.foot{position:relative;z-index:1}
 
 בסיום, הצג סיכום של מה שהבנת עליי ובקש ממני לאשר או לתקן אותו.
 
+אל תיצור עדיין קבצים.</textarea><textarea class="prompt-src g-f" hidden>אני רוצה שנתחיל לעבוד יחד בצורה מקצועית ומותאמת אליי.
+
+לפני שנבצע משימות, חשוב לי שתכיר את העולם המקצועי שלי, את תחומי האחריות שלי, את המשימות שאני מבצעת ואת האתגרים שאני מתמודדת איתם.
+
+אני רוצה שתנהל איתי שיחת היכרות קצרה, שבסופה תוכל ליצור עבורי פרופיל מקצועי מסודר.
+
+פעל כך:
+
+1. שאל אותי שאלה אחת בכל פעם.
+2. התחל בהבנת התפקיד שלי ותחומי האחריות שלי.
+3. המשך להבנת סוג הארגון או המסגרת שבה אני עובדת, בלי לדרוש שם ארגון.
+4. ברר אילו משימות אני מבצעת באופן שוטף.
+5. ברר עם אילו סוגי מסמכים, מידע וכלים אני עובדת.
+6. שאל אילו משימות גוזלות ממני זמן או יוצרות קושי.
+7. ברר אילו תוצרים אני נדרשת לייצר ואיך נראית תוצאה טובה מבחינתי.
+8. שאל אילו משימות הייתי רוצה לשפר בעזרת בינה מלאכותית.
+9. ברר אילו מגבלות חשוב להביא בחשבון, כגון פרטיות, מדיניות ארגונית או צורך באישור אנושי.
+
+אם תשובה שלי כללית מדי, עזור לי לדייק באמצעות דוגמאות.
+
+אל תשתמש במושגים טכניים מורכבים.
+
+אפשר לי לענות בקצרה, לדלג על שאלה או לומר שאינני יודעת.
+
+אל תבקש פרטים אישיים, פרטי לקוחות, מידע חסוי או מידע מזהה שאין בו צורך.
+
+הגבל את השיחה לעד שמונה שאלות מרכזיות, אלא אם אבקש להעמיק.
+
+בסיום, הצג סיכום של מה שהבנת עליי ובקש ממני לאשר או לתקן אותו.
+
 אל תיצור עדיין קבצים.</textarea>
-</div></div><div class="lib-item" data-s="meet" data-tr="short"><div class="lib-meta"><a href="meet.html#ask">תרגיל 1 · קלוד לומד להכיר אותי</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-5">
+</div></div><div class="lib-item" data-s="meet" data-tr="short"><div class="lib-meta"><a href="meet.html#ask">תרגיל 1 · קלוד לומד להכיר אותי</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt has-g" id="lib-5">
   <div class="prompt-head"><span class="prompt-title">רוצה להתחיל מהר? שלוש שאלות בלבד</span><button class="copy" type="button" data-copy="lib-5" aria-label="העתקת הפרומפט: רוצה להתחיל מהר? שלוש שאלות בלבד">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה שתכיר בקצרה את העולם המקצועי שלי.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה שתכיר בקצרה את העולם המקצועי שלי.
 
 שאל אותי שלוש שאלות, אחת בכל פעם:
 
 1. מה התפקיד שלי ומה תחומי האחריות שלי?
 2. מהן המשימות המרכזיות שאני מבצע בשגרה?
+3. מהו האתגר המקצועי שהייתי הכי רוצה לפתור?
+
+לאחר מכן הצג לי סיכום ראשוני שאוכל להרחיב בהמשך.</pre><pre class="prompt-text g-f" dir="rtl">אני רוצה שתכיר בקצרה את העולם המקצועי שלי.
+
+שאל אותי שלוש שאלות, אחת בכל פעם:
+
+1. מה התפקיד שלי ומה תחומי האחריות שלי?
+2. מהן המשימות המרכזיות שאני מבצעת בשגרה?
 3. מהו האתגר המקצועי שהייתי הכי רוצה לפתור?
 
 לאחר מכן הצג לי סיכום ראשוני שאוכל להרחיב בהמשך.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה שתכיר בקצרה את העולם המקצועי שלי.
+  <textarea class="prompt-src g-m" hidden>אני רוצה שתכיר בקצרה את העולם המקצועי שלי.
 
 שאל אותי שלוש שאלות, אחת בכל פעם:
 
@@ -478,10 +603,28 @@ main,.shell,.foot{position:relative;z-index:1}
 2. מהן המשימות המרכזיות שאני מבצע בשגרה?
 3. מהו האתגר המקצועי שהייתי הכי רוצה לפתור?
 
+לאחר מכן הצג לי סיכום ראשוני שאוכל להרחיב בהמשך.</textarea><textarea class="prompt-src g-f" hidden>אני רוצה שתכיר בקצרה את העולם המקצועי שלי.
+
+שאל אותי שלוש שאלות, אחת בכל פעם:
+
+1. מה התפקיד שלי ומה תחומי האחריות שלי?
+2. מהן המשימות המרכזיות שאני מבצעת בשגרה?
+3. מהו האתגר המקצועי שהייתי הכי רוצה לפתור?
+
 לאחר מכן הצג לי סיכום ראשוני שאוכל להרחיב בהמשך.</textarea>
-</div></div><div class="lib-item" data-s="meet" data-tr="sample"><div class="lib-meta"><a href="meet.html#ask">תרגיל 1 · קלוד לומד להכיר אותי</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-6">
+</div></div><div class="lib-item" data-s="meet" data-tr="sample"><div class="lib-meta"><a href="meet.html#ask">תרגיל 1 · קלוד לומד להכיר אותי</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt has-g" id="lib-6">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: היכרות עם התפקיד הפיקטיבי</span><button class="copy" type="button" data-copy="lib-6" aria-label="העתקת הפרומפט: מסלול דוגמה: היכרות עם התפקיד הפיקטיבי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">בתרגיל הזה אני משחק את התפקיד של רכז התוכנית בארגון הפיקטיבי &quot;גשר&quot;, שמתואר בקובץ <code dir="auto">קרא-אותי.md</code>.
+  <pre class="prompt-text g-m" dir="rtl">בתרגיל הזה אני משחק את התפקיד של רכז התוכנית בארגון הפיקטיבי &quot;גשר&quot;, שמתואר בקובץ <code dir="auto">קרא-אותי.md</code>.
+
+קרא את <code dir="auto">קרא-אותי.md</code> ואת הקבצים שבתיקייה <code dir="auto">חומרי-עבודה</code>.
+
+על סמך מה שקראת, הצג לי סיכום של התפקיד: תחומי האחריות, המשימות השוטפות, סוגי המסמכים, התוצרים הנדרשים והאתגרים שעולים מהחומרים.
+
+סמן בבירור מה כתוב בקבצים ומה הוא הנחה שלך.
+
+אחר כך שאל אותי עד שלוש שאלות, אחת בכל פעם, כדי להשלים מידע חסר.
+
+אל תיצור עדיין קבצים.</pre><pre class="prompt-text g-f" dir="rtl">בתרגיל הזה אני משחקת את התפקיד של רכזת התוכנית בארגון הפיקטיבי &quot;גשר&quot;, שמתואר בקובץ <code dir="auto">קרא-אותי.md</code>.
 
 קרא את <code dir="auto">קרא-אותי.md</code> ואת הקבצים שבתיקייה <code dir="auto">חומרי-עבודה</code>.
 
@@ -492,7 +635,17 @@ main,.shell,.foot{position:relative;z-index:1}
 אחר כך שאל אותי עד שלוש שאלות, אחת בכל פעם, כדי להשלים מידע חסר.
 
 אל תיצור עדיין קבצים.</pre>
-  <textarea class="prompt-src" hidden>בתרגיל הזה אני משחק את התפקיד של רכז התוכנית בארגון הפיקטיבי &quot;גשר&quot;, שמתואר בקובץ `קרא-אותי.md`.
+  <textarea class="prompt-src g-m" hidden>בתרגיל הזה אני משחק את התפקיד של רכז התוכנית בארגון הפיקטיבי &quot;גשר&quot;, שמתואר בקובץ `קרא-אותי.md`.
+
+קרא את `קרא-אותי.md` ואת הקבצים שבתיקייה `חומרי-עבודה`.
+
+על סמך מה שקראת, הצג לי סיכום של התפקיד: תחומי האחריות, המשימות השוטפות, סוגי המסמכים, התוצרים הנדרשים והאתגרים שעולים מהחומרים.
+
+סמן בבירור מה כתוב בקבצים ומה הוא הנחה שלך.
+
+אחר כך שאל אותי עד שלוש שאלות, אחת בכל פעם, כדי להשלים מידע חסר.
+
+אל תיצור עדיין קבצים.</textarea><textarea class="prompt-src g-f" hidden>בתרגיל הזה אני משחקת את התפקיד של רכזת התוכנית בארגון הפיקטיבי &quot;גשר&quot;, שמתואר בקובץ `קרא-אותי.md`.
 
 קרא את `קרא-אותי.md` ואת הקבצים שבתיקייה `חומרי-עבודה`.
 
@@ -503,9 +656,9 @@ main,.shell,.foot{position:relative;z-index:1}
 אחר כך שאל אותי עד שלוש שאלות, אחת בכל פעם, כדי להשלים מידע חסר.
 
 אל תיצור עדיין קבצים.</textarea>
-</div></div><div class="lib-item" data-s="profile" data-tr="short"><div class="lib-meta"><a href="profile.html#ask">תרגיל 2 · הפרופיל המקצועי שלי</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-7">
+</div></div><div class="lib-item" data-s="profile" data-tr="short"><div class="lib-meta"><a href="profile.html#ask">תרגיל 2 · הפרופיל המקצועי שלי</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt has-g" id="lib-7">
   <div class="prompt-head"><span class="prompt-title">יצירת קובץ הפרופיל</span><button class="copy" type="button" data-copy="lib-7" aria-label="העתקת הפרומפט: יצירת קובץ הפרופיל">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">בהתבסס על שיחת ההיכרות שלנו, אני רוצה שתיצור עבורי קובץ פרופיל מקצועי מסודר.
+  <pre class="prompt-text g-m" dir="rtl">בהתבסס על שיחת ההיכרות שלנו, אני רוצה שתיצור עבורי קובץ פרופיל מקצועי מסודר.
 
 שם הקובץ יהיה <code dir="auto">הפרופיל-המקצועי-שלי.md</code>.
 
@@ -536,8 +689,39 @@ main,.shell,.foot{position:relative;z-index:1}
 
 לפני יצירת הקובץ הצג לי את התוכן ובקש אישור.
 
+לאחר אישורי, צור את הקובץ ובדוק שהוא נשמר בהצלחה.</pre><pre class="prompt-text g-f" dir="rtl">בהתבסס על שיחת ההיכרות שלנו, אני רוצה שתיצור עבורי קובץ פרופיל מקצועי מסודר.
+
+שם הקובץ יהיה <code dir="auto">הפרופיל-המקצועי-שלי.md</code>.
+
+הקובץ יישמר בתיקיית הפרויקט הנוכחית.
+
+בנה אותו באמצעות הכותרות הבאות:
+
+1. התפקיד והעולם המקצועי שלי.
+2. מטרות התפקיד.
+3. תחומי אחריות מרכזיים.
+4. משימות שגרתיות.
+5. סוגי מסמכים ומידע שבהם אני משתמשת.
+6. כלים ומערכות עבודה.
+7. תוצרים שאני נדרשת להפיק.
+8. אתגרים וקשיים חוזרים.
+9. הזדמנויות לשימוש בבינה מלאכותית.
+10. העדפות לגבי צורת העבודה והתוצרים.
+11. מגבלות, הרשאות ונושאים הדורשים אישור.
+12. מידע שעדיין חסר וחשוב להשלים בהמשך.
+
+השתמש רק במידע שסיפקתי.
+
+אל תמציא פרטים על הארגון, התפקיד או הניסיון שלי.
+
+אם אין מידע לגבי סעיף מסוים, ציין שהסעיף עדיין לא הוגדר.
+
+אל תכלול מידע רגיש או מזהה שלא נדרש לצורך העבודה.
+
+לפני יצירת הקובץ הצג לי את התוכן ובקש אישור.
+
 לאחר אישורי, צור את הקובץ ובדוק שהוא נשמר בהצלחה.</pre>
-  <textarea class="prompt-src" hidden>בהתבסס על שיחת ההיכרות שלנו, אני רוצה שתיצור עבורי קובץ פרופיל מקצועי מסודר.
+  <textarea class="prompt-src g-m" hidden>בהתבסס על שיחת ההיכרות שלנו, אני רוצה שתיצור עבורי קובץ פרופיל מקצועי מסודר.
 
 שם הקובץ יהיה `הפרופיל-המקצועי-שלי.md`.
 
@@ -568,10 +752,41 @@ main,.shell,.foot{position:relative;z-index:1}
 
 לפני יצירת הקובץ הצג לי את התוכן ובקש אישור.
 
+לאחר אישורי, צור את הקובץ ובדוק שהוא נשמר בהצלחה.</textarea><textarea class="prompt-src g-f" hidden>בהתבסס על שיחת ההיכרות שלנו, אני רוצה שתיצור עבורי קובץ פרופיל מקצועי מסודר.
+
+שם הקובץ יהיה `הפרופיל-המקצועי-שלי.md`.
+
+הקובץ יישמר בתיקיית הפרויקט הנוכחית.
+
+בנה אותו באמצעות הכותרות הבאות:
+
+1. התפקיד והעולם המקצועי שלי.
+2. מטרות התפקיד.
+3. תחומי אחריות מרכזיים.
+4. משימות שגרתיות.
+5. סוגי מסמכים ומידע שבהם אני משתמשת.
+6. כלים ומערכות עבודה.
+7. תוצרים שאני נדרשת להפיק.
+8. אתגרים וקשיים חוזרים.
+9. הזדמנויות לשימוש בבינה מלאכותית.
+10. העדפות לגבי צורת העבודה והתוצרים.
+11. מגבלות, הרשאות ונושאים הדורשים אישור.
+12. מידע שעדיין חסר וחשוב להשלים בהמשך.
+
+השתמש רק במידע שסיפקתי.
+
+אל תמציא פרטים על הארגון, התפקיד או הניסיון שלי.
+
+אם אין מידע לגבי סעיף מסוים, ציין שהסעיף עדיין לא הוגדר.
+
+אל תכלול מידע רגיש או מזהה שלא נדרש לצורך העבודה.
+
+לפני יצירת הקובץ הצג לי את התוכן ובקש אישור.
+
 לאחר אישורי, צור את הקובץ ובדוק שהוא נשמר בהצלחה.</textarea>
 </div></div><div class="lib-item" data-s="profile" data-tr="deep"><div class="lib-meta"><a href="profile.html#ask">תרגיל 2 · הפרופיל המקצועי שלי</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-8">
   <div class="prompt-head"><span class="prompt-title">אחרי שהקובץ נוצר: בדיקת איכות</span><button class="copy" type="button" data-copy="lib-8" aria-label="העתקת הפרומפט: אחרי שהקובץ נוצר: בדיקת איכות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">קרא שוב את הקובץ <code dir="auto">הפרופיל-המקצועי-שלי.md</code> שיצרנו.
+  <pre class="prompt-text g-m" dir="rtl">קרא שוב את הקובץ <code dir="auto">הפרופיל-המקצועי-שלי.md</code> שיצרנו.
 
 בדוק אותו מול שיחת ההיכרות שלנו והצג לי:
 
@@ -581,7 +796,7 @@ main,.shell,.foot{position:relative;z-index:1}
 4. שלושה פרטים שכדאי להוסיף לפרופיל בעתיד כדי לשפר את איכות ההתאמה האישית.
 
 אל תשנה את הקובץ לפני שאאשר כל שינוי.</pre>
-  <textarea class="prompt-src" hidden>קרא שוב את הקובץ `הפרופיל-המקצועי-שלי.md` שיצרנו.
+  <textarea class="prompt-src g-m" hidden>קרא שוב את הקובץ `הפרופיל-המקצועי-שלי.md` שיצרנו.
 
 בדוק אותו מול שיחת ההיכרות שלנו והצג לי:
 
@@ -593,7 +808,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשנה את הקובץ לפני שאאשר כל שינוי.</textarea>
 </div></div><div class="lib-item" data-s="profile" data-tr="sample"><div class="lib-meta"><a href="profile.html#ask">תרגיל 2 · הפרופיל המקצועי שלי</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-9">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: פרופיל לתפקיד הפיקטיבי</span><button class="copy" type="button" data-copy="lib-9" aria-label="העתקת הפרומפט: מסלול דוגמה: פרופיל לתפקיד הפיקטיבי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">בהתבסס על מה שלמדנו על תפקיד רכז התוכנית בארגון הפיקטיבי &quot;גשר&quot;, צור קובץ פרופיל מקצועי בשם <code dir="auto">הפרופיל-המקצועי-שלי.md</code> בתיקיית הפרויקט.
+  <pre class="prompt-text g-m" dir="rtl">בהתבסס על מה שלמדנו על תפקיד רכז התוכנית בארגון הפיקטיבי &quot;גשר&quot;, צור קובץ פרופיל מקצועי בשם <code dir="auto">הפרופיל-המקצועי-שלי.md</code> בתיקיית הפרויקט.
 
 השתמש בשתים־עשרה הכותרות האלה: התפקיד והעולם המקצועי, מטרות התפקיד, תחומי אחריות, משימות שגרתיות, סוגי מסמכים ומידע, כלים ומערכות, תוצרים נדרשים, אתגרים חוזרים, הזדמנויות לבינה מלאכותית, העדפות עבודה, מגבלות והרשאות, ומידע שחסר.
 
@@ -602,7 +817,7 @@ main,.shell,.foot{position:relative;z-index:1}
 השתמש רק במידע שבקבצים ובתשובות שלי. אם אין מידע לסעיף, כתוב שהוא עדיין לא הוגדר.
 
 לפני יצירת הקובץ הצג לי את התוכן ובקש אישור.</pre>
-  <textarea class="prompt-src" hidden>בהתבסס על מה שלמדנו על תפקיד רכז התוכנית בארגון הפיקטיבי &quot;גשר&quot;, צור קובץ פרופיל מקצועי בשם `הפרופיל-המקצועי-שלי.md` בתיקיית הפרויקט.
+  <textarea class="prompt-src g-m" hidden>בהתבסס על מה שלמדנו על תפקיד רכז התוכנית בארגון הפיקטיבי &quot;גשר&quot;, צור קובץ פרופיל מקצועי בשם `הפרופיל-המקצועי-שלי.md` בתיקיית הפרויקט.
 
 השתמש בשתים־עשרה הכותרות האלה: התפקיד והעולם המקצועי, מטרות התפקיד, תחומי אחריות, משימות שגרתיות, סוגי מסמכים ומידע, כלים ומערכות, תוצרים נדרשים, אתגרים חוזרים, הזדמנויות לבינה מלאכותית, העדפות עבודה, מגבלות והרשאות, ומידע שחסר.
 
@@ -613,7 +828,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני יצירת הקובץ הצג לי את התוכן ובקש אישור.</textarea>
 </div></div><div class="lib-item" data-s="opportunities" data-tr="short"><div class="lib-meta"><a href="opportunities.html#ask">תרגיל 3 · מגלים הזדמנויות</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-10">
   <div class="prompt-head"><span class="prompt-title">שלב א: גילוי הזדמנויות</span><button class="copy" type="button" data-copy="lib-10" aria-label="העתקת הפרומפט: שלב א: גילוי הזדמנויות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">עכשיו, לאחר שיצרנו את הפרופיל המקצועי שלי, אני רוצה שנזהה יחד הזדמנויות לשיפור העבודה שלי באמצעות קלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">עכשיו, לאחר שיצרנו את הפרופיל המקצועי שלי, אני רוצה שנזהה יחד הזדמנויות לשיפור העבודה שלי באמצעות קלוד קוד.
 
 קרא את קובץ הפרופיל המקצועי שלי.
 
@@ -646,7 +861,7 @@ main,.shell,.foot{position:relative;z-index:1}
 הסבר בקצרה מדוע, ובקש ממני לבחור במה נתחיל.
 
 אל תיצור קבצים או כלים בשלב הזה.</pre>
-  <textarea class="prompt-src" hidden>עכשיו, לאחר שיצרנו את הפרופיל המקצועי שלי, אני רוצה שנזהה יחד הזדמנויות לשיפור העבודה שלי באמצעות קלוד קוד.
+  <textarea class="prompt-src g-m" hidden>עכשיו, לאחר שיצרנו את הפרופיל המקצועי שלי, אני רוצה שנזהה יחד הזדמנויות לשיפור העבודה שלי באמצעות קלוד קוד.
 
 קרא את קובץ הפרופיל המקצועי שלי.
 
@@ -681,7 +896,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תיצור קבצים או כלים בשלב הזה.</textarea>
 </div></div><div class="lib-item" data-s="opportunities" data-tr="short"><div class="lib-meta"><a href="opportunities.html#ask">תרגיל 3 · מגלים הזדמנויות</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-11">
   <div class="prompt-head"><span class="prompt-title">שלב ב: הופכים הזדמנות למשימת התנסות</span><button class="copy" type="button" data-copy="lib-11" aria-label="העתקת הפרומפט: שלב ב: הופכים הזדמנות למשימת התנסות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה להתחיל מההזדמנות שבחרתי.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה להתחיל מההזדמנות שבחרתי.
 
 עזור לי להפוך אותה למשימת התנסות ראשונה.
 
@@ -694,9 +909,14 @@ main,.shell,.foot{position:relative;z-index:1}
 5. כיצד נבדוק שהמשימה הצליחה.
 
 הצע דרך להתחיל עם נתוני דוגמה ולא עם מידע רגיש.
+
+לאחר שאאשר את ההגדרה, שמור שני קבצים בתיקייה <code dir="auto">תוצרים</code>:
+
+- <code dir="auto">הזדמנויות.md</code>: שש ההזדמנויות שהצעת, וההזדמנות שבחרתי.
+- <code dir="auto">משימה-ראשונה.md</code>: הגדרת המשימה שסיכמנו.
 
 אל תבצע עדיין את המשימה.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה להתחיל מההזדמנות שבחרתי.
+  <textarea class="prompt-src g-m" hidden>אני רוצה להתחיל מההזדמנות שבחרתי.
 
 עזור לי להפוך אותה למשימת התנסות ראשונה.
 
@@ -709,11 +929,16 @@ main,.shell,.foot{position:relative;z-index:1}
 5. כיצד נבדוק שהמשימה הצליחה.
 
 הצע דרך להתחיל עם נתוני דוגמה ולא עם מידע רגיש.
+
+לאחר שאאשר את ההגדרה, שמור שני קבצים בתיקייה `תוצרים`:
+
+- `הזדמנויות.md`: שש ההזדמנויות שהצעת, וההזדמנות שבחרתי.
+- `משימה-ראשונה.md`: הגדרת המשימה שסיכמנו.
 
 אל תבצע עדיין את המשימה.</textarea>
 </div></div><div class="lib-item" data-s="opportunities" data-tr="deep"><div class="lib-meta"><a href="opportunities.html#ask">תרגיל 3 · מגלים הזדמנויות</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-12">
   <div class="prompt-head"><span class="prompt-title">העמקה: מדרגים את ההזדמנויות</span><button class="copy" type="button" data-copy="lib-12" aria-label="העתקת הפרומפט: העמקה: מדרגים את ההזדמנויות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">לפני שאבחר, דרג את שש ההזדמנויות שהצעת לפי ארבעה קריטריונים, בסולם של 1 עד 5:
+  <pre class="prompt-text g-m" dir="rtl">לפני שאבחר, דרג את שש ההזדמנויות שהצעת לפי ארבעה קריטריונים, בסולם של 1 עד 5:
 
 1. הערך לעבודה שלי.
 2. הקלות להתחיל היום.
@@ -725,7 +950,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אחר כך שאל אותי שאלה אחת שתעזור לי לבחור.
 
 אל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>לפני שאבחר, דרג את שש ההזדמנויות שהצעת לפי ארבעה קריטריונים, בסולם של 1 עד 5:
+  <textarea class="prompt-src g-m" hidden>לפני שאבחר, דרג את שש ההזדמנויות שהצעת לפי ארבעה קריטריונים, בסולם של 1 עד 5:
 
 1. הערך לעבודה שלי.
 2. הקלות להתחיל היום.
@@ -739,7 +964,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תיצור קבצים.</textarea>
 </div></div><div class="lib-item" data-s="opportunities" data-tr="sample"><div class="lib-meta"><a href="opportunities.html#ask">תרגיל 3 · מגלים הזדמנויות</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-13">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: ההזדמנויות בארגון &quot;גשר&quot;</span><button class="copy" type="button" data-copy="lib-13" aria-label="העתקת הפרומפט: מסלול דוגמה: ההזדמנויות בארגון &quot;גשר&quot;">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">קרא את הפרופיל המקצועי ואת הקבצים בתיקייה <code dir="auto">חומרי-עבודה</code>.
+  <pre class="prompt-text g-m" dir="rtl">קרא את הפרופיל המקצועי ואת הקבצים בתיקייה <code dir="auto">חומרי-עבודה</code>.
 
 הצע שש הזדמנויות לשיפור העבודה של רכז התוכנית בארגון &quot;גשר&quot;: שתי משימות שאפשר לבצע מהר יותר, שני כלים קטנים ושני תהליכים חוזרים שמתאימים למיומנות או לשגרה.
 
@@ -747,8 +972,8 @@ main,.shell,.foot{position:relative;z-index:1}
 
 אם אחת ההזדמנויות היא סיכום הקבצים, לוח לניהול משימות, או דוח התקדמות שבועי, ציין זאת. אלה המשימות של מסלול הדוגמה בסדנה.
 
-אל תיצור קבצים בשלב הזה.</pre>
-  <textarea class="prompt-src" hidden>קרא את הפרופיל המקצועי ואת הקבצים בתיקייה `חומרי-עבודה`.
+בסוף שמור את ההזדמנויות בקובץ <code dir="auto">תוצרים/הזדמנויות.md</code>, וציין בו שההזדמנות שנבחרה היא סיכום הקבצים. אל תיצור קבצים אחרים.</pre>
+  <textarea class="prompt-src g-m" hidden>קרא את הפרופיל המקצועי ואת הקבצים בתיקייה `חומרי-עבודה`.
 
 הצע שש הזדמנויות לשיפור העבודה של רכז התוכנית בארגון &quot;גשר&quot;: שתי משימות שאפשר לבצע מהר יותר, שני כלים קטנים ושני תהליכים חוזרים שמתאימים למיומנות או לשגרה.
 
@@ -756,12 +981,12 @@ main,.shell,.foot{position:relative;z-index:1}
 
 אם אחת ההזדמנויות היא סיכום הקבצים, לוח לניהול משימות, או דוח התקדמות שבועי, ציין זאת. אלה המשימות של מסלול הדוגמה בסדנה.
 
-אל תיצור קבצים בשלב הזה.</textarea>
+בסוף שמור את ההזדמנויות בקובץ `תוצרים/הזדמנויות.md`, וציין בו שההזדמנות שנבחרה היא סיכום הקבצים. אל תיצור קבצים אחרים.</textarea>
 </div></div><div class="lib-item" data-s="first-task" data-tr="short"><div class="lib-meta"><a href="first-task.html#ask">תרגיל 4 · מבצעים משימה ראשונה</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-14">
   <div class="prompt-head"><span class="prompt-title">ביצוע המשימה הראשונה</span><button class="copy" type="button" data-copy="lib-14" aria-label="העתקת הפרומפט: ביצוע המשימה הראשונה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה לבצע עכשיו את המשימה הראשונה שבחרנו.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה לבצע עכשיו את המשימה הראשונה שבחרנו.
 
-השתמש בפרופיל המקצועי שלי ובהגדרת המשימה שסיכמנו.
+השתמש בפרופיל המקצועי שלי ובהגדרת המשימה שבקובץ <code dir="auto">תוצרים/משימה-ראשונה.md</code>.
 
 ראשית, בדוק אילו קבצים ומידע עומדים לרשותך.
 
@@ -776,9 +1001,9 @@ main,.shell,.foot{position:relative;z-index:1}
 לאחר שאאשר, בצע את המשימה במסגרת תיקיית הפרויקט בלבד.
 
 בסיום הצג את התוצר, הסבר מה ביצעת וציין אילו חלקים הצלחת לבדוק בפועל.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה לבצע עכשיו את המשימה הראשונה שבחרנו.
+  <textarea class="prompt-src g-m" hidden>אני רוצה לבצע עכשיו את המשימה הראשונה שבחרנו.
 
-השתמש בפרופיל המקצועי שלי ובהגדרת המשימה שסיכמנו.
+השתמש בפרופיל המקצועי שלי ובהגדרת המשימה שבקובץ `תוצרים/משימה-ראשונה.md`.
 
 ראשית, בדוק אילו קבצים ומידע עומדים לרשותך.
 
@@ -795,7 +1020,7 @@ main,.shell,.foot{position:relative;z-index:1}
 בסיום הצג את התוצר, הסבר מה ביצעת וציין אילו חלקים הצלחת לבדוק בפועל.</textarea>
 </div></div><div class="lib-item" data-s="first-task" data-tr="deep"><div class="lib-meta"><a href="first-task.html#ask">תרגיל 4 · מבצעים משימה ראשונה</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-15">
   <div class="prompt-head"><span class="prompt-title">העמקה: בודקים ומשפרים את התוצר</span><button class="copy" type="button" data-copy="lib-15" aria-label="העתקת הפרומפט: העמקה: בודקים ומשפרים את התוצר">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">עבור שוב על התוצר שיצרת, כאילו אתה בודק איכות שלא היה שותף לכתיבה.
+  <pre class="prompt-text g-m" dir="rtl">עבור שוב על התוצר שיצרת, כאילו אתה בודק איכות שלא היה שותף לכתיבה.
 
 הצג לי:
 
@@ -804,7 +1029,7 @@ main,.shell,.foot{position:relative;z-index:1}
 3. שלושה שיפורים שיהפכו את התוצר לשימושי יותר בעבודה שלי.
 
 אל תשנה את התוצר לפני שאבחר אילו שיפורים לבצע.</pre>
-  <textarea class="prompt-src" hidden>עבור שוב על התוצר שיצרת, כאילו אתה בודק איכות שלא היה שותף לכתיבה.
+  <textarea class="prompt-src g-m" hidden>עבור שוב על התוצר שיצרת, כאילו אתה בודק איכות שלא היה שותף לכתיבה.
 
 הצג לי:
 
@@ -815,7 +1040,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשנה את התוצר לפני שאבחר אילו שיפורים לבצע.</textarea>
 </div></div><div class="lib-item" data-s="first-task" data-tr="sample"><div class="lib-meta"><a href="first-task.html#ask">תרגיל 4 · מבצעים משימה ראשונה</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-16">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: סיכום הקבצים</span><button class="copy" type="button" data-copy="lib-16" aria-label="העתקת הפרומפט: מסלול דוגמה: סיכום הקבצים">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה לבצע את המשימה הראשונה של מסלול הדוגמה: סיכום הקבצים שבתיקייה <code dir="auto">חומרי-עבודה</code>.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה לבצע את המשימה הראשונה של מסלול הדוגמה: סיכום הקבצים שבתיקייה <code dir="auto">חומרי-עבודה</code>.
 
 קרא את כל הקבצים שבתיקייה.
 
@@ -834,7 +1059,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשנה את הקבצים שבתיקייה <code dir="auto">חומרי-עבודה</code>.
 
 בסיום הצג את התוצר ואת מה שבדקת בפועל.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה לבצע את המשימה הראשונה של מסלול הדוגמה: סיכום הקבצים שבתיקייה `חומרי-עבודה`.
+  <textarea class="prompt-src g-m" hidden>אני רוצה לבצע את המשימה הראשונה של מסלול הדוגמה: סיכום הקבצים שבתיקייה `חומרי-עבודה`.
 
 קרא את כל הקבצים שבתיקייה.
 
@@ -855,7 +1080,7 @@ main,.shell,.foot{position:relative;z-index:1}
 בסיום הצג את התוצר ואת מה שבדקת בפועל.</textarea>
 </div></div><div class="lib-item" data-s="tool" data-tr="short"><div class="lib-meta"><a href="tool.html#ask">תרגיל 5 · בונים כלי אישי</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-17">
   <div class="prompt-head"><span class="prompt-title">שלב א: אפיון הכלי</span><button class="copy" type="button" data-copy="lib-17" aria-label="העתקת הפרומפט: שלב א: אפיון הכלי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">בהתבסס על הפרופיל המקצועי שלי ועל ההזדמנויות שזיהינו, אני רוצה לבנות כלי קטן שיעזור לי בעבודה.
+  <pre class="prompt-text g-m" dir="rtl">בהתבסס על הפרופיל המקצועי שלי ועל ההזדמנויות שבקובץ <code dir="auto">תוצרים/הזדמנויות.md</code>, אני רוצה לבנות כלי קטן שיעזור לי בעבודה.
 
 הכלי שבחרתי הוא: <mark>[שם הכלי או תיאור קצר]</mark>.
 
@@ -875,7 +1100,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אם אפשר לבנות אותו כעמוד אינטראקטיבי פשוט שפועל במחשב, העדף זאת.
 
 אל תתחיל לבנות לפני שאאשר את האפיון.</pre>
-  <textarea class="prompt-src" hidden>בהתבסס על הפרופיל המקצועי שלי ועל ההזדמנויות שזיהינו, אני רוצה לבנות כלי קטן שיעזור לי בעבודה.
+  <textarea class="prompt-src g-m" hidden>בהתבסס על הפרופיל המקצועי שלי ועל ההזדמנויות שבקובץ `תוצרים/הזדמנויות.md`, אני רוצה לבנות כלי קטן שיעזור לי בעבודה.
 
 הכלי שבחרתי הוא: [שם הכלי או תיאור קצר].
 
@@ -895,9 +1120,25 @@ main,.shell,.foot{position:relative;z-index:1}
 אם אפשר לבנות אותו כעמוד אינטראקטיבי פשוט שפועל במחשב, העדף זאת.
 
 אל תתחיל לבנות לפני שאאשר את האפיון.</textarea>
-</div></div><div class="lib-item" data-s="tool" data-tr="short"><div class="lib-meta"><a href="tool.html#ask">תרגיל 5 · בונים כלי אישי</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-18">
+</div></div><div class="lib-item" data-s="tool" data-tr="short"><div class="lib-meta"><a href="tool.html#ask">תרגיל 5 · בונים כלי אישי</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt has-g" id="lib-18">
   <div class="prompt-head"><span class="prompt-title">שלב ב: בניית הגרסה הראשונה</span><button class="copy" type="button" data-copy="lib-18" aria-label="העתקת הפרומפט: שלב ב: בניית הגרסה הראשונה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני מאשר את האפיון.
+  <pre class="prompt-text g-m" dir="rtl">אני מאשר את האפיון.
+
+בנה את הגרסה הראשונה בתיקיית משנה ייעודית בתוך הפרויקט.
+
+הקפד על ממשק עברי, ברור ונוח.
+
+השתמש בנתוני דוגמה בלבד.
+
+אל תוסיף פונקציות שלא אושרו.
+
+אל תתחבר לשירותים חיצוניים.
+
+אל תפרסם את הכלי באינטרנט.
+
+לאחר הבנייה, פתח את הכלי ובדוק שהפעולות המרכזיות עובדות.
+
+בסיום הצג מה נוצר ומה עדיין דורש בדיקה.</pre><pre class="prompt-text g-f" dir="rtl">אני מאשרת את האפיון.
 
 בנה את הגרסה הראשונה בתיקיית משנה ייעודית בתוך הפרויקט.
 
@@ -914,7 +1155,23 @@ main,.shell,.foot{position:relative;z-index:1}
 לאחר הבנייה, פתח את הכלי ובדוק שהפעולות המרכזיות עובדות.
 
 בסיום הצג מה נוצר ומה עדיין דורש בדיקה.</pre>
-  <textarea class="prompt-src" hidden>אני מאשר את האפיון.
+  <textarea class="prompt-src g-m" hidden>אני מאשר את האפיון.
+
+בנה את הגרסה הראשונה בתיקיית משנה ייעודית בתוך הפרויקט.
+
+הקפד על ממשק עברי, ברור ונוח.
+
+השתמש בנתוני דוגמה בלבד.
+
+אל תוסיף פונקציות שלא אושרו.
+
+אל תתחבר לשירותים חיצוניים.
+
+אל תפרסם את הכלי באינטרנט.
+
+לאחר הבנייה, פתח את הכלי ובדוק שהפעולות המרכזיות עובדות.
+
+בסיום הצג מה נוצר ומה עדיין דורש בדיקה.</textarea><textarea class="prompt-src g-f" hidden>אני מאשרת את האפיון.
 
 בנה את הגרסה הראשונה בתיקיית משנה ייעודית בתוך הפרויקט.
 
@@ -933,7 +1190,7 @@ main,.shell,.foot{position:relative;z-index:1}
 בסיום הצג מה נוצר ומה עדיין דורש בדיקה.</textarea>
 </div></div><div class="lib-item" data-s="tool" data-tr="deep"><div class="lib-meta"><a href="tool.html#ask">תרגיל 5 · בונים כלי אישי</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-19">
   <div class="prompt-head"><span class="prompt-title">העמקה: סבב שיפור אחד</span><button class="copy" type="button" data-copy="lib-19" aria-label="העתקת הפרומפט: העמקה: סבב שיפור אחד">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">פתחתי את הכלי ובדקתי אותו. אלה ההערות שלי:
+  <pre class="prompt-text g-m" dir="rtl">פתחתי את הכלי ובדקתי אותו. אלה ההערות שלי:
 
 <mark>[כתבו כאן מה עבד, מה לא עבד ומה הייתם רוצים לשנות]</mark>
 
@@ -942,7 +1199,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אחרי השינוי בדוק שהפעולות שעבדו קודם עדיין עובדות.
 
 הצג מה שינית ומה בדקת.</pre>
-  <textarea class="prompt-src" hidden>פתחתי את הכלי ובדקתי אותו. אלה ההערות שלי:
+  <textarea class="prompt-src g-m" hidden>פתחתי את הכלי ובדקתי אותו. אלה ההערות שלי:
 
 [כתבו כאן מה עבד, מה לא עבד ומה הייתם רוצים לשנות]
 
@@ -953,7 +1210,7 @@ main,.shell,.foot{position:relative;z-index:1}
 הצג מה שינית ומה בדקת.</textarea>
 </div></div><div class="lib-item" data-s="tool" data-tr="sample"><div class="lib-meta"><a href="tool.html#ask">תרגיל 5 · בונים כלי אישי</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-20">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: לוח לניהול משימות</span><button class="copy" type="button" data-copy="lib-20" aria-label="העתקת הפרומפט: מסלול דוגמה: לוח לניהול משימות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה לבנות כלי קטן במסלול הדוגמה: לוח לניהול המשימות של תוכנית &quot;גשר&quot;.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה לבנות כלי קטן במסלול הדוגמה: לוח לניהול המשימות של תוכנית &quot;גשר&quot;.
 
 הכלי ייבנה כעמוד אינטראקטיבי פשוט בתיקייה <code dir="auto">תוצרים/לוח-משימות</code>, ויטען את המשימות מתוך הקובץ <code dir="auto">חומרי-עבודה/רשימת-משימות.csv</code>. אם טעינה ישירה של הקובץ אינה אפשרית בדפדפן, העתק את הנתונים לתוך העמוד.
 
@@ -970,7 +1227,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשנה את קובץ המשימות המקורי. אל תתחבר לשירותים חיצוניים.
 
 לפני הבנייה הצג אפיון קצר ובקש אישור. אחרי הבנייה פתח את העמוד ובדוק את שלוש הפונקציות.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה לבנות כלי קטן במסלול הדוגמה: לוח לניהול המשימות של תוכנית &quot;גשר&quot;.
+  <textarea class="prompt-src g-m" hidden>אני רוצה לבנות כלי קטן במסלול הדוגמה: לוח לניהול המשימות של תוכנית &quot;גשר&quot;.
 
 הכלי ייבנה כעמוד אינטראקטיבי פשוט בתיקייה `תוצרים/לוח-משימות`, ויטען את המשימות מתוך הקובץ `חומרי-עבודה/רשימת-משימות.csv`. אם טעינה ישירה של הקובץ אינה אפשרית בדפדפן, העתק את הנתונים לתוך העמוד.
 
@@ -989,14 +1246,14 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני הבנייה הצג אפיון קצר ובקש אישור. אחרי הבנייה פתח את העמוד ובדוק את שלוש הפונקציות.</textarea>
 </div></div><div class="lib-item" data-s="browser-computer" data-tr="short"><div class="lib-meta"><a href="browser-computer.html#ask">הדגמה · דפדפן ושליטה במחשב</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-21">
   <div class="prompt-head"><span class="prompt-title">דפדפן מובנה: קלוד בודק את הכלי שבניתי</span><button class="copy" type="button" data-copy="lib-21" aria-label="העתקת הפרומפט: דפדפן מובנה: קלוד בודק את הכלי שבניתי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">פתח בדפדפן המובנה את הכלי שבנינו בתיקיית הפרויקט.
+  <pre class="prompt-text g-m" dir="rtl">פתח בדפדפן המובנה את הכלי שבנינו בתיקיית הפרויקט.
 
 בדוק בעצמך שהפעולות המרכזיות שלו עובדות: לחץ על הכפתורים, נסה את השדות והסינונים.
 
 הצג לי מה בדקת, מה עבד ומה לא עבד.
 
 אל תשנה קבצים לפני שאאשר.</pre>
-  <textarea class="prompt-src" hidden>פתח בדפדפן המובנה את הכלי שבנינו בתיקיית הפרויקט.
+  <textarea class="prompt-src g-m" hidden>פתח בדפדפן המובנה את הכלי שבנינו בתיקיית הפרויקט.
 
 בדוק בעצמך שהפעולות המרכזיות שלו עובדות: לחץ על הכפתורים, נסה את השדות והסינונים.
 
@@ -1005,14 +1262,14 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשנה קבצים לפני שאאשר.</textarea>
 </div></div><div class="lib-item" data-s="browser-computer" data-tr="short"><div class="lib-meta"><a href="browser-computer.html#ask">הדגמה · דפדפן ושליטה במחשב</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-22">
   <div class="prompt-head"><span class="prompt-title">אתר ציבורי: איסוף מידע לקובץ</span><button class="copy" type="button" data-copy="lib-22" aria-label="העתקת הפרומפט: אתר ציבורי: איסוף מידע לקובץ">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">היכנס לאתר הציבורי הבא: <mark>[כתובת של אתר ציבורי שקשור לעבודה שלי]</mark>
+  <pre class="prompt-text g-m" dir="rtl">היכנס לאתר הציבורי הבא: <mark>[כתובת של אתר ציבורי שקשור לעבודה שלי]</mark>
 
 קרא את העמוד וסכם בעשר שורות לכל היותר את המידע שרלוונטי לתפקיד שלי, לפי הפרופיל המקצועי שלי.
 
 שמור את הסיכום בקובץ חדש בתיקייה <code dir="auto">תוצרים</code>, וכתוב בראשו את כתובת המקור ואת התאריך.
 
 אל תתחבר לשום חשבון, אל תמלא טפסים ואל תלחץ על כפתורי שליחה או רכישה.</pre>
-  <textarea class="prompt-src" hidden>היכנס לאתר הציבורי הבא: [כתובת של אתר ציבורי שקשור לעבודה שלי]
+  <textarea class="prompt-src g-m" hidden>היכנס לאתר הציבורי הבא: [כתובת של אתר ציבורי שקשור לעבודה שלי]
 
 קרא את העמוד וסכם בעשר שורות לכל היותר את המידע שרלוונטי לתפקיד שלי, לפי הפרופיל המקצועי שלי.
 
@@ -1021,7 +1278,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תתחבר לשום חשבון, אל תמלא טפסים ואל תלחץ על כפתורי שליחה או רכישה.</textarea>
 </div></div><div class="lib-item" data-s="browser-computer" data-tr="deep"><div class="lib-meta"><a href="browser-computer.html#ask">הדגמה · דפדפן ושליטה במחשב</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-23">
   <div class="prompt-head"><span class="prompt-title">שליטה במחשב: הדגמה בטוחה</span><button class="copy" type="button" data-copy="lib-23" aria-label="העתקת הפרומפט: שליטה במחשב: הדגמה בטוחה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה לנסות את היכולת לשלוט במחשב, במשימה בטוחה ופשוטה.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה לנסות את היכולת לשלוט במחשב, במשימה בטוחה ופשוטה.
 
 פתח את פנקס הרשימות (בווינדוס: Notepad, במק: TextEdit).
 
@@ -1030,7 +1287,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשמור את הקובץ ואל תפתח אף אפליקציה אחרת.
 
 לפני שאתה מתחיל, הסבר לי אילו אפליקציות תבקש לאשר ולמה.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה לנסות את היכולת לשלוט במחשב, במשימה בטוחה ופשוטה.
+  <textarea class="prompt-src g-m" hidden>אני רוצה לנסות את היכולת לשלוט במחשב, במשימה בטוחה ופשוטה.
 
 פתח את פנקס הרשימות (בווינדוס: Notepad, במק: TextEdit).
 
@@ -1041,7 +1298,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני שאתה מתחיל, הסבר לי אילו אפליקציות תבקש לאשר ולמה.</textarea>
 </div></div><div class="lib-item" data-s="browser-computer" data-tr="deep"><div class="lib-meta"><a href="browser-computer.html#ask">הדגמה · דפדפן ושליטה במחשב</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-24">
   <div class="prompt-head"><span class="prompt-title">העמקה: איזו יכולת מתאימה לתהליך שלי?</span><button class="copy" type="button" data-copy="lib-24" aria-label="העתקת הפרומפט: העמקה: איזו יכולת מתאימה לתהליך שלי?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו.
+  <pre class="prompt-text g-m" dir="rtl">קרא את הפרופיל המקצועי שלי ואת הקובץ <code dir="auto">תוצרים/הזדמנויות.md</code>.
 
 האם יש תהליך בעבודה שלי שבו קלוד יצטרך לעבוד באתר או באפליקציה, ולא רק על קבצים?
 
@@ -1053,7 +1310,7 @@ main,.shell,.foot{position:relative;z-index:1}
 4. אילו סיכוני פרטיות כדאי להביא בחשבון, ומה כדאי לבדוק עם הארגון.
 
 אל תפתח אתרים או אפליקציות, ואל תבצע פעולות.</pre>
-  <textarea class="prompt-src" hidden>קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו.
+  <textarea class="prompt-src g-m" hidden>קרא את הפרופיל המקצועי שלי ואת הקובץ `תוצרים/הזדמנויות.md`.
 
 האם יש תהליך בעבודה שלי שבו קלוד יצטרך לעבוד באתר או באפליקציה, ולא רק על קבצים?
 
@@ -1067,7 +1324,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תפתח אתרים או אפליקציות, ואל תבצע פעולות.</textarea>
 </div></div><div class="lib-item" data-s="browser-computer" data-tr="sample"><div class="lib-meta"><a href="browser-computer.html#ask">הדגמה · דפדפן ושליטה במחשב</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-25">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: בדיקת לוח המשימות בדפדפן</span><button class="copy" type="button" data-copy="lib-25" aria-label="העתקת הפרומפט: מסלול דוגמה: בדיקת לוח המשימות בדפדפן">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">פתח בדפדפן המובנה את לוח המשימות שבנינו בתיקייה <code dir="auto">תוצרים/לוח-משימות</code>.
+  <pre class="prompt-text g-m" dir="rtl">פתח בדפדפן המובנה את לוח המשימות שבנינו בתיקייה <code dir="auto">תוצרים/לוח-משימות</code>.
 
 בדוק בעצמך:
 
@@ -1076,7 +1333,7 @@ main,.shell,.foot{position:relative;z-index:1}
 3. שהעברת משימה לסטטוס אחר עובדת.
 
 הצג לי מה בדקת ומה מצאת. אל תשנה קבצים.</pre>
-  <textarea class="prompt-src" hidden>פתח בדפדפן המובנה את לוח המשימות שבנינו בתיקייה `תוצרים/לוח-משימות`.
+  <textarea class="prompt-src g-m" hidden>פתח בדפדפן המובנה את לוח המשימות שבנינו בתיקייה `תוצרים/לוח-משימות`.
 
 בדוק בעצמך:
 
@@ -1087,21 +1344,23 @@ main,.shell,.foot{position:relative;z-index:1}
 הצג לי מה בדקת ומה מצאת. אל תשנה קבצים.</textarea>
 </div></div><div class="lib-item" data-s="connectors" data-tr="short"><div class="lib-meta"><a href="connectors.html#ask">הדגמה · חיבורים רשמיים</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-26">
   <div class="prompt-head"><span class="prompt-title">בדיקה בטוחה: אילו חיבורים פעילים?</span><button class="copy" type="button" data-copy="lib-26" aria-label="העתקת הפרומפט: בדיקה בטוחה: אילו חיבורים פעילים?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אילו חיבורים לשירותים חיצוניים פעילים אצלי עכשיו בקלוד קוד?
+  <pre class="prompt-text g-m" dir="rtl">אילו חיבורים לשירותים חיצוניים פעילים אצלי עכשיו בקלוד קוד?
 
 לכל חיבור הסבר בקצרה מה הוא מאפשר לך לעשות.
 
 אל תבצע אף פעולה באף שירות, ואל תקרא מידע מתוכם.</pre>
-  <textarea class="prompt-src" hidden>אילו חיבורים לשירותים חיצוניים פעילים אצלי עכשיו בקלוד קוד?
+  <textarea class="prompt-src g-m" hidden>אילו חיבורים לשירותים חיצוניים פעילים אצלי עכשיו בקלוד קוד?
 
 לכל חיבור הסבר בקצרה מה הוא מאפשר לך לעשות.
 
 אל תבצע אף פעולה באף שירות, ואל תקרא מידע מתוכם.</textarea>
 </div></div><div class="lib-item" data-s="connectors" data-tr="deep"><div class="lib-meta"><a href="connectors.html#ask">הדגמה · חיבורים רשמיים</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-27">
   <div class="prompt-head"><span class="prompt-title">העמקה: האם כדאי לי לחבר שירות?</span><button class="copy" type="button" data-copy="lib-27" aria-label="העתקת הפרומפט: העמקה: האם כדאי לי לחבר שירות?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">קרא את הפרופיל המקצועי שלי.
+  <pre class="prompt-text g-m" dir="rtl">קרא את הפרופיל המקצועי שלי.
 
-האם יש שירות אחד שחיבור אליו יכול לשפר משמעותית את אחד התהליכים שזיהינו?
+קרא גם את הקובץ <code dir="auto">תוצרים/הזדמנויות.md</code>.
+
+האם יש שירות אחד שחיבור אליו יכול לשפר משמעותית את אחד התהליכים שם?
 
 הסבר:
 
@@ -1111,9 +1370,11 @@ main,.shell,.foot{position:relative;z-index:1}
 4. מה כדאי לבדוק עם הארגון לפני החיבור.
 
 אל תתחבר לשום שירות ואל תבצע פעולות.</pre>
-  <textarea class="prompt-src" hidden>קרא את הפרופיל המקצועי שלי.
+  <textarea class="prompt-src g-m" hidden>קרא את הפרופיל המקצועי שלי.
 
-האם יש שירות אחד שחיבור אליו יכול לשפר משמעותית את אחד התהליכים שזיהינו?
+קרא גם את הקובץ `תוצרים/הזדמנויות.md`.
+
+האם יש שירות אחד שחיבור אליו יכול לשפר משמעותית את אחד התהליכים שם?
 
 הסבר:
 
@@ -1125,7 +1386,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תתחבר לשום שירות ואל תבצע פעולות.</textarea>
 </div></div><div class="lib-item" data-s="instructions" data-tr="short"><div class="lib-meta"><a href="instructions.html#ask">תרגיל 6 · הוראות קבועות לפרויקט</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-28">
   <div class="prompt-head"><span class="prompt-title">יצירת קובץ ההוראות</span><button class="copy" type="button" data-copy="lib-28" aria-label="העתקת הפרומפט: יצירת קובץ ההוראות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה שקלוד קוד יוכל להיעזר בפרופיל המקצועי שלי גם בסשנים חדשים שנפתחים בתיקיית הפרויקט.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה שקלוד קוד יוכל להיעזר בפרופיל המקצועי שלי גם בסשנים חדשים שנפתחים בתיקיית הפרויקט.
 
 בדוק שקיים קובץ בשם <code dir="auto">הפרופיל-המקצועי-שלי.md</code>.
 
@@ -1150,8 +1411,8 @@ main,.shell,.foot{position:relative;z-index:1}
 
 לאחר יצירת הקבצים, בדוק בסשן חדש שההוראות והפרופיל נטענים כראוי.
 
-הצג לי כיצד בדקת זאת.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה שקלוד קוד יוכל להיעזר בפרופיל המקצועי שלי גם בסשנים חדשים שנפתחים בתיקיית הפרויקט.
+הצג לי כיצד בדקת זאת. אם אינך יכול לפתוח סשן חדש בעצמך, אל תטען שבדקת: הסבר לי איך לבדוק זאת בעצמי.</pre>
+  <textarea class="prompt-src g-m" hidden>אני רוצה שקלוד קוד יוכל להיעזר בפרופיל המקצועי שלי גם בסשנים חדשים שנפתחים בתיקיית הפרויקט.
 
 בדוק שקיים קובץ בשם `הפרופיל-המקצועי-שלי.md`.
 
@@ -1176,22 +1437,22 @@ main,.shell,.foot{position:relative;z-index:1}
 
 לאחר יצירת הקבצים, בדוק בסשן חדש שההוראות והפרופיל נטענים כראוי.
 
-הצג לי כיצד בדקת זאת.</textarea>
+הצג לי כיצד בדקת זאת. אם אינך יכול לפתוח סשן חדש בעצמך, אל תטען שבדקת: הסבר לי איך לבדוק זאת בעצמי.</textarea>
 </div></div><div class="lib-item" data-s="instructions" data-tr="short"><div class="lib-meta"><a href="instructions.html#ask">תרגיל 6 · הוראות קבועות לפרויקט</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-29">
   <div class="prompt-head"><span class="prompt-title">בדיקה בסשן חדש</span><button class="copy" type="button" data-copy="lib-29" aria-label="העתקת הפרומפט: בדיקה בסשן חדש">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">זהו סשן חדש.
+  <pre class="prompt-text g-m" dir="rtl">זהו סשן חדש.
 
 בלי לפתוח קבצים, ספר לי בקצרה מה אתה יודע על התפקיד שלי, על המשימות שלי ועל האתגרים שלי.
 
 ציין מאיזה קובץ הגיע המידע, ואילו הוראות עבודה קיבלת לפרויקט הזה.</pre>
-  <textarea class="prompt-src" hidden>זהו סשן חדש.
+  <textarea class="prompt-src g-m" hidden>זהו סשן חדש.
 
 בלי לפתוח קבצים, ספר לי בקצרה מה אתה יודע על התפקיד שלי, על המשימות שלי ועל האתגרים שלי.
 
 ציין מאיזה קובץ הגיע המידע, ואילו הוראות עבודה קיבלת לפרויקט הזה.</textarea>
 </div></div><div class="lib-item" data-s="instructions" data-tr="deep"><div class="lib-meta"><a href="instructions.html#ask">תרגיל 6 · הוראות קבועות לפרויקט</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-30">
   <div class="prompt-head"><span class="prompt-title">העמקה: מוודאים מה נטען</span><button class="copy" type="button" data-copy="lib-30" aria-label="העתקת הפרומפט: העמקה: מוודאים מה נטען">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">הקלד בתיבת הכתיבה את הפקודה <code dir="auto">/context all</code>, ובדוק ברשימה **Memory files** שהקבצים <code dir="auto">CLAUDE.md</code> ו־<code dir="auto">הפרופיל-המקצועי-שלי.md</code> מופיעים בה.
+  <pre class="prompt-text g-m" dir="rtl">הקלד בתיבת הכתיבה את הפקודה <code dir="auto">/context all</code>, ובדוק ברשימה **Memory files** שהקבצים <code dir="auto">CLAUDE.md</code> ו־<code dir="auto">הפרופיל-המקצועי-שלי.md</code> מופיעים בה.
 
 אחר כך שלח:
 
@@ -1202,7 +1463,7 @@ main,.shell,.foot{position:relative;z-index:1}
 3. האם הקובץ קצר וממוקד, או שהועתק אליו מידע שמקומו בפרופיל.
 
 הצע תיקונים, ואל תשנה את הקובץ לפני שאאשר.</pre>
-  <textarea class="prompt-src" hidden>הקלד בתיבת הכתיבה את הפקודה `/context all`, ובדוק ברשימה **Memory files** שהקבצים `CLAUDE.md` ו־`הפרופיל-המקצועי-שלי.md` מופיעים בה.
+  <textarea class="prompt-src g-m" hidden>הקלד בתיבת הכתיבה את הפקודה `/context all`, ובדוק ברשימה **Memory files** שהקבצים `CLAUDE.md` ו־`הפרופיל-המקצועי-שלי.md` מופיעים בה.
 
 אחר כך שלח:
 
@@ -1215,7 +1476,7 @@ main,.shell,.foot{position:relative;z-index:1}
 הצע תיקונים, ואל תשנה את הקובץ לפני שאאשר.</textarea>
 </div></div><div class="lib-item" data-s="instructions" data-tr="sample"><div class="lib-meta"><a href="instructions.html#ask">תרגיל 6 · הוראות קבועות לפרויקט</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-31">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: הוראות לפרויקט &quot;גשר&quot;</span><button class="copy" type="button" data-copy="lib-31" aria-label="העתקת הפרומפט: מסלול דוגמה: הוראות לפרויקט &quot;גשר&quot;">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">צור בתיקיית הפרויקט קובץ הוראות קבועות בשם <code dir="auto">CLAUDE.md</code>.
+  <pre class="prompt-text g-m" dir="rtl">צור בתיקיית הפרויקט קובץ הוראות קבועות בשם <code dir="auto">CLAUDE.md</code>.
 
 הקובץ יטען את <code dir="auto">הפרופיל-המקצועי-שלי.md</code> בדרך הרשמית הנתמכת, ויכלול הוראות קצרות:
 
@@ -1228,7 +1489,7 @@ main,.shell,.foot{position:relative;z-index:1}
 7. לבדוק כל תוצר לפני שמציגים אותו.
 
 לאחר היצירה הסבר לי איך אבדוק בסשן חדש שההוראות נטענות.</pre>
-  <textarea class="prompt-src" hidden>צור בתיקיית הפרויקט קובץ הוראות קבועות בשם `CLAUDE.md`.
+  <textarea class="prompt-src g-m" hidden>צור בתיקיית הפרויקט קובץ הוראות קבועות בשם `CLAUDE.md`.
 
 הקובץ יטען את `הפרופיל-המקצועי-שלי.md` בדרך הרשמית הנתמכת, ויכלול הוראות קצרות:
 
@@ -1243,9 +1504,9 @@ main,.shell,.foot{position:relative;z-index:1}
 לאחר היצירה הסבר לי איך אבדוק בסשן חדש שההוראות נטענות.</textarea>
 </div></div><div class="lib-item" data-s="skill" data-tr="short"><div class="lib-meta"><a href="skill.html#ask">תרגיל 7 · יוצרים מיומנות</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-32">
   <div class="prompt-head"><span class="prompt-title">שלב א: תכנון המיומנות</span><button class="copy" type="button" data-copy="lib-32" aria-label="העתקת הפרומפט: שלב א: תכנון המיומנות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה ליצור מיומנות אישית בקלוד קוד, שתאפשר לי לבצע תהליך עבודה חוזר.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה ליצור מיומנות אישית בקלוד קוד, שתאפשר לי לבצע תהליך עבודה חוזר.
 
-השתמש בפרופיל המקצועי שלי ובהזדמנויות שזיהינו.
+השתמש בפרופיל המקצועי שלי ובהזדמנויות שבקובץ <code dir="auto">תוצרים/הזדמנויות.md</code>.
 
 הצע לי שלוש אפשרויות למיומנות ראשונה.
 
@@ -1271,9 +1532,9 @@ main,.shell,.foot{position:relative;z-index:1}
 המלץ על האפשרות הפשוטה והמתאימה ביותר לתרגול ראשון.
 
 בקש ממני לבחור לפני יצירת המיומנות.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה ליצור מיומנות אישית בקלוד קוד, שתאפשר לי לבצע תהליך עבודה חוזר.
+  <textarea class="prompt-src g-m" hidden>אני רוצה ליצור מיומנות אישית בקלוד קוד, שתאפשר לי לבצע תהליך עבודה חוזר.
 
-השתמש בפרופיל המקצועי שלי ובהזדמנויות שזיהינו.
+השתמש בפרופיל המקצועי שלי ובהזדמנויות שבקובץ `תוצרים/הזדמנויות.md`.
 
 הצע לי שלוש אפשרויות למיומנות ראשונה.
 
@@ -1301,7 +1562,7 @@ main,.shell,.foot{position:relative;z-index:1}
 בקש ממני לבחור לפני יצירת המיומנות.</textarea>
 </div></div><div class="lib-item" data-s="skill" data-tr="short"><div class="lib-meta"><a href="skill.html#ask">תרגיל 7 · יוצרים מיומנות</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-33">
   <div class="prompt-head"><span class="prompt-title">שלב ב: יצירת המיומנות</span><button class="copy" type="button" data-copy="lib-33" aria-label="העתקת הפרומפט: שלב ב: יצירת המיומנות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה ליצור את המיומנות שבחרנו.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה ליצור את המיומנות שבחרנו.
 
 השתמש באפיון שסיכמנו ובפרופיל המקצועי שלי.
 
@@ -1331,7 +1592,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני יצירת הקבצים הצג את מבנה המיומנות בקצרה.
 
 לאחר אישורי, צור אותה ובדוק שהיא תקינה.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה ליצור את המיומנות שבחרנו.
+  <textarea class="prompt-src g-m" hidden>אני רוצה ליצור את המיומנות שבחרנו.
 
 השתמש באפיון שסיכמנו ובפרופיל המקצועי שלי.
 
@@ -1363,7 +1624,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לאחר אישורי, צור אותה ובדוק שהיא תקינה.</textarea>
 </div></div><div class="lib-item" data-s="skill" data-tr="short"><div class="lib-meta"><a href="skill.html#ask">תרגיל 7 · יוצרים מיומנות</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-34">
   <div class="prompt-head"><span class="prompt-title">שלב ג: בדיקת המיומנות</span><button class="copy" type="button" data-copy="lib-34" aria-label="העתקת הפרומפט: שלב ג: בדיקת המיומנות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">הפעל את המיומנות שיצרנו על נתוני הדוגמה שבפרויקט.
+  <pre class="prompt-text g-m" dir="rtl">הפעל את המיומנות שיצרנו על נתוני הדוגמה שבפרויקט.
 
 בדוק שהיא מבצעת את התהליך לפי ההוראות.
 
@@ -1372,7 +1633,7 @@ main,.shell,.foot{position:relative;z-index:1}
 הצג מה בוצע, מה הצליח ומה לא נבדק.
 
 אם התהליך אינו עובד, הצע תיקון ממוקד.</pre>
-  <textarea class="prompt-src" hidden>הפעל את המיומנות שיצרנו על נתוני הדוגמה שבפרויקט.
+  <textarea class="prompt-src g-m" hidden>הפעל את המיומנות שיצרנו על נתוני הדוגמה שבפרויקט.
 
 בדוק שהיא מבצעת את התהליך לפי ההוראות.
 
@@ -1383,7 +1644,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אם התהליך אינו עובד, הצע תיקון ממוקד.</textarea>
 </div></div><div class="lib-item" data-s="skill" data-tr="deep"><div class="lib-meta"><a href="skill.html#ask">תרגיל 7 · יוצרים מיומנות</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-35">
   <div class="prompt-head"><span class="prompt-title">העמקה: המיומנות עומדת במבחן הפעם הבאה?</span><button class="copy" type="button" data-copy="lib-35" aria-label="העתקת הפרומפט: העמקה: המיומנות עומדת במבחן הפעם הבאה?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">קרא את קובץ ה־<code dir="auto">SKILL.md</code> של המיומנות שיצרנו, כאילו אתה סשן חדש שלא השתתף בשיחה שלנו.
+  <pre class="prompt-text g-m" dir="rtl">קרא את קובץ ה־<code dir="auto">SKILL.md</code> של המיומנות שיצרנו, כאילו אתה סשן חדש שלא השתתף בשיחה שלנו.
 
 בדוק:
 
@@ -1393,7 +1654,7 @@ main,.shell,.foot{position:relative;z-index:1}
 4. האם ברור איפה נשמר התוצר ואיך נמנעת דריסה של תוצר קיים.
 
 הצע תיקונים ממוקדים, ואל תשנה את הקובץ לפני שאאשר.</pre>
-  <textarea class="prompt-src" hidden>קרא את קובץ ה־`SKILL.md` של המיומנות שיצרנו, כאילו אתה סשן חדש שלא השתתף בשיחה שלנו.
+  <textarea class="prompt-src g-m" hidden>קרא את קובץ ה־`SKILL.md` של המיומנות שיצרנו, כאילו אתה סשן חדש שלא השתתף בשיחה שלנו.
 
 בדוק:
 
@@ -1405,7 +1666,7 @@ main,.shell,.foot{position:relative;z-index:1}
 הצע תיקונים ממוקדים, ואל תשנה את הקובץ לפני שאאשר.</textarea>
 </div></div><div class="lib-item" data-s="skill" data-tr="sample"><div class="lib-meta"><a href="skill.html#ask">תרגיל 7 · יוצרים מיומנות</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-36">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: מיומנות דוח התקדמות</span><button class="copy" type="button" data-copy="lib-36" aria-label="העתקת הפרומפט: מסלול דוגמה: מיומנות דוח התקדמות">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה ליצור מיומנות בשם <code dir="auto">progress-report</code> בפרויקט הנוכחי, בהתאם למבנה הרשמי הנתמך בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה ליצור מיומנות בשם <code dir="auto">progress-report</code> בפרויקט הנוכחי, בהתאם למבנה הרשמי הנתמך בקלוד קוד.
 
 המיומנות תפיק דוח התקדמות לתוכנית &quot;גשר&quot; מתוך הקבצים שבתיקייה <code dir="auto">חומרי-עבודה</code>.
 
@@ -1425,7 +1686,7 @@ main,.shell,.foot{position:relative;z-index:1}
 כל נתון בדוח צריך להגיע מהקבצים. אם נתון חסר, יש לכתוב שהוא חסר.
 
 לפני יצירת הקבצים הצג את מבנה המיומנות בקצרה. לאחר אישורי, צור אותה והפעל אותה פעם אחת לבדיקה.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה ליצור מיומנות בשם `progress-report` בפרויקט הנוכחי, בהתאם למבנה הרשמי הנתמך בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>אני רוצה ליצור מיומנות בשם `progress-report` בפרויקט הנוכחי, בהתאם למבנה הרשמי הנתמך בקלוד קוד.
 
 המיומנות תפיק דוח התקדמות לתוכנית &quot;גשר&quot; מתוך הקבצים שבתיקייה `חומרי-עבודה`.
 
@@ -1447,7 +1708,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני יצירת הקבצים הצג את מבנה המיומנות בקצרה. לאחר אישורי, צור אותה והפעל אותה פעם אחת לבדיקה.</textarea>
 </div></div><div class="lib-item" data-s="routine" data-tr="short"><div class="lib-meta"><a href="routine.html#ask">תרגיל 8 · יוצרים שגרה</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-37">
   <div class="prompt-head"><span class="prompt-title">שלב א: האם המיומנות מתאימה לתזמון?</span><button class="copy" type="button" data-copy="lib-37" aria-label="העתקת הפרומפט: שלב א: האם המיומנות מתאימה לתזמון?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
 
 בדוק תחילה האם היא מתאימה להפעלה אוטומטית.
 
@@ -1463,7 +1724,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אם המיומנות אינה מתאימה לתזמון, הצע גרסה מצומצמת ובטוחה שמתאימה לבדיקה.
 
 אל תיצור עדיין משימה מתוזמנת.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
+  <textarea class="prompt-src g-m" hidden>אני רוצה להפוך את המיומנות שיצרנו לשגרת עבודה מתוזמנת.
 
 בדוק תחילה האם היא מתאימה להפעלה אוטומטית.
 
@@ -1481,7 +1742,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תיצור עדיין משימה מתוזמנת.</textarea>
 </div></div><div class="lib-item" data-s="routine" data-tr="short"><div class="lib-meta"><a href="routine.html#ask">תרגיל 8 · יוצרים שגרה</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-38">
   <div class="prompt-head"><span class="prompt-title">שלב ב: הגדרת השגרה</span><button class="copy" type="button" data-copy="lib-38" aria-label="העתקת הפרומפט: שלב ב: הגדרת השגרה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
 
 המשימה צריכה לפעול על תיקיית הפרויקט הנוכחית ולהשתמש במיומנות שיצרנו.
 
@@ -1505,7 +1766,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני יצירת המשימה, הצג את ההגדרות ובקש את אישורי.
 
 לאחר אישורי, צור את המשימה המקומית באמצעות הממשק והכלים הזמינים.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
+  <textarea class="prompt-src g-m" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בקלוד קוד.
 
 המשימה צריכה לפעול על תיקיית הפרויקט הנוכחית ולהשתמש במיומנות שיצרנו.
 
@@ -1531,7 +1792,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לאחר אישורי, צור את המשימה המקומית באמצעות הממשק והכלים הזמינים.</textarea>
 </div></div><div class="lib-item" data-s="routine" data-tr="short"><div class="lib-meta"><a href="routine.html#ask">תרגיל 8 · יוצרים שגרה</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-39">
   <div class="prompt-head"><span class="prompt-title">שלב ג: בדיקה מיידית</span><button class="copy" type="button" data-copy="lib-39" aria-label="העתקת הפרומפט: שלב ג: בדיקה מיידית">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">הפעל את המשימה כעת לצורך בדיקה.
+  <pre class="prompt-text g-m" dir="rtl">הפעל את המשימה כעת לצורך בדיקה.
 
 ודא שהמיומנות הופעלה מתוך המשימה המתוזמנת, ולא רק מתוך הסשן הרגיל שלנו.
 
@@ -1540,7 +1801,7 @@ main,.shell,.foot{position:relative;z-index:1}
 הצג את תוצאות הבדיקה ואת מיקום התוצר.
 
 אם ההפעלה נכשלה, הסבר את הסיבה והצע תיקון.</pre>
-  <textarea class="prompt-src" hidden>הפעל את המשימה כעת לצורך בדיקה.
+  <textarea class="prompt-src g-m" hidden>הפעל את המשימה כעת לצורך בדיקה.
 
 ודא שהמיומנות הופעלה מתוך המשימה המתוזמנת, ולא רק מתוך הסשן הרגיל שלנו.
 
@@ -1549,29 +1810,45 @@ main,.shell,.foot{position:relative;z-index:1}
 הצג את תוצאות הבדיקה ואת מיקום התוצר.
 
 אם ההפעלה נכשלה, הסבר את הסיבה והצע תיקון.</textarea>
-</div></div><div class="lib-item" data-s="routine" data-tr="deep"><div class="lib-meta"><a href="routine.html#ask">תרגיל 8 · יוצרים שגרה</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-40">
+</div></div><div class="lib-item" data-s="routine" data-tr="deep"><div class="lib-meta"><a href="routine.html#ask">תרגיל 8 · יוצרים שגרה</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt has-g" id="lib-40">
   <div class="prompt-head"><span class="prompt-title">העמקה: ניהול השגרה</span><button class="copy" type="button" data-copy="lib-40" aria-label="העתקת הפרומפט: העמקה: ניהול השגרה">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
+  <pre class="prompt-text g-m" dir="rtl">הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
 
 1. משהה את השגרה ומפעיל אותה מחדש.
 2. משנה את התדירות או את השעה.
 3. עורך את ההוראות של השגרה.
 4. רואה את ההרצות הקודמות ואת התוצאות שלהן.
 5. מוחק את השגרה כשאינני צריך אותה עוד.
+
+אחר כך השהה את השגרה רק אם אבקש ממך.</pre><pre class="prompt-text g-f" dir="rtl">הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
+
+1. משהה את השגרה ומפעיל אותה מחדש.
+2. משנה את התדירות או את השעה.
+3. עורך את ההוראות של השגרה.
+4. רואה את ההרצות הקודמות ואת התוצאות שלהן.
+5. מוחק את השגרה כשאינני צריכה אותה עוד.
 
 אחר כך השהה את השגרה רק אם אבקש ממך.</pre>
-  <textarea class="prompt-src" hidden>הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
+  <textarea class="prompt-src g-m" hidden>הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
 
 1. משהה את השגרה ומפעיל אותה מחדש.
 2. משנה את התדירות או את השעה.
 3. עורך את ההוראות של השגרה.
 4. רואה את ההרצות הקודמות ואת התוצאות שלהן.
 5. מוחק את השגרה כשאינני צריך אותה עוד.
+
+אחר כך השהה את השגרה רק אם אבקש ממך.</textarea><textarea class="prompt-src g-f" hidden>הסבר לי, צעד אחר צעד ובמילים פשוטות, איך אני:
+
+1. משהה את השגרה ומפעיל אותה מחדש.
+2. משנה את התדירות או את השעה.
+3. עורך את ההוראות של השגרה.
+4. רואה את ההרצות הקודמות ואת התוצאות שלהן.
+5. מוחק את השגרה כשאינני צריכה אותה עוד.
 
 אחר כך השהה את השגרה רק אם אבקש ממך.</textarea>
 </div></div><div class="lib-item" data-s="routine" data-tr="sample"><div class="lib-meta"><a href="routine.html#ask">תרגיל 8 · יוצרים שגרה</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt" id="lib-41">
   <div class="prompt-head"><span class="prompt-title">מסלול דוגמה: דוח התקדמות שבועי</span><button class="copy" type="button" data-copy="lib-41" aria-label="העתקת הפרומפט: מסלול דוגמה: דוח התקדמות שבועי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בשם &quot;דוח התקדמות שבועי — גשר&quot;.
+  <pre class="prompt-text g-m" dir="rtl">אני רוצה ליצור שגרה מתוזמנת מקומית בשם &quot;דוח התקדמות שבועי — גשר&quot;.
 
 השגרה תפעל על תיקיית הפרויקט הנוכחית, בכל יום חמישי בשעה 08:00.
 
@@ -1586,7 +1863,7 @@ main,.shell,.foot{position:relative;z-index:1}
 השגרה לא תשלח מידע, לא תפרסם קבצים, לא תשנה את הקבצים שבתיקייה <code dir="auto">חומרי-עבודה</code> ולא תיצור שגרות נוספות.
 
 לפני יצירת השגרה הצג את ההגדרות ובקש אישור. אחרי היצירה הפעל אותה פעם אחת לבדיקה.</pre>
-  <textarea class="prompt-src" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בשם &quot;דוח התקדמות שבועי — גשר&quot;.
+  <textarea class="prompt-src g-m" hidden>אני רוצה ליצור שגרה מתוזמנת מקומית בשם &quot;דוח התקדמות שבועי — גשר&quot;.
 
 השגרה תפעל על תיקיית הפרויקט הנוכחית, בכל יום חמישי בשעה 08:00.
 
@@ -1603,7 +1880,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לפני יצירת השגרה הצג את ההגדרות ובקש אישור. אחרי היצירה הפעל אותה פעם אחת לבדיקה.</textarea>
 </div></div><div class="lib-item" data-s="my-agent" data-tr="short"><div class="lib-meta"><a href="my-agent.html#ask">סיכום · הסוכן הראשון שלי</a><span class="tag tag-short">מסלול קצר</span></div><div class="prompt" id="lib-42">
   <div class="prompt-head"><span class="prompt-title">בדיקת הסביבה שבניתי</span><button class="copy" type="button" data-copy="lib-42" aria-label="העתקת הפרומפט: בדיקת הסביבה שבניתי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+  <pre class="prompt-text g-m" dir="rtl">עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
 
 1. הפרופיל המקצועי.
 2. קובץ ההוראות הקבועות.
@@ -1617,7 +1894,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לכל רכיב ציין אם הוא קיים, איפה הוא נמצא ומה הוא עושה.
 
 אל תשנה קבצים.</pre>
-  <textarea class="prompt-src" hidden>עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+  <textarea class="prompt-src g-m" hidden>עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
 
 1. הפרופיל המקצועי.
 2. קובץ ההוראות הקבועות.
@@ -1633,20 +1910,68 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשנה קבצים.</textarea>
 </div></div><div class="lib-item" data-s="my-agent" data-tr="deep"><div class="lib-meta"><a href="my-agent.html#ask">סיכום · הסוכן הראשון שלי</a><span class="tag tag-deep">מסלול מעמיק</span></div><div class="prompt" id="lib-43">
   <div class="prompt-head"><span class="prompt-title">העמקה: מה הצעד הבא שלי?</span><button class="copy" type="button" data-copy="lib-43" aria-label="העתקת הפרומפט: העמקה: מה הצעד הבא שלי?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו היום.
+  <pre class="prompt-text g-m" dir="rtl">קרא את הפרופיל המקצועי שלי ואת הקובץ <code dir="auto">תוצרים/הזדמנויות.md</code>.
 
 הצע משימה אחת נוספת שכדאי לי לשפר בשבוע הקרוב בעזרת אותה שיטה: הגדרה, ביצוע, בדיקה, מיומנות ושגרה.
 
 הצג את המשימה, את הצעד הראשון שאפשר לעשות מחר בבוקר בעשר דקות, ואיך אדע שזה עבד.
 
 אל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו היום.
+  <textarea class="prompt-src g-m" hidden>קרא את הפרופיל המקצועי שלי ואת הקובץ `תוצרים/הזדמנויות.md`.
 
 הצע משימה אחת נוספת שכדאי לי לשפר בשבוע הקרוב בעזרת אותה שיטה: הגדרה, ביצוע, בדיקה, מיומנות ושגרה.
 
 הצג את המשימה, את הצעד הראשון שאפשר לעשות מחר בבוקר בעשר דקות, ואיך אדע שזה עבד.
 
 אל תיצור קבצים.</textarea>
+</div></div><div class="lib-item" data-s="downloads" data-tr="sample"><div class="lib-meta"><a href="downloads.html#join">קבצים לסדנה · חומרי הורדה</a><span class="tag tag-sample">מסלול דוגמה</span></div><div class="prompt has-g" id="lib-44">
+  <div class="prompt-head"><span class="prompt-title">פרומפט הצטרפות למסלול הדוגמה</span><button class="copy" type="button" data-copy="lib-44" aria-label="העתקת הפרומפט: פרומפט הצטרפות למסלול הדוגמה">העתקה</button></div>
+  <pre class="prompt-text g-m" dir="rtl">אני מצטרף למסלול הדוגמה באמצע הסדנה. אני נמצא עכשיו בשלב: <mark>[שם השלב, למשל: יוצרים מיומנות]</mark>.
+
+בתיקייה <code dir="auto">נקודת-הצטרפות</code> יש קבצים מוכנים. קרא את <code dir="auto">נקודת-הצטרפות/קרא-אותי.md</code> והעתק רק את מה שנוצר בשלבים שלפני השלב שלי:
+
+- <code dir="auto">הפרופיל-המקצועי-שלי.md</code> לתיקייה הראשית.
+- <code dir="auto">הזדמנויות.md</code> ו־<code dir="auto">משימה-ראשונה.md</code> לתיקייה <code dir="auto">תוצרים</code>.
+- <code dir="auto">CLAUDE.md</code> לתיקייה הראשית.
+- את המיומנות אל <code dir="auto">.claude/skills/progress-report/SKILL.md</code>.
+
+אל תעתיק קבצים של השלב שלי או של שלבים מאוחרים יותר. אל תדרוס קבצים קיימים, ואל תשנה את התיקייה <code dir="auto">חומרי-עבודה</code>.
+
+בסוף הצג לי מה העתקת ואיפה, ומאיזה תרגיל באתר כדאי לי להמשיך.</pre><pre class="prompt-text g-f" dir="rtl">אני מצטרפת למסלול הדוגמה באמצע הסדנה. אני נמצאת עכשיו בשלב: <mark>[שם השלב, למשל: יוצרים מיומנות]</mark>.
+
+בתיקייה <code dir="auto">נקודת-הצטרפות</code> יש קבצים מוכנים. קרא את <code dir="auto">נקודת-הצטרפות/קרא-אותי.md</code> והעתק רק את מה שנוצר בשלבים שלפני השלב שלי:
+
+- <code dir="auto">הפרופיל-המקצועי-שלי.md</code> לתיקייה הראשית.
+- <code dir="auto">הזדמנויות.md</code> ו־<code dir="auto">משימה-ראשונה.md</code> לתיקייה <code dir="auto">תוצרים</code>.
+- <code dir="auto">CLAUDE.md</code> לתיקייה הראשית.
+- את המיומנות אל <code dir="auto">.claude/skills/progress-report/SKILL.md</code>.
+
+אל תעתיק קבצים של השלב שלי או של שלבים מאוחרים יותר. אל תדרוס קבצים קיימים, ואל תשנה את התיקייה <code dir="auto">חומרי-עבודה</code>.
+
+בסוף הצג לי מה העתקת ואיפה, ומאיזה תרגיל באתר כדאי לי להמשיך.</pre>
+  <textarea class="prompt-src g-m" hidden>אני מצטרף למסלול הדוגמה באמצע הסדנה. אני נמצא עכשיו בשלב: [שם השלב, למשל: יוצרים מיומנות].
+
+בתיקייה `נקודת-הצטרפות` יש קבצים מוכנים. קרא את `נקודת-הצטרפות/קרא-אותי.md` והעתק רק את מה שנוצר בשלבים שלפני השלב שלי:
+
+- `הפרופיל-המקצועי-שלי.md` לתיקייה הראשית.
+- `הזדמנויות.md` ו־`משימה-ראשונה.md` לתיקייה `תוצרים`.
+- `CLAUDE.md` לתיקייה הראשית.
+- את המיומנות אל `.claude/skills/progress-report/SKILL.md`.
+
+אל תעתיק קבצים של השלב שלי או של שלבים מאוחרים יותר. אל תדרוס קבצים קיימים, ואל תשנה את התיקייה `חומרי-עבודה`.
+
+בסוף הצג לי מה העתקת ואיפה, ומאיזה תרגיל באתר כדאי לי להמשיך.</textarea><textarea class="prompt-src g-f" hidden>אני מצטרפת למסלול הדוגמה באמצע הסדנה. אני נמצאת עכשיו בשלב: [שם השלב, למשל: יוצרים מיומנות].
+
+בתיקייה `נקודת-הצטרפות` יש קבצים מוכנים. קרא את `נקודת-הצטרפות/קרא-אותי.md` והעתק רק את מה שנוצר בשלבים שלפני השלב שלי:
+
+- `הפרופיל-המקצועי-שלי.md` לתיקייה הראשית.
+- `הזדמנויות.md` ו־`משימה-ראשונה.md` לתיקייה `תוצרים`.
+- `CLAUDE.md` לתיקייה הראשית.
+- את המיומנות אל `.claude/skills/progress-report/SKILL.md`.
+
+אל תעתיק קבצים של השלב שלי או של שלבים מאוחרים יותר. אל תדרוס קבצים קיימים, ואל תשנה את התיקייה `חומרי-עבודה`.
+
+בסוף הצג לי מה העתקת ואיפה, ומאיזה תרגיל באתר כדאי לי להמשיך.</textarea>
 </div></div></div>
 <div class="cta-row"><a class="btn" href="downloads/agent-zero-prompts.md" download>הורדת כל הפרומפטים כקובץ ↓</a></div>
     <nav class="pager" aria-label="מעבר בין עמודים"><a class="pg prev" href="my-agent.html"><small>→ הקודם</small><b>הסוכן הראשון שלי</b></a><a class="pg next" href="help.html"><small>הבא ←</small><b>עזרה ופתרון תקלות</b></a></nav>
@@ -1661,14 +1986,14 @@ main,.shell,.foot{position:relative;z-index:1}
       <a class="btn" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn solid" href="https://practiai.co.il/">לאתר הראשי של PractiAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
     </div>
-    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם.</p>
+    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם. <a href="https://practiai.co.il/accessibility.html">הצהרת נגישות</a></p>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.AZ_EXERCISES=["setup","meet","profile","opportunities","first-task","tool","browser-computer","connectors","instructions","skill","routine","my-agent"];</script>
 <script>(function(){
   var KEY='agentZero.v1';
-  var state={done:{},checks:{},track:null};
+  var state={done:{},checks:{},track:null,g:'m'};
   try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s)state=Object.assign(state,s);}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
   var toastT;
@@ -1676,10 +2001,10 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // progress + nav marks
   function paint(){
-    var ex=window.AZ_EXERCISES||[];var n=ex.filter(function(s){return state.done[s];}).length;
-    var f=document.getElementById('prog-fill'),t=document.getElementById('prog-txt');
-    if(f)f.style.width=(ex.length?n/ex.length*100:0)+'%';
-    if(t)t.textContent=n+'/'+ex.length;
+    // progress = the six workshop checkpoints
+    var cps=[state.done.profile, state.done.opportunities||state.checks['opportunities:1'], state.done.opportunities, state.done['first-task'], state.done.skill, state.done.routine];
+    var n=cps.filter(Boolean).length;
+    document.querySelectorAll('.cps').forEach(function(box){box.querySelectorAll('.cp').forEach(function(d,k){d.classList.toggle('on',!!cps[k]);});var t=box.querySelector('.cp-n');if(t)t.textContent=n+'/6';});
     document.querySelectorAll('[data-nav]').forEach(function(a){a.classList.toggle('is-done',!!state.done[a.getAttribute('data-nav')]);});
     document.querySelectorAll('.mark-done').forEach(function(b){var d=!!state.done[b.getAttribute('data-page')];b.setAttribute('aria-pressed',d);b.textContent=d?'השלב הושלם':(b.getAttribute('data-label')||b.textContent);});
   }
@@ -1720,7 +2045,7 @@ main,.shell,.foot{position:relative;z-index:1}
     if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback);}else fallback();
   }
   document.querySelectorAll('.copy').forEach(function(b){
-    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));copyText(card.querySelector('.prompt-src').value,b);});
+    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));var src=(state.g==='f'&&card.querySelector('.prompt-src.g-f'))||card.querySelector('.prompt-src');copyText(src.value,b);});
   });
 
   // mobile menu
@@ -1730,7 +2055,7 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // reset
   var r=document.getElementById('reset');
-  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
+  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null,g:state.g};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
 
   // prompt library filters
   var q=document.getElementById('lib-q');
@@ -1745,6 +2070,9 @@ main,.shell,.foot{position:relative;z-index:1}
     document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){tr=c.getAttribute('data-tr');document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c);});filt();});});
     filt();
   }
+  function setG(g){state.g=g;document.body.classList.toggle('g-f',g==='f');document.querySelectorAll('.gender button').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-g')===g);});}
+  document.querySelectorAll('.gender button').forEach(function(x){x.addEventListener('click',function(){setG(x.getAttribute('data-g'));save();toast(state.g==='f'?'הפרומפטים מוצגים בלשון נקבה':'הפרומפטים מוצגים בלשון זכר');});});
+  setG(state.g||'m');
   paint();
 })();
 </script>

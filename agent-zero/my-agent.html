@@ -10,6 +10,7 @@
 <meta property="og:title" content="אייג׳נט זירו · מאפס לסוכן בינה מלאכותית משלך">
 <meta property="og:description" content="אתר התרגול של הסדנה · טל חקוקי | PractiAI">
 <meta property="og:locale" content="he_IL">
+<meta property="og:image" content="https://practiai.co.il/agent-zero/assets/og.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>:root{
@@ -315,6 +316,34 @@ kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;paddi
 #neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .topbar{z-index:30}
 main,.shell,.foot{position:relative;z-index:1}
+/* masculine / feminine prompt wording */
+.prompt.has-g pre.g-f{display:none}
+body.g-f .prompt.has-g pre.g-m{display:none}
+body.g-f .prompt.has-g pre.g-f{display:block}
+.gender{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);margin:0 0 12px}
+.gender button{font:inherit;font-size:14px;border:1px solid var(--line-2);background:var(--card);border-radius:20px;padding:3px 12px;cursor:pointer;color:var(--ink-2)}
+.gender button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+/* checkpoints (replace the old progress bar) */
+.cps{margin-inline-start:auto;display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted)}
+.cp-lbl{margin-inline-end:4px}
+.cp{display:inline-flex;align-items:center;gap:6px}
+.cp b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--paper-2);color:var(--muted);border:1px solid var(--line);transition:all .3s}
+.cp.on b{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cp-n{margin-inline-start:4px;font-weight:700}
+.cps.big{margin:8px 0 18px;flex-wrap:wrap;gap:8px;font-size:14px}
+.cps.big .cp{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 12px}
+.cps.big .cp i{font-style:normal;color:var(--ink-2)}
+.cps.big .cp.on{border-color:var(--accent-line);background:var(--accent-soft)}
+.nav-sep{height:1px;background:var(--line);margin:8px 10px}
+@media (max-width:860px){.cp-lbl,.cp-n{display:none}.cp b{width:18px;height:18px;font-size:10px}.cps{gap:3px}}
+.after-cta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;max-width:900px}
+.after-cta>div{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.after-cta>div:last-child{border-color:var(--accent-line);background:linear-gradient(180deg,#fff,var(--accent-soft))}
+.after-cta b{font-family:var(--font-display);font-size:21px}
+.after-cta span{color:var(--ink-2);font-size:15px}
+.after-cta .btn{align-self:flex-start;margin-top:auto;font-size:15px;padding:9px 18px}
+@media (max-width:700px){.after-cta{grid-template-columns:1fr}}
+body:not(.landing) #neural{opacity:.45}
 </style>
 </head>
 <body data-page="my-agent">
@@ -325,12 +354,12 @@ main,.shell,.foot{position:relative;z-index:1}
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="side" aria-label="תפריט השלבים"><span></span><span></span><span></span></button>
     <div class="brand"><a href="https://practiai.co.il/" aria-label="לאתר הראשי של PractiAI"><img src="assets/practiai-logo-light.png" alt="PractiAI" width="120" height="30"></a><a class="brand-name" href="index.html">אייג׳נט זירו</a></div>
     <nav class="toplinks" aria-label="קישורים מהירים"><a href="index.html">עמוד הסדנה</a><a href="deck.html" target="_blank" rel="noopener">המצגת</a><a href="prompts.html">פרומפטים</a></nav>
-    <div class="progress" aria-label="התקדמות בסדנה"><div class="progress-bar"><span id="prog-fill"></span></div><span id="prog-txt" class="num">0/12</span></div>
+    <div class="cps" role="group" aria-label="נקודות הבקרה של הסדנה"><span class="cp-lbl">נקודות בקרה</span><span class="cp" title="1. פרופיל מקצועי"><b>1</b></span><span class="cp" title="2. הזדמנות נבחרה"><b>2</b></span><span class="cp" title="3. משימה מוגדרת"><b>3</b></span><span class="cp" title="4. משימה בוצעה ונבדקה"><b>4</b></span><span class="cp" title="5. מיומנות עובדת"><b>5</b></span><span class="cp" title="6. שגרה נבדקה"><b>6</b></span><span class="cp-n num">0/6</span></div>
   </div>
 </header>
 <div class="shell wrap">
   <aside class="side" id="side" aria-label="שלבי הסדנה">
-    <ol class="nav"><li><a href="index.html" data-nav="index"><span class="nav-n">1</span><span class="nav-t">מתחילים כאן</span></a></li><li><a href="setup.html" data-nav="setup"><span class="nav-n">2</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" data-nav="browser-computer"><span class="nav-n">8</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors"><span class="nav-n">9</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" data-nav="routine"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" aria-current="page" data-nav="my-agent"><span class="nav-n">13</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="prompts.html" data-nav="prompts"><span class="nav-n">14</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help"><span class="nav-n">15</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads"><span class="nav-n">16</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
+    <ol class="nav"><li><a href="index.html" data-nav="index" title="אייג׳נט זירו · PractiAI"><span class="nav-n">⌂</span><span class="nav-t">עמוד הסדנה</span></a></li><li class="nav-sep" aria-hidden="true"></li><li><a href="setup.html" data-nav="setup" title="שלב 0"><span class="nav-n">0</span><span class="nav-t">התקנה והיכרות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="meet.html" data-nav="meet" title="תרגיל 1"><span class="nav-n">3</span><span class="nav-t">קלוד לומד להכיר אותי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="profile.html" data-nav="profile" title="תרגיל 2"><span class="nav-n">4</span><span class="nav-t">הפרופיל המקצועי שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="opportunities.html" data-nav="opportunities" title="תרגיל 3"><span class="nav-n">5</span><span class="nav-t">מגלים הזדמנויות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="first-task.html" data-nav="first-task" title="תרגיל 4"><span class="nav-n">6</span><span class="nav-t">מבצעים משימה ראשונה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="tool.html" data-nav="tool" title="תרגיל 5"><span class="nav-n">7</span><span class="nav-t">בונים כלי אישי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="browser-computer.html" data-nav="browser-computer" title="הדגמה"><span class="nav-n">◆</span><span class="nav-t">דפדפן ושליטה במחשב</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="connectors.html" data-nav="connectors" title="הדגמה"><span class="nav-n">◆</span><span class="nav-t">חיבורים רשמיים</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="instructions.html" data-nav="instructions" title="תרגיל 6"><span class="nav-n">10</span><span class="nav-t">הוראות קבועות לפרויקט</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="skill.html" data-nav="skill" title="תרגיל 7"><span class="nav-n">11</span><span class="nav-t">יוצרים מיומנות</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="routine.html" data-nav="routine" title="תרגיל 8"><span class="nav-n">12</span><span class="nav-t">יוצרים שגרה</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li><a href="my-agent.html" aria-current="page" data-nav="my-agent" title="סיכום"><span class="nav-n">★</span><span class="nav-t">הסוכן הראשון שלי</span><span class="nav-done" aria-hidden="true">✓</span></a></li><li class="nav-sep" aria-hidden="true"></li><li><a href="prompts.html" data-nav="prompts" title="לעיון ולהעתקה"><span class="nav-n">❝</span><span class="nav-t">ספריית פרומפטים</span></a></li><li><a href="help.html" data-nav="help" title="נתקעתם?"><span class="nav-n">?</span><span class="nav-t">עזרה ופתרון תקלות</span></a></li><li><a href="downloads.html" data-nav="downloads" title="קבצים לסדנה"><span class="nav-n">↓</span><span class="nav-t">חומרי הורדה</span></a></li></ol>
     <button type="button" class="reset" id="reset">איפוס ההתקדמות</button>
   </aside>
   <main id="main" tabindex="-1">
@@ -354,9 +383,9 @@ main,.shell,.foot{position:relative;z-index:1}
 <div><b>הוראות</b><span>איך קלוד צריך לעבוד בפרויקט הזה.</span></div>
 <div><b>מיומנות</b><span>איך מבצעים תהליך חוזר, צעד אחר צעד.</span></div>
 <div><b>שגרה</b><span>מתי מפעילים את התהליך, אוטומטית.</span></div>
-</div><h2>איך מתחזקים את הסוכן?</h2><ul><li><strong>אחת לחודש:</strong> עברו על הפרופיל ועדכנו את מה שהשתנה.</li><li><strong>אחרי כל הרצה של השגרה:</strong> קראו את התוצר. אם משהו חוזר על עצמו כבעיה, תקנו את המיומנות.</li><li><strong>כשנוסף תהליך חדש:</strong> אל תעמיסו על המיומנות הקיימת. צרו מיומנות חדשה.</li><li><strong>כששגרה כבר לא נחוצה:</strong> השהו או מחקו אותה.</li></ul></div><section class="block" id="check"><h2>רשימת הבדיקה של הסביבה</h2><ul class="checklist" data-page="my-agent"><li><label><input type="checkbox" data-k="my-agent:0"><span>יש לי פרופיל מקצועי.</span></label></li><li><label><input type="checkbox" data-k="my-agent:1"><span>יש לי הוראות עבודה קבועות.</span></label></li><li><label><input type="checkbox" data-k="my-agent:2"><span>יש לי תיקיית עבודה מסודרת.</span></label></li><li><label><input type="checkbox" data-k="my-agent:3"><span>ביצעתי משימה ראשונה ובדקתי אותה.</span></label></li><li><label><input type="checkbox" data-k="my-agent:4"><span>בניתי כלי אישי, או החלטתי לדלג עליו.</span></label></li><li><label><input type="checkbox" data-k="my-agent:5"><span>יש לי מיומנות חוזרת.</span></label></li><li><label><input type="checkbox" data-k="my-agent:6"><span>יש לי תוצר שנוצר באמצעות המיומנות.</span></label></li><li><label><input type="checkbox" data-k="my-agent:7"><span>הגדרתי שגרה מתוזמנת ובדקתי אותה.</span></label></li></ul><div class="done-box"><button type="button" class="btn solid mark-done" data-page="my-agent" aria-pressed="false">סיימתי את הסדנה</button></div></section><section class="block" id="ask"><h2>מה מבקשים מקלוד?</h2><div class="tabs" data-default="short"><div class="tablist" role="tablist" aria-label="בחירת מסלול"><button type="button" role="tab" class="tab" id="tab-my-agent-short" aria-controls="panel-my-agent-short" data-track="short" aria-selected="true">מסלול קצר<span class="tab-badge">בסדנה</span></button><button type="button" role="tab" class="tab" id="tab-my-agent-deep" aria-controls="panel-my-agent-deep" data-track="deep" aria-selected="false">מסלול מעמיק</button></div><div class="tab-panel" role="tabpanel" id="panel-my-agent-short" aria-labelledby="tab-my-agent-short" data-track="short"><p class="track-note">הפרומפט המרכזי של התרגיל. מספיק כדי להשלים את השלב.</p><div class="prompt" id="my-agent-short-1">
+</div><h2>איך מתחזקים את הסוכן?</h2><ul><li><strong>אחת לחודש:</strong> עברו על הפרופיל ועדכנו את מה שהשתנה.</li><li><strong>אחרי כל הרצה של השגרה:</strong> קראו את התוצר. אם משהו חוזר על עצמו כבעיה, תקנו את המיומנות.</li><li><strong>כשנוסף תהליך חדש:</strong> אל תעמיסו על המיומנות הקיימת. צרו מיומנות חדשה.</li><li><strong>כששגרה כבר לא נחוצה:</strong> השהו או מחקו אותה.</li></ul></div><section class="block" id="check"><h2>רשימת הבדיקה של הסביבה</h2><ul class="checklist" data-page="my-agent"><li><label><input type="checkbox" data-k="my-agent:0"><span>יש לי פרופיל מקצועי.</span></label></li><li><label><input type="checkbox" data-k="my-agent:1"><span>יש לי הוראות עבודה קבועות.</span></label></li><li><label><input type="checkbox" data-k="my-agent:2"><span>יש לי תיקיית עבודה מסודרת.</span></label></li><li><label><input type="checkbox" data-k="my-agent:3"><span>ביצעתי משימה ראשונה ובדקתי אותה.</span></label></li><li><label><input type="checkbox" data-k="my-agent:4"><span>בניתי כלי אישי, או החלטתי לדלג עליו.</span></label></li><li><label><input type="checkbox" data-k="my-agent:5"><span>יש לי מיומנות חוזרת.</span></label></li><li><label><input type="checkbox" data-k="my-agent:6"><span>יש לי תוצר שנוצר באמצעות המיומנות.</span></label></li><li><label><input type="checkbox" data-k="my-agent:7"><span>הגדרתי שגרה מתוזמנת ובדקתי אותה.</span></label></li></ul><div class="done-box"><button type="button" class="btn solid mark-done" data-page="my-agent" aria-pressed="false">סיימתי את הסדנה</button></div></section><section class="block" id="ask"><h2>מה מבקשים מקלוד?</h2><div class="gender" role="group" aria-label="לשון הפרומפטים"><span>לשון הפרומפטים:</span><button type="button" data-g="m" aria-pressed="true">זכר</button><button type="button" data-g="f" aria-pressed="false">נקבה</button></div><div class="tabs" data-default="short"><div class="tablist" role="tablist" aria-label="בחירת מסלול"><button type="button" role="tab" class="tab" id="tab-my-agent-short" aria-controls="panel-my-agent-short" data-track="short" aria-selected="true">מסלול קצר<span class="tab-badge">בסדנה</span></button><button type="button" role="tab" class="tab" id="tab-my-agent-deep" aria-controls="panel-my-agent-deep" data-track="deep" aria-selected="false">מסלול מעמיק</button></div><div class="tab-panel" role="tabpanel" id="panel-my-agent-short" aria-labelledby="tab-my-agent-short" data-track="short"><p class="track-note">הפרומפט המרכזי של התרגיל. מספיק כדי להשלים את השלב.</p><div class="prompt" id="my-agent-short-1">
   <div class="prompt-head"><span class="prompt-title">בדיקת הסביבה שבניתי</span><button class="copy" type="button" data-copy="my-agent-short-1" aria-label="העתקת הפרומפט: בדיקת הסביבה שבניתי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+  <pre class="prompt-text g-m" dir="rtl">עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
 
 1. הפרופיל המקצועי.
 2. קובץ ההוראות הקבועות.
@@ -370,7 +399,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לכל רכיב ציין אם הוא קיים, איפה הוא נמצא ומה הוא עושה.
 
 אל תשנה קבצים.</pre>
-  <textarea class="prompt-src" hidden>עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+  <textarea class="prompt-src g-m" hidden>עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
 
 1. הפרופיל המקצועי.
 2. קובץ ההוראות הקבועות.
@@ -386,7 +415,7 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשנה קבצים.</textarea>
 </div></div><div class="tab-panel" role="tabpanel" id="panel-my-agent-deep" aria-labelledby="tab-my-agent-deep" data-track="deep" hidden><p class="track-note">אחרי הפרומפט המרכזי: עוד בירור, עוד התאמה אישית ועוד בדיקות.</p><div class="step-label">שלב 1 מתוך 2</div><div class="prompt" id="my-agent-deep-2">
   <div class="prompt-head"><span class="prompt-title">בדיקת הסביבה שבניתי</span><button class="copy" type="button" data-copy="my-agent-deep-2" aria-label="העתקת הפרומפט: בדיקת הסביבה שבניתי">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+  <pre class="prompt-text g-m" dir="rtl">עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
 
 1. הפרופיל המקצועי.
 2. קובץ ההוראות הקבועות.
@@ -400,7 +429,7 @@ main,.shell,.foot{position:relative;z-index:1}
 לכל רכיב ציין אם הוא קיים, איפה הוא נמצא ומה הוא עושה.
 
 אל תשנה קבצים.</pre>
-  <textarea class="prompt-src" hidden>עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
+  <textarea class="prompt-src g-m" hidden>עבור על תיקיית הפרויקט והצג לי טבלה של סביבת העבודה שבניתי היום:
 
 1. הפרופיל המקצועי.
 2. קובץ ההוראות הקבועות.
@@ -416,21 +445,21 @@ main,.shell,.foot{position:relative;z-index:1}
 אל תשנה קבצים.</textarea>
 </div><div class="step-label">שלב 2 מתוך 2</div><div class="prompt" id="my-agent-deep-3">
   <div class="prompt-head"><span class="prompt-title">העמקה: מה הצעד הבא שלי?</span><button class="copy" type="button" data-copy="my-agent-deep-3" aria-label="העתקת הפרומפט: העמקה: מה הצעד הבא שלי?">העתקה</button></div>
-  <pre class="prompt-text" dir="rtl">קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו היום.
+  <pre class="prompt-text g-m" dir="rtl">קרא את הפרופיל המקצועי שלי ואת הקובץ <code dir="auto">תוצרים/הזדמנויות.md</code>.
 
 הצע משימה אחת נוספת שכדאי לי לשפר בשבוע הקרוב בעזרת אותה שיטה: הגדרה, ביצוע, בדיקה, מיומנות ושגרה.
 
 הצג את המשימה, את הצעד הראשון שאפשר לעשות מחר בבוקר בעשר דקות, ואיך אדע שזה עבד.
 
 אל תיצור קבצים.</pre>
-  <textarea class="prompt-src" hidden>קרא את הפרופיל המקצועי שלי ואת ההזדמנויות שזיהינו היום.
+  <textarea class="prompt-src g-m" hidden>קרא את הפרופיל המקצועי שלי ואת הקובץ `תוצרים/הזדמנויות.md`.
 
 הצע משימה אחת נוספת שכדאי לי לשפר בשבוע הקרוב בעזרת אותה שיטה: הגדרה, ביצוע, בדיקה, מיומנות ושגרה.
 
 הצג את המשימה, את הצעד הראשון שאפשר לעשות מחר בבוקר בעשר דקות, ואיך אדע שזה עבד.
 
 אל תיצור קבצים.</textarea>
-</div></div></div></section>
+</div></div></div></section><section class="block" id="after"><h2>אחרי הסדנה</h2><div class="after-cta"><div><b>איך היה?</b><span>משוב קצר עוזר לי לשפר את הסדנה. שתי שורות בוואטסאפ מספיקות.</span><a class="btn" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%94%D7%A9%D7%AA%D7%AA%D7%A4%D7%AA%D7%99%20%D7%91%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%B3%D7%A0%D7%98%20%D7%96%D7%99%D7%A8%D7%95.%20%D7%94%D7%9E%D7%A9%D7%95%D7%91%20%D7%A9%D7%9C%D7%99%3A%20" target="_blank" rel="noopener">משוב בוואטסאפ</a></div><div><b>רוצים את הסדנה לצוות?</b><span>סדנה מותאמת לארגון, עם תרגול על התהליכים של הצוות שלכם.</span><a class="btn solid" href="https://wa.me/972506915269?text=%D7%94%D7%99%D7%99%20%D7%98%D7%9C%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%99%D7%99%D7%92%D7%B3%D7%A0%D7%98%20%D7%96%D7%99%D7%A8%D7%95%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%20%D7%A9%D7%9C%D7%A0%D7%95." target="_blank" rel="noopener">לתיאום שיחה</a></div></div></section>
     <nav class="pager" aria-label="מעבר בין עמודים"><a class="pg prev" href="routine.html"><small>→ הקודם</small><b>יוצרים שגרה</b></a><a class="pg next" href="prompts.html"><small>הבא ←</small><b>ספריית פרומפטים</b></a></nav>
   </main>
 </div>
@@ -443,14 +472,14 @@ main,.shell,.foot{position:relative;z-index:1}
       <a class="btn" href="https://www.linkedin.com/in/tal-hakoki/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn solid" href="https://practiai.co.il/">לאתר הראשי של PractiAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
     </div>
-    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם.</p>
+    <p class="fine">החומרים מיועדים למשתתפי סדנת אייג׳נט זירו. כל הנתונים, הארגונים והאנשים בדוגמאות ובקבצים בדויים. האתר אינו אוסף מידע: סימוני ההתקדמות נשמרים רק בדפדפן שלכם. <a href="https://practiai.co.il/accessibility.html">הצהרת נגישות</a></p>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.AZ_EXERCISES=["setup","meet","profile","opportunities","first-task","tool","browser-computer","connectors","instructions","skill","routine","my-agent"];</script>
 <script>(function(){
   var KEY='agentZero.v1';
-  var state={done:{},checks:{},track:null};
+  var state={done:{},checks:{},track:null,g:'m'};
   try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s)state=Object.assign(state,s);}catch(e){}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
   var toastT;
@@ -458,10 +487,10 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // progress + nav marks
   function paint(){
-    var ex=window.AZ_EXERCISES||[];var n=ex.filter(function(s){return state.done[s];}).length;
-    var f=document.getElementById('prog-fill'),t=document.getElementById('prog-txt');
-    if(f)f.style.width=(ex.length?n/ex.length*100:0)+'%';
-    if(t)t.textContent=n+'/'+ex.length;
+    // progress = the six workshop checkpoints
+    var cps=[state.done.profile, state.done.opportunities||state.checks['opportunities:1'], state.done.opportunities, state.done['first-task'], state.done.skill, state.done.routine];
+    var n=cps.filter(Boolean).length;
+    document.querySelectorAll('.cps').forEach(function(box){box.querySelectorAll('.cp').forEach(function(d,k){d.classList.toggle('on',!!cps[k]);});var t=box.querySelector('.cp-n');if(t)t.textContent=n+'/6';});
     document.querySelectorAll('[data-nav]').forEach(function(a){a.classList.toggle('is-done',!!state.done[a.getAttribute('data-nav')]);});
     document.querySelectorAll('.mark-done').forEach(function(b){var d=!!state.done[b.getAttribute('data-page')];b.setAttribute('aria-pressed',d);b.textContent=d?'השלב הושלם':(b.getAttribute('data-label')||b.textContent);});
   }
@@ -502,7 +531,7 @@ main,.shell,.foot{position:relative;z-index:1}
     if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fallback);}else fallback();
   }
   document.querySelectorAll('.copy').forEach(function(b){
-    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));copyText(card.querySelector('.prompt-src').value,b);});
+    b.addEventListener('click',function(){var card=document.getElementById(b.getAttribute('data-copy'));var src=(state.g==='f'&&card.querySelector('.prompt-src.g-f'))||card.querySelector('.prompt-src');copyText(src.value,b);});
   });
 
   // mobile menu
@@ -512,7 +541,7 @@ main,.shell,.foot{position:relative;z-index:1}
 
   // reset
   var r=document.getElementById('reset');
-  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
+  if(r)r.addEventListener('click',function(){if(!confirm('לאפס את כל סימוני ההתקדמות בדפדפן הזה?'))return;state={done:{},checks:{},track:null,g:state.g};save();document.querySelectorAll('.checklist input').forEach(function(i){i.checked=false;});paint();toast('ההתקדמות אופסה');});
 
   // prompt library filters
   var q=document.getElementById('lib-q');
@@ -527,6 +556,9 @@ main,.shell,.foot{position:relative;z-index:1}
     document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){tr=c.getAttribute('data-tr');document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c);});filt();});});
     filt();
   }
+  function setG(g){state.g=g;document.body.classList.toggle('g-f',g==='f');document.querySelectorAll('.gender button').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-g')===g);});}
+  document.querySelectorAll('.gender button').forEach(function(x){x.addEventListener('click',function(){setG(x.getAttribute('data-g'));save();toast(state.g==='f'?'הפרומפטים מוצגים בלשון נקבה':'הפרומפטים מוצגים בלשון זכר');});});
+  setG(state.g||'m');
   paint();
 })();
 </script>
