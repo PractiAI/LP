@@ -310,9 +310,15 @@ kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;paddi
 @media (max-width:560px){.pgrid,.keys{grid-template-columns:1fr}.progress-bar.wide{width:120px}}
 @media (max-width:860px){.brand img{display:block!important;height:22px}.brand-name{font-size:17px;padding-inline-start:10px;border-inline-start:1px solid var(--line-2)!important}.progress-bar{width:50px}.brand{gap:10px}}
 .brand-name{white-space:nowrap}
+
+/* live neural-network background (same as MNMR 2026 page) */
+#neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.topbar{z-index:30}
+main,.shell,.foot{position:relative;z-index:1}
 </style>
 </head>
 <body data-page="profile">
+<canvas id="neural" aria-hidden="true"></canvas>
 <a class="skip" href="#main">דילוג לתוכן</a>
 <header class="topbar">
   <div class="wrap topbar-in">
@@ -635,6 +641,62 @@ kbd{font-family:var(--font-mono);font-size:13px;min-width:30px;height:30px;paddi
     filt();
   }
   paint();
+})();
+</script>
+<script>/* live neural network background */
+(function(){
+  var c=document.getElementById('neural'); if(!c||!c.getContext)return;
+  var ctx=c.getContext('2d'), W=0, H=0, dpr=1, nodes=[], pulses=[], raf=0, last=0, spawn=0;
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mouse={x:-9999,y:-9999}, LINK=150;
+  function init(){
+    dpr=Math.min(window.devicePixelRatio||1,2); W=innerWidth; H=innerHeight;
+    c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    LINK=W<640?115:150;
+    var n=Math.max(34,Math.min(120,Math.round(W*H/15000)));
+    while(nodes.length<n)nodes.push(mk());
+    nodes.length=n;
+    nodes.forEach(function(p){p.x=Math.min(p.x,W);p.y=Math.min(p.y,H);});
+  }
+  function mk(){var hub=Math.random()<.1;return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:hub?3.4:1.5+Math.random()*1.4,hub:hub,amb:hub&&Math.random()<.45,ph:Math.random()*6.28};}
+  function frame(t){
+    var dt=Math.min(40,t-last||16); last=t;
+    ctx.clearRect(0,0,W,H);
+    var i,j,a,b,dx,dy,d,al;
+    for(i=0;i<nodes.length;i++){a=nodes[i];
+      if(!still){a.x+=a.vx*dt/16;a.y+=a.vy*dt/16;
+        if(a.x<-20)a.x=W+20; if(a.x>W+20)a.x=-20; if(a.y<-20)a.y=H+20; if(a.y>H+20)a.y=-20;}
+    }
+    ctx.lineWidth=1;
+    for(i=0;i<nodes.length;i++){a=nodes[i];
+      for(j=i+1;j<nodes.length;j++){b=nodes[j];dx=a.x-b.x;dy=a.y-b.y;if(dx>LINK||dx<-LINK||dy>LINK||dy<-LINK)continue;d=Math.sqrt(dx*dx+dy*dy);
+        if(d<LINK){al=(1-d/LINK)*.3;ctx.strokeStyle='rgba(12,127,114,'+al.toFixed(3)+')';ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}
+      dx=a.x-mouse.x;dy=a.y-mouse.y;d=Math.sqrt(dx*dx+dy*dy);
+      if(d<190){ctx.strokeStyle='rgba(11,92,112,'+((1-d/190)*.35).toFixed(3)+')';ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke();}
+    }
+    /* signals travelling along links */
+    if(!still){spawn-=dt; if(spawn<=0&&pulses.length<14){spawn=260+Math.random()*420;
+      a=nodes[(Math.random()*nodes.length)|0]; var best=null,bd=LINK;
+      for(j=0;j<nodes.length;j++){b=nodes[j];if(b===a)continue;dx=a.x-b.x;dy=a.y-b.y;d=Math.sqrt(dx*dx+dy*dy);if(d<bd&&Math.random()<.6){bd=d;best=b;}}
+      if(best)pulses.push({a:a,b:best,t:0,amb:Math.random()<.25});}
+    for(i=pulses.length-1;i>=0;i--){var q=pulses[i];q.t+=dt/900;if(q.t>=1){pulses.splice(i,1);continue;}
+      var x=q.a.x+(q.b.x-q.a.x)*q.t,y=q.a.y+(q.b.y-q.a.y)*q.t,f=Math.sin(q.t*Math.PI);
+      var col=q.amb?'184,104,12':'12,127,114';
+      var g=ctx.createRadialGradient(x,y,0,x,y,9);g.addColorStop(0,'rgba('+col+','+(.55*f).toFixed(3)+')');g.addColorStop(1,'rgba('+col+',0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,9,0,6.283);ctx.fill();
+      ctx.fillStyle='rgba('+col+','+(.9*f).toFixed(3)+')';ctx.beginPath();ctx.arc(x,y,1.8,0,6.283);ctx.fill();}}
+    /* neurons */
+    for(i=0;i<nodes.length;i++){a=nodes[i];var pulse=still?0:(Math.sin(t/900+a.ph)+1)/2;
+      if(a.hub){ctx.fillStyle=a.amb?'rgba(184,104,12,'+(.10+.10*pulse).toFixed(3)+')':'rgba(12,127,114,'+(.10+.10*pulse).toFixed(3)+')';ctx.beginPath();ctx.arc(a.x,a.y,a.r+5+3*pulse,0,6.283);ctx.fill();}
+      ctx.fillStyle=a.amb?'rgba(184,104,12,.75)':'rgba(12,127,114,'+(a.hub?.75:.5)+')';ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,6.283);ctx.fill();}
+    if(!still)raf=requestAnimationFrame(frame);
+  }
+  function start(){cancelAnimationFrame(raf);last=0;raf=requestAnimationFrame(frame);}
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){init();if(still)frame(0);},150);});
+  window.addEventListener('pointermove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;},{passive:true});
+  document.addEventListener('pointerleave',function(){mouse.x=mouse.y=-9999;});
+  document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else if(!still)start();});
+  init(); if(still)frame(0); else start();
 })();
 </script>
 </body>
